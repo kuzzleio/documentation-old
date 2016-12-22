@@ -14,24 +14,18 @@ includes:
   - user_guide/01-installation-linux
   - user_guide/03-configuration
   - user_guide/persisted
+  - user_guide/data-validation
   - user_guide/05-filters
   - user_guide/07-security
   - user_guide/06-status-code
   - user_guide/04-cli
-  - core_documentation/index
-  - core_documentation/01-architecture
-  - core_documentation/02-request-scenarios
-  - core_documentation/03-security
-  - data_validation/index
-  - data_validation/01-schema
-  - data_validation/02-fields
-  - data_validation/03-validators
-  - plugins/index
-  - plugins/01-managing-plugins-cli
-  - plugins/02-plugin-prerequisites
-  - plugins/03-plugin-context
-  - plugins/04-creating-plugins
-  - plugins/05-kuzzle-events
+  - advanced/index
+  - advanced/01-architecture
+  - advanced/02-request-scenarios
+  - advanced/03-security
+  - advanced/plugins/index
+  - advanced/plugins/01-managing-plugins-cli
+  - advanced/plugins/02-plugin-prerequisites
   - elasticsearch/index
   - elasticsearch/01-before-we-start
   - elasticsearch/02-installation

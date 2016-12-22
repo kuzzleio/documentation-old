@@ -1,4 +1,4 @@
-## The plugin context
+### The plugin context
 
 The plugin context is an object containing a set of constructors, accessors and configurations, allowing plugins to interact with Kuzzle.
 
