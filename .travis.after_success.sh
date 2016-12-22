@@ -3,7 +3,7 @@
 set -ev
 
 deploy () {
-  DEST="/tmp/travis-build"
+  DEST="travis-build"
   if [ "$1" != "" ]; then
     DEST="$DEST/v/$1"
   fi
@@ -11,7 +11,7 @@ deploy () {
   git config --global user.email "support@kuzzle.io"
   git config --global user.name "Travis CI"
 
-  git clone -b gh-pages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} /tmp/travis-build
+  git clone -b gh-pages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} travis-build
 
   mkdir -p "$DEST"
 
@@ -22,7 +22,8 @@ deploy () {
   cp -rp validation-reference/build/* "$DEST/validation-reference/"
   cp index.html "$DEST/index.html"
 
-  cd /tmp/travis-build
+  cd travis-build
+
   git add .
   git commit -m "Travis build ${TRAVIS_BUILD_NUMBER}"
   git push -fq origin gh-pages > /dev/null 2>&1
