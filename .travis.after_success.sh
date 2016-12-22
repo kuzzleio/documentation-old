@@ -13,7 +13,7 @@ deploy () {
 
   git clone -b gh-pages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} travis-build
 
-  mkdir -p "$DEST"
+  mkdir -p "$DEST/{api-reference,dsl-reference,guide,sdk-reference,validation-reference}"
 
   cp -rp api-reference/build/* "$DEST/api-reference/"
   cp -rp dsl-reference/build/* "$DEST/dsl-reference/"
