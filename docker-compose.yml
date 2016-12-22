@@ -6,6 +6,8 @@ kuzzle-documentation:
     - ./guide:/app/guide
     - ./sdk-reference:/app/sdk-reference
     - ./validation-reference:/app/validation-reference
+    - ./plugin-reference:/app/plugin-reference
+    - ./elasticsearch-cookbook:/app/elasticsearch-cookbook
     - ./watch.sh:/watch.sh
   ports:
     - 80:80
