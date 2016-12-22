@@ -6,6 +6,7 @@ kuzzle-documentation:
     - ./guide:/app/guide
     - ./sdk-reference:/app/sdk-reference
     - ./validation-reference:/app/validation-reference
+    - ./watch.sh:/watch.sh
   ports:
     - 80:80
 

@@ -1,4 +1,4 @@
-## Managing plugins using the CLI
+### Managing plugins using the CLI
 
 Plugins can be managed using the Kuzzle command-line interface:
 
@@ -30,7 +30,7 @@ $ ./bin/kuzzle plugins --help
 
 <aside class="warning">Restarting Kuzzle is required to apply any change made to plugins using the command-line interface</aside>
 
-### > List installed plugins
+#### List installed plugins
 
 <aside class="note">Installed plugins are copied into the node_modules directory of a Kuzzle server instance, even if installed from a directory path</aside>
 
@@ -53,11 +53,11 @@ You can get an overview of installed plugins and their activation status using t
      config: { secret: 'changeme', algorithm: 'sha1', digest: 'hex' } } }
 ```
 
-### > Install a plugin
+#### Install a plugin
 
 Kuzzle CLI supports most [npm installation methodes](https://docs.npmjs.com/cli/install).
 
-#### from npm repositories
+##### from npm repositories
 
 ```shell
 $ kuzzle plugins --install [--packageVersion x.y.z] name
@@ -65,7 +65,7 @@ $ kuzzle plugins --install [--packageVersion x.y.z] name
 
 If `--packageVersion` is not provided, the `latest` version will be installed.
 
-#### from a git repository
+##### from a git repository
 
 ```shell
 $ kuzzle plugins --install [--packageVersion commit-ish] --url https://git.repository.url/project.git
@@ -75,7 +75,7 @@ The version can be anything related to commits: branch, tag, commit sha1.
 
 If no version is provided, the `master` branch is used.
 
-#### from a remote tarball
+##### from a remote tarball
 
 ```shell
 $ kuzzle plugins --install --url http://remote.com/plugin.tar.gz
@@ -83,14 +83,14 @@ $ kuzzle plugins --install --url http://remote.com/plugin.tar.gz
 
 <aside class="note">The tarball will be decompressed in the node_modules directory</aside>
 
-#### from a local tarball
+##### from a local tarball
 
 ```shell
 $ kuzzle plugins --install --path /path/to/plugin.tar.gz
 ```
 <aside class="note">The tarball will be decompressed in the node_modules directory</aside>
 
-#### from a local directory
+##### from a local directory
 
 ```shell
 $ kuzzle plgins --install --path /path/to/plugin
@@ -98,7 +98,7 @@ $ kuzzle plgins --install --path /path/to/plugin
 
 <aside class="note">The directory content will be copied in the node_modules directory</aside>
 
-### > View plugins configuration
+#### View plugins configuration
 
 To view a plugin configuration, use the `--get` option.
 
@@ -116,7 +116,7 @@ $ ./bin/kuzzle plugins --get kuzzle-plugin-logger
         stdout: { level: 'info', addDate: true } } } }
 ```
 
-### > Modify a plugin configuration
+#### Modify a plugin configuration
 
 Plugin configurations are stored in the `config` part of plugins properties.
 
@@ -180,7 +180,7 @@ $ ./bin/kuzzle plugins --get kuzzle-plugin-logger
 ```
 
 
-### > Removing a plugin configuration property
+#### Removing a plugin configuration property
 
 You can remove a plugin configuration property by using the ``--unset`` action:
 
@@ -202,7 +202,7 @@ $ ./bin/kuzzle plugins --unset 'services' kuzzle-plugin-logger
 ```
 <aside class="notice">NB: Only root properties can be unset</aside>
 
-### > Uninstalling a plugin
+#### Uninstalling a plugin
 
 Plugins can be uninstalled using the ``--remove`` option.
 
@@ -211,7 +211,7 @@ $ kuzzle plugins --remove kuzzle-plugin-socketio
 { acknowledged: true }
 ```
 
-### > Activating/Deactivating a plugin
+#### Activating/Deactivating a plugin
 
 By default, a plugin is activated when installed, meaning it will be loaded and used by Kuzzle on the next restart.
 
