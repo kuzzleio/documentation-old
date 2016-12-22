@@ -1,0 +1,11 @@
+sudo: false
+language: ruby
+rvm:
+- 2.0.0
+cache: bundler
+script: bundle exec rake -t
+after_success:
+- bash ./.travis.after_success.sh
+env:
+  global:
+  - secure: PEi5aEa+ZjGLOuMFhhKPXRHUcWTtLzDS/fYWM5ELffGYNWCe7sdW6Uv2mRhpVV7xYYnsZmHv5RecKaiog+90ZfeJRrNr1MM+0sGLrLNcabhDbBRlfp83yrLVDjhO+wwRKlq6+u0NpU802Gl+qj12yHsrOVB/19x19vVNTbdgkmzSV32ZUX3vWhINrF4VHgDbKioxR4Rs1FIO/VhxvfIgXBetx5vaAcXXcpYX0lGEw5lgXe2d3U23XZZ+w3bNZqe5i9GExEBGipyDioe399RmvYVf8oJUZwxgVm9QKTg0Txf69a3B+VklmfB7p+3zOgC1x1XLtY5Uayvhnf/Md+O+cTY8CroCl20UAYKehb44WCUinNT14dKhRNbupZgPKd14xYjJk6zghJiyoxEJl/iGUeuj7/fxgtFLKcFxHHViovvxe7xbnGMMzhv0x7S8aNItLeOg70bTrubsaKGsi+82KJxU2PE5sK9Cnty7g7OiXYCvy0xBPVov0tg+qNJ0/9qgKpNq26+hE/v+qofETS+Iy/TPaUiIQf1s9izV7FtD5qQQwHhFOPaLk7bAz2OOvZ3fjW6X/1+KEMuyjBe9e7qPhPjjMifoVRUZqRbe7JsZ29Y3rfKl12KHVI9LA1GnAtXUqOM1Hl8No1AIcLgeQ3wBh8ZSul043sdA+Vl2mLS/Xvs=

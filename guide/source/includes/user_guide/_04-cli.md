@@ -4,7 +4,6 @@ Kuzzle ships with a [Command line interface](https://en.wikipedia.org/wiki/Comma
 
 * start and stop Kuzzle Core,
 * install and configure plugins,
-* start and stop internal services,
 * create the first administrator user,
 * reset Kuzzle internal data _(use with caution !)_.
 
@@ -120,4 +119,4 @@ The `dump` command creates a snapshot of the state of Kuzzle. It includes
 * a dump of the plugins configuration,
 * a dump of the usage statistics of the Kuzzle Server.
 
-This can be particularly handy to feed a crash report to the support team. But, as everybody knows, Kuzzle never crashes :)
+This can be particularly handy to feed a crash report to the support team if you own a Kuzzle License.

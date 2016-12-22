@@ -17,9 +17,9 @@ deploy () {
 
   cp -rp build/* "$DEST/"
   cd travis-build
-#  git add .
-#  git commit -m "Travis build ${TRAVIS_BUILD_NUMBER}"
-#  git push -fq origin gh-pages > /dev/null 2>&1
+  git add .
+  git commit -m "Travis build ${TRAVIS_BUILD_NUMBER}"
+  git push -fq origin gh-pages > /dev/null 2>&1
 }
 
 

@@ -1,6 +1,6 @@
 ## Configuring Kuzzle
 
-The **complete default configuration** of Kuzzle is stored in the [default.config.js file](https://github.com/kuzzleio/kuzzle/blob/master/default.config.js) at the root of the installation directory.
+The **complete default configuration** of Kuzzle is stored in the [kuzzlerc file](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample) at the root of the installation directory.
 
 Kuzzle uses [rc](https://github.com/dominictarr/rc) to **override** its default configuration. The most common ways to do it is:
 
@@ -68,5 +68,5 @@ services:
 ```
 
 <aside class="notice">
-  For an exhaustive list of configuration parameters, please refer to the <a href="https://github.com/kuzzleio/kuzzle/blob/master/default.config.js">default.config.js</a> file.
+  For an exhaustive list of configuration parameters, please refer to the <a href="https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample">kuzzlerc</a> file.
 </aside>

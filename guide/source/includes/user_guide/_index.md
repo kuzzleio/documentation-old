@@ -29,7 +29,7 @@ For the time being, Kuzzle supports the following protocols:
 - HTTP
 - Websocket
 - Socket.io
-- MQTT
+- MQTT (via plugin)
 
 You can directly interact with Kuzzle using the [Kuzzle API reference](/api-reference).
 

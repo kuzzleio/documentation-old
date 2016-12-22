@@ -6,11 +6,11 @@ In this tutorial you will learn in a few steps how to **launch** Kuzzle and how 
 
 Before launching Kuzzle, ensure that your system matches the following pre-requisites:
 
-- **Docker**, see [instructions here](https://docs.docker.com/engine/installation/)
-- **Docker-compose**, see [intructions here](https://docs.docker.com/compose/install/)
+- **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
+- **Docker-compose v1.8+**, see [intructions here](https://docs.docker.com/compose/install/)
 
 <aside class="notice">
-<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This Quickstart tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manual-install">manual installation guide</a>.
+<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manual-install">manual installation guide</a>.
 </aside>
 
 Thanks to Docker-compose, running Kuzzle is easy. Just grab the standard [docker-compose.yml](http://kuzzle.io/kuzzle-docker-compose.yml) file, copy it into a directory and start Kuzzle:
@@ -22,7 +22,7 @@ $ docker-compose up
 ```
 
 <aside class="notice">
-The "sysctl" command is needed by Elasticsearch. More details <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">here</a>.
+The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.x/vm-max-map-count.html">here</a>.
 </aside>
 
 Your terminal will show the log messages of Kuzzle's components starting. After only a few seconds, you should see the following ready message appear:
@@ -31,7 +31,7 @@ Your terminal will show the log messages of Kuzzle's components starting. After 
 kuzzle_1         | [✔] Kuzzle server ready
 ```
 
-Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7511">http://localhost:7511</a> or via cURL on the command line:
+Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7511?pretty=true">http://localhost:7511?pretty=true</a> or via cURL on the command line:
 
 ```bash
 $ curl "http://localhost:7511/?pretty=true"
@@ -57,7 +57,7 @@ Now that Kuzzle is running on your computer, you can dive into playing with it b
 
 * <a href="#running-kuzzle-backoffice">installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;
 * installing one of the available <a href="http://kuzzle.io/sdk-documentation/">Kuzzle SDK</a> to power-up one of your projects:
- * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="#sdk-play-time">SDK play time</a> section below), 
+ * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="#sdk-play-time">SDK play time</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
  * <a href="https://github.com/kuzzleio/sdk-ios">iOS</a>,
  * <a href="https://github.com/kuzzleio/sdk-android">Android</a>;
@@ -156,7 +156,7 @@ collection.subscribe(filter, function(error, result) {
 })
 ```
 
-Run your file in NodeJS 
+Run your file in NodeJS
 
 ```bash
 $ node subscribe.js

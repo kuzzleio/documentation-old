@@ -4,8 +4,8 @@
 
 Before launching Kuzzle, ensure that your system matches the following pre-requisites:
 
-- **Docker**, see [instructions here](https://docs.docker.com/engine/installation/)
-- **Docker-compose**, see [instructions here](https://docs.docker.com/compose/install/)
+- **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
+- **Docker-compose v1.8+**, see [instructions here](https://docs.docker.com/compose/install/)
 
 Get the standard [docker-compose.yml](http://kuzzle.io/kuzzle-docker-compose.yml) file, copy it into a directory and start Kuzzle:
 
@@ -18,7 +18,7 @@ $ docker-compose up
 ```
 
 <aside class="notice">
-The "sysctl" command is needed by Elasticsearch. More details <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">here</a>.
+The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.x/vm-max-map-count.html">here</a>.
 </aside>
 
 Your terminal will show the log messages of Kuzzle's components starting. After only a few seconds, you should see the following ready message appear:
@@ -30,7 +30,7 @@ kuzzle_1         | [✔] Kuzzle server ready
 Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7511">http://localhost:7511</a> or via cURL on the command line:
 
 ```bash
-$ curl "http://localhost:7511/?pretty=true"
+$ curl "http://localhost:7511/?pretty"
 ```
 
 Kuzzle will respond you with a list of the existing routes.
@@ -142,35 +142,14 @@ Please refer to [Kuzzle configuration section](#configuration) for more informat
 
 The Kuzzle Backoffice is a handy **web application** that helps you administrate Kuzzle. You can use it to **manage your data**, subscribe to **realtime notifications** and manage **security** rules.
 
-You can use the <a href="http://kuzzle-backoffice.netlify.com/">publicly hosted Kuzzle Backoffice</a> or host your own (see next section). In both cases, you'll be able to <a href="#select-the-kuzzle-instance-to-connect-to">select the Kuzzle server</a> you want to manage once the Backoffice starts up.
+You can use the <a href="http://kuzzle-backoffice.netlify.com/">publicly hosted Kuzzle Backoffice</a>.
+If you want to host the Kuzzle Backoffice on your own server, you can download the source code [here](https://github.com/kuzzleio/kuzzle-backoffice/releases).
 
-### Host your own instance of Kuzzle Backoffice
-
-Before proceeding, ensure that your system matches the following requisites:
-
-* A fairly recent version of **NodeJS** (i.e. v6+) should be installed on your system (<a href="https://nodejs.org/en/download/">instructions here</a>),
-* **git-scm** should be installed on your system (<a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">instructions here</a>).
-
-Execute the following commands from a terminal window:
-
-```bash
-$ git clone git@github.com:kuzzleio/kuzzle-backoffice.git
-$ cd kuzzle-backoffice
-$ npm install
-$ bower install
-$ npm run build
-$ npm start
-```
-
-Then open <a href="http://localhost:3000">http://localhost:3000</a> in your favorite browser.
-
-<aside class="success">Your Kuzzle Backoffice is up and running. It's now time to connect it to your Kuzzle server.</aside>
+In both cases, you'll be able to <a href="#select-the-kuzzle-instance-to-connect-to">select the Kuzzle server</a> you want to manage once the Backoffice starts up.
 
 <aside class="notice">
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a>
 </aside>
-
-More installation methods <a href="https://github.com/kuzzleio/kuzzle-bo#installation">on the Kuzzle Backoffice repository on GitHub</a>.
 
 ### Select the Kuzzle server to connect to
 
