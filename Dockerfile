@@ -14,6 +14,8 @@ ADD guide /app/guide
 ADD sdk-reference /app/sdk-reference
 ADD dsl-reference /app/dsl-reference
 ADD validation-reference /app/validation-reference
+ADD elasticsearch-cookbook /app/elasticsearch-cookbook
+ADD plugin-reference /app/plugin-reference
 
 RUN apt-get update \
     && apt-get install -yq \
