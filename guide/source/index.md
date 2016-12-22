@@ -10,15 +10,15 @@ toc_footers:
 
 includes:
   - quickstart/index
-  - user_guide/index
-  - user_guide/installation-linux
-  - user_guide/configuration
-  - user_guide/persisted
-  - user_guide/data-validation
-  - user_guide/filters
-  - user_guide/security
-  - user_guide/status-code
-  - user_guide/cli
+  - essentials/index
+  - essentials/installation-linux
+  - essentials/configuration
+  - essentials/persisted
+  - essentials/data-validation
+  - essentials/filters
+  - essentials/security
+  - essentials/status-code
+  - essentials/cli
   - advanced/index
   - advanced/kuzzle-depth
   - advanced/request-scenarios
