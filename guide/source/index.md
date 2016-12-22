@@ -23,8 +23,7 @@ includes:
   - advanced/kuzzle-depth
   - advanced/request-scenarios
   - advanced/security
-  - advanced/plugins/index
-  - advanced/plugins/managing-plugins-cli
+  - advanced/extending-kuzzle-plugins.md
 
 search: true
 ---
