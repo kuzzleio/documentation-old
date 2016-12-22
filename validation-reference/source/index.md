@@ -9,9 +9,9 @@ toc_footers:
   - <a href="http://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
-  - data_validation/schema
-  - data_validation/fields
-  - data_validation/validators
+  - schema
+  - fields
+  - validators
 
 search: true
 ---

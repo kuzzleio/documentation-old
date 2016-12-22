@@ -1,4 +1,4 @@
-# Plugins
+## Plugins
 
 Plugins are external components extending Kuzzle with custom features.
 

@@ -10,30 +10,21 @@ toc_footers:
 
 includes:
   - quickstart/index
-  - user_guide/index
-  - user_guide/01-installation-linux
-  - user_guide/03-configuration
-  - user_guide/persisted
-  - user_guide/data-validation
-  - user_guide/05-filters
-  - user_guide/07-security
-  - user_guide/06-status-code
-  - user_guide/04-cli
+  - essentials/index
+  - essentials/installation-linux
+  - essentials/configuration
+  - essentials/persisted
+  - essentials/data-validation
+  - essentials/filters
+  - essentials/security
+  - essentials/status-code
+  - essentials/cli
   - advanced/index
-  - advanced/01-architecture
-  - advanced/02-request-scenarios
-  - advanced/03-security
+  - advanced/kuzzle-depth
+  - advanced/request-scenarios
+  - advanced/security
   - advanced/plugins/index
-  - advanced/plugins/01-managing-plugins-cli
-  - advanced/plugins/02-plugin-prerequisites
-  - elasticsearch/index
-  - elasticsearch/01-before-we-start
-  - elasticsearch/02-installation
-  - elasticsearch/03-data-insertion
-  - elasticsearch/04-useful-commands
-  - elasticsearch/05-basic-queries
-  - elasticsearch/06-bool-query
-  - elasticsearch/07-documentation-links
+  - advanced/plugins/managing-plugins-cli
 
 search: true
 ---
