@@ -13,13 +13,15 @@ deploy () {
 
   git clone -b gh-pages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} travis-build
 
-  mkdir -p "$DEST/{api-reference,dsl-reference,guide,sdk-reference,validation-reference}"
+  mkdir -p "$DEST/{api-reference,real-time-filters,guide,sdk-reference,validation-reference,plugin-reference,elasticsearch-cookbook}"
 
   cp -rp api-reference/build/* "$DEST/api-reference/"
-  cp -rp dsl-reference/build/* "$DEST/dsl-reference/"
+  cp -rp real-time-filters/build/* "$DEST/real-time-filters/"
   cp -rp guide/build/* "$DEST/guide/"
   cp -rp sdk-reference/build/* "$DEST/sdk-reference/"
   cp -rp validation-reference/build/* "$DEST/validation-reference/"
+  cp -rp plugin-reference/build/* "$DEST/plugin-reference/"
+  cp -rp elasticsearch-cookbook/build/* "$DEST/elasticsearch-cookbook/"
   cp index.html "$DEST/index.html"
 
   cd travis-build

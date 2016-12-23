@@ -2187,7 +2187,7 @@ catch (ErrorException $e) {
 
 <aside class="warning">
 This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.<br/>
-Check the Kuzzle documentation available <a href="http://kuzzle.io/guide">here</a>
+Check the Kuzzle documentation available <a href="http://kuzzle.io/documentation/guide">here</a>
 </aside>
 
 Base method used to send queries to Kuzzle, following the [Kuzzle API Documentation](http://kuzzleio.github.io/kuzzle-api-documentation)

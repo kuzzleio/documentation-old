@@ -12,7 +12,7 @@ ADD watch.sh /
 
 ADD guide /app/guide
 ADD sdk-reference /app/sdk-reference
-ADD dsl-reference /app/dsl-reference
+ADD real-time-filters /app/real-time-filters
 ADD validation-reference /app/validation-reference
 ADD elasticsearch-cookbook /app/elasticsearch-cookbook
 ADD plugin-reference /app/plugin-reference

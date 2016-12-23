@@ -2,7 +2,7 @@ kuzzle-documentation:
   build: .
   volumes:
     - ./api-reference:/app/api-reference
-    - ./dsl-reference:/app/dsl-reference
+    - ./real-time-filters:/app/real-time-filters
     - ./guide:/app/guide
     - ./sdk-reference:/app/sdk-reference
     - ./validation-reference:/app/validation-reference

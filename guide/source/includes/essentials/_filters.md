@@ -1,2 +1,2 @@
-## Realtime notifications
+## Real-time notifications
 

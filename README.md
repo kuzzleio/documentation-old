@@ -1,6 +1,6 @@
 # Kuzzle Documentation
 
-Check the online documentation [here](http://kuzzle.io/guide/).
+Check the online documentation [here](http://kuzzle.io/documentation/).
 
 # Contributing
 

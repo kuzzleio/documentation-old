@@ -4,8 +4,8 @@
 
 Kuzzle Kernel API can be accessed from 3 different paths:
 
-1. a [HTTP API](/api-reference/?http)
-2. a [Websocket connexion](/api-reference/?websocket), using Kuzzle [Javascript SDK](/sdk-documentation)
+1. a [HTTP API](http://kuzzle.io/document/api-reference/?http)
+2. a [Websocket connexion](/api-reference/?websocket), using Kuzzle [Javascript SDK](http://kuzzle.io/documentation/sdk-reference)
 3. or any other custom protocol, using a Protocol Plugin (example: [MQTT](/api-reference/?mqtt))
 
 In the background, Kuzzle uses:

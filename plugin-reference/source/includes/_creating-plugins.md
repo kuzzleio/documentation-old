@@ -136,7 +136,7 @@ module.exports = MyPlugin;
 
 ## Controller plugins
 
-Kuzzle API is divided into "controllers", each one of them exposing "actions" to execute (see [API reference](http://kuzzle.io/api-reference/#common-attributes)).
+Kuzzle API is divided into "controllers", each one of them exposing "actions" to execute (see [API reference](http://kuzzle.io/documentation/api-reference#common-attributes)).
 
 `controller` plugins extend Kuzzle API by adding new controllers to it, each with their own list of available actions.
 
@@ -322,7 +322,7 @@ Kuzzle expects `protocol` plugins to expose the following methods:
 
 The connection `id` Kuzzle sends to plugins is the one declared by `protocol` plugins using `context.accessors.router.newConnection`.
 
-*For more information about channels, see our [API Documentation](http://kuzzle.io/api-reference/#on)*
+*For more information about channels, see our [API Documentation](http://kuzzle.io/documentation/api-reference#on)*
 
 
 ### `protocol` plugin implementation example

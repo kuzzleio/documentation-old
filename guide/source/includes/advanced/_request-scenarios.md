@@ -271,7 +271,7 @@ Kuzzle handles data differently, depending if it's persistent or not.
 #### Writing persistent data
 
 This subsection describes the process for **persistent** data, with an example using the "_create_" action.
-(see also [API Documentation](http://kuzzle.io/api-reference/#create))
+(see also [API Documentation](http://kuzzle.io/documentation/api-reference/#create))
 
 ![persistence_overview](./images/request-scenarios/persistence/overview.png)
 
@@ -330,7 +330,7 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 ![pubsub_scenario_details1](./images/request-scenarios/pubsub/details1.png)
 
 \#1. The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters.
-(see [API Documentation](http://kuzzle.io/api-reference/#on))
+(see [API Documentation](http://kuzzle.io/documentation/api-reference/#on))
 
 For instance, to be notified about all contents posted to the collection "users", containing a field "hobby" equals to "computer":
 ```json
@@ -418,7 +418,7 @@ The following diagram shows how Kuzzle handles a new message and how subscribed 
 \#1. A new content is published to the ```Notifier``` component.
 
 The "_publish_" method can be triggered:
-* either direclty by the ```Document Controller``` for non persistent data (using the [publish](http://kuzzle.io/api-reference/#publish) action).
+* either direclty by the ```Document Controller``` for non persistent data (using the [publish](http://kuzzle.io/documentation/api-reference/#publish) action).
 * or by the ```Plugins Manager``` when a 'document:create' event is triggered, to notify users in real-time before the data are sent to the storage Engine.
 
 \#2. The ```Notifier``` calls the ```DSL``` component to test registered filters that match the content, and get related rooms.

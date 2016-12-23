@@ -6,4 +6,4 @@ This GitHub repository is not the actual documentation, but the project used to 
 If you came here to help us update and improve our API documentation, you're at the right place!  
 You may need to read the [Slate documentation](./README.slate.md) before contributing to this project.
 
-Kuzzle's API Documentation [can be found here](http://kuzzle.io/api-reference).
+Kuzzle's API Documentation [can be found here](http://kuzzle.io/documentation/api-reference).

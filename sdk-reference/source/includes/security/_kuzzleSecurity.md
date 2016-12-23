@@ -2161,7 +2161,7 @@ Executes a search on users according to a filter
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | Filters using [Kuzzle DSL](http://kuzzle.io/guide/#filtering-syntax) format |
+| ``filters`` | JSON Object | [Filters](http://kuzzle.io/documentation/real-time-filters) |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 

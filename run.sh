@@ -13,9 +13,9 @@ cd /app/api-reference \
   && bundle exec middleman build \
   && ln -s /app/api-reference/build /usr/share/nginx/html/api-reference
 
-cd /app/dsl-reference \
+cd /app/real-time-filters \
   && bundle exec middleman build \
-  && ln -s /app/dsl-reference/build /usr/share/nginx/html/dsl-reference
+  && ln -s /app/real-time-filters/build /usr/share/nginx/html/real-time-filters
 
 cd /app/validation-reference \
   && bundle exec middleman build \

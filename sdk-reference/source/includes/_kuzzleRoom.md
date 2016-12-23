@@ -422,7 +422,7 @@ Unsubscribes first if this KuzzleRoom was already listening to events.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | Filters in [Kuzzle DSL](http://kuzzle.io/guide/#filtering-syntax) format |
+| ``filters`` | JSON Object | [Filters](http://kuzzle.io/documentation/real-time-filters) |
 | ``notificationCallback`` | function | Function called each time a notification is received |
 | ``subscriptionCallback`` | function | Function called with the subscription result |
 
