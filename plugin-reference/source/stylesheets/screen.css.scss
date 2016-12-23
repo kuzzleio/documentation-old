@@ -396,14 +396,19 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %default-font;
-    font-size: 15px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
-  h4, h5, h6 {
-    font-size: 14px;
+  h3, h3 code, h4, h4 code {
+    font-size: 16px;
+  }
 
+  h5, h5 code, h6, h6 code {
+    font-size: 14px;
+  }
+
+  h4, h5, h6 {
     &> span {
       border-bottom: dashed 1px;
       padding: 0 2px 3px 2px;
@@ -1201,7 +1206,6 @@ h2 .heading-title {
 }
 h3 .heading-title {
   border-left: dotted 3px;
-  font-size: 16px;
   font-weight: 700;
 }
 h4 .heading-title {

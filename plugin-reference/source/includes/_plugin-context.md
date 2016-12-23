@@ -1,4 +1,4 @@
-### The plugin context
+# The plugin context
 
 The plugin context is an object containing a set of constructors, accessors and configurations, allowing plugins to interact with Kuzzle.
 
@@ -10,10 +10,10 @@ Here is the list of shared objects contained in the provided ``context``:
 | Attribute path | Purpose                      |
 |----------------|------------------------------|
 | `context.accessors.execute` | Access to Kuzzle API |
-| `context.accessors.passport` | Access to Kuzzle [Passport](http://passportjs.org) instance |
-| `context.accessors.router` | Access to Kuzzle protocol communication system |
-| `context.accessors.users` | Access to users management, especially useful for authentication plugins |
-| `context.accessors.validation` | Access to validation mechanisms, useful to validate documents and add field types |
+| `context.accessors.passport` | Access to Kuzzle [Passport](http://passportjs.org) instance. Allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
+| `context.accessors.router` | Access to Kuzzle protocol communication system. Allow **protocol** plugins to interface themselves with Kuzzle. |
+| `context.accessors.users` | Access to users management, especially useful for authentication plugins. Provides methods for handling users. This accessor is mainly used by authentication plugins. |
+| `context.accessors.validation` | Access to validation mechanisms, useful to validate documents and add field types. |
 | `context.config` | Contains the entire Kuzzle instance configuration (most of it coming from Kuzzle configuration file) |
 | `context.constructors.Dsl` | Constructor allowing plugins to instantiate their own Kuzzle real-time engine instance |
 | `context.constructors.Request` | Constructor for standardized requests sent to Kuzzle |
@@ -22,18 +22,17 @@ Here is the list of shared objects contained in the provided ``context``:
 
 **Note:** `context.accessors` are not available to [worker plugins](#gt-worker-plugins), as they are run in their own process(es), without access to Kuzzle instances.
 
-### > Accessor: `execute`
+## Accessor
 
 <aside class="notice">
 <a href="#gt-worker-plugins">Worker plugins</a> don't have access to accessors
 </aside>
 
+### `execute`
+
 Sends a request to [Kuzzle API](http://kuzzle.io/api-reference).
 
-
-#### **`execute(request, callback)`**
-
-##### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -63,22 +62,11 @@ context.accessors.execute(request, (error, request) => {
 });
 ```
 
-
-### > Accessor: `passport`
-
-<aside class="notice">
-<a href="#gt-worker-plugins">Worker plugins</a> don't have access to accessors
-</aside>
-
-The `passport` accessor allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle.
-
-This accessor exposes the following method:
-
-#### **`use(strategy)`**
+### `passport.use`
 
 Implements [Passport `use()` method](http://passportjs.org/docs/configure)
 
-##### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -104,70 +92,54 @@ function verify (username, password, done) {
 pluginContext.accessors.passport.use(new LocalStrategy(verify.bind(this)));
 ```
 
-### > Accessor: `router`
-
-<aside class="notice">
-<a href="#gt-worker-plugins">Worker plugins</a> don't have access to accessors
-</aside>
-
-The `router` accessor allows **protocol** plugins to interface themselves with Kuzzle. This accessor exposes the following methods:
-
-#### `newConnection(protocolName, connectionUniqueId)`
+### `router.newConnection`
 
 Declares a new connection for a given protocol.  
 
-##### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`protocolName`|`string`|Protocol name, used for Kuzzle internal statistics |
 |`connectionUniqueId`|`string`|Unique ID identifying the user connection|
 
-##### Returns
+#### Returns
 
 A `promise` resolving to a `RequestContext` object. This object is needed for other router methods.
 
-#### `execute(request, callback)`
+### `router.execute`
 
 Forward a request to Kuzzle.
 
-##### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`request`|`Request`| An user request wrapped as a `Request` instance|
 |`callback`|`function`| Callback called with the request corresponding results |
 
-##### Callback
+#### Callback
 
 The callback is invoked once the request has been processed by Kuzzle.  
 The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response](http://kuzzle.io/api-reference/#kuzzle-response).
 
-#### `removeConnection(context)`
+### `router.removeConnection`
 
 Removes a connection from the connection pool maintained by Kuzzle.  
 Not calling this method after a connection is dropped will result in a memory-leak.
 
-##### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`context`|`RequestContext`| Object identifying the connection context. Obtained by calling `newConnection()`|
 
 
-### > Accessor: `users`
-
-<aside class="notice">
-<a href="#gt-worker-plugins">Worker plugins</a> don't have access to accessors
-</aside>
-
-The `users` accessor provides methods for handling users. This accessor is mainly used by authentication plugins.
-
-#### `create(loginName, [userProfile], [userInfo])`
+### `users.create`
 
 Creates a new user in Kuzzle. Will return an error if the user already exists.
 
-##### Arguments
+#### Arguments
 
 | Name | Type | Default Value | Description                      |
 |------|------|---------------|----------------------------------|
@@ -175,38 +147,30 @@ Creates a new user in Kuzzle. Will return an error if the user already exists.
 |`userProfile`|`string`|`default`| [User profile](#permissions) |
 |`userInfo`|`object`| `{}` | Misc. information about the user |
 
-##### Returns
+#### Returns
 
 A `promise` resolving a `user` object containing the created information.
 
-#### `load(loginName)`
+### `users.load`
 
 Loads a user from Kuzzle
 
-##### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`loginName`|`string`| Name of the user's login to load |
 
-##### Returns
+#### Returns
 
 A `promise` resolving to a `user` object containing the user information.
 
 
-### > Accessor: `validation`
-
-<aside class="notice">
-<a href="#gt-worker-plugins">Worker plugins</a> don't have access to accessors
-</aside>
-
-The `validation` accessor provides methods to validate documents and add field types.
-
-#### `validate(request, verbose)`
+### `validation.validate`
 
 Validates a document wrapped in a `Request` object.
 
-##### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -235,9 +199,9 @@ Where:
 * `errorMessages` is a structured javascript object reflecting the structure of the document with all errors collected during the validation process
 * `validation` is a `boolean` reflecting the validation state.
 
-#### `addType(validationType)`
+### `validation.addType`
 
-##### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -264,14 +228,15 @@ Nothing. Can throw a `PluginImplementationError` if the validation type has not 
 
 See constructor `BaseValidationType` for more details.
 
+## Constructor
 
-### > Constructor: `BaseValidationType`
+### `BaseValidationType`
 
 The `BaseValidationType` constructor provides a base to create your own validation types. It provides a common structure for all validation types developped in Kuzzle.
 
 You can find an example of a type creation in the [Kuzzle source code](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template).
 
-### > Constructor: `Dsl`
+### `Dsl`
 
 The DSL constructor provided in the plugin context gives access to [Kuzzle real-time filtering capabilities](#filtering-syntax). It allows managing filters, and testing data to get a list of matching filters.
 
@@ -283,11 +248,11 @@ var dsl = new context.constructors.Dsl();
 
 The DSL exposes the following methods:
 
-#### `exists(index, collection)`
+#### `exists`
 
 Returns a boolean indicating if filters exist for an index-collection pair
 
-##### Arguments
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -295,31 +260,31 @@ Returns a boolean indicating if filters exist for an index-collection pair
 |`collection`|`string`| Data collection name |
 
 
-##### Returns
+**Returns**
 
 Returns `true` if at least one filter exists on the provided index-collection pair, returns `false` otherwise
 
-#### `getFilterIds(index, collection)`
+#### `getFilterIds`
 
 Retrieves filter IDs registered on an index-collection pair
 
 
-##### Arguments
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`index`|`string`| Data index name |
 |`collection`|`string`| Data collection name |
 
-##### Returns
+**Returns**
 
 An `array` of `filterId` corresponding to filters registered on an index-collection pair.
 
-#### `register(index, collection, filters)`
+#### `register`
 
 Registers a filter to the DSL.
 
-##### Arguments
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -327,32 +292,32 @@ Registers a filter to the DSL.
 |`collection`|`string`| Data collection name |
 |`filters`|`object`| Filters in [Kuzzle DSL](#filtering-syntax) format |
 
-##### Returns
+**Returns**
 
 A `promise` resolving to an object containing the following attributes:
 
 * `id`: the filter unique identifier
 * `diff`: `false` if the filter already existed in the engine. Otherwise, contains an object with the canonical version of the provided filters
 
-#### `remove(filterId)`
+#### `remove`
 
 Removes all references to a given filter from the DSL
 
-##### Arguments
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`filterId`|`string`| Filter unique ID. Obtained by using `register`|
 
-##### Returns
+**Returns**
 
 A `promise` resolved once the filter has been completely removed from the DSL
 
-#### `test(index, collection, data, [documentId])`
+#### `test`
 
 Test data against filters registered in the DSL, returning matching filter IDs, if any.
 
-##### Arguments
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -362,25 +327,25 @@ Test data against filters registered in the DSL, returning matching filter IDs, 
 |`documentId`|`string`| If applicable, document unique ID |
 
 
-##### Returns
+**Returns**
 
 An array of `filterId` matching the provided data (and/or documentId, if any).
 
-#### `validate(filters)`
+#### `validate`
 
 Tests the provided filters without storing them in the system, to check whether they are well-formed or not.
 
-##### Arguments
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`filters`|`object`| Filters in [Kuzzle DSL](#filtering-syntax) format |
 
-##### Returns
+**Returns**
 
 A resolved promise if the provided filters are valid, or a rejected one with the appropriate error object otherwise.
 
-### > Constructor: `Request`
+### `Request`
 
 This constructor is used to transform an [API call](http://kuzzle.io/api-reference/?websocket#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](http://kuzzle.io/api-reference/#kuzzle-response) to be forwarded to the requesting client.
 
@@ -388,10 +353,6 @@ Network protocol specific headers can be added to the response. If the protocol 
 As Kuzzle supports the HTTP protocol natively, this object handles HTTP headers special cases. Other network protocols headers are stored in raw format, and protocol plugins need to handle their own specific headers manually.
 
 For more information about this object, please check [our detailed documentation](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#request).
-
-#### `new Request(request, data, [options])`
-
-##### Arguments
 
 **Arguments**
 
@@ -435,15 +396,15 @@ let derivedRequest = new context.constructors.Request(request, {
 });
 ```
 
-#### Attributes
+**Attributes**
 
-**Read-only**
+Read-only
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `timestamp` | integer | Request creation timestamp |
 
-**Writable**
+Writable
 
 | Name | Type | default | Description                      |
 |------|------|---------|----------------------------------|
@@ -458,15 +419,14 @@ Any undefined attribute from the list above will be set to null.
 
 Please refer to our [API Reference](http://kuzzle.io/api-reference/?websocket) for a complete list of controllers-actions and their purposes.
 
-**Getters**
+Getters
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](http://kuzzle.io/api-reference/?websocket#kuzzle-response) |
 
-### Methods
 
-#### `response.getHeader(name)`
+#### `response.getHeader`
 
 Returns the value registered for the response header `name`
 
@@ -480,8 +440,6 @@ Returns the value registered for the response header `name`
 
 Returns an object describing all currently registered headers on that response.
 
-**Example**
-
 ```
 if (request.context.protocol === 'http') {
   request.response.setHeader('Content-Type', 'text/plain');
@@ -494,11 +452,11 @@ if (request.context.protocol === 'http') {
 }
 ```
 
-#### `response.removeHeader(name)`
+#### `response.removeHeader`
 
 Removes header `name` from the response headers.
 
-#### `setHeader(name, value)`
+#### `setHeader`
 
 Adds a header `name` with value `value` to the response headers.
 
@@ -514,18 +472,17 @@ For standard headers, if `name` already exists, then the provided `value` will b
 As Kuzzle implements HTTP natively, this behavior changes for some HTTP specific headers, to comply with the norm. For instance `set-cookie` values are amended in an array, and other headers like `user-agent` or `host` can store only 1 value.
 
 
-#### `serialize()`
+#### `serialize`
 
 Serializes the `Request` object into a pair of POJOs that can be sent across the network, and then used to rebuild another equivalent `Request` object.
 
-**Example**
 
 ```js
 let foo = request.serialize();
 let bar = new context.constructors.Request(request, foo.data, foo.options);
 ```
 
-#### `setError(error)`
+#### `setError`
 
 Adds an error to the request, and sets the request's status to the error one.
 
@@ -539,7 +496,7 @@ If a `KuzzleError` is provided, the request's status attribute is set to the err
 
 Otherwise, the provided error is encapsulated into a [InternalError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorsinternalerror) object, and the request's status is set to 500.
 
-#### `setResult(result, [options])`
+#### `setResult`
 
 Sets the request's result.
 
@@ -558,15 +515,16 @@ The `options` argument may contain the following properties:
 | `headers` | `object` | Protocol specific headers | `null` |
 | `raw` | `boolean` | Asks Kuzzle to send the provided result directly, instead of encapsulating it in a Kuzzle JSON response | `false` |
 
+## Errors
 
-### > Error: `KuzzleError`
+### `KuzzleError`
 
 Inherits from `Error`. Abstract class inherited by Kuzzle error objects.
 
 This class should only be used to create new Kuzzle error objects.
 
 
-### > Error: `BadRequestError`
+### `BadRequestError`
 
 **Status Code:** `400`
 
@@ -576,7 +534,7 @@ Used to notify about badly formed requests.
 var err = new context.errors.BadRequestError('error message');
 ```
 
-### > Error: `ForbiddenError`
+### ForbiddenError`
 
 **Status Code:** `403`
 
@@ -586,7 +544,7 @@ Used when a user tries to use resources beyond his access rights.
 var err = new context.errors.ForbiddenError('error message');
 ```
 
-### > Error: `GatewayTimeoutError`
+### `GatewayTimeoutError`
 
 **Status Code:** `504`
 
@@ -596,7 +554,7 @@ Used when a plugin takes too long to perform a task.
 var err = new context.errors.GatewayTimeoutError('error message');
 ```
 
-### > Error: `InternalError`
+### `InternalError`
 
 **Status Code:** `500`
 
@@ -606,7 +564,7 @@ Standard generic error. Used for uncatched exceptions.
 var err = new context.errors.InternalError('error message');
 ```
 
-### > Error: `NotFoundError`
+### `NotFoundError`
 
 **Status Code:** `404`
 
@@ -616,7 +574,7 @@ Used when asked resources cannot be found.
 var err = new context.errors.NotFoundError('error message');
 ```
 
-### > Error: `ParseError`
+### `ParseError`
 
 **Status Code:** `400`
 
@@ -626,7 +584,7 @@ Used when a provided resource cannot be interpreted.
 var err = new context.errors.ParseError('error message');
 ```
 
-### > Error: `PartialError`
+### `PartialError`
 
 **Status Code:** `206`
 
@@ -639,7 +597,7 @@ var err = new context.errors.PartialError('error message', [{this: 'failed'}, {a
 ```
 
 
-### > Error: `PluginImplementationError`
+### `PluginImplementationError`
 
 **Status Code:** `500`
 
@@ -649,7 +607,7 @@ Used when a plugin fails.
 var err = new context.errors.PluginImplementationError('error message');
 ```
 
-### > Error: `ServiceUnavailableError`
+### `ServiceUnavailableError`
 
 **Status Code:** `503`
 
@@ -659,7 +617,7 @@ Used when a resource cannot respond because it is temporarily unavailable.
 var err = new context.errors.ServiceUnavailableError('error message');
 ```
 
-### > Error: `SizeLimitError`
+### `SizeLimitError`
 
 **Status Code:** `413`
 
@@ -669,7 +627,7 @@ Used to notify about requests exceeding maximum limits.
 var err = new context.errors.SizeLimitError('error message');
 ```
 
-### > Error: `UnauthorizedError`
+### `UnauthorizedError`
 
 **Status Code:** `401`
 

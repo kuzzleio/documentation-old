@@ -16,5 +16,3 @@ includes:
 
 search: true
 ---
-
-# Kuzzle Plugin Reference

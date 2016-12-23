@@ -9,6 +9,10 @@ cd /app/sdk-reference \
   && bundle exec middleman build \
   && ln -s /app/sdk-reference/build /usr/share/nginx/html/sdk-reference
 
+cd /app/api-reference \
+  && bundle exec middleman build \
+  && ln -s /app/api-reference/build /usr/share/nginx/html/api-reference
+
 cd /app/dsl-reference \
   && bundle exec middleman build \
   && ln -s /app/dsl-reference/build /usr/share/nginx/html/dsl-reference
