@@ -1,5 +1,7 @@
 #!/bin/bash
-SLATEDIRS=(`cat ./slatedirs`)
+
+BINDIR=$(dirname $0)
+SLATEDIRS=(`cat $BINDIR/slatedirs`)
 
 set -ev
 
