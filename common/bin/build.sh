@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# echo "Clean default files"
-# rm -vf /usr/share/nginx/html/*
-
 SLATEDIRS=(`cat /slatedirs`)
 
 for SLATEDIR in "${SLATEDIRS[@]}"
@@ -19,6 +16,3 @@ do
 
   bundle exec middleman build --verbose || true
 done
-
-# echo "Linkink default home files"
-# ln -s /app/home/* /usr/share/nginx/html/

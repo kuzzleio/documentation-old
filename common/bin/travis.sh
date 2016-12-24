@@ -1,6 +1,9 @@
 #!/bin/bash
 
-SLATEDIRS=(`cat ./slatedirs`)
+set -e
+
+BINDIR=$(dirname $0)
+SLATEDIRS=(`cat $BINDIR/slatedirs`)
 
 for SLATEDIR in "${SLATEDIRS[@]}"
 do
