@@ -21,3 +21,11 @@ build/
 _yardoc
 doc/
 .idea/
+
+home/api-reference
+home/elasticsearch-cookbook
+home/guide
+home/plugin-reference
+home/real-time-filters
+home/sdk-reference
+home/validation-reference
