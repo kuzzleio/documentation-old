@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SLATEDIRS=(`cat /slatedirs`)
+SLATEDIRS=(`cat ./slatedirs`)
 
 for SLATEDIR in "${SLATEDIRS[@]}"
 do
