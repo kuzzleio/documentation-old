@@ -1,48 +1,13 @@
 kuzzle-documentation:
   build: .
   volumes:
+    - ./home:/usr/share/nginx/html/
     - ./api-reference:/app/api-reference
-    - ./real-time-filters:/app/real-time-filters
+    - ./elasticsearch-cookbook:/app/elasticsearch-cookbook
     - ./guide:/app/guide
+    - ./plugin-reference:/app/plugin-reference
+    - ./real-time-filters:/app/real-time-filters
     - ./sdk-reference:/app/sdk-reference
     - ./validation-reference:/app/validation-reference
-    - ./plugin-reference:/app/plugin-reference
-    - ./elasticsearch-cookbook:/app/elasticsearch-cookbook
-    - ./watch.sh:/watch.sh
   ports:
     - 80:80
-
-# kuzzle-guide:
-#   build: ./guide
-#   volumes:
-#     - ./source:/app/source
-#   ports:
-#     - 4567:4567
-#
-# kuzzle-validation-reference:
-#   build: ./validation-reference
-#   volumes:
-#     - ./source:/app/source
-#   ports:
-#     - 4568:4567
-#
-# kuzzle-dsl-reference:
-#   build: ./dsl-reference
-#   volumes:
-#     - ./source:/app/source
-#   ports:
-#     - 4569:4567
-#
-# kuzzle-sdk-reference:
-#   build: ./sdk-reference
-#   volumes:
-#     - ./source:/app/source
-#   ports:
-#     - 4570:4567
-
-#kuzzle-api-reference:
-#  build: ./api-reference
-#  volumes:
-#    - ./source:/app/source
-#  ports:
-#    - 4571:4567
