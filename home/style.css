@@ -861,8 +861,8 @@ li {
 }
 @font-face {
     font-family: 'kuzzle-icon';
-    src: url("../fonts/kuzzle-icon.eot?-cyrvtz");
-    src: url("../fonts/kuzzle-icon.eot?#iefix-cyrvtz") format("embedded-opentype"), url("../fonts/kuzzle-icon.ttf?-cyrvtz") format("truetype"), url("../fonts/kuzzle-icon.woff?-cyrvtz") format("woff"), url("../fonts/kuzzle-icon.svg?-cyrvtz#kuzzle-icon") format("svg");
+    src: url("fonts/kuzzle-icon.eot?-cyrvtz");
+    src: url("fonts/kuzzle-icon.eot?#iefix-cyrvtz") format("embedded-opentype"), url("fonts/kuzzle-icon.ttf?-cyrvtz") format("truetype"), url("fonts/kuzzle-icon.woff?-cyrvtz") format("woff"), url("fonts/kuzzle-icon.svg?-cyrvtz#kuzzle-icon") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -898,7 +898,7 @@ header #logo a {
     display: block;
     width: 180px;
     height: 60px;
-    background: no-repeat url("../images/kuzzle-logo.png") 0 0;
+    background: no-repeat url("images/kuzzle-logo.png") 0 0;
     text-decoration: none
 }
 header .container-logo {
