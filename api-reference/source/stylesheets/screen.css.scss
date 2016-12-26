@@ -5,6 +5,7 @@
 @import 'syntax';
 @import 'icon-font';
 
+
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
 
@@ -183,7 +184,7 @@ html, body {
   // in the table of contents.
   .tocify-subheader {
     background-color: $nav-subitem-bg;
-    font-weight: 400;
+    font-weight: 500;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
       font-size: 14px;
@@ -340,6 +341,7 @@ html, body {
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
+    width: 50%;
   }
 
   h1 {
@@ -365,6 +367,7 @@ html, body {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
+    margin-top: 2em;
   }
 
   div:first-child + h1 {
@@ -394,20 +397,15 @@ html, body {
   }
 
   h3, h4, h5, h6 {
-    @extend %default-font;
+    @extend %header-font;
+    font-size: 15px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
-  h3, h3 code, h4, h4 code {
-    font-size: 16px;
-  }
-
-  h5, h5 code, h6, h6 code {
-    font-size: 14px;
-  }
-
   h4, h5, h6 {
+    font-size: 14px;
+
     &> span {
       border-bottom: dashed 1px;
       padding: 0 2px 3px 2px;
@@ -518,15 +516,20 @@ html, body {
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 2em;
-    margin: 1em 0 0 0;
+    margin: 0;
     background: $light;
     color: $dark;
     line-height: 1.6;
+    clear: left;
     position: relative;
+    width: 50%;
+    float: right;
+    clear: right;
+
 
     &.warning {
       //background-color: $aside-warning-bg;
-      background-color: #E08E79;
+      background-color: #d54f58;
       color: #F9EAEB;
     }
 
@@ -542,8 +545,8 @@ html, body {
     font-size: 14px;
 
     position: absolute;
-    top: 24px;
-    left: 12px;
+    top: 18px;
+    left: 10px;
   }
 
   aside.notice:before {
@@ -573,18 +576,23 @@ html, body {
 // This is all the stuff that appears in the right half of the page
 
 .content {
+  border-right: solid 30px #EEE;
+  border-bottom: solid 60px #EEE;
   padding-bottom: 40px;
-  max-width: 960px;
-  margin: 0 auto;
 
   pre, blockquote {
+    float: right;
+    clear: right;
+    position: relative;
+    width: 50%;
+
     background-color: $code-bg;
     color: #ddd;
 
     position: relative;
 
     padding: 2em $main-padding;
-    margin: 10px 0 0 0;
+    margin: 0;
 
 
     box-sizing: border-box;
@@ -602,18 +610,6 @@ html, body {
 
   pre {
     @extend %code-font;
-
-    &::after {
-      /*content: " ";*/
-      position: absolute;
-      background: #eaf2f6;
-      top: -3px;
-      left: -10px;
-      width: 20px;
-      z-index: 10000;
-      height: 20px;
-      transform: skew(-45deg, 0);
-    }
   }
 
   blockquote {
@@ -1141,10 +1137,6 @@ header nav ul li a.github .icon:after {
 .container .page-wrapper {
   background-color: rgba(250, 250, 250, 1);
 }
-.container .page-wrapper .lang-selector {
-  border-bottom: 4px solid $dark;
-  margin-top: 20px;
-}
 .container .page-wrapper .dark-box {
   background-color: #EEE;
 }
@@ -1205,6 +1197,7 @@ h2 .heading-title {
 }
 h3 .heading-title {
   border-left: dotted 3px;
+  font-size: 16px;
   font-weight: 700;
 }
 h4 .heading-title {
@@ -1220,12 +1213,10 @@ h5 .heading-title {
   font-weight: 500;
 }
 .heading-links {
-  @extend %default-font;
   display: inline-block;
   padding: 0 20px 0 10px;
   opacity: 0.5;
   vertical-align: 5px;
-  text-transform: lowercase;
 }
 h2 .heading-links {
   vertical-align: 2px;
@@ -1274,16 +1265,17 @@ h3 .heading-links {
 .content table a,
 .content li a,
 .content p a {
-  @extend %link-font;
+  color: $dark;
 }
 .content table a:visited,
 .content li a:visited,
 .content p a:visited {
-  @extend %link-font;
+  color: #8AAAB7
 }
 .content aside a:visited,
 .content aside a {
-  @extend %link-font;
+  color: #FFF;
+  font-weight: 600;
 }
 
 .content .panels {
@@ -1295,7 +1287,7 @@ h3 .heading-links {
 }
 .content .panel {
   display: inline-block;
-  width: 50%;
+  width: 30%;
 }
 .content .panel a {
   text-decoration: none;
