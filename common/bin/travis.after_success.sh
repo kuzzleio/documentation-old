@@ -29,7 +29,7 @@ deploy () {
   #cp index.html "$DEST/index.html"
 
   # DEPLOY HOME
-  cp -rp $TRAVIS_BUILD_DIR/home/* "$DEST/home/"
+  cp -r $TRAVIS_BUILD_DIR/home "$DEST/home"
 
   cd travis-build
 
