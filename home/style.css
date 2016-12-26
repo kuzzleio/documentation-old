@@ -866,13 +866,6 @@ li {
     font-weight: normal;
     font-style: normal
 }
-@font-face {
-    font-family: 'icomoon';
-    src: url("../fonts/icomoon.eot?-cyrvtz");
-    src: url("../fonts/icomoon.eot?#iefix-cyrvtz") format("embedded-opentype"), url("../fonts/icomoon.ttf?-cyrvtz") format("truetype"), url("../fonts/icomoon.woff?-cyrvtz") format("woff"), url("../fonts/icomoon.svg?-cyrvtz#icomoon") format("svg");
-    font-weight: normal;
-    font-style: normal
-}
 body {
     position: relative;
     height: 100%
@@ -998,7 +991,7 @@ header nav li.active span {
     color: #002835
 }
 .icon {
-    font-family: 'kuzzle-icon', 'icomoon';
+    font-family: 'kuzzle-icon';
     speak: none;
     font-style: normal;
     font-weight: normal;
