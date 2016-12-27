@@ -1213,10 +1213,12 @@ h5 .heading-title {
   font-weight: 500;
 }
 .heading-links {
+  @extend %default-font;
   display: inline-block;
   padding: 0 20px 0 10px;
   opacity: 0.5;
   vertical-align: 5px;
+  text-transform: lowercase;
 }
 h2 .heading-links {
   vertical-align: 2px;

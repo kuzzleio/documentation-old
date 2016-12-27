@@ -79,7 +79,7 @@
       });
 
       var issueTitle = 'Issue related to "' + previousSection + '/' +  previousSubSection + '/' + $(node).text() + '" section';
-      var issueLink = "https://github.com/kuzzleio/kuzzle-api-documentation/issues/new?labels=bug&title=" + encodeURIComponent(issueTitle);
+      var issueLink = "https://github.com/kuzzleio/documentation/issues/new?labels=api-reference&title=" + encodeURIComponent(issueTitle);
 
       $(node).replaceWith(
         '<div class="heading">' +
@@ -109,7 +109,7 @@
       });
 
       var issueTitle = 'Issue related to "' + previousSection + '/' + $(node).text() + '" section';
-      var issueLink = "https://github.com/kuzzleio/kuzzle-api-documentation/issues/new?labels=bug&title=" + encodeURIComponent(issueTitle);
+      var issueLink = "https://github.com/kuzzleio/documentation/issues/new?labels=api-reference&title=" + encodeURIComponent(issueTitle);
 
       $(node).replaceWith(
         '<div class="heading ' + node.className + '">' +
@@ -131,7 +131,7 @@
 
     $('h1').each(function(key, node) {
       var issueTitle = 'Issue related to "' + $(node).text() + '" section';
-      var issueLink = "https://github.com/kuzzleio/kuzzle-api-documentation/issues/new?labels=bug&title=" + encodeURIComponent(issueTitle);
+      var issueLink = "https://github.com/kuzzleio/documentation/issues/new?labels=api-reference&title=" + encodeURIComponent(issueTitle);
 
       $(node).replaceWith(
         '<div class="heading' + ((key === 0) ? ' heading-first' : '') + '">' +
