@@ -7,13 +7,13 @@ Before launching Kuzzle, ensure that your system matches the following pre-requi
 - **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
 - **Docker-compose v1.8+**, see [instructions here](https://docs.docker.com/compose/install/)
 
-Get the standard [docker-compose.yml](http://kuzzle.io/kuzzle-docker-compose.yml) file, copy it into a directory and start Kuzzle:
+Get the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file, copy it into a directory and start Kuzzle:
 
 In this case, you need to increase the maximum virtual memory allowed by typing
 
 ```bash
 $ sudo sysctl -w vm.max_map_count=262144
-$ wget http://kuzzle.io/kuzzle-docker-compose.yml
+$ wget http://kuzzle.io/docker-compose.yml
 $ docker-compose up
 ```
 

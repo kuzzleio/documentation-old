@@ -336,7 +336,7 @@ html, body {
     clear: both;
   }
 
-  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>ul, &>ol, &>aside, &>dl {
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
@@ -426,9 +426,6 @@ html, body {
     .left {
       &>h1 {
         border-top: solid 20px #EEE;
-      }
-      &>h2, &>h3 {
-        padding: 1.2em 0 1.2em 25px;
       }
       &>h4, &>h5, &>h6 {
         padding: 0 0 0 25px;
@@ -816,7 +813,8 @@ header nav li a:after {
   white-space: nowrap;
   transition: 0.5s ease;
 }
-header nav li a:hover:after {
+header nav li a:hover:after,
+header nav li a.active:after {
   width: 100%;
 }
 header nav li:last-child a:after {
