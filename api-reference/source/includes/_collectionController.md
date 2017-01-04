@@ -116,7 +116,7 @@ It responds 200 even there where no validation specification manually set before
   "error": null,                      // Assuming everything went well
   "index": "<index>",
   "collection": "<collection>",
-  "controller": "exists",
+  "controller": "collection",
   "action": "exists",
   "requestId": "<unique request identifier>",
   "result": true
