@@ -119,7 +119,7 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 }
 ```
 
-Check if the given index exists in Kuzzle storage layer.
+Checks if the given index exists in Kuzzle storage layer.
 
 
 ## getAutoRefresh
@@ -215,7 +215,7 @@ The `getAutoRefresh` actions returns the current `autoRefresh` status for the gi
 }
 ```
 
-Return the complete data indexes.
+Returns the complete data indexes.
 
 
 ## mDelete

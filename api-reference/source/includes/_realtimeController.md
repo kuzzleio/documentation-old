@@ -165,7 +165,7 @@ The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to s
 }
 ```
 
-List all subscriptions on all indexes and all collections.
+Lists all subscriptions on all indexes and all collections.
 
 
 ## publish
@@ -503,7 +503,7 @@ How subscription works:
 }
 ```
 
-This action instucts Kuzzle to detach you from its subscribers for the given room.
+Instructs Kuzzle to detach you from its subscribers for the given room.
 In practice, your subscription won't receive any new message on the room once this action is triggered.
 
 The expected parameter is the `roomId` that Kuzzle returned during the subscription.
@@ -562,7 +562,7 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 }
 ```
 
-Validate data against existing validation rules. The data is not published nor stored by Kuzzle
+Validates data against existing validation rules. The data is not published nor stored by Kuzzle
 If the document complies, the `result.valid` value is `true`, if not, it is `false`.
 When the document does not complies, both `result.errorMessages` contains some very detailed hints on what is wrong with the document.
 Note that if no validation specifications are set for the &lt;data index>/&lt;data collection>, the document always validate.

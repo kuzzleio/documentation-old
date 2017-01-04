@@ -94,7 +94,7 @@ it will be replaced and its `profileIds` will be set to `["admin"]`. If not prov
 If the optional field `reset` is set to `true` (`1` with http),
 the preset roles (`anonymous` and `default`) will be reset with more restrictive rights.
 
-Other mandatory additional informations are needed depending on the authentication plugins installed you want to use.
+Other mandatory additional information are needed depending on the authentication plugins installed you want to use.
 
 
 ## createOrReplaceProfile
@@ -179,7 +179,7 @@ Other mandatory additional informations are needed depending on the authenticati
 ```litcoffee
 {
   "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything wen well
+  "error": null,                      // Assuming everything went well
   "result": {
     "_id": "<profileId>",
     "_index": "%kuzzle",
@@ -249,7 +249,7 @@ Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a p
 ```litcoffee
 {
   "status": 200,                     // Assuming everything went well
-  "error": null,                     // Assuming everything wen well
+  "error": null,                     // Assuming everything went well
   "result": {
     "_id": "<roleId>",
     "_index": "%kuzzle",
@@ -347,7 +347,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 }
 ```
 
-Persist a `user` object to Kuzzle's database layer.
+Persists a `user` object to Kuzzle's database layer.
 
 The `user` is created if it does not exists yet or replaced with the given object if it does.
 
@@ -434,7 +434,7 @@ The `user` is created if it does not exists yet or replaced with the given objec
 ```litcoffee
 {
   "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything wen well
+  "error": null,                      // Assuming everything went well
   "result": {
     "_id": "<profileId>",
     "_index": "%kuzzle",
@@ -507,7 +507,7 @@ Creates a profile with a new list of roles.
 ```litcoffee
 {
   "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything wen well
+  "error": null,                      // Assuming everything went well
   "result": {
     "_id": "<roleId>",
     "_index": "%kuzzle",
@@ -638,7 +638,7 @@ If not provided, the `_id` will be auto-generated.
 
 Provided profile ids are used to set the permissions of the user.
 
-Other mandatory additional informations are needed depending on the authentication plugins installed you want to use.
+Other mandatory additional information are needed depending on the authentication plugins installed you want to use.
 
 
 ## createRestrictedUser
@@ -732,7 +732,7 @@ If not provided, the `_id` will be auto-generated.
 Profile ids are set accordingly to the Kuzzle configuration.
 This route is especially useful to allow anonymous users to create a user.
 
-Other mandatory additional informations are needed depending on the authentication plugins installed you want to use.
+Other mandatory additional information are needed depending on the authentication plugins installed you want to use.
 
 
 ## deleteProfile
@@ -821,7 +821,7 @@ that the related roles will NOT be deleted.
 }
 ```
 
-Given a `role id`, delete the corresponding role from the database.
+Given a `role id`, deletes the corresponding role from the database.
 
 
 ## deleteUser

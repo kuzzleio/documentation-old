@@ -368,7 +368,7 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 }
 ```
 
-Given a `document id`, retrieve the corresponding document from the database.
+Given a `document id`, retrieves the corresponding document from the database.
 
 Only documents in the persistent data storage layer can be retrieved.
 
@@ -747,7 +747,7 @@ with the value `wait_for` in order to wait for the document indexation (availabi
 }
 ```
 
-Validate data against existing validation rules. The data is not published nor stored by Kuzzle
+Validates data against existing validation rules. The data is not published nor stored by Kuzzle
 If the document complies, the `result.valid` value is `true`, if not, it is `false`.
 When the document does not complies, both `result.errorMessages` contains some very detailed hints on what is wrong with the document.
 Note that if no validation specifications are set for the &lt;data index>/&lt;data collection>, the document always validate.

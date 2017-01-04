@@ -412,7 +412,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 }
 ```
 
-Return the current Kuzzle configuration as loaded at Kuzzle start.
+Returns the current Kuzzle configuration as loaded at Kuzzle start.
 
 
 ## getLastStats
@@ -466,7 +466,7 @@ Return the current Kuzzle configuration as loaded at Kuzzle start.
 ```
 
 Kuzzle monitors its internal activities and make snapshots regularly.
-This command allows getting the last stored statistics frame.
+Allows to get the last stored statistics frame.
 By default, snapshots are made every 10s.
 
 These statistics include:
@@ -541,7 +541,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 }
 ```
 
-This command allows getting statistics frames saved/stored after a provided timestamp (utc, in milliseconds).
+Allows to get statistics frames saved/stored after a provided timestamp (utc, in milliseconds).
 
 These statistics include:
 
@@ -708,4 +708,4 @@ Retrieves information about Kuzzle, its plugins and active services.
 }
 ```
 
-Return the current Kuzzle UTC timestamp as Epoch time (number of milliseconds elapsed since 1 January 1970 00:00:00).
+Returns the current Kuzzle UTC timestamp as Epoch time (number of milliseconds elapsed since 1 January 1970 00:00:00).

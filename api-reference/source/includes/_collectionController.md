@@ -40,7 +40,7 @@
 }
 ```
 
-When creating a document, Kuzzle will automatically create a data collection if needed.
+When creating a document, Kuzzle will automatically create a collection if needed.
 But in some cases, you may want to create an empty collection directly, prior to storing any document in it.  
 This method does nothing if the collection already exists.
 
@@ -123,7 +123,7 @@ It responds 200 even there where no validation specification manually set before
 }
 ```
 
-Check if a collection exists in Kuzzle database storage layer.
+Checks if a collection exists in Kuzzle database storage layer.
 
 
 ## getMapping
@@ -246,7 +246,8 @@ Gets the mapping of the given `collection`.
 }
 ```
 
-This command allows getting the validation specifications associated to the given index and collection if some specifications has been defined first
+Allows to get the validation specifications associated to the given
+index and collection if some specifications has been defined first.
 
 
 ## getUserMapping
@@ -403,7 +404,7 @@ Gets the mapping of the internal `users` collection.
 }
 ```
 
-Return the complete list of realtime and stored data collections in requested index sorted by name in alphanumerical order.  
+Returns the complete list of realtime and stored data collections in requested index sorted by name in alphanumerical order.  
 The `type` argument filters the returned collections. Allowed values: `all`, `stored` and `realtime` (default : `all`).  
 The `from` and `size` arguments allow pagination. They are returned in the response if provided.
 
@@ -508,7 +509,7 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
 }
 ```
 
-Allow to search in the persistence layer for collection specifications.
+Allows to search in the persistence layer for collection specifications.
 
 
 ## truncate
@@ -550,7 +551,7 @@ Allow to search in the persistence layer for collection specifications.
 }
 ```
 
-This method empties a collection from all its documents, while keeping any associated mapping.  
+Empties a collection from all its documents, while keeping any associated mapping.  
 It is also faster than deleting all documents from a collection using a query.
 
 
@@ -830,7 +831,7 @@ When the validation specification is not well formatted, a detailed error messag
 
 At the first initialization, Kuzzle defines a default mapping for the `users` internal collection in the persistent data storage layer.
 
-This mapping is intended to store the basic informations of a user; typically, its crendentials and rights.
+This mapping is intended to store the basic information of a user; typically, its crendentials and rights.
 
 But if you want to store more information about your users, Kuzzle's API offers a way to update the `users` data mapping using the
 [mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/mapping.html).

@@ -231,7 +231,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
 }
 ```
 
-Authenticate a user with a defined **passportjs** authentication strategy.
+Authenticates a user with a defined **passportjs** authentication strategy.
 See [passportjs.org](http://www.passportjs.org/) for more details about authentication strategies.
 
 Strategies are implemented as [plugins](https://github.com/kuzzleio/kuzzle/blob/master/docs/plugins.md).
@@ -265,7 +265,7 @@ The **_login** action returns an encrypted JWT token, that must then be sent wit
 }
 ```
 
-Revoke token validity & unsubscribe from registered rooms
+Revokes the token validity & unsubscribe from registered rooms.
 
 The **_logout** action doesn't take strategy.
 
