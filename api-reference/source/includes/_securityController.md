@@ -1,11 +1,107 @@
 # ~ security controller
 
 
+## createFirstAdmin
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/<userId>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7511/_createFirstAdmin[?reset=1]`  
+>**Method:** `POST`  
+>**Body**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "name": "John Doe",                     // Additional optional User properties
+  ...
+}
+
+// example with a "local" authentication
+
+{
+  "name": "John Doe",                     // Additional optional User properties
+  ...
+  "password": "MyPassword"                // ie: Mandatory for "local" authentication plugin
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "createFirstAdmin",
+  "reset": true|false,                    // Optional. Will reset the preset roles if set to true.
+  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
+
+  "body": {
+    "profileIds": ["<profileId>"],       // Mandatory. The profile ids for the user
+    "name": "John Doe",                   // Additional optional User properties
+    ...
+  }
+}
+
+// example with a "local" authentication
+
+{
+  "controller": "security",
+  "action": "createFirstAdmin",
+  "reset": true|false,                    // Optional. Will reset the preset roles if set to true.
+  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
+
+  "body": {
+    "profileIds": ["<profileId>"],        // Mandatory. The profile ids for the user
+    "name": "John Doe",                   // Additional optional User properties
+    ...
+    "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "controller": "security",
+  "action": "createFirstAdmin",
+  "metadata": {},
+  "requestId": "<unique request identifier>",
+  "result": {
+    "_id": "<user id, either provided or auto-generated>",
+    "_source": {
+      "name": "John Doe",
+      "profileIds": [
+        "admin"
+      ],
+      ...
+    }
+  }
+}
+```
+
+Creates the first admin `user` in Kuzzle's database layer. Does nothing if an admin user already exists.
+
+If an `_id` is provided in the query and if a `user` already exists with the given `_id`,
+it will be replaced and its `profileIds` will be set to `["admin"]`. If not provided, the `_id` will be auto-generated.
+
+If the optional field `reset` is set to `true` (`1` with http),
+the preset roles (`anonymous` and `default`) will be reset with more restrictive rights.
+
+Other mandatory additional informations are needed depending on the authentication plugins installed you want to use.
+
+
 ## createOrReplaceProfile
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/<profile_id>`  
+>**URL:** `http://kuzzle:7511/profiles/<profileId>`  
 >**Method:** `PUT`  
 >**Body**
 
@@ -16,10 +112,10 @@
   // The new array of role IDs and restrictions (cannot be empty)
   "roles": [
     {
-      "_id": "<roleID>"
+      "_id": "<roleId>"
     },
     {
-      "_id": "<roleID>",
+      "_id": "<anotherRoleId>",
       "restrictedTo": [
         {
           "index": "<index>"
@@ -48,17 +144,17 @@
 {
   "controller": "security",
   "action": "createOrReplaceProfile",
+  "_id": "<profileId>",
 
-  "_id": "<the profile id>",
   // the profile definition
   "body": {
     // The new array of role IDs and restrictions (cannot be empty)
     "roles": [
       {
-        "_id": "<roleID>"
+        "_id": "<roleId>"
       },
       {
-        "_id": "<roleID>",
+        "_id": "<roleId>",
         "restrictedTo": [
           {
             "index": "<index>"
@@ -82,10 +178,10 @@
 
 ```litcoffee
 {
-  "status":200,                       // Assuming everything went well
+  "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything wen well
   "result": {
-    "_id": "<profile_id>",
+    "_id": "<profileId>",
     "_index": "%kuzzle",
     "_type": "profiles",
     "_version": 1,
@@ -105,7 +201,7 @@ Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a p
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<role id>` or `http://kuzzle:7511/roles/<role id>/_createOrReplace`  
+>**URL:** `http://kuzzle:7511/roles/<roleId>`  
 >**Method:** `PUT`  
 >**Body**
 
@@ -113,22 +209,10 @@ Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a p
 
 ```litcoffee
 {
-  "indexes": {
-    "_canCreate": true,
+  "controllers": {
     "*": {
-      "_canDelete": true,
-      "collections": {
-        "_canCreate": true,
-        "*": {
-          "_canDelete": true,
-          "controllers": {
-            "*": {
-              "actions": {
-                "*": true
-              }
-            }
-          }
-        }
+      "actions": {
+        "*": true
       }
     }
   }
@@ -145,26 +229,14 @@ Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a p
 {
   "controller": "security",
   "action": "createOrReplaceRole",
+  "_id": "<roleId>",
 
-  "_id": "<the role id>",
   // the role definition
   "body": {
-    "indexes": {
-      "_canCreate": true,
+    "controllers": {
       "*": {
-        "_canDelete": true,
-        "collections": {
-          "_canCreate": true,
-          "*": {
-            "_canDelete": true,
-            "controllers": {
-              "*": {
-                "actions": {
-                  "*": true
-                }
-              }
-            }
-          }
+        "actions": {
+          "*": true
         }
       }
     }
@@ -176,15 +248,23 @@ Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a p
 
 ```litcoffee
 {
-  "status":200,                       // Assuming everything went well
-  error":null,                      // Assuming everything wen well
+  "status": 200,                     // Assuming everything went well
+  "error": null,                     // Assuming everything wen well
   "result": {
-    "_id": "<role id>",
+    "_id": "<roleId>",
     "_index": "%kuzzle",
     "_type": "roles",
     "_version": 1,
     "created": true,
-    "_source": {} // your role definition
+    "_source": { // your role definition
+      "controllers": {
+        "*": {
+          "actions": {
+            "*": true
+          }
+        }
+      }
+    }
   }
   "requestId": "<unique request identifier>",
   "controller": "security",
@@ -207,7 +287,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<user id>`  
+>**URL:** `http://kuzzle:7511/users/<userId>`  
 >**Method:** `PUT`  
 >**Body**
 
@@ -215,8 +295,8 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 ```litcoffee
 {
-  "profileId": "<profile id>",            // mandatory. The profile id for the user
-  "name": "John Doe",                     // Additional optional User properties
+  "profileIds": ["<profileId>", "anotherProfileId", "..."] // Mandatory. The profile ids for the user
+  "name": "John Doe",                                      // Additional optional User properties
   ...
 }
 ```
@@ -231,11 +311,10 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 {
   "controller": "security",
   "action": "createOrReplaceUser",
-
-  "_id": "<the user id>",
+  "_id": "<userId>",
   "body": {
-    "profileId": "<profile id>",          // mandatory. The profile id for the user
-    "name": "John Doe",                   // Additional optional User properties
+    "profileIds": ["<profileId>", "anotherProfileId", "..."] // Mandatory. The profile ids for the user
+    "name": "John Doe",                                      // Additional optional User properties
     ...
   }
 }
@@ -254,10 +333,10 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
   "metadata": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id, either provided or auto-generated>",
+    "_id": "<userId>",
     "_index": "%kuzzle",
     "_source": {
-      "profileId": "<profile id>",
+      "profileIds": ["<profileId>", "anotherProfileId", "..."],
       "name": "John Doe",
       ...
     },
@@ -277,7 +356,7 @@ The `user` is created if it does not exists yet or replaced with the given objec
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/<profile id>/_create`  
+>**URL:** `http://kuzzle:7511/profiles/<profileId>/_create`  
 >**Method:** `POST`  
 >**Body**
 
@@ -288,10 +367,10 @@ The `user` is created if it does not exists yet or replaced with the given objec
   // The new array of role IDs and restrictions (cannot be empty)
   "policies": [
     {
-      "_id": "<roleID>"
+      "_id": "<roleId>"
     },
     {
-      "_id": "<roleID>",
+      "_id": "<roleId>",
       "restrictedTo": [
         {
           "index": "<index>"
@@ -320,17 +399,17 @@ The `user` is created if it does not exists yet or replaced with the given objec
 {
   "controller": "security",
   "action": "createProfile",
-  "_id": "<the profile id>",
+  "_id": "<profileId>",
 
   // the profile definition
   "body": {
     // The new array of role IDs and restrictions (cannot be empty)
     "policies": [
       {
-        "_id": "<roleID>"
+        "_id": "<roleId>"
       },
       {
-        "_id": "<roleID>",
+        "_id": "<roleId>",
         "restrictedTo": [
           {
             "index": "<index>"
@@ -354,10 +433,10 @@ The `user` is created if it does not exists yet or replaced with the given objec
 
 ```litcoffee
 {
-  "status":200,                       // Assuming everything went well
+  "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything wen well
   "result": {
-    "_id": "<profile_id>",
+    "_id": "<profileId>",
     "_index": "%kuzzle",
     "_type": "profiles",
     "_version": 1,
@@ -380,7 +459,7 @@ Creates a profile with a new list of roles.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<role id>/_create`  
+>**URL:** `http://kuzzle:7511/roles/<roleId>/_create`  
 >**Method:** `POST`  
 >**Body**
 
@@ -388,22 +467,10 @@ Creates a profile with a new list of roles.
 
 ```litcoffee
 {
-  "indexes": {
-    "_canCreate": true,
+  "controllers": {
     "*": {
-      "_canDelete": true,
-      "collections": {
-        "_canCreate": true,
-        "*": {
-          "_canDelete": true,
-          "controllers": {
-            "*": {
-              "actions": {
-                "*": true
-              }
-            }
-          }
-        }
+      "actions": {
+        "*": true
       }
     }
   }
@@ -420,26 +487,14 @@ Creates a profile with a new list of roles.
 {
   "controller": "security",
   "action": "createRole",
-  "_id": "<the role id>",
+  "_id": "<roleId>",
 
   // the role definition
   "body": {
-    "indexes": {
-      "_canCreate": true,
+    "controllers": {
       "*": {
-        "_canDelete": true,
-        "collections": {
-          "_canCreate": true,
-          "*": {
-            "_canDelete": true,
-            "controllers": {
-              "*": {
-                "actions": {
-                  "*": true
-                }
-              }
-            }
-          }
+        "actions": {
+          "*": true
         }
       }
     }
@@ -451,15 +506,23 @@ Creates a profile with a new list of roles.
 
 ```litcoffee
 {
-  "status":200,                       // Assuming everything went well
-  error":null,                      // Assuming everything wen well
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything wen well
   "result": {
-    "_id": "<role id>",
+    "_id": "<roleId>",
     "_index": "%kuzzle",
     "_type": "roles",
     "_version": 1,
     "created": true,
-    "_source": {} // your role definition
+    "_source": { // your role definition
+      "controllers": {
+        "*": {
+          "actions": {
+            "*": true
+          }
+        }
+      }
+    }
   }
   "requestId": "<unique request identifier>",
   "controller": "security",
@@ -483,7 +546,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<user id>/_create` or `http://kuzzle:7511/users/_create`  
+>**URL:** `http://kuzzle:7511/users/<userId>/_create` or `http://kuzzle:7511/users/_create`  
 >**Method:** `POST`  
 >**Body**
 
@@ -491,7 +554,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 ```litcoffee
 {
-  "profileIds": ["<profile id>"],         // Mandatory. The profile ids for the user
+  "profileIds": ["<profileId>"],          // Mandatory. The profile ids for the user
   "name": "John Doe",                     // Additional optional User properties
   ...
 }
@@ -499,7 +562,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 // example with a "local" authentication
 
 {
-  "profileIds": ["<profile id>"],         // Mandatory. The profile ids for the user
+  "profileIds": ["<profileId>"],          // Mandatory. The profile ids for the user
   "name": "John Doe",                     // Additional optional User properties
   ...
   "password": "MyPassword"                // ie: Mandatory for "local" authentication plugin
@@ -516,10 +579,10 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 {
   "controller": "security",
   "action": "createUser",
-  "_id": "<the user id>",                 // Optional. If not provided, will be generated automatically.
+  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
 
   "body": {
-    "profileIds": ["<profile id>"],       // Mandatory. The profile ids for the user
+    "profileIds": ["<profileId>"],        // Mandatory. The profile ids for the user
     "name": "John Doe",                   // Additional optional User properties
     ...
   }
@@ -530,10 +593,10 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 {
   "controller": "security",
   "action": "createUser",
-  "_id": "<the user id>",                 // Optional. If not provided, will be generated automatically.
+  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
 
   "body": {
-    "profileIds": ["<profile id>"],       // Mandatory. The profile ids for the user
+    "profileIds": ["<profileId>"],        // Mandatory. The profile ids for the user
     "name": "John Doe",                   // Additional optional User properties
     ...
     "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
@@ -552,13 +615,12 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
   "controller": "security",
   "action": "createUser",
   "metadata": {},
-  "scope": null,
   "requestId": "<unique request identifier>",
   "result": {
     "_id": "<user id, either provided or auto-generated>",
     "_index": "%kuzzle",
     "_source": {
-      "profileIds": ["<profile id>"],
+      "profileIds": ["<profileId>"],
       "name": "John Doe",
       ...
     },
@@ -583,7 +645,7 @@ Other mandatory additional informations are needed depending on the authenticati
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<user id>/_createRestricted` or `http://kuzzle:7511/users/_createRestricted`  
+>**URL:** `http://kuzzle:7511/users/<userId>/_createRestricted` or `http://kuzzle:7511/users/_createRestricted`  
 >**Method:** `POST`  
 >**Body**
 
@@ -614,8 +676,7 @@ Other mandatory additional informations are needed depending on the authenticati
 {
   "controller": "security",
   "action": "createRestrictedUser",
-
-  "_id": "<the user id>",                 // Optional. If not provided, will be generated automatically.
+  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
   "body": {
     "name": "John Doe",                   // Additional optional User properties
     ...
@@ -627,8 +688,7 @@ Other mandatory additional informations are needed depending on the authenticati
 {
   "controller": "security",
   "action": "createRestrictedUser",
-
-  "_id": "<the user id>",                 // Optional. If not provided, will be generated automatically.
+  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
   "body": {
     "name": "John Doe",                   // Additional optional User properties
     ...
@@ -648,13 +708,12 @@ Other mandatory additional informations are needed depending on the authenticati
   "controller": "security",
   "action": "createRestrictedUser",
   "metadata": {},
-  "scope": null,
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id, either provided or auto-generated>",
+    "_id": "<userId>",
     "_index": "%kuzzle",
     "_source": {
-      "profileIds": ["<profile id>"],
+      "profileIds": ["<profileId>"],
       "name": "John Doe",
       ...
     },
@@ -680,7 +739,7 @@ Other mandatory additional informations are needed depending on the authenticati
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_profiles/<profile_id>`  
+>**URL:** `http://kuzzle:7511/_profiles/<profileId>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -696,7 +755,7 @@ Other mandatory additional informations are needed depending on the authenticati
 
   // The profile unique identifier. It's the same one that Kuzzle sends you
   // in its responses when you create a profile.
-  "_id": "<profile ID>"
+  "_id": "<profileId>"
 }
 ```
 
@@ -707,7 +766,7 @@ Other mandatory additional informations are needed depending on the authenticati
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<Profile ID>",        // The profile ID
+    "_id": "<profileId>",             // The profile id
   },
   "index": "%kuzzle",
   "collection": "profiles",
@@ -725,7 +784,7 @@ that the related roles will NOT be deleted.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<role id>`  
+>**URL:** `http://kuzzle:7511/roles/<roleId>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -741,7 +800,7 @@ that the related roles will NOT be deleted.
 
   // The role unique identifier. It's the same one that Kuzzle sends you
   // in its responses when you create a role.
-  "_id": "<role ID>"
+  "_id": "<roleId>"
 }
 ```
 
@@ -752,7 +811,7 @@ that the related roles will NOT be deleted.
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<Unique role ID>"         // The role ID
+    "_id": "<roleId>"                 // The role id
   }
   "index": "%kuzzle",
   "collection": "roles"
@@ -769,7 +828,7 @@ Given a `role id`, delete the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<user id>`  
+>**URL:** `http://kuzzle:7511/users/<userId>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -785,7 +844,7 @@ Given a `role id`, delete the corresponding role from the database.
 
   // The role unique identifier. It's the same one that Kuzzle sends you
   // in its responses when you create a role.
-  "_id": "<role ID>"
+  "_id": "<roleId>"
 }
 ```
 
@@ -796,7 +855,7 @@ Given a `role id`, delete the corresponding role from the database.
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<Unique role ID>"         // The role ID
+    "_id": "<roleId>"                 // The role id
   }
   "index": "%kuzzle",
   "collection": "users",
@@ -813,7 +872,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_profiles/<profile_id>`  
+>**URL:** `http://kuzzle:7511/_profiles/<profileId>`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -829,7 +888,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 
   // The profile unique identifier. It's the same one that Kuzzle sends you
   // in its responses when you create a profile.
-  "_id": "<profile ID>"
+  "_id": "<profileId>"
 }
 ```
 
@@ -840,7 +899,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<Unique profile ID>",    // The profile ID
+    "_id": "<profileId>",             // The profile id
     "_source": {                      // The requested profile
       ...
     },
@@ -859,7 +918,7 @@ Given a `profile id`, retrieves the corresponding profile from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_profiles/<profile_id>/_rights`  
+>**URL:** `http://kuzzle:7511/_profiles/<profileId>/_rights`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -875,7 +934,7 @@ Given a `profile id`, retrieves the corresponding profile from the database.
 
   // The profile unique identifier. It's the same one that Kuzzle sends you
   // in its responses when you create a profile.
-  "_id": "<profile ID>"
+  "_id": "<profileId>"
 }
 ```
 
@@ -924,7 +983,7 @@ Given a `profile id`, retrieves the corresponding rights.
 
   // The role unique identifier. It's the same one that Kuzzle sends you
   // in its responses when you create a role.
-  "_id": "<role ID>"
+  "_id": "<roleId>"
 }
 ```
 
@@ -935,7 +994,7 @@ Given a `profile id`, retrieves the corresponding rights.
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<Unique role ID>",        // The role ID
+    "_id": "<roleId>",                // The role id
     "_source": {
       "indexes": {
         ...
@@ -958,7 +1017,7 @@ Given a `role id`, retrieves the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<user id>`  
+>**URL:** `http://kuzzle:7511/users/<userId>`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -971,7 +1030,7 @@ Given a `role id`, retrieves the corresponding role from the database.
 {
   "controller": "security",
   "action": "getUser",
-  "_id": "<user id>"
+  "_id": "<userId>"
 }
 ```
 
@@ -981,16 +1040,16 @@ Given a `role id`, retrieves the corresponding role from the database.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "security",
   "action": "getUser",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id>",
+    "_id": "<userId>",
     "_source": {
-      "profileId": "<profile id>",
-      ...                         // The user object content
+      "profileId": "<profileId>",
+      ...                             // The user object content
     }
   }
 }
@@ -1004,7 +1063,7 @@ Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_users/<user_id>/_rights`  
+>**URL:** `http://kuzzle:7511/_users/<userId>/_rights`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1017,7 +1076,7 @@ Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
 {
   "controller": "security",
   "action": "getUserRights",
-  "_id": "<user ID>"
+  "_id": "<userId>"
 }
 ```
 
@@ -1460,7 +1519,7 @@ Available filters:
     // An array of user objects
     "hits": [
       {
-        "_id": "<user id>",
+        "_id": "<userId>",
         "_source": { ... }             // The user object content
       },
       {
@@ -1480,8 +1539,8 @@ The `from` and `size` arguments allow pagination.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/<profile id>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7511/profiles/<profile id>/_update`  
+>**Method:** `PUT`  
 >**Body**
 
 <section class="http"></section>
@@ -1490,10 +1549,10 @@ The `from` and `size` arguments allow pagination.
 {
     "policies": [
       {
-        "_id": "<roleID>"
+        "_id": "<roleId>"
       },
       {
-        "_id": "<roleID>",
+        "_id": "<roleId>",
         "restrictedTo": [
           {
             "index": "<index>"
@@ -1522,14 +1581,14 @@ The `from` and `size` arguments allow pagination.
 {
   "controller": "security",
   "action": "updateProfile",
-  "_id": "<profile id>",
+  "_id": "<profileId>",
   "body": {
     "policies": [
       {
-        "_id": "<roleID>"
+        "_id": "<roleId>"
       },
       {
-        "_id": "<roleID>",
+        "_id": "<roleId>",
         "restrictedTo": [
           {
             "index": "<index>"
@@ -1561,7 +1620,7 @@ The `from` and `size` arguments allow pagination.
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id>",
+    "_id": "<profileId>",
     "_index": "%kuzzle",
     "_type": "profiles",
     "_version": 2
@@ -1576,23 +1635,21 @@ Given a `profile id`, updates the matching Profile object in Kuzzle's database l
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<role id>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7511/roles/<roleId>/_update`  
+>**Method:** `PUT`  
 >**Body**
 
 <section class="http"></section>
 
 ```litcoffee
 {
-    "indexes": {
-      "some index": {
-        "collections": {
-          "some collection": {
-            "_canDelete": true
-          }
-        }
+  "controllers": {
+    "*": {
+      "actions": {
+        "*": true
       }
     }
+  }
 }
 ```
 
@@ -1606,14 +1663,12 @@ Given a `profile id`, updates the matching Profile object in Kuzzle's database l
 {
   "controller": "security",
   "action": "updateRole",
-  "_id": "<role id>",
+  "_id": "<roleId>",
   "body": {
-    "indexes": {
-      "some index": {
-        "collections": {
-          "some collection": {
-            "_canDelete": true
-          }
+    "controllers": {
+      "*": {
+        "actions": {
+          "*": true
         }
       }
     }
@@ -1633,7 +1688,7 @@ Given a `profile id`, updates the matching Profile object in Kuzzle's database l
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id>",
+    "_id": "<roleId>",
     "_index": "%kuzzle",
     "_type": "roles",
     "_version": 2
@@ -1660,8 +1715,8 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<user id>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7511/users/<userId>/_update`  
+>**Method:** `PUT`  
 >**Body**
 
 <section class="http"></section>
@@ -1684,7 +1739,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 {
   "controller": "security",
   "action": "updateUser",
-  "_id": "<user id>",
+  "_id": "<userId>",
   "body": {
     "foo": "bar",                    // Some properties to update
     "name": "Walter Smith",
@@ -1705,7 +1760,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id>",
+    "_id": "<userId>",
     "_index": "%kuzzle",
     "_type": "users",
     "_version": 2

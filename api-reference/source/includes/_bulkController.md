@@ -21,7 +21,7 @@ even if some of the documents in the import match your subscription filters.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<data collection>/_bulk`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_bulk`  
 >**Method:** `POST`  
 >**Body:**
 
@@ -50,8 +50,8 @@ even if some of the documents in the import match your subscription filters.
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "bulk",
   "action": "import",
 
@@ -69,14 +69,15 @@ even if some of the documents in the import match your subscription filters.
   }
 }
 ```
+
 >Response
 
 ```litcoffee
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "bulk",
   "action": "import",
   "requestId": "<unique request identifier>",
@@ -85,19 +86,19 @@ even if some of the documents in the import match your subscription filters.
     "hits": [
       {
         "create": {
-          "_id": "<document Id>",
+          "_id": "<documentId>",
           "status": <HTTP status code>
         }
       },
       {
         "create": {
-          "_id": "<document ID>",
+          "_id": "<documentId>",
           "status": <HTTP status code>
         }
       },
       {
         "create": {
-          "_id": "<document Id>",
+          "_id": "<documentId>",
           "status": <HTTP status code>
         }
       }
@@ -124,14 +125,14 @@ In such case, the `collection` in which the documents need to be inserted needs 
 {
   // Data mapping using ElasticSearch bulk syntax.
   "bulkData": [
-    {"create": {"_index": "<data index>", "_type": "<data collection>"}},
+    {"create": {"_index": "<index>", "_type": "<collection>"}},
     {"a": "document", "with": "any", "number": "of fields"},
-    {"create": {"_index": "<data index>", "_type": "<data collection>"}},
+    {"create": {"_index": "<index>", "_type": "<collection>"}},
     {"another": "document"},
-    {"create": {"_index": "<data index>", "_type": "<data collection>"}},
+    {"create": {"_index": "<index>", "_type": "<collection>"}},
     {"and": { "another": "one"} },
     ...
-    {"create": {"index": { "_index": "<another data index>", "_type": "<another data collection>" }}}
+    {"create": {"index": { "_index": "<another index>", "_type": "<another collection>" }}}
   ]
 }
 ```
@@ -150,14 +151,14 @@ In such case, the `collection` in which the documents need to be inserted needs 
   "body": {
     // Data mapping using ElasticSearch bulk syntax.
     "bulkData": [
-      {"create": {"_index": "<data index>", "_type": "<data collection>"}},
+      {"create": {"_index": "<index>", "_type": "<collection>"}},
       {"a": "document", "with": "any", "number": "of fields"},
-      {"create": {"_index": "<data index>", "_type": "<data collection>"}},
+      {"create": {"_index": "<index>", "_type": "<collection>"}},
       {"another": "document"},
-      {"create": {"_index": "<data index>", "_type": "<data collection>"}},
+      {"create": {"_index": "<index>", "_type": "<collection>"}},
       {"and": { "another": "one"} },
       ...
-      {"create": {"index": { "_index": "<another data index>", "_type": "<another data collection>" }}}
+      {"create": {"index": { "_index": "<another index>", "_type": "<another collection>" }}}
     ]
   }
 }
@@ -177,19 +178,19 @@ In such case, the `collection` in which the documents need to be inserted needs 
     "hits": [
       {
         "create": {
-          "_id": "<document Id>",
+          "_id": "<documentId>",
           "status": <HTTP status code>
         }
       },
       {
         "create": {
-          "_id": ""<document Id>",
+          "_id": ""<documentId>",
           "status": <HTTP status code>
         }
       },
       {
         "create": {
-          "_id": "<document Id>",
+          "_id": "<documentId>",
           "status": <HTTP status code>
         }
       }

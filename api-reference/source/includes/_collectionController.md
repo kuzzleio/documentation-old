@@ -5,7 +5,7 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<collection name>`  
+>**URL:** `http://kuzzle:7511/<data>/<collection>`  
 >**Method:** `PUT`
 
 <section class="others"></section>
@@ -16,8 +16,8 @@
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<collection name>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "collection",
   "action": "create"
 }
@@ -29,8 +29,8 @@
 {
   "status": 200,
   "error": null,
-  "index": "<data index>",
-  "collection": "<collection name>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "collection",
   "action": "create",
   "requestId": "<unique request identifier>",
@@ -49,7 +49,7 @@ This method does nothing if the collection already exists.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<data collection>/_specifications`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_specifications`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -59,10 +59,10 @@ This method does nothing if the collection already exists.
 <section class="others"></section>
 ```litcoffee
 {
-  index: "<data index>",
-  collection: "<data collection>",
-  controller: "collection",
-  action: "deleteSpecifications",
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "collection",
+  "action": "deleteSpecifications",
 }
 ```
 
@@ -70,17 +70,17 @@ This method does nothing if the collection already exists.
 
 ```litcoffee
 {
-  status: 200,                      // Assuming everything went well
-  error: null,                      // Assuming everything went well
-  index: "<data index>",
-  collection: "<data collection>",
-  action: "deleteSpecifications",
-  controller: "collection",
-  result: {}
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "deleteSpecifications",
+  "controller": "collection",
+  "result": {}
 }
 ```
 
-Deletes the validation specification set for the <data index>/<data collection>.
+Deletes the validation specification set for the <index>/<collection>.
 It responds 200 even there where no validation specification manually set before.
 
 ***Note:*** by default, an empty specification is implicitally applied to all collections which. In a way, "no specification set" means "all documents are valid". This is why, using this route when no specifications have been set before, does not produce an error.
@@ -90,7 +90,7 @@ It responds 200 even there where no validation specification manually set before
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<data collection>/_exists`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_exists`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -101,8 +101,8 @@ It responds 200 even there where no validation specification manually set before
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "collection",
   "action": "exists"
 }
@@ -114,8 +114,8 @@ It responds 200 even there where no validation specification manually set before
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "exists",
   "action": "exists",
   "requestId": "<unique request identifier>",
@@ -130,7 +130,7 @@ Check if a collection exists in Kuzzle database storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<data collection>/_mapping`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mapping`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -141,8 +141,8 @@ Check if a collection exists in Kuzzle database storage layer.
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "collection",
   "action": "getMapping"
 }
@@ -154,22 +154,22 @@ Check if a collection exists in Kuzzle database storage layer.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "collection",
   "action": "getMapping",
   "requestId": "<unique request identifier>",
   "result": {
     "mainindex": {
       "mappings": {
-        <data collection>: {
+        <collection>: {
 
           // Data mapping using ElasticSearch mapping syntax
           "properties": {
-            "field1": {type: "field type", ...options... },
-            "field2": {type: "field type", ...options... },
+            "field1": {type: "field type", "...options..." },
+            "field2": {type: "field type", "...options..." },
             ...
-            "fieldn": {type: "field type", ...options... },
+            "fieldn": {type: "field type", "...options..." },
           }
         }
       }
@@ -185,7 +185,7 @@ Gets the mapping of the given `collection`.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<data collection>/_specifications`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_specifications`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -196,10 +196,10 @@ Gets the mapping of the given `collection`.
 
 ```litcoffee
 {
-  index: "<data index>",
-  collection: "<data collection>",
-  controller: "collection",
-  action: "getSpecifications",
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "collection",
+  "action": "getSpecifications",
 }
 ```
 
@@ -207,53 +207,53 @@ Gets the mapping of the given `collection`.
 
 ```litcoffee
 {
-  status: 200,                      // Assuming everything went well
-  error: null,                      // Assuming everything went well
-  action: "getSpecifications",
-  controller: "collection",
-  collection: "<data collection>",
-  index: "<data index>",
-  result: {
-    collection: "<data collection>",
-    index: "<data index>",
-    validation": {
-      fields: {
-        myField: {
-          defaultValue: 42,
-          mandatory: true,
-          type: "integer"
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "getSpecifications",
+  "controller": "collection",
+  "collection": "<collection>",
+  "index": "<index>",
+  "result": {
+    "collection": "<collection>",
+    "index": "<index>",
+    "validation": {
+      "fields": {
+        myField": {
+          "defaultValue": 42,
+          "mandatory": true,
+          "type": "integer"
         }
         ...
       },
-      strict: true
+      "strict": true
     }
   }
 }
 
 {
-  status: 404,                      // No validation specification has been set for this index/collection
-  error: {
-    _source: {
-      body: {}
+  "status": 404,                      // No validation specification has been set for this index/collection
+  "error": {
+    "_source": {
+      "body": {}
     },
-    message: "Not Found"
+    "message": "Not Found"
   },
-  action: "getSpecifications",
-  controller: "collection",
-  index: "<data index>",
-  collection: "<data collection>"
-  result: null
+  "action": "getSpecifications",
+  "controller": "collection",
+  "index": "<index>",
+  "collection": "<collection>"
+  "result": null
 }
 ```
 
 This command allows getting the validation specifications associated to the given index and collection if some specifications has been defined first
 
 
-## list
+## getUserMapping
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/_list(/<all|stored|realtime>)[?from=0][&size=42]`  
+>**URL:** `http://kuzzle:7511/users/_mapping`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -264,7 +264,94 @@ This command allows getting the validation specifications associated to the give
 
 ```litcoffee
 {
-  "index": "<data index>",
+  "controller": "collection",
+  "action": "getUserMapping"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "controller": "collection",
+  "action": "getUserMapping",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "mapping": {
+      "hobby": {
+        "fields": {
+          "keyword": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
+        },
+        "type": "text"
+      },
+      "name": {
+        "properties": {
+          "first": {
+            "fields": {
+              "keyword": {
+                "ignore_above": 256,
+                "type": "keyword"
+              }
+            },
+            "type": "text"
+          },
+          "last": {
+            "fields": {
+              "keyword": {
+                "ignore_above": 256,
+                "type": "keyword"
+              }
+            },
+            "type": "text"
+          },
+          "real": {
+            "fields": {
+              "keyword": {
+                "ignore_above": 256,
+                "type": "keyword"
+              }
+            },
+            "type": "text"
+          }
+        }
+      },
+      "password": {
+        "index": false,
+        "type": "keyword"
+      },
+      "profileIds": {
+        "type": "keyword"
+      }
+    }
+  }
+}
+```
+
+Gets the mapping of the internal `users` collection.
+
+
+
+## list
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/<index>/_list(/<all|stored|realtime>)[?from=0][&size=42]`  
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "index": "<index>",
   "controller": "collection",
   "action": "list",
   "type": "<all|stored|realtime>",
@@ -280,38 +367,35 @@ This command allows getting the validation specifications associated to the give
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
+  "index": "<index>",
   "controller": "collection",
   "action": "list",
   "requestId": "<unique request identifier>",
   "result": {
     "collections": [
       {
-        "name": "realtime_1",
-        "type": "realtime"
+        "name": "realtime_1", "type": "realtime"
       },
       {
-        "name": "realtime_2",
-        "type": "realtime"
+        "name": "realtime_2", "type": "realtime"
       },
       {
-        "name": "realtime_...",
-        "type": "realtime"
+        "name": "realtime_...", "type": "realtime"
       },
       {
-        "name": "realtime_n", type: "realtime"
+        "name": "realtime_n", "type": "realtime"
       },
       {
-        "name": "stored_1", type: "stored"
+        "name": "stored_1", "type": "stored"
       },
       {
-        "name": "stored_2", type: "stored"
+        "name": "stored_2", "type": "stored"
       },
       {
-        "name": "stored_...", type: "stored"
+        "name": "stored_...", "type": "stored"
       },
       {
-        "name": "stored_n", type: "stored"
+        "name": "stored_n", "type": "stored"
       }
     ],
     "type": "all"
@@ -324,11 +408,114 @@ The `type` argument filters the returned collections. Allowed values: `all`, `st
 The `from` and `size` arguments allow pagination. They are returned in the response if provided.
 
 
+## searchSpecifications
+
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/_searchSpecifications`  
+>**Method:** `POST`  
+>**Body**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // A set of filters or queries matching documents you are looking for.
+  "query": {
+    ...
+  }
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "collection",
+  "action": "searchSpecifications",
+  "body": {
+    // A set of filters or queries matching documents you are looking for.
+    "query": {
+      "Some": "filters"
+    }
+  },
+  // "from" and "size" argument for pagination
+  "from": 0,
+  "size": 42
+}
+```
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "controller": "collection",
+  "action": "searchSpecifications",
+  "metadata": {},
+  "requestId": "<unique request identifier>",
+  "result": {
+    "_shards": {
+        "failed": 0,
+        "successful": 5,
+        "total": 5
+    },
+    "hits": [
+      {
+        "_id": "myIndex#myCollection", 
+        "_index": "%kuzzle", 
+        "_score": 1, 
+        "_source": {
+          "collection": "myCollection", 
+          "index": "myIndex", 
+          "validation": {
+            "fields": {
+              "fieldName": {
+                "defaultValue": "a default value", 
+                "mandatory": true, 
+                "multivalued": {
+                  "maxCount": 5, 
+                  "minCount": 1, 
+                  "value": true
+                }, 
+                "type": "string", 
+                "typeOptions": {
+                  "length": {
+                    "max": 12, 
+                    "min": 2
+                  }
+                }
+              }
+            }, 
+            "strict": true
+          }
+        }, 
+        "_type": "validations"
+      }
+    ],
+    "max_score": null,
+    "timed_out": false,
+    "took": 1,
+    "total": <number of results>
+  }
+}
+```
+
+Allow to search in the persistence layer for collection specifications.
+
+
 ## truncate
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<collection name>/_truncate`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_truncate`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -339,8 +526,8 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "collection",
   "action": "truncate"
 }
@@ -354,8 +541,8 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
   "error": null,
   "action": "truncate",
   "controller": "collection",
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "requestId": "<unique request identifier>",
   "result": {
     "acknowledged": true,
@@ -371,7 +558,7 @@ It is also faster than deleting all documents from a collection using a query.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<data collection>/_mapping`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mapping`  
 >**Method:** `PUT`  
 >**Body:**
 
@@ -383,16 +570,16 @@ It is also faster than deleting all documents from a collection using a query.
   "properties": {
     "field1": {
       "type": "field type",
-      "...options..."
+      "other": "...options..."
     },
     "field2": {
       "type": "field type",
-      "...options..."
+      "other": "...options..."
     },
     ...
     "fieldn": {
       "type": "field type",
-      "...options..."
+      "other": "...options..."
     }
   }
 }
@@ -406,8 +593,8 @@ It is also faster than deleting all documents from a collection using a query.
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "collection",
   "action": "updateMapping",
 
@@ -438,8 +625,8 @@ It is also faster than deleting all documents from a collection using a query.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "action": "updateMapping",
   "controller": "collection",
   "requestId": "<unique request identifier>",
@@ -470,10 +657,10 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
 
 ```litcoffee
 {
-  myindex: {
-    mycollection: {
-      strict: <true|false>,
-      fields: {
+  "myindex": {
+    "mycollection": {
+      "strict": <true|false>,
+      "fields": {
         // ... specification for each field
       }
     }
@@ -489,15 +676,15 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
 
 ```litcoffee
 {
-  controller: "collection",
-  action: "updateSpecifications",
+  "controller": "collection",
+  "action": "updateSpecifications",
 
   // Data mapping using ElasticSearch mapping syntax
-  body: {
-    myindex: {
-      mycollection: {
-        strict: <true|false>,
-        fields: {
+  "body": {
+    "myindex": {
+      "mycollection": {
+        "strict": <true|false>,
+        "fields": {
           // ... specification for each field
         }
       }
@@ -511,17 +698,17 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
 
 ```litcoffee
 {
-  status: 200,                      // Assuming everything went well
-  error: null,                      // Assuming everything went well
-  index: "<data index>",
-  collection: "<data collection>",
-  action: "updateSpecifications",
-  controller: "collection",
-  result: {
-    myindex: {
-      mycollection: {
-        strict: <true|false>,
-        fields: {
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "updateSpecifications",
+  "controller": "collection",
+  "result": {
+    "myindex": {
+      "mycollection": {
+        "strict": <true|false>,
+        "fields": {
           // ... specification for each field
         }
       }
@@ -530,24 +717,24 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
 }
 
 {
-  status: 400,                      // There was an error on specification
-  action: "updateSpecifications",
-  controller: "collections",
-  error: {
-    _source: // ... given specifications,
-    message: {
-      description: // ...global error description,
-      details: // ... an array of detailed problem found,
-      valid: false // the specifications are not valid
+  "status": 400,                      // There was an error on specification
+  "action": "updateSpecifications",
+  "controller": "collections",
+  "error": {
+    "_source": // ... given specifications,
+    "message": {
+      "description": // ...global error description,
+      "details": // ... an array of detailed problem found,
+      "valid": false // the specifications are not valid
     }
   },
-  metadata: {},
-  result: {
-    myindex: {
-      mycollection: {
-        strict: <true|false>,
-        fields: {
-          myField: {
+  "metadata": {},
+  "result": {
+    "myindex": {
+      "mycollection": {
+        "strict": <true|false>,
+        "fields": {
+          "myField": {
              // ... specification with an error
           }
         }
@@ -563,6 +750,92 @@ This method allows you to specify or update the validation specifications. You c
 When the validation specification is not well formatted, a detailed error message is answered by Kuzzle to help you to debug.
 
 
+## updateUserMapping
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/users/_mapping`  
+>**Method:** `PUT`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // Data mapping using ElasticSearch mapping syntax
+  "properties": {
+    "field1": {
+      "type": "field type",
+      "other": "...options..."
+    },
+    "field2": {
+      "type": "field type",
+      "other": "...options..."
+    },
+    ...
+    "fieldn": {
+      "type": "field type",
+      "other": "...options..."
+    }
+  }
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "collection",
+  "action": "updateUserMapping",
+
+  // Data mapping using ElasticSearch mapping syntax
+  "body": {
+    "properties": {
+      "field1": {
+        "type": "field type",
+        "other": "...options..."
+      },
+      "field2": {
+        "type": "field type",
+        "other": "...options..."
+      },
+      ...
+      "fieldn": {
+        "type": "field type",
+        "other": "...options..."
+      }
+    }
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "updateMapping",
+  "controller": "collection",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "acknowledged": true
+  },
+}
+```
+
+At the first initialization, Kuzzle defines a default mapping for the `users` internal collection in the persistent data storage layer.
+
+This mapping is intended to store the basic informations of a user; typically, its crendentials and rights.
+
+But if you want to store more information about your users, Kuzzle's API offers a way to update the `users` data mapping using the
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/mapping.html).
+
+
 ## validateSpecifications
 
 <section class="http"></section>
@@ -575,10 +848,10 @@ When the validation specification is not well formatted, a detailed error messag
 
 ```litcoffee
 {
-  myindex: {
-    mycollection: {
-      strict: <true|false>,
-      fields: {
+  "myindex": {
+    "mycollection": {
+      "strict": <true|false>,
+      "fields": {
         // ... specification for each field
       }
     }
@@ -594,15 +867,15 @@ When the validation specification is not well formatted, a detailed error messag
 
 ```litcoffee
 {
-  controller: "admin",
-  action: "updateSpecifications",
+  "controller": "admin",
+  "action": "updateSpecifications",
 
   // Data mapping using ElasticSearch mapping syntax
-  body: {
-    myindex: {
-      mycollection: {
-        strict: <true|false>,
-        fields: {
+  "body": {
+    "myindex": {
+      "mycollection": {
+        "strict": <true|false>,
+        "fields": {
           // ... specification for each field
         }
       }
@@ -616,20 +889,20 @@ When the validation specification is not well formatted, a detailed error messag
 
 ```litcoffee
 {
-  status: 200,                      // Assuming everything went well
-  error: null,                      // Assuming everything went well
-  index: "<data index>",
-  collection: "<data collection>",
-  action: "updateMapping",
-  controller: "admin",
-  state: "done",
-  requestId, "<unique request identifier>",
-  result: {
-    valid: <true|false>,
-    details: [ // it some errors have been found
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "updateMapping",
+  "controller": "admin",
+  "state": "done",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "valid": <true|false>,
+    "details": [ // it some errors have been found
       // each spotted errors
     ],
-    description: <string> // global description if validation fails
+    "description": "<string>" // global description if validation fails
   }
 }
 ```

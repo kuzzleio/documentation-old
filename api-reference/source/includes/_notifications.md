@@ -228,8 +228,8 @@ You can receive the following types of notifications:
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "document",
   "action": "create",
   "state": "done",                      // The document has been fully created
@@ -238,9 +238,9 @@ You can receive the following types of notifications:
     // metadata embedded in the request
   },
   "requestId": "<unique request identifier>",
-  "result": {
-    "_id": "unique document ID",
-    "_source": {...}                    // The created document
+  "result": {                           // The created document
+    "_id": "documentId",
+    "_source": {...}
   }
 }
 ```
@@ -254,8 +254,8 @@ You can receive the following types of notifications:
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "document",
   "action": "update",
   "state": "done",                      // The document has been fully updated
@@ -265,7 +265,7 @@ You can receive the following types of notifications:
   },
   "requestId": "<unique request identifier>",
   "result": {                           // The updated document
-    "_id": "<unique document ID>",
+    "_id": "<documentId>",
     ...
   }
 }
@@ -280,8 +280,8 @@ You can receive the following types of notifications:
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "document",
   "action": "update",
   "state": "done",                     // The document has been fully updated
@@ -291,7 +291,7 @@ You can receive the following types of notifications:
   },
   "requestId": "<unique request identifier>",
   "result": {                          // The updated document
-    "_id": "<unique document ID>",
+    "_id": "<documentId>",
     ...
   }
 }
@@ -306,8 +306,8 @@ You can receive the following types of notifications:
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "document",
   "action": "delete",
   "state": "done",                     // The document has been fully deleted
@@ -317,7 +317,7 @@ You can receive the following types of notifications:
   },
   "requestId": "<unique request identifier>",
   "result": {                          // The updated document
-    "_id": "<unique document ID>",
+    "_id": "<documentId>",
     ...
   }
 }
@@ -332,8 +332,8 @@ You can receive the following types of notifications:
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "document",
   "action": "create",
   "state": "pending",                   // Indicates that the document will be created
@@ -351,8 +351,8 @@ You can receive the following types of notifications:
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "document",
   "action": "delete",
   "state": "pending",                   // Indicates that the document will be deleted
@@ -370,8 +370,8 @@ You can receive the following types of notifications:
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "subscribe",
   "metadata": {
@@ -379,7 +379,7 @@ You can receive the following types of notifications:
   },
   "requestId": "<unique request identifier>",
   "result": {
-    "roomId": "<unique Kuzzle room ID>",
+    "roomId": "<unique Kuzzle room identifier>",
     "count": <the new user count on that room>
   }
 }
@@ -394,8 +394,8 @@ You can receive the following types of notifications:
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "unsubscribe",
   "metadata": {
@@ -403,7 +403,7 @@ You can receive the following types of notifications:
   },
   "requestId": "<unique request identifier>",
   "result": {
-    "roomId": "<unique Kuzzle room ID>",
+    "roomId": "<unique Kuzzle room identifier>",
     "count": <the new user count on that room>
   }
 }
