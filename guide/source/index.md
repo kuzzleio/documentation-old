@@ -19,11 +19,11 @@ includes:
   - essentials/security
   - essentials/status-code
   - essentials/cli
+  - essentials/plugins
   - advanced/index
   - advanced/kuzzle-depth
   - advanced/request-scenarios
   - advanced/security
-  - advanced/extending-kuzzle-plugins.md
 
 search: true
 ---

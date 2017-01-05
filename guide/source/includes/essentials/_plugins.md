@@ -1,15 +1,114 @@
-## Extending Kuzzle with plugins
+## The Plugin System
 
-Plugins are external components extending Kuzzle with custom features.
+Being able to grab a full-feature backend and run it quickly is very convenient, but Kuzzle is about more than that. As soon as you start developing real-life applications that live out in the wild, you need to **extend your backend with your own business-logic**.
+That's quite legitimate: some logic is sensible and cannot live on the client.
 
-There are several types of plugins:
+For example, imagine your application needs to leverage a **third-party payment system**, such as Braintree. You don't want to put the client in charge of bearing API keys and tokens. Also, you will probably want to **keep track of orders** and payments, once the transactions successfully end. This should be also a concern of your backend. Also, you are not likely to allow your customers to purchase more items than available, right? At some point, **your backend has to validate the transaction** by comparing the ordered quantity with the available stocks.
 
-* [Listener plugins](http://kuzzle.io/documentation/plugin-reference#listener-plugins) listen to events and are supplied with these events data. Cannot change the provided data, and Kuzzle does not wait for them either
-* [Workers plugins](http://kuzzle.io/documentation/plugin-reference#worker-plugins) are just like listener plugins, but they are run on a separate processes. Useful when performing costly operations as they do not imped Kuzzle performances.
-* [Pipe plugins](http://kuzzle.io/documentation/plugin-reference#pipe-plugins) listen to events, and can validate or modify the provided data. Kuzzle waits for pipe plugins before continuing processing data.
-* [Controller plugins](http://kuzzle.io/documentation/plugin-reference#controllers) extend Kuzzle API with new controllers and actions.
-* [Protocol plugins](http://kuzzle.io/documentation/plugin-reference#protocol-plugins) extend Kuzzle networking capabilities by adding new network protocols to it
-* [Authentication plugins](http://kuzzle.io/documentation/plugin-reference#authentication-plugin) add new Kuzzle authentication strategies
+To solve this problem, Kuzzle ships with a powerful **[Plugin System](/plugin-reference)** that enables you to add features to your server in a modular fashion. With Kuzzle Plugins you can
+
+* use an existing plugin from the Kuzzle Plugins ecosystem (such as the [OAuth2 Authentication strategy](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth) or the [MQTT Protocol](https://github.com/kuzzleio/kuzzle-plugin-mqtt));
+* [create your own plugin](/plugin-reference/#writing-plugin-code) from scratch.
+
+### Plugin Types
+
+There are several types of Plugins:
+
+#### Listener Plugins
+[Listener Plugins](/plugin-reference#listener-plugins) listen to data-related events. They react asynchronously (which means that Kuzzle does not wait for them) and cannot change the provided data.
+
+_Example - "Write a log to a third-party log system every time a document is deleted"_.
+
+Kuzzle ships with a Listener Plugin already bundled in its Community Edition, the [Logger Plugin](https://github.com/kuzzleio/kuzzle-plugin-logger).
+
+#### Worker Plugins
+[Workers Plugins](/plugin-reference#worker-plugins) are just like Listener Plugins, but they are run on separate processes. They are useful when performing costly operations as they have no impact on Kuzzle performances.
+
+_Example - "Compute a complex data-mining operation and commit the result to a third-party Business-Intelligence platform every time a document is changed"._
+
+#### Pipe Plugins
+[Pipe Plugins](/plugin-reference#pipe-plugins) are just like Listener Plugins, but react synchronously to events. They can change the data (that is returned to Kuzzle after processing) and even stop the request life-cycle.
+
+_Example - "Compare the ordered quantity with the available stocks and return an error if ordered is greater than stocks"_.
+
+#### Controller Plugins
+[Controller Plugins](/plugin-reference#controllers) extend Kuzzle API with new controllers and actions.
+
+_Example - "Expose a `checkout` API endpoint that handles the Braintree payment process"_.
+
+#### Protocol Plugins
+[Protocol Plugins](/plugin-reference#protocol-plugins) extend Kuzzle networking capabilities by adding new network protocols.
+
+_Example - "Enable Kuzzle to interact with XMPP-oriented services"_
+
+Kuzzle ships with a Protocol Plugin already bundled in its Community Edition, the [Websocket Plugin](https://github.com/kuzzleio/kuzzle-plugin-websocket).
+
+#### Authentication Plugins
+[Authentication Plugins](/plugin-reference#authentication-plugin) add new Kuzzle authentication strategies.
+
+_Example - "Enable Kuzzle to authenticate users via the OAuth strategy"_
+
+Kuzzle ships with an Authentication Plugin already bundled in its Community Edition, the [Local Strategy Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local).
+
+### Examples
+
+This example is a very dummy one. We are going to install the **Hello World Controller Plugin**, which opens a new API endpoint that simply... Greets the client! Not very useful, except for the sake of this example.
+
+In Kuzzle, you can use the CLI to manage your Plugins. The `plugins --install` command enables you to install a Plugin from a Git repository, an NPM package or a local path on your machine.
+
+<aside class="notice">
+If you are running Kuzzle in a Docker container, you will need to enter the container to use the CLI.
+</aside>
+
+Go to the Kuzzle installation directory and type:
+
+```bash
+$ bin/kuzzle plugins --install --url https://github.com/kuzzleio/kuzzle-plugin-helloworld.git
+$ pm2 restart KuzzleServer
+```
+
+Once Kuzzle has restarted (that's what the second command is for) you can check the server information at `http://localhost:7511/?pretty=true` for the new `hello` endpoint:
+
+```json
+{
+    ...
+    "result": {
+        "serverInfo": {
+            "kuzzle": {
+                ...
+                "api": {
+                    "routes":
+                    ...
+                    "kuzzle-plugin-helloworld/hello": {
+                      "sayHello": {
+                        "name": "sayHello"
+                      }
+                    }
+                }
+            }
+        }
+    }
+}
+
+```
+
+Which means you can call the `http://localhost:7511/kuzzle-plugin-helloworld/hello/` route and get the following response:
+
+```json
+{
+  "requestId": "66265614-e908-4a91-a492-135e40e64aa3",
+  "status": 200,
+  "error": null,
+  "controller": "kuzzle-plugin-helloworld/hello",
+  "action": "sayHello",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "Hello world"
+}
+```
+
+To get a deeper insight on how Plugins work in Kuzzle, please refer to the [Plugin Reference](/plugin-reference).
 
 ### Managing plugins using the CLI
 
