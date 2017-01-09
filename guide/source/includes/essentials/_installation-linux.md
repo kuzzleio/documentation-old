@@ -17,6 +17,11 @@ $ wget http://kuzzle.io/docker-compose.yml
 $ docker-compose up
 ```
 
+To persist this changes add this line to your /etc/sysctl.conf
+```
+m.max_map_count=262144
+```
+
 <aside class="notice">
 The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.x/vm-max-map-count.html">here</a>.
 </aside>
