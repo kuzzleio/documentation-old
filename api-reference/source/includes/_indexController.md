@@ -5,8 +5,8 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>`  
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7511/<index>`  
+>**Method:** `POST`
 
 <section class="others"></section>
 
@@ -16,7 +16,7 @@
 
 ```litcoffee
 {
-  "index": "<data index>",
+  "index": "<index>",
   "controller": "index",
   "action": "create"
 }
@@ -28,7 +28,7 @@
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
+  "index": "<index>",
   "action": "create",
   "controller": "index",
   "requestId": "<unique request identifier>",
@@ -48,7 +48,7 @@ Create an `index` in Kuzzle's persistent storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>`  
+>**URL:** `http://kuzzle:7511/<index>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -59,7 +59,7 @@ Create an `index` in Kuzzle's persistent storage layer.
 
 ```litcoffee
 {
-  "index": "<data index>",
+  "index": "<index>",
   "controller": "index",
   "action": "delete"
 }
@@ -71,7 +71,7 @@ Create an `index` in Kuzzle's persistent storage layer.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
+  "index": "<index>",
   "controller": "index",
   "action": "delete",
   "requestId": "<unique request identifier>",
@@ -88,7 +88,7 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/_exists`  
+>**URL:** `http://kuzzle:7511/<index>/_exists`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -99,7 +99,7 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 
 ```litcoffee
 {
-  "index": "<data index>",
+  "index": "<index>",
   "controller": "index",
   "action": "exists"
 }
@@ -111,7 +111,7 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
+  "index": "<index>",
   "controller": "index",
   "action": "exists",
   "requestId": "<unique request identifier>",
@@ -119,7 +119,7 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 }
 ```
 
-Check if the given index exists in Kuzzle storage layer.
+Checks if the given index exists in Kuzzle storage layer.
 
 
 ## getAutoRefresh
@@ -215,7 +215,7 @@ The `getAutoRefresh` actions returns the current `autoRefresh` status for the gi
 }
 ```
 
-Return the complete data indexes.
+Returns the complete data indexes.
 
 
 ## mDelete
@@ -312,9 +312,9 @@ The response contains the list of indexes that were actually deleted.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
+  "index": "<index>",
   "controller": "index",
-  "action": "delete",
+  "action": "refresh",
   "requestId": "<unique request identifier>",
   "result": {
     "_shards": {
@@ -333,6 +333,66 @@ By default, this operation can take up to 1 second.
 Given an index, the `refresh` action forces a
 [`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api),
 on it, making the documents visible to search immediately.
+
+<aside class="left warning">
+  <p>
+    A refresh operation comes with some performance costs.<br>
+  </p>
+  <p>
+    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api">
+    Elasticsearch documentation</a>:
+    <div class="quote">
+      "While a refresh is much lighter than a commit, it still has a performance cost.
+      A manual refresh can be useful when writing tests, but don’t do a manual refresh every time
+      you index a document in production; it will hurt your performance. Instead, your application
+      needs to be aware of the near real-time nature of Elasticsearch and make allowances for it."
+    </div>
+  </p>
+</aside>
+
+
+## refreshInternal
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/_refreshInternal`  
+>**Method:** `POST`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "index",
+  "action": "refreshInternal"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "controller": "index",
+  "action": "refreshInternal",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "acknowledged": true
+  }
+}
+```
+
+When writing or deleting security and internal documents (users, roles, profiles, configuration, etc.)
+in Kuzzle's database layer, the update needs to be indexed before being reflected in the search index.
+By default, this operation can take up to 1 second.
+
+Given an index, the `refreshInternal` action forces a
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api),
+on the internal index, making the documents visible to search immediately.
 
 <aside class="left warning">
   <p>

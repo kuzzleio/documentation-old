@@ -9,12 +9,12 @@
   "error": {...},
 
   // Some information about the initial request
-  "index": "<data index>",
+  "index": "<index>",
   "collection": "<collection>",
   "controller": "<controller>",
   "action": "<action>",
 
-  // Completion state of the request.
+  // For notification only, completion state of the request.
   // A pending request will receive a "done" notification once it is processed by Kuzzle.
   "state": "<done|pending>",
 
@@ -25,7 +25,7 @@
   "metadata": { foo: "bar" },
 
   // Your query unique identifier.
-  "requestId": "<unique ID>",
+  "requestId": "<unique request identifier>",
 
   // Complex object, depending on your query
   "result": {

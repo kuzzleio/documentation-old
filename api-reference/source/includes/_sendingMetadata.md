@@ -26,11 +26,11 @@ This feature is especially useful to include volatile information about the perf
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "document",
   "action": "update",
-  "_id": "<a document ID>",
+  "_id": "<documentId>",
   "body": {
     "somefield": "now has a new value"
   },
@@ -51,8 +51,8 @@ This feature is especially useful to include volatile information about the perf
 {
   "status": 200,
   "error": null,
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "document",
   "action": "update",
   "state": "pending",
@@ -83,8 +83,8 @@ This feature is especially useful to include volatile information about the perf
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "subscribe",
   "body": {
@@ -106,8 +106,8 @@ This feature is especially useful to include volatile information about the perf
 {
   "status": 200,
   "error": null,
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "unsubscribe",
   "state": "done",
@@ -117,7 +117,7 @@ This feature is especially useful to include volatile information about the perf
   },
   "requestId": "<unique request identifier>",
   "result": {
-    "roomId": "<uniqueKuzzleRoomID>",
+    "roomId": "<unique Kuzzle room identifier>",
     "count": <the new user count on that room>
   }
 }

@@ -88,14 +88,14 @@ This API route does not require to be logged in.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "auth",
   "action": "getCurrentUser",
   "requestId": "<unique request identifier>",
   "jwt": "<encrypted_jwt_token>",
   "result": {
-    "_id":"<user id>",
+    "_id":"<userId>",
     "_source": {
       "name": {
         "first": "Steve",
@@ -103,7 +103,7 @@ This API route does not require to be logged in.
         },
         ...                         // The user object content
         "profile": {
-          "_id":"<profile id>",
+          "_id":"<profileId>",
           "roles": [
             ...                     // Users roles definitions
           ]
@@ -225,13 +225,13 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
   "requestId": "<unique request identifier>",
   "metadata": {},
   "result": {
-    "_id": "<user ID>",
+    "_id": "<userId>",
     "jwt": "<JWT encrypted token>"
   }
 }
 ```
 
-Authenticate a user with a defined **passportjs** authentication strategy.
+Authenticates a user with a defined **passportjs** authentication strategy.
 See [passportjs.org](http://www.passportjs.org/) for more details about authentication strategies.
 
 Strategies are implemented as [plugins](https://github.com/kuzzleio/kuzzle/blob/master/docs/plugins.md).
@@ -265,7 +265,7 @@ The **_login** action returns an encrypted JWT token, that must then be sent wit
 }
 ```
 
-Revoke token validity & unsubscribe from registered rooms
+Revokes the token validity & unsubscribe from registered rooms.
 
 The **_logout** action doesn't take strategy.
 
@@ -335,7 +335,7 @@ The **_logout** action doesn't take strategy.
   "metadata": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id>",
+    "_id": "<userId>",
     "_source": {
       "foo": "bar",
       "name": "Walter Smith",

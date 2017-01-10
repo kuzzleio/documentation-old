@@ -15,8 +15,8 @@
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "count",
   "body": {
@@ -38,13 +38,13 @@
 {
   "status": 200,                        // Assuming everything went well
   "error": null,                        // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "count",
   "requestId": "<unique request identifier>",
   "result": {
-    "roomId": "<unique Kuzzle room ID>",
+    "roomId": "<unique Kuzzle room identifier>",
     "count": <number of subscriptions>,
   }
 }
@@ -69,12 +69,12 @@ The expected parameter is the roomId returned by Kuzzle during the subscription.
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "join",
   "body": {
-    "roomId": "<the room ID to join>"
+    "roomId": "<the room identifier to join>"
   },
   "metadata": {
     // query metadata
@@ -95,14 +95,14 @@ The expected parameter is the roomId returned by Kuzzle during the subscription.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "subscribe",
   "metadata": {},                     // subscription metadata
   "requestId": "<unique request identifier>",
   "result": {
-    "roomId": "<unique Kuzzle room ID>"
+    "roomId": "<unique Kuzzle room identifier>"
   }
 }
 ```
@@ -112,11 +112,67 @@ Joins a previously created subscription.
 The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to some documents.
 
 
+## list
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/_listSubscriptions`  
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "realtime",
+  "action": "list"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "error": null,
+  "status": 200,
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "realtime",
+  "action": "publish",
+  "metadata": {},
+  "requestId": "<unique request identifier>",
+  "result": {
+    "<index>": {
+      "<collection>": {
+        "afcd909773f197ab859447594bfbd154": 12,
+        "4adbc1948ac4dc84ac89d14b488bcad1": 4,
+        ...
+      },
+      "<anotherCollection>": {
+        "bcd4ab54cdb4ad5b464ba4cd4564dc46": 1,
+        ...
+      },
+      ...
+    },
+    "<anotherIndex>": {
+      ...
+    },
+    ...
+  },
+}
+```
+
+Lists all subscriptions on all indexes and all collections.
+
+
 ## publish
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<data collection>`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_publish`  
 >**Method:** `POST`  
 >**Body:**
 
@@ -136,8 +192,8 @@ The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to s
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "publish",
   // The document itself
@@ -153,8 +209,8 @@ The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to s
 {
   "error": null,
   "status": 200,
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "publish",
   "metadata": {},
@@ -185,8 +241,8 @@ who have subscribed to a subscription for which the filters match the message co
 
 ```litcoffee
 {
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "subscribe",
   "body": {
@@ -251,15 +307,15 @@ who have subscribed to a subscription for which the filters match the message co
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "index": "<index>",
+  "collection": "<collection>",
   "controller": "realtime",
   "action": "subscribe",
   "metadata": {},                     // subscription metadata
   "requestId": "<unique request identifier>",
   "result": {
-    "roomId": "<unique Kuzzle room ID>",
-    "channel": "<unique channel ID>"
+    "roomId": "<unique Kuzzle room identifier>",
+    "channel": "<unique channel identifier>"
   }
 }
 ```
@@ -339,18 +395,18 @@ who have subscribed to a subscription for which the filters match the message co
 
       /*
       {
-        "error":null,
-        "status":200,
-        "index":"<data index>",
-        "collection":""<data collection>"
-        "controller":"realtime",
-        "action":"subscribe",
+        "error": null,
+        "status": 200,
+        "index": "<index>",
+        "collection": "<collection>"
+        "controller": "realtime",
+        "action": "subscribe",
         "state": "done",
-        "metadata":{},
-        "result":{
-          "roomId":"632682a9eac95cfb95e3a697b29b7739",
-          "requestId":"mySubscription",
-          "timestamp":1449564937142
+        "metadata": {},
+        "result": {
+          "roomId": "632682a9eac95cfb95e3a697b29b7739",
+          "requestId": "mySubscription",
+          "timestamp": 1449564937142
         }
       }
       */
@@ -442,12 +498,12 @@ How subscription works:
   "metadata": {},                       // subscription metadata
   "requestId": "<unique request identifier>",
   "result": {
-    "roomId": "<unique Kuzzle room ID>"
+    "roomId": "<unique Kuzzle room identifier>"
   }
 }
 ```
 
-This action instucts Kuzzle to detach you from its subscribers for the given room.
+Instructs Kuzzle to detach you from its subscribers for the given room.
 In practice, your subscription won't receive any new message on the room once this action is triggered.
 
 The expected parameter is the `roomId` that Kuzzle returned during the subscription.
@@ -457,7 +513,7 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data index>/<data collection>/_validate`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_validate`  
 >**Method:** `POST`  
 >**Body:**
 
@@ -477,8 +533,8 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 
 ```litcoffee
 {
-  index: "<data index>",
-  collection: "<data collection>",
+  index: "<index>",
+  collection: "<collection>",
   controller: "realtime",
   action: "validate",
   // The document itself
@@ -494,8 +550,8 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 {
   status: 200,                      // Assuming everything went well
   error: null,                      // Assuming everything went well
-  index: "<data index>",
-  collection: "<data collection>",
+  index: "<index>",
+  collection: "<collection>",
   controller: "realtime",
   action: "validate",
   metadata: {},
@@ -506,7 +562,7 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 }
 ```
 
-Validate data against existing validation rules. The data is not published nor stored by Kuzzle
+Validates data against existing validation rules. The data is not published nor stored by Kuzzle
 If the document complies, the `result.valid` value is `true`, if not, it is `false`.
 When the document does not complies, both `result.errorMessages` contains some very detailed hints on what is wrong with the document.
 Note that if no validation specifications are set for the &lt;data index>/&lt;data collection>, the document always validate.
