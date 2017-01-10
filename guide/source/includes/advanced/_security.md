@@ -196,6 +196,7 @@ let role = {
 ```
 
 Where:
+
 - `test` is the body of [the permission function](#the-permission-function)
 - `args` is the parameter given to [the fetch definition function](#the-fetch-definition)
 
