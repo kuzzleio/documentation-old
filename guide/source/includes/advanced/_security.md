@@ -1,38 +1,30 @@
-## Security
+## Authentication
 
-### Authentication Process
-
-#### Overview
-
-Kuzzle uses [passportjs](http://passportjs.org/) to enable authentication with a potentially large amount of providers, for example:
+Kuzzle uses [PassportJS](http://PassportJS.org/) to enable authentication through a large amount of providers, for example:
 
 - local username/password authentication (enabled by default)
-- oauth2 providers like github or google (using (Oauth plugin)[https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth])
+- OAuth2 providers like GitHub or google (using (Oauth plugin)[https://GitHub.com/kuzzleio/kuzzle-plugin-auth-passport-oauth])
 - SAML providers
-- etc.
-
-#### How it works
 
 Remember the [Architecture overview](#core-architecture) and focus on the components involved by reading actions:
 ![read_scenario_http_overview](./images/request-scenarios/auth/overview.png)
 
-Kuzzle uses these internal components during the authentication process:
-* The Auth Controller
-* The "Passport Wrapper", which makes an interface between Kuzzle controllers and the Passport library
-* The User and Token [Repositories](https://github.com/kuzzleio/kuzzle/tree/master/lib/api/core/models/repositories), to retrieve users' data.
+Kuzzle uses the following internal components during the authentication process:
+
+* The Auth Controller.
+* The Passport Wrapper, which acts as an interface between Kuzzle controllers and the Passport library,
+* The User and Token [Repositories](https://GitHub.com/kuzzleio/kuzzle/tree/master/lib/api/core/models/repositories), to retrieve users' data.
 * The Authentication strategy, implemented within a dedicated plugin.
 
-##### Sample scenario with the Local Plugin
+### Example - Local Strategy
 
-The "Local" strategy authenticates a user locally with his username/password, implemented by the [Passport Local Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local).
-
-Detailed workflow:
+The "Local" strategy (implemented by the [Passport Local Plugin](https://GitHub.com/kuzzleio/kuzzle-plugin-auth-passport-local)) authenticates a user via a username/password pair (locally stored).
 
 ![auth_scenario_details_local](./images/request-scenarios/auth/details-local.png)
 
-\#1. The user calls the *login* action of the ```Auth Controller```:
+* The user calls the `login` action of the Auth Controller:
 
-```json
+```javascripton
 {
   "controller": "auth",
   "action": "login",
@@ -44,21 +36,16 @@ Detailed workflow:
 }
 ```
 
-\#2. The ```Auth Controller``` calls the *authenticate()* method of the ```Passport Wrapper``` which format and sends the related request to the ```Passport local strategy```.
-
-\#3. The ```Passport local strategy``` calls the *verify()* callback method declared by the ```Local Authentication Plugin``` to check credentials.
-
-\#4. The plugin calls the ```User Repository``` and check if credentials are good and resolve to an existing user.
-
-\#5. If a user is found, he is resolved and sent back to the ```Auth Controller``` through the internal components.
-
-\#6. The ```Auth Controller``` calls the *generateToken()* method to get a [JWT Token](https://jwt.io/) related to the user.
-
-\#7. The JWT Token is sent back to the client, who will use it in next requests to be authenticated:
+* The Auth Controller calls the `authenticate()` method of the Passport Wrapper which formats and sends the related request to the Passport local strategy.
+* The Passport local strategy calls the `verify()` callback method declared by the Local Authentication Plugin to check credentials.
+* The plugin calls the User Repository and check if credentials are good and resolve to an existing user.
+* If a user is found, he is resolved and sent back to the Auth Controller through the internal components.
+* The Auth Controller calls the `generateToken()` method to get a [JWT Token](https://jwt.io/) corresponding to the user.
+* The JWT Token is sent back to the client, who will use it in next requests to be authenticated:
 
 Sample response:
 
-```json
+```javascripton
 {
   "status": 200,
   "error": null,
@@ -74,52 +61,48 @@ Sample response:
 }
 ```
 
-##### OAuth2 scenario with the Oauth Plugin
+### Example - OAuth2 Strategy
 
-The "Oauth" strategy, implemented by the [Passport Oauth Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), authenticates a user locally with his account on Github, Google+, Facebook, Twitter, or any identity provider using OAUth2 protocol with "Authorization Code" grant type.
+The "Oauth" strategy, implemented by the [Passport Oauth Plugin](https://GitHub.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), authenticates a user  via Github, Google+, Facebook, Twitter, or any identity provider using OAUth2 protocol with "Authorization Code" grant type.
 
 For more details about OAuth2 protocol, see [here](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2#grant-type-authorization-code).
 
-Detailed workflow:
-
-![auth_scenario_details_oauth2](./images/request-scenarios/auth/details-oauth2.png)
+![auth_scenario_details_oauth2](./images/request-scenarios/auth/details-OAuth2.png)
 
 The authentication flow is a 2-step flow:
 
-###### 1st step: get the OAuth2 Provider's URL
+#### 1st step: get the OAuth2 Provider's URL
 
-\#1. The user calls the *login* action of the ```Auth Controller```:
+* The user calls the `login` action of the Auth Controller:
 
-```json
+```javascripton
 {
   "controller": "auth",
   "action": "login",
   "body": {
-    "strategy": "github"
+    "strategy": "GitHub"
   }
 }
 ```
 
-\#2. The ```Auth Controller``` calls the *authenticate()* method of the ```Passport Wrapper``` which format and sends the related request to the ```Passport oauth2 strategy```.
+* The Auth Controller calls the `authenticate()` method of the Passport Wrapper which formats and sends the related request to the Passport OAuth2 strategy.
+* The strategy calls a redirection to the OAuth2 Provider.
+* The Passport Wrapper intercepts the redirection request and formats a Kuzzle Response for the client:
 
-\#3. While no Authorization code is provided, the strategy calls a redirection to the ```OAuth2 Provider```
-
-\#4. The ```Passport Wrapper``` intercepts the redirection request and format a Kuzzle Response for the client:
-
-```json
+```javascripton
 {
   "headers":
   {
     "Content-Length": "0",
-    "Location": "https://github.com/login/oauth/authorize?response_type=code&redirect_uri=http%3A%2F%2Fkuzzle%2Fapi%2F1.0%2F_login%2Fgithub&client_id=MY_CLIENT_ID"
+    "Location": "https://GitHub.com/login/oauth/authorize?response_type=code&redirect_uri=http%3A%2F%2Fkuzzle%2Fapi%2F1.0%2F_login%2Fgithub&client_id=MY_CLIENT_ID"
   },
   "statusCode": 302
 }
 ```
 
-\#5. The ```Auth Controller``` sends the response to the client, with the redirection URL to the ```OAUth2 Provider```:
+* The Auth Controller sends the response to the client, with the redirection URL to the OAUth2 Provider:
 
-```json
+```javascripton
 {
   "action": "login",
   "controller": "auth",
@@ -129,7 +112,7 @@ The authentication flow is a 2-step flow:
   "result": {
     "headers": {
       "Content-Length": "0",
-      "Location": "https://github.com/login/oauth/authorize?response_type=code&redirect_uri=http%3A%2F%2Fkuzzle%2Fapi%2F1.0%2F_login%2Fgithub&client_id=MY_CLIENT_ID"
+      "Location": "https://GitHub.com/login/oauth/authorize?response_type=code&redirect_uri=http%3A%2F%2Fkuzzle%2Fapi%2F1.0%2F_login%2Fgithub&client_id=MY_CLIENT_ID"
     },
     "statusCode": 302
   },
@@ -139,78 +122,57 @@ The authentication flow is a 2-step flow:
 }
 ```
 
-###### 2nd step: authenticate the user with the OAuth2 code.
+#### 2nd step: authenticate the user with the OAuth2 code.
 
-\#6. The Client sends an HTTP request to the ```OAuth2 Provider``` (**it has to be implemented within the client's application code**).
-
-\#7. The user authenticates himself to the ```Oauth2 Provider``` and allow Kuzzle Application to use his credentials (that is the standard OAuth2 flow, managed at the provider's side).
-
-\#8. The ```OAuth2 Provider``` sends a HTTP redirect response to the client, containing the oauth2 authorization code:
+* The Client sends an HTTP request to the OAuth2 Provider (unless you are using a Kuzzle SDK, this has to be implemented within the client's application code).
+* The user authenticates to the OAuth2 Provider and allow Kuzzle Application to use his credentials (that is the standard OAuth2 flow, managed at the provider's side).
+* The OAuth2 Provider sends a HTTP redirect response to the client, containing the OAuth2 authorization code:
 
 ```
 HTTP/1.1 302 Found
-Location: http://<kuzzle>/_login/github?code=OAUTH2_CODE
+Location: http://<kuzzle>/_login/GitHub?code=OAUTH2_CODE
 ```
 
-\#9. The client calls again the *login* action of the ```Auth Controller```, now with the oauth2 authorization code:
+* The client calls again the `login` action of the Auth Controller, now with the OAuth2 authorization code:
+  * either in HTTP, simply following the redirection `curl http://<kuzzle>/_login/GitHub?code=OAUTH2_CODE`
+  * or, with another protocol (for example WebSocket), after having parsed the URL to get the authorization code:
 
-* either in HTTP, simply following the redirection:
-
-```
-curl http://<kuzzle>/_login/github?code=OAUTH2_CODE
-```
-
-* or, with another protocol (for example WebSocket), after having parsed the URL to get the authorization code:
-
-```json
+```javascripton
 {
   "controller": "auth",
   "action": "login",
   "body": {
-    "strategy": "github",
+    "strategy": "GitHub",
     "code": "OAUTH2_CODE"
   }
 }
 ```
 
-\#10. The ```Auth Controller``` calls the *authenticate()* method of the ```Passport Wrapper``` which format and sends the related request to the ```Passport oauth2 strategy```.
-
-\#11. The ```Passport oauth2 strategy``` transmits the oauth2 authorization code to the ```OAuth2 Provider``` in order to retrieve the OAuth2 Token.
-
-\#12. The ```Passport oauth2 strategy``` calls the *verify()* callback method declared by the ```Oauth2 Authentication Plugin```
-
-\#13. The plugin calls the ```User Repository``` to check for an existing user with the given github ID.
-
-_(Note: If no related user is found in kuzzle, the plugin can either deny the authentication, or create automatically the user, depending on its settings)._
-
-\#14. The user is resolved and sent back to the ```Auth Controller``` through the internal components.
-
-\#15. The ```Auth Controller``` calls the *generateToken()* method to get a [JWT Token](https://jwt.io/) related to the user.
-
-\#16. The JWT Token is sent back to the client, who will use it in next requests to be authenticated:
-
+* The Auth Controller calls the `authenticate()` method of the Passport Wrapper which formats and sends the related request to the Passport OAuth2 strategy.
+* The Passport OAuth2 strategy forwards the OAuth2 authorization code to the OAuth2 Provider in order to retrieve the OAuth2 Token.
+* The Passport OAuth2 strategy calls the `verify()` callback method declared by the OAuth2 Authentication Plugin
+* The plugin calls the User Repository to check for an existing user with the given GitHub ID. _(Note: If no related user is found in Kuzzle, the plugin can either deny the authentication or create automatically the user, depending on the settings)._
+* The user is resolved and sent back to the Auth Controller through the internal components.
+* The Auth Controller calls the `generateToken()` method to get a [JWT Token](https://jwt.io/) related to the user.
+* The JWT Token is sent back to the client, who will use it in next requests to be authenticated.
 
 #### How to provide your own strategy
 
-Any strategy supported by passportjs can be implemented for Kuzzle with a dedicated plugin (see [plugins documentation](#gt-authentication-plugin)).
+Any strategy supported by PassportJS can be implemented in Kuzzle with a dedicated plugin. Please refer to the [Plugins Reference](/plugin-reference/#authentication-plugin)).
 
-### Roles definition reference
+### Advanced Roles Definitions
 
-#### Role and profile definition
+In the [User Guide](#permissions), we have seen how to assign basic roles to profiles and profiles to users. Here, we are going to learn how to set complex and dynamic permissions.
 
-see [User Guide](#permissions).
+The privileges for a certain action (restricted to a given set of indexes and collections) must be expressed as a boolean value. So far, we hard-coded this value within the permissions configuration. In some cases, this will not fit your needs. In a collaborative TO-DO list application, for example, a user should not be allowed to update other user's items. This need is addressed by what we call Permission Closures.
 
-#### Permission closures
+#### Permission Closures
 
-The `action permission` value can be set either to:
+Instead of hard-coding the permission boolean value, we assign a function (a closure) that computes this value and returns it based on the execution context.
 
-- a boolean. When set to `true`, the user is allowed to perform the action.
-- an object that describes a function (we call it "closure").
-
-A closure enable to set a role's policy according to some execution context.
 For example, if we need to allow users to update only their own documents, it can be done with this sample role:
 
-```js
+```javascript
 let role = {
   controllers: {
     write: {
@@ -237,15 +199,13 @@ Where:
 - `test` is the body of [the permission function](#the-permission-function)
 - `args` is the parameter given to [the fetch definition function](#the-fetch-definition)
 
-(see below)
+#### The permission function
 
-##### The permission function
-
-The permission function is executed in a sandbox with a limited scope. Its body is the evaluation of the _test_ parameter given in the role's definition and must return a boolean value.
+The permission function is executed in a sandbox with a limited context. Its body is the evaluation of the `test` parameter given in the role's definition and **must return a boolean value**.
 
 The permission function has the following signature:
 
-```js
+```javascript
 /**
  * @param {Request} $request              The current action request.
  * @param {string} $currentUserId         The current user Id. Shortcut to request.context.token.userId
@@ -260,205 +220,178 @@ function ($request, $currentUserId, args) {
 };
 ```
 
-###### Parameters
+##### $request
 
-###### > $request
+The [Request](https://github.com/kuzzleio/kuzzle-common-objects#request) object is the request that is currently being evaluated.  
 
-The [Request](https://www.npmjs.com/package/kuzzle-common-objects#request) object is the request that is currently being evaluated.  
-A typical request object will look like this:
+##### $currentUserId
 
-```js
-{
-  id: '66978665-1ac5-4770-890c-59cc88f89098',
-  timestamp: 14582100322345,
-  input: {
-    controller: 'write',
-    action: 'update',
-    resource: {
-      index: 'myIndex',
-      collection: 'myCollection',
-      _id: 'id_1'
-    },
-    body: {
-      foo: 'bar'
-    },
-    metadata: {
-      someMetadata: "some metadata value"
-    },
-    jwt: null,
-    args: {}
-  },
-  error: null,
-  result: null,
-  status: 102,
-  context: {
-    connectionId: '123456789',
-    protocol: 'network protocol'
-  }
-}
-```
+The `$currentUserId` variable contains the current user ID. It is an alias for `request.context.token.userId`.
 
-###### > $currentUserId
+##### args
 
-The _$currentUserId_ variable contains the current user ID. It is an alias for `request.context.token.userId`.
+The main purpose of the "closures" behavior is to define a role policy based on the current state of the persistence layer. This means that we need to fetch documents from the storage engine in order to use them within the permission function.
 
-###### > args
+The `args` object contains these documents, as a result of the evaluation of the [fetch definition](#the-fetch-definition).
+Each `args` item will look like:
 
-The main purpose of the "closures" behavior is to define a role policy based on conditions about stored documents.
-That means that we need to fetch documents from the storage engine in order to use them within the permission function.
-
-The _args_ object contains these documents, as a result of the evaluation of the [fetch definition](#the-fetch-definition).
-Each _args_ item will look like:
-
-```js
+```javascript
 {
   content: <the document itself>,
   id: <the document id>
 }
 ```
 
-With the sample role above (`return args.document.content.user.id === $currentUserId`), the `update` action is allowed only if the fetched document contains an attribute `user.id` which value is the current user ID.
+In the sample role above (`return args.document.content.user.id === $currentUserId`), the `update` action is allowed only if the fetched document contains an attribute `user.id` which value is the current user ID.
 
+#### The Fetch Definition
 
-#### The fetch definition
+The Fetch Definition allows you to pass some documents fetched from the persistence layer to your permission function.
 
-The optional _args_ parameter given to the permission function is the result of the evaluation of some fetch definition given in the args section of the role definition.
-
-Using this ability, you can pass some documents fetched from Kuzzle's database layer to your permission function.
-
-In our sample role above, we fetch a _document_ variable which contains the document that was requested for update, and we use it in the permission function to test if it is owned by the current user.
+In our sample role above, we fetch a `document` variable which contains the document that was requested for update, and we use it in the permission function to test if it is owned by the current user.
 
 ##### args element structure
 
-The _args_ element has the following structure:
+The `args` element is the place where we define our Fetch Definitions and has the following structure:
 
-```js
-var args = {
-  <some variable>: {
-    index: <index from which to fetch the document(s)>,
-    collection: <collection from which to fetch the document(s)>,
-    action: {
-      <action type (get|mget|search)>: <action type specific parameters>
-    }
-  },
-  <another variable>: {
+```json
+{
+  "args": {
+    "<some variable>": {
+      "index": <index from which to fetch the document(s)>,
+      "collection": <collection from which to fetch the document(s)>,
+      "action": {
+        "<action type (get|mget|search)>": <action type specific parameters>
+      }
+    },
+    "<another variable>": {
+      ...
+    },
     ...
-  },
-  ...
-};
+  }
+}
 ```
 
-You can define one or more _variables_ inside the args element and, for each of them, the action to use to populate them.
+You can define one or more variables inside the args element and, for each of them, the action to use to populate them. Each variable will then be available in [your permission function](#the-permission-function) as `args.<variable>`.
 
-Each _variable_ will then be availalbe in [your permission function](#the-permission-function) under `args.<variable>`.
+##### Embedded variables
 
-###### embedded variables
-
-Some variables are exposed by Kuzzle and can be used within your fetch function definition:
+Some variables are exposed by Kuzzle and can be used within your Fetch  Definition:
 
 - `$request`: The complete request object being evaluated.
-- `$currentId`: The current request's document ID. It is an alias for `$request.input.resource._id`.
+- `$currentId`: The current request document ID. It is an alias for `$request.input.resource._id`.
 
-###### action types
+##### action types
 
-###### > _get_ action type
+###### `get`
 
-The `get` action type performs a read/get call. It takes a document id for entry and returns the matching document.
+The `get` action type performs a read/get call. It fetches a document by its ID.
 
 Example:
 
-```js
-var args = {
-  currentDocument: {
-    index: "$request.input.resource.index",
-    collection: "$request.input.resource.collection",
-    action: {
-      get: "$currentId"
-    }
-  },
-  anotherDocument: {
-    index: "myIndex",
-    collection: "myCollection",
-    action: {
-      get: "document_id"
+```json
+{
+  "args": {
+    "currentDocument": {
+      "index": "$request.input.resource.index",
+      "collection": "$request.input.resource.collection",
+      "action": {
+        "get": "$currentId"
+      }
+    },
+    "anotherDocument": {
+      "index": "myIndex",
+      "collection": "myCollection",
+      "action": {
+        "get": "document_id"
+      }
     }
   }
-};
+}
 ```
 
-The _args_ variable passed to the permission function contains:
-- `args.currentDocument`: the document that is being updated. Indeed, we fetch:
-  - the document which ID is the current document's ID (`{action: {get: "currentId"}}`)
-  - in the current collection (`collection: "$request.input.resource.collection"`)
-  - of the current index (`index: "$request.input.resource.index"`).
-- `args.anotherDocument`: the document with ID `document_id`, from index `myIndex` and collection `myCollection`.
+In the `args` field, we declare the following Fetch Definitions:
 
-###### > _mget_ action type
+* `currentDocument`, which represents the document that the user wants to update and whose Fetch Definition is composed of:
+  - `index`: the index pointed by the current Request;
+  - `collection`: the collection pointed by the current Request;
+  - `$currentId`: the document ID pointed by the current Request, passed as an argument to the `get` action.
+* `anotherDocument`, which represents another document, just as an example, fetched the same way as the previous one but with different parameters.
+
+###### `mget`
 
 The `mget` action type takes a list of document ids for entry and returns the list of matching documents.
 
-```js
-var args = {
-  myDocuments: {
-    index: "myIndex",
-    collection: "myCollection",
-    action: {
-      mget: [
-        "id_1",
-        "id_2",
-        ...
-      ]
+```json
+{
+  "args": {
+    "myDocuments": {
+      "index": "myIndex",
+      "collection": "myCollection",
+      "action": {
+        "mget": [
+          "id_1",
+          "id_2",
+          ...
+        ]
+      }
     }
   }
-};
+}
 ```
 
-The _args_ variable passed to the permission function contains an array of documents fetched from `myIndex`/`myCollection`, like:
+In the `args` field, we declare a multi-valued Fetch Definition. Notice how the `mget` action takes an array of IDs rather than a single value.
 
-```js
+These documents are accessed in the Permission Function as follows:
+
+```javascript
 args.myDocuments = [
   { id: "id_1", content: {name: "Document 1", description: "Cum sociis natoque penatibus et magnis dis parturient montes"},
+  }
   { id: "id_2", content: {name: "Document 2", description: "nascetur ridiculus mus. Nulla nunc velit"},
+  }
   ...
 ]
 ```
 
+###### `search`
 
-###### > _search_ action type
-
-The `search` action type makes a search in Kuzzle's database layer and returns the related documents.
+The `search` action type performs a search on the persistence layer and returns the resulting documents. It behave exactly like a normal [document search](#document-search).
 
 Example:
 
-```js
-var args = {
-  myDocuments: {
-    index: "myIndex",
-    collection: "myCollection",
-    action: {
-      search: {
-        filter: {
-          match: {
-            name: "$request.input.body.name"
+```json
+{
+  "args": {
+    "myDocuments": {
+      "index": "myIndex",
+      "collection": "myCollection",
+      "action": {
+        "search": {
+          "filter": {
+            "match": {
+              "name": "$request.input.body.name"
+            }
           }
         }
       }
     }
-  }
-};
+  }  
+}
 ```
 
-The _args_ variable passed to the permission function contains an array of documents fetched from `myIndex`/`myCollection`, for which the `name` attribute matches the `name` attribute of the request:
+The search results are available in the Permission Function as an array of documents fetched from `myIndex`/`myCollection`, for which the `name` attribute matches the `name` attribute of the request:
 
-```js
+```javascript
 args.myDocuments = [
   { id: "id_1", content: {name: "foo", description: "Cum sociis natoque penatibus et magnis dis parturient montes"},
+  }
   { id: "id_2", content: {name: "foo bar", description: "nascetur ridiculus mus. Nulla nunc velit"},
+  }
   ...
 ]
 ```
 
+The content of `action.search` is directly passed to Elasticsearch.
 
-The _action.search_ value is sent to Kuzzle's database layer directly, being Elasticsearch 2.2.
-
-Please refer to [Elasticsearch search API documentation](https://www.elastic.co/guide/en/elasticsearch/reference/2.2/search-request-body.html) for additional information on how to build your query.
+Please refer to [our Elasticsearch Cookbook](/elasticsearch-cookbook/) for additional information on how to build your query.
