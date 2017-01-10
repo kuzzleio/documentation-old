@@ -10,7 +10,7 @@ In the boolean compound query, there are 4 occurrence types:
 This is what it looks like when we use every occurence types:
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -97,7 +97,7 @@ Each example is equivalent from one to the others. As you will see there are dif
 ### Using a logical `AND` operator between fields
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -111,7 +111,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": [
@@ -175,7 +175,7 @@ You can notice that the score of both documents is *0*: this is because we only 
 ### Using a logical `AND` operator between terms
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -189,7 +189,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -206,7 +206,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": [
@@ -268,7 +268,7 @@ All examples above generate the same result:
 ### Using a logical `OR` operator between fields
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -282,7 +282,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -348,7 +348,7 @@ Both examples above generate the same result:
 ### Using a logical `OR` operator between terms
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -362,7 +362,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -381,7 +381,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -478,7 +478,7 @@ Reply:
 In this example we are using a `bool` query in the `filter` occurence type.
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -492,7 +492,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "filter": {
@@ -574,7 +574,7 @@ The `must_not` occurrence type allows to specify a query that will excludes docu
 ### Usage of `must_not` with one query
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must_not": {
@@ -651,7 +651,7 @@ Unlike `filter` that sets the score to 0 if used alone, the `must_not` occurence
 If you need to use more than one query to use in the `must_not` occurence type, you can replace the object query by an array of query objects. It will evict all documents where the field `status` is equal to "pending" or the field `tags` contains "pet":
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must_not": [
@@ -718,7 +718,7 @@ The `AND` examples give the same score for all documents. It is due to the littl
 ### Using a logical `AND` operator between fields
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -732,7 +732,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": [
@@ -793,7 +793,7 @@ Have the same reply with the same score:
 ### Using a logical `AND` operator between terms
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -807,7 +807,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -824,7 +824,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": [
@@ -887,7 +887,7 @@ All examples above generate the same result:
 ### Using a logical `OR` operator between fields
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -901,7 +901,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -968,7 +968,7 @@ Both examples above generate the same result:
 ### Using a logical `OR` operator between terms
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -982,7 +982,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -1001,7 +1001,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -1092,7 +1092,7 @@ Reply:
 ### Using a logical `NOT` operator
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -1106,7 +1106,7 @@ curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must": {
@@ -1188,7 +1188,7 @@ The `should` occurrence type is different from the 3 others as it allows to spec
 ### Usage of `minimum_should_match`
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "should": [
@@ -1263,7 +1263,7 @@ Reply:
 
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "should": [
