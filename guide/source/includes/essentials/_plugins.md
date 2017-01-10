@@ -12,43 +12,39 @@ To solve this problem, Kuzzle ships with a powerful **[Plugin System](/plugin-re
 
 ### Plugin Types
 
-There are several types of Plugins:
+There are three main Plugin types, each one has specific features.
 
-#### Listener Plugins
-[Listener Plugins](/plugin-reference#listener-plugins) listen to data-related events. They react asynchronously (which means that Kuzzle does not wait for them) and cannot change the provided data.
+#### Core Plugins
 
-_Example - "Write a log to a third-party log system every time a document is deleted"_.
+They are the most common type of plugins and are meant to extend the Kuzzle Core features. They are plugged on the Kuzzle Core at startup and execute on its same thread. A Core Plugin can extend Kuzzle with the following features:
 
-Kuzzle ships with a Listener Plugin already bundled in its Community Edition, the [Logger Plugin](https://github.com/kuzzleio/kuzzle-plugin-logger).
+[Listen asynchronously](/plugin-reference#listener-plugins), and perform operations that depend on data-related events. The chunk of data involved with the event is passed to the triggered callback, but the Kuzzle Core continues its execution without waiting for the callback to return, nor receiving the return value of the callback.
+
+  _Example - "Write a log to a third-party log system every time a document is deleted"_. The [Logger Plugin](https://github.com/kuzzleio/kuzzle-plugin-logger), shipped with Kuzzle, uses this feature to log all the data-related events.
+
+[Listen synchronously](/plugin-reference#pipe-plugins), and perform operations that depend on data-related events. many synchronous listeners can be chained, forming a pipeline. The chunk of data involved with the event is passed to the plugin pipeline and can be modified. The Kuzzle Core waits for the pipeline to return and receives the returned value (which must be the processed chunk of data). The pipeline can even stop a request life-cycle, returning a standard Error to the Kuzzle Core.
+
+  _Example - "Compare the ordered quantity with the available stocks and return an error if ordered is greater than stocks"_.
+
+[Add a controller route](/plugin-reference#controllers) to expose new actions to the API.
+
+  _Example - "Expose a `checkout` API endpoint that handles the Braintree payment process"_.
+
+[Add an authentication strategy](/plugin-reference#authentication-plugin) the User authentication system.
+
+  _Example - "Enable Kuzzle to authenticate users via the OAuth strategy"_
+  Kuzzle ships with an Authentication Plugin already bundled in its Community Edition, the [Local Strategy Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local).
 
 #### Worker Plugins
-[Workers Plugins](/plugin-reference#worker-plugins) are just like Listener Plugins, but they are run on separate processes. They are useful when performing costly operations as they have no impact on Kuzzle performances.
+[Workers Plugins](/plugin-reference#worker-plugins) are Core Plugins that run on a separate process. The only feature they can add is to [asynchronously listen to data-related events](/plugin-reference#listener-plugins). They are useful when performing costly operations as they have no impact on Kuzzle performances.
 
 _Example - "Compute a complex data-mining operation and commit the result to a third-party Business-Intelligence platform every time a document is changed"._
-
-#### Pipe Plugins
-[Pipe Plugins](/plugin-reference#pipe-plugins) are just like Listener Plugins, but react synchronously to events. They can change the data (that is returned to Kuzzle after processing) and even stop the request life-cycle.
-
-_Example - "Compare the ordered quantity with the available stocks and return an error if ordered is greater than stocks"_.
-
-#### Controller Plugins
-[Controller Plugins](/plugin-reference#controllers) extend Kuzzle API with new controllers and actions.
-
-_Example - "Expose a `checkout` API endpoint that handles the Braintree payment process"_.
 
 #### Protocol Plugins
 [Protocol Plugins](/plugin-reference#protocol-plugins) extend Kuzzle networking capabilities by adding new network protocols.
 
 _Example - "Enable Kuzzle to interact with XMPP-oriented services"_
-
 Kuzzle ships with a Protocol Plugin already bundled in its Community Edition, the [Websocket Plugin](https://github.com/kuzzleio/kuzzle-plugin-websocket).
-
-#### Authentication Plugins
-[Authentication Plugins](/plugin-reference#authentication-plugin) add new Kuzzle authentication strategies.
-
-_Example - "Enable Kuzzle to authenticate users via the OAuth strategy"_
-
-Kuzzle ships with an Authentication Plugin already bundled in its Community Edition, the [Local Strategy Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local).
 
 ### Examples
 
