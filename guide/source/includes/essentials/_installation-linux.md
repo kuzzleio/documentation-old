@@ -100,16 +100,16 @@ $ npm install
 $ sudo npm install -g pm2
 ```
 
-2. Create a pm2 configuration file:
+2. Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file):
 
 ```bash
 $ echo "apps:
    - name: kuzzle-proxy
-     cwd: ${HOME}/kuzzle/kuzzle-proxy
-     script: index.js
+     cwd: ${KUZZLE_PROXY_INSTALL_DIR}
+     script: ${KUZZLE_PROXY_INSTALL_DIR}/index.js
    - name: kuzzle
-     cwd: ${HOME}/kuzzle/kuzzle
-     script: bin/kuzzle
+     cwd: ${KUZZLE_CORE_INSTALL_DIR}
+     script: ${KUZZLE_CORE_INSTALL_DIR}/bin/kuzzle
      args: start
      env:
        kuzzle_server__http__port: 7510
