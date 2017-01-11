@@ -114,9 +114,6 @@ $ echo "apps:
      env:
        kuzzle_server__http__port: 7510
        kuzzle_services__proxyBroker__host: localhost
-   - name: kuzzle-backoffice
-     cwd: ${HOME}/kuzzle/kuzzle-backoffice
-     script: npm start
   " > ~/kuzzle/pm2.conf.yml
 ```
 
