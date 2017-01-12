@@ -98,7 +98,7 @@ var kuzzle = new Kuzzle('localhost', {
   })
 
 // get a reference to the a collection
-var collection = kuzzle.dataCollectionFactory('mycollection')
+var collection = kuzzle.collection('mycollection')
 
 // define the document itself
 var document = {
@@ -140,7 +140,7 @@ var kuzzle = new Kuzzle('localhost', {
   })
 
 // create a reference to the data collection
-var collection = kuzzle.dataCollectionFactory('mycollection')
+var collection = kuzzle.collection('mycollection')
 
 // define a filter
 var filter = {
