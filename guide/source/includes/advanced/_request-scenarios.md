@@ -1,6 +1,6 @@
-## Request Scenarios
+## Request Life-Cycle
 
-These following scenarios explain the message flow between Kuzzle components.
+In this section we are going to focus on how Requests flow between Kuzzle components. We are going to analyze the life-cycle of a Request in order to understand in depth the Kuzzle Core architecture.
 
 ### Reading content from Kuzzle
 
@@ -8,41 +8,36 @@ By "reading", we mean any action involving getting content from the persistent l
 
 #### HTTP Request
 
-Remember the [Architecture overview](#core-architecture) and focus on the components involved by reading actions:
+The schema below shows the [Architecture overview](#kuzzle-in-depth) showed above and highlights the components involved in reading actions:
+
 ![read_scenario_http_overview](./images/request-scenarios/read-http/overview.png)
 
-The following diagram shows how request data is exchanged between the client application, the different Kuzzle components, and the external services:
+The following diagram shows how the Request flows between the client application, the different Kuzzle components, and the external services:
 
 ![read_scenario_http_details](./images/request-scenarios/read-http/details.png)
 
-\#1. The HTTP client asks for a content using a HTTP GET Request
+* The HTTP client asks for a document via a HTTP GET Request. For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the collection `users`: `GET http://kuzzle:7511/mainindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
+* The proxy forwards the Request through the HTTP Entry point to the Router, which handles it and forwards the formatted Request to the Funnel.
 
-For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the collection 'users':
-```
-GET http://kuzzle:7511/api/users/739c26bc-7a09-469a-803d-623c4045b0cb
-```
-
-\#2. The proxy forwards the input request throughs the ```HTTP Entry point``` to the ```Router```, who handles it and forwards the formatted message to the ```Funnel```.
-
-Sample message:
+The formatted Request `input` looks like the following:
 
 ```json
 {
-  "index": "mainindex",
-  "collection": "users",
   "controller": "read",
   "action": "get",
-  "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
+  "resource": {
+    "index": "mainindex",
+    "collection": "users",
+    "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
+  }
 }
 ```
 
-\#3. The ```Funnel Controller``` validates the data before sending the request to the ```Document Controller```
+* The Funnel Controller validates the data before sending the request to the Document Controller.
+* The Document Controller calls the Read Engine service.
+* The Read Engine service performs an HTTP request to get the data from the data storage.
 
-\#4. The ```Document Controller``` calls the ```readEngine service```
-
-\#5. The ```readEngine service``` performs an HTTP request to get the data from the data storage
-
-Sample content retrieval from Elasticsearch:
+The content returned by Elasticsearch looks like the following:
 
 ```json
 {
@@ -65,75 +60,20 @@ Sample content retrieval from Elasticsearch:
 }
 ```
 
-\#6. Promises functions are resolved to forward the response message back to the HTTP Router
-
-Sample content resolved:
-
-```json
-{
-  "data": {
-    "_index": "mainindex",
-    "_type": "users",
-    "_id": "739c26bc-7a09-469a-803d-623c4045b0cb",
-    "_version": 1,
-    "found": true,
-    "_source": {
-        "firstName": "Grace",
-        "lastName": "Hopper",
-        "age": 85,
-        "location": {
-            "lat": 32.692742,
-            "lon": -97.114127
-        },
-        "city": "NYC",
-        "hobby": "computer"
-    }
-  }
-}
-```
-\#7. The HTTP Router sends the response to the HTTP client.
-
-Sample response content:
-
-```json
-{
-  "status": 200,
-  "error": null,
-  "result": {
-    "_index": "mainindex",
-    "_type": "users",
-    "_id": "739c26bc-7a09-469a-803d-623c4045b0cb",
-    "_version": 1,
-    "found": true,
-    "_source": {
-        "firstName": "Grace",
-        "lastName": "Hopper",
-        "age": 85,
-        "location": {
-            "lat": 32.692742,
-            "lon": -97.114127
-        },
-        "city": "NYC",
-        "hobby": "computer"
-    }
-  }
-}
-```
+* Promises functions are resolved to forward the response message back to the HTTP Router.
+* The HTTP Router sends the response to the HTTP client.
 
 #### Websocket connection
 
-Remember the [Architecture overview](#core-architecture) and focus on the components involved by reading actions:
+The schema below shows the [Architecture overview](#kuzzle-in-depth) showed above and highlights the components involved in reading actions:
+
 ![read_scenario_websocket_overview](./images/request-scenarios/read-websocket/overview.png)
 
-The following diagram shows how request data is exchanged between the client application, the different Kuzzle components, and the external services:
+The following diagram shows how the Request flows between the client application, the different Kuzzle components, and the external services:
 
 ![read_scenario_websocket_details](./images/request-scenarios/read-websocket/details.png)
 
-\#1. The client application opens a Websocket connection to ```Kuzzle Proxy``` and emit a "read" event containing the request
-
-(see details in [API Documentation](http://kuzzleio.github.io/kuzzle-api-documentation/#socket-io))
-
-For instance, to retrieve the document ```739c26bc-7a09-469a-803d-623c4045b0cb``` in the collection ```users```:
+* The client application opens a Websocket connection to Kuzzle Proxy and emits a "read" event containing the request. For instance, to retrieve the document `739c26bc-7a09-469a-803d-623c4045b0cb` in the collection `users`:
 
 ```json
 {
@@ -144,39 +84,37 @@ For instance, to retrieve the document ```739c26bc-7a09-469a-803d-623c4045b0cb``
 }
 ```
 
-The client then listens to the ```<requestId>``` event on the socket. The result of his request will be sent using this event.
+The client then listens to the `<requestId>` event on the socket, like the following:
 
-Sample JS code :
 ```javascript
   this.socket.once("ed4faaff-253a-464f-a6b3-387af9d8483d", function(response) {
     callback(response);
   });
 ```
 
-\#2. The SocketIO plugin handles the input request and forwards the message to the ```Backend Broker```
+* The Kuzzle Websocket plugin handles the Request and forwards the message to the Backend Broker.
+* The Backend Broker sends the message to the Proxy Broker (within the Kuzzle Core) through a Websocket connection.
+* The Proxy Broker forwards the Request through the Proxy Entry Point to the Router, who handles it and forwards the formatted Request to the Funnel.
 
-\#3. The Backend Broker, sends the message to the server's ```Proxy Broker``` through an internal websocket connexion.
-
-\#4. The Proxy Broker forwards the input request throughs the ```Proxy Entry point``` to the ```Router```, who handles it and forwards the formatted message to the ```Funnel```.
-
-Sample message:
+The formatted Request `input` looks like the following:
 
 ```json
 {
-  "controller": "document",
-  "collection": "users",
+  "controller": "read",
   "action": "get",
-  "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
+  "resource": {
+    "index": "mainindex",
+    "collection": "users",
+    "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
+  }
 }
 ```
 
-\#5. The ```Funnel``` validates the message and forward the request to the ```Document Controller```
+* The Funnel validates the message and forward the request to the Document Controller.
+* The Document Controller forwards the Request `input` to the Read Engine service.
+* The Read Engine service performs an HTTP request to get the data from Elasticsearch.
 
-\#6. The ```Document Controller``` calls the ```readEngine service```
-
-\#7. The ```readEngine service``` performs an HTTP request to get the data from the data storage
-
-Sample content retrieval from Elasticsearch:
+The content returned by Elasticsearch looks like the following:
 
 ```json
 {
@@ -199,79 +137,22 @@ Sample content retrieval from Elasticsearch:
 }
 ```
 
-\#8. Promises functions are resolved to forward the response message back to the Proxy Broker.
-
-Sample content resolved:
-
-```json
-{
-  "data": {
-    "_index": "mainindex",
-    "_type": "users",
-    "_id": "739c26bc-7a09-469a-803d-623c4045b0cb",
-    "_version": 1,
-    "found": true,
-    "_source": {
-        "firstName": "Grace",
-        "lastName": "Hopper",
-        "age": 85,
-        "location": {
-            "lat": 32.692742,
-            "lon": -97.114127
-        },
-        "city": "NYC",
-        "hobby": "computer"
-    }
-  }
-}
-```
-
-\#9. The Proxy Broker sends the response to the proxy's ```Backend Broker``` through the websocket connexion.
-
-\#10. The Proxy calls the plugin's callback, who emits a ```<requestId>``` event to the websocket client
-
-Sample response content:
-
-```json
-{
-  "status": 200,
-  "error": null,
-  "result": {
-    "_index": "mainindex",
-    "_type": "users",
-    "_id": "739c26bc-7a09-469a-803d-623c4045b0cb",
-    "_version": 1,
-    "found": true,
-    "_source": {
-        "firstName": "Grace",
-        "lastName": "Hopper",
-        "age": 85,
-        "location": {
-            "lat": 32.692742,
-            "lon": -97.114127
-        },
-        "city": "NYC",
-        "hobby": "computer"
-    }
-  }
-}
-```
-
+* Promises functions are resolved to forward the response message back to the Proxy Broker.
+* The Proxy Broker sends the response to the proxy's Backend Broker through the Websocket connection.
+* The Proxy triggers the callback, which emits a `<requestId>` event to the Websocket client.
 
 ### Subscribing and writing content to Kuzzle
 
-This section explains what happens when clients send new content to Kuzzle
+This section explains what happens when clients send new content to Kuzzle.
 
-Kuzzle is able to manage two different types of data:
-* persistent data => using the "_create_", "_createOrUpdate_", or "_delete_" actions.
-* volatile/realtime data => using the "_publish_" action.
+Kuzzle is able to handle two different types of input:
 
-Kuzzle handles data differently, depending if it's persistent or not.
+* **persisted data**, via the `_create_`, `_createOrUpdate_`, or `_delete_` actions.
+* **real-time data**, via the `_publish_` action.
 
 #### Writing persistent data
 
-This subsection describes the process for **persistent** data, with an example using the "_create_" action.
-(see also [API Documentation](http://kuzzle.io/documentation/api-reference/#create))
+This subsection describes the process for **persistent** data, with an example using the "_create_" action (see also [API Documentation](http://kuzzle.io/documentation/api-reference/#create)).
 
 ![persistence_overview](./images/request-scenarios/persistence/overview.png)
 
@@ -279,17 +160,24 @@ Detailed workflow:
 
 ![persistence_scenario_details](./images/request-scenarios/persistence/details.png)
 
-\#1. A client sends new content to Kuzzle, either with an HTTP request, through a websocket connection or using a custom plugin protocol (see [Reading scenarios](#reading-content-from-kuzzle))
-
-\#2. The router handles the input request and forward the message to the ```Funnel```
+* A client sends new content to Kuzzle, either via an HTTP request, through a Websocket connection or using a custom plugin protocol.
+* The router handles the Request and forwards the message to the Funnel.
 
 ```json
 {
-  "index": "mainindex",
-  "collection": "users",
-  "controller": "document",
-  "action": "create",
-  "body": {
+  "status": 102,
+  "id": "...", // ... The connection id
+  "context": {
+    // ... The connection context
+  },
+  "input": {
+    "resource": {
+      "index": "mainindex",
+      "collection": "users"
+    },
+    "controller": "document",
+    "action": "create",
+    "body": {
       "firstName": "Grace",
       "lastName": "Hopper",
       "age": 85,
@@ -299,40 +187,33 @@ Detailed workflow:
       },
       "city": "NYC",
       "hobby": "computer"
+    }
   }
 }
 ```
 
-\#3. The ```Funnel``` validates the message and triggers the ```Plugins Manager``` with a "document:create" event.<br/>
-The ```Plugins Manager``` calls all pipes and hooks configured by the active plugins (see [Plugin's documentation](#plugins)).
- 
-\#4. The ```Funnel``` forwards the request to the ```Document Controller```
-
-\#5. The ```Document Controller``` sends the request to the ```Storage Engine``` service.
-
-The `Storage Engine` sends the request to the database.
-
-\#6. Once the `Storage Engine` gets the response back, it replies to the `Document Controller`
-
-\#7. The `Document Controller` wraps the response in a Kuzzle Response and forwards it back to the user.
+* The Funnel validates the Request and triggers the Plugins Manager with a `document:create` event. The Plugins Manager calls all pipes and hooks configured by the active plugins (see the [Plugin Reference](/plugin-reference/)).
+* The Funnel forwards the Request to the Document Controller.
+* The Document Controller sends the request to the Storage Engine service.
+The Storage Engine sends the request to the database.
+* Once the Storage Engine gets the response back, it replies to the Document Controller.
+* The Document Controller wraps the response in a Kuzzle Response and forwards it back to the user.
 
 #### Subscribe and Notification scenario
 
-This subsection describes the process for **non persistent** data, as well as real-time notification about persisted data, using the [Publish/Subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
+This subsection describes the life-cycle of **non persistent** data notifications as well as real-time notifications, implementing the [Publish/Subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
 
-Remember the [Architecture overview](#core-architecture) and focus on the components involved by pub/sub actions:
+Remember the [Architecture overview](#kuzzle-in-depth) and focus on the components involved by pub/sub actions:
 ![pubsub_overview](./images/request-scenarios/pubsub/overview.png)
 
-##### 1st step : subscription
+##### 1st step: subscription
 
 The following diagram shows how two different clients, a Websocket and a MQ one, subscribe to data.
 
 ![pubsub_scenario_details1](./images/request-scenarios/pubsub/details1.png)
 
-\#1. The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters.
-(see [API Documentation](http://kuzzle.io/documentation/api-reference/#on))
+* The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation](/api-reference/#subscribe)). For instance, to be notified about all contents posted to the collection `users`, containing a field `hobby` equals to `computer`:
 
-For instance, to be notified about all contents posted to the collection "users", containing a field "hobby" equals to "computer":
 ```json
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
@@ -340,16 +221,17 @@ For instance, to be notified about all contents posted to the collection "users"
   "collection": "users",
   "action": "on",
   "body": {
-    "equals": {"hobby": "computer" }
+    "equals": {
+      "hobby": "computer"
+    }
   },
   "state": "all"
 }
 ```
 
-(see [Filtering Syntax](#filtering-syntax) for more details about filters)
+See the [Real-time Filters Reference](/real-time-filters/) for more details.
 
-
-The client then listens to the ```<requestId>``` event on the socket.
+The client then listens to the `<requestId>` event on the socket.
 Kuzzle will get back to him with a corresponding Room ID and a Room Channel using this event.
 
 Sample Javascript code, using Websocket:
@@ -360,10 +242,8 @@ Sample Javascript code, using Websocket:
   });
 ```
 
+* The Router interprets the input request and transfer the subscription message to the Funnel.
 
-\#2. The ```Router``` interprets the input request and transfer the subscription message to the ```Funnel```.
-
-Sample message:
 ```json
 {
   "index": "mainindex",
@@ -376,17 +256,12 @@ Sample message:
 }
 ```
 
-\#3. The ```Funnel``` validates the message and transfers it to the ```Realtime Controller```.
-
-\#4. The ```Realtime Controller``` calls the ```HotelClerk``` internal component to create the subscription.
-
-\#5. The ```HotelClerk``` calls the ```DSL``` component to get a formated filter related to the subscription (see [DSL Readme](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/dsl/README.md) for more details).
-
-\#6. The ```HotelClerk``` creates a channel related to the filters and gives it back to the ```Realtime Controller```.
-
-\#7. The channel is sent back to the Websocket (or MQ) Router through the internal components.
-
-\#8. The Websocket (or MQ) Router emits a ```<requestId>``` event to the client, containing the subscribed channel ID.
+* The Funnel validates the message and transfers it to the Realtime Controller.
+* The Realtime Controller calls the HotelClerk internal component to create the subscription.
+* The HotelClerk calls the DSL component to get a formated filter related to the subscription (see [DSL Readme](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/dsl/README.md) for more details).
+* The HotelClerk creates a channel related to the filters and gives it back to the Realtime Controller.
+* The channel is sent back to the Websocket (or MQ) Router through the internal components.
+* The Websocket (or MQ) Router emits a `<requestId>` event to the client, containing the subscribed channel ID.
 
 Sample response content:
 
@@ -407,7 +282,7 @@ Sample response content:
 }
 ```
 
-\#9. The client now listens to this ```channel``` events to be notified about new messages corresponding to his subscription filters.
+* The client now listens to this `channel` events to be notified about new messages corresponding to his subscription filters.
 
 ##### 2nd step : notify about real-time actions
 
@@ -415,33 +290,21 @@ The following diagram shows how Kuzzle handles a new message and how subscribed 
 
 ![pubsub_scenario_details2](./images/request-scenarios/pubsub/details2.png)
 
-\#1. A new content is published to the ```Notifier``` component.
-
-The "_publish_" method can be triggered:
-* either direclty by the ```Document Controller``` for non persistent data (using the [publish](http://kuzzle.io/documentation/api-reference/#publish) action).
-* or by the ```Plugins Manager``` when a 'document:create' event is triggered, to notify users in real-time before the data are sent to the storage Engine.
-
-\#2. The ```Notifier``` calls the ```DSL``` component to test registered filters that match the content, and get related rooms.
-
-\#3. The ```Notifier``` uses the ```Notification Cache``` engine to store the mapping content/rooms into cache.
-
-\#4. The ```Notifier``` calls the ```HotelClerk``` to get the channels related to the rooms.
-
-\#5. The ```Notifier``` broadcasts the message to each related channel to the Websocket and MQ plugins.
-
-\#6. Finally, the plugins send the message to the clients who subscribed to it.
-
+* A new content is published to the Notifier component. The `_publish_` method can be triggered:
+  * either directly by the Document Controller for non persistent data (using the [publish](http://kuzzle.io/documentation/api-reference/#publish) action).
+  * or by the Plugins Manager when a 'document:create' event is triggered, to notify users in real-time before the data are sent to the storage Engine.
+* The Notifier calls the DSL component to test registered filters that match the content, and get related rooms.
+* The Notifier uses the Notification Cache engine to store the mapping content/rooms into cache.
+* The Notifier calls the HotelClerk to get the channels related to the rooms.
+* The Notifier broadcasts the message to each related channel to the Websocket and MQ plugins.
+* Finally, the plugins send the message to the clients who subscribed to it.
 
 ##### 3rd step : notify about persisted data
 
 ![pubsub_scenario_details2](./images/request-scenarios/pubsub/details3.png)
 
-\#1. The ```Notifier``` component is notified about a new action by the ```Document Controller``` (see [step \#11. in write scenario](#writing-persistent-data)).
-
-\#2. The ```Notifier``` calls the ```Notification Cache``` to get the rooms related to the content.
-
-\#3. The ```Notifier``` calls the ```HotelClerk``` to get the channels related to the rooms.
-
-\#4. The ```Notifier``` broadcasts the message to each related channel to the Websocket and MQ plugins.
-
-\#5. Finally, the plugins send the message to the clients who subscribed to it.
+* The Notifier component is notified about a new action by the Document Controller (see [write scenario](#writing-persistent-data)).
+* The Notifier calls the Notification Cache to get the rooms related to the content.
+* The Notifier calls the HotelClerk to get the channels related to the rooms.
+* The Notifier broadcasts the message to each related channel to the Websocket and MQ plugins.
+* Finally, the plugins send the message to the clients who subscribed to it.

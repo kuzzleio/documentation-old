@@ -18,18 +18,20 @@ deploy () {
 
   mkdir -p "$DEST"
 
-  for SLATEDIR in "${SLATEDIRS[@]}"
-  do
-    if [[ ! -d $DEST/$SLATEDIR ]]; then
-      mkdir -p "$DEST/$SLATEDIR"
-    fi
-
-    cp -rp $TRAVIS_BUILD_DIR/$SLATEDIR/build/* "$DEST/$SLATEDIR/"
-  done
-  #cp index.html "$DEST/index.html"
-
   # DEPLOY HOME
   cp -r $TRAVIS_BUILD_DIR/home/* "$DEST"
+
+  for SLATEDIR in "${SLATEDIRS[@]}"
+  do
+    if [[ -d $DEST/$SLATEDIR ]]; then
+      rm -rf "$DEST/$SLATEDIR"
+    fi
+
+    mkdir -p "$DEST/$SLATEDIR"
+
+    echo "coping $TRAVIS_BUILD_DIR/$SLATEDIR/build/* into $DEST/$SLATEDIR"
+    cp -R $TRAVIS_BUILD_DIR/$SLATEDIR/build/* "$DEST/$SLATEDIR"
+  done
 
   cd travis-build
 

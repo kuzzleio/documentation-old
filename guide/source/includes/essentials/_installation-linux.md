@@ -17,6 +17,11 @@ $ wget http://kuzzle.io/docker-compose.yml
 $ docker-compose up
 ```
 
+To persist this changes add this line to your /etc/sysctl.conf
+```
+m.max_map_count=262144
+```
+
 <aside class="notice">
 The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.x/vm-max-map-count.html">here</a>.
 </aside>
@@ -95,23 +100,20 @@ $ npm install
 $ sudo npm install -g pm2
 ```
 
-2. Create a pm2 configuration file:
+2. Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file):
 
 ```bash
 $ echo "apps:
    - name: kuzzle-proxy
-     cwd: ${HOME}/kuzzle/kuzzle-proxy
-     script: index.js
+     cwd: ${KUZZLE_PROXY_INSTALL_DIR}
+     script: ${KUZZLE_PROXY_INSTALL_DIR}/index.js
    - name: kuzzle
-     cwd: ${HOME}/kuzzle/kuzzle
-     script: bin/kuzzle
+     cwd: ${KUZZLE_CORE_INSTALL_DIR}
+     script: ${KUZZLE_CORE_INSTALL_DIR}/bin/kuzzle
      args: start
      env:
        kuzzle_server__http__port: 7510
        kuzzle_services__proxyBroker__host: localhost
-   - name: kuzzle-backoffice
-     cwd: ${HOME}/kuzzle/kuzzle-backoffice
-     script: npm start
   " > ~/kuzzle/pm2.conf.yml
 ```
 
