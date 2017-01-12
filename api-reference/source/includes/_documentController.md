@@ -626,7 +626,7 @@ for more details.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mCreate`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mCreate[?refresh=wait_for]`  
 >**Method:** `POST`  
 >**Body:**
 
@@ -666,6 +666,7 @@ for more details.
   "collection": "<collection>",
   "controller": "document",
   "action": "mCreate",
+  ["refresh": "wait_for",]
   "body": {
     "documents": [
       {
@@ -762,12 +763,14 @@ Creates new documents in the persistent data storage.
 
 Returns a partial error (with status 206) if one or more documents already exist.
 
+Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the document indexation (availability using `search`).
 
 ## mCreateOrReplace
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mCreateOrReplace`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mCreateOrReplace[?refresh=wait_for]`  
 >**Method:** `PUT`  
 >**Body:**
 
@@ -807,6 +810,7 @@ Returns a partial error (with status 206) if one or more documents already exist
   "collection": "<collection>",
   "controller": "document",
   "action": "mCreateOrReplace",
+  ["refresh": "wait_for",]
   "body": {
     "documents": [
       {
@@ -908,7 +912,7 @@ Returns a partial error (with status 206) if one or more documents can not be cr
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mDelete`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mDelete[?refresh=wait_for]`  
 >**Method:** `DELETE`  
 >**Body:**
 
@@ -947,6 +951,7 @@ Returns a partial error (with status 206) if one or more documents can not be cr
   "index": "<index>",
   "collection": "<collection>",
   "action": "mDelete",
+  ["refresh": "wait_for",]
   "controller": "document",
   "requestId": "<unique request identifier>",
   "result": [
@@ -960,6 +965,9 @@ Returns a partial error (with status 206) if one or more documents can not be cr
 Deletes documents in the persistent data storage.
 
 Returns a partial error (with status 206) if one or more document can not be deleted.
+
+Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the document indexation (availability using `search`).
 
 
 ## mGet
@@ -1063,7 +1071,7 @@ Only documents in the persistent data storage layer can be retrieved.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mReplace`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mReplace[?refresh=wait_for]`  
 >**Method:** `PUT`  
 >**Body:**
 
@@ -1103,6 +1111,7 @@ Only documents in the persistent data storage layer can be retrieved.
   "collection": "<collection>",
   "controller": "document",
   "action": "mReplace",
+  ["refresh": "wait_for",]
   "body": {
     "documents": [
       {
@@ -1199,12 +1208,15 @@ Replaces documents in the persistent data storage.
 
 Returns a partial error (with status 206) if one or more documents can not be replaced.
 
+Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+
 
 ## mUpdate
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mUpdate`  
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mUpdate[?refresh=wait_for]`  
 >**Method:** `PUT`  
 >**Body:**
 
@@ -1275,6 +1287,7 @@ Returns a partial error (with status 206) if one or more documents can not be re
   "index": "<index>",
   "collection": "<collection>",
   "action": "mUpdate",
+  ["refresh": "wait_for",]
   "controller": "document",
   "requestId": "<unique request identifier>",
   "result": {
@@ -1315,6 +1328,9 @@ Returns a partial error (with status 206) if one or more documents can not be re
 Updates documents in the persistent data storage.
 
 Returns a partial error (with status 206) if one or more documents can not be updated.
+
+Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the document indexation (availability using `search`).
 
 
 ## update
