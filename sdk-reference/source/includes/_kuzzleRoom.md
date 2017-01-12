@@ -1,4 +1,4 @@
-# KuzzleRoom
+# Room
 
 This object is the result of a subscription request, allowing to manipulate the subscription itself.
 
@@ -86,39 +86,39 @@ On the right panel you can see a document and a user notification examples.
 ```js
 /*
  Constructors are not exposed in the JS/Node SDK.
- KuzzleRoom objects are returned by KuzzleDataCollection.subscribe and
- KuzzleDocument.subscribe methods.
+ Room objects are returned by Collection.subscribe and
+ Document.subscribe methods.
 
- You may also use the KuzzleDataCollection.roomFactory() method:
+ You may also use the Collection.roomFactory() method:
  */
-var room = kuzzle.dataCollectionFactory('collection', 'index').roomFactory();
+var room = kuzzle.collection('collection', 'index').roomFactory();
 
 room = kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .roomFactory({subscribeToSelf: false});
 ```
 
 ```java
-KuzzleRoom room = new KuzzleRoom(dataCollection);
+Room room = new Room(dataCollection);
 
 KuzzleRoomOptions options = new KuzzleRoomOptions().setSubscribeToSelf(false);
-KuzzleRoom room = new KuzzleRoom(dataCollection, options);
+Room room = new Room(dataCollection, options);
 ```
 
 ```objective_c
-KuzzleRoom* room = [[KuzzleRoom alloc] initWithCollection: dataCollection];
+Room* room = [[Room alloc] initWithCollection: dataCollection];
 
 KuzzleRoomOptions* roomOptions = [[KuzzleRoomOptions alloc] init];
 roomOptions.subscribeToSelf = YES;
-KuzzleRoom* room = [[KuzzleRoom alloc] initWithCollection: dataCollection options: roomOptions];
+Room* room = [[Room alloc] initWithCollection: dataCollection options: roomOptions];
 ```
 
 ```swift
-let room = KuzzleRoom(collection: dataCollection)
+let room = Room(collection: dataCollection)
 
 let roomOptions = KuzzleRoomOptions()
 roomOptions.subscribeToSelf = true
-let room = KuzzleRoom(collection: dataCollection, options: roomOptions)
+let room = Room(collection: dataCollection, options: roomOptions)
 ```
 
 ```php
@@ -127,13 +127,13 @@ let room = KuzzleRoom(collection: dataCollection, options: roomOptions)
 // not implemented (sdk PHP is using REST API)
 ```
 
-Creates a KuzzleRoom object.
+Creates a Room object.
 
-### KuzzleRoom(KuzzleDataCollection, [options])
+### Room(Collection, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``KuzzleDataCollection`` | object | an instantiated Kuzzle Data Collection object |
+| ``Collection`` | object | an instantiated Kuzzle Data Collection object |
 | ``options`` | object | Optional subscription configuration |
 
 Available options:
@@ -160,7 +160,7 @@ Available options:
 
 **Notes:**
 
-* the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
+* the ``headers`` property is inherited from the provided ``Collection`` object and can be overrided
 * updating the ``metadata`` property takes effect after ``renew`` is called
 * by default, the global Kuzzle ``metadata`` properties are sent along with the subscription request. If a ``metadata`` option is provided during subscription, it will be merged with the global ``metadata`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
 
@@ -254,7 +254,7 @@ Resolves to a `integer` containing the number of users subscribing to this room.
 room.renew({in: {field: ['some', 'new', 'filter']}}, function (err, res) {
   // called each time a change is detected on documents matching this filter
 
-  // check the KuzzleRoom/Notifications section of this documentation
+  // check the Room/Notifications section of this documentation
   // to get notification examples
 }, function (err, res) {
   // handles the subscription result
@@ -299,7 +299,7 @@ room.renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
  public void onSuccess(KuzzleNotificationResponse result) throws Exception {
    // called each time a change is detected on documents matching this filter
 
-   // check the KuzzleRoom/Notifications section of this documentation
+   // check the Room/Notifications section of this documentation
    // to get notification examples
  }
 
@@ -307,7 +307,7 @@ room.renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
  public void onError(JSONObject error) throws Exception {
    // Handle error
  }
-}, new KuzzleResponseListener<KuzzleRoom>() {
+}, new KuzzleResponseListener<Room>() {
   // Handle the subscription result
 });
 ```
@@ -415,7 +415,7 @@ do {
 ```
 
 Renew the subscription. Force a resubscription using the same filters if no new ones are provided.
-Unsubscribes first if this KuzzleRoom was already listening to events.
+Unsubscribes first if this Room was already listening to events.
 
 ### renew([filters], notificationCallback, subscriptionCallback)
 
@@ -488,7 +488,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ### Return value
 
-Returns this `KuzzleRoom` object to allow chaining.
+Returns this `Room` object to allow chaining.
 
 ## unsubscribe
 
@@ -518,4 +518,4 @@ Cancels the current subscription.
 
 ### Return value
 
-Returns this `KuzzleRoom` object to allow chaining.
+Returns this `Room` object to allow chaining.

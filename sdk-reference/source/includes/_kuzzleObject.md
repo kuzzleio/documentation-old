@@ -239,7 +239,7 @@ Offline mode simply refers to the time between a ``disconnected`` and a ``reconn
 
 During offline mode, all subscriptions are kept indefinitely, with no maximum subscriptions retained.
 
-By default, upon reconnection, all subscription are renewed. This behavior can be changed by setting the ``autoResubscribe`` to ``false``. In that case, each subscription must be renewed manually using the ``KuzzleRoom.renew`` method.
+By default, upon reconnection, all subscription are renewed. This behavior can be changed by setting the ``autoResubscribe`` to ``false``. In that case, each subscription must be renewed manually using the ``Room.renew`` method.
 
 **Queuing requests while offline**
 
@@ -536,29 +536,29 @@ Returns the `Kuzzle` object to allow chaining.
 If a callback has been provided to the `Kuzzle` constructor, it will be called with the `Kuzzle` instance once successfully connected
 
 
-## dataCollectionFactory
+## collection
 
 ```js
-var collection = kuzzle.dataCollectionFactory('collection', 'index');
+var collection = kuzzle.collection('collection', 'index');
 
 // or using a default index:
 var
   kuzzle = new Kuzzle('localhost', {defaultIndex: 'index'});
   
-collection = kuzzle.dataCollectionFactory('collection');
+collection = kuzzle.collection('collection');
 ```
 
 ```java
-KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection", "index");
+Collection collection = kuzzle.collection("collection", "index");
 
 // or using a default index:
 kuzzle.setDefaultIndex("index");
-KuzzleDataCollection collection = kuzzle.dataCollectionFactory("collection");
+Collection collection = kuzzle.collection("collection");
 ```
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 // or using a default index:
 NSError* error = nil;
@@ -566,12 +566,12 @@ KuzzleOptions* opt = [[KuzzleOptions alloc] init];
 opt.defaultIndex = @"some index";
 Kuzzle* kuzzle = [[Kuzzle alloc] initWithHost:@"localhost" options: opt error: &error];
 
-KuzzleDataCollection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"" error: &error];
+Collection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"" error: &error];
 ```
 
 ```swift
 do {
-  try kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+  try kuzzle.collection(collectionName: "collection", index: "index")
 } catch {
   // KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
   // KuzzleError.IllegalState when state is .DISCONNECTED
@@ -586,7 +586,7 @@ let options = KuzzleOptions()
 var kuzzle = try! Kuzzle(address: "localhost", options: options)
 
 do {
-  try kuzzle.dataCollectionFactory(collectionName: "collection")
+  try kuzzle.collection(collectionName: "collection")
 } catch {
   // KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
   // KuzzleError.IllegalState when state is .DISCONNECTED
@@ -598,18 +598,18 @@ do {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 // or using a default index:
 $kuzzle = new Kuzzle('localhost', [
   'defaultIndex' => 'some index'
 ]);
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 ```
 
-Instantiates a new KuzzleDataCollection object.
+Instantiates a new Collection object.
 
-### dataCollectionFactory(collection, [index])
+### collection(collection, [index])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -623,7 +623,7 @@ The ``index`` argument takes precedence over the default index.
 
 ### Return value
 
-Returns a `KuzzleDataCollection` object.
+Returns a `Collection` object.
 
 ## disconnect
 
@@ -1966,7 +1966,7 @@ The `Kuzzle` object will unset the property `jwtToken` if the user is successful
 
 ## memoryStorage
 
-A `KuzzleMemoryStorage` singleton.
+A `MemoryStorage` singleton.
 
 ## now
 

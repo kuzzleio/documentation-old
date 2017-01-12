@@ -1,4 +1,4 @@
-# KuzzleMemoryStorage
+# MemoryStorage
 
 Kuzzle's memory storage is a separate data store from the database layer.
 It is internaly based on Redis. You can access most of Redis functions (all lowercased), except:
@@ -47,17 +47,17 @@ You can find a list of all redis command at: [http://redis.io/commands](http://r
 ```js
 /*
  Constructor is not exposed in the JS/Node SDK. You may get the instantiated
- KuzzleMemoryStorage object by calling Kuzzle.memoryStorage
+ MemoryStorage object by calling Kuzzle.memoryStorage
  */
 var memoryStorage = kuzzle.memoryStorage;
 ```
 
 ```java
 // using the static instance
-KuzzleMemoryStorage memoryStorage = kuzzle.memoryStorage;
+MemoryStorage memoryStorage = kuzzle.memoryStorage;
 
-// or instanciating a new KuzzleMemoryStorage object
-KuzzleMemoryStorage memoryStorage = new KuzzleMemoryStorage(kuzzle);
+// or instanciating a new MemoryStorage object
+MemoryStorage memoryStorage = new MemoryStorage(kuzzle);
 ```
 
 ```php
@@ -89,7 +89,7 @@ memoryStorage.ping((err, res) => {
 
 ```java
 // using the static instance
-KuzzleMemoryStorage memoryStorage = kuzzle.memoryStorage;
+MemoryStorage memoryStorage = kuzzle.memoryStorage;
 
 memoryStorage.setListener(new KuzzleResponseListener<JSONObject>() {
 

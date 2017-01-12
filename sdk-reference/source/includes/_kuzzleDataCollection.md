@@ -1,4 +1,4 @@
-# KuzzleDataCollection
+# Collection
 
 In Kuzzle, you manipulate documents and subscriptions, both related to data collections.
 
@@ -9,19 +9,19 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 
 ```js
-var dataCollection = new KuzzleDataCollection(kuzzle, "my-collection", "my-index")
+var dataCollection = new Collection(kuzzle, "my-collection", "my-index")
 ```
 
 ```java
-  KuzzleDataCollection myCollection = new KuzzleDataCollection(kuzzle, "my-collection", "my-index");
+  Collection myCollection = new Collection(kuzzle, "my-collection", "my-index");
 ```
 
 ```objective_c
-  KuzzleDataCollection* myCollection = [[KuzzleDataCollection alloc] initWithKuzzle: kuzzle collection: @"my-collection" index: @"my-index" ];
+  Collection* myCollection = [[Collection alloc] initWithKuzzle: kuzzle collection: @"my-collection" index: @"my-index" ];
 ```
 
 ```swift
-  let myCollection = KuzzleDataCollection(kuzzle: kuzzle, collection: "my-collection", index: "my-index")
+  let myCollection = Collection(kuzzle: kuzzle, collection: "my-collection", index: "my-index")
 ```
 
 ```php
@@ -34,7 +34,7 @@ $kuzzle = new Kuzzle('localhost');
 $dataCollection = new DataCollection($kuzzle, 'my-collection', 'my-index');
 ```
 
-### KuzzleDataCollection(kuzzle, collection, index)
+### Collection(kuzzle, collection, index)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -42,7 +42,7 @@ $dataCollection = new DataCollection($kuzzle, 'my-collection', 'my-index');
 | ``collection`` | string | The name of the data collection you want to manipulate |
 | ``index`` | string | Name of the index containing the data collection |
 
-**Note:** It's recommanded to instanciate a KuzzleDataCollection object by calling [Kuzzle.dataCollectionFactory](#datacollectionfactory) rather than using the constructor directly
+**Note:** It's recommanded to instanciate a Collection object by calling [Kuzzle.collection](#datacollectionfactory) rather than using the constructor directly
 
 ## Properties
 
@@ -61,14 +61,14 @@ $dataCollection = new DataCollection($kuzzle, 'my-collection', 'my-index');
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .count({}, function (err, res) {
     // ...
   });
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection', 'index')
+ .collection('collection', 'index')
  .countPromise({})
  .then(res => {
    // ...
@@ -79,7 +79,7 @@ kuzzle
 JSONObject filters = new JSONObject();
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .count(filters, new KuzzleResponseListener<Integer>() {
     @Override
     public void onSuccess(Integer object) {
@@ -95,7 +95,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 NSDictionary* filter = @{};
 [myCollection countWithFilters: filter error: &error callback:^(NSNumber * amount, NSError * error) {
   if(error) {
@@ -111,7 +111,7 @@ if(error) {
 ```swift
 let filter = ["":""]
 do {
-  let myCollection = try kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+  let myCollection = try kuzzle.collection(collectionName: "collection", index: "index")
   try myCollection.count(filters: filter, callback: { result in
       switch result {
         case let .onError(error):
@@ -135,7 +135,7 @@ use \Kuzzle\Kuzzle;
 $filters = [];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $count = $dataCollection->count($filters);
@@ -179,7 +179,7 @@ Resolves to the matched documents count as a ``integer``.
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .create(function (error, result) {
     // callback called once the create operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
@@ -187,7 +187,7 @@ kuzzle
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection', 'index')
+ .collection('collection', 'index')
  .createPromise()
  .then(result => {
    // promise resolved once the create operation has completed
@@ -197,7 +197,7 @@ kuzzle
 
 ```java
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .create(new KuzzleResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject object) {
@@ -214,7 +214,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection createAndReturnError: &error callback:^(NSDictionary * collections, NSError * error) {
@@ -233,7 +233,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 
 do {
   try myCollection.create(callback: { result in
@@ -242,7 +242,7 @@ do {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is KuzzleDataCollection object
+        // everything went fine, success is Collection object
         break
       }
   })
@@ -257,7 +257,7 @@ do {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $result = $dataCollection->create();
@@ -302,7 +302,7 @@ Available options:
 
 ### Return value
 
-Returns the `KuzzleDataCollection` object to allow chaining.
+Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
@@ -313,34 +313,34 @@ Resolves to a `JSON object` containing the raw Kuzzle response.
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .createDocument('foobar', {title: 'foo', content: 'bar'}, {updateIfExist: true}, function (err, res) {
     // callback called once the create action has been completed
-    // => the result is a KuzzleDocument object
+    // => the result is a Document object
   });
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection', 'index')
+ .collection('collection', 'index')
  .createDocumentPromise('foobar', {title: 'foo', content: 'bar'}, {updateIfExist: true})
  .then(res => {
    // promise resolved once the create action has been completed
-   // => the result is a KuzzleDocument object
+   // => the result is a Document object
  });
 ```
 
 ```java
-KuzzleDocument myDocument = new KuzzleDocument(collection);
+Document myDocument = new Document(collection);
 myDocument.setContent("title", "foo");
 myDocument.setContent("content", "bar");
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
-  .createDocument(myDocument, new KuzzleResponseListener<KuzzleDocument>() {
+  .collection("collection", "index")
+  .createDocument(myDocument, new KuzzleResponseListener<Document>() {
     @Override
-    public void onSuccess(KuzzleDocument object) {
+    public void onSuccess(Document object) {
       // callback called once the create action has been completed
-      // => the result is a KuzzleDocument object
+      // => the result is a Document object
     }
 
     @Override
@@ -351,18 +351,18 @@ kuzzle
 ```
 
 ```objective_c
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 KuzzleOptions* options = [[KuzzleOptions alloc] init];
 options.updateIfExists = YES;
 
-KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: myCollection];
+Document* document = [[Document alloc] initWithCollection: myCollection];
 document.content = @{
   @"foo": @"title",
   @"bar": @"content"
 };
 
 if(!error) {
-    [myCollection createDocumentWithDocument: document options: options error:&error callback:^(KuzzleDocument * document, NSError * error) {
+    [myCollection createDocumentWithDocument: document options: options error:&error callback:^(Document * document, NSError * error) {
         if(error) {
             // error occured
         }
@@ -378,11 +378,11 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 do {
   let options = KuzzleOptions()
   options.setUpdateIfExists(true)
-  let document = KuzzleDocument(collection: myCollection)
+  let document = Document(collection: myCollection)
   document.content = [
     "title": "foo",
     "content": "bar"
@@ -393,7 +393,7 @@ do {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocument
+        // everything went fine, success is Document
         break
       }
   })
@@ -415,7 +415,7 @@ $documentContent = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $document = $dataCollection->createDocument($documentContent, $documentId);
@@ -429,13 +429,13 @@ catch (ErrorException $e) {
 
 Create a new document in Kuzzle.
 
-### createDocument(KuzzleDocument, [options], [callback])
+### createDocument(Document, [options], [callback])
 
 ### createDocument([id], content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``KuzzleDocument`` | object | KuzzleDocument object |
+| ``Document`` | object | Document object |
 | ``id`` | string | Optional document identifier |
 | ``content`` | JSON object | Content of the document to create |
 | ``options`` | JSON object | Optional parameters |
@@ -452,31 +452,31 @@ Available options:
 
 ### Return value
 
-Returns the `KuzzleDataCollection` object to allow chaining.
+Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
-Resolves to a `KuzzleDocument` object containing the newly created document.
+Resolves to a `Document` object containing the newly created document.
 
 ## dataMappingFactory
 
 ```js
 var dataMapping = kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .dataMappingFactory({someField: {type: 'string', index: 'analyzed'}})
   .apply();
 ```
 
 ```java
-KuzzleDataMapping dataMapping = kuzzle
-  .dataCollectionFactory("collection", "index")
+CollectionMapping dataMapping = kuzzle
+  .collection("collection", "index")
   .dataMappingFactory(new JSONObject().put("someFiled", new JSONObject().put("type", "string").put("index", "analyzed"))
   .apply();
 ```
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [[myCollection dataMappingFactoryWithMapping: @{@"someField": @{@"type": @"string", @"index": @"analyzed"}}] applyAndReturnError: &error];
@@ -490,7 +490,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 myCollection.dataMappingFactory(withMapping: ["someField": ["type": "string", "index": "analyzed"]])
 ```
 
@@ -508,7 +508,7 @@ $mapping = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $dataMapping = $dataCollection->dataMappingFactory($mapping);
@@ -521,7 +521,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates a new `KuzzleDataMapping` object, using its constructor.
+Creates a new `CollectionMapping` object, using its constructor.
 
 ### dataMappingFactory([mapping])
 
@@ -531,7 +531,7 @@ Creates a new `KuzzleDataMapping` object, using its constructor.
 
 ### Return value
 
-Returns the newly created `KuzzleDataMapping` object.
+Returns the newly created `CollectionMapping` object.
 
 ## delete
 
@@ -546,14 +546,14 @@ As such, it is not possible to delete a collection from Kuzzle either. You can s
 ```js
 // Deleting one document using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .deleteDocument('document unique ID', function (err, res) {
     // callback called once the delete action has been completed
   });
 
 // Deleting one document using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .deleteDocumentPromise('document unique ID')
   .then(res => {
     // promises resolved once the delete action has been completed
@@ -561,14 +561,14 @@ kuzzle
 
 // Deleting multiple documents using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .deleteDocument({filter: {equals: {title: 'foo'}}}, function (err, res) {
     // callback called once the delete with query has been completed
   });
 
 // Deleting multiple documents using promises (NodeJS)
  kuzzle
- .dataCollectionFactory('collection', 'index')
+ .collection('collection', 'index')
  .deleteDocumentPromise({filter: {equals: {title: 'foo'}}})
  .then(res => {
    // promise resolved once the delete by query has been completed
@@ -578,7 +578,7 @@ kuzzle
 ```java
 // Deleting one document
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .deleteDocument("document unique ID", new KuzzleResponseListener<String>() {
     @Override
     public void onSuccess(String object) {
@@ -599,7 +599,7 @@ JSONObject equalsFilter = new JSONObject()
   ));
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .deleteDocument(equalsFilter, new KuzzleResponseListener<String[]>() {
     @Override
     public void onSuccess(String[] object) {
@@ -616,7 +616,7 @@ kuzzle
 ```objective_c
 // Deleting one document
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection deleteDocumentWithDocumentId: @"document unique ID" error: &error callback:^(NSArray * deletedItems, NSError * error) {
@@ -635,7 +635,7 @@ if(!error) {
 
 // Deleting multiple documents
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection deleteDocumentWithFilters: @{@"filter": @{@"equals": @{@"title": @"foo"}} error: &error callback:^(NSArray * deletedItems, NSError * error) {
@@ -655,7 +655,7 @@ if(!error) {
 
 ```swift
 // Deleting one document
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 do {
   try myCollection.deleteDocument(documentId: "document unique ID", callback: { result in
       switch result {
@@ -672,7 +672,7 @@ do {
 }
 
 // Deleting multiple documents
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 do {
   try myCollection.deleteDocument(filters: ["filter": ["equals": ["title": "foo"]]], callback: { result in
       switch result {
@@ -695,7 +695,7 @@ do {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 // Deleting one document
 try {
@@ -755,7 +755,7 @@ Available options:
 
 ### Return value
 
-Returns the `KuzzleDataCollection` object to allow chaining.
+Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
@@ -765,31 +765,31 @@ Resolves to an `array` containing the deleted document IDs.
 
 ```js
 var document = kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .documentFactory('id', {some: 'content'})
   .save();
 ```
 
 ```java
-KuzzleDocument document = kuzzle
-  .dataCollectionFactory("collection", "index")
+Document document = kuzzle
+  .collection("collection", "index")
   .documentFactory("id", new JSONObject().put("some", "content"))
   .save();
 ```
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
-  KuzzleDocument* document = [myCollection documentFactoryWithId: @"id" content: @{@"some": @"content"}];
+  Document* document = [myCollection documentFactoryWithId: @"id" content: @{@"some": @"content"}];
 } else {
   // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
 }
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 do {
   try myCollection.documentFactory(id: "id", content: ["some": "content"])
 } catch {
@@ -810,7 +810,7 @@ $documentContent = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 $document = $dataCollection->documentFactory($documentId, $documentContent);
 
 // $document instanceof Document
@@ -823,7 +823,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates a new `KuzzleDocument` object, using its constructor.
+Creates a new `Document` object, using its constructor.
 
 ### documentFactory([id], [content])
 
@@ -834,34 +834,34 @@ Creates a new `KuzzleDocument` object, using its constructor.
 
 ### Return value
 
-Returns the newly created `KuzzleDocument` object.
+Returns the newly created `Document` object.
 
 ## fetchDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .fetchDocument('documentId', function (error, result) {
-    // result is a KuzzleDocument object
+    // result is a Document object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .fetchDocumentPromise('documentId')
   .then(result => {
-    // result is a KuzzleDocument object
+    // result is a Document object
   });
 ```
 
 ```java
 kuzzle
-  .dataCollectionFactory("collection", "index")
-  .fetchDocument("documentId", new KuzzleResponseListener<KuzzleDocument>() {
+  .collection("collection", "index")
+  .fetchDocument("documentId", new KuzzleResponseListener<Document>() {
     @Override
-    public void onSuccess(KuzzleDocument object) {
-      // result is a KuzzleDocument object
+    public void onSuccess(Document object) {
+      // result is a Document object
     }
 
     @Override
@@ -873,10 +873,10 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
-  [myCollection fetchDocumentWithDocumentId: "documentId" error: &error callback:^(KuzzleDocument * document, NSError * error) {
+  [myCollection fetchDocumentWithDocumentId: "documentId" error: &error callback:^(Document * document, NSError * error) {
     if(error) {
       // error occured
     }
@@ -892,7 +892,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 
 do {
   try myCollection.fetchDocument(documentId: "documentId", callback: { result in
@@ -901,7 +901,7 @@ do {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocument
+        // everything went fine, success is Document
         break
       }
   })
@@ -919,7 +919,7 @@ use \Kuzzle\Document;
 $documentId = 'foobar';
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $document = $dataCollection->fetchDocument($documentId);
@@ -951,38 +951,38 @@ Available options:
 
 ### Callback response
 
-Resolves to a `KuzzleDocument` object.
+Resolves to a `Document` object.
 
 ## fetchAllDocuments
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .fetchAllDocuments(function (error, result) {
     // result is an object containing the total number of documents
-    // and an array of KuzzleDocument objects
+    // and an array of Document objects
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .fetchAllDocumentsPromise()
   .then(result => {
     // result is an object containing the total number of documents
-    // and an array of KuzzleDocument objects
+    // and an array of Document objects
   });
 ```
 
 ```java
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .fetchAllDocuments(new KuzzleResponseListener<KuzzleDocumentList>() {
     @Override
     public void onSuccess(KuzzleDocumentList object) {
       // result is an object containing the total number of documents
-      // and an array of KuzzleDocument objects
-      for (KuzzleDocument doc : result.getDocuments()) {
+      // and an array of Document objects
+      for (Document doc : result.getDocuments()) {
         // Get documents
       }
 
@@ -998,7 +998,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection fetchAllDocumentsAndReturnError: &error callback:^(KuzzleDocumentList * documentList, NSError * error) {
@@ -1017,7 +1017,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 
 do {
   try myCollection.fetchAllDocuments(callback: { result in
@@ -1043,7 +1043,7 @@ use \Kuzzle\Document;
 use \Kuzzle\Util\SearchResult;
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $result = $dataCollection->fetchAllDocuments();
@@ -1063,7 +1063,7 @@ catch (ErrorException $e) {
 
 ```json
 { "total": 3,
-  "documents": [<KuzzleDocument>, <KuzzleDocument>, <KuzzleDocument>]
+  "documents": [<Document>, <Document>, <Document>]
 }
 ```
 
@@ -1090,7 +1090,7 @@ Available options:
 Resolves to an object containing:
 
 - the total number of retrieved documents
-- a `array` of `KuzzleDocument` objects
+- a `array` of `Document` objects
 
 
 ## getMapping
@@ -1098,27 +1098,27 @@ Resolves to an object containing:
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .getMapping(function (error, result) {
-    // result is a KuzzleDataMapping object
+    // result is a CollectionMapping object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .getMappingPromise()
   .then(result => {
-    // result is a KuzzleDataMapping object
+    // result is a CollectionMapping object
   });
 ```
 
 ```java
 kuzzle
-  .dataCollectionFactory("collection", "index")
-  .getMapping(new KuzzleResponseListener<KuzzleDataMapping>() {
+  .collection("collection", "index")
+  .getMapping(new KuzzleResponseListener<CollectionMapping>() {
     @Override
-    public void onSuccess(KuzzleDataMapping object) {
-      // result is a KuzzleDataMapping object
+    public void onSuccess(CollectionMapping object) {
+      // result is a CollectionMapping object
     }
 
     @Override
@@ -1130,10 +1130,10 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
-    [myCollection getMappingAndReturnError: &error callback:^(KuzzleDataMapping * mapping, NSError * error) {
+    [myCollection getMappingAndReturnError: &error callback:^(CollectionMapping * mapping, NSError * error) {
     if(error) {
       // error occured
     }
@@ -1149,7 +1149,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 do {
   try myCollection.getMapping(callback: { result in
       switch result {
@@ -1157,7 +1157,7 @@ do {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is KuzzleDataMapping object
+        // everything went fine, success is CollectionMapping object
         break
       }
   })
@@ -1173,7 +1173,7 @@ use \Kuzzle\Kuzzle;
 use \Kuzzle\DataMapping;
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $mapping = $dataCollection->getMapping();
@@ -1203,13 +1203,13 @@ Available options:
 
 ### Callback response
 
-Resolves to a `KuzzleDataMapping` object.
+Resolves to a `CollectionMapping` object.
 
 ## publishMessage
 
 ```js
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .publishMessage({foo: 'bar', baz: 'qux'});
 ```
 
@@ -1219,13 +1219,13 @@ JSONObject metadata = new JSONObject().put("metadata", "are volatile information
 KuzzleOptions opts = new KuzzleOptions().setMetadata(metadata);
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .publish(message, opts);
 ```
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   KuzzleOptions* options = [[KuzzleOptions alloc] init];
@@ -1238,7 +1238,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 do {
   let options = KuzzleOptions()
   options.setMetadata(["metadata": "is volatile information"])
@@ -1259,7 +1259,7 @@ $message = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $result = $dataCollection->publishMessage($message);
@@ -1271,13 +1271,13 @@ catch (ErrorException $e) {
 
 Publish a realtime message
 
-### publishMessage(KuzzleDocument, [options], [callback])
+### publishMessage(Document, [options], [callback])
 
 ### publishMessage(content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``KuzzleDocument`` | object | KuzzleDocument object |
+| ``Document`` | object | Document object |
 | ``content`` | JSON Object | Content of the document to publish |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
@@ -1291,7 +1291,7 @@ Available options:
 
 ### Return value
 
-Returns the `KuzzleDataCollection` object to allow chaining.
+Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
@@ -1302,17 +1302,17 @@ Resolves to a raw Kuzzle response in JSON format.
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .replaceDocument('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
-    // result is a KuzzleDocument object
+    // result is a Document object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .replaceDocumentPromise('documentId', {title: 'foo', content: 'bar'})
   .then(result => {
-    // result is a KuzzleDocument object
+    // result is a Document object
   });
 ```
 
@@ -1320,10 +1320,10 @@ kuzzle
 JSONObject newContent = new JSONObject("new", "document content");
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
-  .replaceDocument("documentId", newContent, new KuzzleResponseListener<KuzzleDocument>() {
+  .collection("collection", "index")
+  .replaceDocument("documentId", newContent, new KuzzleResponseListener<Document>() {
     @Override
-    public void onSuccess(KuzzleDocument document) {
+    public void onSuccess(Document document) {
 
     }
 
@@ -1336,10 +1336,10 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
-  [myCollection replaceDocumentWithDocumentId: @"documentId" content: @{@"new": @"document content"} error: &error callback: ^(KuzzleDocument * document, NSError * error) {
+  [myCollection replaceDocumentWithDocumentId: @"documentId" content: @{@"new": @"document content"} error: &error callback: ^(Document * document, NSError * error) {
     if(error) {
       // error occured
     }
@@ -1355,7 +1355,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 
 do {
   try myCollection.replaceDocument(documentId: "documentId", content: ["new": "document content"], callback: { result in
@@ -1364,7 +1364,7 @@ do {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocument object
+        // everything went fine, success is Document object
         break
       }
   })
@@ -1386,7 +1386,7 @@ $documentContent = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $document = $dataCollection->replaceDocument($documentId, $documentContent);
@@ -1419,17 +1419,17 @@ Available options:
 
 ### Return value
 
-Returns the `KuzzleDataCollection` object to allow chaining.
+Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
-Resolves to an updated `KuzzleDocument` object.
+Resolves to an updated `Document` object.
 
 ## roomFactory
 
 ```js
 var room = kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .roomFactory()
   .renew({in: {field: ['some', 'new', 'filter']}}, function (err, res) {
     // handle notifications
@@ -1446,7 +1446,7 @@ JSONObject filters = new JSONObject()
       )
   );
 
-KuzzleRoom room = kuzzle.dataCollectionFactory("collection", "index")
+Room room = kuzzle.collection("collection", "index")
   .roomFactory()
   .renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
     @Override
@@ -1463,10 +1463,10 @@ KuzzleRoom room = kuzzle.dataCollectionFactory("collection", "index")
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
-  KuzzleRoom* room = [myCollection roomFactory];
+  Room* room = [myCollection roomFactory];
   [room renewWithFilters: @{@"in": @{@"field": @[@"some", @"new", @"filter"]}} error: &error callback:^(KuzzleNotification * notification, NSError * error) {
     if(error) {
       // error occured
@@ -1483,7 +1483,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 let room = dataCollection.roomFactory()
 do {
   try room.renew(filters: ["in": ["field": ["some", "new", "filter"]]], callback: { result in
@@ -1507,7 +1507,7 @@ do {
 // not implemented (sdk PHP is using REST API)
 ```
 
-Creates a new `KuzzleRoom` object, using its constructor.
+Creates a new `Room` object, using its constructor.
 
 ### roomFactory([options])
 
@@ -1517,7 +1517,7 @@ Creates a new `KuzzleRoom` object, using its constructor.
 
 ### Return value
 
-Returns the newly created `KuzzleRoom` object.
+Returns the newly created `Room` object.
 
 ## search
 
@@ -1555,7 +1555,7 @@ var filter = {
 };
 
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .search(filter, function (err, res) {
     res.documents.forEach(document => {
       console.log(document.toString());
@@ -1564,7 +1564,7 @@ kuzzle
 
 // Using promises (NodeJS only)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .searchPromise({})
   .then(res => {
     res.documents.forEach(document => {
@@ -1616,11 +1616,11 @@ JSONObject filter = new JSONObject()
   );
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .search(userFilter, new KuzzleResponseListener<KuzzleDocumentList>() {
     @Override
     public void onSuccess(KuzzleDocumentList result) {
-      for (KuzzleDocument doc : result.getDocuments()) {
+      for (Document doc : result.getDocuments()) {
         // Get documents
       }
 
@@ -1638,7 +1638,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 NSDictionary* inStatus = @{
   @"in": @{
@@ -1686,7 +1686,7 @@ if(error) {
 ```
 
 ```swift
-  let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+  let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
   let inStatus = [
     "in": [
       "status": ["idle", "wantToHire", "toHire", "riding"],
@@ -1774,7 +1774,7 @@ $filters = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $searchResult = $dataCollection->search($filters);
@@ -1798,7 +1798,7 @@ catch (ErrorException $e) {
 
 ```json
 { "total": 3,
-  "documents": [<KuzzleDocument>, <KuzzleDocument>, <KuzzleDocument>],
+  "documents": [<Document>, <Document>, <Document>],
   "aggregations": {
     "aggs_name": {"aggregation": "object"}
   }
@@ -1833,14 +1833,14 @@ Available options:
 Resolves to a `JSON object` containing:
 
 - the total number of matched documents
-- an `array` of `KuzzleDocument` objects
+- an `array` of `Document` objects
 - an `array` of `aggregations` objects if some are provided in the request (see the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/search-aggregations.html) for more details)
 
 ## setHeaders
 
 ```js
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .setHeaders({
     someContent: 'someValue',
     metadata: { someMetaData: ['with', 'some', 'values']}
@@ -1859,13 +1859,13 @@ JSONObject headers = new JSONObject()
   );
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .setHeaders(content, true);
 ```
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   NSDictionary* headers = @{
@@ -1885,7 +1885,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 
 let headers = [
   "someContent": "someValue",
@@ -1911,7 +1911,7 @@ $headers = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 $dataCollection->setHeaders($headers, true);
 ```
 
@@ -1928,16 +1928,16 @@ This is a helper function returning itself, allowing to easily set headers while
 
 ### Return value
 
-Returns the `KuzzleDataCollection` object to allow chaining.
+Returns the `Collection` object to allow chaining.
 
 ## subscribe
 
 ```js
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .subscribe({equals: {title: 'foo'}}, function (error, result) {
     // called each time a new notification on this filter is received
-    // check the KuzzleRoom/Notifications section of this documentation
+    // check the Room/Notifications section of this documentation
     // to get notification examples
   })
   .onDone(function (err, kuzzleRoomInstance) {
@@ -1979,13 +1979,13 @@ JSONObject filter = new JSONObject()
   );
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .subscribe(filter, new KuzzleResponseListener<KuzzleNotificationResponse>() {
     @Override
     public void onSuccess(KuzzleNotificationResponse object) {
       // called each time a new notification on this filter is received
 
-      // check the KuzzleRoom/Notifications section of this documentation
+      // check the Room/Notifications section of this documentation
       // to get notification examples
     }
 
@@ -1994,9 +1994,9 @@ kuzzle
       // Handle error
     }
   })
-  .onDone(new KuzzleResponseListener<KuzzleRoom>() {
+  .onDone(new KuzzleResponseListener<Room>() {
     @Override
-    public void onSuccess(KuzzleRoom response) {
+    public void onSuccess(Room response) {
       // Handle subscription success
     }
 
@@ -2009,7 +2009,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 NSDictionary* inStatus = @{
   @"in": @{
@@ -2060,7 +2060,7 @@ if(!error) {
 ```
 
 ```swift
-  let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+  let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
   let inStatus = [
     "in": [
       "status": ["idle", "wantToHire", "toHire", "riding"],
@@ -2124,7 +2124,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``filters`` | JSON Object | [Filters](http://kuzzle.io/documentation/real-time-filters) |
-| ``options`` | object | (Optional) Subscription configuration. Passed to the KuzzleRoom constructor. |
+| ``options`` | object | (Optional) Subscription configuration. Passed to the Room constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 
 ### Return value
@@ -2139,7 +2139,7 @@ The `callback` argument is called when the subscription ends, either successfull
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .truncate(function (error, result) {
     // callback called once the truncate operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
@@ -2147,7 +2147,7 @@ kuzzle
 
 // Using promises (NodeJS only)
 kuzzle
- .dataCollectionFactory('collection', 'index')
+ .collection('collection', 'index')
  .truncatePromise()
  .then(result => {
    // promise resolved once the truncate operation has completed
@@ -2157,7 +2157,7 @@ kuzzle
 
 ```java
 kuzzle
-  .dataCollectionFactory("collection", "index")
+  .collection("collection", "index")
   .truncate(new KuzzleResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject object) {
@@ -2174,7 +2174,7 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
   [myCollection truncateAndReturnError: &error callback:^(NSDictionary * result, NSError * error) {
@@ -2193,7 +2193,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 
 do {
   try myCollection.truncate(callback: { result in
@@ -2217,7 +2217,7 @@ do {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $dataCollection->truncate();
@@ -2263,7 +2263,7 @@ Available options:
 
 ### Return value
 
-Returns the `KuzzleDataCollection` object to allow chaining.
+Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
@@ -2274,17 +2274,17 @@ Resolves to a `JSON object` containing the raw Kuzzle response.
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .updateDocument('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
-    // result is a KuzzleDocument object
+    // result is a Document object
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .dataCollectionFactory('collection', 'index')
+  .collection('collection', 'index')
   .updateDocumentPromise('documentId', {title: 'foo', content: 'bar'})
   .then(result => {
-    // result is a KuzzleDocument object
+    // result is a Document object
   });
 ```
 
@@ -2292,11 +2292,11 @@ kuzzle
 JSONObject newTitle = new JSONObject().put("title", "a shiny new title");
 
 kuzzle
-  .dataCollectionFactory("collection", "index")
-  .updateDocument("documentId", newTitle, new KuzzleResponseListener<KuzzleDocument>() {
+  .collection("collection", "index")
+  .updateDocument("documentId", newTitle, new KuzzleResponseListener<Document>() {
     @Override
-    public void onSuccess(KuzzleDocument result) {
-      // result is an updated KuzzleDocument object
+    public void onSuccess(Document result) {
+      // result is an updated Document object
     }
 
     @Override
@@ -2308,10 +2308,10 @@ kuzzle
 
 ```objective_c
 NSError* error = nil;
-KuzzleDataCollection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
+Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
 
 if(!error) {
-  [myCollection updateDocumentWithDocumentId: @"documentId" content: @{@"title":@"a shiny new title"} error: &error callback:^(KuzzleDocument * document, NSError *  error) {
+  [myCollection updateDocumentWithDocumentId: @"documentId" content: @{@"title":@"a shiny new title"} error: &error callback:^(Document * document, NSError *  error) {
     if(error) {
       // error occured
     }
@@ -2327,7 +2327,7 @@ if(!error) {
 ```
 
 ```swift
-let myCollection = try! kuzzle.dataCollectionFactory(collectionName: "collection", index: "index")
+let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
 
 do {
   try myCollection.updateDocument(documentId: "documentId", content: ["title": "a shiny new title"], callback: { result in
@@ -2336,7 +2336,7 @@ do {
         // error occured during call, error is NSError
         break
         case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocument object
+        // everything went fine, success is Document object
         break
       }
   })
@@ -2357,7 +2357,7 @@ $documentContent = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   $document = $dataCollection->updateDocument($documentId, $documentContent);
@@ -2391,8 +2391,8 @@ Available options:
 
 ### Return value
 
-Returns the `KuzzleDataCollection` object to allow chaining.
+Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
-Resolves to an up-to-date `KuzzleDocument` object.
+Resolves to an up-to-date `Document` object.
