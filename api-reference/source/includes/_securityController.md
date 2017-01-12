@@ -1105,6 +1105,162 @@ Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
 ```
 Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
+## mDeleteProfile
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/profiles/_mdelete`  
+>**Method:** `POST`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // ids must be an array of profile ids
+  "ids": ["myFirstProfile", "mySecondProfile"]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "mDeleteProfile",
+  "body": {
+    // ids must be an array of profile ids
+    "ids": ["myFirstProfile", "mySecondProfile"]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "mDeleteProfile",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": [
+    "myFirstProfile",
+    "mySecondProfile"
+  ]
+}
+```
+
+Deletes a list of `profile` objects from Kuzzle's database layer given a list of profile ids.
+
+## mDeleteRole
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/roles/_mdelete`  
+>**Method:** `POST`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // ids must be an array of profile ids
+  "ids": ["myFirstRole", "mySecondRole"]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "mDeleteRole",
+  "body": {
+    // ids must be an array of profile ids
+    "ids": ["myFirstRole", "mySecondRole"]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "mDeleteRole",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": [
+    "myFirstRole",
+    "mySecondRole"
+  ]
+}
+```
+
+Deletes a list of `roles` objects from Kuzzle's database layer given a list of role ids.
+
+## mDeleteUser
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/users/_mdelete`  
+>**Method:** `POST`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // ids must be an array of profile ids
+  "ids": ["myFirstUserId", "mySecondUserId"]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "mDeleteRole",
+  "body": {
+    // ids must be an array of profile ids
+    "ids": ["myFirstUserId", "mySecondUserId"]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "mDeleteRole",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": [
+    "myFirstUserId",
+    "mySecondUserId"
+   ]
+  }
+}
+```
+
+Deletes a list of `users` objects from Kuzzle's database layer given a list of user ids.
 
 ## mGetProfiles
 
@@ -1118,10 +1274,8 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
 ```litcoffee
 {
-  "body": {
-    // ids must be an array of profile ids
-    "ids": ["myFirstProfile", "MySecondProfile"]
-  }
+  // ids must be an array of profile ids
+  "ids": ["myFirstProfile", "MySecondProfile"]
 }
 ```
 
@@ -1176,10 +1330,8 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 
 ```litcoffee
 {
-  "body": {
-    // ids must be an array of role id
-    "ids": ["myFirstRole", "MySecondRole"]
-  }
+  // ids must be an array of role id
+  "ids": ["myFirstRole", "MySecondRole"]
 }
 ```
 
