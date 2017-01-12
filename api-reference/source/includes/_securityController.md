@@ -1266,7 +1266,7 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/_mget`  
+>**URL:** `http://kuzzle:7511/profiles/_mGet`  
 >**Method:** `POST`  
 >**Body:**
 
@@ -1322,7 +1322,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/_mget`  
+>**URL:** `http://kuzzle:7511/roles/_mGet`  
 >**Method:** `POST`  
 >**Body:**
 
