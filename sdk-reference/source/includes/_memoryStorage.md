@@ -1,11 +1,11 @@
 # MemoryStorage
 
 Kuzzle's memory storage is a separate data store from the database layer.
-It is internaly based on Redis. You can access most of Redis functions (all lowercased), except:
+It is internally based on Redis. You can access most of Redis functions (all lowercased), except:
 
-* all cluster based functions
-* all script based functions
-* all cursors functions
+* cluster based functions
+* script based functions
+* cursors functions
 
 Here is the list of non implemented commands:
 
@@ -56,7 +56,7 @@ var memoryStorage = kuzzle.memoryStorage;
 // using the static instance
 MemoryStorage memoryStorage = kuzzle.memoryStorage;
 
-// or instanciating a new MemoryStorage object
+// or instantiating a new MemoryStorage object
 MemoryStorage memoryStorage = new MemoryStorage(kuzzle);
 ```
 
@@ -71,7 +71,7 @@ $kuzzle = new Kuzzle('localhost');
 // using the static instance
 $memoryStorage = $kuzzle->memoryStorage();
 
-// or instanciating a new MemoryStorage object
+// or instantiating a new MemoryStorage object
 $memoryStorage = new MemoryStorage($kuzzle);
 ```
 
@@ -91,7 +91,7 @@ memoryStorage.ping((err, res) => {
 // using the static instance
 MemoryStorage memoryStorage = kuzzle.memoryStorage;
 
-memoryStorage.setListener(new KuzzleResponseListener<JSONObject>() {
+memoryStorage.setListener(new ResponseListener<JSONObject>() {
 
     @Override
     public void onSuccess(JSONObject result) {
@@ -118,7 +118,7 @@ $memoryStorage = $kuzzle->memoryStorage();
 try {
   $result = $memoryStorage->ping();
 } catch (ErrorException $e) {
-  // error occured
+  
 }
 
 ```

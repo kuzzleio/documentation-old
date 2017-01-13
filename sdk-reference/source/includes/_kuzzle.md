@@ -2,10 +2,6 @@
 
 This is the main entry point to communicate with Kuzzle. Every other objects inherits properties from this one.
 
-Here is the object diagram of our SDKs:
-
-![object diagram](./images/objectDiagram.png)
-
 ## Constructors
 
 Connects to a Kuzzle instance.
@@ -42,7 +38,7 @@ options.setDefaultIndex("some index")
   .setHeaders(new JSONObject().put("someheader", "value"))
   .setPort(7512);
 
-Kuzzle kuzzle = new Kuzzle("localhost", options, new KuzzleResponseListener<Void>() {
+Kuzzle kuzzle = new Kuzzle("localhost", options, new ResponseListener<Void>() {
  @Override
  public void onSuccess(Void object) {
    // invoked once connected, object contains the kuzzle instance
@@ -53,85 +49,6 @@ Kuzzle kuzzle = new Kuzzle("localhost", options, new KuzzleResponseListener<Void
    // Handle connection error
  }
 });
-```
-
-```objective_c
-NSError* error = nil;
-KuzzleOptions* opt = [[KuzzleOptions alloc] init];
-opt.defaultIndex = @"some index";
-opt.headers = @{
-     @"someheader": @"value"
-};
-opt.port = 7512;
-Kuzzle* kuzzle = [[Kuzzle alloc] initWithHost:@"localhost" options: opt connectionCallback:^(id object, NSError * errorConnection) {
-  if(errorConnection) {
-    // error occured
-  }
-  // everything went fine
-} error: &error];
-
-if(error) {
-  // kuzzle was not initialized properly and error was thrown
-}
-
-NOTICE:
-If you want to immediately access kuzzle after connection have a look at snippet below
-
-@implementation YourClass {
-  Kuzzle* kuzzle;
-}
-
--(yourReturnType)yourMethod {
-  NSError* error = nil;
-  KuzzleOptions* opt = [[KuzzleOptions alloc] init];
-  opt.defaultIndex = @"some index";
-  opt.headers = @{
-    @"someheader": @"value"
-  };
-  Kuzzle* kuzzle = [[Kuzzle alloc] initWithHost:@"localhost" options: opt connectionCallback:^(id object, NSError * errorConnection) {
-    if(errorConnection) {
-      // error occured
-    }
-    // everything went fine
-    __weak Kuzzle* weakKuzzle = kuzzle;
-
-    // example
-    NSError* internalError = nil;
-    [weakKuzzle getServerInfoAndReturnError: &internalError callback:^(NSDictionary* dictionary, NSError* errorInternal) {
-      if(errorInternal) {
-          // error occured
-          return;
-      }
-      // everything went fine
-    }];
-
-  } error: &error];
-}
-```
-
-```swift
-  let options = KuzzleOptions()
-      options
-          .setDefaultIndex("some index")
-          .setHeaders([
-              "someheader": "value"
-          ])
-  do {
-    var kuzzle = try Kuzzle(host: "localhost", options: options, connectionCallback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during connecting, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is AnyObject
-        break
-      }
-    })
-  } catch {
-    // KuzzleError.InvalidHost, when host name was not valid
-    // KuzzleError.EmptyHost, when passed host name was empty
-  }
-}
 ```
 
 ```php
@@ -214,9 +131,9 @@ If the `connect` option is set to `manual`, the callback will be called after th
 * if ``connect`` is set to ``manual``, the ``connect`` method will have to be called manually
 * the kuzzle instance will automatically queue all requests, and play them automatically once a first connection is established, regardless of the ``connect`` or offline mode option values.
 * multiple methods allow passing specific ``metadata``. These ``metadata`` will be merged with the global Kuzzle object ``metadata`` when sending the request, with the request specific ``metadata`` taking priority over the global ones.
-* the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle Websocket API](http://kuzzleio.github.io/kuzzle-api-documentation/) format
+* the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle API](http://docs.kuzzle.io/api-reference/#query-syntax) format
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
-* The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are deleted and new requests are queued
+* The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are discarded to make room for new requests
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
 * the ``offlineQueueLoader`` must be set with a function, taking no argument, and returning an array of objects containing a `query` member with a Kuzzle query to be replayed, and an optional `cb` member with the corresponding callback to invoke with the query result
 * the ``host`` and ``port`` properties can be changed, but it will only be in effect at the next ``connect`` call
@@ -317,8 +234,8 @@ Here is the list of these special events:
 | ``loginAttempt`` | Fired when a login attempt completes, either with a success or a failure result.<br/>Provides a JSON object with the login status to its listeners (see the `login` method documentation)|
 | ``offlineQueuePop`` | Fired whenever a request is removed from the offline queue. <br/>Provides the removed request to its listeners |
 | ``offlineQueuePush`` | Fired whenever a request is added to the offline queue.<br/>Provides to its listeners an object containing a `query` property, describing the queued request, and an optional `cb` property containing the corresponding callback |
-| ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
 | ``queryError`` | Fired whenever Kuzzle responds with an error |
+| ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
 
 **Note:** listeners are called in the order of their insertion.
 
@@ -331,35 +248,12 @@ Here is the list of these special events:
 ```
 
 ```java
-String listenerId = kuzzle.addListener(KuzzleEvent.connected, new IKuzzleEventListener() {
+String listenerId = kuzzle.addListener(Event.connected, new EventListener() {
   @Override
   public void trigger(Object... args) {
     // Actions to perform when receiving a 'subscribed' global event
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle addListenerForEvent: KuzzleEventTypeCONNECTED error: &error callback:^(id result, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-```
-
-```swift
-kuzzle.addListener(.CONNECTED, callback: { result in
-  switch result {
-    case let .onError(error):
-    // error occured during call, error is NSError
-    break
-    case let .onSuccess(success):
-    // everything went fine, success is AnyObject
-    break
-  }
-})
 ```
 
 ```php
@@ -404,9 +298,9 @@ kuzzle.checkTokenPromise(token)
 ```
 
 ```java
-kuzzle.checkToken("some jwt token", new KuzzleResponseListener<KuzzleTokenValidity>() {
+kuzzle.checkToken("some jwt token", new ResponseListener<TokenValidity>() {
   @Override
-  public void onSuccess(KuzzleTokenValidity tokenInfo) {
+  public void onSuccess(TokenValidity tokenInfo) {
     if (tokenInfo.isValid()) {
       // tokenInfo.getExpiresAt() returns the expiration timestamp
     }
@@ -415,38 +309,6 @@ kuzzle.checkToken("some jwt token", new KuzzleResponseListener<KuzzleTokenValidi
     }
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle checkTokenWithToken: @"some jwt token" error: &error callback:^(KuzzleTokenValidity * tokenValidity, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.TokenEmpty, when token argument is empty string
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try checkToken(withToken: "some jwt token", callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during connecting, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleTokenValidity
-        break
-      }
-  })
-} catch {
-  // KuzzleError.TokenEmpty, when token argument is empty string
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -500,42 +362,6 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 A JSON object with a `valid` boolean property.  
 If the token is valid, a `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.
 
-## connect
-
-```js
-kuzzle.connect();
-```
-
-```java
-kuzzle.connect();
-```
-
-```objective_c
-[kuzzle connect];
-```
-
-```swift
-kuzzle.connect();
-```
-
-```php
-<?php
-
-// not implemented (sdk PHP is using REST API)
-```
-
-Connects to the Kuzzle instance using the provided `host` in the constructor.
-Has no effect if ``connect`` is set to ``auto``, unless ``disconnect`` has been called first.
-
-### Return value
-
-Returns the `Kuzzle` object to allow chaining.
-
-### Callback response
-
-If a callback has been provided to the `Kuzzle` constructor, it will be called with the `Kuzzle` instance once successfully connected
-
-
 ## collection
 
 ```js
@@ -544,7 +370,7 @@ var collection = kuzzle.collection('collection', 'index');
 // or using a default index:
 var
   kuzzle = new Kuzzle('localhost', {defaultIndex: 'index'});
-  
+
 collection = kuzzle.collection('collection');
 ```
 
@@ -554,43 +380,6 @@ Collection collection = kuzzle.collection("collection", "index");
 // or using a default index:
 kuzzle.setDefaultIndex("index");
 Collection collection = kuzzle.collection("collection");
-```
-
-```objective_c
-NSError* error = nil;
-Collection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-// or using a default index:
-NSError* error = nil;
-KuzzleOptions* opt = [[KuzzleOptions alloc] init];
-opt.defaultIndex = @"some index";
-Kuzzle* kuzzle = [[Kuzzle alloc] initWithHost:@"localhost" options: opt error: &error];
-
-Collection* collection = [kuzzle dataCollectionFactoryWithCollectionName: @"" error: &error];
-```
-
-```swift
-do {
-  try kuzzle.collection(collectionName: "collection", index: "index")
-} catch {
-  // KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
-  // KuzzleError.IllegalState when state is .DISCONNECTED
-}
-// or using a default index, simplified snippet:
-let options = KuzzleOptions()
-    options
-        .setDefaultIndex("some index")
-        .setHeaders([
-            "someheader": "value"
-        ])
-var kuzzle = try! Kuzzle(address: "localhost", options: options)
-
-do {
-  try kuzzle.collection(collectionName: "collection")
-} catch {
-  // KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
-  // KuzzleError.IllegalState when state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -625,6 +414,33 @@ The ``index`` argument takes precedence over the default index.
 
 Returns a `Collection` object.
 
+## connect
+
+```js
+kuzzle.connect();
+```
+
+```java
+kuzzle.connect();
+```
+
+```php
+<?php
+
+// not implemented (this SDK uses HTTP and is thus stateless)
+```
+
+Connects to the Kuzzle instance using the provided `host` in the constructor.
+Has no effect if ``connect`` is set to ``auto``, unless ``disconnect`` has been called first.
+
+### Return value
+
+Returns the `Kuzzle` object to allow chaining.
+
+### Callback response
+
+If a callback has been provided to the `Kuzzle` constructor, it will be called with the `Kuzzle` instance once successfully connected
+
 ## disconnect
 
 ```js
@@ -634,18 +450,10 @@ kuzzle.disconnect();
 kuzzle.disconnect();
 ```
 
-```objective_c
-[kuzzle disconnect];
-```
-
-```swift
-kuzzle.disconnect();
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Closes the current connection.
@@ -660,18 +468,10 @@ kuzzle.flushQueue();
 kuzzle.flushQueue();
 ```
 
-```objective_c
-[kuzzle flushQueue];
-```
-
-```swift
-kuzzle.flushQueue()
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Empties the offline queue without replaying it.
@@ -701,7 +501,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getAllStatistics(new KuzzleResponseListener<JSONArray>() {
+kuzzle.getAllStatistics(new ResponseListener<JSONArray>() {
   @Override
   public void onSuccess(JSONArray object) {
     // loop through all returned frames
@@ -712,36 +512,6 @@ kuzzle.getAllStatistics(new KuzzleResponseListener<JSONArray>() {
     // Handle error
   }
 };
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle getAllStatisticsAndReturnError: &error callback:^(NSArray * results, NSError * error) {
-  if(error) {
-  // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try getAllStatistics(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Array with dictionaries
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -814,7 +584,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getAutoRefresh("myIndex", new KuzzleResponseListener<Boolean>() {
+kuzzle.getAutoRefresh("myIndex", new ResponseListener<Boolean>() {
   @Override
   public void onSuccess(Boolean autoRefresh) {
     // autoRefresh var contains the autoRefresh status of myIndex.
@@ -824,22 +594,6 @@ kuzzle.getAutoRefresh("myIndex", new KuzzleResponseListener<Boolean>() {
   public void onError(JSONObject error) {
     // Handle error
   }
-}
-```
-
-```swift
-do {
-    try kuzzle.getAutoRefresh("myIndex", callback: {
-      (result) in
-        case let .onSuccess(autoRefresh):
-          // autoRefresh var contains the autoRefresh status of myIndex.
-        case let .onError(error)
-          // Handle error
-    })
-} catch {
-  //     Handle KuzzleError
-  //     * KuzzleError.IllegalState when state is .DISCONNECTED
-  //     * KuzzleError.StrategyEmpty when strategy passed to function was empty string
 }
 ```
 
@@ -897,14 +651,6 @@ var jwtToken = kuzzle.getJwtToken();
 String jwtToken = kuzzle.getJwtToken();
 ```
 
-```objective_c
-NSString* token = [kuzzle getJwtToken];
-```
-
-```swift
-let token:String? = kuzzle.getJwtToken() // token can be nil!
-```
-
 ```php
 <?php
 use \Kuzzle\Kuzzle;
@@ -946,7 +692,7 @@ kuzzle
 
 kuzzle
   .security
-  .getMyRights(new KuzzleResponseListener<JSONObject>() {
+  .getMyRights(new ResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject rights) {
         // result is a JSON object
@@ -957,24 +703,6 @@ kuzzle
         // Handle error
     }
   });
-```
-
-```objective_c
-// Not implemented yet
-```
-
-```swift
-kuzzle
-  .security
-  .getMyRights(callback: {(response) in
-    switch response {
-      case let .onSuccess(rights):
-        // rights is a JsonObject
-      case let .onError(error):
-        // handle the error here
-    }
-  })
-
 ```
 
 ```php
@@ -1037,7 +765,7 @@ kuzzle.getServerInfoPromise()
 ```
 
 ```java
-kuzzle.getServerInfo(new KuzzleResponseListener<JSONObject>() {
+kuzzle.getServerInfo(new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject result) {
     // Handle success
@@ -1048,36 +776,6 @@ kuzzle.getServerInfo(new KuzzleResponseListener<JSONObject>() {
     // Handle error
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle getServerInfoAndReturnError: &error callback:^(NSDictionary* serverInfo, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try kuzzle.getServerInfo(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Dictionary
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1379,7 +1077,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getStatistics(new KuzzleResponseListener<JSONObject>() {
+kuzzle.getStatistics(new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject object) {
     // ...
@@ -1390,36 +1088,6 @@ kuzzle.getStatistics(new KuzzleResponseListener<JSONObject>() {
     // Handle error
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle getStatisticsAndReturnError: &error callback:^(NSArray * stats, NSError * error) {
-    if(error) {
-    // error occured
-  }
-  // everything went fine
-}]
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try kuzzle.getStatistics(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is array
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1548,7 +1216,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.listCollections("index", new KuzzleResponseListener<JSONObject>() {
+kuzzle.listCollections("index", new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject object) {
     // ...
@@ -1559,38 +1227,6 @@ kuzzle.listCollections("index", new KuzzleResponseListener<JSONObject>() {
     // Handle error
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle listCollectionsAndReturnError: &error callback:^(NSDictionary * collections, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.NoIndexSpecified, when defaultIndex and index passed in function are both nil
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try kuzzle.listCollections(index: "some index", callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Dictionary
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1663,7 +1299,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.listIndexes(new KuzzleResponseListener<String[]>() {
+kuzzle.listIndexes(new ResponseListener<String[]>() {
   @Override
   public void onSuccess(String[] result) {
     // ...
@@ -1674,36 +1310,6 @@ kuzzle.listIndexes(new KuzzleResponseListener<String[]>() {
     // Handle error
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle listIndexesAndReturnError: &error callback:^(NSArray * array, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try kuzzle.listIndexes(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Array with indexes
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1769,7 +1375,7 @@ JSONObject credentials = new JSONObject()
   .put("username", "John Doe")
   .put("password", "my secret password");
 
-kuzzle.login("local", credentials, 30000, new KuzzleResponseListener<JSONObject>() {
+kuzzle.login("local", credentials, 30000, new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject result) {
     // ...
@@ -1780,39 +1386,6 @@ kuzzle.login("local", credentials, 30000, new KuzzleResponseListener<JSONObject>
     // Handle error
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-NSDictionary* credentials = @{@"username": @"John Doe", @"password": @"my secret password"};
-[kuzzle loginWithStrategy: @"local" credentials: credentials error: &error callback:^(NSDictionary* result, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.StrategyEmpty when strategy passed to function was empty string
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try try kuzzle.login(withStrategy: "local", credentials: credentials, callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Dictionary
-        break
-      }
-  })
-} catch {
-  // KuzzleError.StrategyEmpty when strategy passed to function was empty string
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1887,7 +1460,7 @@ kuzzle.logoutPromise()
 ```
 
 ```java
-kuzzle.logout(new KuzzleResponseListener<Void>() {
+kuzzle.logout(new ResponseListener<Void>() {
   @Override
   public void onSuccess(Void result) {
     // ...
@@ -1898,36 +1471,6 @@ kuzzle.logout(new KuzzleResponseListener<Void>() {
     // Handle error
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle logoutAndReturnError: &error callback:^(id result, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-kuzzle.logout(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is AnyObject
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1941,7 +1484,7 @@ try {
   // everything went fine
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -1983,7 +1526,7 @@ kuzzle.nowPromise().then(res => {
 ```
 
 ```java
-kuzzle.now(new KuzzleResponseListener<Date>() {
+kuzzle.now(new ResponseListener<Date>() {
   @Override
   public void onSuccess(Date object) {
     // 'object' contains the Kuzzle timestamp (utc, in milliseconds)
@@ -1994,35 +1537,6 @@ kuzzle.now(new KuzzleResponseListener<Date>() {
     // Handle error
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle nowAndReturnError: &error callback:^(NSDate * date, NSError * error) {
-    // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try kuzzle.now(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is NSDate
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -2067,13 +1581,13 @@ Returns a `integer` containing the current Kuzzle time, encoded as an UTC Epoch 
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.query({controller: 'read', action: 'search'}, {match: { message: 'this is a test' }}, function (err, res) {
+kuzzle.query({controller: 'document', action: 'search'}, {match: { message: 'this is a test' }}, function (err, res) {
   // ...
 });
 
 // Using promises (NodeJS only)
 kuzzle
-  .queryPromise({controller: 'read', action: 'search'}, {match: { message: 'this is a test' }})
+  .queryPromise({controller: 'document', action: 'search'}, {match: { message: 'this is a test' }})
   .then(result => {
 
   });
@@ -2081,7 +1595,7 @@ kuzzle
 
 ```java
 QueryArgs args = new QueryArgs();
-args.controller = "read";
+args.controller = "document";
 args.action = "search";
 kuzzle.query(args, new JSONObject(), new OnQueryDoneListener() {
   @Override
@@ -2096,43 +1610,6 @@ kuzzle.query(args, new JSONObject(), new OnQueryDoneListener() {
 });
 ```
 
-```objective_c
-QueryArgs* queryArgs = [[QueryArgs alloc] init];
-queryArgs.controller = @"read";
-queryArgs.action = @"search";
-
-NSDictionary* query = @{@"": @""};
-
-[kuzzle queryWithQueryArgs: queryArgs query: query error: &error callback:^(NSDictionary * result, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let queryArgs = QueryArgs(controller: "read", action: "search")
-let query = ["": ""]
-try kuzzle.query(queryArgs: queryArgs, query: query, callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Dictionary
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
 ```php
 <?php
 use \Kuzzle\Kuzzle;
@@ -2140,7 +1617,7 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 $queryArgs = [
-  'controller' => 'read',
+  'controller' => 'document',
   'action' => 'search'
 ];
 
@@ -2155,7 +1632,7 @@ try {
   // var_dump($response['result']['hits']);
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -2187,10 +1664,10 @@ catch (ErrorException $e) {
 
 <aside class="warning">
 This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.<br/>
-Check the Kuzzle documentation available <a href="http://kuzzle.io/documentation/guide">here</a>
+Check the Kuzzle documentation available <a href="http://docs.kuzzle.io/guide">here</a>
 </aside>
 
-Base method used to send queries to Kuzzle, following the [Kuzzle API Documentation](http://kuzzleio.github.io/kuzzle-api-documentation)
+Base method used to send queries to Kuzzle, following the [API Reference](http://docs.kuzzle.io/api-reference)
 
 ### query(queryArgs, query, [options], [callback])
 
@@ -2238,10 +1715,6 @@ kuzzle.refreshIndex('myIndex');
 kuzzle.refreshIndex("myIndex");
 ```
 
-```swift
-try kuzzle.refreshIndex("myIndex")
-```
-
 ```php
 <?php
 use \Kuzzle\Kuzzle;
@@ -2252,7 +1725,7 @@ try {
   $kuzzle->refreshIndex('myIndex');
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -2307,23 +1780,7 @@ kuzzle.removeAllListeners();
 
 ```java
 // Removes all listeners on the "unsubscribed" global event
-kuzzle.removeAllListeners(KuzzleEvent.disconnected);
-
-// Removes all listeners on all global events
-kuzzle.removeAllListeners();
-```
-
-```objective_c
-// Removes all listeners on the "unsubscribed" global event
-[kuzzle removeAllListenersWithEvent: KuzzleEventTypeDISCONNECTED];
-
-// Removes all listeners on all global events
-[kuzzle removeAllListeners];
-```
-
-```swift
-// Removes all listeners on the "unsubscribed" global event
-kuzzle.removeAllListeners(event: .DISCONNECTED);
+kuzzle.removeAllListeners(Event.disconnected);
 
 // Removes all listeners on all global events
 kuzzle.removeAllListeners();
@@ -2361,15 +1818,7 @@ kuzzle.removeListener('disconnected', listenerId);
 ```
 
 ```java
-kuzzle.removeListener(KuzzleEvent.disconnected, "listenerId");
-```
-
-```objective_c
-[kuzzle removeListenerWithEvent: KuzzleEventTypeDISCONNECTED listenerId: @"listenerId"];
-```
-
-```swift
-kuzzle.removeListener(event: .DISCONNECTED, listenerId: "listenerId")
+kuzzle.removeListener(Event.disconnected, "listenerId");
 ```
 
 ```php
@@ -2404,18 +1853,10 @@ kuzzle.replayQueue();
 kuzzle.replayQueue();
 ```
 
-```objective_c
-[kuzzle replayQueue];
-```
-
-```swift
-kuzzle.replayQueue()
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Replays the requests queued during offline mode. Works only if the SDK is not in a ``disconnected`` state, and if the ``autoReplay`` option is set to ``false``.
@@ -2426,7 +1867,7 @@ Returns the `Kuzzle` object to allow chaining.
 
 ## security
 
-A `KuzzleSecurity` singleton.
+A `Security` singleton.
 
 ## setAutoRefresh
 
@@ -2434,9 +1875,6 @@ A `KuzzleSecurity` singleton.
 kuzzle.setAutoRefresh('myIndex', true);
 ```
 
-```swift
-try kuzzle.setAutoRefresh("myIndex", autoRefresh: true)
-```
 
 ```java
 kuzzle.setAutoRefresh("myIndex", true);
@@ -2496,14 +1934,6 @@ The response is a boolean reflecting the new `autoRefresh` status.
 kuzzle.setDefaultIndex('index');
 ```
 
-```objective_c
-[kuzzle setDefaultIndex: @"index"];
-```
-
-```swift
-kuzzle.setDefaultIndex("index");
-```
-
 ```php
 <?php
 use \Kuzzle\Kuzzle;
@@ -2548,7 +1978,7 @@ JSONObject newContent = new JSONObject()
   .put("lastname", "Jonas");
 
 kuzzle
-  .updateSelf(newContent, new KuzzleResponseListener<JSONObject>() {
+  .updateSelf(newContent, new ResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject user) {
 
@@ -2559,45 +1989,6 @@ kuzzle
 
     }
   });
-```
-
-```objective_c
-NSDictionary* content = @{
-                          @"firstname": @"My Name Is",
-                          @"lastname": @"Jonas"
-                          };
-[kuzzle updateSelfWithContent: content error: &error callback:^(NSDictionary * result, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-  let content = [
-    "firstname": "My Name Is",
-    "lastname": "Jonas"
-  ]
-  do {
-  try kuzzle.updateSelf(content: content, callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is dictionary
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-
 ```
 
 ```php
@@ -2616,7 +2007,7 @@ try {
   // $updatedUser instanceof User
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -2655,22 +2046,6 @@ kuzzle.setHeaders({someContent: 'someValue'}, true);
 JSONObject headers = new JSONObject().put("someContent", "someValue");
 
 kuzzle.setHeaders(headers, true);
-```
-
-```objective_c
-NSDictionary* headers = @{@"someContent": @"someValue"};
-
-[kuzzle setHeadersWithData: headers replace: YES];
-// merge headers with already existing ones
-[kuzzle setHeadersWithData: headers];
-```
-
-```swift
-let headers = ["someContent": "someValue"]
-
-kuzzle.setHeaders(content: headers, replace: true)
-// merge headers with already existing ones
-kuzzle.setHeaders(content: headers);
 ```
 
 ```php
@@ -2729,50 +2104,6 @@ kuzzle.setJwtToken("some jwt token");
 kuzzle.setJwtToken(authenticationResponse)
 ```
 
-```objective_c
-// Directly with a JWT Token
-NSError* error = nil;
-[kuzzle setJwtToken: @"some jwt token" error: &error];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-
-/*
- Or with a Kuzzle response.
- For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
- and it can be provided to this method directly.
-
- Here, "authenticationResponse" is an instance of NSDictionary returned by e.g.KuzzleWebView
- */
-NSError* error = nil;
-[kuzzle setJwtTokenFromResponse: authenticationResponse error: &error];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-// Directly with a JWT Token
-do {
-  try kuzzle.setJwtToken("some jwt token")
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-
-/*
- Or with a Kuzzle response.
- For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
- and it can be provided to this method directly.
-
- Here, "authenticationResponse" is an instance of Dictionary returned by e.g.KuzzleWebView
- */
- do {
-  try kuzzle.setJwtToken(fromResponse: authenticationResponse)
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
 ```php
 <?php
 use \Kuzzle\Kuzzle;
@@ -2822,15 +2153,6 @@ kuzzle.unsetJwtToken();
 kuzzle.unsetJwtToken();
 ```
 
-```objective_c
-[kuzzle unsetJwtToken];
-```
-
-```swift
-// Directly with a JWT Token
-kuzzle.unsetJwtToken()
-```
-
 ```php
 <?php
 use \Kuzzle\Kuzzle;
@@ -2857,18 +2179,10 @@ kuzzle.startQueuing();
 kuzzle.startQueuing();
 ```
 
-```objective_c
-[kuzzle startQueuing];
-```
-
-```swift
-kuzzle.startQueuing()
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Starts the requests queuing. Works only during offline mode, and if the ``autoQueue`` option is set to ``false``.
@@ -2888,18 +2202,10 @@ kuzzle.stopQueuing();
 kuzzle.stopQueuing();
 ```
 
-```objective_c
-[kuzzle stopQueuing];
-```
-
-```swift
-kuzzle.stopQueuing()
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Stops the requests queuing. Works only during offline mode, and if the ``autoQueue`` option is set to ``false``.
@@ -2913,20 +2219,20 @@ Returns the `Kuzzle` object to allow chaining.
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle.whoAmI(function (err, result) {
-  // "result" is a KuzzleUser object
+  // "result" is a User object
 });
 
 // Using promises (NodeJS only)
 kuzzle.whoAmIPromise()
   .then(res => {
-    // "res" is a KuzzleUser object
+    // "res" is a User object
   });
 ```
 
 ```java
-kuzzle.whoAmI(new KuzzleResponseListener<KuzzleUser>() {
+kuzzle.whoAmI(new ResponseListener<User>() {
   @Override
-  public void onSuccess(KuzzleUser myself) {
+  public void onSuccess(User myself) {
 
   }
 
@@ -2935,36 +2241,6 @@ kuzzle.whoAmI(new KuzzleResponseListener<KuzzleUser>() {
 
   }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[kuzzle whoAmIAndReturnError: &error callback:^(KuzzleUser * user, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try kuzzle.whoAmI(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleUser
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -2979,7 +2255,7 @@ try {
   // $me instanceof User
 }
 catch (ErrorException $e) {
-  // error occured
+  
 }
 ```
 
@@ -2994,4 +2270,4 @@ Retrieves current user object.
 
 ### Callback response
 
-An instanciated `KuzzleUser` object.
+An instantiated `User` object.

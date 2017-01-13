@@ -17,11 +17,11 @@ Once a field mapping has been set, it cannot be removed without reconstructing t
  CollectionMapping objects are returned by the method
  Collection.getMapping
 
- You may also use the Collection.dataMappingFactory() method:
+ You may also use the Collection.collectionMapping() method:
  */
-var mapping = kuzzle.collection('collection', 'index').dataMappingFactory();
+var mapping = kuzzle.collection('collection', 'index').collectionMapping();
 
-mapping = kuzzle.collection('collection', 'index').dataMappingFactory(mapping);
+mapping = kuzzle.collection('collection', 'index').collectionMapping(mapping);
 ```
 
 ```java
@@ -33,23 +33,6 @@ type.put("type", "string");
 mapping.put("foo", type);
 
 CollectionMapping dataMapping = new CollectionMapping(dataCollection, mapping);
-```
-
-```objective_c
-CollectionMapping* dataMapping = [[CollectionMapping alloc] initWithCollection: myCollection];
-
-NSDictionary* mappping = @{
-                           @"foo": @{
-                                   @"type": @"string"
-                                   }
-                           };
-CollectionMapping* dataMapping = [[CollectionMapping alloc] initWithCollection: myCollection mapping: mappping];
-```
-
-```swift
-let dataMapping = CollectionMapping(collection: dataCollection)
-
-let dataMapping = CollectionMapping(collection: dataCollection!, mapping: ["foo": ["type": "string"]])
 ```
 
 ```php
@@ -68,7 +51,7 @@ $mapping = [
 $kuzzle = new Kuzzle('localhost');
 $dataCollection = $kuzzle->collection('collection', 'index');
 
-$dataMapping = $dataCollection->dataMappingFactory($mapping);
+$dataMapping = $dataCollection->collectionMapping($mapping);
 // $dataMapping instanceof DataMapping
 ```
 
@@ -76,7 +59,7 @@ $dataMapping = $dataCollection->dataMappingFactory($mapping);
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``Collection`` | JSON Object | An instanciated Collection object |
+| ``Collection`` | JSON Object | An instantiated Collection object |
 | ``mapping`` | JSON Object | Optional mapping |
 
 ## Properties
@@ -103,7 +86,7 @@ dataMapping.applyPromise().then(function (error, result) {
 ```
 
 ```java
-dataMapping.apply(new KuzzleResponseListener<CollectionMapping>() {
+dataMapping.apply(new ResponseListener<CollectionMapping>() {
    @Override
    public void onSuccess(CollectionMapping object) {
      // called once the mapping action has been completed
@@ -114,33 +97,6 @@ dataMapping.apply(new KuzzleResponseListener<CollectionMapping>() {
      // Handle error
    }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[dataMapping applyAndReturnError: &error callback:^(CollectionMapping * mapping, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-```
-
-```swift
-do {
-  try dataMapping.apply(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is CollectionMapping object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -194,7 +150,7 @@ dataMapping.refreshPromise().then(result => {
 ```
 
 ```java
-dataMapping.refresh(new KuzzleResponseListener<CollectionMapping>() {
+dataMapping.refresh(new ResponseListener<CollectionMapping>() {
    @Override
    public void onSuccess(CollectionMapping object) {
      // called once the mapping has been retrieved from Kuzzle
@@ -205,33 +161,6 @@ dataMapping.refresh(new KuzzleResponseListener<CollectionMapping>() {
      // Handle error
    }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[dataMapping refreshAndReturnError: &error callback:^(CollectionMapping * mapping, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-```
-
-```swift
-do {
-  try dataMapping.refresh(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is CollectionMapping object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -247,7 +176,7 @@ use \Kuzzle\DataMapping;
 $dataMapping->refresh();
 ```
 
-Instanciates a new CollectionMapping object with an up-to-date content.
+Instantiates a new CollectionMapping object with an up-to-date content.
 
 ### refresh([options], callback)
 
@@ -280,24 +209,6 @@ mapping.put("index", "analyzed");
 mapping.put("null_value", "");
 
 dataMapping.set("field", mapping);
-```
-
-```objective_c
-NSDictionary* fieldValue = @{
-                             @"type": @"string",
-                             @"index": @"analyzed",
-                             @"null_value": @"",
-                             };
-[dataMapping setWithField: @"field" value: fieldValue];
-```
-
-```swift
-let fieldValue = [
-    "type": "string",
-    "index": "analyzed",
-    "null_value": ""
-]
-dataMapping.set(field: "field", value: fieldValue)
 ```
 
 ```php
@@ -344,34 +255,6 @@ dataMapping.setHeaders({someContent: 'someValue'}, true);
 ```java
 JSONObject headers = new JSONObject();
 headers.put("someContent", "someValue");
-dataMapping.setHeaders(headers, true);
-```
-
-```objective_c
-NSDictionary* headers = @{
-  @"someContent": @"someValue",
-  @"metadata": @{
-    @"someMetaData": @[
-      @"with",
-      @"some",
-      @"values"
-      ]
-    }
-  };
-[dataMapping setHeadersWithData: headers replace: YES];
-```
-
-```swift
-let headers = [
-  "someContent": "someValue",
-  "metadata": [
-    "someMetaData": [
-     "with",
-      "some",
-      "values"
-    ]
-  ]
-]
 dataMapping.setHeaders(headers, true);
 ```
 

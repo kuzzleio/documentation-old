@@ -16,22 +16,15 @@ var dataCollection = new Collection(kuzzle, "my-collection", "my-index")
   Collection myCollection = new Collection(kuzzle, "my-collection", "my-index");
 ```
 
-```objective_c
-  Collection* myCollection = [[Collection alloc] initWithKuzzle: kuzzle collection: @"my-collection" index: @"my-index" ];
-```
-
-```swift
-  let myCollection = Collection(kuzzle: kuzzle, collection: "my-collection", index: "my-index")
-```
 
 ```php
 <?php
 
 use \Kuzzle\Kuzzle;
-use \Kuzzle\DataCollection;
+use \Kuzzle\Collection;
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = new DataCollection($kuzzle, 'my-collection', 'my-index');
+$dataCollection = new Collection($kuzzle, 'my-collection', 'my-index');
 ```
 
 ### Collection(kuzzle, collection, index)
@@ -42,7 +35,7 @@ $dataCollection = new DataCollection($kuzzle, 'my-collection', 'my-index');
 | ``collection`` | string | The name of the data collection you want to manipulate |
 | ``index`` | string | Name of the index containing the data collection |
 
-**Note:** It's recommanded to instanciate a Collection object by calling [Kuzzle.collection](#datacollectionfactory) rather than using the constructor directly
+**Note:** It's recommended to instantiate a Collection object by calling [Kuzzle.collection](#collection) rather than using the constructor directly
 
 ## Properties
 
@@ -55,6 +48,61 @@ $dataCollection = new DataCollection($kuzzle, 'my-collection', 'my-index');
 
 
 **Note:** the ``headers`` property is inherited from the main ``Kuzzle`` object and can be overrided
+
+## collectionMapping
+
+```js
+var dataMapping = kuzzle
+  .collection('collection', 'index')
+  .collectionMapping({someField: {type: 'string', index: 'analyzed'}})
+  .apply();
+```
+
+```java
+CollectionMapping dataMapping = kuzzle
+  .collection("collection", "index")
+  .collectionMapping(new JSONObject().put("someFiled", new JSONObject().put("type", "string").put("index", "analyzed"))
+  .apply();
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+use \Kuzzle\DataMapping;
+
+$mapping = [
+  'someField' => [
+    'type' => 'string',
+    'index' => 'analyzed'
+  ]
+];
+
+$kuzzle = new Kuzzle('localhost');
+$dataCollection = $kuzzle->collection('collection', 'index');
+
+try {
+  $dataMapping = $dataCollection->collectionMapping($mapping);
+
+  // $dataMapping instanceof DataMapping
+  $dataMapping->apply();
+}
+catch (ErrorException $e) {
+
+}
+```
+
+Creates a new `CollectionMapping` object, using its constructor.
+
+### collectionMapping([mapping])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``mapping`` | JSON Object | Optional mapping |
+
+### Return value
+
+Returns the newly created `CollectionMapping` object.
 
 ## count
 
@@ -80,7 +128,7 @@ JSONObject filters = new JSONObject();
 
 kuzzle
   .collection("collection", "index")
-  .count(filters, new KuzzleResponseListener<Integer>() {
+  .count(filters, new ResponseListener<Integer>() {
     @Override
     public void onSuccess(Integer object) {
       // Handle success
@@ -91,40 +139,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-NSDictionary* filter = @{};
-[myCollection countWithFilters: filter error: &error callback:^(NSNumber * amount, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let filter = ["":""]
-do {
-  let myCollection = try kuzzle.collection(collectionName: "collection", index: "index")
-  try myCollection.count(filters: filter, callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is integer
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -141,7 +155,6 @@ try {
   $count = $dataCollection->count($filters);
 }
 catch (ErrorException $e) {
-  // error occured
 }
 ```
 
@@ -198,7 +211,7 @@ kuzzle
 ```java
 kuzzle
   .collection("collection", "index")
-  .create(new KuzzleResponseListener<JSONObject>() {
+  .create(new ResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject object) {
       // callback called once the create operation has completed
@@ -210,45 +223,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [myCollection createAndReturnError: &error callback:^(NSDictionary * collections, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-
-do {
-  try myCollection.create(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Collection object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -263,7 +237,7 @@ try {
   $result = $dataCollection->create();
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -336,7 +310,7 @@ myDocument.setContent("content", "bar");
 
 kuzzle
   .collection("collection", "index")
-  .createDocument(myDocument, new KuzzleResponseListener<Document>() {
+  .createDocument(myDocument, new ResponseListener<Document>() {
     @Override
     public void onSuccess(Document object) {
       // callback called once the create action has been completed
@@ -348,58 +322,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-KuzzleOptions* options = [[KuzzleOptions alloc] init];
-options.updateIfExists = YES;
-
-Document* document = [[Document alloc] initWithCollection: myCollection];
-document.content = @{
-  @"foo": @"title",
-  @"bar": @"content"
-};
-
-if(!error) {
-    [myCollection createDocumentWithDocument: document options: options error:&error callback:^(Document * document, NSError * error) {
-        if(error) {
-            // error occured
-        }
-        // everything went fine
-    }];
-
-    if(error) {
-        // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-    }
-} else {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-do {
-  let options = KuzzleOptions()
-  options.setUpdateIfExists(true)
-  let document = Document(collection: myCollection)
-  document.content = [
-    "title": "foo",
-    "content": "bar"
-  ]
-  try myCollection.createDocument(document: document, options: options, callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Document
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -423,7 +345,7 @@ try {
   // $document instanceof Document
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -457,81 +379,6 @@ Returns the `Collection` object to allow chaining.
 ### Callback response
 
 Resolves to a `Document` object containing the newly created document.
-
-## dataMappingFactory
-
-```js
-var dataMapping = kuzzle
-  .collection('collection', 'index')
-  .dataMappingFactory({someField: {type: 'string', index: 'analyzed'}})
-  .apply();
-```
-
-```java
-CollectionMapping dataMapping = kuzzle
-  .collection("collection", "index")
-  .dataMappingFactory(new JSONObject().put("someFiled", new JSONObject().put("type", "string").put("index", "analyzed"))
-  .apply();
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [[myCollection dataMappingFactoryWithMapping: @{@"someField": @{@"type": @"string", @"index": @"analyzed"}}] applyAndReturnError: &error];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-myCollection.dataMappingFactory(withMapping: ["someField": ["type": "string", "index": "analyzed"]])
-```
-
-```php
-<?php
-
-use \Kuzzle\Kuzzle;
-use \Kuzzle\DataMapping;
-
-$mapping = [
-  'someField' => [
-    'type' => 'string',
-    'index' => 'analyzed'
-  ]
-];
-
-$kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->collection('collection', 'index');
-
-try {
-  $dataMapping = $dataCollection->dataMappingFactory($mapping);
-
-  // $dataMapping instanceof DataMapping
-  $dataMapping->apply();
-}
-catch (ErrorException $e) {
-  // error occured
-}
-```
-
-Creates a new `CollectionMapping` object, using its constructor.
-
-### dataMappingFactory([mapping])
-
-| Arguments | Type | Description |
-|---------------|---------|----------------------------------------|
-| ``mapping`` | JSON Object | Optional mapping |
-
-### Return value
-
-Returns the newly created `CollectionMapping` object.
 
 ## delete
 
@@ -579,7 +426,7 @@ kuzzle
 // Deleting one document
 kuzzle
   .collection("collection", "index")
-  .deleteDocument("document unique ID", new KuzzleResponseListener<String>() {
+  .deleteDocument("document unique ID", new ResponseListener<String>() {
     @Override
     public void onSuccess(String object) {
       // The resulting string contains the deleted document ID
@@ -600,7 +447,7 @@ JSONObject equalsFilter = new JSONObject()
 
 kuzzle
   .collection("collection", "index")
-  .deleteDocument(equalsFilter, new KuzzleResponseListener<String[]>() {
+  .deleteDocument(equalsFilter, new ResponseListener<String[]>() {
     @Override
     public void onSuccess(String[] object) {
       // The resulting object contains the list of deleted document IDs
@@ -611,82 +458,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-// Deleting one document
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [myCollection deleteDocumentWithDocumentId: @"document unique ID" error: &error callback:^(NSArray * deletedItems, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-
-// Deleting multiple documents
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [myCollection deleteDocumentWithFilters: @{@"filter": @{@"equals": @{@"title": @"foo"}} error: &error callback:^(NSArray * deletedItems, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-// Deleting one document
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-do {
-  try myCollection.deleteDocument(documentId: "document unique ID", callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is array with deleted item
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-
-// Deleting multiple documents
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-do {
-  try myCollection.deleteDocument(filters: ["filter": ["equals": ["title": "foo"]]], callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is array with deleted item
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -702,7 +473,7 @@ try {
   $result = $dataCollection->deleteDocument('documentId');
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 
 // Deleting multiple documents
@@ -716,7 +487,7 @@ try {
   $result = $dataCollection->deleteDocument($filters);
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -761,40 +532,20 @@ Returns the `Collection` object to allow chaining.
 
 Resolves to an `array` containing the deleted document IDs.
 
-## documentFactory
+## document
 
 ```js
 var document = kuzzle
   .collection('collection', 'index')
-  .documentFactory('id', {some: 'content'})
+  .document('id', {some: 'content'})
   .save();
 ```
 
 ```java
 Document document = kuzzle
   .collection("collection", "index")
-  .documentFactory("id", new JSONObject().put("some", "content"))
+  .document("id", new JSONObject().put("some", "content"))
   .save();
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  Document* document = [myCollection documentFactoryWithId: @"id" content: @{@"some": @"content"}];
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-do {
-  try myCollection.documentFactory(id: "id", content: ["some": "content"])
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -811,7 +562,7 @@ $documentContent = [
 
 $kuzzle = new Kuzzle('localhost');
 $dataCollection = $kuzzle->collection('collection', 'index');
-$document = $dataCollection->documentFactory($documentId, $documentContent);
+$document = $dataCollection->document($documentId, $documentContent);
 
 // $document instanceof Document
 
@@ -819,13 +570,13 @@ try {
   $document->save();
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
 Creates a new `Document` object, using its constructor.
 
-### documentFactory([id], [content])
+### document([id], [content])
 
 | Arguments | Type | Description |
 |-----------|------|-------------|
@@ -858,7 +609,7 @@ kuzzle
 ```java
 kuzzle
   .collection("collection", "index")
-  .fetchDocument("documentId", new KuzzleResponseListener<Document>() {
+  .fetchDocument("documentId", new ResponseListener<Document>() {
     @Override
     public void onSuccess(Document object) {
       // result is a Document object
@@ -869,45 +620,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [myCollection fetchDocumentWithDocumentId: "documentId" error: &error callback:^(Document * document, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-
-do {
-  try myCollection.fetchDocument(documentId: "documentId", callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Document
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -927,7 +639,7 @@ try {
   // $document instanceof Document
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -977,9 +689,9 @@ kuzzle
 ```java
 kuzzle
   .collection("collection", "index")
-  .fetchAllDocuments(new KuzzleResponseListener<KuzzleDocumentList>() {
+  .fetchAllDocuments(new ResponseListener<DocumentList>() {
     @Override
-    public void onSuccess(KuzzleDocumentList object) {
+    public void onSuccess(DocumentList object) {
       // result is an object containing the total number of documents
       // and an array of Document objects
       for (Document doc : result.getDocuments()) {
@@ -994,45 +706,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [myCollection fetchAllDocumentsAndReturnError: &error callback:^(KuzzleDocumentList * documentList, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-
-do {
-  try myCollection.fetchAllDocuments(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocumentList object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1055,7 +728,7 @@ try {
   }
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -1115,7 +788,7 @@ kuzzle
 ```java
 kuzzle
   .collection("collection", "index")
-  .getMapping(new KuzzleResponseListener<CollectionMapping>() {
+  .getMapping(new ResponseListener<CollectionMapping>() {
     @Override
     public void onSuccess(CollectionMapping object) {
       // result is a CollectionMapping object
@@ -1126,44 +799,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-    [myCollection getMappingAndReturnError: &error callback:^(CollectionMapping * mapping, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-do {
-  try myCollection.getMapping(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is CollectionMapping object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1181,7 +816,7 @@ try {
   // $mapping instanceof DataMapping
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -1216,37 +851,11 @@ kuzzle
 ```java
 JSONObject message = new JSONObject().put("some", "content");
 JSONObject metadata = new JSONObject().put("metadata", "are volatile information");
-KuzzleOptions opts = new KuzzleOptions().setMetadata(metadata);
+Options opts = new Options().setMetadata(metadata);
 
 kuzzle
   .collection("collection", "index")
   .publish(message, opts);
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  KuzzleOptions* options = [[KuzzleOptions alloc] init];
-  options.metadata = @{@"metadata": @"is volatile information"};
-  [myCollection publishMessageWithContent: @{@"foo": @"bar", @"baz": @"qux"} options: options error: &error];
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  // NSError representation for KuzzleError.ContentEmpty, when content of passed document is empty
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-do {
-  let options = KuzzleOptions()
-  options.setMetadata(["metadata": "is volatile information"])
-  try myCollection.publishMessage(content: ["foo": "bar", "baz": "qux"], options: options)
-} catch {
-  // KuzzleError.ContentEmpty, when content of passed document is empty
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -1265,7 +874,7 @@ try {
   $result = $dataCollection->publishMessage($message);
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -1321,7 +930,7 @@ JSONObject newContent = new JSONObject("new", "document content");
 
 kuzzle
   .collection("collection", "index")
-  .replaceDocument("documentId", newContent, new KuzzleResponseListener<Document>() {
+  .replaceDocument("documentId", newContent, new ResponseListener<Document>() {
     @Override
     public void onSuccess(Document document) {
 
@@ -1332,46 +941,6 @@ kuzzle
 
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [myCollection replaceDocumentWithDocumentId: @"documentId" content: @{@"new": @"document content"} error: &error callback: ^(Document * document, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-
-do {
-  try myCollection.replaceDocument(documentId: "documentId", content: ["new": "document content"], callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Document object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-
 ```
 
 ```php
@@ -1394,7 +963,7 @@ try {
   // $document instanceof Document
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -1425,12 +994,12 @@ Returns the `Collection` object to allow chaining.
 
 Resolves to an updated `Document` object.
 
-## roomFactory
+## room
 
 ```js
 var room = kuzzle
   .collection('collection', 'index')
-  .roomFactory()
+  .room()
   .renew({in: {field: ['some', 'new', 'filter']}}, function (err, res) {
     // handle notifications
   });
@@ -1447,10 +1016,10 @@ JSONObject filters = new JSONObject()
   );
 
 Room room = kuzzle.collection("collection", "index")
-  .roomFactory()
-  .renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
+  .room()
+  .renew(filters, new ResponseListener<NotificationResponse>() {
     @Override
-      public void onSuccess(KuzzleNotificationResponse object) {
+      public void onSuccess(NotificationResponse object) {
         // handle notifications
       }
 
@@ -1461,55 +1030,15 @@ Room room = kuzzle.collection("collection", "index")
   });
 ```
 
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  Room* room = [myCollection roomFactory];
-  [room renewWithFilters: @{@"in": @{@"field": @[@"some", @"new", @"filter"]}} error: &error callback:^(KuzzleNotification * notification, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-let room = dataCollection.roomFactory()
-do {
-  try room.renew(filters: ["in": ["field": ["some", "new", "filter"]]], callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleNotification object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Creates a new `Room` object, using its constructor.
 
-### roomFactory([options])
+### room([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -1617,9 +1146,9 @@ JSONObject filter = new JSONObject()
 
 kuzzle
   .collection("collection", "index")
-  .search(userFilter, new KuzzleResponseListener<KuzzleDocumentList>() {
+  .search(userFilter, new ResponseListener<DocumentList>() {
     @Override
-    public void onSuccess(KuzzleDocumentList result) {
+    public void onSuccess(DocumentList result) {
       for (Document doc : result.getDocuments()) {
         // Get documents
       }
@@ -1634,103 +1163,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-NSDictionary* inStatus = @{
-  @"in": @{
-    @"status": @[
-      @"idle", @"wantToHire", @"toHire", @"riding"
-    ],
-  }
-};
-
-NSDictionary* inType = @{
-  @"in": @{
-    @"type": @[@"cab"]
-  }
-};
-
-NSDictionary* geoDistance = @{
-  @"geo_distance": @{
-    @"distance": @"10km",
-    @"pos": @{
-      @"lat": @"54.4838902",
-      @"lon": @"17.01559"
-    }
-  }
-};
-
-NSDictionary* filter = @{
-  @"filter": @{
-    @"and": @[
-     inStatus,
-     inType,
-     geoDistance
-    ]
-  }
-};
-
-[myCollection searchWithFilters: filter error: &error callback:^(KuzzleDocumentList* documentList, NSError* error) {
-    if(error) {
-        // error occured
-    }
-    // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-  let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-  let inStatus = [
-    "in": [
-      "status": ["idle", "wantToHire", "toHire", "riding"],
-    ]
-  ]
-  let inType = [
-    "in":[
-      "type": ["cab"]
-    ]
-  ]
-
-  let geoDistance = [
-    "geo_distance": [
-      "distance": "10km",
-      "pos": [
-        "lat": "54.4838902",
-        "lon": "17.01559"
-        ]
-    ]
-  ]
-
-  let filter = [
-    "filter": [
-      "and": [
-        inStatus,
-        inType,
-        geoDistance
-      ]
-    ]
-  ]
-  do {
-    try myCollection.search(filters: filter, callback: { result in
-        switch result {
-          case let .onError(error):
-          // error occured during call, error is NSError
-          break
-          case let .onSuccess(success):
-          // everything went fine, success is KuzzleDocumentList object
-          break
-        }
-    })
-  } catch {
-    // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
 ```
 
 ```php
@@ -1790,7 +1222,7 @@ try {
   $searchResult->getAggregations();
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -1863,44 +1295,6 @@ kuzzle
   .setHeaders(content, true);
 ```
 
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  NSDictionary* headers = @{
-    @"someContent": @"someValue",
-    @"metadata": @{
-      @"someMetaData": @[
-        @"with",
-        @"some",
-        @"values"
-        ]
-      }
-    };
-  [myCollection setHeadersWithData: headers replace: YES];
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-
-let headers = [
-  "someContent": "someValue",
-  "metadata": [
-    "someMetaData": [
-     "with",
-      "some",
-      "values"
-    ]
-  ]
-]
-
-myCollection.setHeaders(content: headers, replace: true)
-```
-
 ```php
 <?php
 
@@ -1940,7 +1334,7 @@ kuzzle
     // check the Room/Notifications section of this documentation
     // to get notification examples
   })
-  .onDone(function (err, kuzzleRoomInstance) {
+  .onDone(function (err, roomObject) {
     // Handles the subscription result. Can be chained.
   });
 ```
@@ -1980,9 +1374,9 @@ JSONObject filter = new JSONObject()
 
 kuzzle
   .collection("collection", "index")
-  .subscribe(filter, new KuzzleResponseListener<KuzzleNotificationResponse>() {
+  .subscribe(filter, new ResponseListener<NotificationResponse>() {
     @Override
-    public void onSuccess(KuzzleNotificationResponse object) {
+    public void onSuccess(NotificationResponse object) {
       // called each time a new notification on this filter is received
 
       // check the Room/Notifications section of this documentation
@@ -1994,7 +1388,7 @@ kuzzle
       // Handle error
     }
   })
-  .onDone(new KuzzleResponseListener<Room>() {
+  .onDone(new ResponseListener<Room>() {
     @Override
     public void onSuccess(Room response) {
       // Handle subscription success
@@ -2007,110 +1401,10 @@ kuzzle
   });
 ```
 
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-NSDictionary* inStatus = @{
-  @"in": @{
-    @"status": @[
-      @"idle", @"wantToHire", @"toHire", @"riding"
-    ],
-  }
-};
-
-NSDictionary* inType = @{
-  @"in": @{
-    @"type": @[
-      @"cab"
-    ]
-  }
-};
-
-NSDictionary* geoDistance = @{
-  @"geo_distance": @{
-    @"distance": @"10km",
-    @"pos": @{
-     @"lat": @"54.4838902",
-     @"lon": @"17.01559"
-    }
-  }
-};
-
-NSDictionary* filter = @{
-  @"filter": @{
-    @"and": @[
-      inStatus,
-      inType,
-      geoDistance
-    ]
-  }
-};
-
-if(!error) {
-  [myCollection subscribeWithFilters: filter error: &error callback:^(KuzzleDocumentList* documentList, NSError* error) {
-    if(error) {
-        // error occured
-    }
-    // everything went fine
-}];
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-  let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-  let inStatus = [
-    "in": [
-      "status": ["idle", "wantToHire", "toHire", "riding"],
-    ]
-  ]
-  let inType = [
-    "in":[
-      "type": ["cab"]
-    ]
-  ]
-
-  let geoDistance = [
-    "geo_distance": [
-      "distance": "10km",
-      "pos": [
-        "lat": "54.4838902",
-        "lon": "17.01559"
-      ]
-    ]
-  ]
-
-  let filter = [
-    "filter": [
-      "and": [
-        inStatus,
-        inType,
-        geoDistance
-      ]
-    ]
-  ]
-  do {
-    try myCollection.subscribe(filters: filter, callback: { result in
-        switch result {
-          case let .onError(error):
-          // error occured during call, error is NSError
-          break
-          case let .onSuccess(success):
-          // everything went fine, success is KuzzleDocumentList object
-          break
-        }
-    })
-  } catch {
-    // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Subscribes to this data collection with a set of filters.
@@ -2123,7 +1417,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters](http://kuzzle.io/documentation/real-time-filters) |
+| ``filters`` | JSON Object | [Filters](http://docs.kuzzle.io/real-time-filters) |
 | ``options`` | object | (Optional) Subscription configuration. Passed to the Room constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 
@@ -2158,7 +1452,7 @@ kuzzle
 ```java
 kuzzle
   .collection("collection", "index")
-  .truncate(new KuzzleResponseListener<JSONObject>() {
+  .truncate(new ResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject object) {
       // callback called once the truncate operation has completed
@@ -2170,45 +1464,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [myCollection truncateAndReturnError: &error callback:^(NSDictionary * result, NSError * error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-
-do {
-  try myCollection.truncate(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is dictionary
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -2223,7 +1478,7 @@ try {
   $dataCollection->truncate();
 }
 catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -2293,7 +1548,7 @@ JSONObject newTitle = new JSONObject().put("title", "a shiny new title");
 
 kuzzle
   .collection("collection", "index")
-  .updateDocument("documentId", newTitle, new KuzzleResponseListener<Document>() {
+  .updateDocument("documentId", newTitle, new ResponseListener<Document>() {
     @Override
     public void onSuccess(Document result) {
       // result is an updated Document object
@@ -2304,45 +1559,6 @@ kuzzle
       // Handle error
     }
   });
-```
-
-```objective_c
-NSError* error = nil;
-Collection* myCollection = [kuzzle dataCollectionFactoryWithCollectionName: @"collection" index: @"index" error: &error];
-
-if(!error) {
-  [myCollection updateDocumentWithDocumentId: @"documentId" content: @{@"title":@"a shiny new title"} error: &error callback:^(Document * document, NSError *  error) {
-    if(error) {
-      // error occured
-    }
-    // everything went fine
-  }];
-
-  if(error) {
-    // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-  }
-} else {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let myCollection = try! kuzzle.collection(collectionName: "collection", index: "index")
-
-do {
-  try myCollection.updateDocument(documentId: "documentId", content: ["title": "a shiny new title"], callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is Document object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -2365,7 +1581,7 @@ try {
   // $document instanceof Document
 }
 catch (ErrorException $e) {
-  // error occured
+  
 }
 ```
 
@@ -2387,7 +1603,7 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ### Return value
 
