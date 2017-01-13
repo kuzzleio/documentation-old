@@ -108,6 +108,7 @@ Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions](/real-time-f
 
 In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp](/real-time-filters/#regexp) filter.
 
+
 ```javascript
 kuzzle
     .collection('todos')
