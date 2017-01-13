@@ -946,8 +946,9 @@ header nav li a:after {
     white-space: nowrap;
     transition: 0.5s ease
 }
-header nav li a:hover:after {
-    width: 100%
+header nav li a:hover:after,
+header nav li a.active:after {
+  width: 100%;
 }
 header nav li:last-child a:after {
     content: none

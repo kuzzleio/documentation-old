@@ -1,59 +1,21 @@
-## Kuzzle in depth
+# Kuzzle in depth
 
-![archi_fonctionnal](./images/global-overview.png)
-
-Kuzzle Kernel API can be accessed from 3 different paths:
-
-1. a [HTTP API](http://kuzzle.io/document/api-reference/?http)
-2. a [Websocket connexion](/api-reference/?websocket), using Kuzzle [Javascript SDK](http://kuzzle.io/documentation/sdk-reference)
-3. or any other custom protocol, using a Protocol Plugin (example: [MQTT](/api-reference/?mqtt))
-
-In the background, Kuzzle uses:
-
-* a noSQL engine to store, index and search contents (we use Elasticsearch by default).
-* a cache engine to store subscription lists (we use redis by default).
-
-### Core architecture
-
-Focus on the above "Kuzzle kernel":
+In this section we'll take a deeper look at the Kuzzle Core internals.
 
 ![archi_core](./images/core-architecture.png)
 
-#### Main core components
+## Components
 
-* **Proxy and entry points**: proxifies the communication beetween the client and Kuzzle (see [Connecting to kuzzle](/api-reference/#connecting-to-kuzzle)), and forward the input message to the Router.
-* **Router**: implements the API routers, normalizes the input message and sends them to the Funnel
-* **Funnel**: analyses the input message and calls the appropriate controller
-* **Controllers**: handles the input message (see [API reference](/api-reference))
-* **Internal Components**: Any component used internally by controllers
-* **Service Components**: Any component used to interact with services (see [below](#gt-services))
+The above schema shows the main architecture in Kuzzle, which is composed of the following entities.
 
+* **Kuzzle Proxy**: handles the communication beetween the client and Kuzzle (see [Connecting to kuzzle](/api-reference/#connecting-to-kuzzle)), and forwards the input message to the Router.
+* **Router**: exposes the API routes, normalizes the Request and sends them to the Funnel.
+* **Funnel**: analyses the Request and forwards it to the appropriate Controller.
+* **Controllers**: handle the Request (see [API reference](/api-reference)) and return a response (or an error).
+* **Internal Components**: Any component internally accessed by controllers.
+* **Service Components**: Any component used to interact with external services (see [below](#services)).
 
-### > Hooks
-
-Hooks allow to attach actions to Kuzzle events.
-
-For example, The **document** controller emits a `document:beforeCreate` event before a document is persisted in the storage engine.
-
-See also [The list of available events](#kuzzle-events-list).
-
-The event will trigger the execution of plugin functions attached to it.
-Learn more in the [plugin documentation](#plugins).
-
-##### Contributing
-
-You can define and add your own custom hooks.
-
-A hook must be a valid node.js module that implements an init() function.
-
-The init function is passed to the current kuzzle instance object.
-
-Your module must be placed in the /lib/hooks directory.
-
-You can then attach your hook to some events by editing the [config/hooks.js](https://github.com/kuzzleio/kuzzle/blob/master/lib/config/hooks.js) configuration file.
-
-### > Services
-
+## Services
 
 In Kuzzle, a Service module is the implementation of the interface to different components of the application (think of a *system* service).
 
