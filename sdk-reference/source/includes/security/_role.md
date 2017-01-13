@@ -392,7 +392,7 @@ Updates the role object Kuzzle's database layer.
   </p>
 </aside>
 
-To get more information on Kuzzle permissions, please refer to our [Kuzzle Permissions guide](http://docs.kuzzle.io/guide/#permissions).
+To get more information on Kuzzle permissions, please refer to our [Kuzzle Permissions guide](/guide/#permissions).
 
 
 ### update(content, [options], [callback])

@@ -8,7 +8,7 @@ Instead of leaving you with the burden of coding this logic, Kuzzle natively pro
 
 This way, every time Kuzzle receives a data input, it checks it against the validation schema and returns a **standard error** when the validation fails.
 
-You can specify the validation rules in the kuzzle [configuration file](http://localhost/guide/#configuring-kuzzle) in the `validation` field.
+You can specify the validation rules in the kuzzle [configuration file](/guide/#configuring-kuzzle) in the `validation` field.
 
 You can take a look at the [Kuzzle Data Validation Reference](/validation-reference/) for a straight dive, or keep reading for a smoother introduction.
 

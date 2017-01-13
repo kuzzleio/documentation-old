@@ -12,7 +12,7 @@ In Kuzzle, data is organized in the following way:
 
 Kuzzle ships with a full data [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) API that enables you to operate in many ways on your documents.
 
-Let's [**create a new document**](http://kuzzleio.github.io/kuzzle-api-documentation/?rest#create), for example, in `mycollection`, within `myindex` via the HTTP protocol. This is done by sending a `POST` request to the API endpoint `http://localhost:7511/myindex/mycollection/_create` with the body set to
+Let's [**create a new document**](/api-reference/#create48), for example, in `mycollection`, within `myindex` via the HTTP protocol. This is done by sending a `POST` request to the API endpoint `http://localhost:7511/myindex/mycollection/_create` with the body set to
 
 ```json
 {
@@ -62,7 +62,7 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
 
 Take some time to examine the content of a [Kuzzle Response](#kuzzle-response-objects). You may notice that it contains useful information like the name of the [controller and action](/#core-architecture) that correspond to the HTTP route we hit with our request, or the complete KuzzleDocument object we just created.
 
-One more thing you may notice is that `myindex` and `mycollection` are created on-the-fly along with the document. Let's verify it by [**getting the list of collections**](http://kuzzleio.github.io/kuzzle-api-documentation/?rest#listcollections) stored in `myindex` by sending a `GET` request to `http://localhost:7511/myindex/_list`.
+One more thing you may notice is that `myindex` and `mycollection` are created on-the-fly along with the document. Let's verify it by [**getting the list of collections**](/api-reference/?http#list) stored in `myindex` by sending a `GET` request to `http://localhost:7511/myindex/_list`.
 
 ```json
 {
@@ -89,7 +89,7 @@ One more thing you may notice is that `myindex` and `mycollection` are created o
 
 Take a look at the `result` field in the Response from Kuzzle. It contains an array of `collections`, each one defined by a `name` and a `type`. `mycollection` is of type `stored` (which stands for persistent). This is made to distinguish persisted collection from the `realtime` (or volatile) collections, used to identify [real-time documents](#realtime-notifications).
 
-Let's [**modify to our brand new document**](http://kuzzleio.github.io/kuzzle-api-documentation/?rest#update) by sending a `PUT` request to `http://localhost:7511/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0/_update` with the body set to:
+Let's [**modify to our brand new document**](/api-reference/?http#update) by sending a `PUT` request to `http://localhost:7511/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0/_update` with the body set to:
 
 ```json
 {
@@ -128,13 +128,13 @@ Which gives us the response...
 
 ...telling us that the document has been successfully updated.
 
-Now, we'll let you figure out what happens when we send a `DELETE` request to `http://localhost:7511/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0` with an empty body (take a look at the [API Reference](http://kuzzleio.github.io/kuzzle-api-documentation/?rest#delete) if you don't want to try).
+Now, we'll let you figure out what happens when we send a `DELETE` request to `http://localhost:7511/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0` with an empty body (take a look at the [API Reference](/api-reference/?http#delete) if you don't want to try).
 
 ### Document Search
 
 One thing that Elasticsearch is _really_ good at doing is... Searching! It enables to create extremely precise search queries, thanks to its powerful query DSL. We wrote a [comprehensive cookbook](#elasticsearch-cookbook) to help you understand how it works in detail, but let's take a look at a couple of simple examples, just to get started.
 
-Say we want to [**find**](http://kuzzleio.github.io/kuzzle-api-documentation/?rest#search) all the documents within `mycollection`, via the HTTP protocol. To do it, we send a `POST` request to `http://localhost:7511/myindex/mycollection/_search` (we leave the body empty since we have no filters to apply to our query). Depending on the documents you have created in your database, the response will look like:
+Say we want to [**find**](/api-reference/?http#search) all the documents within `mycollection`, via the HTTP protocol. To do it, we send a `POST` request to `http://localhost:7511/myindex/mycollection/_search` (we leave the body empty since we have no filters to apply to our query). Depending on the documents you have created in your database, the response will look like:
 
 ```json
 {

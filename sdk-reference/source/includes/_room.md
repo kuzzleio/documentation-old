@@ -279,7 +279,7 @@ Unsubscribes first if this Room object was already listening to events.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters](http://docs.kuzzle.io/real-time-filters/) |
+| ``filters`` | JSON Object | [Filters](/real-time-filters/) |
 | ``notificationCallback`` | function | Function called each time a notification is received |
 | ``subscriptionCallback`` | function | Function called with the subscription result |
 
