@@ -304,7 +304,7 @@ Returns the `Role` object.
 ```js
 var updateContent = {
   controllers: {
-    "read": {
+    "document": {
       actions: {
         "get": true
       }
@@ -328,7 +328,7 @@ role
 ```java
 JSONObject roleDefinition = new JSONObject()
   .put("controllers", new JSONObject()
-    .put("read", new JSONObject()
+    .put("document", new JSONObject()
       .put("actions", new JSONObject()
         .put("get", true)
       )
@@ -358,7 +358,7 @@ use Kuzzle\Security\Role;
 
 $roleDefinition = [
   'controllers' => [
-    'read' => [
+    'document' => [
       'actions' => [
         'get' => true
       ]
