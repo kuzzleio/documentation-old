@@ -3,7 +3,7 @@
 
 ## auth
 
-Events triggered when a request is treated in the [`auth` controller](http://kuzzle.io/documentation/api-reference/#auth-controller).
+Events triggered when a request is treated in the [`auth` controller](/api-reference/#auth-controller)
 
 | Event                 | Description                                                        | Input         |
 |-----------------------|--------------------------------------------------------------------|---------------|
@@ -13,7 +13,7 @@ Events triggered when a request is treated in the [`auth` controller](http://kuz
 
 ## bulk
 
-Events triggered when a request is treated in the [`bulk` controller](http://kuzzle.io/documentation/api-reference/#bulk-controller).
+Events triggered when a request is treated in the [`bulk` controller](/api-reference/#bulk-controller)
 
 | Event               | Description                                                                 | Input         |
 |---------------------|-----------------------------------------------------------------------------|---------------|
@@ -34,7 +34,7 @@ Events triggered when a database reset is asked to the command-line interface.
 
 ## collection
 
-Events triggered when a request is treated in the [`collection` controller](http://kuzzle.io/documentation/api-reference/#collection-controller).
+Events triggered when a request is treated in the [`collection` controller](/api-reference/#collection-controller).
 
 | Event                       | Description                                                              | Input         |
 |-----------------------------|--------------------------------------------------------------------------|---------------|
@@ -60,7 +60,7 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 
 ## index
 
-Events triggered when a request is treated in the [`index` controller](http://kuzzle.io/documentation/api-reference/#index-controller).
+Events triggered when a request is treated in the [`index` controller](/api-reference/#index-controller).
 
 | Event                  | Description                                                         | Input         |
 |------------------------|---------------------------------------------------------------------|---------------|
@@ -70,7 +70,7 @@ Events triggered when a request is treated in the [`index` controller](http://ku
 
 ## document
 
-Events triggered when a request is treated in the [`document` controller](http://kuzzle.io/documentation/api-reference/#document-controller).
+Events triggered when a request is treated in the [`document` controller](/api-reference/#document-controller).
 
 | Event                     | Description                                                            | Input         |
 |---------------------------|------------------------------------------------------------------------|---------------|
@@ -100,7 +100,7 @@ Events triggered by the Kuzzle internal message broker, used to transmit data be
 
 ## ms (memoryStorage)
 
-Events triggered when a request is sent to the [`memoryStorage` controller](http://kuzzle.io/documentation/api-reference/#memorystorage-controller).
+Events triggered when a request is sent to the [`memoryStorage` controller](/#memorystorage-controller).
 
 | Event              | Description                                                                 | Input         |
 |--------------------|-----------------------------------------------------------------------------|---------------|
@@ -138,7 +138,7 @@ Events triggered when interacting with `proxy`.
 
 ## realtime
 
-Events triggered when a request is sent to the [`realtime` controller](http://kuzzle.io/documentation/api-reference/#realtime-controller).
+Events triggered when a request is sent to the [`realtime` controller](/api-reference/#realtime-controller).
 
 | Event                    | Description                                                            | Input         |
 |--------------------------|------------------------------------------------------------------------|---------------|
@@ -157,7 +157,7 @@ Events triggered on subscription rooms activity.
 
 ## security
 
-Events triggered when a request is sent to the [`security` controller](http://kuzzle.io/documentation/api-reference/#security-controller).
+Events triggered when a request is sent to the [`security` controller](/api-reference/#security-controller).
 
 | Event                                 | Description                                                                           | Input         |
 |---------------------------------------|---------------------------------------------------------------------------------------|---------------|
@@ -168,7 +168,7 @@ Events triggered when a request is sent to the [`security` controller](http://ku
 
 ## server
 
-Events triggered on server special events or when a request is sent to the [`server` controller](http://kuzzle.io/documentation/api-reference/#server-controller).
+Events triggered on server special events or when a request is sent to the [`server` controller](/api-reference/#server-controller).
 
 | Event                   | Description                                                          | Input                                                                 |
 |-------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------|

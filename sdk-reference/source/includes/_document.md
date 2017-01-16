@@ -1,64 +1,37 @@
-# KuzzleDocument
+# Document
 
-Kuzzle handles documents, either as realtime messages or as stored documents. KuzzleDocument is the object representation of one of these documents.
+Kuzzle handles documents, either as realtime messages or as stored documents. Document is the object representation of one of these documents.
 
 ## Constructors
 
 ```js
 /*
  Constructors are not exposed in the JS/Node SDK.
- KuzzleDocument objects are returned by various KuzzleDataCollection methods.
+ Document objects are returned by various Collection methods.
 
- You may also use the KuzzleDataCollection.documentFactory() method:
+ You may also use the Collection.document() method:
  */
-var document = kuzzle.dataCollectionFactory('collection', 'index').documentFactory('id');
+var document = kuzzle.collection('collection', 'index').document('id');
 
 document = kuzzle
-  .dataCollectionFactory('collection', 'index')
-  .documentFactory({content: 'some content'});
+  .collection('collection', 'index')
+  .document({content: 'some content'});
 
 document = kuzzle
-  .dataCollectionFactory('collection', 'index')
-  .documentFactory('id', {content: 'some content'});
+  .collection('collection', 'index')
+  .document('id', {content: 'some content'});
 ```
 
 ```java
-KuzzleDocument document = new KuzzleDocument(collection);
+Document document = new Document(collection);
 
-KuzzleDocument document = new KuzzleDocument(collection, "id");
+Document document = new Document(collection, "id");
 
 JSONObject content = new JSONObject();
 content.put("content", "some content");
-KuzzleDocument document = new KuzzleDocument(collection, content);
+Document document = new Document(collection, content);
 
-KuzzleDocument document = new KuzzleDocument(collection, "id", content);
-```
-
-```objective_c
-KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: collection];
-
-KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: collection documentId: @"documentId"];
-
-NSDictionary* content = @{
-                          @"content": @"some content"
-                          };
-
-KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: collection content: content];
-
-KuzzleDocument* document = [[KuzzleDocument alloc] initWithCollection: collection documentId: @"documentId" content: content];
-```
-
-```swift
-let document = KuzzleDocument(collection: dataCollection)
-
-let document = KuzzleDocument(collection: dataCollection, documentId: "documentId")
-
-
-let content = ["content": "some content"]
-
-let document = KuzzleDocument(collection: dataCollection, content: content)
-
-let document = KuzzleDocument(collection: dataCollection, documentId: "documentId", content: content)
+Document document = new Document(collection, "id", content);
 ```
 
 ```php
@@ -74,20 +47,20 @@ $documentContent = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
-// You can use the factory embeded in DataColelction object
-$document = $dataCollection->documentFactory($documentId, $documentContent);
+// You can use the factory embeded in DataCollection object
+$document = $dataCollection->document($documentId, $documentContent);
 
 // or directly with public constructor
 $document = new Document($dataCollection, $documentId, $documentContent);
 ```
 
-### KuzzleDocument(KuzzleDataCollection, [documentId], [content])
+### Document(Collection, [documentId], [content])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``KuzzleDataCollection`` | object | An instanciated KuzzleDataCollection object |
+| ``Collection`` | object | An instantiated Collection object |
 | ``content`` | JSON Object | Initializes this document with the provided content |
 | ``documentId`` | string | ID of an existing document. |
 
@@ -107,7 +80,7 @@ $document = new Document($dataCollection, $documentId, $documentContent);
 
 * setting a new value to the ``content`` property is equivalent to calling ``setContent(data, false)``
 * setting a new value to the ``id`` property will force this value for this document
-* the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
+* the ``headers`` property is inherited from the provided ``Collection`` object and can be overrided
 
 ## delete
 
@@ -124,9 +97,9 @@ document.deletePromise().then(result => {
 ```
 
 ```java
-document.delete(new KuzzleResponseListener<KuzzleDocument>() {
+document.delete(new ResponseListener<Document>() {
     @Override
-    public void onSuccess(KuzzleDocument object) {
+    public void onSuccess(Document object) {
       // called once the delete action has been completed
     }
 
@@ -135,38 +108,6 @@ document.delete(new KuzzleResponseListener<KuzzleDocument>() {
       // Handle error
     }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[document deleteAndReturnError: &error callback:^(NSString * deletedDocumentId, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try document.delete(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is string with id of deleted KuzzleDocument
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-
 ```
 
 ```php
@@ -183,7 +124,7 @@ use \Kuzzle\Document;
 try {
   $result = $document->delete();
 } catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
@@ -202,7 +143,7 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ### Callback response
 
@@ -219,22 +160,6 @@ document.publish();
 document.publish();
 ```
 
-```objective_c
-NSError* error = nil;
-[document publishAndReturnError: &error];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try document.publish()
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
 ```php
 <?php
 
@@ -249,11 +174,11 @@ use \Kuzzle\Document;
 try {
   $document->publish();
 } catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
-Publishes the content of this document as a realtime message.
+Publishes the content of this document as a real-time message.
 
 ### publish([options])
 
@@ -270,7 +195,7 @@ Available options:
 
 ### Return value
 
-Returns this `KuzzleDocument` object to allow chaining.
+Returns this `Document` object to allow chaining.
 
 
 ## refresh
@@ -288,9 +213,9 @@ document.refreshPromise().then(result => {
 ```
 
 ```java
-document.refresh(new KuzzleResponseListener<KuzzleDocument>() {
+document.refresh(new ResponseListener<Document>() {
     @Override
-    public void onSuccess(KuzzleDocument object) {
+    public void onSuccess(Document object) {
       // called once the refresh action has been completed
     }
 
@@ -299,37 +224,6 @@ document.refresh(new KuzzleResponseListener<KuzzleDocument>() {
       // Handle error
     }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[document refreshAndReturnError: &error callback: ^(KuzzleDocument * document, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try document.refresh(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocument object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -346,11 +240,11 @@ use \Kuzzle\Document;
 try {
   $document = $document->refresh();
 } catch (ErrorException $e) {
-  // error occured
+
 }
 ```
 
-Creates a new `KuzzleDocument` object with the last version of this document stored in Kuzzle.
+Creates a new `Document` object with the last version of this document stored in Kuzzle.
 
 ### refresh([options], callback)
 
@@ -369,7 +263,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a new `KuzzleDocument` object containing the last document version.
+Resolves to a new `Document` object containing the last document version.
 
 
 ## save
@@ -387,9 +281,9 @@ document.savePromise().then(result => {
 ```
 
 ```java
-document.save(new KuzzleResponseListener<KuzzleDocument>() {
+document.save(new ResponseListener<Document>() {
     @Override
-    public void onSuccess(KuzzleDocument object) {
+    public void onSuccess(Document object) {
       // called once the save action has been completed
     }
 
@@ -398,37 +292,6 @@ document.save(new KuzzleResponseListener<KuzzleDocument>() {
       // Handle error
     }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[document saveAndReturnError: &error callback:^(KuzzleDocument * document, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try document.save(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleDocument object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -445,7 +308,7 @@ use \Kuzzle\Document;
 try {
   $document->save();
 } catch (ErrorException $e) {
-  // error occured
+  
 }
 ```
 
@@ -467,15 +330,15 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ### Return value
 
-Returns this `KuzzleDocument` object to allow chaining.
+Returns this `Document` object to allow chaining.
 
 ### Callback response
 
-Resolves to this `KuzzleDocument` object once the document has been saved.
+Resolves to this `Document` object once the document has been saved.
 
 
 
@@ -489,21 +352,6 @@ document.setContent({newContent: 'someValue'}, true);
 JSONObject content = new JSONObject().put("content", "some content");
 
 document.setContent(content, true);
-```
-
-```objective_c
-NSDictionary* content = @{
-  @"content": @"some content"
-};
-
-[document setContentWithData: content replace: YES];
-```
-
-```swift
-let content = [
-    "content": "some content"
-]
-document.setContent(content: content, replace: true)
 ```
 
 ```php
@@ -542,7 +390,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ### Return value
 
-Returns this `KuzzleDocument` object to allow chaining.
+Returns this `Document` object to allow chaining.
 
 ## setHeaders
 
@@ -553,34 +401,6 @@ document.setHeaders({someContent: 'someValue'}, true);
 ```java
 JSONObject headers = new JSONObject().put("someContent", "someValue");
 
-document.setHeaders(headers, true);
-```
-
-```objective_c
-NSDictionary* headers = @{
-  @"someContent": @"someValue",
-  @"metadata": @{
-    @"someMetaData": @[
-      @"with",
-      @"some",
-      @"values"
-      ]
-    }
-  };
-[document setHeadersWithData: headers replace: YES];
-```
-
-```swift
-let headers = [
-  "someContent": "someValue",
-  "metadata": [
-    "someMetaData": [
-     "with",
-      "some",
-      "values"
-    ]
-  ]
-]
 document.setHeaders(headers, true);
 ```
 
@@ -614,7 +434,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ### Return value
 
-Returns this `KuzzleDocument` object to allow chaining.
+Returns this `Document` object to allow chaining.
 
 ## subscribe
 
@@ -623,7 +443,7 @@ document
   .subscribe(function (error, notification) {
     // called each time a change occurs on this document
   })
-  .onDone(function (error, kuzzleRoomInstance) {
+  .onDone(function (error, roomObject) {
     // Handles the subscription result
   });
 
@@ -631,15 +451,15 @@ document
   .subscribe({subscribeToSelf: true, metadata: { myId: 'someId'}}, function (error, notification) {
     // called each time a change occurs on this document
   })
-  .onDone(function (error, kuzzleRoomInstance) {
+  .onDone(function (error, roomObject) {
     // Handles the subscription result
   });
 ```
 
 ```java
-KuzzleRoom room = document.subscribe(new KuzzleResponseListener<KuzzleNotificationResponse>() {
+Room room = document.subscribe(new ResponseListener<NotificationResponse>() {
     @Override
-    public void onSuccess(KuzzleNotificationResponse object) {
+    public void onSuccess(NotificationResponse object) {
       // called each time a change occurs on this document
     }
 
@@ -648,9 +468,9 @@ KuzzleRoom room = document.subscribe(new KuzzleResponseListener<KuzzleNotificati
       // Handle error
     }
   })
-  .onDone(new KuzzleResponseListener<KuzzleRoom>() {
+  .onDone(new ResponseListener<Room>() {
     @Override
-    public void onSuccess(KuzzleRoom response) {
+    public void onSuccess(Room response) {
       // Handle subscription success
     }
 
@@ -661,40 +481,10 @@ KuzzleRoom room = document.subscribe(new KuzzleResponseListener<KuzzleNotificati
   });
 ```
 
-```objective_c
-NSError* error = nil;
-KuzzleRoom* room = [document subscribeAndReturnError: &error callback:^(KuzzleNotification * notification, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  let room = try document.subscribe(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleNotification object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Listens to changes occuring on this document.
@@ -704,7 +494,7 @@ Throws an error if this document has not yet been created in Kuzzle.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``options`` | object | Subscription configuration. Passed to the KuzzleRoom constructor. |
+| ``options`` | object | Subscription configuration. Passed to the Room constructor. |
 | ``callback`` | function | Callback that will be called each time a change has been detected on this document |
 
 
