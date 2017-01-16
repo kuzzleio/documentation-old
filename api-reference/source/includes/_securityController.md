@@ -914,6 +914,87 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 Given a `profile id`, retrieves the corresponding profile from the database.
 
 
+
+## getProfileMapping
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/profiles/_mapping`  
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "getProfileMapping"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "controller": "security",
+  "action": "getProfileMapping",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "mapping": {
+      "policies": {
+        "properties": {
+          "_id": {
+            "type": "keyword"
+          },
+          "allowInternalIndex": {
+            "type": "boolean"
+          },
+          "restrictedTo": {
+            "properties": {
+              "collections": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "index": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "roleId": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Gets the mapping of the internal `profiles` collection.
+
+
 ## getProfileRights
 
 <section class="http"></section>
@@ -1013,6 +1094,49 @@ Given a `profile id`, retrieves the corresponding rights.
 Given a `role id`, retrieves the corresponding role from the database.
 
 
+## getRoleMapping
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/roles/_mapping`  
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "getRoleMapping"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "controller": "security",
+  "action": "getRoleMapping",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "mapping": {
+      "controllers": {
+        "type": "object",
+        "enabled": false
+      }
+    }
+  }
+}
+```
+
+Gets the mapping of the internal `roles` collection.
+
+
 ## getUser
 
 <section class="http"></section>
@@ -1057,6 +1181,92 @@ Given a `role id`, retrieves the corresponding role from the database.
 
 
 Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
+
+
+## getUserMapping
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/users/_mapping`  
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "getUserMapping"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "controller": "security",
+  "action": "getUserMapping",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "mapping": {
+      "hobby": {
+        "fields": {
+          "keyword": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
+        },
+        "type": "text"
+      },
+      "name": {
+        "properties": {
+          "first": {
+            "fields": {
+              "keyword": {
+                "ignore_above": 256,
+                "type": "keyword"
+              }
+            },
+            "type": "text"
+          },
+          "last": {
+            "fields": {
+              "keyword": {
+                "ignore_above": 256,
+                "type": "keyword"
+              }
+            },
+            "type": "text"
+          },
+          "real": {
+            "fields": {
+              "keyword": {
+                "ignore_above": 256,
+                "type": "keyword"
+              }
+            },
+            "type": "text"
+          }
+        }
+      },
+      "password": {
+        "index": false,
+        "type": "keyword"
+      },
+      "profileIds": {
+        "type": "keyword"
+      }
+    }
+  }
+}
+```
+
+Gets the mapping of the internal `users` collection.
 
 
 ## getUserRights
@@ -1783,6 +1993,92 @@ The `from` and `size` arguments allow pagination.
 Given a `profile id`, updates the matching Profile object in Kuzzle's database layer.
 
 
+## updateProfileMapping
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/profiles/_mapping`
+>**Method:** `PUT`
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // Data mapping using ElasticSearch mapping syntax
+  "properties": {
+    "field1": {
+      "type": "field type",
+      "other": "...options..."
+    },
+    "field2": {
+      "type": "field type",
+      "other": "...options..."
+    },
+    ...
+    "fieldn": {
+      "type": "field type",
+      "other": "...options..."
+    }
+  }
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "updateProfileMapping",
+
+  // Data mapping using ElasticSearch mapping syntax
+  "body": {
+    "properties": {
+      "field1": {
+        "type": "field type",
+        "other": "...options..."
+      },
+      "field2": {
+        "type": "field type",
+        "other": "...options..."
+      },
+      ...
+      "fieldn": {
+        "type": "field type",
+        "other": "...options..."
+      }
+    }
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "updateProfileMapping",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "acknowledged": true
+  },
+}
+```
+
+At the first initialization, Kuzzle defines a default mapping for the `profiles` internal collection in the persistent data storage layer.
+
+This mapping is intended to store the basic information of a profile; typically, its policies (roles and restrictions).
+
+But if you want to store more information about your users, Kuzzle's API offers a way to update the `profiles` data mapping using the
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/mapping.html).
+
+
 ## updateRole
 
 <section class="http"></section>
@@ -1863,6 +2159,92 @@ To get some more detailed information about Kuzzle's user management model,
 please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/).
 
 
+## updateRoleMapping
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/roles/_mapping`
+>**Method:** `PUT`
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // Data mapping using ElasticSearch mapping syntax
+  "properties": {
+    "field1": {
+      "type": "field type",
+      "other": "...options..."
+    },
+    "field2": {
+      "type": "field type",
+      "other": "...options..."
+    },
+    ...
+    "fieldn": {
+      "type": "field type",
+      "other": "...options..."
+    }
+  }
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "updateRoleMapping",
+
+  // Data mapping using ElasticSearch mapping syntax
+  "body": {
+    "properties": {
+      "field1": {
+        "type": "field type",
+        "other": "...options..."
+      },
+      "field2": {
+        "type": "field type",
+        "other": "...options..."
+      },
+      ...
+      "fieldn": {
+        "type": "field type",
+        "other": "...options..."
+      }
+    }
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "updateRoleMapping",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "acknowledged": true
+  },
+}
+```
+
+At the first initialization, Kuzzle defines a default mapping for the `roles` internal collection in the persistent data storage layer.
+
+This mapping is intended to store the basic information of a role; typically, its allowed controllers and actions.
+
+But if you want to store more information about your users, Kuzzle's API offers a way to update the `roles` data mapping using the
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/mapping.html).
+
+
 ## updateUser
 
 <section class="http"></section>
@@ -1921,3 +2303,89 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 ```
 
 Given a `user id`, updates the matching User object in Kuzzle's database layer.
+
+
+## updateUserMapping
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/users/_mapping`
+>**Method:** `PUT`
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // Data mapping using ElasticSearch mapping syntax
+  "properties": {
+    "field1": {
+      "type": "field type",
+      "other": "...options..."
+    },
+    "field2": {
+      "type": "field type",
+      "other": "...options..."
+    },
+    ...
+    "fieldn": {
+      "type": "field type",
+      "other": "...options..."
+    }
+  }
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "updateUserMapping",
+
+  // Data mapping using ElasticSearch mapping syntax
+  "body": {
+    "properties": {
+      "field1": {
+        "type": "field type",
+        "other": "...options..."
+      },
+      "field2": {
+        "type": "field type",
+        "other": "...options..."
+      },
+      ...
+      "fieldn": {
+        "type": "field type",
+        "other": "...options..."
+      }
+    }
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "updateUserMapping",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "acknowledged": true
+  },
+}
+```
+
+At the first initialization, Kuzzle defines a default mapping for the `users` internal collection in the persistent data storage layer.
+
+This mapping is intended to store the basic information of a user; typically, its credentials and profiles.
+
+But if you want to store more information about your users, Kuzzle's API offers a way to update the `users` data mapping using the
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/mapping.html).
