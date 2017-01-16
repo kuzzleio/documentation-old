@@ -324,7 +324,7 @@ try {
   // $profile instanceof Profile
 }
 catch (ErrorException $e) {
-  
+
 }
 ```
 
@@ -489,7 +489,7 @@ profile.update(updateContent, function(err, updatedProfile) {
 })
 
 // Using promises (NodeJS)
-role
+profile
   .updatePromise(updateContent)
   .then(updatedProfile => {
     // the updatedProfile variable is the updated Profile object
@@ -502,7 +502,7 @@ JSONObject policy1 = new JSONObject().put("roleId", "myrole");
 JSONObject updateContent = new JSONObject()
   .put("policies", new JSONArray().put(policy1));
 
-user.update(updateContent, new ResponseListener<Profile>() {
+profile.update(updateContent, new ResponseListener<Profile>() {
   @Override
   public void onSuccess(Profile updatedProfile) {
 
