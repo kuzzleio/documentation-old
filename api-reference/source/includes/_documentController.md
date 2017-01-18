@@ -128,7 +128,7 @@ Creates a new document in the persistent data storage.
 Returns an error if the document already exists.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## createOrReplace
@@ -193,7 +193,7 @@ with the value `wait_for` in order to wait for the document indexation (availabi
 Creates a new document in the persistent data storage, or replaces it if it already exists.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## delete
@@ -435,7 +435,7 @@ Replaces an existing document in the persistent data storage.
 Only documents in the persistent data storage layer can be replaced.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## scroll
@@ -764,7 +764,7 @@ Creates new documents in the persistent data storage.
 Returns a partial error (with status 206) if one or more documents already exist.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 ## mCreateOrReplace
 
@@ -967,7 +967,7 @@ Deletes documents in the persistent data storage.
 Returns a partial error (with status 206) if one or more document can not be deleted.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## mGet
@@ -1209,7 +1209,7 @@ Replaces documents in the persistent data storage.
 Returns a partial error (with status 206) if one or more documents can not be replaced.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## mUpdate
@@ -1330,7 +1330,7 @@ Updates documents in the persistent data storage.
 Returns a partial error (with status 206) if one or more documents can not be updated.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## update
@@ -1399,7 +1399,7 @@ with the value `wait_for` in order to wait for the document indexation (availabi
 Only documents in the persistent data storage layer can be updated.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## validate
