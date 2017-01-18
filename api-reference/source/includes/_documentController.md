@@ -128,7 +128,7 @@ Creates a new document in the persistent data storage.
 Returns an error if the document already exists.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## createOrReplace
@@ -193,7 +193,7 @@ with the value `wait_for` in order to wait for the document indexation (availabi
 Creates a new document in the persistent data storage, or replaces it if it already exists.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## delete
@@ -435,7 +435,7 @@ Replaces an existing document in the persistent data storage.
 Only documents in the persistent data storage layer can be replaced.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## scroll
@@ -622,6 +622,717 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 for more details.
 
 
+## mCreate
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mCreate[?refresh=wait_for]`  
+>**Method:** `POST`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "documents": [
+    {
+      "_id": "<documentId>",              // Optional. If not provided, will be generated automatically.
+      "body": {
+        "document": "body",
+        ...
+      }
+    },
+    {
+      "_id": "<anotherDocumentId>"        // Optional. If not provided, will be generated automatically.
+      "body": {
+        "document": "body",
+        ...
+      }
+    },
+    ...
+  ]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "document",
+  "action": "mCreate",
+  ["refresh": "wait_for",]
+  "body": {
+    "documents": [
+      {
+        "_id": "<documentId>",
+        "body": {
+          "document": "body",
+          ...
+        }
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "body": {
+          "document": "body",
+          ...
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "mCreate",
+  "controller": "document",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "hits": [
+      {
+        "_id": "<documentId>",
+        "_index": "<index>",
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_source": {
+          "_kuzzle_info": {
+            "active": true,
+            "author": "-1",
+            "createdAt": 1484225532686,
+            "deletedAt": null,
+            "updatedAt": null,
+            "updater": null
+          },
+          "document": "body"
+        },
+        "_type": "<collection>",
+        "_version": 1,
+        "created": true,
+        "result": "created"
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "_index": "<index>",
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_source": {
+          "_kuzzle_info": {
+            "active": true,
+            "author": "-1",
+            "createdAt": 1484225532686,
+            "deletedAt": null,
+            "updatedAt": null,
+            "updater": null
+          },
+          "document": "body"
+        },
+        "_type": "<collection>",
+        "_version": 1,
+        "created": true,
+        "result": "created"
+      },
+      {
+        // Other created documents
+      }
+    ],
+    "total": <number of created documents>
+  }
+}
+```
+
+Creates new documents in the persistent data storage.
+
+Returns a partial error (with status 206) if one or more documents already exist.
+
+Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
+
+## mCreateOrReplace
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mCreateOrReplace[?refresh=wait_for]`  
+>**Method:** `PUT`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "documents": [
+    {
+      "_id": "<documentId>",              // Mandatory
+      "body": {
+        "document": "body",
+        ...
+      }
+    },
+    {
+      "_id": "<anotherDocumentId>"        // Mandatory
+      "body": {
+        "document": "body",
+        ...
+      }
+    },
+    ...
+  ]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "document",
+  "action": "mCreateOrReplace",
+  ["refresh": "wait_for",]
+  "body": {
+    "documents": [
+      {
+        "_id": "<documentId>",
+        "body": {
+          "document": "body",
+          ...
+        }
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "body": {
+          "document": "body",
+          ...
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "mCreateOrReplace",
+  "controller": "document",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "hits": [
+      {
+        "_id": "<documentId>",
+        "_index": "<index>",
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_source": {
+          "_kuzzle_info": {
+            "active": true,
+            "author": "-1",
+            "createdAt": 1484226104822,
+            "deletedAt": null,
+            "updatedAt": null,
+            "updater": null
+          },
+          "document": "body"
+        },
+        "_type": "<collection>",
+        "_version": 2,
+        "created": false,
+        "result": "updated"
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "_index": "<index>",
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_source": {
+          "_kuzzle_info": {
+            "active": true,
+            "author": "-1",
+            "createdAt": 1484226104822,
+            "deletedAt": null,
+            "updatedAt": null,
+            "updater": null
+          },
+          "document": "body"
+        },
+        "_type": "<collection>",
+        "_version": 2,
+        "created": false,
+        "result": "updated"
+      },
+      {
+        // Other created or replaced documents 
+      }
+    ],
+    "total": <number of created or replaced documents>
+  }
+}
+```
+
+Creates or replaces documents in the persistent data storage.
+
+Returns a partial error (with status 206) if one or more documents can not be created or replaced.
+
+
+## mDelete
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mDelete[?refresh=wait_for]`  
+>**Method:** `DELETE`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "ids": ["<documentId>", "<anotherDocumentId>", ...]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "document",
+  "action": "mDelete",
+  "body": {
+    "ids": ["<documentId>", "<anotherDocumentId>", ...]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "mDelete",
+  ["refresh": "wait_for",]
+  "controller": "document",
+  "requestId": "<unique request identifier>",
+  "result": [
+    "<documentId>",
+    "<anotherDocumentId>",
+    ...
+  ]
+}
+```
+
+Deletes documents in the persistent data storage.
+
+Returns a partial error (with status 206) if one or more document can not be deleted.
+
+Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
+
+
+## mGet
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mGet`  
+>**Method:** `POST`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "ids": ["<documentId>", "<anotherDocumentId>", ...]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "document",
+  "action": "mGet",
+  "body": {
+    "ids": ["<documentId>", "<anotherDocumentId>", ...]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "mGet",
+  "controller": "document",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "hits": [
+      {
+        "_id": "<documentId>",
+        "_index": "<index>",
+        "_source": {
+          "_kuzzle_info": {
+            "active": true,
+            "author": "-1",
+            "createdAt": 1484226562795,
+            "deletedAt": null,
+            "updatedAt": null,
+            "updater": null
+          },
+          "some": "body"
+        },
+        "_type": "<collection>",
+        "_version": 4,
+        "found": true
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "_index": "<index>",
+        "_source": {
+          "_kuzzle_info": {
+            "active": true,
+            "author": "-1",
+            "createdAt": 1484226562795,
+            "deletedAt": null,
+            "updatedAt": null,
+            "updater": null
+          },
+          "some": "body"
+        },
+        "_type": "<collection>",
+        "_version": 4,
+        "found": true
+      }
+      {
+        // Other documents 
+      }
+    ],
+    "total": <number of retrieved documents>
+  }
+}
+```
+
+Given `document ids`, retrieves the corresponding documents from the database.
+
+Only documents in the persistent data storage layer can be retrieved.
+
+
+## mReplace
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mReplace[?refresh=wait_for]`  
+>**Method:** `PUT`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "documents": [
+    {
+      "_id": "<documentId>",              // Mandatory
+      "body": {
+        "document": "body",
+        ...
+      }
+    },
+    {
+      "_id": "<anotherDocumentId>"        // Mandatory
+      "body": {
+        "document": "body",
+        ...
+      }
+    },
+    ...
+  ]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "document",
+  "action": "mReplace",
+  ["refresh": "wait_for",]
+  "body": {
+    "documents": [
+      {
+        "_id": "<documentId>",
+        "body": {
+          "document": "body",
+          ...
+        }
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "body": {
+          "document": "body",
+          ...
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "mReplace",
+  "controller": "document",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "hits": [
+      {
+        "_id": "<documentId>",
+        "_index": "<index>",
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_source": {
+          "_kuzzle_info": {
+            "active": true,
+            "author": "-1",
+            "createdAt": 1484226104822,
+            "deletedAt": null,
+            "updatedAt": null,
+            "updater": null
+          },
+          "document": "body"
+        },
+        "_type": "<collection>",
+        "_version": 2,
+        "created": false,
+        "result": "updated"
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "_index": "<index>",
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_source": {
+          "_kuzzle_info": {
+            "active": true,
+            "author": "-1",
+            "createdAt": 1484226104822,
+            "deletedAt": null,
+            "updatedAt": null,
+            "updater": null
+          },
+          "document": "body"
+        },
+        "_type": "<collection>",
+        "_version": 2,
+        "created": false,
+        "result": "updated"
+      },
+      {
+        // Other replaced documents 
+      }
+    ],
+    "total": <number of replaced documents>
+  }
+}
+```
+
+Replaces documents in the persistent data storage.
+
+Returns a partial error (with status 206) if one or more documents can not be replaced.
+
+Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
+
+
+## mUpdate
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7511/<index>/<collection>/_mUpdate[?refresh=wait_for]`  
+>**Method:** `PUT`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "documents": [
+    {
+      "_id": "<documentId>",              // Mandatory
+      "body": {
+        "partial": "body",
+        ...
+      }
+    },
+    {
+      "_id": "<anotherDocumentId>"        // Mandatory
+      "body": {
+        "partial": "body",
+        ...
+      }
+    },
+    ...
+  ]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "index": "<index>",
+  "collection": "<collection>",
+  "controller": "document",
+  "action": "mUpdate",
+  "body": {
+    "documents": [
+      {
+        "_id": "<documentId>",
+        "body": {
+          "partial": "body",
+          ...
+        }
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "body": {
+          "partial": "body",
+          ...
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "index": "<index>",
+  "collection": "<collection>",
+  "action": "mUpdate",
+  ["refresh": "wait_for",]
+  "controller": "document",
+  "requestId": "<unique request identifier>",
+  "result": {
+    "hits": [
+      {
+        "_id": "<documentId>",
+        "_index": "<index>",
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_type": "<collection>",
+        "_version": 2,
+        "result": "updated"
+      },
+      {
+        "_id": "<anotherDocumentId>",
+        "_index": "<index>",
+        "_shards": {
+          "failed": 0,
+          "successful": 1,
+          "total": 2
+        },
+        "_type": "<collection>",
+        "_version": 2,
+        "result": "updated"
+      },
+      {
+        // Other updated documents
+      }
+    ],
+    "total": <number of updated documents>
+  }
+}
+```
+
+Updates documents in the persistent data storage.
+
+Returns a partial error (with status 206) if one or more documents can not be updated.
+
+Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
+
+
 ## update
 
 <section class="http"></section>
@@ -679,9 +1390,6 @@ for more details.
   "requestId": "<unique request identifier>",
   "result": {
     "_id": "<documentId>",
-    "_source": {                      // The resulting document
-      ...
-    },
     "_version": <number>,             // The new version number of this document
     "created": false
   }
@@ -691,7 +1399,7 @@ for more details.
 Only documents in the persistent data storage layer can be updated.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (availability using `search`).
+with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 
 ## validate
