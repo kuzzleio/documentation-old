@@ -83,12 +83,10 @@ As the Plugin is isolated in separated processes, the <a href="#the-plugin-conte
 Plugins enable you to add synchronous listener functions to a set of [events](#kuzzle-events-list). Listener functions are supplied with these events data, they are able to intercept the request, modify the data and interrupt its life-cycle.
 Kuzzle waits for their results before continuing the process.
 
-Synchronous
-
-Since `pipe` plugins are a part of how Kuzzle processes client requests, Kuzzle enforces a timeout on them, rejecting the request altogether if a `pipe` plugin fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError](#gt-error-gatewaytimeouterror) error to the original client.  
+Synchronous listeners are a part of how Kuzzle processes client requests, thus Kuzzle enforces a timeout on them, rejecting the request altogether if a synchronous listener fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError](#gt-error-gatewaytimeouterror) error to the original client.  
 The timeout value can be configured in Kuzzle configuration file.
 
-Asynchronous listeners are declared in the `pipes` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
+Synchronous listeners are declared in the `pipes` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
 Each listener function must also be exported.
 
 A single event can be listened by multiple synchronous listeners. When this is the case, they behave like middleware functions. Kuzzle calls them sequentially, without any particular order, piping the data from one function to the other.
