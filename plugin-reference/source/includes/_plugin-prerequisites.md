@@ -8,10 +8,10 @@ As Kuzzle treats plugins as Node.js modules, plugins must make themselves availa
 
 Plugins must be valid NodeJS require-able modules, usually shipped as a directory containing either:
 
-* an `index.js` file at root, exporting a valid Javascript class exposing an `init` method, or
-* a well-formed `package.json` file at root, specifying the path of the main require-able in the `main` field.
+* an `index.js` file in its root directory, exporting a valid Javascript class exposing an `init` method, or
+* a well-formed `package.json` file in its root directory, specifying the path of the main require-able in the `main` field.
 
-To determine the Plugin name, Kuzzle looks for the `name` field in the `package.json` file or the plugin directory name as a fall-back.
+To determine the Plugin name, Kuzzle looks for the `name` field in the `package.json` file falling back to the plugin directory name otherwise.
 
 ### Custom Plugin configuration
 
@@ -20,7 +20,7 @@ When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` metho
 ```json
 {
   "plugins": {
-    "kuzzle-plugin-blabla": {
+    "kuzzle-plugin-foobar": {
       "option_1": "option_value",
       "option_2": "option_value"
     }
@@ -35,7 +35,7 @@ Within custom configuration, there are a few reserved words used by Kuzzle to co
 ```json
 {
   "plugins": {
-    "kuzzle-plugin-blabla": {
+    "kuzzle-plugin-foobar": {
       "threads": 0,
       "privileged": false
     }

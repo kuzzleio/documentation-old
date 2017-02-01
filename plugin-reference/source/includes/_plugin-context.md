@@ -25,7 +25,7 @@ Here is the list of shared objects contained in the provided ``context``:
 ## Accessor
 
 <aside class="notice">
-<a href="#executing-listeners-in-separate-threads">Plugins that execute on separate threads</a> don't have access to accessors.
+<a href="#executing-listeners-in-separate-threads">Plugins executed on separate threads</a> don't have access to accessors.
 </aside>
 
 ### `execute`

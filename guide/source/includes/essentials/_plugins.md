@@ -126,7 +126,7 @@ When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` metho
 ```json
 {
   "plugins": {
-    "kuzzle-plugin-blabla": {
+    "kuzzle-plugin-foobar": {
       "option_1": "option_value",
       "option_2": "option_value"
     }
