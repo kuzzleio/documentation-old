@@ -1319,7 +1319,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/_mdelete`  
+>**URL:** `http://kuzzle:7511/profiles/_mDelete`  
 >**Method:** `POST`  
 >**Body:**
 
@@ -1371,7 +1371,7 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/_mdelete`  
+>**URL:** `http://kuzzle:7511/roles/_mDelete`  
 >**Method:** `POST`  
 >**Body:**
 
@@ -1423,7 +1423,7 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/_mdelete`  
+>**URL:** `http://kuzzle:7511/users/_mDelete`  
 >**Method:** `POST`  
 >**Body:**
 
