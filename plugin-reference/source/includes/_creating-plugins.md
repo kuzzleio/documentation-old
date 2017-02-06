@@ -10,12 +10,14 @@ Depending on the properties it exposes, a plugin can extend of one or several of
 * Proxy
   - Adding a new communication protocol.
 
-## Listening asynchronously
+## Listening asynchronously (adding a hook)
 
-Plugins enable you to add asynchronous listener functions to a set of [events](#kuzzle-events-list). Listener functions are supplied with these events data. These functions cannot change the provided data, and Kuzzle does not wait for them to process the data either.
+Plugins enable you to add asynchronous listener functions to a set of [events](#kuzzle-events-list). We'll call these asynchronous listener functions **hooks** from now on.
 
-Asynchronous listeners are declared in the `hooks` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
-Each listener function must also be exported.
+Hooks are supplied with these events data. They cannot change the provided data, and Kuzzle does not wait for them to process the data either.
+
+Hooks are declared in the `hooks` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
+Each hook must also be exported.
 
 **Example**
 
@@ -55,9 +57,9 @@ function MyPlugin () {
 module.exports = MyPlugin;
 ```
 
-### Executing listeners in separate threads
+### Executing hooks in separate threads
 
-Plugins declaring asynchronous listeners can also be executed in separate threads. This is handy when the listeners perform heavy computations that may corrupt the performances of the Kuzzle Core.
+Plugins declaring hooks can also be executed in separate threads. This is handy when they perform heavy computations that may corrupt the performances of the Kuzzle Core.
 
 To achieve this, Kuzzle must specify a `threads` property in the [custom configuration](/guide/#configuring-kuzzle) of the Plugin.
 
@@ -78,20 +80,22 @@ If there are more than 1 thread for that plugin, each time a listened event is f
 As the Plugin is isolated in separated processes, the <a href="#the-plugin-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
 </aside>
 
-## Listening synchronously
+## Listening synchronously (adding a pipe)
 
-Plugins enable you to add synchronous listener functions to a set of [events](#kuzzle-events-list). Listener functions are supplied with these events data, they are able to intercept the request, modify the data and interrupt its life-cycle.
+Plugins enable you to add synchronous listener functions to a set of [events](#kuzzle-events-list). We'll call these synchronous listener functions **pipes** from now on.
+
+Pipes are supplied with these events data, they are able to intercept the request, modify the data and interrupt its life-cycle.
 Kuzzle waits for their results before continuing the process.
 
-Synchronous listeners are a part of how Kuzzle processes client requests, thus Kuzzle enforces a timeout on them, rejecting the request altogether if a synchronous listener fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError](#gt-error-gatewaytimeouterror) error to the original client.  
-The timeout value can be configured in Kuzzle configuration file.
+Pipes are a step in the process of handling client requests, thus Kuzzle enforces a timeout on them, rejecting the request altogether if a synchronous listener fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError](#gt-error-gatewaytimeouterror) error to the client.  
+The timeout value can be configured in [Kuzzle configuration file](/guide/#configuring-kuzzle).
 
-Synchronous listeners are declared in the `pipes` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
-Each listener function must also be exported.
+Pipes are declared in the `pipes` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
+Each pipes must also be exported.
 
-A single event can be listened by multiple synchronous listeners. When this is the case, they behave like middleware functions. Kuzzle calls them sequentially, without any particular order, piping the data from one function to the other.
+A single event can be listened by multiple pipes. When this is the case, they behave like middleware functions (like a pipeline). Kuzzle calls them sequentially, without any particular order, piping the data from one function to the other.
 
-Synchronous listener functions take a callback as their last parameter, which **must** be called at the end of the processing with the following arguments: `callback(error, object)`, where:
+Pipes take a callback as their last parameter, which **must** be called at the end of the processing with the following arguments: `callback(error, object)`, where:
 
 * `error`: set this value to a `KuzzleError` object to make Kuzzle abort the request, and return that error to the client. Otherwise, set it to `null`
 * `object`: the resulting data, given back to Kuzzle for processing

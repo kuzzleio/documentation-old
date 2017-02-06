@@ -121,7 +121,7 @@ A common practice is to copy the Plugin code in `plugins/available` and create a
 
 #### Configuring Plugins
 
-When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context](/plugin-reference/#the-plugin-context) and the custom configuration. Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file](#configuring-kuzzle).
+When initializing a Plugin, Kuzzle (both Core and Proxy) calls its `init(customConfig, context)` method, passing the [context](/plugin-reference/#the-plugin-context) and the custom configuration. Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file](#configuring-kuzzle).
 
 ```json
 {
