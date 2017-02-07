@@ -10,7 +10,7 @@
 // For browsers not supporting websocket, use socket.io instead
 <script>
   var
-    socket = new WebSocket("ws://localhost:7513"),
+    socket = new WebSocket("ws://localhost:7511"),
     channel;
 
   socket.onmessage = function (payload) {
@@ -79,7 +79,7 @@
 ```html
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script>
-  var socket = io("http://localhost:7512");
+  var socket = io("http://localhost:7511");
 
   // step 1 - we prepare ourself to receive Kuzzle's subscription response and then listen to the created channel.
   socket.once("mySubscription", function (response) {

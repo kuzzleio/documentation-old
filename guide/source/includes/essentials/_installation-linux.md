@@ -132,7 +132,7 @@ kuzzle_1         | [✔] Kuzzle server ready
 
 The Kuzzle Back-office can be reached on http://localhost:3000.  
 Kuzzle HTTP API can be reached on http://localhost:7511/  
-Socket IO and Websocket channels can respectively be reached on ports 7512 and 7513.
+Socket IO and Websocket channels can be reached over the HTTP server, on port 7511.
 
 ##### Change external services hosts or ports
 

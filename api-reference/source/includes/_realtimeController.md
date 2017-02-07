@@ -329,7 +329,7 @@ who have subscribed to a subscription for which the filters match the message co
 ```html
 <script>
   var
-    socket = new WebSocket("ws://localhost:7513"),
+    socket = new WebSocket("ws://localhost:7511"),
     channel;
 
   socket.onmessage = function (payload) {
@@ -388,7 +388,7 @@ who have subscribed to a subscription for which the filters match the message co
  */
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script>
-    var socket = io("http://localhost:7512");
+    var socket = io("http://localhost:7511");
 
     socket.once("mySubscription", function (response) {
       console.log(response);

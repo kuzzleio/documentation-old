@@ -6,6 +6,9 @@ title: Connecting to Kuzzle
 
 The connection to Kuzzle depends on the protocol to be used.
 
+Both HTTP, WebSocket and SocketIO protocols are shipped in Kuzzle's core.
+Other protocols can be added with [Protocol Plugins](/plugin-reference/#protocol-plugins).
+
 
 ## HTTP
 
@@ -17,7 +20,6 @@ The connection to Kuzzle depends on the protocol to be used.
 
 By default, Kuzzle exposes itself on the 7511 port. Assuming the Kuzzle server runs locally,
 it can be reached on `http://localhost:7511/`.
-Note that HTTP is the only protocol shipped in Kuzzle's core.
 
 The default response is the [ServerInfo](?http#serverinfo) controller.
 With this you will get detailed information about available HTTP API routes.
@@ -33,12 +35,12 @@ With this you will get detailed information about available HTTP API routes.
 
 ```html
 <script>
-    var socket = new WebSocket("ws://localhost:7513");
+    var socket = new WebSocket("ws://localhost:7511");
 </script>
 ```
 
-By default, Kuzzle embarks our official [WebSocket](https://www.npmjs.com/package/kuzzle-plugin-websocket) plugin,
-accepting websocket requests on the 7513 port.
+By default, Kuzzle enables the core websockets protocol,
+accepting websocket requests via the http server (on port 7511 by default).
 
 
 ## Socket.io (WebSocket-like)
@@ -52,14 +54,13 @@ accepting websocket requests on the 7513 port.
 ```html
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script>
-    var socket = io("http://localhost:7512");
+    var socket = io("http://localhost:7511");
 </script>
 ```
 
 To ensure compatibility with older web browsers, our official docker images embeds the
-[Socket.io](https://www.npmjs.com/package/kuzzle-plugin-socketio) protocol plugin.
+Kuzzle embeds a socketio protocol, accepting socket requests via the http server (on port 7511 by default).
 
-By default, this plugin listens to the port 7512.
 
 
 ## MQTT protocols

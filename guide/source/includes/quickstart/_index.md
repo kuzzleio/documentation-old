@@ -40,11 +40,11 @@ $ curl "http://localhost:7511/?pretty=true"
 Kuzzle will respond you with a list of the existing routes.
 
 <aside class="success">
-Kuzzle is up and running. It will accept requests at the following addresses:
+Kuzzle is up and running. It will accept requests at <code>localhost:7511</code>:
 <ul>
-  <li><code>localhost:7511</code> via <strong>standard HTTP requests,</strong></li>
-  <li><code>localhost:7513</code> via a <strong>Websocket</strong> client (like the <a href="https://github.com/kuzzleio/sdk-javascript">Javascript SDK</a>),</li>
-  <li><code>localhost:7512</code> via <strong>Socket.IO</strong> (used as a fallback by the SDK on browsers that do not provide Websocket support).</li>
+  <li>via <strong>standard HTTP requests,</strong></li>
+  <li>via a <strong>Websocket</strong> client (like the <a href="https://github.com/kuzzleio/sdk-javascript">Javascript SDK</a>),</li>
+  <li>via <strong>Socket.IO</strong> (used as a fallback by the SDK on browsers that do not provide Websocket support).</li>
 </ul>
 </aside>
 
