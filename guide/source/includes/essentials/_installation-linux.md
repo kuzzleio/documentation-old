@@ -32,10 +32,10 @@ Your terminal will show the log messages of Kuzzle's components starting. After 
 kuzzle_1         | [✔] Kuzzle server ready
 ```
 
-Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7511">http://localhost:7511</a> or via cURL on the command line:
+Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512">http://localhost:7512</a> or via cURL on the command line:
 
 ```bash
-$ curl "http://localhost:7511/?pretty"
+$ curl "http://localhost:7512/?pretty"
 ```
 
 Kuzzle will respond you with a list of the existing routes.
@@ -131,8 +131,8 @@ kuzzle_1         | [✔] Kuzzle server ready
 ```
 
 The Kuzzle Back-office can be reached on http://localhost:3000.  
-Kuzzle HTTP API can be reached on http://localhost:7511/  
-Socket IO and Websocket channels can be reached over the HTTP server, on port 7511.
+Kuzzle HTTP API can be reached on http://localhost:7512/  
+Socket IO and Websocket channels can be reached over the HTTP server, on port 7512.
 
 ##### Change external services hosts or ports
 
@@ -155,7 +155,7 @@ Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with
 
 ### Select the Kuzzle server to connect to
 
-The Kuzzle Backoffice automatically looks for a Kuzzle server on `localhost:7513`. If none is present, you will be prompted to choose a Kuzzle instance to connect to.
+The Kuzzle Backoffice automatically looks for a Kuzzle server on `localhost:7512`. If none is present, you will be prompted to choose a Kuzzle instance to connect to.
 
 You can tell the Backoffice to connect to any Kuzzle server by clicking on the **"Choose Environment"** dropdown menu, then by selecting **"Create new"**.
 

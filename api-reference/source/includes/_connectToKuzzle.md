@@ -15,11 +15,11 @@ Other protocols can be added with [Protocol Plugins](/plugin-reference/#protocol
 <section class="http"></section>
 
 ```bash
- $ curl "http://localhost:7511/"
+ $ curl "http://localhost:7512/"
 ```
 
-By default, Kuzzle exposes itself on the 7511 port. Assuming the Kuzzle server runs locally,
-it can be reached on `http://localhost:7511/`.
+By default, Kuzzle exposes itself on the 7512 port. Assuming the Kuzzle server runs locally,
+it can be reached on `http://localhost:7512/`.
 
 The default response is the [ServerInfo](?http#serverinfo) controller.
 With this you will get detailed information about available HTTP API routes.
@@ -35,12 +35,12 @@ With this you will get detailed information about available HTTP API routes.
 
 ```html
 <script>
-    var socket = new WebSocket("ws://localhost:7511");
+    var socket = new WebSocket("ws://localhost:7512");
 </script>
 ```
 
 By default, Kuzzle enables the core websockets protocol,
-accepting websocket requests via the http server (on port 7511 by default).
+accepting websocket requests via the http server (on port 7512 by default).
 
 
 ## Socket.io (WebSocket-like)
@@ -54,12 +54,12 @@ accepting websocket requests via the http server (on port 7511 by default).
 ```html
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script>
-    var socket = io("http://localhost:7511");
+    var socket = io("http://localhost:7512");
 </script>
 ```
 
 To ensure compatibility with older web browsers, our official docker images embeds the
-Kuzzle embeds a socketio protocol, accepting socket requests via the http server (on port 7511 by default).
+Kuzzle embeds a socketio protocol, accepting socket requests via the http server (on port 7512 by default).
 
 
 

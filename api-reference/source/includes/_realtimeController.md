@@ -116,7 +116,7 @@ The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to s
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_listSubscriptions`  
+>**URL:** `http://kuzzle:7512/_listSubscriptions`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -172,8 +172,8 @@ Lists all subscriptions on all indexes and all collections.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_publish`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_publish`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -329,7 +329,7 @@ who have subscribed to a subscription for which the filters match the message co
 ```html
 <script>
   var
-    socket = new WebSocket("ws://localhost:7511"),
+    socket = new WebSocket("ws://localhost:7512"),
     channel;
 
   socket.onmessage = function (payload) {
@@ -388,7 +388,7 @@ who have subscribed to a subscription for which the filters match the message co
  */
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script>
-    var socket = io("http://localhost:7511");
+    var socket = io("http://localhost:7512");
 
     socket.once("mySubscription", function (response) {
       console.log(response);
@@ -513,8 +513,8 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_validate`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>

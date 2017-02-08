@@ -5,7 +5,7 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>`  
+>**URL:** `http://kuzzle:7512/<index>`
 >**Method:** `POST`
 
 <section class="others"></section>
@@ -48,7 +48,7 @@ Create an `index` in Kuzzle's persistent storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>`  
+>**URL:** `http://kuzzle:7512/<index>`
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -88,7 +88,7 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/_exists`  
+>**URL:** `http://kuzzle:7512/<index>/_exists`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -126,7 +126,7 @@ Checks if the given index exists in Kuzzle storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/_autoRefresh`  
+>**URL:** `http://kuzzle:7512/<index>/_autoRefresh`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -178,7 +178,7 @@ The `getAutoRefresh` actions returns the current `autoRefresh` status for the gi
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_list`  
+>**URL:** `http://kuzzle:7512/_list`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -222,8 +222,8 @@ Returns the complete data indexes.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_mDelete`  
->**Method:** `DELETE`  
+>**URL:** `http://kuzzle:7512/_mDelete`
+>**Method:** `DELETE`
 >**Body:**
 
 <section class="http"></section>
@@ -289,7 +289,7 @@ The response contains the list of indexes that were actually deleted.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/_refresh`  
+>**URL:** `http://kuzzle:7512/<index>/_refresh`
 >**Method:** `POST`
 
 <section class="others"></section>
@@ -355,7 +355,7 @@ on it, making the documents visible to search immediately.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_refreshInternal`  
+>**URL:** `http://kuzzle:7512/_refreshInternal`
 >**Method:** `POST`
 
 <section class="others"></section>
@@ -415,7 +415,7 @@ on the internal index, making the documents visible to search immediately.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/_autoRefresh`  
+>**URL:** `http://kuzzle:7512/<index>/_autoRefresh`
 >**Method:** `POST`
 
 >Query

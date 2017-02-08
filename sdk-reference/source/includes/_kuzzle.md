@@ -8,20 +8,11 @@ Connects to a Kuzzle instance.
 
 
 ```js
-/*
- As this SDK embarks two protocols instead of just one (WebSocket and SocketIO),
- the "port" option has been replaced by a "wsPort" and "ioPort" ones, used
- to set, respectively, the WebSocket port and the SocketIO one.
-
- These ports are defaulted to Kuzzle default values, so you only have to change
- them if you modify the protocols default values server-side.
- */
 var kuzzle = new Kuzzle('localhost', {
   defaultIndex: 'some index',
   autoReconnect: true,
   headers: {someheader: "value"},
-  ioPort: 7512,
-  wsPort: 7513
+  port: 7512
 });
 
 // A callback is also available and will be invoked once connected to the Kuzzle instance:
@@ -81,21 +72,18 @@ Available options:
 | ``connect`` | string | Manually or automatically connect to the Kuzzle instance | ``auto`` |
 | ``defaultIndex`` | string | Set the default index to use | |
 | ``headers`` | JSON object | Common headers for all sent documents | |
-| ``ioPort`` | integer | (Javascript SDK only) Kuzzle network port for socket.io | 7512 |
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
-| ``port`` | integer | (All SDKs except Javascript) Kuzzle network port | 7512 |
+| ``port`` | integer | Kuzzle network port | 7512 |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | ``120000`` |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | ``500`` |
 | ``replayInterval`` | integer | Delay between each replayed requests, in milliseconds | ``10`` |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | ``1000`` |
 | ``sslConnection`` | boolean | Switch Kuzzle connection to SSL mode | ``false`` |
-| ``wsPort`` | integer | (Javascript SDK only) Kuzzle network port for websocket | 7513 |
 
 **Notes:**
 
 * the ``offlineMode`` option only accepts the ``manual`` and ``auto`` values
-* the Javascript SDK accepts `ioPort` and `wsPort` options instead of the `port` one. This is because this SDK supports 2 network protocols to ensure maximum performances AND compatibility depending on browsers capabilities
 
 ### Callback response
 
@@ -113,18 +101,16 @@ If the `connect` option is set to `manual`, the callback will be called after th
 | ``defaultIndex`` | string | Kuzzle's default index to use | get |
 | ``headers`` | JSON object | Common headers for all sent documents. | get/set |
 | ``host`` | string | Target Kuzzle host name/address | get/set |
-| ``ioPort`` | integer | (Javascript SDK only) Kuzzle network port for socket.io | 7512 |
 | ``jwtToken`` | string | Token used in requests for authentication. | get/set |
 | ``metadata`` | JSON object | Common metadata, will be sent to all future requests | get/set |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | get/set |
 | ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue | get/set |
-| ``port`` | integer | (All SDKs except Javascript) Kuzzle network port | 7512 |
+| ``port`` | integer | Kuzzle network port | 7512 |
 | ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | get/set |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | get/set |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | get/set |
 | ``replayInterval`` | integer | Delay between each replayed requests | get/set |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | get |
-| ``wsPort`` | integer | (Javascript SDK only) Kuzzle network port for websocket | 7513 |
 
 **Notes:**
 
@@ -137,7 +123,6 @@ If the `connect` option is set to `manual`, the callback will be called after th
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
 * the ``offlineQueueLoader`` must be set with a function, taking no argument, and returning an array of objects containing a `query` member with a Kuzzle query to be replayed, and an optional `cb` member with the corresponding callback to invoke with the query result
 * the ``host`` and ``port`` properties can be changed, but it will only be in effect at the next ``connect`` call
-* the Javascript SDK accepts `ioPort` and `wsPort` options instead of the `port` one. This is because this SDK supports 2 network protocols to ensure maximum performances AND compatibility depending on browsers capabilities
 
 ## Offline mode
 
@@ -1413,8 +1398,8 @@ catch (ErrorException $e) {
 
 Log a user according to a strategy and credentials.
 
-If the Kuzzle response contains a JWT Token, the SDK token is set and the `loginAttempt` event is fired immediately with the following object:  
-`{ success: true }`  
+If the Kuzzle response contains a JWT Token, the SDK token is set and the `loginAttempt` event is fired immediately with the following object:
+`{ success: true }`
 This is the case, for instance, with the `local` authentication strategy.
 
 If the request succeeds but there is no token, then it means that the chosen strategy is a two-steps authentication method, like OAUTH. In that case, the `loginAttempt` event is **not** fired. To complete the login attempt, the `setJwtToken` method must be called either with a token or with an appropriate Kuzzle response.

@@ -5,8 +5,8 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_checkToken`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/_checkToken`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -65,8 +65,8 @@ This API route does not require to be logged in.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/_me`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/users/_me`
+>**Method:** `GET`
 >**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 
 <section class="others"></section>
@@ -120,8 +120,8 @@ Gets the user object identified by the `JSON Web Token` provided in the query or
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/_me/_rights`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/users/_me/_rights`
+>**Method:** `GET`
 >**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 
 <section class="others"></section>
@@ -167,8 +167,8 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_login`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/_login`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -247,8 +247,8 @@ The **_login** action returns an encrypted JWT token, that must then be sent wit
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_logout`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/_logout`
+>**Method:** `GET`
 >**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 
 <section class="others"></section>
@@ -290,9 +290,9 @@ The **_logout** action doesn't take strategy.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_updateSelf`  
->**Method:** `PUT`  
->**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
+>**URL:** `http://kuzzle:7512/_updateSelf`
+>**Method:** `PUT`
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 >**Body**
 
 <section class="http"></section>

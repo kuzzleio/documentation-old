@@ -5,8 +5,8 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_count`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_count`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -70,8 +70,8 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_create[?refresh=wait_for]` or `http://kuzzle:7511/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]` or `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -135,8 +135,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/<documentId>[?refresh=wait_for]`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`
+>**Method:** `PUT`
 >**Body:**
 
 <section class="http"></section>
@@ -200,7 +200,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/<documentId>[?refresh=wait_for]`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -252,8 +252,8 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_query`  
->**Method:** `DELETE`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_query`
+>**Method:** `DELETE`
 >**Body:**
 
 <section class="http"></section>
@@ -318,7 +318,7 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/<documentId>`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -377,8 +377,8 @@ Only documents in the persistent data storage layer can be retrieved.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/<documentId>/_replace[?refresh=wait_for]`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_replace[?refresh=wait_for]`
+>**Method:** `PUT`
 >**Body:**
 
 <section class="http"></section>
@@ -442,8 +442,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_scroll/<scrollId>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/_scroll/<scrollId>`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -527,8 +527,8 @@ which tells Elasticsearch how long it should keep the “search context” alive
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_search[?from=0][&size=42]`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42]`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -626,8 +626,8 @@ for more details.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mCreate[?refresh=wait_for]`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreate[?refresh=wait_for]`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -770,8 +770,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mCreateOrReplace[?refresh=wait_for]`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreateOrReplace[?refresh=wait_for]`
+>**Method:** `PUT`
 >**Body:**
 
 <section class="http"></section>
@@ -895,7 +895,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
         "result": "updated"
       },
       {
-        // Other created or replaced documents 
+        // Other created or replaced documents
       }
     ],
     "total": <number of created or replaced documents>
@@ -912,8 +912,8 @@ Returns a partial error (with status 206) if one or more documents can not be cr
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mDelete[?refresh=wait_for]`  
->**Method:** `DELETE`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mDelete[?refresh=wait_for]`
+>**Method:** `DELETE`
 >**Body:**
 
 <section class="http"></section>
@@ -974,8 +974,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mGet`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mGet`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -1054,7 +1054,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
         "found": true
       }
       {
-        // Other documents 
+        // Other documents
       }
     ],
     "total": <number of retrieved documents>
@@ -1071,8 +1071,8 @@ Only documents in the persistent data storage layer can be retrieved.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mReplace[?refresh=wait_for]`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mReplace[?refresh=wait_for]`
+>**Method:** `PUT`
 >**Body:**
 
 <section class="http"></section>
@@ -1196,7 +1196,7 @@ Only documents in the persistent data storage layer can be retrieved.
         "result": "updated"
       },
       {
-        // Other replaced documents 
+        // Other replaced documents
       }
     ],
     "total": <number of replaced documents>
@@ -1216,8 +1216,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mUpdate[?refresh=wait_for]`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mUpdate[?refresh=wait_for]`
+>**Method:** `PUT`
 >**Body:**
 
 <section class="http"></section>
@@ -1337,8 +1337,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/<documentId>/_update[?refresh=wait_for]`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for]`
+>**Method:** `PUT`
 >**Body:**
 
 <section class="http"></section>
@@ -1406,8 +1406,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_validate`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
