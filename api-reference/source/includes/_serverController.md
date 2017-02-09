@@ -371,7 +371,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
         "ttl": 3600
       },
       "validation": {},
-      "version": "1.0.0-RC8"
+      "version": "1.0.0-RC9"
     },
     "plugins": {
       "config": {
