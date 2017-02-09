@@ -72,7 +72,7 @@ The `action permission` value can be set either to:
 You can find a **comprehensive summary of all the available controllers** and actions by sending a `GET` request to the root endpoint of the Kuzzle API via the HTTP protocol:
 
 ```bash
-$ curl -XGET http://localhost:7511/\?pretty\=true
+$ curl -XGET http://localhost:7512/\?pretty\=true
 ```
 
 Take a look at the example below:

@@ -5,7 +5,7 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<data>/<collection>`  
+>**URL:** `http://kuzzle:7512/<data>/<collection>`
 >**Method:** `PUT`
 
 <section class="others"></section>
@@ -49,7 +49,7 @@ This method does nothing if the collection already exists.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_specifications`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_specifications`
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -90,7 +90,7 @@ It responds 200 even there where no validation specification manually set before
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_exists`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_exists`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -130,7 +130,7 @@ Checks if a collection exists in Kuzzle database storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mapping`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mapping`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -185,8 +185,8 @@ Gets the mapping of the given `collection`.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_specifications`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_specifications`
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -254,7 +254,7 @@ index and collection if some specifications has been defined first.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/_list(/<all|stored|realtime>)[?from=0][&size=42]`  
+>**URL:** `http://kuzzle:7512/<index>/_list(/<all|stored|realtime>)[?from=0][&size=42]`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -327,8 +327,8 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_searchSpecifications`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/_searchSpecifications`
+>**Method:** `POST`
 >**Body**
 
 <section class="http"></section>
@@ -383,34 +383,34 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
     },
     "hits": [
       {
-        "_id": "myIndex#myCollection", 
-        "_index": "%kuzzle", 
-        "_score": 1, 
+        "_id": "myIndex#myCollection",
+        "_index": "%kuzzle",
+        "_score": 1,
         "_source": {
-          "collection": "myCollection", 
-          "index": "myIndex", 
+          "collection": "myCollection",
+          "index": "myIndex",
           "validation": {
             "fields": {
               "fieldName": {
-                "defaultValue": "a default value", 
-                "mandatory": true, 
+                "defaultValue": "a default value",
+                "mandatory": true,
                 "multivalued": {
-                  "maxCount": 5, 
-                  "minCount": 1, 
+                  "maxCount": 5,
+                  "minCount": 1,
                   "value": true
-                }, 
-                "type": "string", 
+                },
+                "type": "string",
                 "typeOptions": {
                   "length": {
-                    "max": 12, 
+                    "max": 12,
                     "min": 2
                   }
                 }
               }
-            }, 
+            },
             "strict": true
           }
-        }, 
+        },
         "_type": "validations"
       }
     ],
@@ -429,7 +429,7 @@ Allows to search in the persistence layer for collection specifications.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_truncate`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_truncate`
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -472,8 +472,8 @@ It is also faster than deleting all documents from a collection using a query.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<index>/<collection>/_mapping`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mapping`
+>**Method:** `PUT`
 >**Body:**
 
 <section class="http"></section>
@@ -563,8 +563,8 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_specifications`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/_specifications`
+>**Method:** `PUT`
 >**Body:**
 
 <section class="http"></section>
@@ -668,8 +668,8 @@ When the validation specification is not well formatted, a detailed error messag
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_validateSpecifications`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/_validateSpecifications`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>

@@ -5,7 +5,7 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_adminExists`  
+>**URL:** `http://kuzzle:7512/_adminExists`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -44,7 +44,7 @@ Checks if an administrator account has been created, and return a boolean as a r
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_getAllStats`  
+>**URL:** `http://kuzzle:7512/_getAllStats`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -114,7 +114,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_getConfig`  
+>**URL:** `http://kuzzle:7512/_getConfig`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -419,7 +419,7 @@ Returns the current Kuzzle configuration as loaded at Kuzzle start.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_getLastStats`  
+>**URL:** `http://kuzzle:7512/_getLastStats`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -483,7 +483,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_getStats[?startTime=123456789][&stopTime=234567890]`  
+>**URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`
 >**Method:** `POST`
 
 <section class="others"></section>
@@ -557,7 +557,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_serverInfo`  
+>**URL:** `http://kuzzle:7512/_serverInfo`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -681,7 +681,7 @@ Retrieves information about Kuzzle, its plugins and active services.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_now`  
+>**URL:** `http://kuzzle:7512/_now`
 >**Method:** `GET`
 
 <section class="others"></section>

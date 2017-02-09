@@ -66,7 +66,7 @@ $ ln -s ../available/kuzzle-plugin-helloworld .
 $ pm2 restart KuzzleServer
 ```
 
-Once Kuzzle has restarted (that's what the last command is for) you can check the server information at `http://localhost:7511/?pretty=true` for the new `hello` endpoint:
+Once Kuzzle has restarted (that's what the last command is for) you can check the server information at `http://localhost:7512/?pretty=true` for the new `hello` endpoint:
 
 ```json
 {
@@ -91,7 +91,7 @@ Once Kuzzle has restarted (that's what the last command is for) you can check th
 
 ```
 
-Which means you can call the `http://localhost:7511/kuzzle-plugin-helloworld/hello/` route and get the following response:
+Which means you can call the `http://localhost:7512/kuzzle-plugin-helloworld/hello/` route and get the following response:
 
 ```json
 {

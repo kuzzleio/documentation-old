@@ -10,7 +10,7 @@
 // For browsers not supporting websocket, use socket.io instead
 <script>
   var
-    socket = new WebSocket("ws://localhost:7513"),
+    socket = new WebSocket("ws://localhost:7512"),
     channel;
 
   socket.onmessage = function (payload) {

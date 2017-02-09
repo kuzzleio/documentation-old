@@ -16,7 +16,7 @@ The following diagram shows how the Request flows between the client application
 
 ![read_scenario_http_details](./images/request-scenarios/read-http/details.png)
 
-* The HTTP client asks for a document via a HTTP GET Request. For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the collection `users`: `GET http://kuzzle:7511/mainindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
+* The HTTP client asks for a document via a HTTP GET Request. For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the collection `users`: `GET http://kuzzle:7512/mainindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
 * The proxy forwards the Request through the HTTP Entry point to the Router, which handles it and forwards the formatted Request to the Funnel.
 
 The formatted Request `input` looks like the following:

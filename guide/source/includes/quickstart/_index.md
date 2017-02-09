@@ -31,20 +31,20 @@ Your terminal will show the log messages of Kuzzle's components starting. After 
 kuzzle_1         | [✔] Kuzzle server ready
 ```
 
-Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7511?pretty=true">http://localhost:7511?pretty=true</a> or via cURL on the command line:
+Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512?pretty=true">http://localhost:7512?pretty=true</a> or via cURL on the command line:
 
 ```bash
-$ curl "http://localhost:7511/?pretty=true"
+$ curl "http://localhost:7512/?pretty=true"
 ```
 
 Kuzzle will respond you with a list of the existing routes.
 
 <aside class="success">
-Kuzzle is up and running. It will accept requests at the following addresses:
+Kuzzle is up and running. It will accept requests at <code>localhost:7512</code>:
 <ul>
-  <li><code>localhost:7511</code> via <strong>standard HTTP requests,</strong></li>
-  <li><code>localhost:7513</code> via a <strong>Websocket</strong> client (like the <a href="https://github.com/kuzzleio/sdk-javascript">Javascript SDK</a>),</li>
-  <li><code>localhost:7512</code> via <strong>Socket.IO</strong> (used as a fallback by the SDK on browsers that do not provide Websocket support).</li>
+  <li>via <strong>standard HTTP requests,</strong></li>
+  <li>via a <strong>Websocket</strong> client (like the <a href="https://github.com/kuzzleio/sdk-javascript">Javascript SDK</a>),</li>
+  <li>via <strong>Socket.IO</strong> (used as a fallback by the SDK on browsers that do not provide Websocket support).</li>
 </ul>
 </aside>
 

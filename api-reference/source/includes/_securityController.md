@@ -5,8 +5,8 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<userId>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7511/_createFirstAdmin[?reset=1]`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/<userId>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7512/_createFirstAdmin[?reset=1]`
+>**Method:** `POST`
 >**Body**
 
 <section class="http"></section>
@@ -101,8 +101,8 @@ Other mandatory additional information are needed depending on the authenticatio
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/<profileId>`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/profiles/<profileId>`
+>**Method:** `PUT`
 >**Body**
 
 <section class="http"></section>
@@ -201,8 +201,8 @@ Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a p
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<roleId>`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/roles/<roleId>`
+>**Method:** `PUT`
 >**Body**
 
 <section class="http"></section>
@@ -287,8 +287,8 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<userId>`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/users/<userId>`
+>**Method:** `PUT`
 >**Body**
 
 <section class="http"></section>
@@ -356,8 +356,8 @@ The `user` is created if it does not exists yet or replaced with the given objec
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/<profileId>/_create`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/profiles/<profileId>/_create`
+>**Method:** `POST`
 >**Body**
 
 <section class="http"></section>
@@ -459,8 +459,8 @@ Creates a profile with a new list of roles.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<roleId>/_create`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/roles/<roleId>/_create`
+>**Method:** `POST`
 >**Body**
 
 <section class="http"></section>
@@ -546,8 +546,8 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<userId>/_create` or `http://kuzzle:7511/users/_create`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/users/<userId>/_create` or `http://kuzzle:7512/users/_create`
+>**Method:** `POST`
 >**Body**
 
 <section class="http"></section>
@@ -645,8 +645,8 @@ Other mandatory additional information are needed depending on the authenticatio
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<userId>/_createRestricted` or `http://kuzzle:7511/users/_createRestricted`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/users/<userId>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`
+>**Method:** `POST`
 >**Body**
 
 <section class="http"></section>
@@ -739,7 +739,7 @@ Other mandatory additional information are needed depending on the authenticatio
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_profiles/<profileId>`  
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>`
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -784,7 +784,7 @@ that the related roles will NOT be deleted.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<roleId>`  
+>**URL:** `http://kuzzle:7512/roles/<roleId>`
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -828,7 +828,7 @@ Given a `role id`, deletes the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<userId>`  
+>**URL:** `http://kuzzle:7512/users/<userId>`
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -872,7 +872,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_profiles/<profileId>`  
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -919,7 +919,7 @@ Given a `profile id`, retrieves the corresponding profile from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/_mapping`  
+>**URL:** `http://kuzzle:7512/profiles/_mapping`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -999,7 +999,7 @@ Gets the mapping of the internal `profiles` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_profiles/<profileId>/_rights`  
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>/_rights`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1048,7 +1048,7 @@ Given a `profile id`, retrieves the corresponding rights.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<role id>`  
+>**URL:** `http://kuzzle:7512/roles/<role id>`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1098,7 +1098,7 @@ Given a `role id`, retrieves the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/_mapping`  
+>**URL:** `http://kuzzle:7512/roles/_mapping`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1141,7 +1141,7 @@ Gets the mapping of the internal `roles` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<userId>`  
+>**URL:** `http://kuzzle:7512/users/<userId>`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1187,7 +1187,7 @@ Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/_mapping`  
+>**URL:** `http://kuzzle:7512/users/_mapping`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1273,7 +1273,7 @@ Gets the mapping of the internal `users` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/_users/<userId>/_rights`  
+>**URL:** `http://kuzzle:7512/_users/<userId>/_rights`
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1319,8 +1319,8 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/_mDelete`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/profiles/_mDelete`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -1371,8 +1371,8 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/_mDelete`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/roles/_mDelete`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -1423,8 +1423,8 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/_mDelete`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/users/_mDelete`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -1476,8 +1476,8 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/_mGet`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/profiles/_mGet`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -1532,8 +1532,8 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/_mGet`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/roles/_mGet`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -1608,8 +1608,8 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/_search[?from=0][&size=42]`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/profiles/_search[?from=0][&size=42]`
+>**Method:** `POST`
 >**Body**
 
 <section class="http"></section>
@@ -1709,8 +1709,8 @@ Available filters:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/_search[?from=0][&size=42]`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/roles/_search[?from=0][&size=42]`
+>**Method:** `POST`
 >**Body:**
 
 <section class="http"></section>
@@ -1797,8 +1797,8 @@ Available filters:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/_search[?from=0][&size=42]`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42]`
+>**Method:** `POST`
 >**Body**
 
 <section class="http"></section>
@@ -1901,8 +1901,8 @@ The `from` and `size` arguments allow pagination.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/<profile id>/_update`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/profiles/<profile id>/_update`
+>**Method:** `PUT`
 >**Body**
 
 <section class="http"></section>
@@ -1997,7 +1997,7 @@ Given a `profile id`, updates the matching Profile object in Kuzzle's database l
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/profiles/_mapping`
+>**URL:** `http://kuzzle:7512/profiles/_mapping`
 >**Method:** `PUT`
 >**Body:**
 
@@ -2083,8 +2083,8 @@ But if you want to store more information about your users, Kuzzle's API offers 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/<roleId>/_update`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/roles/<roleId>/_update`
+>**Method:** `PUT`
 >**Body**
 
 <section class="http"></section>
@@ -2163,7 +2163,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/roles/_mapping`
+>**URL:** `http://kuzzle:7512/roles/_mapping`
 >**Method:** `PUT`
 >**Body:**
 
@@ -2249,8 +2249,8 @@ But if you want to store more information about your users, Kuzzle's API offers 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/<userId>/_update`  
->**Method:** `PUT`  
+>**URL:** `http://kuzzle:7512/users/<userId>/_update`
+>**Method:** `PUT`
 >**Body**
 
 <section class="http"></section>
@@ -2309,7 +2309,7 @@ Given a `user id`, updates the matching User object in Kuzzle's database layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/users/_mapping`
+>**URL:** `http://kuzzle:7512/users/_mapping`
 >**Method:** `PUT`
 >**Body:**
 
