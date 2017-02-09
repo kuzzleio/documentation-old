@@ -1,15 +1,23 @@
-# Plugin types
+# Plugin Features
 
-To plug itself to Kuzzle, a plugin exposes properties, telling Kuzzle what the plugin does, and how and when it should be invoked.
+Depending on the properties it exposes, a plugin can extend of one or several of the following features of Kuzzle:
 
-Depending on the properties it exposes, a plugin can be of one or several of the following types detailed below.
+* Core
+  - Listening asynchronously to events (on the same thread or a separate one),
+  - Listening synchronously to events (and intercept the Request life-cycle),
+  - Adding a controller route,
+  - Adding a new authentication strategy.
+* Proxy
+  - Adding a new communication protocol.
 
-## Listener plugins
+## Listening asynchronously (adding a hook)
 
-`listener` plugins simply listen to events, and are supplied with these events data. These plugins cannot change the provided data, and Kuzzle does not wait for them to process the data either.
+Plugins enable you to add asynchronous listener functions to a set of [events](#kuzzle-events-list). We'll call these asynchronous listener functions **hooks** from now on.
 
-To configure a plugin as a `listener` on Kuzzle events, it needs to expose a `hooks` JSON object, linking Kuzzle events name with the names of plugin functions to execute.  
-Each function that Kuzzle needs to call must also be exposed.
+Hooks are supplied with these events data. They cannot change the provided data, and Kuzzle does not wait for them to process the data either.
+
+Hooks are declared in the `hooks` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
+Each hook must also be exported.
 
 **Example**
 
@@ -31,7 +39,7 @@ function MyPlugin () {
    Required plugin initialization function
    (see the "Plugin prerequisites" section)
    */
-  this.init = function (config, context) {
+  this.init = function (customConfig, context) {
     // initializes the plugin
   };
 
@@ -49,54 +57,48 @@ function MyPlugin () {
 module.exports = MyPlugin;
 ```
 
-## Worker plugins
+### Executing hooks in separate threads
 
-A `worker` plugin is simply a `listener` plugin running in separate processes. This is especially useful when you have to perform cost-heavy operations without impeding Kuzzle performances.
+Plugins declaring hooks can also be executed in separate threads. This is handy when they perform heavy computations that may corrupt the performances of the Kuzzle Core.
 
-To convert a `listener` plugin to a `worker` one, you only need to add the following attribute to the [plugin configuration](#gt-plugin-default-configuration): `threads: <number of threads>`
+To achieve this, Kuzzle must specify a `threads` property in the [custom configuration](/guide/#configuring-kuzzle) of the Plugin.
+
+```json
+{
+  "plugins": {
+    "kuzzle-plugin-blabla": {
+      "threads": 1
+    }
+  }
+}
+```
 
 If this number of threads is greater than 0, Kuzzle will launch the plugin on as many separate threads.  
 If there are more than 1 thread for that plugin, each time a listened event is fired, Kuzzle will pick one thread to notify using round-robin.
 
 <aside class="notice">
-As worker plugins are isolated in separated processes, the <a href="#the-plugin-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
+As the Plugin is isolated in separated processes, the <a href="#the-plugin-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
 </aside>
 
-Plugin configuration example:
+## Listening synchronously (adding a pipe)
 
-```json
-{
-  "version": "2.0.1",
-  "defaultConfig": {
-    "threads": 2
-  },
-  "activated": true
-}
-```
+Plugins enable you to add synchronous listener functions to a set of [events](#kuzzle-events-list). We'll call these synchronous listener functions **pipes** from now on.
 
+Pipes are supplied with these events data, they are able to intercept the request, modify the data and interrupt its life-cycle.
+Kuzzle waits for their results before continuing the process.
 
-## Pipe plugins
+Pipes are a step in the process of handling client requests, thus Kuzzle enforces a timeout on them, rejecting the request altogether if a synchronous listener fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError](#gt-error-gatewaytimeouterror) error to the client.  
+The timeout value can be configured in [Kuzzle configuration file](/guide/#configuring-kuzzle).
 
-`pipe` plugins, like `listener` plugins, are attached to Kuzzle events, and they are supplied with these events data.  
-But unlike `listener` plugins, Kuzzle waits for their results before continuing the process.
+Pipes are declared in the `pipes` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
+Each pipes must also be exported.
 
-This means that `pipe` plugins may:
+A single event can be listened by multiple pipes. When this is the case, they behave like middleware functions (like a pipeline). Kuzzle calls them sequentially, without any particular order, piping the data from one function to the other.
 
-* modify the provided data on the fly
-* instruct Kuzzle to abort the request, sending an immediate and custom answer to the requesting client
-
-Where a listener exposes a `hooks` property, a pipe plugin needs to expose its events in a `pipes` one, listing the listened events, and the plugin functions to invoke whenever these events are fired (see the example below).
-
-Since `pipe` plugins are a part of how Kuzzle processes client requests, Kuzzle enforces a timeout on them, rejecting the request altogether if a `pipe` plugin fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError](#gt-error-gatewaytimeouterror) error to the original client.  
-The timeout value can be configured in Kuzzle configuration file.
-
-A single event can be listened by multiple `pipe` plugins. When this is the case, Kuzzle calls the attached plugins sequentially, without any particular order.
-
-`pipe` plugins functions take a callback as their last parameter, and this callback **must** be called at the end of the processing with the following arguments: `callback(error, object)`, where:
+Pipes take a callback as their last parameter, which **must** be called at the end of the processing with the following arguments: `callback(error, object)`, where:
 
 * `error`: set this value to a `KuzzleError` object to make Kuzzle abort the request, and return that error to the client. Otherwise, set it to `null`
 * `object`: the resulting data, given back to Kuzzle for processing
-
 
 The following plugin example adds a `createdAt` attribute to all newly created documents:
 
@@ -119,7 +121,7 @@ function MyPlugin () {
     Required plugin initialization function
     (see the "Plugin prerequisites" section)
    */
-  this.init = function (config, context) {
+  this.init = function (customConfig, context) {
     // Plugin initialization
   };
 
@@ -134,12 +136,11 @@ function MyPlugin () {
 module.exports = MyPlugin;
 ```
 
-## Controller plugins
+## Adding a controller route
 
 Kuzzle API is divided into "controllers", each one of them exposing "actions" to execute (see [API reference](/api-reference/#common-attributes)).
 
-`controller` plugins extend Kuzzle API by adding new controllers to it, each with their own list of available actions.
-
+Plugins enable to add a set of new controllers to the Kuzzle public API, each with their own list of available actions.
 
 ### How is the API extended
 
@@ -147,8 +148,7 @@ To avoid name conflicts, added controllers are prefixed with the plugin name.
 
 Examples:
 
-- HTTP: `GET http://<server>:<port>/_plugin/<plugin name>/<url defined by the plugin>/<resources>`
-
+- HTTP: `GET http://<server>:<port>/<plugin name>/<url defined by the plugin>/<resources>`
 - Other protocols:
 
 ```javascript
@@ -159,14 +159,12 @@ Examples:
 }
 ```
 
-### How to implement a `controller` plugin
+### Implementing a controller route
 
-A controller plugin must expose to Kuzzle the following objects:
+To create a new controller, the Plugin must expose to Kuzzle the following objects:
 
-- A `controllers` object, describing the new controller to add. It will automatically be made available to any network protocol, except for HTTP
-
-- A `routes` objects, describing how the new controller should be exposed to the HTTP protocol. Only GET and POST verbs are accepted.
-
+- A `controllers` object, describing the new controller(s) to add. It will automatically be made available to any network protocol, except for HTTP
+- A `routes` objects, describing how the new controller(s) should be exposed to the HTTP protocol. Only GET and POST verbs are accepted.
 - Controller's actions functions. These methods take a `Request` object as an argument, and must return a `Promise` resolving with the action's result, or rejecting with a KuzzleError object.
 
 ### Controller plugin implementation example
@@ -193,8 +191,8 @@ function MyPlugin () {
    */
   this.controllers = {
     newController: {
-      myAction: 'actionImplementation',
-      myOtherAction: 'otherActionImplementation'
+      myAction: 'actionFunction',
+      myOtherAction: 'otherActionFunction'
     }
   };
 
@@ -207,14 +205,14 @@ function MyPlugin () {
     The first route exposes the following GET URL:
       http://<kuzzle server>:<port>/_plugin/<plugin name>/foo/<dynamic value>
 
-    Kuzzle will provide the function 'actionImplementation' with a Request object,
+    Kuzzle will provide the function 'actionFunction' with a Request object,
     containing the "name" property: request.input.args.name = '<dynamic value>'
 
     The second route exposes the following POST URL:
       http://<kuzzle server>:<port>/_plugin/<plugin name>/bar
 
     Kuzzle will provide the content body of the request in the Request object
-    passed to the function 'otherActionImplementation', in the request.input.body
+    passed to the function 'otherActionFunction', in the request.input.body
     property
    */
   this.routes = [
@@ -226,7 +224,7 @@ function MyPlugin () {
     Required plugin initialization function
     (see the "Plugin prerequisites" section)
    */
-  this.init = function (config, context) {
+  this.init = function (customConfig, context) {
     // plugin initialization
   };
 
@@ -240,7 +238,7 @@ function MyPlugin () {
     See the "How plugins receive action arguments" chapter just below
     for more information.
    */
-  this.actionImplementation = function (request) {
+  this.actionFunction = function (request) {
     // do action
 
     // optional: set network specific headers
@@ -263,7 +261,7 @@ function MyPlugin () {
     See the "How plugins receive action arguments" chapter just below
     for more information.
    */
-  this.otherActionImplementation = function (request) {
+  this.otherActionFunction = function (request) {
     // do action
     return Promise.resolve(/* result content */);
 
@@ -274,7 +272,7 @@ function MyPlugin () {
 module.exports = MyController;
 ```
 
-### How plugins receive action arguments
+### How Plugins receive action arguments
 
 All action functions receive a [Request](#gt-constructor-request) object as main argument. Kuzzle will fill it with arguments provided by clients invoking the added controller:
 
@@ -288,44 +286,115 @@ All action functions receive a [Request](#gt-constructor-request) object as main
   * the following fields at the root of the provided JSON objects are available in `request.input.resource`: `index`, `collection`, `_id`
   * any unrecognized property at the root of the provided JSON object will be stored in the `request.input.args` part of the `Request` object
 
+## Adding a new authentication strategy
 
-## Protocol plugins
+Kuzzle handles users security and authentication. The supported authentication strategies can be extended by Plugins.
 
-Kuzzle core only supports HTTP communications natively. All other supported protocols are implemented as `protocol` plugins.  
-By default, the Kuzzle official docker image is shipped with the following protocol plugins:
+Any strategy supported by [Passport](http://passportjs.org/) can be used to extend Kuzzle supported strategies, like we did with our official [OAUTH2 Authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth).  
+
+### Choose or implement a Passport strategy
+
+[Passport](http://passportjs.org) supports a wide range of authentication strategies. If that is not enough, you can also implement your own strategy for your authentication Plugin.
+
+In any case, the chosen strategy must be available in the Plugin local directory when Kuzzle installs it, either by adding the strategy in the Plugin's NPM dependencies, or by including the strategy code directly in the Plugin repository.
+
+### Create a verification function
+
+Since Kuzzle uses [Passport](http://passportjs.org) directly, using a strategy with Kuzzle is the same as using one with Passport.
+
+First, you have to implement a [`verify` function](http://passportjs.org/docs/configure), which will be provided to a Passport strategy constructor. This function is then used by the Passport strategy to authorize or to deny access to a user.
+
+The number of arguments taken by this `verify` function depends on the authentication strategy. For instance, a `local password` strategy needs the `verify` callback to be provided with an `user` name and his `password`.
+
+All strategies require this `verify` callback to take a `done` callback as its last argument, supplying Passport with the authenticated user's information.
+
+### Register the strategy to Kuzzle
+
+Once you chose a strategy and implemented its corresponding `verify` callback function, all you have to do is to register it to Kuzzle, using the `passport` accessor available in the plugin context:
+
+```js
+pluginContext.accessors.passport.use(strategy);
+```
+
+### (optional) Scope of access
+
+Some authentication procedures, like OAUTH 2.0, need a [scope of access](http://passportjs.org/docs/oauth) to be configured.
+
+Kuzzle Plugins support scope of access. To add one in your plugin, simply expose a `scope` attribute. Its format depends on the provider the strategy implements.
+
+
+### LocalStrategy Example
+
+<aside class="notice">
+Passport strategy constructors take a "verify" callback. As the following example demonstrates, if the provided callback uses "this.[attribute]" attributes, then it's necessary to bind the provided callback to the Plugin's context
+</aside>
+
+```javascript
+const LocalStrategy = require('passport-local').Strategy;
+
+function MyAuthenticationPlugin () {
+  this.context = null;
+
+  /*
+    Required plugin initialization function
+    (see the "Plugin prerequisites" section)
+   */
+  this.init = function (customConfig, pluginContext) {
+    this.context = pluginContext;
+
+    this.context.accessors.passport.use(new LocalStrategy(this.verify.bind(this)));
+  }
+
+  this.verify = function (username, password, done) {
+    // Code performing the necessary verifications
+    if (success) {
+      done(null, this.context.accessors.users.load(username));
+    }
+    else {
+      done(new this.context.errors.ForbiddenError('Login failed'));
+    }
+  };
+};
+
+// Exports the plugin objects, allowing Kuzzle to instantiate it
+module.exports = MyAuthenticationPlugin;
+```
+
+## Adding a new communication protocol
+
+Kuzzle core only supports HTTP communications natively. All other supported protocols are implemented by Plugins installed on the Kuzzle Proxy.
+By default, the Kuzzle Proxy official docker image is shipped with the following protocol plugins:
 
 * [Socket.io](https://www.npmjs.com/package/kuzzle-plugin-socketio)
 * [WebSocket](https://www.npmjs.com/package/kuzzle-plugin-websocket)
 
 ### How it works
 
-Requests sent by clients can be forwarded to Kuzzle by protocol plugins using the [`router` accessor](#gt-accessor-router)  
-To access these methods, simply call ``context.accessors.router.<router method>``:
+Requests sent by clients can be forwarded to Kuzzle using the [`router` accessor](#gt-accessor-router)  
+To access these methods, simply call `context.accessors.router.<router method>`:
 
 | Router method | Arguments    | Returns | Description              |
 |-----------------|--------------|---------|--------------------------|
-| ``newConnection`` | ``protocol name`` (string) <br/>``connection ID`` (string) | A promise resolving to a ``RequestContext`` object | Declares a new connection to Kuzzle. |
-| ``execute`` | ``request`` ([Request](#gt-constructor-request) object)<br/>``callback`` (a callback resolved with Kuzzle's response) |  | Executes a client request. |
-| ``removeConnection`` | ``RequestContext`` (obtained with ``newConnection``) | | Asks Kuzzle to remove the corresponding connection and all its subscriptions |
+| `newConnection` | `protocol name` (string) <br/>`connection ID` (string) | A promise resolving to a `RequestContext` object | Declares a new connection to Kuzzle. |
+| `execute` | `request` ([Request](#gt-constructor-request) object)<br/>`callback` (a callback resolved with Kuzzle's response) |  | Executes a client request. |
+| `removeConnection` | `RequestContext` (obtained with `newConnection`) | | Asks Kuzzle to remove the corresponding connection and all its subscriptions |
 
-
-Kuzzle expects `protocol` plugins to expose the following methods:
+Kuzzle Proxy expects Protocol Plugins to expose the following methods:
 
 | Method | Arguments | Description                 |
 |------|----------------|-----------------------------|
-| ``init`` | `pluginConfiguration, context` | [Plugin initialization function](#gt-plugin-init-function) |
-| ``joinChannel`` | `{channel, id}`| Tells protocol plugins that the connection `id` subscribed to the channel `channel` |
-| ``leaveChannel`` | `{channel, id}` | Tells protocol plugins that the connection `id` left the channel `channel` |
-| ``notify`` | `{channels, id, payload}` | Asks protocol plugins to emit a data `payload` (JSON Object) to the connection `id` (string), on the channels  `channels` (array of strings)|
-| ``broadcast`` | `{channels, payload}` | Asks protocol plugins to emit a data `payload` (JSON Object) to clients connected to the channels list `channels` (array of strings) |
-| ``disconnect`` | `id` | Asks protocol plugins to force-close the connection `id` |
+| `init` | `pluginConfiguration, context` | [Plugin initialization function](#gt-plugin-init-function) |
+| `joinChannel` | `{channel, id}`| Tells Protocol Plugins that the connection `id` subscribed to the channel `channel` |
+| `leaveChannel` | `{channel, id}` | Tells Protocol Plugins that the connection `id` left the channel `channel` |
+| `notify` | `{channels, id, payload}` | Asks Protocol Plugins to emit a data `payload` (JSON Object) to the connection `id` (string), on the channels  `channels` (array of strings)|
+| `broadcast` | `{channels, payload}` | Asks Protocol Plugins to emit a data `payload` (JSON Object) to clients connected to the channels list `channels` (array of strings) |
+| `disconnect` | `id` | Asks protocol plugins to force-close the connection `id` |
 
-The connection `id` Kuzzle sends to plugins is the one declared by `protocol` plugins using `context.accessors.router.newConnection`.
+The connection `id` Kuzzle sends to Plugins is the one declared by Protocol Plugins using `context.accessors.router.newConnection`.
 
 *For more information about channels, see our [API Documentation](/api-reference/#subscribe)*
 
-
-### `protocol` plugin implementation example
+### Implementation example
 
 ```javascript
 function MyPlugin () {
@@ -338,7 +407,7 @@ function MyPlugin () {
    Required plugin initialization function
    (see the "Plugin prerequisites" section)
   */
-  this.init = function (config, context) {
+  this.init = function (customConfig, context) {
     // plugin initialization
     this.pluginContext = context;
   };
@@ -430,74 +499,3 @@ module.exports = MyPlugin;
 ```
 
 
-## Authentication plugin
-
-Kuzzle handles users security and authentication. The supported authentication strategies can be extended using `authentication` plugins.
-
-Any strategy supported by [Passport](http://passportjs.org/) can be used to extend Kuzzle supported strategies, like we did with our official [OAUTH2 Authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth).  
-
-### Choose or implement a Passport strategy
-
-[Passport](http://passportjs.org) supports a wide range of authentication strategies. If that is not enough, you can also implement your own strategy for your authentication plugin.
-
-In any case, the chosen strategy must be available in the plugin local directory when Kuzzle installs it, either by adding the strategy in the plugin's NPM dependencies, or by including the strategy code directly in the plugin repository.
-
-### Create a verification function
-
-Since Kuzzle uses [Passport](http://passportjs.org) directly, using a strategy with Kuzzle is the same than using one with Passport.
-
-First, you have to implement a [`verify` function](http://passportjs.org/docs/configure), which will be provided to a Passport strategy constructor. This function is then used by the Passport strategy to authorize or to deny access to a user.
-
-The number of arguments taken by this `verify` function depends on the authentication strategy. For instance, a `local password` strategy needs the `verify` callback to be provided with an `user` name and his `password`.
-
-All strategies require this `verify` callback to take a `done` callback as its last argument, supplying Passport with the authenticated user's information.
-
-### Register the strategy to Kuzzle
-
-Once you chose a strategy and implemented its corresponding `verify` callback function, all you have to do is to register it to Kuzzle, using the `passport` accessor available in the plugin context:
-
-```js
-pluginContext.accessors.passport.use(strategy);
-```
-
-### (optional) Scope of access
-
-Some authentication procedures, like OAUTH 2.0, need a [scope of access](http://passportjs.org/docs/oauth) to be configured.
-
-Kuzzle authentication plugins support scope of access. To add one in your plugin, simply expose a `scope` attribute. Its format depends on the provider the strategy implements.
-
-
-### Authentication plugin example, using the LocalStrategy strategy
-
-<aside class="notice">Passport strategy constructors take a "verify" callback. As the following example demonstrates, if the provided callback uses "this.[attribute]" attributes, then it's necessary to bind the provided callback to the plugin's context</aside>
-
-```javascript
-const LocalStrategy = require('passport-local').Strategy;
-
-function MyAuthenticationPlugin () {
-  this.context = null;
-
-  /*
-    Required plugin initialization function
-    (see the "Plugin prerequisites" section)
-   */
-  this.init = function (pluginConfiguration, pluginContext) {
-    this.context = pluginContext;
-
-    this.context.accessors.passport.use(new LocalStrategy(this.verify.bind(this)));
-  }
-
-  this.verify = function (username, password, done) {
-    // Code performing the necessary verifications
-    if (success) {
-      done(null, this.context.accessors.users.load(username));
-    }
-    else {
-      done(new this.context.errors.ForbiddenError('Login failed'));
-    }
-  };
-};
-
-// Exports the plugin objects, allowing Kuzzle to instantiate it
-module.exports = MyAuthenticationPlugin;
-```
