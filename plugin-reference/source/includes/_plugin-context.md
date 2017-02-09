@@ -25,7 +25,7 @@ Here is the list of shared objects contained in the provided ``context``:
 ## Accessor
 
 <aside class="notice">
-<a href="#gt-worker-plugins">Worker plugins</a> don't have access to accessors
+<a href="#executing-listeners-in-separate-threads">Plugins executed on separate threads</a> don't have access to accessors.
 </aside>
 
 ### `execute`
