@@ -55,10 +55,6 @@ $ ./bin/kuzzle clearCache
 
 Kuzzle relies on the Redis service to store some frequently accessed internal data. If you need to restart Kuzzle with a fresh cache, this command can come in hand.
 
-### plugins
-
-Please refer to the [dedicated plugin CLI documentation](#managing-plugins-using-the-cli).
-
 ### reset
 
 ```
