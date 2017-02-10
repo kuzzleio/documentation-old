@@ -11,8 +11,8 @@ Please refer to the code samples on the right pane for more detail on the specif
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/<action route>[route options]`  
->**Method:** `get|post|put|delete`  
+>**URL:** `http://kuzzle:7512/<action route>[route options]`
+>**Method:** `get|post|put|delete`
 >**Body:** Can be empty (usually with get and delete methods) or a JSON object
 of the resource body (usually with post and put methods).
 
@@ -41,10 +41,10 @@ to forward your queries to the right Kuzzle controller.
   "action": "<action>",
 
   // Index on which the action is handled (empty for actions that do not manage a unique index)
-  "index": "<data index>",
+  "index": "<index>",
 
   // Collection on which the action is handled (empty for actions that do not manage a unique collection)
-  "collection": "<data collection>",
+  "collection": "<collection>",
 
   // A set of filters matching documents you want to listen to
   "body": {..}
@@ -109,7 +109,7 @@ identify which query generated the response you got, the best way is to provide 
 <section class="http"></section>
 
 ```bash
- $ curl -H "Authorization: Bearer <encrypted_jwt_token>" "http://localhost:7511/..."
+ $ curl -H "Authorization: Bearer <encrypted_jwt_token>" "http://localhost:7512/..."
 ```
 
 <section class="others"></section>
@@ -120,7 +120,7 @@ identify which query generated the response you got, the best way is to provide 
   "requestId": "<unique request identifier>",
   "controller": "<controller>",
   "action": "<action>",
-  "collection": "<data collection>",
+  "collection": "<collection>",
 
   // Request headers:
   "jwt": "<encrypted_jwt_token>"

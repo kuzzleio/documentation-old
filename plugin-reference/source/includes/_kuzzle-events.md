@@ -1,22 +1,23 @@
 # Kuzzle events list
 
+Every time Kuzzle receives a request coming from a client, it routes it towards a Controller and an Action, that process it and send the results back to the client. Each step of this life-cycle triggers an event. Below are the different types of events that Plugins can listen to.
 
 ## auth
 
-Events triggered when a request is treated in the [`auth` controller](http://kuzzle.io/documentation/api-reference/#auth-controller).
+Events triggered when a request is treated in the [`auth` controller](/api-reference/#auth-controller)
 
-| Event                 | Description                                                        | Input         |
-|-----------------------|--------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `auth:after<Action>`  | All actions in `auth` controller trigger an event after executing  | Type: Request |
 | `auth:before<Action>` | All actions in `auth` controller trigger an event before executing | Type: Request |
 
 
 ## bulk
 
-Events triggered when a request is treated in the [`bulk` controller](http://kuzzle.io/documentation/api-reference/#bulk-controller).
+Events triggered when a request is treated in the [`bulk` controller](/api-reference/#bulk-controller)
 
-| Event               | Description                                                                 | Input         |
-|---------------------|-----------------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `bulk:afterImport`  | The `import` action in `bulk` controller triggers an event after executing  | Type: Request |
 | `bulk:beforeImport` | The `import` action in `bulk` controller triggers an event before executing | Type: Request |
 
@@ -25,8 +26,8 @@ Events triggered when a request is treated in the [`bulk` controller](http://kuz
 
 Events triggered when a database reset is asked to the command-line interface.
 
-| Event                   | Description                                                      | Input                                                                                         |
-|-------------------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `cleanDb:deleteIndexes` | Triggered during `cleanDb` process just before indexes deletion. | Type: Request object.<br> Contains all indexes to delete in `requestObject.data.body.indexes` |
 | `cleanDb:done`          | Triggered after indexes deletion.                                | /                                                                                             |
 | `cleanDb:error`         | Triggered when an error occurred on clean db                     | Type: Error                                                                                   |
@@ -34,10 +35,10 @@ Events triggered when a database reset is asked to the command-line interface.
 
 ## collection
 
-Events triggered when a request is treated in the [`collection` controller](http://kuzzle.io/documentation/api-reference/#collection-controller).
+Events triggered when a request is treated in the [`collection` controller](/api-reference/#collection-controller).
 
-| Event                       | Description                                                              | Input         |
-|-----------------------------|--------------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `collection:after<Action>`  | All actions in `collection` controller trigger an event after executing  | Type: Request |
 | `collection:before<Action>` | All actions in `collection` controller trigger an event before executing | Type: Request |
 
@@ -46,8 +47,8 @@ Events triggered when a request is treated in the [`collection` controller](http
 
 Events triggered to synchronize Kuzzle server instances in a cluster.
 
-| Event                                   | Description                                                            | Input                |
-|-----------------------------------------|------------------------------------------------------------------------|----------------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `core:kuzzleStart`                      | Emitted when Kuzzle is started                                         | /                    |
 | `core:hotelClerk:addSubscription`       | Sends a diff containing the filters and internal hotelClerk updates    | hcR object           |
 | `core:hotelClerk:join`                  | Sends hotelClerk diff when a room is joined                            | hcR object           |
@@ -60,27 +61,27 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 
 ## index
 
-Events triggered when a request is treated in the [`index` controller](http://kuzzle.io/documentation/api-reference/#index-controller).
+Events triggered when a request is treated in the [`index` controller](/api-reference/#index-controller).
 
-| Event                  | Description                                                         | Input         |
-|------------------------|---------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `index:after<Action>`  | All actions in `index` controller trigger an event after executing  | Type: Request |
 | `index:before<Action>` | All actions in `index` controller trigger an event before executing | Type: Request |
 
 
 ## document
 
-Events triggered when a request is treated in the [`document` controller](http://kuzzle.io/documentation/api-reference/#document-controller).
+Events triggered when a request is treated in the [`document` controller](/api-reference/#document-controller).
 
-| Event                     | Description                                                            | Input         |
-|---------------------------|------------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `document:after<Action>`  | All actions in `document` controller trigger an event after executing  | Type: Request |
 | `document:before<Action>` | All actions in `document` controller trigger an event before executing | Type: Request |
 
 ## http
 
-| Event                     | Description                                                            | Input         |
-|---------------------------|------------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `http:options` | Triggered whenever a HTTP OPTIONS methods is handled | Type: Request |
 
 ## internalBroker
@@ -89,8 +90,8 @@ Events triggered when a request is treated in the [`document` controller](http:/
 
 Events triggered by the Kuzzle internal message broker, used to transmit data between Kuzzle instances.
 
-| Event                          | Description                                        | Input                                                |
-|--------------------------------|----------------------------------------------------|------------------------------------------------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `internalBroker:connected`     | Triggered when the internal broker is connected    | Type: String.<br> `'Connected to Kuzzle server'`     |
 | `internalBroker:error`         | Triggered when an error occured in internal broker | Type: Object.<br> {host, port, message, retry}       |
 | `internalBroker:reregistering` | Triggered when the internal broker is reregistered | Type: String.<br> `'Re-registering room: ' + room`   |
@@ -100,10 +101,10 @@ Events triggered by the Kuzzle internal message broker, used to transmit data be
 
 ## ms (memoryStorage)
 
-Events triggered when a request is sent to the [`memoryStorage` controller](http://kuzzle.io/documentation/api-reference/#memorystorage-controller).
+Events triggered when a request is sent to the [`memoryStorage` controller](/#memorystorage-controller).
 
-| Event              | Description                                                                 | Input         |
-|--------------------|-----------------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 |`ms:after<Action>`  | All actions in `memoryStorage` controller trigger an event after executing  | Type: Request |
 |`ms:before<Action>` | All actions in `memoryStorage` controller trigger an event before executing | Type: Request |
 
@@ -112,8 +113,8 @@ Events triggered when a request is sent to the [`memoryStorage` controller](http
 
 Events triggered during Kuzzle startup, when the database is prepared for Kuzzle's use.
 
-| Event                             | Description                                                                      | Input                                                                                                   |
-|-----------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `prepareDb:createFixturesIndex`   | Triggered during database preparation. Called for each index in fixtures         | Type: Request.<br> Contains the index to create in `requestObject.index`                                |
 | `prepareDb:createInternalIndex`   | Triggered on Kuzzle start to create the internal index `%kuzzle`                 | Type: Request.<br> Contains the internal index in `requestObject.index`                                 |
 | `prepareDb:error`                 | Triggered when an error occurred during database preparation                     | Type: Error.                                                                                            |
@@ -128,8 +129,8 @@ Events triggered during Kuzzle startup, when the database is prepared for Kuzzle
 
 Events triggered when interacting with `proxy`.
 
-| Event                | Description                                                                               | Input                                                                                                                                                                          |
-|----------------------|-------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `proxy:broadcast`    | Triggered before broadcast. You can't modify the input on this event                      | Type: Object.<br> `{payload, channelsList}`<br> `payload` is the notification content. <br>`channelsList` is an array of channels to broadcast.                                |
 | `proxy:joinChannel`  | Triggered after attaching a user to a room. You can't modify the input on this event      | Type: Object.<br> `{channel, id}`<br> `channel` is the channel name.<br> `id` is the connection id                                                                             |
 | `proxy:leaveChannel` | Triggered before a room is removed for the user. You can't modify the input on this event | Type: Object.<br> `{channel, id}`<br> `channel` is the channel name.<br> `id` is the connection id                                                                             |
@@ -138,10 +139,10 @@ Events triggered when interacting with `proxy`.
 
 ## realtime
 
-Events triggered when a request is sent to the [`realtime` controller](http://kuzzle.io/documentation/api-reference/#realtime-controller).
+Events triggered when a request is sent to the [`realtime` controller](/api-reference/#realtime-controller).
 
-| Event                    | Description                                                            | Input         |
-|--------------------------|------------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 |`realtime:after<Action>`  | All actions in `realtime` controller trigger an event after executing  | Type: Request |
 |`realtime:before<Action>` | All actions in `realtime` controller trigger an event before executing | Type: Request |
 
@@ -149,18 +150,18 @@ Events triggered when a request is sent to the [`realtime` controller](http://ku
 
 Events triggered on subscription rooms activity.
 
-| Event         | Description                                                                                    | Input                                                              |
-|---------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `room:new`    | Triggered when a new room is added in the rooms list. You can't modify the input on this event | Type: Object. <br> `{roomId, index, collection, formattedFilters}` |
 | `room:remove` | Triggered after a room is removed from the list. You can't modify the input on this event      | Type: String.<br> The room id                                      |
 
 
 ## security
 
-Events triggered when a request is sent to the [`security` controller](http://kuzzle.io/documentation/api-reference/#security-controller).
+Events triggered when a request is sent to the [`security` controller](/api-reference/#security-controller).
 
-| Event                                 | Description                                                                           | Input         |
-|---------------------------------------|---------------------------------------------------------------------------------------|---------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `security:after<Action>`              | All actions in `security` controller trigger an event after executing                 | Type: Request |
 | `security:before<Action>`             | All actions in `security` controller trigger an event before executing                | Type: Request |
 | `security:formatUserForSerialization` | Triggered before serializing a user. Useful to clean a user like attribute `password` | Type: User    |
@@ -168,9 +169,9 @@ Events triggered when a request is sent to the [`security` controller](http://ku
 
 ## server
 
-Events triggered on server special events or when a request is sent to the [`server` controller](http://kuzzle.io/documentation/api-reference/#server-controller).
+Events triggered on server special events or when a request is sent to the [`server` controller](/api-reference/#server-controller).
 
-| Event                   | Description                                                          | Input                                                                 |
-|-------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------|
+| Event | Description | Payload |
+|-------|-------------|---------|
 | `server:after<Action>`  | All actions in `server` controller trigger an event after executing  | Type: Request                                                         |
 | `server:before<Action>` | All actions in `server` controller trigger an event before executing | Type: Request                                                         |

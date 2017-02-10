@@ -13,11 +13,10 @@ You can create a subscription by selecting a set of data. Selections (also calle
 
 #### SDK
 
-Kuzzle ships with a set of open-source [SDK](http://kuzzle.io/documentation/sdk-reference) for a variety of languages:
+Kuzzle ships with a set of open-source [SDK](/sdk-reference) for a variety of languages:
 
 - [Javascript](https://github.com/kuzzleio/sdk-javascript) (NodeJS & Browsers)
 - [Android](https://github.com/kuzzleio/sdk-android)
-- [iOS](https://github.com/kuzzleio/sdk-ios)
 - [PHP](https://github.com/kuzzleio/sdk-php)
 - C (planned)
 

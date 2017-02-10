@@ -25,12 +25,12 @@ Here is the list of shared objects contained in the provided ``context``:
 ## Accessor
 
 <aside class="notice">
-<a href="#gt-worker-plugins">Worker plugins</a> don't have access to accessors
+<a href="#executing-listeners-in-separate-threads">Plugins executed on separate threads</a> don't have access to accessors.
 </aside>
 
 ### `execute`
 
-Sends a request to [Kuzzle API](http://kuzzle.io/documentation/api-reference).
+Sends a request to [Kuzzle API](/api-reference).
 
 #### Arguments
 
@@ -121,7 +121,7 @@ Forward a request to Kuzzle.
 #### Callback
 
 The callback is invoked once the request has been processed by Kuzzle.  
-The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response](http://kuzzle.io/documentation/api-reference/#kuzzle-response).
+The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response](/api-reference/#kuzzle-response).
 
 ### `router.removeConnection`
 
@@ -347,7 +347,7 @@ A resolved promise if the provided filters are valid, or a rejected one with the
 
 ### `Request`
 
-This constructor is used to transform an [API call](http://kuzzle.io/documentation/api-reference/?websocket#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](http://kuzzle.io/documentation/api-reference/#kuzzle-response) to be forwarded to the requesting client.
+This constructor is used to transform an [API call](/api-reference/?others#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](/api-reference/?others#kuzzle-response) to be forwarded to the requesting client.
 
 Network protocol specific headers can be added to the response. If the protocol can handle them, these headers will be used to configure the response sent to the client.    
 As Kuzzle supports the HTTP protocol natively, this object handles HTTP headers special cases. Other network protocols headers are stored in raw format, and protocol plugins need to handle their own specific headers manually.
@@ -417,13 +417,13 @@ Writable
 
 Any undefined attribute from the list above will be set to null.
 
-Please refer to our [API Reference](http://kuzzle.io/documentation/api-reference/?websocket) for a complete list of controllers-actions and their purposes.
+Please refer to our [API Reference](/api-reference/?others) for a complete list of controllers-actions and their purposes.
 
 Getters
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](http://kuzzle.io/documentation/api-reference/?websocket#kuzzle-response) |
+| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](/api-reference/?others#kuzzle-response) |
 
 
 #### `response.getHeader`

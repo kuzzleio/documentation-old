@@ -45,7 +45,7 @@ services:
   proxy:
     image: kuzzleio/proxy
     ports:
-      - "7511-7513:7511-7513"
+      - "7512:7512"
 
   kuzzle:
     image: kuzzleio/kuzzle

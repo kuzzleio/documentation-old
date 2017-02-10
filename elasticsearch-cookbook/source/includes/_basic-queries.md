@@ -12,7 +12,7 @@ The `match_all` query returns all the documents in the collection, it can be use
 ### Without query parameters
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "match_all": {}
   }
@@ -110,7 +110,7 @@ Returns all the documents in the blogpost collection (because we have less than 
 To change this behaviour, 2 query parameters are available : `from` and `size`:
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty&from=3&size=2" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty&from=3&size=2" -d '{
   "query": {
     "match_all": {}
   }
@@ -175,7 +175,7 @@ We recommend you to read the [Elasticsearch documentation](https://www.elastic.c
 Returns the documents with the matching `id`.
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "ids": {
       "values": ["2", "4"]
@@ -235,7 +235,7 @@ Reply:
 The `query_string` query is a way to "talk" directly to the core engine of Elasticsearch. If you are used to use Solr, it will look familiar.
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "query_string": {
       "query": "_id:1 OR _id:2"
@@ -297,7 +297,7 @@ The `match` query is the one you want to use to perform a full text search. The 
 It results in a set of documents where a score is applied.
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "match": {
       "title":"hate cake"
@@ -354,7 +354,7 @@ Reply:
 You can see that the second document does not contain cake at all but is still matching. This is because, by default, the `match` query operator applies a `or` operand to the provided searched terms. To return documents matching all tokens, you have to use the `and` operator:
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "match": {
       "title": {
@@ -403,7 +403,7 @@ Reply:
 The `prefix` query matches all the documents where the given field has a value that begins with the given string. In the following example, we want to match all the documents where the value of field status begins with `pub`:
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "prefix": {
       "status":"pub"
@@ -463,7 +463,7 @@ Reply:
 The `range` query matches all the documents where the value of the given field is included within the specified range. In the following example, we want to match all the document where `published_date` is included within the two specified dates:
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "range": {
       "publish_date": {
@@ -540,7 +540,7 @@ Reply:
 The `term` query is used to find exact matches on the *indexed* value of a field. It should not be used on analyzed fields: the analyzed value that is indexed is a modified version of the input value. Analyzers are explain during the cookbook you can come back when it is clearer.
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "term": {
       "status": "pending"
@@ -599,7 +599,7 @@ Reply:
 Behaves exactly like `term`, but with multiple possible exact matches.
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "terms": {
       "status": ["pending", "archived"]
@@ -674,7 +674,7 @@ Reply:
 The `exists` query matches the documents where a given field is present:
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "exists": {
       "field": "author"
@@ -772,7 +772,7 @@ Reply:
 The `missing` query is deprecated. Elasticsearch recommends to use the `exists` query in a `must_not` occurence of a `bool` compound query (and this will introduce you to the `bool` query :-) ).
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
       "must_not": {
@@ -809,7 +809,7 @@ Reply:
 If you want to sort your result set in a different order than the `_score` default sort or compound the `_score` sort with other fields, you can specify the sort order alongside to the query:
 
 ```json
-curl -g -X GET "http://localhost:9200/example/blogpost/_search?pretty" -d '{
+curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "match_all": {}
   },

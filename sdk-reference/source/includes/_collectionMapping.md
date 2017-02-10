@@ -1,9 +1,9 @@
-# KuzzleDataMapping
+# CollectionMapping
 
 When creating a new data collection in the persistent data storage layer, Kuzzle uses a default mapping.
 It means that, by default, you won't be able to exploit the full capabilities of our persistent data storage layer (currently handled by [ElasticSearch](https://www.elastic.co/products/elasticsearch)), and your searches may suffer from below-average performances, depending on the amount of data you stored in a collection and the complexity of your database.
 
-The KuzzleDataMapping object allow to get the current mapping of a data collection and to modify it if needed.
+The CollectionMapping object allow to get the current mapping of a data collection and to modify it if needed.
 
 <aside class="notice">
 Once a field mapping has been set, it cannot be removed without reconstructing the data collection.
@@ -14,42 +14,25 @@ Once a field mapping has been set, it cannot be removed without reconstructing t
 ```js
 /*
  Constructors are not exposed in the JS/Node SDK.
- KuzzleDataMapping objects are returned by the method
- KuzzleDataCollection.getMapping
+ CollectionMapping objects are returned by the method
+ Collection.getMapping
 
- You may also use the KuzzleDataCollection.dataMappingFactory() method:
+ You may also use the Collection.collectionMapping() method:
  */
-var mapping = kuzzle.dataCollectionFactory('collection', 'index').dataMappingFactory();
+var mapping = kuzzle.collection('collection', 'index').collectionMapping();
 
-mapping = kuzzle.dataCollectionFactory('collection', 'index').dataMappingFactory(mapping);
+mapping = kuzzle.collection('collection', 'index').collectionMapping(mapping);
 ```
 
 ```java
-KuzzleDataMapping dataMapping = new KuzzleDataMapping(dataCollection);
+CollectionMapping dataMapping = new CollectionMapping(dataCollection);
 
 JSONObject mapping = new JSONObject();
 JSONObject type = new JSONObject();
 type.put("type", "string");
 mapping.put("foo", type);
 
-KuzzleDataMapping dataMapping = new KuzzleDataMapping(dataCollection, mapping);
-```
-
-```objective_c
-KuzzleDataMapping* dataMapping = [[KuzzleDataMapping alloc] initWithCollection: myCollection];
-
-NSDictionary* mappping = @{
-                           @"foo": @{
-                                   @"type": @"string"
-                                   }
-                           };
-KuzzleDataMapping* dataMapping = [[KuzzleDataMapping alloc] initWithCollection: myCollection mapping: mappping];
-```
-
-```swift
-let dataMapping = KuzzleDataMapping(collection: dataCollection)
-
-let dataMapping = KuzzleDataMapping(collection: dataCollection!, mapping: ["foo": ["type": "string"]])
+CollectionMapping dataMapping = new CollectionMapping(dataCollection, mapping);
 ```
 
 ```php
@@ -66,17 +49,17 @@ $mapping = [
 ];
 
 $kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->dataCollectionFactory('collection', 'index');
+$dataCollection = $kuzzle->collection('collection', 'index');
 
-$dataMapping = $dataCollection->dataMappingFactory($mapping);
+$dataMapping = $dataCollection->collectionMapping($mapping);
 // $dataMapping instanceof DataMapping
 ```
 
-### KuzzleDataMapping(KuzzleDataCollection, [mapping])
+### CollectionMapping(Collection, [mapping])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``KuzzleDataCollection`` | JSON Object | An instanciated KuzzleDataCollection object |
+| ``Collection`` | JSON Object | An instantiated Collection object |
 | ``mapping`` | JSON Object | Optional mapping |
 
 ## Properties
@@ -86,7 +69,7 @@ $dataMapping = $dataCollection->dataMappingFactory($mapping);
 | ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
 | ``mapping`` | object | Easy-to-understand list of mappings per field | get/set |
 
-**Note:** the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
+**Note:** the ``headers`` property is inherited from the provided ``Collection`` object and can be overrided
 
 ## apply
 
@@ -103,9 +86,9 @@ dataMapping.applyPromise().then(function (error, result) {
 ```
 
 ```java
-dataMapping.apply(new KuzzleResponseListener<KuzzleDataMapping>() {
+dataMapping.apply(new ResponseListener<CollectionMapping>() {
    @Override
-   public void onSuccess(KuzzleDataMapping object) {
+   public void onSuccess(CollectionMapping object) {
      // called once the mapping action has been completed
    }
 
@@ -114,33 +97,6 @@ dataMapping.apply(new KuzzleResponseListener<KuzzleDataMapping>() {
      // Handle error
    }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[dataMapping applyAndReturnError: &error callback:^(KuzzleDataMapping * mapping, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-```
-
-```swift
-do {
-  try dataMapping.apply(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleDataMapping object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -173,11 +129,11 @@ Available options:
 
 ### Return value
 
-Returns this `KuzzleDataMapping` object to allow chaining.
+Returns this `CollectionMapping` object to allow chaining.
 
 ### Callback response
 
-Resolves to this updated `KuzzleDataMapping` object.
+Resolves to this updated `CollectionMapping` object.
 
 ## refresh
 
@@ -194,9 +150,9 @@ dataMapping.refreshPromise().then(result => {
 ```
 
 ```java
-dataMapping.refresh(new KuzzleResponseListener<KuzzleDataMapping>() {
+dataMapping.refresh(new ResponseListener<CollectionMapping>() {
    @Override
-   public void onSuccess(KuzzleDataMapping object) {
+   public void onSuccess(CollectionMapping object) {
      // called once the mapping has been retrieved from Kuzzle
    }
 
@@ -205,33 +161,6 @@ dataMapping.refresh(new KuzzleResponseListener<KuzzleDataMapping>() {
      // Handle error
    }
 });
-```
-
-```objective_c
-NSError* error = nil;
-[dataMapping refreshAndReturnError: &error callback:^(KuzzleDataMapping * mapping, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-```
-
-```swift
-do {
-  try dataMapping.refresh(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleDataMapping object
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
@@ -247,7 +176,7 @@ use \Kuzzle\DataMapping;
 $dataMapping->refresh();
 ```
 
-Instanciates a new KuzzleDataMapping object with an up-to-date content.
+Instantiates a new CollectionMapping object with an up-to-date content.
 
 ### refresh([options], callback)
 
@@ -265,7 +194,7 @@ Available options:
 
 ### Callback response
 
-Resolves to this updated `KuzzleDataMapping` object.
+Resolves to this updated `CollectionMapping` object.
 
 ## set
 
@@ -280,24 +209,6 @@ mapping.put("index", "analyzed");
 mapping.put("null_value", "");
 
 dataMapping.set("field", mapping);
-```
-
-```objective_c
-NSDictionary* fieldValue = @{
-                             @"type": @"string",
-                             @"index": @"analyzed",
-                             @"null_value": @"",
-                             };
-[dataMapping setWithField: @"field" value: fieldValue];
-```
-
-```swift
-let fieldValue = [
-    "type": "string",
-    "index": "analyzed",
-    "null_value": ""
-]
-dataMapping.set(field: "field", value: fieldValue)
 ```
 
 ```php
@@ -333,7 +244,7 @@ Adds or updates a field mapping.
 
 ### Return value
 
-Returns this `KuzzleDataMapping` object to allow chaining.
+Returns this `CollectionMapping` object to allow chaining.
 
 ## setHeaders
 
@@ -344,34 +255,6 @@ dataMapping.setHeaders({someContent: 'someValue'}, true);
 ```java
 JSONObject headers = new JSONObject();
 headers.put("someContent", "someValue");
-dataMapping.setHeaders(headers, true);
-```
-
-```objective_c
-NSDictionary* headers = @{
-  @"someContent": @"someValue",
-  @"metadata": @{
-    @"someMetaData": @[
-      @"with",
-      @"some",
-      @"values"
-      ]
-    }
-  };
-[dataMapping setHeadersWithData: headers replace: YES];
-```
-
-```swift
-let headers = [
-  "someContent": "someValue",
-  "metadata": [
-    "someMetaData": [
-     "with",
-      "some",
-      "values"
-    ]
-  ]
-]
 dataMapping.setHeaders(headers, true);
 ```
 
@@ -405,4 +288,4 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ### Return value
 
-Returns this `KuzzleDataMapping` object to allow chaining.
+Returns this `CollectionMapping` object to allow chaining.

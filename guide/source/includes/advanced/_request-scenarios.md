@@ -16,7 +16,7 @@ The following diagram shows how the Request flows between the client application
 
 ![read_scenario_http_details](./images/request-scenarios/read-http/details.png)
 
-* The HTTP client asks for a document via a HTTP GET Request. For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the collection `users`: `GET http://kuzzle:7511/mainindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
+* The HTTP client asks for a document via a HTTP GET Request. For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the collection `users`: `GET http://kuzzle:7512/mainindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
 * The proxy forwards the Request through the HTTP Entry point to the Router, which handles it and forwards the formatted Request to the Funnel.
 
 The formatted Request `input` looks like the following:
@@ -152,7 +152,7 @@ Kuzzle is able to handle two different types of input:
 
 #### Writing persistent data
 
-This subsection describes the process for **persistent** data, with an example using the "_create_" action (see also [API Documentation](http://kuzzle.io/documentation/api-reference/#create)).
+This subsection describes the process for **persistent** data, with an example using the "_create_" action (see also [API Documentation](/api-reference/#create48)).
 
 ![persistence_overview](./images/request-scenarios/persistence/overview.png)
 
@@ -291,7 +291,7 @@ The following diagram shows how Kuzzle handles a new message and how subscribed 
 ![pubsub_scenario_details2](./images/request-scenarios/pubsub/details2.png)
 
 * A new content is published to the Notifier component. The `_publish_` method can be triggered:
-  * either directly by the Document Controller for non persistent data (using the [publish](http://kuzzle.io/documentation/api-reference/#publish) action).
+  * either directly by the Document Controller for non persistent data (using the [publish](/api-reference/#publish) action).
   * or by the Plugins Manager when a 'document:create' event is triggered, to notify users in real-time before the data are sent to the storage Engine.
 * The Notifier calls the DSL component to test registered filters that match the content, and get related rooms.
 * The Notifier uses the Notification Cache engine to store the mapping content/rooms into cache.

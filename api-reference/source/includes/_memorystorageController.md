@@ -5,7 +5,7 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7511/ms/_ping`  
+>**URL:** `http://kuzzle:7512/ms/_ping`
 >**Method:** `GET`
 
 <section class="others"></section>

@@ -1,14 +1,14 @@
-# KuzzleRoom
+# Room
 
 This object is the result of a subscription request, allowing to manipulate the subscription itself.
 
 In Kuzzle, you don't exactly subscribe to a room or a topic but, instead, you subscribe to documents.  
-What it means is that, to subscribe, you provide to Kuzzle a set of matching filters. Of course, providing an empty filter results in subcribing to all changes occuring on a data collection, emulating the behavior of a traditional topic.
+What it means is that, to subscribe, you provide to Kuzzle a set of matching filters. Of course, providing an empty filter results in subscribing to all changes occurring on a data collection, emulating the behavior of a traditional topic.
 
 Once you have subscribed, depending on the subscription configuration you provided, you may receive the following notifications:
 
-* a pub/sub message matches your criteria (realtime)
-* a matching document is about to be created or deleted (realtime)
+* a pub/sub message matches your criteria (real-time)
+* a matching document is about to be created or deleted (real-time)
 * a matching document is created, updated or deleted (once the change is effective in the database)
 * a user enters or leaves the room
 
@@ -48,7 +48,7 @@ You may subscribe multiple times to the same room, with identical or different s
   "requestId": "5897cd2f-a8a2-40b2-aa43-b31898172008",
   "controller": "subscribe",
   "action": "on",
-  "protocol": "protocol used by the notificating user",
+  "protocol": "protocol used by the notifying user",
   "timestamp": 1453193069592,
   "metadata": {
     "optional": "user informations"
@@ -68,7 +68,7 @@ On the right panel you can see a document and a user notification examples.
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
-| `result._source` | JSON object | Content of the document or realtime message that generated the notification | |
+| `result._source` | JSON object | Content of the document or real-time message that generated the notification | |
 | `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
 | `state` | string | Tells if the document is about to be changed, or if the change is effective | `pending`, `done` |
 
@@ -77,7 +77,7 @@ On the right panel you can see a document and a user notification examples.
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
-| `action` | string | Indicates if the user enters or leaves the susbcribed room | `on`, `off` |
+| `action` | string | Indicates if the user enters or leaves the subscribed room | `on`, `off` |
 | `metadata` | JSON object | If provided during subscription, contains application specific informations | |
 | `result.count` | integer | Updated number of users subscribing to this room | |
 
@@ -86,54 +86,38 @@ On the right panel you can see a document and a user notification examples.
 ```js
 /*
  Constructors are not exposed in the JS/Node SDK.
- KuzzleRoom objects are returned by KuzzleDataCollection.subscribe and
- KuzzleDocument.subscribe methods.
+ Room objects are returned by Collection.subscribe and
+ Document.subscribe methods.
 
- You may also use the KuzzleDataCollection.roomFactory() method:
+ You may also use the Collection.room() method:
  */
-var room = kuzzle.dataCollectionFactory('collection', 'index').roomFactory();
+var room = kuzzle.collection('collection', 'index').room();
 
 room = kuzzle
-  .dataCollectionFactory('collection', 'index')
-  .roomFactory({subscribeToSelf: false});
+  .collection('collection', 'index')
+  .room({subscribeToSelf: false});
 ```
 
 ```java
-KuzzleRoom room = new KuzzleRoom(dataCollection);
+Room room = new Room(dataCollection);
 
-KuzzleRoomOptions options = new KuzzleRoomOptions().setSubscribeToSelf(false);
-KuzzleRoom room = new KuzzleRoom(dataCollection, options);
-```
-
-```objective_c
-KuzzleRoom* room = [[KuzzleRoom alloc] initWithCollection: dataCollection];
-
-KuzzleRoomOptions* roomOptions = [[KuzzleRoomOptions alloc] init];
-roomOptions.subscribeToSelf = YES;
-KuzzleRoom* room = [[KuzzleRoom alloc] initWithCollection: dataCollection options: roomOptions];
-```
-
-```swift
-let room = KuzzleRoom(collection: dataCollection)
-
-let roomOptions = KuzzleRoomOptions()
-roomOptions.subscribeToSelf = true
-let room = KuzzleRoom(collection: dataCollection, options: roomOptions)
+RoomOptions options = new RoomOptions().setSubscribeToSelf(false);
+Room room = new Room(dataCollection, options);
 ```
 
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Creates a KuzzleRoom object.
+Creates a Room object.
 
-### KuzzleRoom(KuzzleDataCollection, [options])
+### Room(Collection, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``KuzzleDataCollection`` | object | an instantiated Kuzzle Data Collection object |
+| ``Collection`` | object | an instantiated Kuzzle Collection object |
 | ``options`` | object | Optional subscription configuration |
 
 Available options:
@@ -142,7 +126,7 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``scope`` | string | Filter document notifications depending on their scope status. You may receive entering documents (scope: ``in``), leaving documents (scope: ``out``), all documents changes (scope: ``all``) or filter these notifications completely (scope: ``none``). This filter does not affect pub/sub messages or user events. | ``all`` |
-| ``state`` | string | Filter document notifications depending on the state of the modifying request. You may receive realtime notifications when a document is about to be changed (state: ``pending``), or be notified when the change has been fully written in the database (state: ``done``), or both (state: ``all``). This filter does not affect pub/sub messages or user events. | ``done`` |
+| ``state`` | string | Filter document notifications depending on the state of the modifying request. You may receive real-time notifications when a document is about to be changed (state: ``pending``), or be notified when the change has been fully written in the database (state: ``done``), or both (state: ``all``). This filter does not affect pub/sub messages or user events. | ``done`` |
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | ``true`` |
 | ``users`` | string | Filter notifications fired upon a user entering the room (user: ``in``), leaving the room (user: ``out``), or both (user: ``all``). Setting this variable to ``none`` prevents receiving these notifications | ``none`` |
 
@@ -160,7 +144,7 @@ Available options:
 
 **Notes:**
 
-* the ``headers`` property is inherited from the provided ``KuzzleDataCollection`` object and can be overrided
+* the ``headers`` property is inherited from the provided ``Collection`` object and can be overridden
 * updating the ``metadata`` property takes effect after ``renew`` is called
 * by default, the global Kuzzle ``metadata`` properties are sent along with the subscription request. If a ``metadata`` option is provided during subscription, it will be merged with the global ``metadata`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
 
@@ -179,7 +163,7 @@ room.countPromise().then(result => {
 ```
 
 ```java
-room.count(new KuzzleResponseListener<Integer>() {
+room.count(new ResponseListener<Integer>() {
  @Override
  public void onSuccess(Integer result) throws Exception {
    //  ...
@@ -192,41 +176,10 @@ room.count(new KuzzleResponseListener<Integer>() {
 });
 ```
 
-```objective_c
-NSError* error = nil;
-[room countAndReturnError: &error callback:^(NSNumber * amount, NSError * _Nullable error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-do {
-  try room.count(callback: { result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is integer
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 > Callback response
@@ -254,7 +207,7 @@ Resolves to a `integer` containing the number of users subscribing to this room.
 room.renew({in: {field: ['some', 'new', 'filter']}}, function (err, res) {
   // called each time a change is detected on documents matching this filter
 
-  // check the KuzzleRoom/Notifications section of this documentation
+  // check the Room/Notifications section of this documentation
   // to get notification examples
 }, function (err, res) {
   // handles the subscription result
@@ -294,12 +247,12 @@ JSONObject filter = new JSONObject()
     )
   );
 
-room.renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
+room.renew(filters, new ResponseListener<NotificationResponse>() {
  @Override
- public void onSuccess(KuzzleNotificationResponse result) throws Exception {
+ public void onSuccess(NotificationResponse result) throws Exception {
    // called each time a change is detected on documents matching this filter
 
-   // check the KuzzleRoom/Notifications section of this documentation
+   // check the Room/Notifications section of this documentation
    // to get notification examples
  }
 
@@ -307,122 +260,26 @@ room.renew(filters, new KuzzleResponseListener<KuzzleNotificationResponse>() {
  public void onError(JSONObject error) throws Exception {
    // Handle error
  }
-}, new KuzzleResponseListener<KuzzleRoom>() {
+}, new ResponseListener<Room>() {
   // Handle the subscription result
 });
-```
-
-```objective_c
-NSError* error = nil;
-
-NSDictionary* inStatus = @{
-                             @"in": @{
-                                     @"status": @[
-                                             @"idle", @"wantToHire", @"toHire", @"riding"
-                                             ],
-                                     }};
-
-NSDictionary* inType = @{
-                           @"in": @{
-                                   @"type": @[@"cab"]
-                                   }
-                           };
-
-NSDictionary* geoDistance = @{
-                              @"geo_distance": @{
-                                      @"distance": @"10km",
-                                      @"pos": @{
-                                              @"lat": @"54.4838902",
-                                              @"lon": @"17.01559"
-                                              }
-                                      }
-                              };
-
-NSDictionary* filter = @{
-                         @"filter": @{
-                                 @"and": @[
-                                         inStatus,
-                                         inType,
-                                         geoDistance
-                                         ]
-                                 }};
-
-[room renewWithFilters: filter error: &error callback:^(KuzzleNotification * notification, NSError * error) {
-  if(error) {
-    // error occured
-  }
-  // everything went fine
-}];
-
-if(error) {
-  // NSError reprsentation for KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
-```
-
-```swift
-let inStatus = [
-  "in": [
-    "status": ["idle", "wantToHire", "toHire", "riding"],
-  ]
-]
-
-let inType = [
-  "in":[
-    "type": ["cab"]
-  ]
-]
-
-let geoDistance = [
-  "geo_distance": [
-  "distance": "10km",
-  "pos": [
-    "lat": "54.4838902",
-    "lon": "17.01559"
-    ]
-  ]
-]
-
-let filter = [
-  "filter": [
-    "and": [
-      inStatus,
-      inType,
-      geoDistance
-    ]
-  ]
-]
-
-do {
-  try room.renew(filters: filter, callback: {result in
-      switch result {
-        case let .onError(error):
-        // error occured during call, error is NSError
-        break
-        case let .onSuccess(success):
-        // everything went fine, success is KuzzleNotification
-        break
-      }
-  })
-} catch {
-  // KuzzleError.IllegalState, when Kuzzle state is .DISCONNECTED
-}
 ```
 
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Renew the subscription. Force a resubscription using the same filters if no new ones are provided.
-Unsubscribes first if this KuzzleRoom was already listening to events.
+Renew the subscription. Force a new subscription using the same filters if no new ones are provided.
+Unsubscribes first if this Room object was already listening to events.
 
 ### renew([filters], notificationCallback, subscriptionCallback)
 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters](http://kuzzle.io/documentation/real-time-filters) |
+| ``filters`` | JSON Object | [Filters](/real-time-filters/) |
 | ``notificationCallback`` | function | Function called each time a notification is received |
 | ``subscriptionCallback`` | function | Function called with the subscription result |
 
@@ -439,38 +296,10 @@ headers.put("someContent", "someValue");
 room.setHeaders(headers, true);
 ```
 
-```objective_c
-NSDictionary* headers = @{
-  @"someContent": @"someValue",
-  @"metadata": @{
-    @"someMetaData": @[
-      @"with",
-      @"some",
-      @"values"
-      ]
-    }
-  };
-[room setHeadersWithData: headers replace: YES];
-```
-
-```swift
-let headers = [
-  "someContent": "someValue",
-  "metadata": [
-    "someMetaData": [
-     "with",
-      "some",
-      "values"
-    ]
-  ]
-]
-room.setHeaders(headers, true);
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 > Returns itself
@@ -488,7 +317,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ### Return value
 
-Returns this `KuzzleRoom` object to allow chaining.
+Returns this `Room` object to allow chaining.
 
 ## unsubscribe
 
@@ -500,22 +329,14 @@ room.unsubscribe();
 room.unsubscribe();
 ```
 
-```objective_c
-[room.unsubscribe];
-```
-
-```swift
-room.unsubscribe()
-```
-
 ```php
 <?php
 
-// not implemented (sdk PHP is using REST API)
+// not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
 Cancels the current subscription.
 
 ### Return value
 
-Returns this `KuzzleRoom` object to allow chaining.
+Returns this `Room` object to allow chaining.
