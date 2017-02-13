@@ -2,7 +2,7 @@
 
 Every time Kuzzle receives a request coming from a client, it routes it towards a Controller and an Action, which processes it and sends the result back to the client. Each step of this life-cycle triggers an event. Below are the different types of events that Plugins can listen to.
 
-## [plugins]
+## [Controller plugins events]
 
 [Controller plugins](/plugin-reference/#adding-a-controller-route) add new controllers and actions to Kuzzle. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
 
