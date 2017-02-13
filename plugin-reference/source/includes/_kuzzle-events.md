@@ -1,6 +1,25 @@
 # Kuzzle events list
 
-Every time Kuzzle receives a request coming from a client, it routes it towards a Controller and an Action, that process it and send the results back to the client. Each step of this life-cycle triggers an event. Below are the different types of events that Plugins can listen to.
+Every time Kuzzle receives a request coming from a client, it routes it towards a Controller and an Action, which processes it and sends the result back to the client. Each step of this life-cycle triggers an event. Below are the different types of events that Plugins can listen to.
+
+## [plugins]
+
+[Controller plugins](/plugin-reference/#adding-a-controller-route) add new controllers and actions to Kuzzle. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
+
+| Event | Description | Payload |
+|-------|-------------|---------|
+| `<pluginName>/<controller>:after<Action>` | Triggered after the action `action` of the controller `controller` added by the plugin `pluginName` has completed | Type: Request |
+| `<pluginName>/<controller>:before<Action>` | Triggered before the action `action` of the controller `controller` added by the plugin `pluginName` has started | Type: Request |
+
+**Example:**
+
+The plugin `foo` adds a controller named `fooController`, containing an action named `fooAction`.
+
+When an API request invokes this new API route, Kuzzle will automatically trigger the following events:
+
+* `foo/fooController:beforeFooAction` (before the request starts)
+* `foo/fooController:afterFooAction` (after the request completes)
+
 
 ## auth
 
