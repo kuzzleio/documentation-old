@@ -15,7 +15,9 @@ To determine the Plugin name, Kuzzle looks for the `name` field in the `package.
 
 ### Custom Plugin configuration
 
-When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context](/plugin-reference/#the-plugin-context) and the custom configuration. Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file](#configuring-kuzzle).
+When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context](/plugin-reference/#the-plugin-context) and the plugin's custom configuration.
+
+Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file](#configuring-kuzzle).
 
 ```json
 {
@@ -30,14 +32,15 @@ When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` metho
 
 Each Plugin is responsible of handling the custom configuration parameters and Kuzzle has no opinion on how to do it. Whether the custom configuration is merged with the defaults or not entirely depends on the implementation of the `init` function.
 
-Within custom configuration, there are a few reserved words used by Kuzzle to configure how a plugin is loaded:
+Within a plugin's custom configuration, there are a few reserved words used by Kuzzle to configure how a plugin is loaded:
 
 ```json
 {
   "plugins": {
     "kuzzle-plugin-foobar": {
-      "threads": 0,
-      "privileged": false
+      "killTimeout": 6000,
+      "maxMemoryRestart": "200M",
+      "threads": 0
     }
   }
 }
@@ -47,8 +50,9 @@ Where:
 
 | Keyword | Type | Default Value |Description                  |
 |---------|------|---------------|-----------------------------|
+| `killTimeout` | `unsigned integer` | `6000 ` | (if `threads` > 0) Time (in milliseconds) to wait for a plugin to shut down before killing it |
+| `maxMemoryRestart` | `string` | `1G` | (if `threads` > 0) Maximum memory usage of a worker plugin. If exceeded, the plugin is restarted. <br>Examples: `10K` (10KB), `200M` (200MB), `3G` (3GB)|
 |`threads`|`unsigned integer`|`0`| If > 0, the plugin will be treated as a worker plugin (see below) |
-|`privileged`|`boolean`|`false`| If `true`, the plugin is loaded with privileged access to the running Kuzzle instance (see Plugin Context below)<br/>Ignored if `threads` is greater than `0` |
 
 ### Plugin init function
 

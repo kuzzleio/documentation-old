@@ -9,6 +9,7 @@ toc_footers:
   - <a href="http://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
+  - managing-plugins
   - plugin-prerequisites
   - creating-plugins
   - plugin-context
