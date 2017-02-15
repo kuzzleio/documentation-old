@@ -54,6 +54,7 @@ Where:
 | `maxMemoryRestart` | `string` | `1G` | (if `threads` > 0) Maximum memory usage of a worker plugin. If exceeded, the plugin is restarted. <br>Examples: `10K` (10KB), `200M` (200MB), `3G` (3GB)|
 |`threads`|`unsigned integer`|`0`| If > 0, the plugin will be treated as a worker plugin (see below) |
 
+
 ### Plugin init function
 
 Plugins must expose a `init` function.
