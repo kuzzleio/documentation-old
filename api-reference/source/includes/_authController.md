@@ -175,7 +175,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
 
 ```litcoffee
 {
-  // authentication strategy identifier (optionnal : kuzzle will use "local" strategy if not set)
+  // authentication strategy identifier (optional : kuzzle will use the "local" strategy if not set)
   "strategy": "<passportjs_strategy>",
 
   // JWT expiration delay (optional - kuzzle will use server default value if not set)
@@ -205,7 +205,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
   "action": "login",
 
   "body": {
-    // authentication strategy identifier (optional - kuzzle will use "local" strategy if not set)
+    // authentication strategy identifier (optional - kuzzle will use the "local" strategy if not set)
     "strategy": "<passportjs_strategy>",
 
     // JWT expiration delay (optional - kuzzle will use server default value if not set)
