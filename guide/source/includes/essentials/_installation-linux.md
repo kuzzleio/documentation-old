@@ -19,7 +19,7 @@ $ docker-compose up
 
 To persist this changes add this line to your /etc/sysctl.conf
 ```
-m.max_map_count=262144
+vm.max_map_count=262144
 ```
 
 <aside class="notice">
@@ -40,11 +40,21 @@ $ curl "http://localhost:7512/?pretty"
 
 Kuzzle will respond you with a list of the existing routes.
 
-Docker-compose will get the missing images for you on the first run, but it will not keep them up to date. To fetch the latest versions of all the images that compose the Kuzzle stack, you can use the following command:
 
-```bash
-$ docker-compose -f <docker-compose-file.yml> pull
-```
+##### Useful commands list
+
+* Updating docker images used by Kuzzle:  
+`docker-compose -f <docker-compose-file.yml> pull`
+* Showing Kuzzle core or Kuzzle proxy logs:  
+`docker exec -ti <docker core/proxy image name> pm2 logs`
+* Restarting Kuzzle core or Kuzzle proxy:  
+`docker exec -ti <docker core/proxy image name> pm2 restart all`
+* Stopping Kuzzle core or Kuzzle proxy:  
+`docker exec -ti <docker core/proxy image name> pm2 stop all`
+* Starting Kuzzle core or Kuzzle proxy:  
+`docker exec -ti <docker core/proxy image name> pm2 start all`
+* Accessing Kuzzle CLI:  
+`docker exec -ti <docker core image name> bin/kuzzle -h`
 
 ### Manually (on Linux)
 
@@ -138,6 +148,18 @@ Socket IO and Websocket channels can be reached over the HTTP server, on port 75
 If you are running some of the service(s) externally, you can configure their host and port using some environment variables and/or a `.kuzzlerc` file.
 
 Please refer to [Kuzzle configuration section](#configuration) for more information.
+
+##### Useful commands list
+
+
+* Showing Kuzzle logs:  
+`pm2 logs`
+* Starting, restarting or stopping Kuzzle core :  
+`pm2 <start|stop|restart> KuzzleServer`
+* Starting, restarting or stopping Kuzzle core :  
+`pm2 <start|stop|restart> KuzzleProxy`
+* Accessing Kuzzle CLI:  
+`~/kuzzle/bin/kuzzle -h`
 
 ## Running Kuzzle Backoffice
 
