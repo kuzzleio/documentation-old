@@ -112,8 +112,7 @@ $ echo "apps:
      script: ${KUZZLE_CORE_INSTALL_DIR}/bin/kuzzle
      args: start
      env:
-       kuzzle_server__http__port: 7510
-       kuzzle_services__proxyBroker__host: localhost
+       NODE_ENV: production
   " > ~/kuzzle/pm2.conf.yml
 ```
 
