@@ -683,6 +683,8 @@ Priority: 3
 context.log.verbose('message');
 ```
 
+### `warn`
+
 Priority: 1
 
 ```js
