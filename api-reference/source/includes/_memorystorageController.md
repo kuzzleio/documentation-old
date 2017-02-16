@@ -1,51 +1,15 @@
 # ~ memoryStorage controller
 
+Kuzzle's memory storage is a data store separated from the database layer.
+It is internally based on Redis. You can access most of Redis functions (all lowercased), except:
 
-## Description
+* cluster based functions
+* script based functions
+* cursor functions
 
-<section class="http"></section>
+Here is the exhaustive list of non implemented commands:
 
->**URL:** `http://kuzzle:7512/ms/_ping`
->**Method:** `GET`
-
-<section class="others"></section>
-
->Query
-
-<section class="others"></section>
-
-```litcoffee
-{
-  "action": "ping",
-  "controller": "ms",
-  "metadata": {},
-  "requestId": "<unique request identifier>"
-}
-```
-
-> Response
-
-```litcoffee
-{
-  "status": 200,
-  "error": null,
-  "requestId": "<unique request identifier>",
-  "controller": "ms",
-  "action": "ping",
-  "metadata": {},
-  "result": "PONG"
-}
-```
-
-Kuzzle's memory storage is a separate data store from the database layer.
-It is internaly based on Redis. You can access most of Redis functions (all lowercased), except:
-
-* all cluster based functions
-* all script based functions
-* all cursors functions
-
-Here is the list of non implemented commands:
-
+`auth`
 `client`
 `cluster`
 `config`
@@ -77,4 +41,107 @@ Here is the list of non implemented commands:
 `hscan`
 `zscan`
 
-You can find a list of all redis command at: [http://redis.io/commands](http://redis.io/commands)
+## append
+
+Appends a value to a key. If the key does not exist, it is created.
+
+Full documentation [here](https://redis.io/commands/append)
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_append/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "value": "value to be appended to the key"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "append",
+  "_id": "key identifier"
+  "body": {
+    "value": "value to be appended to the key"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  {
+    "requestId": "<unique request identifier>",
+    "status": 200,
+    "error": null,
+    "controller": "ms",
+    "action": "append",
+    "collection": null,
+    "index": null,
+    "metadata": null,
+    "result": <new value length after the append operation>
+  }
+}
+```
+
+## bgrewriteaof
+
+Forces a rewrite the transaction logs, optimizing it in the process.
+
+Full documentation [here](https://redis.io/commands/bgrewriteaof)
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_bgrewriteaof`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "bgrewriteaof",
+}
+```
+
+>Response
+
+```litcoffee
+{
+  {
+    "requestId": "<unique request identifier>",
+    "status": 200,
+    "error": null,
+    "controller": "ms",
+    "action": "bgrewriteaof",
+    "collection": null,
+    "index": null,
+    "metadata": null,
+    "result": "Background append only file rewriting started"
+  }
+}
+```
