@@ -175,11 +175,16 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
 
 ```litcoffee
 {
-  // authentication strategy identifier (optionnal : kuzzle will use "local" strategy if not set)
+  // authentication strategy identifier (optional : kuzzle will use the "local" strategy if not set)
   "strategy": "<passportjs_strategy>",
 
-  // jwt token expiration time (optional - kuzzle will use server default value if not set)
-  // expressed in seconds or a string describing a time span. Eg: 60, "2 days", "10h", "7d", "1y"
+  // JWT expiration delay (optional - kuzzle will use server default value if not set)
+  //   - if this option is a raw number (not enclosed between quotes), then
+  //     it represents the expiration delay in milliseconds
+  //   - if this option is a string, then its content is parsed by the "ms" library
+  //     For instance: "6d" (6 days), "10h" (10 hours), ...
+  //     (see https://www.npmjs.com/package/ms for the complete list of accepted
+  //      formats)
   "expiresIn": "<expiresIn>",
 
   // set of parameters depending of the chosen strategy. Example for "local" strategy:
@@ -200,11 +205,16 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
   "action": "login",
 
   "body": {
-    // authentication strategy identifier (optional - kuzzle will use "local" strategy if not set)
+    // authentication strategy identifier (optional - kuzzle will use the "local" strategy if not set)
     "strategy": "<passportjs_strategy>",
 
-    // jwt token expiration time (optional - kuzzle will use server default value if not set)
-    // expressed in seconds or a string describing a time span. Eg: 60, "2 days", "10h", "7d", "1y"
+    // JWT expiration delay (optional - kuzzle will use server default value if not set)
+    //   - if this option is a raw number (not enclosed between quotes), then
+    //     it represents the expiration delay in milliseconds
+    //   - if this option is a string, then its content is parsed by the "ms" library
+    //     For instance: "6d" (6 days), "10h" (10 hours), ...
+    //     (see https://www.npmjs.com/package/ms for the complete list of accepted
+    //      formats)
     "expiresIn": "<expiresIn>",
 
     // set of parameters depending of the chosen strategy. Example for "local" strategy:
