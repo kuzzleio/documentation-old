@@ -262,7 +262,7 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 {
   // A set of filters or queries matching documents you are looking for.
   // Use "query" instead of "filter" if you want to perform a query instead.
-  "filter": {
+  "query": {
     ...
   }
 }
@@ -281,10 +281,9 @@ with the value `wait_for` in order to wait for the document deletion (and its un
   "controller": "document",
   "action": "deleteByQuery",
 
-  // A set of filters or queries matching documents you are looking for.
-  // Use "query" instead of "filter" if you want to perform a query instead.
+  // A set of queries matching documents you are looking for.
   "body": {
-    "filter": {
+    "query": {
       ...
     }
   }
@@ -311,7 +310,7 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 
 Deletes all the documents matching the given filter or query from Kuzzle's database.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl.html) syntax.
 
 
 ## get
