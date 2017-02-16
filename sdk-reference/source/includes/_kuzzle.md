@@ -210,33 +210,33 @@ The Kuzzle object listens to global events fired by Kuzzle. To subscribe or unsu
 
 Here is the list of these special events:
 
-| Event Name | Description |
-|--------------|-------------------------------------------------------------------|
-| ``connected`` | Fired when the SDK has successfully connected to Kuzzle |
-| ``disconnected`` | Fired when the current session has been unexpectedly disconnected |
-| ``error`` | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
-| ``jwtTokenExpired`` | Fired when Kuzzle rejected a request because the authentication token expired.<br/>Provides the request and its associated callback to its listeners |
-| ``loginAttempt`` | Fired when a login attempt completes, either with a success or a failure result.<br/>Provides a JSON object with the login status to its listeners (see the `login` method documentation)|
-| ``offlineQueuePop`` | Fired whenever a request is removed from the offline queue. <br/>Provides the removed request to its listeners |
-| ``offlineQueuePush`` | Fired whenever a request is added to the offline queue.<br/>Provides to its listeners an object containing a `query` property, describing the queued request, and an optional `cb` property containing the corresponding callback |
-| ``queryError`` | Fired whenever Kuzzle responds with an error |
-| ``reconnected`` | Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
+| Event Name | Callback arguments | Description |
+|------------|-------------|-------------|
+| ``connected`` | _(none)_ | Fired when the SDK has successfully connected to Kuzzle |
+| ``disconnected`` | _(none)_ |  Fired when the current session has been unexpectedly disconnected |
+| ``error`` | `error` (object) | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
+| ``jwtTokenExpired`` | _(none)_ |  Fired when Kuzzle rejected a request because the authentication token expired |
+| ``loginAttempt`` | `{ "success": <boolean>, "error": "<error message>" }` |  Fired when a login attempt completes, either with a success or a failure result |
+| ``offlineQueuePop`` | `query` (object) | Fired whenever a request is removed from the offline queue. |
+| ``offlineQueuePush`` | `{ "query": <object>, "cb": <function> }` | Fired whenever a request is added to the offline queue |
+| ``queryError`` | `error` (object), `query` (object) | Fired whenever Kuzzle responds with an error |
+| ``reconnected`` | _(none)_ |  Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
 
 **Note:** listeners are called in the order of their insertion.
 
 ## addListener
 
 ```js
-  var listenerId = kuzzle.addListener('connected', function (room, subscription) {
-    // Actions to perform when receiving a 'subscribed' global event
+  var listenerId = kuzzle.addListener('connected', function () {
+    // Actions to perform when receiving a 'connected' global event
   });
 ```
 
 ```java
 String listenerId = kuzzle.addListener(Event.connected, new EventListener() {
   @Override
-  public void trigger(Object... args) {
-    // Actions to perform when receiving a 'subscribed' global event
+  public void trigger() {
+    // Actions to perform when receiving a 'connected' global event
   }
 });
 ```
@@ -251,6 +251,8 @@ $kuzzle->addListener('jwtTokenExpired', function() {
 ```
 
 Adds a listener to a Kuzzle global event. When an event is fired, listeners are called in the order of their insertion.
+
+See the [event handling](docs.kuzzle.io/sdk-reference/#event-handling) section for a full events list.
 
 <aside class="notice">
 The ID returned by this function is required if you want to remove this listener later.
