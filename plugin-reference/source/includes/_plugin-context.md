@@ -18,7 +18,8 @@ Here is the list of shared objects contained in the provided ``context``:
 | `context.constructors.Dsl` | Constructor allowing plugins to instantiate their own Kuzzle real-time engine instance |
 | `context.constructors.Request` | Constructor for standardized requests sent to Kuzzle |
 | `context.constructors.BaseValidationType` | Constructor for the Validation Type base constructor |
-| `errors.<ErrorConstructor>` |Kuzzle error constructors, built dynamically from available Kuzzle error objects at runtime|
+| `context.errors.<ErrorConstructor>` |Kuzzle error constructors, built dynamically from available Kuzzle error objects at runtime |
+| `context.log.<level>(message)` | Provides methods to log messages depending on their priority level |
 
 **Note:** `context.accessors` are not available to [worker plugins](#gt-worker-plugins), as they are run in their own process(es), without access to Kuzzle instances.
 
@@ -359,10 +360,8 @@ For more information about this object, please check [our detailed documentation
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`request`|`Request`| `Request` object used to derive a new object instance |
-|`data`|`object`| Passed to [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) constructor |
+|`data`|`object`| JSON object following the same standard than for non-HTTP [API calls](http://docs.kuzzle.io/api-reference/#query-syntax)<br>See the  [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) constructor for more information |
 | `options` | `object` | Optional initialization parameters |
-
-`RequestContext` is usually obtained with `context.accessors.router.newConnection`.  
 
 If a raw `options` object is provided, it may contain:
 
@@ -635,4 +634,57 @@ Used when a user fails a login attempt.
 
 ```js
 var err = new context.errors.UnauthorizedError('error message');
+```
+
+## Log
+
+These methods can be used to send messages to Kuzzle's log system.  
+Different log level are provided, and lower priority levels may be ignored depending on how the Kuzzle server is configured.
+
+The lower a log level is, the higher its priority.
+
+### `debug`
+
+Priority: 4
+
+```js
+context.log.debug('message');
+```
+
+### `error`
+
+Priority: 0 (highest priority)
+
+```js
+context.log.error('error message');
+```
+
+### `info`
+
+Priority: 2
+
+```js
+context.log.info('message');
+```
+
+### `silly`
+
+Priority: 5 (lowest priority)
+
+```js
+context.log.silly('message');
+```
+
+### `verbose`
+
+Priority: 3
+
+```js
+context.log.verbose('message');
+```
+
+Priority: 1
+
+```js
+context.log.warn('message');
 ```
