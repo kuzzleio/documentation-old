@@ -288,7 +288,7 @@ Resolves to a `JSON object` containing the raw Kuzzle response.
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .collection('collection', 'index')
-  .createDocument('foobar', {title: 'foo', content: 'bar'}, {updateIfExist: true}, function (err, res) {
+  .createDocument('foobar', {title: 'foo', content: 'bar'}, {ifExist: 'replace'}, function (err, res) {
     // callback called once the create action has been completed
     // => the result is a Document object
   });
@@ -296,7 +296,7 @@ kuzzle
 // Using promises (NodeJS only)
 kuzzle
  .collection('collection', 'index')
- .createDocumentPromise('foobar', {title: 'foo', content: 'bar'}, {updateIfExist: true})
+ .createDocumentPromise('foobar', {title: 'foo', content: 'bar'}, {ifExist: 'replace'})
  .then(res => {
    // promise resolved once the create action has been completed
    // => the result is a Document object
@@ -307,6 +307,9 @@ kuzzle
 Document myDocument = new Document(collection);
 myDocument.setContent("title", "foo");
 myDocument.setContent("content", "bar");
+
+Options opts = new Options();
+opts.setIfExist = "replace";
 
 kuzzle
   .collection("collection", "index")
@@ -370,7 +373,7 @@ Available options:
 | ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
-| ``updateIfExist`` | boolean | If the same document already exists: throw an error if sets to ``false``. Update the existing document otherwise | ``false`` |
+| ``ifExist`` | string | If the same document already exists: resolves to an error if sets to ``error``. Replaces the existing document if set to ``replace`` | ``false`` |
 
 ### Return value
 
