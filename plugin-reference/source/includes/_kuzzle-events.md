@@ -146,7 +146,7 @@ Events triggered when a request is sent to the [`realtime` controller](/api-refe
 |`realtime:after<Action>`  | All actions in `realtime` controller trigger an event after executing  | Type: Request |
 |`realtime:before<Action>` | All actions in `realtime` controller trigger an event before executing | Type: Request |
 
-## request
+## request (event)
 
 Global events triggered on requests execution.
 
