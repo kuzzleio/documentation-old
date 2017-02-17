@@ -146,6 +146,17 @@ Events triggered when a request is sent to the [`realtime` controller](/api-refe
 |`realtime:after<Action>`  | All actions in `realtime` controller trigger an event after executing  | Type: Request |
 |`realtime:before<Action>` | All actions in `realtime` controller trigger an event before executing | Type: Request |
 
+## request
+
+Global events triggered on requests execution.
+
+| Event | Description | Payload |
+|-------|-------------|---------|
+|`request:onAuthorized` | Triggered when a request passed authorization checks and is ready to be processed. Triggered before any `<controller>:before<Action>` event | Type: Request |
+|`request:onError` | Triggered when a request execution fails. Triggered after any `<controller>:after<Action>` event | Type: Request |
+|`request:onSuccess` | Triggered when a request execution succeeds. Triggered after any `<controller>:after<Action>` event | Type: Request |
+
+
 ## room
 
 Events triggered on subscription rooms activity.
