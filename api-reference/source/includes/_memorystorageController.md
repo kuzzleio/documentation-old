@@ -7,9 +7,10 @@ It is internally based on Redis. You can access most of Redis functions (all low
 * script based functions
 * cursor functions
 
-Here is the exhaustive list of non implemented commands:
+Here is the exhaustive list of non-implemented commands:
 
 `auth`
+`bitfield`
 `client`
 `cluster`
 `config`
@@ -142,6 +143,210 @@ Full documentation [here](https://redis.io/commands/bgrewriteaof)
     "index": null,
     "metadata": null,
     "result": "Background append only file rewriting started"
+  }
+}
+```
+
+## bgsave
+
+Saves the database in the background.
+
+Full documentation [here](https://redis.io/commands/bgsave)
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_bgsave`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "bgsave",
+}
+```
+
+>Response
+
+```litcoffee
+{
+  {
+    "requestId": "<unique request identifier>",
+    "status": 200,
+    "error": null,
+    "controller": "ms",
+    "action": "bgsave",
+    "collection": null,
+    "index": null,
+    "metadata": null,
+    "result": "Background saving started"
+  }
+}
+```
+
+## bitcount
+
+Counts the number of set bits (population counting) in a string.  
+The `start` and `end` parameters are optional.
+
+Full documentation [here](https://redis.io/commands/bitcount)
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_bitcount/<key>[?start=<integer>][&end=<integer>]`  
+>**Method:** `GET`  
+>**Body:**  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "bitcount",
+  "_id": "key identifier",
+  "start": <integer>,
+  "end": <integer>
+}
+```
+
+>Response
+
+```litcoffee
+{
+  {
+    "requestId": "<unique request identifier>",
+    "status": 200,
+    "error": null,
+    "controller": "ms",
+    "action": "bitcount",
+    "collection": null,
+    "index": null,
+    "metadata": null,
+    "result": <count>
+  }
+}
+```
+
+## bitop
+
+Performs a bitwise operation between multiple keys (containing string values) and stores the result in the destination key.
+
+Full documentation [here](https://redis.io/commands/bitop)
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512//ms/_bitop/<destination key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "operation": "[AND|OR|XOR|NOT]",
+  "keys": ["srckey1", "srckey2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "bitop",
+  "_id": "destination key",
+  "body": {
+    "operation": "[AND|OR|XOR|NOT]",
+    "keys": ["srckey1", "srckey2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  {
+    "requestId": "<unique request identifier>",
+    "status": 200,
+    "error": null,
+    "controller": "ms",
+    "action": "bitop",
+    "collection": null,
+    "index": null,
+    "metadata": null,
+    "result": <new destination key length>
+  }
+}
+```
+
+## bitpos
+
+Returns the position of the first bit set to 1 or 0 in a string, or in a substring.
+
+Full documentation [here](https://redis.io/commands/bitpos)
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_bitpos`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "bgsave",
+}
+```
+
+>Response
+
+```litcoffee
+{
+  {
+    "requestId": "<unique request identifier>",
+    "status": 200,
+    "error": null,
+    "controller": "ms",
+    "action": "bgsave",
+    "collection": null,
+    "index": null,
+    "metadata": null,
+    "result": "Background saving started"
   }
 }
 ```
