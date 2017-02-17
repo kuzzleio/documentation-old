@@ -43,7 +43,7 @@ deploy () {
 
 if [ "${TRAVIS_BRANCH}" = "master" -a "${TRAVIS_PULL_REQUEST}" = "false" ]; then
   deploy ""
-elif [ "${TRAVIS_BRANCH}" = "develop" -a "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+elif [ "${TRAVIS_BRANCH}" = "rc.x" -a "${TRAVIS_PULL_REQUEST}" = "false" ]; then
   deploy "edge"
 else
   echo "No build needed. Bye"
