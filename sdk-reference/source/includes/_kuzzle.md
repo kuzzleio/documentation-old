@@ -213,6 +213,7 @@ Here is the list of these special events:
 | Event Name | Callback arguments | Description |
 |------------|-------------|-------------|
 | ``connected`` | _(none)_ | Fired when the SDK has successfully connected to Kuzzle |
+| `discarded` | `error` (object) | Fired when Kuzzle reject a request (e.g. request can't be parsed, request too large, ...) | 
 | ``disconnected`` | _(none)_ |  Fired when the current session has been unexpectedly disconnected |
 | ``error`` | `error` (object) | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``jwtTokenExpired`` | _(none)_ |  Fired when Kuzzle rejected a request because the authentication token expired |
@@ -221,6 +222,7 @@ Here is the list of these special events:
 | ``offlineQueuePush`` | `{ "query": <object>, "cb": <function> }` | Fired whenever a request is added to the offline queue |
 | ``queryError`` | `error` (object), `query` (object) | Fired whenever Kuzzle responds with an error |
 | ``reconnected`` | _(none)_ |  Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
+
 
 **Note:** listeners are called in the order of their insertion.
 
