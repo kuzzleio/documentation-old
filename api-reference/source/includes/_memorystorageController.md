@@ -171,7 +171,7 @@ Full documentation [here](https://redis.io/commands/bitop)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_bitpos/<key>/<0|1>[?start=<integer>&end=<integer>]`  
+>**URL:** `http://kuzzle:7512/ms/_bitpos/<key>?bit=[0|1][&start=<integer>&end=<integer>]`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -185,7 +185,7 @@ Full documentation [here](https://redis.io/commands/bitop)
   "controller": "ms",
   "action": "bitpos",
   "_id": "<key>",
-  "bit": <0|1>,
+  "bit": [0|1],
   "start": <integer>,
   "end": <integer>
 }
@@ -289,7 +289,7 @@ Full documentation [here](https://redis.io/commands/dbsize)
 }
 ```
 
-Decrements the number stored at key by one. If the key does not exist, it is set to 0 before performing the operation
+Decrements the number stored at `key` by 1. If the key does not exist, it is set to 0 before performing the operation
 
 Full documentation [here](https://redis.io/commands/decr)
 
@@ -342,7 +342,7 @@ Full documentation [here](https://redis.io/commands/decr)
 }
 ```
 
-Decrements the number stored at key by a provided integer value. If the key does not exist, it is set to 0 before performing the operation
+Decrements the number stored at `key` by a provided integer value. If the key does not exist, it is set to 0 before performing the operation
 
 Full documentation [here](https://redis.io/commands/decrby)
 
@@ -350,7 +350,7 @@ Full documentation [here](https://redis.io/commands/decrby)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_del`  
+>**URL:** `http://kuzzle:7512/ms`  
 >**Method:** `DELETE`  
 >**Body:**  
 
@@ -398,47 +398,6 @@ Deletes a list of keys
 
 Full documentation [here](https://redis.io/commands/del)
 
-## dump
-
-<section class="http"></section>
-
->**URL:** `http://kuzzle:7512/ms/_dump/<key>`  
->**Method:** `GET`  
-
-<section class="others"></section>
-
->Query
-
-<section class="others"></section>
-
-```litcoffee
-{
-  "controller": "ms",
-  "action": "dump",
-  "_id": "<key>"
-}
-```
-
->Response
-
-```litcoffee
-{
-  "requestId": "<unique request identifier>",
-  "status": 200,
-  "error": null,
-  "controller": "ms",
-  "action": "dump",
-  "collection": null,
-  "index": null,
-  "metadata": null,
-  "result": "serialized value"
-}
-```
-
-Returns the serialized raw value of a key
-
-Full documentation [here](https://redis.io/commands/dump)
-
 ## exists
 
 <section class="http"></section>
@@ -472,7 +431,7 @@ Full documentation [here](https://redis.io/commands/dump)
   "collection": null,
   "index": null,
   "metadata": null,
-  "result": <0|1>
+  "result": [0|1]
 }
 ```
 
@@ -529,7 +488,7 @@ Full documentation [here](https://redis.io/commands/exists)
 }
 ```
 
-Sets a timeout on a key.  After the timeout has expired, the key will automatically be deleted
+Sets a timeout (in seconds) on a key.  After the timeout has expired, the key will automatically be deleted
 
 Full documentation [here](https://redis.io/commands/expire)
 
@@ -975,7 +934,7 @@ Full documentation [here](https://redis.io/commands/get)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_getbit/<key>/<offset>`  
+>**URL:** `http://kuzzle:7512/ms/_getbit/<key>?offset=<offset>`  
 >**Method:** `GET`    
 
 <section class="others"></section>
@@ -1005,11 +964,11 @@ Full documentation [here](https://redis.io/commands/get)
   "collection": null,
   "index": null,
   "metadata": null,
-  "result": <0|1>
+  "result": [0|1]
 }
 ```
 
-Returns the bit value at the provided offset, in the string value stored in a key
+Returns the bit value at `offset`, in the string value stored in a key
 
 Full documentation [here](https://redis.io/commands/getbit)
 
@@ -1017,7 +976,7 @@ Full documentation [here](https://redis.io/commands/getbit)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_getrange/<key>/<start>/<end>`  
+>**URL:** `http://kuzzle:7512/ms/_getrange/<key>?start=<start>&end=<end>`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -1158,7 +1117,7 @@ Full documentation [here](https://redis.io/commands/getset)
 }
 ```
 
-Removes fields from the hash stored in the provided key
+Removes fields from a hash
 
 Full documentation [here](https://redis.io/commands/hdel)
 
@@ -1196,11 +1155,11 @@ Full documentation [here](https://redis.io/commands/hdel)
   "collection": null,
   "index": null,
   "metadata": null,
-  "result": <0|1>
+  "result": [0|1]
 }
 ```
 
-Checks if a field exists in a hash stored at the provided key
+Checks if a field exists in a hash
 
 Full documentation [here](https://redis.io/commands/hexists)
 
@@ -1242,7 +1201,7 @@ Full documentation [here](https://redis.io/commands/hexists)
 }
 ```
 
-Returns the field's value of a hash stored at the provided key
+Returns the field's value of a hash
 
 Full documentation [here](https://redis.io/commands/hget)
 
@@ -1287,7 +1246,7 @@ Full documentation [here](https://redis.io/commands/hget)
 }
 ```
 
-Returns all fields and values of a hash stored at the provided key
+Returns all fields and values of a hash
 
 Full documentation [here](https://redis.io/commands/hgetall)
 
@@ -1342,7 +1301,7 @@ Full documentation [here](https://redis.io/commands/hgetall)
 }
 ```
 
-Increments the number stored in a hash field at the provided key, by a given integer value
+Increments the number stored in a hash field by the provided integer value
 
 Full documentation [here](https://redis.io/commands/hincrby)
 
@@ -1397,7 +1356,7 @@ Full documentation [here](https://redis.io/commands/hincrby)
 }
 ```
 
-Increments the number stored in a hash field at the provided key, by a given float value
+Increments the number stored in a hash field by the provided float value
 
 Full documentation [here](https://redis.io/commands/hincrbyfloat)
 
@@ -1442,7 +1401,7 @@ Full documentation [here](https://redis.io/commands/hincrbyfloat)
 }
 ```
 
-Returns all field names in the hash stored at the provided key
+Returns all field names containined in a hash
 
 Full documentation [here](https://redis.io/commands/hkeys)
 
@@ -1483,7 +1442,7 @@ Full documentation [here](https://redis.io/commands/hkeys)
 }
 ```
 
-Returns the number of fields contained in the hash stored at the provided key
+Returns the number of fields contained in a hash
 
 Full documentation [here](https://redis.io/commands/hlen)
 
@@ -1590,7 +1549,7 @@ Full documentation [here](https://redis.io/commands/hmget)
 }
 ```
 
-Sets multiple fields at once in a hash stored at the provided key.
+Sets multiple fields at once in a hash
 
 Full documentation [here](https://redis.io/commands/hmset)
 
@@ -1641,11 +1600,11 @@ Full documentation [here](https://redis.io/commands/hmset)
   "collection": null,
   "index": null,
   "metadata": null,
-  "result": <0|1>
+  "result": [0|1]
 }
 ```
 
-Sets a field and its value in a hash stored at the provided key. If the key does not exist, a new key holding a hash is created. If the field already exists, its value is overwritten
+Sets a field and its value in a hash. If the key does not exist, a new key holding a hash is created. If the field already exists, its value is overwritten
 
 Full documentation [here](https://redis.io/commands/hset)
 
@@ -1696,11 +1655,11 @@ Full documentation [here](https://redis.io/commands/hset)
   "collection": null,
   "index": null,
   "metadata": null,
-  "result": <0|1>
+  "result": [0|1]
 }
 ```
 
-Sets a field and its value in a hash stored at the provided key, only if the field does not already exist.
+Sets a field and its value in a hash, only if the field does not already exist
 
 Full documentation [here](https://redis.io/commands/hsetnx)
 
@@ -1742,7 +1701,7 @@ Full documentation [here](https://redis.io/commands/hsetnx)
 }
 ```
 
-Returns the string length of a field's value, in a hash stored at the provided key
+Returns the string length of a field's value in a hash
 
 Full documentation [here](https://redis.io/commands/hstrlen)
 
@@ -1787,7 +1746,7 @@ Full documentation [here](https://redis.io/commands/hstrlen)
 }
 ```
 
-Returns all values in the hash stored at the provided key
+Returns all values contained in a hash
 
 Full documentation [here](https://redis.io/commands/hvals)
 
@@ -1828,7 +1787,7 @@ Full documentation [here](https://redis.io/commands/hvals)
 }
 ```
 
-Increments the number stored at key by one. If the key does not exist, it is set to 0 before performing the operation
+Increments the number stored at `key` by 1. If the key does not exist, it is set to 0 before performing the operation
 
 Full documentation [here](https://redis.io/commands/incr)
 
@@ -1881,7 +1840,7 @@ Full documentation [here](https://redis.io/commands/incr)
 }
 ```
 
-Increments the number stored at key by a provided integer value. If the key does not exist, it is set to 0 before performing the operation
+Increments the number stored at `key` by the provided integer value. If the key does not exist, it is set to 0 before performing the operation
 
 Full documentation [here](https://redis.io/commands/incrby)
 
@@ -1934,7 +1893,7 @@ Full documentation [here](https://redis.io/commands/incrby)
 }
 ```
 
-Increments the number stored at key by a provided float value. If the key does not exist, it is set to 0 before performing the operation
+Increments the number stored at `key` by the provided float value. If the key does not exist, it is set to 0 before performing the operation
 
 Full documentation [here](https://redis.io/commands/incrbyfloat)
 
@@ -2021,7 +1980,7 @@ Full documentation [here](https://redis.io/commands/keys)
 }
 ```
 
-Returns the element at the provided index in the list stored at the provided key.
+Returns the element at the provided index in a list
 
 Full documentation [here](https://redis.io/commands/lindex)
 
@@ -2078,7 +2037,7 @@ Full documentation [here](https://redis.io/commands/lindex)
 }
 ```
 
-Inserts a value in the list stored at the provided key, either before or after the reference pivot value.
+Inserts a value in a list, either before or after the reference pivot value.
 
 Full documentation [here](https://redis.io/commands/linsert)
 
@@ -2163,3 +2122,2018 @@ Full documentation [here](https://redis.io/commands/llen)
 Removes and returns the first element of a list
 
 Full documentation [here](https://redis.io/commands/lpop)
+
+## lpush
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_lpush/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "values": ["value1", "value2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "lpush",
+  "_id": "<key>",
+  "body": {
+    "values": ["value1", "value2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "lpush",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <updated number of elements in the list>
+}
+```
+
+Prepends the specified values to a list. If the key does not exist, it is created holding an empty list before performing the operation
+
+Full documentation [here](https://redis.io/commands/lpush)
+
+## lpushx
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_lpushx/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "value": "<value>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "lpushx",
+  "_id": "<key>",
+  "body": {
+    "value": "<value>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "lpushx",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <updated number of elements in the list>
+}
+```
+
+Prepends the specified value to a list, only if the key already exists and if it holds a list
+
+Full documentation [here](https://redis.io/commands/lpushx)
+
+## lrange
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_lrange/<key>?start=<start>&stop=<stop>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "lrange",
+  "_id": "<key>",
+  "start": <start>,
+  "stop": <stop>
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "lrange",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "value1",
+    "value2",
+    "..."
+  ]
+}
+```
+
+Returns the list elements between the `start` and `stop` positions
+
+Full documentation [here](https://redis.io/commands/lrange)
+
+## lrem
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_lrem/<key>`  
+>**Method:** `DELETE`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "count": <count>,
+  "value": "<value to remove>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "lrem",
+  "_id": "<key>",
+  "body": {
+    "count": <count>,
+    "value": "<value to remove>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "lrem",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of removed elements>
+}
+```
+
+Removes the first `count` occurences of elements equal to `value` from a list
+
+Full documentation [here](https://redis.io/commands/lrem)
+
+## lset
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_lset/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "index": <index>,
+  "value": "<value>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "lset",
+  "_id": "<key>",
+  "body": {
+    "index": <index>,
+    "value": "<value>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "lset",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Sets the list element at `index` with the provided value
+
+Full documentation [here](https://redis.io/commands/lset)
+
+## ltrim
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_ltrim/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "start": <start>,
+  "stop": <stop>
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "ltrim",
+  "_id": "<key>",
+  "body": {
+    "start": <start>,
+    "stop": <stop>
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "ltrim",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Trims an existing list so that it will contain only the specified range of elements specified
+
+Full documentation [here](https://redis.io/commands/ltrim)
+
+## mget (memoryStorage)
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_mget?keys=key1,key2,...`  
+>**Method:** `GET`  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "mget",
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "mget",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "value of key1",
+    "value of key2",
+    "..."
+  ]
+}
+```
+
+Returns the values of the provided keys
+
+Full documentation [here](https://redis.io/commands/mget)
+
+## mset
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_mset`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "entries": [
+    {"key": "<key1>", "value": "<value1>"},
+    {"key": "<key2>", "value": "<value2>"},
+    {"key": "...", "value": "..."}
+  ]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "mset",
+  "body": {
+    "entries": [
+      {"key": "<key1>", "value": "<value1>"},
+      {"key": "<key2>", "value": "<value2>"},
+      {"key": "...", "value": "..."}
+    ]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "mset",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Sets the provided keys to their respective values. If a key does not exist, it is created. Otherwise, the key's value is overwritten
+
+Full documentation [here](https://redis.io/commands/mset)
+
+## msetnx
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_msetnx`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "entries": [
+    {"key": "<key1>", "value": "<value1>"},
+    {"key": "<key2>", "value": "<value2>"},
+    {"key": "...", "value": "..."}
+  ]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "msetnx",
+  "body": {
+    "entries": [
+      {"key": "<key1>", "value": "<value1>"},
+      {"key": "<key2>", "value": "<value2>"},
+      {"key": "...", "value": "..."}
+    ]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "msetnx",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [0|1]
+}
+```
+
+Sets the provided keys to their respective values, only if they do not exist. If a key exists, then the whole operation is aborted and no key is set
+
+Full documentation [here](https://redis.io/commands/msetnx)
+
+## object
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_object/<key>?subcommand=[refcount|encoding|idletime]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "object",
+  "_id": "<key>",
+  "subcommand": "[refcount|encoding|idletime]"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "object",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <object inspection result>
+}
+```
+
+Inspects the low-level properties of a key
+
+Full documentation [here](https://redis.io/commands/object)
+
+## persist
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_persist/<key>`  
+>**Method:** `POST`  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "persist",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "persist",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [0|1]
+}
+```
+
+Removes the expiration delay or timestamp from a key, making it persistent
+
+Full documentation [here](https://redis.io/commands/persist)
+
+## pexpire
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_pexpire/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "milliseconds": <time to live>
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "pexpire",
+  "_id": "<key>",
+  "body": {
+    "milliseconds": <time to live>
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "pexpire",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [0|1]
+}
+```
+
+Sets a timeout (in milliseconds) on a key. After the timeout has expired, the key will automatically be deleted
+
+Full documentation [here](https://redis.io/commands/pexpire)
+
+## pexpireat
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_pexpireat/<key>`  
+>**Method:** `POST`  
+>**Body:**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "timestamp": <Epoch time in milliseconds>
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "pexpireat",
+  "_id": "<key>",
+  "body": {
+    "timestamp": <Epoch time in milliseconds>
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "pexpireat",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [0|1]
+}
+```
+
+Sets an expiration timestamp on a key. After the timestamp has been reached, the key will automatically be deleted.  
+The `timestamp` parameter accepts an [Epoch time](https://en.wikipedia.org/wiki/Unix_time) value, in milliseconds.
+
+Full documentation [here](https://redis.io/commands/pexpireat)
+
+## pfadd
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_pfadd/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "elements": ["element1", "element2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "pfadd",
+  "_id": "<key>",
+  "body": {
+    "elements": ["element1", "element2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "pfadd",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [0|1]
+}
+```
+
+Adds elements to an [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure
+
+Full documentation [here](https://redis.io/commands/pfadd)
+
+## pfcount
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_pfcount?keys=key1,key2,...`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "pfcount",
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "pfcount",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <probabilistic cardinality>
+}
+```
+
+Returns the probabilistic cardinality of a [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure, or of the merged HyperLogLog structures if more than 1 is provided (see [pfadd](#pfadd))
+
+Full documentation [here](https://redis.io/commands/pfcount)
+
+## pfmerge
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_pfmerge/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "sources": ["key1", "key2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "pfmerge",
+  "_id": "<key>",
+  "body": {
+    "sources": ["key1", "key2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "pfmerge",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Merges multiple [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structures into an unique HyperLogLog structure stored at `key`, approximating the cardinality of the union of the source structures
+
+Full documentation [here](https://redis.io/commands/pfmerge)
+
+## ping
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_ping`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "ping"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "ping",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "PONG"
+}
+```
+
+Pings the memory storage database
+
+Full documentation [here](https://redis.io/commands/ping)
+
+## psetex
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_psetex/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "milliseconds": <time to live>,
+  "value": "<value to set>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "psetex",
+  "_id": "<key>",
+  "body": {
+    "milliseconds": <time to live>,
+    "value": "<value to set>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "psetex",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Sets a key with the provided value, and an expiration delay expressed in milliseconds. If the key does not exist, it is created beforehand
+
+Full documentation [here](https://redis.io/commands/psetex)
+
+## pttl
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_pttl/<key>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "pttl",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "pttl",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <remaining time to live, in milliseconds>
+}
+```
+
+Returns the remaining time to live of a key, in milliseconds
+
+Full documentation [here](https://redis.io/commands/pttl)
+
+## randomkey
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_randomkey`  
+>**Method:** `GET`  
+>**Body:**  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "randomkey"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "randomkey",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "<one of the database's key, at random>"
+}
+```
+
+Returns a random key from the memory storage
+
+Full documentation [here](https://redis.io/commands/randomkey)
+
+## rename
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_rename/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "newkey": "<new key name>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "rename",
+  "_id": "<key>",
+  "body": {
+    "newkey": "<new key name>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "rename",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Renames a key to `newkey`. If `newkey` already exists, it is overwritten
+
+Full documentation [here](https://redis.io/commands/rename)
+
+## renamenx
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_renamenx/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "newkey": "<new key name>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "renamenx",
+  "_id": "<key>",
+  "body": {
+    "newkey": "<new key name>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "renamenx",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Renames a key to `newkey`, only if `newkey` does not already exist
+
+Full documentation [here](https://redis.io/commands/renamenx)
+
+## rpop
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_rpop/<key>`  
+>**Method:** `POST`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "rpop",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "rpop",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "<removed element value>"
+}
+```
+
+Removes the last element of a list and returns it
+
+Full documentation [here](https://redis.io/commands/rpop)
+
+## rpoplpush
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_rpoplpush`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "source": "<key>",
+  "destination": "<key>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "rpoplpush",
+  "body": {
+    "source": "<key>",
+    "destination": "<key>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "rpoplpush",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "<popped/pushed element>"
+}
+```
+
+Removes the last element of the list at `source` and pushes it back at the start of the list at `destination`
+
+Full documentation [here](https://redis.io/commands/rpoplpush)
+
+## rpush
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_rpush/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "values": ["value1", "value2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "rpush",
+  "_id": "<key>",
+  "body": {
+    "values": ["value1", "value2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "rpush",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <updated number of elements in the list>
+}
+```
+
+Appends the specified values at the end of a list. If the key does not exist, it is created holding an empty list before performing the operation
+
+Full documentation [here](https://redis.io/commands/rpush)
+
+## rpushx
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_rpushx/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "value": "<value>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "rpushx",
+  "_id": "<key>",
+  "body": {
+    "value": "<value>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "rpushx",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <updated number of elements in the list>
+}
+```
+
+Appends the specified value at the end of a list, only if the key already exists and if it holds a list
+
+Full documentation [here](https://redis.io/commands/rpushx)
+
+## sadd
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sadd/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "members": ["member1", "member2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sadd",
+  "_id": "<key>",
+  "body": {
+    "members": ["member1", "member2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sadd",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of elements added to the set>
+}
+```
+
+Adds members to a set of unique values stored at `key`. If the `key` does not exist, it is created beforehand
+
+Full documentation [here](https://redis.io/commands/sadd)
+
+## scard
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_scard/<key>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "scard",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "scard",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of members of the set>
+}
+```
+
+Returns the number of members stored in a set of unique values
+
+Full documentation [here](https://redis.io/commands/scard)
+
+## sdiff
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sdiff/<key>?keys=key1,key2,...`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sdiff",
+  "_id": "<key>",
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sdiff",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "diff value1",
+    "diff value2",
+    "..."
+  ]
+}
+```
+
+Returns the difference between the set of unique values stored at `key` and the other provided sets
+
+Full documentation [here](https://redis.io/commands/sdiff)
+
+## sdiffstore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sdiffstore/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "destination": "<key>",
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sdiffstore",
+  "_id": "<key>",
+  "body": {
+    "destination": "<key>",
+    "keys": ["key1", "key2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sdiffstore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of elements stored in the resulting set>
+}
+```
+
+Calculates the difference between the set of unique values stored at `key` and the other provided sets, and stores the result in the key stored at `destination`
+
+If the destination key already exists, it is overwritten
+
+Full documentation [here](https://redis.io/commands/sdiffstore)
+
+## set
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_set/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "value": "<value>",
+
+  // the following arguments are all optional
+  "ex": <seconds>,
+  "px": <milliseconds>,
+  "nx": [false|true],
+  "px": [false|true]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "set",
+  "_id": "<key>",
+  "body": {
+    "value": "<value>",
+
+    // the following arguments are all optional
+    "ex": <seconds>,
+    "px": <milliseconds>,
+    "nx": [false|true],
+    "px": [false|true]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "set",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Creates a key holding the provided value, or overwrites it if it already exists
+
+Additional options can be provided:
+
+* `ex`: set the specified expire time, in seconds
+* `px`: set the specified expire time, in milliseconds
+* `nx`: only set the key if it does not already exist
+* `xx`: only set the key if it already exist
+
+**Note:** setting `ex` and `px` options lead to a `BadRequestError` as these options are mutually exclusive. Same thing goes for `nx` and `xx`
+
+Full documentation [here](https://redis.io/commands/set)
+
+## setex
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_setex/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "value": "<value>",
+  "seconds": <time to live>
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "setex",
+  "_id": "<key>",
+  "body": {
+    "value": "<value>",
+    "seconds": <time to live>
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "setex",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "OK"
+}
+```
+
+Sets a value and a time to live (in seconds) on a key. If the key already exists, it is overwritten
+
+Full documentation [here](https://redis.io/commands/setex)
+
+## setnx
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_setnx/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "value": "<value>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "setnx",
+  "_id": "<key>",
+  "body": {
+    "value": "<value>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "setnx",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [0|1]
+}
+```
+
+Sets a value on a key, only if it does not already exist
+
+Full documentation [here](https://redis.io/commands/setnx)
+
+## sinter
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sinter?keys=key1,key2,...`  
+>**Method:** `GET`  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sinter",
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sinter",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "intersection value1",
+    "intersection value2",
+    "..."
+  ]
+}
+```
+
+Returns the intersection of the provided sets of unique values
+
+Full documentation [here](https://redis.io/commands/sinter)
+
+## sinterstore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sinterstore`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "destination": "<destination key>",
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sinterstore",
+  "body": {
+    "destination": "<destination key>",
+    "keys": ["key1", "key2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sinterstore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of elements in the resulting set>
+}
+```
+
+Calculates the intersection of the provided sets of unique values and stores the result in the `destination` key.
+
+If the destination key already exists, it is overwritten
+
+Full documentation [here](https://redis.io/commands/sinterstore)
+
+## sismember
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sismember/<key>/<member>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sismember",
+  "_id": "<key>",
+  "member": "<member>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sismember",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [0|1]
+}
+```
+
+Checks if `member` is a member of the set of unique values stored at `key`
+
+Full documentation [here](https://redis.io/commands/sismember)
+
+## smembers
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_smembers/<key>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "smembers",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "smembers",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "member1",
+    "member2",
+    "..."
+  ]
+}
+```
+
+Returns the members of a set of unique values
+
+Full documentation [here](https://redis.io/commands/smembers)
+
+## smove
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_smove/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "destination": "<destination key>",
+  "member": "<member>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "smove",
+  "_id": "<key>",
+  "body": {
+    "destination": "<destination key>",
+    "member": "<member>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "smove",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [0|1]
+}
+```
+
+Moves a member from a set of unique values to another
+
+Full documentation [here](https://redis.io/commands/smove)
+
+## sort
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sort/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // optional arguments
+  "alpha": [false|true],
+  "by": "<external key pattern>",
+  "direction": "[ASC|DESC]",
+  "get": ["pattern1", "pattern2", "..."],
+  "limit": {
+    "offset": <offset>,
+    "count": <count>
+  },
+  "store": "<destination key>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sort",
+  "_id": "<key>",
+  "body": {
+    // optional arguments
+    "alpha": [false|true],
+    "by": "<external key pattern>",
+    "direction": "[ASC|DESC]",
+    "get": ["pattern1", "pattern2", "..."],
+    "limit": {
+      "offset": <offset>,
+      "count": <count>
+    },
+    "store": "<destination key>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sort",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "sorted element1",
+    "sorted element2",
+    "..."
+  ]
+}
+```
+
+Sorts and returns elements contained in a list, a set of unique values or a sorted set  
+By default, sorting is numeric and elements are compared by their value interpreted as double precision floating point number
+
+Optional arguments may be provided:
+
+* `alpha`: performs an alphanumerical sort instead of a numeric one
+* `by`: instead of sorting by values directly, sorts by values contained in external keys, using a pattern completed by values of the list/set/sorted set to sort
+* `direction`: sorted in ascendant or descendant order
+* `get`: instead of returning the sorted values directly, returns the values contained in external keys, using patterns completed by the sorted values
+* `limit`: limits the result set to `count` elements starting from the `offset` position in the sorted result set
+* `store`: instead of returning the result set, stores it in a list at `destination` key
+
+Full documentation [here](https://redis.io/commands/sort)
