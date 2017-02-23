@@ -1553,6 +1553,59 @@ Sets multiple fields at once in a hash
 
 Full documentation [here](https://redis.io/commands/hmset)
 
+## hscan
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_hscan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "hscan",
+  "cursor": <cursor>,
+
+  // optional
+  "match": "<pattern>",
+  "count": <count>
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "hscan",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    <new cursor position>,
+    [
+      "key1",
+      "key2",
+      "..."
+    ]
+  ]
+}
+```
+
+Identical to [scan](#scan) but iterates only over keys holding a hash
+
+
+Full documentation [here](https://redis.io/commands/hscan)
+
 ## hset
 
 <section class="http"></section>
@@ -3483,6 +3536,68 @@ Adds members to a set of unique values stored at `key`. If the `key` does not ex
 
 Full documentation [here](https://redis.io/commands/sadd)
 
+## scan
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_scan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "scan",
+  "cursor": <cursor>,
+
+  // optional
+  "match": "<pattern>",
+  "count": <count>
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "scan",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    <new cursor position>,
+    [
+      "key1",
+      "key2",
+      "..."
+    ]
+  ]
+}
+```
+
+Iterates incrementally the set of keys in the database using a cursor.
+
+An iteration starts when the cursor is set to 0.  
+To get the next page of results, simply re-send the request with the updated cursor position provided in the result set.  
+The scan terminates when the cursor returned by the server is 0.
+
+Optional arguments:
+
+* `count`: return an _approximate_ number of items per result set (the default is 10)
+* `match`: search only keys matching the provided pattern
+
+
+Full documentation [here](https://redis.io/commands/scan)
+
 ## scard
 
 <section class="http"></section>
@@ -3621,7 +3736,7 @@ Full documentation [here](https://redis.io/commands/sdiff)
 }
 ```
 
-Calculates the difference between the set of unique values stored at `key` and the other provided sets, and stores the result in the key stored at `destination`
+Computes the difference between the set of unique values stored at `key` and the other provided sets, and stores the result in the key stored at `destination`
 
 If the destination key already exists, it is overwritten
 
@@ -3905,7 +4020,7 @@ Full documentation [here](https://redis.io/commands/sinter)
 }
 ```
 
-Calculates the intersection of the provided sets of unique values and stores the result in the `destination` key.
+Computes the intersection of the provided sets of unique values and stores the result in the `destination` key.
 
 If the destination key already exists, it is overwritten
 
@@ -4137,3 +4252,1645 @@ Optional arguments may be provided:
 * `store`: instead of returning the result set, stores it in a list at `destination` key
 
 Full documentation [here](https://redis.io/commands/sort)
+
+## spop
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_spop/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  // optional
+  "count": <number of elements to remove>
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "spop",
+  "_id": "<key>",
+  "body": {
+    // optional
+    "count": <number of elements to remove>
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "spop",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "<removed element>"
+}
+```
+
+Removes and returns one or more elements at random from a set of unique values. If multiple elements are removed, the result set will be an array of removed elements, instead of a string
+
+Full documentation [here](https://redis.io/commands/spop)
+
+## srandmember
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_srandmember/<key>[?count=<count>]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "srandmember",
+  "_id": "<key>",
+  // optional
+  "count": <count>
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "srandmember",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "<member value>"
+}
+```
+
+Returns one or more members of a set of unique values, at random.  
+If `count` is provided and is positive, the returned values are unique. If `count` is negative, a set member can be returned multiple times
+
+If more than 1 member is returned, the result set will be an array of values instead of a string
+
+Full documentation [here](https://redis.io/commands/srandmember)
+
+## srem
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_srem/<key>`  
+>**Method:** `DELETE`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "members": ["member1", "member2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "srem",
+  "_id": "<key>",
+  "body": {
+    "members": ["member1", "member2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "srem",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of removed members>
+}
+```
+
+Removes members from a set of unique values
+
+Full documentation [here](https://redis.io/commands/srem)
+
+## sscan
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sscan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sscan",
+  "cursor": <cursor>,
+
+  // optional
+  "match": "<pattern>",
+  "count": <count>
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sscan",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    <new cursor position>,
+    [
+      "key1",
+      "key2",
+      "..."
+    ]
+  ]
+}
+```
+
+Identical to [scan](#scan) but iterates only over keys holding a set of unique items
+
+
+Full documentation [here](https://redis.io/commands/sscan)
+
+## strlen
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_strlen/<key>`  
+>**Method:** `GET`  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "strlen",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "strlen",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <string length>
+}
+```
+
+Returns the length of a value stored at `key`
+
+Full documentation [here](https://redis.io/commands/strlen)
+
+## sunion
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sunion?keys=key1,key2,...`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sunion",
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sunion",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "value1",
+    "value2",
+    "..."
+  ]
+}
+```
+
+Returns the union of sets of unique values
+
+Full documentation [here](https://redis.io/commands/sunion)
+
+## sunionstore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_sunionstore`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "destination": "<destination key>",
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "sunionstore",
+  "body": {
+    "destination": "<destination key>",
+    "keys": ["key1", "key2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "sunionstore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of members in the new set>
+}
+```
+
+Computes the union of multiple sets of unique values and stores it in a new set at `destination key`
+
+If the destination key already exists, it is overwritten
+
+Full documentation [here](https://redis.io/commands/sunionstore)
+
+## time
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_time`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "time"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "time",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    <Epoch time>,
+    <microseconds>
+  ]
+}
+```
+
+Returns the current server time as a two items list: a timestamp in [Epoch time](https://en.wikipedia.org/wiki/Unix_time) and the number of microseconds already elapsed in the current second
+
+Full documentation [here](https://redis.io/commands/time)
+
+## touch
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_touch`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "keys": ["key1", "key2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "touch",
+  "body": {
+    "keys": ["key1", "key2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "touch",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of touched keys>
+}
+```
+
+Alters the last access time of one or multiple keys. A key is ignored if it does not exist
+
+Full documentation [here](https://redis.io/commands/touch)
+
+## ttl
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_ttl/<key>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "ttl",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "ttl",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <remaining time to live, in seconds>
+}
+```
+
+Returns the remaining time to live of a key, in seconds, or a negative value if the key does not exist or if it is persistent
+
+Full documentation [here](https://redis.io/commands/ttl)
+
+## type
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_type/<key>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "type",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "type",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": "[hash|list|string|set|zset]"
+}
+```
+
+Returns the type of the value held by a key
+
+Full documentation [here](https://redis.io/commands/type)
+
+## zadd
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zadd/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "elements": [
+    {"score": <score1>, "member": "<value1>"},
+    {"score": <score2>, "member": "<value2>"},
+    {"score": <...>, "member": "<...>"}
+  ],
+
+  // optional parameters
+  "nx": [false|true],
+  "xx": [false|true],
+  "ch": [false|true],
+  "incr": [false|true]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zadd",
+  "_id": "<key>",
+  "body": {
+    "elements": [
+      {"score": <score1>, "member": "<value1>"},
+      {"score": <score2>, "member": "<value2>"},
+      {"score": <...>, "member": "<...>"}
+    ],
+
+    // optional parameters
+    "nx": [false|true],
+    "xx": [false|true],
+    "ch": [false|true],
+    "incr": [false|true]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zadd",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of added elements>
+}
+```
+
+Adds the specified elements to the sorted set stored at `key`. If the key does not exist, it is created, holding an empty sorted set. If it already exists and does not hold a sorted set, an error is returned.
+
+Scores are expressed as floating point numbers.
+
+If a member to insert is already in the sorted set, its score is updated and the member is reinserted at the right position in the set.
+
+Optional parameters may be provided to change the default behavior:
+
+* `nx`: only add new elements, do not update existing ones
+* `xx`: never add new elements, update only existing ones
+* `ch`: instead of returning the number of added elements, returns the number of changes performed
+* `incr`: instead of adding elements, increments the existing member with the provided `score`. Only one score/element pair can be specified if this option is set
+
+Full documentation [here](https://redis.io/commands/zadd)
+
+## zcard
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zcard/<key>`  
+>**Method:** `GET`  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zcard",
+  "_id": "<key>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zcard",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of elements in the set>
+}
+```
+
+Returns the number of elements held by a sorted set
+
+Full documentation [here](https://redis.io/commands/zcard)
+
+## zcount
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zcount/<key>?min=<min score>&max=<max score>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zcount",
+  "_id": "<key>",
+  "min": "<min score>",
+  "max": "<max score>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zcount",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of elements in the specified range>
+}
+```
+
+Returns the number of elements held by a sorted set with a score between the provided `min` and `max` values
+
+By default, the provided min and max values are inclusive. This behavior can be changed using the syntax described in the Redis [ZRANGEBYSCORE](https://redis.io/commands/zrangebyscore) documentation
+
+Full documentation [here](https://redis.io/commands/zcount)
+
+## zincrby
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zincrby/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "member": "<member>",
+  "value": <increment>
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zincrby",
+  "_id": "<key>",
+  "body": {
+    "member": "<member>",
+    "value": <increment>
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zincrby",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <new score value>
+}
+```
+
+Increments the score of a `member`in a sorted set by the provided `value`
+
+Full documentation [here](https://redis.io/commands/zincrby)
+
+## zinterstore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zinterstore/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "keys": ["key1", "key2", "..."],
+
+  // optional parameters
+  "weights": ["weight1", "weight2", "..."],
+  "aggregate": "[sum|min|max]"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zinterstore",
+  "_id": "<key>",
+  "body": {
+    "keys": ["key1", "key2", "..."],
+
+    // optional parameters
+    "weights": ["weight1", "weight2", "..."],
+    "aggregate": "[sum|min|max]"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zinterstore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <the number of elements in the new sorted set>
+}
+```
+
+Computes the intersection of the provided sorted sets given by the specified `keys`, and stores the result in a new sorted set at `key`
+
+Optional parameters:
+
+* `weights`: specifies a multiplication factor for each input sorted set
+* `aggregate` (default: `sum`): specifies how members' scores are aggregated during the intersection
+
+Full documentation [here](https://redis.io/commands/zinterstore)
+
+## zlexcount
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zlexcount/<key>?min=<min value>&max=<max value>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zlexcount",
+  "_id": "<key>",
+  "min": "<min value>",
+  "max": "<max value>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zlexcount",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <elements count>
+}
+```
+
+Counts elements in a sorted set where all members have equal score, using lexicographical ordering. The `min` and `max` values are inclusive by default. To change this behavior, please check the syntax detailed in the [Redis documentation](https://redis.io/commands/zrangebylex)
+
+Full documentation [here](https://redis.io/commands/zlexcount)
+
+## zrange
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrange",
+  "_id": "<key>",
+  "start": <index start>,
+  "stop": <index stop>,
+
+  // optional
+  "options": ["withscores"]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrange",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "element1",
+    "element2",
+    "..."
+  ]
+}
+```
+
+Returns elements from a sorted set depending on their position, from a `start` position index to a `stop` position index (inclusive)
+
+The `withscores` option includes the respective elements' scores in the result set, using the following format: `["element1 value", "element1 score", "element2 value", "element2 score", ...]`
+
+Full documentation [here](https://redis.io/commands/zrange)
+
+## zrangebylex
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrangebylex",
+  "_id": "<key>",
+  "min": "<min interval>",
+  "max": "<max interval>",
+
+  // optional
+  "limit": [<offset>, <count>]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrangebylex",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "element1",
+    "element2",
+    "..."
+  ]
+}
+```
+
+Returns elements in a sorted set where all members have equal score, using lexicographical ordering. The `min` and `max` values are inclusive by default. To change this behavior, please check the full documentation
+
+The optional LIMIT argument can be used to only get a range of the matching elements (similar to _SELECT LIMIT offset, count_ in SQL).
+
+Full documentation [here](https://redis.io/commands/zrangebylex)
+
+## zrevrangebylex
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrevrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrevrangebylex",
+  "_id": "<key>",
+  "min": "<min interval>",
+  "max": "<max interval>",
+
+  // optional
+  "limit": [<offset>, <count>]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrevrangebylex",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "...",
+    "element2",
+    "element1"
+  ]
+}
+```
+
+Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order
+
+Full documentation [here](https://redis.io/commands/zrevrangebylex)
+
+## zrangebyscore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrangebyscore/<key>?min=<min interval>&max=<max interval>[&limit=offset,count][&options=withscores]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrangebyscore",
+  "_id": "<key>",
+  "min": "<min interval>",
+  "max": "<max interval>",
+
+  // optional
+  "limit": [<offset>, <count>],
+  "options": ["withscores"]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrangebyscore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "element1",
+    "element2",
+    "..."
+  ]
+}
+```
+
+Returns all the elements in the sorted set at key with a score between `min` and `max` (inclusive). The elements are considered to be ordered from low to high scores
+
+The optional LIMIT argument can be used to only get a range of the matching elements (similar to _SELECT LIMIT offset, count_ in SQL).
+
+The `withscores` option includes the respective elements' scores in the result set, using the following format: `["element1 value", "element1 score", "element2 value", "element2 score", ...]`
+
+Full documentation [here](https://redis.io/commands/zrangebyscore)
+
+## zrank
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrank/<key>/<member>`  
+>**Method:** `GET`  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrank",
+  "_id": "<key>",
+  "member": "<member>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrank",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <element's position in the sorted set>
+}
+```
+
+Returns the position of an element in a sorted set, with scores in ascending order. The index returned is 0-based (the lowest score member has an index of 0)
+
+Full documentation [here](https://redis.io/commands/zrank)
+
+## zrem
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrem/<key>`  
+>**Method:** `DELETE`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "members": ["member1", "member2", "..."]
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrem",
+  "_id": "<key>",
+  "body": {
+    "members": ["member1", "member2", "..."]
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrem",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of removed members>
+}
+```
+
+Removes members from a sorted set
+
+Full documentation [here](https://redis.io/commands/zrem)
+
+## zremrangebylex
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zremrangebylex/<key>`  
+>**Method:** `DELETE`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "min": "<min interval>",
+  "max": "<max interval>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zremrangebylex",
+  "_id": "<key>",
+  "body": {
+    "min": "<min interval>",
+    "max": "<max interval>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zremrangebylex",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of removed members>
+}
+```
+
+Removes members from a sorted set where all elements have the same score, using lexicographical ordering. The `min` and `max` interval are inclusive, see the [Redis documentation](https://redis.io/commands/zrangebylex) to change this behavior
+
+Full documentation [here](https://redis.io/commands/zremrangebylex)
+
+## zremrangebyrank
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zremrangebyrank/<key>`  
+>**Method:** `DELETE`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "start": "<index start>",
+  "stop": "<index stop>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zremrangebyrank",
+  "_id": "<key>",
+  "body": {
+    "start": "<index start>",
+    "stop": "<index stop>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zremrangebyrank",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of removed members>
+}
+```
+
+Removes members from a sorted set with their position in the set between `start` and `stop` (inclusive).
+
+Positions are 0-based, meaning the first member of the set has a position of 0
+
+Full documentation [here](https://redis.io/commands/zremrangebyrank)
+
+## zremrangebyscore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zremrangebyscore/<key>`  
+>**Method:** `DELETE`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "min": "<min interval>",
+  "max": "<max interval>"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zremrangebyscore",
+  "_id": "<key>",
+  "body": {
+    "min": "<min interval>",
+    "max": "<max interval>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zremrangebyscore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <number of removed members>
+}
+```
+
+Removes members from a sorted set with a score between `min` and `max`.
+
+The `min` and `max` values are inclusive, but this behavior can be changed (see the [redis documentation](https://redis.io/commands/zrangebyscore))
+
+Full documentation [here](https://redis.io/commands/zremrangebylex)
+
+## zrevrange
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrevrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrevrange",
+  "_id": "<key>",
+  "start": <index start>,
+  "stop": <index stop>,
+
+  // optional
+  "options": ["withscores"]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrevrange",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "...",
+    "element2",
+    "element1"
+  ]
+}
+```
+
+Identical to [zrange](#zrange), except that the sorted set is traversed in descending order
+
+Full documentation [here](https://redis.io/commands/zrevrange)
+
+## zrevrangebyscore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrevrangebyscore/<key>?min=<min interval>&max=<max interval>[&limit=offset,count][&options=withscores]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrevrangebyscore",
+  "_id": "<key>",
+  "min": "<min interval>",
+  "max": "<max interval>",
+
+  // optional
+  "limit": [<offset>, <count>],
+  "options": ["withscores"]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrevrangebyscore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "...",
+    "element2",
+    "element1"
+  ]
+}
+```
+
+Identical to [zrangebyscore](#zrangebyscore) except that the sorted set is traversed in descending order
+
+Full documentation [here](https://redis.io/commands/zrevrangebyscore)
+
+## zrevrank
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrevrank/<key>/<member>`  
+>**Method:** `GET`  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrevrank",
+  "_id": "<key>",
+  "member": "<member>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrevrank",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <element's position in the sorted set>
+}
+```
+
+Returns the position of an element in a sorted set, with scores in descending order. The index returned is 0-based (the lowest score member has an index of 0)
+
+Full documentation [here](https://redis.io/commands/zrevrank)
+
+## zscan
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zscan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zscan",
+  "cursor": <cursor>,
+
+  // optional
+  "match": "<pattern>",
+  "count": <count>
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zscan",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    <new cursor position>,
+    [
+      "key1",
+      "key2",
+      "..."
+    ]
+  ]
+}
+```
+
+Identical to [scan](#scan) but iterates only over keys holding a sorted set
+
+
+Full documentation [here](https://redis.io/commands/zscan)
+
+## zscore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zscore/<key>/<member>`  
+>**Method:** `GET`  
+
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zscore",
+  "_id": "<key>",
+  "member": "<member>"
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zscore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <score>
+}
+```
+
+Returns the score of an element in a sorted set
+
+Full documentation [here](https://redis.io/commands/zscore)
+
+## zunionstore
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zunionstore/<key>`  
+>**Method:** `POST`  
+>**Body:**  
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "keys": ["key1", "key2", "..."],
+
+  // optional parameters
+  "weights": ["weight1", "weight2", "..."],
+  "aggregate": "[sum|min|max]"
+}
+```
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zunionstore",
+  "_id": "<key>",
+  "body": {
+    "keys": ["key1", "key2", "..."],
+
+    // optional parameters
+    "weights": ["weight1", "weight2", "..."],
+    "aggregate": "[sum|min|max]"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zunionstore",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": <the number of elements in the new sorted set>
+}
+```
+
+Computes the union of the provided sorted sets given by the specified `keys`, and stores the result in a new sorted set at `key`
+
+Optional parameters:
+
+* `weights`: specifies a multiplication factor for each input sorted set
+* `aggregate` (default: `sum`): specifies how members' scores are aggregated during the intersection
+
+Full documentation [here](https://redis.io/commands/zunionstore)
