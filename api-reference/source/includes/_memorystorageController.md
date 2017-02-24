@@ -402,7 +402,7 @@ Full documentation [here](https://redis.io/commands/del)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_exists/<key>`  
+>**URL:** `http://kuzzle:7512/ms/_exists?keys=key1,key2,...`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -415,7 +415,7 @@ Full documentation [here](https://redis.io/commands/del)
 {
   "controller": "ms",
   "action": "exists",
-  "_id": "<key>"
+  "keys": ["key1", "key2", "..."]
 }
 ```
 
@@ -431,11 +431,11 @@ Full documentation [here](https://redis.io/commands/del)
   "collection": null,
   "index": null,
   "metadata": null,
-  "result": [0|1]
+  "result": <number of existing keys>
 }
 ```
 
-Checks if a key exists in the database
+Checks if the specified keys exist in the database
 
 Full documentation [here](https://redis.io/commands/exists)
 
