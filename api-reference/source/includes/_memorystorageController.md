@@ -600,13 +600,13 @@ Full documentation [here](https://redis.io/commands/flushdb)
 {
   "points": [
     {
-      "longitude": <float between -180 and 180>,
-      "latitude": <float between -85.05112878 and 85.05112878>,
+      "lon": <float between -180 and 180>,
+      "lat": <float between -85.05112878 and 85.05112878>,
       "name": "point name"
     },
     {
-      "longitude": <float between -180 and 180>,
-      "latitude": <float between -85.05112878 and 85.05112878>,
+      "lon": <float between -180 and 180>,
+      "lat": <float between -85.05112878 and 85.05112878>,
       "name": "point name"
     },
     ...
@@ -628,13 +628,13 @@ Full documentation [here](https://redis.io/commands/flushdb)
   "body": {
     "points": [
       {
-        "longitude": <float between -180 and 180>,
-        "latitude": <float between -85.05112878 and 85.05112878>,
+        "lon": <float between -180 and 180>,
+        "lat": <float between -85.05112878 and 85.05112878>,
         "name": "point name"
       },
       {
-        "longitude": <float between -180 and 180>,
-        "latitude": <float between -85.05112878 and 85.05112878>,
+        "lon": <float between -180 and 180>,
+        "lat": <float between -85.05112878 and 85.05112878>,
         "name": "point name"
       },
       ...
