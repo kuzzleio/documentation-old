@@ -598,9 +598,19 @@ Full documentation [here](https://redis.io/commands/flushdb)
 
 ```litcoffee
 {
-  "longitude": <float between -180 and 180>,
-  "latitude": <float between -85.05112878 and 85.05112878>,
-  "name": "point name"
+  "points": [
+    {
+      "longitude": <float between -180 and 180>,
+      "latitude": <float between -85.05112878 and 85.05112878>,
+      "name": "point name"
+    },
+    {
+      "longitude": <float between -180 and 180>,
+      "latitude": <float between -85.05112878 and 85.05112878>,
+      "name": "point name"
+    },
+    ...
+  ]
 }
 ```
 
@@ -616,9 +626,19 @@ Full documentation [here](https://redis.io/commands/flushdb)
   "action": "geoadd",
   "_id": "<key>",
   "body": {
-    "longitude": <float between -180 and 180>,
-    "latitude": <float between -85.05112878 and 85.05112878>,
-    "name": "point name"
+    "points": [
+      {
+        "longitude": <float between -180 and 180>,
+        "latitude": <float between -85.05112878 and 85.05112878>,
+        "name": "point name"
+      },
+      {
+        "longitude": <float between -180 and 180>,
+        "latitude": <float between -85.05112878 and 85.05112878>,
+        "name": "point name"
+      },
+      ...
+    ]
   }
 }
 ```
@@ -635,11 +655,11 @@ Full documentation [here](https://redis.io/commands/flushdb)
   "collection": null,
   "index": null,
   "metadata": null,
-  "result": 1
+  "result": <number of points added>
 }
 ```
 
-Adds a geospatial point to the specified key
+Adds geospatial points to the specified key
 
 Full documentation [here](https://redis.io/commands/geoadd)
 
