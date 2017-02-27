@@ -1595,7 +1595,9 @@ Full documentation [here](https://redis.io/commands/hmset)
     <new cursor position>,
     [
       "field1",
+      "value of field1",
       "field2",
+      "value of field2",
       "..."
     ]
   ]
@@ -5777,7 +5779,9 @@ Full documentation [here](https://redis.io/commands/zrevrank)
     <new cursor position>,
     [
       "element1",
+      "score of element1",
       "element2",
+      "score of element2",
       "..."
     ]
   ]
