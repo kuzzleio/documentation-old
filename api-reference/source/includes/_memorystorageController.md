@@ -1557,7 +1557,7 @@ Full documentation [here](https://redis.io/commands/hmset)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hscan?cursor=<hash key>[&match=<pattern>][&count=<count>]`  
+>**URL:** `http://kuzzle:7512/ms/_hscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -1570,7 +1570,8 @@ Full documentation [here](https://redis.io/commands/hmset)
 {
   "controller": "ms",
   "action": "hscan",
-  "cursor": "<hash key>",
+  "_id": "<key>",
+  "cursor": <cursor>,
 
   // optional
   "match": "<pattern>",
@@ -4411,7 +4412,7 @@ Full documentation [here](https://redis.io/commands/srem)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sscan?cursor=<set key>[&match=<pattern>][&count=<count>]`  
+>**URL:** `http://kuzzle:7512/ms/_sscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -4424,7 +4425,8 @@ Full documentation [here](https://redis.io/commands/srem)
 {
   "controller": "ms",
   "action": "sscan",
-  "cursor": "set key",
+  "_id": "<key>",
+  "cursor": <cursor>,
 
   // optional
   "match": "<pattern>",
@@ -5737,7 +5739,7 @@ Full documentation [here](https://redis.io/commands/zrevrank)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zscan?cursor=<sorted set key>[&match=<pattern>][&count=<count>]`  
+>**URL:** `http://kuzzle:7512/ms/_zscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -5750,7 +5752,8 @@ Full documentation [here](https://redis.io/commands/zrevrank)
 {
   "controller": "ms",
   "action": "zscan",
-  "cursor": "<sorted set key>",
+  "_id": "<key>",
+  "cursor": <cursor>,
 
   // optional
   "match": "<pattern>",
