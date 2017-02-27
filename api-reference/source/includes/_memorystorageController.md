@@ -801,7 +801,7 @@ Full documentation [here](https://redis.io/commands/geopos)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_georadius/<key>?longitude=<longitude>&latitude=<latitude>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`  
+>**URL:** `http://kuzzle:7512/ms/_georadius/<key>?lon=<longitude>&lat=<latitude>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`  
 >**Method:** `GET`  
 
 
@@ -816,8 +816,8 @@ Full documentation [here](https://redis.io/commands/geopos)
   "controller": "ms",
   "action": "georadius",
   "_id": "<key>",
-  "longitude": <longitude>,
-  "latitude": <latitude>,
+  "lon": <longitude>,
+  "lat": <latitude>,
   "distance": <distance>,
   "unit": "[m|km|mi|ft]",
   "options": ["(optional)", "option1", "option2", "..."]
