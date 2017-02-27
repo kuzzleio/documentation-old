@@ -1557,7 +1557,7 @@ Full documentation [here](https://redis.io/commands/hmset)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hscan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
+>**URL:** `http://kuzzle:7512/ms/_hscan?cursor=<hash key>[&match=<pattern>][&count=<count>]`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -1570,7 +1570,7 @@ Full documentation [here](https://redis.io/commands/hmset)
 {
   "controller": "ms",
   "action": "hscan",
-  "cursor": <cursor>,
+  "cursor": "<hash key>",
 
   // optional
   "match": "<pattern>",
@@ -1593,15 +1593,15 @@ Full documentation [here](https://redis.io/commands/hmset)
   "result": [
     <new cursor position>,
     [
-      "key1",
-      "key2",
+      "field1",
+      "field2",
       "..."
     ]
   ]
 }
 ```
 
-Identical to [scan](#scan) but iterates only over keys holding a hash
+Identical to [scan](#scan), except that `hscan` iterates the field contained in a hash
 
 
 Full documentation [here](https://redis.io/commands/hscan)
@@ -4411,7 +4411,7 @@ Full documentation [here](https://redis.io/commands/srem)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sscan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
+>**URL:** `http://kuzzle:7512/ms/_sscan?cursor=<set key>[&match=<pattern>][&count=<count>]`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -4424,7 +4424,7 @@ Full documentation [here](https://redis.io/commands/srem)
 {
   "controller": "ms",
   "action": "sscan",
-  "cursor": <cursor>,
+  "cursor": "set key",
 
   // optional
   "match": "<pattern>",
@@ -4447,15 +4447,15 @@ Full documentation [here](https://redis.io/commands/srem)
   "result": [
     <new cursor position>,
     [
-      "key1",
-      "key2",
+      "member1",
+      "member2",
       "..."
     ]
   ]
 }
 ```
 
-Identical to [scan](#scan) but iterates only over keys holding a set of unique items
+Identical to [scan](#scan) but iterates members contained in a set of unique values
 
 
 Full documentation [here](https://redis.io/commands/sscan)
@@ -5737,7 +5737,7 @@ Full documentation [here](https://redis.io/commands/zrevrank)
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zscan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
+>**URL:** `http://kuzzle:7512/ms/_zscan?cursor=<sorted set key>[&match=<pattern>][&count=<count>]`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -5750,7 +5750,7 @@ Full documentation [here](https://redis.io/commands/zrevrank)
 {
   "controller": "ms",
   "action": "zscan",
-  "cursor": <cursor>,
+  "cursor": "<sorted set key>",
 
   // optional
   "match": "<pattern>",
@@ -5773,15 +5773,15 @@ Full documentation [here](https://redis.io/commands/zrevrank)
   "result": [
     <new cursor position>,
     [
-      "key1",
-      "key2",
+      "element1",
+      "element2",
       "..."
     ]
   ]
 }
 ```
 
-Identical to [scan](#scan) but iterates only over keys holding a sorted set
+Identical to [scan](#scan) but iterates the elements stored in a sorted set
 
 
 Full documentation [here](https://redis.io/commands/zscan)
