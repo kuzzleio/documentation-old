@@ -66,7 +66,7 @@ The in-memory database accessible by this controller is separated from the space
 
 Appends a value to a key. If the key does not exist, it is created.
 
-Full documentation [here](https://redis.io/commands/append)
+[[_Redis documentation_]](https://redis.io/commands/append)
 
 ## bitcount
 
@@ -110,7 +110,7 @@ Full documentation [here](https://redis.io/commands/append)
 Counts the number of set bits (population counting) in a string.  
 The `start` and `end` parameters are optional.
 
-Full documentation [here](https://redis.io/commands/bitcount)
+[[_Redis documentation_]](https://redis.io/commands/bitcount)
 
 ## bitop
 
@@ -165,7 +165,7 @@ Full documentation [here](https://redis.io/commands/bitcount)
 
 Performs a bitwise operation between multiple keys (containing string values) and stores the result in the destination key.
 
-Full documentation [here](https://redis.io/commands/bitop)
+[[_Redis documentation_]](https://redis.io/commands/bitop)
 
 ## bitpos
 
@@ -209,7 +209,7 @@ Full documentation [here](https://redis.io/commands/bitop)
 
 Returns the position of the first bit set to 1 or 0 in a string, or in a substring.
 
-Full documentation [here](https://redis.io/commands/bitpos)
+[[_Redis documentation_]](https://redis.io/commands/bitpos)
 
 ## dbsize
 
@@ -248,9 +248,9 @@ Full documentation [here](https://redis.io/commands/bitpos)
 }
 ```
 
-Returns the number of keys in the application database
+Returns the number of keys in the application database.
 
-Full documentation [here](https://redis.io/commands/dbsize)
+[[_Redis documentation_]](https://redis.io/commands/dbsize)
 
 ## decr
 
@@ -289,9 +289,9 @@ Full documentation [here](https://redis.io/commands/dbsize)
 }
 ```
 
-Decrements the number stored at `key` by 1. If the key does not exist, it is set to 0 before performing the operation
+Decrements the number stored at `key` by 1. If the key does not exist, it is set to 0 before performing the operation.
 
-Full documentation [here](https://redis.io/commands/decr)
+[[_Redis documentation_]](https://redis.io/commands/decr)
 
 ## decrby
 
@@ -342,9 +342,9 @@ Full documentation [here](https://redis.io/commands/decr)
 }
 ```
 
-Decrements the number stored at `key` by a provided integer value. If the key does not exist, it is set to 0 before performing the operation
+Decrements the number stored at `key` by a provided integer value. If the key does not exist, it is set to 0 before performing the operation.
 
-Full documentation [here](https://redis.io/commands/decrby)
+[[_Redis documentation_]](https://redis.io/commands/decrby)
 
 ## del
 
@@ -394,9 +394,9 @@ Full documentation [here](https://redis.io/commands/decrby)
 }
 ```
 
-Deletes a list of keys
+Deletes a list of keys.
 
-Full documentation [here](https://redis.io/commands/del)
+[[_Redis documentation_]](https://redis.io/commands/del)
 
 ## exists
 
@@ -435,9 +435,9 @@ Full documentation [here](https://redis.io/commands/del)
 }
 ```
 
-Checks if the specified keys exist in the database
+Checks if the specified keys exist in the database.
 
-Full documentation [here](https://redis.io/commands/exists)
+[[_Redis documentation_]](https://redis.io/commands/exists)
 
 ## expire
 
@@ -488,9 +488,9 @@ Full documentation [here](https://redis.io/commands/exists)
 }
 ```
 
-Sets a timeout (in seconds) on a key.  After the timeout has expired, the key will automatically be deleted
+Sets a timeout (in seconds) on a key.  After the timeout has expired, the key will automatically be deleted.
 
-Full documentation [here](https://redis.io/commands/expire)
+[[_Redis documentation_]](https://redis.io/commands/expire)
 
 ## expireat
 
@@ -544,7 +544,7 @@ Full documentation [here](https://redis.io/commands/expire)
 Sets an expiration timestamp on a key. After the timestamp has been reached, the key will automatically be deleted.  
 The `timestamp` parameter accepts an [Epoch time](https://en.wikipedia.org/wiki/Unix_time) value.
 
-Full documentation [here](https://redis.io/commands/expireat)
+[[_Redis documentation_]](https://redis.io/commands/expireat)
 
 ## flushdb
 
@@ -582,9 +582,9 @@ Full documentation [here](https://redis.io/commands/expireat)
 }
 ```
 
-Deletes all the keys of the database dedicated to client applications (the reserved space for Kuzzle is unaffected)
+Deletes all the keys of the database dedicated to client applications (the reserved space for Kuzzle is unaffected).
 
-Full documentation [here](https://redis.io/commands/flushdb)
+[[_Redis documentation_]](https://redis.io/commands/flushdb)
 
 ## geoadd
 
@@ -659,9 +659,9 @@ Full documentation [here](https://redis.io/commands/flushdb)
 }
 ```
 
-Adds geospatial points to the specified key
+Adds geospatial points to the specified key.
 
-Full documentation [here](https://redis.io/commands/geoadd)
+[[_Redis documentation_]](https://redis.io/commands/geoadd)
 
 ## geodist
 
@@ -706,7 +706,7 @@ Full documentation [here](https://redis.io/commands/geoadd)
 Returns the distance between two geospatial members of a key (see [geoadd](#geoadd)).  
 The returned distance is expressed in meters by default.
 
-Full documentation [here](https://redis.io/commands/geodist)
+[[_Redis documentation_]](https://redis.io/commands/geodist)
 
 ## geohash
 
@@ -748,7 +748,7 @@ Full documentation [here](https://redis.io/commands/geodist)
 
 Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provided key's members (see [geoadd](#geoadd)).  
 
-Full documentation [here](https://redis.io/commands/geohash)
+[[_Redis documentation_]](https://redis.io/commands/geohash)
 
 ## geopos
 
@@ -795,7 +795,7 @@ Full documentation [here](https://redis.io/commands/geohash)
 
 Returns the positions (longitude, latitude) of the provided key's members (see [geoadd](#geoadd)).  
 
-Full documentation [here](https://redis.io/commands/geopos)
+[[_Redis documentation_]](https://redis.io/commands/geopos)
 
 ## georadius
 
@@ -846,13 +846,13 @@ Full documentation [here](https://redis.io/commands/geopos)
 
 Returns the members (added with [geoadd](#geoadd)) of a given key inside the provided geospatial radius.
 
-The `options` parameter accepts the following options: `withcoord`, `withdist`, `count <count>`, `asc` and `desc`  
+The `options` parameter accepts the following options: `withcoord`, `withdist`, `count <count>`, `asc` and `desc`.  
 The provided count value for the `count` option must be passed as a separate option.  
 For instance, `&options=count,<count>` for HTTP requests, or `options: ['count', <count>]` for other protocols.
 
 The `result` format may change if `options` parameters are provided: instead of an array of value, the result may instead be an array of arrays (for instance with `withdist` or `withcoord` options).
 
-Full documentation [here](https://redis.io/commands/georadius)
+[[_Redis documentation_]](https://redis.io/commands/georadius)
 
 ## georadiusbymember
 
@@ -901,13 +901,13 @@ Full documentation [here](https://redis.io/commands/georadius)
 
 Returns the members (added with [geoadd](#geoadd)) of a given key inside the provided geospatial radius, centered around one of a key's member.
 
-The `options` parameter accepts the following options: `withcoord`, `withdist`, `count <count>`, `asc` and `desc`  
+The `options` parameter accepts the following options: `withcoord`, `withdist`, `count <count>`, `asc` and `desc`.  
 The provided count value for the `count` option must be passed as a separate option.  
 For instance, `&options=count,<count>` for HTTP requests, or `options: ['count', <count>]` for other protocols.
 
 The `result` format may change if `options` parameters are provided: instead of an array of value, the result may instead be an array of arrays (for instance with `withdist` or `withcoord` options).
 
-Full documentation [here](https://redis.io/commands/georadiusbymember)
+[[_Redis documentation_]](https://redis.io/commands/georadiusbymember)
 
 ## get
 
@@ -946,9 +946,9 @@ Full documentation [here](https://redis.io/commands/georadiusbymember)
 }
 ```
 
-Returns the value of a key, or `null` if the key doesn't exist
+Returns the value of a key, or `null` if the key doesn't exist.
 
-Full documentation [here](https://redis.io/commands/get)
+[[_Redis documentation_]](https://redis.io/commands/get)
 
 ## getbit
 
@@ -988,9 +988,9 @@ Full documentation [here](https://redis.io/commands/get)
 }
 ```
 
-Returns the bit value at `offset`, in the string value stored in a key
+Returns the bit value at `offset`, in the string value stored in a key.
 
-Full documentation [here](https://redis.io/commands/getbit)
+[[_Redis documentation_]](https://redis.io/commands/getbit)
 
 ## getrange
 
@@ -1031,9 +1031,9 @@ Full documentation [here](https://redis.io/commands/getbit)
 }
 ```
 
-Returns a substring of a key's value
+Returns a substring of a key's value.
 
-Full documentation [here](https://redis.io/commands/getrange)
+[[_Redis documentation_]](https://redis.io/commands/getrange)
 
 ## getset
 
@@ -1084,9 +1084,9 @@ Full documentation [here](https://redis.io/commands/getrange)
 }
 ```
 
-Sets a new value for a key and returns the previous stored value
+Sets a new value for a key and returns the previous stored value.
 
-Full documentation [here](https://redis.io/commands/getset)
+[[_Redis documentation_]](https://redis.io/commands/getset)
 
 ## hdel
 
@@ -1137,9 +1137,9 @@ Full documentation [here](https://redis.io/commands/getset)
 }
 ```
 
-Removes fields from a hash
+Removes fields from a hash.
 
-Full documentation [here](https://redis.io/commands/hdel)
+[[_Redis documentation_]](https://redis.io/commands/hdel)
 
 ## hexists
 
@@ -1179,9 +1179,9 @@ Full documentation [here](https://redis.io/commands/hdel)
 }
 ```
 
-Checks if a field exists in a hash
+Checks if a field exists in a hash.
 
-Full documentation [here](https://redis.io/commands/hexists)
+[[_Redis documentation_]](https://redis.io/commands/hexists)
 
 ## hget
 
@@ -1221,9 +1221,9 @@ Full documentation [here](https://redis.io/commands/hexists)
 }
 ```
 
-Returns the field's value of a hash
+Returns the field's value of a hash.
 
-Full documentation [here](https://redis.io/commands/hget)
+[[_Redis documentation_]](https://redis.io/commands/hget)
 
 ## hgetall
 
@@ -1266,9 +1266,9 @@ Full documentation [here](https://redis.io/commands/hget)
 }
 ```
 
-Returns all fields and values of a hash
+Returns all fields and values of a hash.
 
-Full documentation [here](https://redis.io/commands/hgetall)
+[[_Redis documentation_]](https://redis.io/commands/hgetall)
 
 ## hincrby
 
@@ -1321,9 +1321,9 @@ Full documentation [here](https://redis.io/commands/hgetall)
 }
 ```
 
-Increments the number stored in a hash field by the provided integer value
+Increments the number stored in a hash field by the provided integer value.
 
-Full documentation [here](https://redis.io/commands/hincrby)
+[[_Redis documentation_]](https://redis.io/commands/hincrby)
 
 ## hincrbyfloat
 
@@ -1376,9 +1376,9 @@ Full documentation [here](https://redis.io/commands/hincrby)
 }
 ```
 
-Increments the number stored in a hash field by the provided float value
+Increments the number stored in a hash field by the provided float value.
 
-Full documentation [here](https://redis.io/commands/hincrbyfloat)
+[[_Redis documentation_]](https://redis.io/commands/hincrbyfloat)
 
 ## hkeys
 
@@ -1421,9 +1421,9 @@ Full documentation [here](https://redis.io/commands/hincrbyfloat)
 }
 ```
 
-Returns all field names containined in a hash
+Returns all field names containined in a hash.
 
-Full documentation [here](https://redis.io/commands/hkeys)
+[[_Redis documentation_]](https://redis.io/commands/hkeys)
 
 ## hlen
 
@@ -1462,9 +1462,9 @@ Full documentation [here](https://redis.io/commands/hkeys)
 }
 ```
 
-Returns the number of fields contained in a hash
+Returns the number of fields contained in a hash.
 
-Full documentation [here](https://redis.io/commands/hlen)
+[[_Redis documentation_]](https://redis.io/commands/hlen)
 
 ## hmget
 
@@ -1508,9 +1508,9 @@ Full documentation [here](https://redis.io/commands/hlen)
 }
 ```
 
-Returns the values of the specified hash's fields
+Returns the values of the specified hash's fields.
 
-Full documentation [here](https://redis.io/commands/hmget)
+[[_Redis documentation_]](https://redis.io/commands/hmget)
 
 ## hmset
 
@@ -1569,9 +1569,9 @@ Full documentation [here](https://redis.io/commands/hmget)
 }
 ```
 
-Sets multiple fields at once in a hash
+Sets multiple fields at once in a hash.
 
-Full documentation [here](https://redis.io/commands/hmset)
+[[_Redis documentation_]](https://redis.io/commands/hmset)
 
 ## hscan
 
@@ -1624,10 +1624,10 @@ Full documentation [here](https://redis.io/commands/hmset)
 }
 ```
 
-Identical to [scan](#scan), except that `hscan` iterates the field contained in a hash
+Identical to [scan](#scan), except that `hscan` iterates the field contained in a hash.
 
 
-Full documentation [here](https://redis.io/commands/hscan)
+[[_Redis documentation_]](https://redis.io/commands/hscan)
 
 ## hset
 
@@ -1680,9 +1680,9 @@ Full documentation [here](https://redis.io/commands/hscan)
 }
 ```
 
-Sets a field and its value in a hash. If the key does not exist, a new key holding a hash is created. If the field already exists, its value is overwritten
+Sets a field and its value in a hash. If the key does not exist, a new key holding a hash is created. If the field already exists, its value is overwritten.
 
-Full documentation [here](https://redis.io/commands/hset)
+[[_Redis documentation_]](https://redis.io/commands/hset)
 
 ## hsetnx
 
@@ -1735,9 +1735,9 @@ Full documentation [here](https://redis.io/commands/hset)
 }
 ```
 
-Sets a field and its value in a hash, only if the field does not already exist
+Sets a field and its value in a hash, only if the field does not already exist.
 
-Full documentation [here](https://redis.io/commands/hsetnx)
+[[_Redis documentation_]](https://redis.io/commands/hsetnx)
 
 ## hstrlen
 
@@ -1777,9 +1777,9 @@ Full documentation [here](https://redis.io/commands/hsetnx)
 }
 ```
 
-Returns the string length of a field's value in a hash
+Returns the string length of a field's value in a hash.
 
-Full documentation [here](https://redis.io/commands/hstrlen)
+[[_Redis documentation_]](https://redis.io/commands/hstrlen)
 
 ## hvals
 
@@ -1822,9 +1822,9 @@ Full documentation [here](https://redis.io/commands/hstrlen)
 }
 ```
 
-Returns all values contained in a hash
+Returns all values contained in a hash.
 
-Full documentation [here](https://redis.io/commands/hvals)
+[[_Redis documentation_]](https://redis.io/commands/hvals)
 
 ## incr
 
@@ -1863,9 +1863,9 @@ Full documentation [here](https://redis.io/commands/hvals)
 }
 ```
 
-Increments the number stored at `key` by 1. If the key does not exist, it is set to 0 before performing the operation
+Increments the number stored at `key` by 1. If the key does not exist, it is set to 0 before performing the operation.
 
-Full documentation [here](https://redis.io/commands/incr)
+[[_Redis documentation_]](https://redis.io/commands/incr)
 
 ## incrby
 
@@ -1916,9 +1916,9 @@ Full documentation [here](https://redis.io/commands/incr)
 }
 ```
 
-Increments the number stored at `key` by the provided integer value. If the key does not exist, it is set to 0 before performing the operation
+Increments the number stored at `key` by the provided integer value. If the key does not exist, it is set to 0 before performing the operation.
 
-Full documentation [here](https://redis.io/commands/incrby)
+[[_Redis documentation_]](https://redis.io/commands/incrby)
 
 ## incrbyfloat
 
@@ -1969,9 +1969,9 @@ Full documentation [here](https://redis.io/commands/incrby)
 }
 ```
 
-Increments the number stored at `key` by the provided float value. If the key does not exist, it is set to 0 before performing the operation
+Increments the number stored at `key` by the provided float value. If the key does not exist, it is set to 0 before performing the operation.
 
-Full documentation [here](https://redis.io/commands/incrbyfloat)
+[[_Redis documentation_]](https://redis.io/commands/incrbyfloat)
 
 ## keys
 
@@ -2016,7 +2016,7 @@ Full documentation [here](https://redis.io/commands/incrbyfloat)
 
 Returns all keys matching the provided pattern.
 
-Full documentation [here](https://redis.io/commands/keys)
+[[_Redis documentation_]](https://redis.io/commands/keys)
 
 ## lindex
 
@@ -2056,9 +2056,9 @@ Full documentation [here](https://redis.io/commands/keys)
 }
 ```
 
-Returns the element at the provided index in a list
+Returns the element at the provided index in a list.
 
-Full documentation [here](https://redis.io/commands/lindex)
+[[_Redis documentation_]](https://redis.io/commands/lindex)
 
 ## linsert
 
@@ -2115,7 +2115,7 @@ Full documentation [here](https://redis.io/commands/lindex)
 
 Inserts a value in a list, either before or after the reference pivot value.
 
-Full documentation [here](https://redis.io/commands/linsert)
+[[_Redis documentation_]](https://redis.io/commands/linsert)
 
 ## llen
 
@@ -2154,9 +2154,9 @@ Full documentation [here](https://redis.io/commands/linsert)
 }
 ```
 
-Returns the length of a list
+Returns the length of a list.
 
-Full documentation [here](https://redis.io/commands/llen)
+[[_Redis documentation_]](https://redis.io/commands/llen)
 
 ## lpop
 
@@ -2195,9 +2195,9 @@ Full documentation [here](https://redis.io/commands/llen)
 }
 ```
 
-Removes and returns the first element of a list
+Removes and returns the first element of a list.
 
-Full documentation [here](https://redis.io/commands/lpop)
+[[_Redis documentation_]](https://redis.io/commands/lpop)
 
 ## lpush
 
@@ -2248,9 +2248,9 @@ Full documentation [here](https://redis.io/commands/lpop)
 }
 ```
 
-Prepends the specified values to a list. If the key does not exist, it is created holding an empty list before performing the operation
+Prepends the specified values to a list. If the key does not exist, it is created holding an empty list before performing the operation.
 
-Full documentation [here](https://redis.io/commands/lpush)
+[[_Redis documentation_]](https://redis.io/commands/lpush)
 
 ## lpushx
 
@@ -2301,9 +2301,9 @@ Full documentation [here](https://redis.io/commands/lpush)
 }
 ```
 
-Prepends the specified value to a list, only if the key already exists and if it holds a list
+Prepends the specified value to a list, only if the key already exists and if it holds a list.
 
-Full documentation [here](https://redis.io/commands/lpushx)
+[[_Redis documentation_]](https://redis.io/commands/lpushx)
 
 ## lrange
 
@@ -2348,9 +2348,9 @@ Full documentation [here](https://redis.io/commands/lpushx)
 }
 ```
 
-Returns the list elements between the `start` and `stop` positions
+Returns the list elements between the `start` and `stop` positions.
 
-Full documentation [here](https://redis.io/commands/lrange)
+[[_Redis documentation_]](https://redis.io/commands/lrange)
 
 ## lrem
 
@@ -2403,9 +2403,9 @@ Full documentation [here](https://redis.io/commands/lrange)
 }
 ```
 
-Removes the first `count` occurences of elements equal to `value` from a list
+Removes the first `count` occurences of elements equal to `value` from a list.
 
-Full documentation [here](https://redis.io/commands/lrem)
+[[_Redis documentation_]](https://redis.io/commands/lrem)
 
 ## lset
 
@@ -2458,9 +2458,9 @@ Full documentation [here](https://redis.io/commands/lrem)
 }
 ```
 
-Sets the list element at `index` with the provided value
+Sets the list element at `index` with the provided value.
 
-Full documentation [here](https://redis.io/commands/lset)
+[[_Redis documentation_]](https://redis.io/commands/lset)
 
 ## ltrim
 
@@ -2513,9 +2513,9 @@ Full documentation [here](https://redis.io/commands/lset)
 }
 ```
 
-Trims an existing list so that it will contain only the specified range of elements specified
+Trims an existing list so that it will contain only the specified range of elements specified.
 
-Full documentation [here](https://redis.io/commands/ltrim)
+[[_Redis documentation_]](https://redis.io/commands/ltrim)
 
 ## mget (memoryStorage)
 
@@ -2559,9 +2559,9 @@ Full documentation [here](https://redis.io/commands/ltrim)
 }
 ```
 
-Returns the values of the provided keys
+Returns the values of the provided keys.
 
-Full documentation [here](https://redis.io/commands/mget)
+[[_Redis documentation_]](https://redis.io/commands/mget)
 
 ## mset
 
@@ -2619,9 +2619,9 @@ Full documentation [here](https://redis.io/commands/mget)
 }
 ```
 
-Sets the provided keys to their respective values. If a key does not exist, it is created. Otherwise, the key's value is overwritten
+Sets the provided keys to their respective values. If a key does not exist, it is created. Otherwise, the key's value is overwritten.
 
-Full documentation [here](https://redis.io/commands/mset)
+[[_Redis documentation_]](https://redis.io/commands/mset)
 
 ## msetnx
 
@@ -2679,9 +2679,9 @@ Full documentation [here](https://redis.io/commands/mset)
 }
 ```
 
-Sets the provided keys to their respective values, only if they do not exist. If a key exists, then the whole operation is aborted and no key is set
+Sets the provided keys to their respective values, only if they do not exist. If a key exists, then the whole operation is aborted and no key is set.
 
-Full documentation [here](https://redis.io/commands/msetnx)
+[[_Redis documentation_]](https://redis.io/commands/msetnx)
 
 ## object
 
@@ -2721,9 +2721,9 @@ Full documentation [here](https://redis.io/commands/msetnx)
 }
 ```
 
-Inspects the low-level properties of a key
+Inspects the low-level properties of a key.
 
-Full documentation [here](https://redis.io/commands/object)
+[[_Redis documentation_]](https://redis.io/commands/object)
 
 ## persist
 
@@ -2763,9 +2763,9 @@ Full documentation [here](https://redis.io/commands/object)
 }
 ```
 
-Removes the expiration delay or timestamp from a key, making it persistent
+Removes the expiration delay or timestamp from a key, making it persistent.
 
-Full documentation [here](https://redis.io/commands/persist)
+[[_Redis documentation_]](https://redis.io/commands/persist)
 
 ## pexpire
 
@@ -2816,9 +2816,9 @@ Full documentation [here](https://redis.io/commands/persist)
 }
 ```
 
-Sets a timeout (in milliseconds) on a key. After the timeout has expired, the key will automatically be deleted
+Sets a timeout (in milliseconds) on a key. After the timeout has expired, the key will automatically be deleted.
 
-Full documentation [here](https://redis.io/commands/pexpire)
+[[_Redis documentation_]](https://redis.io/commands/pexpire)
 
 ## pexpireat
 
@@ -2872,7 +2872,7 @@ Full documentation [here](https://redis.io/commands/pexpire)
 Sets an expiration timestamp on a key. After the timestamp has been reached, the key will automatically be deleted.  
 The `timestamp` parameter accepts an [Epoch time](https://en.wikipedia.org/wiki/Unix_time) value, in milliseconds.
 
-Full documentation [here](https://redis.io/commands/pexpireat)
+[[_Redis documentation_]](https://redis.io/commands/pexpireat)
 
 ## pfadd
 
@@ -2923,9 +2923,9 @@ Full documentation [here](https://redis.io/commands/pexpireat)
 }
 ```
 
-Adds elements to an [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure
+Adds elements to an [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure.
 
-Full documentation [here](https://redis.io/commands/pfadd)
+[[_Redis documentation_]](https://redis.io/commands/pfadd)
 
 ## pfcount
 
@@ -2964,9 +2964,9 @@ Full documentation [here](https://redis.io/commands/pfadd)
 }
 ```
 
-Returns the probabilistic cardinality of a [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure, or of the merged HyperLogLog structures if more than 1 is provided (see [pfadd](#pfadd))
+Returns the probabilistic cardinality of a [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure, or of the merged HyperLogLog structures if more than 1 is provided (see [pfadd](#pfadd)).
 
-Full documentation [here](https://redis.io/commands/pfcount)
+[[_Redis documentation_]](https://redis.io/commands/pfcount)
 
 ## pfmerge
 
@@ -3017,9 +3017,9 @@ Full documentation [here](https://redis.io/commands/pfcount)
 }
 ```
 
-Merges multiple [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structures into an unique HyperLogLog structure stored at `key`, approximating the cardinality of the union of the source structures
+Merges multiple [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structures into an unique HyperLogLog structure stored at `key`, approximating the cardinality of the union of the source structures.
 
-Full documentation [here](https://redis.io/commands/pfmerge)
+[[_Redis documentation_]](https://redis.io/commands/pfmerge)
 
 ## ping
 
@@ -3057,9 +3057,9 @@ Full documentation [here](https://redis.io/commands/pfmerge)
 }
 ```
 
-Pings the memory storage database
+Pings the memory storage database.
 
-Full documentation [here](https://redis.io/commands/ping)
+[[_Redis documentation_]](https://redis.io/commands/ping)
 
 ## psetex
 
@@ -3112,9 +3112,9 @@ Full documentation [here](https://redis.io/commands/ping)
 }
 ```
 
-Sets a key with the provided value, and an expiration delay expressed in milliseconds. If the key does not exist, it is created beforehand
+Sets a key with the provided value, and an expiration delay expressed in milliseconds. If the key does not exist, it is created beforehand.
 
-Full documentation [here](https://redis.io/commands/psetex)
+[[_Redis documentation_]](https://redis.io/commands/psetex)
 
 ## pttl
 
@@ -3153,9 +3153,9 @@ Full documentation [here](https://redis.io/commands/psetex)
 }
 ```
 
-Returns the remaining time to live of a key, in milliseconds
+Returns the remaining time to live of a key, in milliseconds.
 
-Full documentation [here](https://redis.io/commands/pttl)
+[[_Redis documentation_]](https://redis.io/commands/pttl)
 
 ## randomkey
 
@@ -3195,9 +3195,9 @@ Full documentation [here](https://redis.io/commands/pttl)
 }
 ```
 
-Returns a random key from the memory storage
+Returns a random key from the memory storage.
 
-Full documentation [here](https://redis.io/commands/randomkey)
+[[_Redis documentation_]](https://redis.io/commands/randomkey)
 
 ## rename
 
@@ -3248,9 +3248,9 @@ Full documentation [here](https://redis.io/commands/randomkey)
 }
 ```
 
-Renames a key to `newkey`. If `newkey` already exists, it is overwritten
+Renames a key to `newkey`. If `newkey` already exists, it is overwritten.
 
-Full documentation [here](https://redis.io/commands/rename)
+[[_Redis documentation_]](https://redis.io/commands/rename)
 
 ## renamenx
 
@@ -3301,9 +3301,9 @@ Full documentation [here](https://redis.io/commands/rename)
 }
 ```
 
-Renames a key to `newkey`, only if `newkey` does not already exist
+Renames a key to `newkey`, only if `newkey` does not already exist.
 
-Full documentation [here](https://redis.io/commands/renamenx)
+[[_Redis documentation_]](https://redis.io/commands/renamenx)
 
 ## rpop
 
@@ -3342,9 +3342,9 @@ Full documentation [here](https://redis.io/commands/renamenx)
 }
 ```
 
-Removes the last element of a list and returns it
+Removes the last element of a list and returns it.
 
-Full documentation [here](https://redis.io/commands/rpop)
+[[_Redis documentation_]](https://redis.io/commands/rpop)
 
 ## rpoplpush
 
@@ -3396,9 +3396,9 @@ Full documentation [here](https://redis.io/commands/rpop)
 }
 ```
 
-Removes the last element of the list at `source` and pushes it back at the start of the list at `destination`
+Removes the last element of the list at `source` and pushes it back at the start of the list at `destination`.
 
-Full documentation [here](https://redis.io/commands/rpoplpush)
+[[_Redis documentation_]](https://redis.io/commands/rpoplpush)
 
 ## rpush
 
@@ -3449,9 +3449,9 @@ Full documentation [here](https://redis.io/commands/rpoplpush)
 }
 ```
 
-Appends the specified values at the end of a list. If the key does not exist, it is created holding an empty list before performing the operation
+Appends the specified values at the end of a list. If the key does not exist, it is created holding an empty list before performing the operation.
 
-Full documentation [here](https://redis.io/commands/rpush)
+[[_Redis documentation_]](https://redis.io/commands/rpush)
 
 ## rpushx
 
@@ -3502,9 +3502,9 @@ Full documentation [here](https://redis.io/commands/rpush)
 }
 ```
 
-Appends the specified value at the end of a list, only if the key already exists and if it holds a list
+Appends the specified value at the end of a list, only if the key already exists and if it holds a list.
 
-Full documentation [here](https://redis.io/commands/rpushx)
+[[_Redis documentation_]](https://redis.io/commands/rpushx)
 
 ## sadd
 
@@ -3555,9 +3555,9 @@ Full documentation [here](https://redis.io/commands/rpushx)
 }
 ```
 
-Adds members to a set of unique values stored at `key`. If the `key` does not exist, it is created beforehand
+Adds members to a set of unique values stored at `key`. If the `key` does not exist, it is created beforehand.
 
-Full documentation [here](https://redis.io/commands/sadd)
+[[_Redis documentation_]](https://redis.io/commands/sadd)
 
 ## scan
 
@@ -3619,7 +3619,7 @@ Optional arguments:
 * `match`: search only keys matching the provided pattern
 
 
-Full documentation [here](https://redis.io/commands/scan)
+[[_Redis documentation_]](https://redis.io/commands/scan)
 
 ## scard
 
@@ -3658,9 +3658,9 @@ Full documentation [here](https://redis.io/commands/scan)
 }
 ```
 
-Returns the number of members stored in a set of unique values
+Returns the number of members stored in a set of unique values.
 
-Full documentation [here](https://redis.io/commands/scard)
+[[_Redis documentation_]](https://redis.io/commands/scard)
 
 ## sdiff
 
@@ -3704,9 +3704,9 @@ Full documentation [here](https://redis.io/commands/scard)
 }
 ```
 
-Returns the difference between the set of unique values stored at `key` and the other provided sets
+Returns the difference between the set of unique values stored at `key` and the other provided sets.
 
-Full documentation [here](https://redis.io/commands/sdiff)
+[[_Redis documentation_]](https://redis.io/commands/sdiff)
 
 ## sdiffstore
 
@@ -3759,11 +3759,11 @@ Full documentation [here](https://redis.io/commands/sdiff)
 }
 ```
 
-Computes the difference between the set of unique values stored at `key` and the other provided sets, and stores the result in the key stored at `destination`
+Computes the difference between the set of unique values stored at `key` and the other provided sets, and stores the result in the key stored at `destination`.
 
-If the destination key already exists, it is overwritten
+If the destination key already exists, it is overwritten.
 
-Full documentation [here](https://redis.io/commands/sdiffstore)
+[[_Redis documentation_]](https://redis.io/commands/sdiffstore)
 
 ## set
 
@@ -3826,7 +3826,7 @@ Full documentation [here](https://redis.io/commands/sdiffstore)
 }
 ```
 
-Creates a key holding the provided value, or overwrites it if it already exists
+Creates a key holding the provided value, or overwrites it if it already exists.
 
 Additional options can be provided:
 
@@ -3835,9 +3835,9 @@ Additional options can be provided:
 * `nx`: only set the key if it does not already exist
 * `xx`: only set the key if it already exist
 
-**Note:** setting `ex` and `px` options lead to a `BadRequestError` as these options are mutually exclusive. Same thing goes for `nx` and `xx`
+**Note:** setting `ex` and `px` options lead to a `BadRequestError` as these options are mutually exclusive. Same thing goes for `nx` and `xx`.
 
-Full documentation [here](https://redis.io/commands/set)
+[[_Redis documentation_]](https://redis.io/commands/set)
 
 ## setex
 
@@ -3890,9 +3890,9 @@ Full documentation [here](https://redis.io/commands/set)
 }
 ```
 
-Sets a value and a time to live (in seconds) on a key. If the key already exists, it is overwritten
+Sets a value and a time to live (in seconds) on a key. If the key already exists, it is overwritten.
 
-Full documentation [here](https://redis.io/commands/setex)
+[[_Redis documentation_]](https://redis.io/commands/setex)
 
 ## setnx
 
@@ -3943,9 +3943,9 @@ Full documentation [here](https://redis.io/commands/setex)
 }
 ```
 
-Sets a value on a key, only if it does not already exist
+Sets a value on a key, only if it does not already exist.
 
-Full documentation [here](https://redis.io/commands/setnx)
+[[_Redis documentation_]](https://redis.io/commands/setnx)
 
 ## sinter
 
@@ -3989,9 +3989,9 @@ Full documentation [here](https://redis.io/commands/setnx)
 }
 ```
 
-Returns the intersection of the provided sets of unique values
+Returns the intersection of the provided sets of unique values.
 
-Full documentation [here](https://redis.io/commands/sinter)
+[[_Redis documentation_]](https://redis.io/commands/sinter)
 
 ## sinterstore
 
@@ -4045,9 +4045,9 @@ Full documentation [here](https://redis.io/commands/sinter)
 
 Computes the intersection of the provided sets of unique values and stores the result in the `destination` key.
 
-If the destination key already exists, it is overwritten
+If the destination key already exists, it is overwritten.
 
-Full documentation [here](https://redis.io/commands/sinterstore)
+[[_Redis documentation_]](https://redis.io/commands/sinterstore)
 
 ## sismember
 
@@ -4087,9 +4087,9 @@ Full documentation [here](https://redis.io/commands/sinterstore)
 }
 ```
 
-Checks if `member` is a member of the set of unique values stored at `key`
+Checks if `member` is a member of the set of unique values stored at `key`.
 
-Full documentation [here](https://redis.io/commands/sismember)
+[[_Redis documentation_]](https://redis.io/commands/sismember)
 
 ## smembers
 
@@ -4132,9 +4132,9 @@ Full documentation [here](https://redis.io/commands/sismember)
 }
 ```
 
-Returns the members of a set of unique values
+Returns the members of a set of unique values.
 
-Full documentation [here](https://redis.io/commands/smembers)
+[[_Redis documentation_]](https://redis.io/commands/smembers)
 
 ## smove
 
@@ -4187,9 +4187,9 @@ Full documentation [here](https://redis.io/commands/smembers)
 }
 ```
 
-Moves a member from a set of unique values to another
+Moves a member from a set of unique values to another.
 
-Full documentation [here](https://redis.io/commands/smove)
+[[_Redis documentation_]](https://redis.io/commands/smove)
 
 ## sort
 
@@ -4262,8 +4262,8 @@ Full documentation [here](https://redis.io/commands/smove)
 }
 ```
 
-Sorts and returns elements contained in a list, a set of unique values or a sorted set  
-By default, sorting is numeric and elements are compared by their value interpreted as double precision floating point number
+Sorts and returns elements contained in a list, a set of unique values or a sorted set.  
+By default, sorting is numeric and elements are compared by their value interpreted as double precision floating point number.
 
 Optional arguments may be provided:
 
@@ -4274,7 +4274,7 @@ Optional arguments may be provided:
 * `limit`: limits the result set to `count` elements starting from the `offset` position in the sorted result set
 * `store`: instead of returning the result set, stores it in a list at `destination` key
 
-Full documentation [here](https://redis.io/commands/sort)
+[[_Redis documentation_]](https://redis.io/commands/sort)
 
 ## spop
 
@@ -4327,9 +4327,9 @@ Full documentation [here](https://redis.io/commands/sort)
 }
 ```
 
-Removes and returns one or more elements at random from a set of unique values. If multiple elements are removed, the result set will be an array of removed elements, instead of a string
+Removes and returns one or more elements at random from a set of unique values. If multiple elements are removed, the result set will be an array of removed elements, instead of a string.
 
-Full documentation [here](https://redis.io/commands/spop)
+[[_Redis documentation_]](https://redis.io/commands/spop)
 
 ## srandmember
 
@@ -4371,11 +4371,11 @@ Full documentation [here](https://redis.io/commands/spop)
 ```
 
 Returns one or more members of a set of unique values, at random.  
-If `count` is provided and is positive, the returned values are unique. If `count` is negative, a set member can be returned multiple times
+If `count` is provided and is positive, the returned values are unique. If `count` is negative, a set member can be returned multiple times.
 
-If more than 1 member is returned, the result set will be an array of values instead of a string
+If more than 1 member is returned, the result set will be an array of values instead of a string.
 
-Full documentation [here](https://redis.io/commands/srandmember)
+[[_Redis documentation_]](https://redis.io/commands/srandmember)
 
 ## srem
 
@@ -4426,9 +4426,9 @@ Full documentation [here](https://redis.io/commands/srandmember)
 }
 ```
 
-Removes members from a set of unique values
+Removes members from a set of unique values.
 
-Full documentation [here](https://redis.io/commands/srem)
+[[_Redis documentation_]](https://redis.io/commands/srem)
 
 ## sscan
 
@@ -4479,10 +4479,10 @@ Full documentation [here](https://redis.io/commands/srem)
 }
 ```
 
-Identical to [scan](#scan) but iterates members contained in a set of unique values
+Identical to [scan](#scan) but iterates members contained in a set of unique values.
 
 
-Full documentation [here](https://redis.io/commands/sscan)
+[[_Redis documentation_]](https://redis.io/commands/sscan)
 
 ## strlen
 
@@ -4522,9 +4522,9 @@ Full documentation [here](https://redis.io/commands/sscan)
 }
 ```
 
-Returns the length of a value stored at `key`
+Returns the length of a value stored at `key`.
 
-Full documentation [here](https://redis.io/commands/strlen)
+[[_Redis documentation_]](https://redis.io/commands/strlen)
 
 ## sunion
 
@@ -4567,9 +4567,9 @@ Full documentation [here](https://redis.io/commands/strlen)
 }
 ```
 
-Returns the union of sets of unique values
+Returns the union of sets of unique values.
 
-Full documentation [here](https://redis.io/commands/sunion)
+[[_Redis documentation_]](https://redis.io/commands/sunion)
 
 ## sunionstore
 
@@ -4621,11 +4621,11 @@ Full documentation [here](https://redis.io/commands/sunion)
 }
 ```
 
-Computes the union of multiple sets of unique values and stores it in a new set at `destination key`
+Computes the union of multiple sets of unique values and stores it in a new set at `destination key`.
 
-If the destination key already exists, it is overwritten
+If the destination key already exists, it is overwritten.
 
-Full documentation [here](https://redis.io/commands/sunionstore)
+[[_Redis documentation_]](https://redis.io/commands/sunionstore)
 
 ## time
 
@@ -4666,9 +4666,9 @@ Full documentation [here](https://redis.io/commands/sunionstore)
 }
 ```
 
-Returns the current server time as a two items list: a timestamp in [Epoch time](https://en.wikipedia.org/wiki/Unix_time) and the number of microseconds already elapsed in the current second
+Returns the current server time as a two items list: a timestamp in [Epoch time](https://en.wikipedia.org/wiki/Unix_time) and the number of microseconds already elapsed in the current second.
 
-Full documentation [here](https://redis.io/commands/time)
+[[_Redis documentation_]](https://redis.io/commands/time)
 
 ## touch
 
@@ -4718,9 +4718,9 @@ Full documentation [here](https://redis.io/commands/time)
 }
 ```
 
-Alters the last access time of one or multiple keys. A key is ignored if it does not exist
+Alters the last access time of one or multiple keys. A key is ignored if it does not exist.
 
-Full documentation [here](https://redis.io/commands/touch)
+[[_Redis documentation_]](https://redis.io/commands/touch)
 
 ## ttl
 
@@ -4759,9 +4759,9 @@ Full documentation [here](https://redis.io/commands/touch)
 }
 ```
 
-Returns the remaining time to live of a key, in seconds, or a negative value if the key does not exist or if it is persistent
+Returns the remaining time to live of a key, in seconds, or a negative value if the key does not exist or if it is persistent.
 
-Full documentation [here](https://redis.io/commands/ttl)
+[[_Redis documentation_]](https://redis.io/commands/ttl)
 
 ## type
 
@@ -4800,9 +4800,9 @@ Full documentation [here](https://redis.io/commands/ttl)
 }
 ```
 
-Returns the type of the value held by a key
+Returns the type of the value held by a key.
 
-Full documentation [here](https://redis.io/commands/type)
+[[_Redis documentation_]](https://redis.io/commands/type)
 
 ## zadd
 
@@ -4886,7 +4886,7 @@ Optional parameters may be provided to change the default behavior:
 * `ch`: instead of returning the number of added elements, returns the number of changes performed
 * `incr`: instead of adding elements, increments the existing member with the provided `score`. Only one score/element pair can be specified if this option is set
 
-Full documentation [here](https://redis.io/commands/zadd)
+[[_Redis documentation_]](https://redis.io/commands/zadd)
 
 ## zcard
 
@@ -4926,9 +4926,9 @@ Full documentation [here](https://redis.io/commands/zadd)
 }
 ```
 
-Returns the number of elements held by a sorted set
+Returns the number of elements held by a sorted set.
 
-Full documentation [here](https://redis.io/commands/zcard)
+[[_Redis documentation_]](https://redis.io/commands/zcard)
 
 ## zcount
 
@@ -4969,11 +4969,11 @@ Full documentation [here](https://redis.io/commands/zcard)
 }
 ```
 
-Returns the number of elements held by a sorted set with a score between the provided `min` and `max` values
+Returns the number of elements held by a sorted set with a score between the provided `min` and `max` values.
 
-By default, the provided min and max values are inclusive. This behavior can be changed using the syntax described in the Redis [ZRANGEBYSCORE](https://redis.io/commands/zrangebyscore) documentation
+By default, the provided min and max values are inclusive. This behavior can be changed using the syntax described in the Redis [ZRANGEBYSCORE](https://redis.io/commands/zrangebyscore) documentation.
 
-Full documentation [here](https://redis.io/commands/zcount)
+[[_Redis documentation_]](https://redis.io/commands/zcount)
 
 ## zincrby
 
@@ -5026,9 +5026,9 @@ Full documentation [here](https://redis.io/commands/zcount)
 }
 ```
 
-Increments the score of a `member`in a sorted set by the provided `value`
+Increments the score of a `member`in a sorted set by the provided `value`.
 
-Full documentation [here](https://redis.io/commands/zincrby)
+[[_Redis documentation_]](https://redis.io/commands/zincrby)
 
 ## zinterstore
 
@@ -5087,14 +5087,14 @@ Full documentation [here](https://redis.io/commands/zincrby)
 }
 ```
 
-Computes the intersection of the provided sorted sets given by the specified `keys`, and stores the result in a new sorted set at `key`
+Computes the intersection of the provided sorted sets given by the specified `keys`, and stores the result in a new sorted set at `key`.
 
 Optional parameters:
 
 * `weights`: specifies a multiplication factor for each input sorted set
 * `aggregate` (default: `sum`): specifies how members' scores are aggregated during the intersection
 
-Full documentation [here](https://redis.io/commands/zinterstore)
+[[_Redis documentation_]](https://redis.io/commands/zinterstore)
 
 ## zlexcount
 
@@ -5135,9 +5135,9 @@ Full documentation [here](https://redis.io/commands/zinterstore)
 }
 ```
 
-Counts elements in a sorted set where all members have equal score, using lexicographical ordering. The `min` and `max` values are inclusive by default. To change this behavior, please check the syntax detailed in the [Redis documentation](https://redis.io/commands/zrangebylex)
+Counts elements in a sorted set where all members have equal score, using lexicographical ordering. The `min` and `max` values are inclusive by default. To change this behavior, please check the syntax detailed in the [Redis documentation](https://redis.io/commands/zrangebylex).
 
-Full documentation [here](https://redis.io/commands/zlexcount)
+[[_Redis documentation_]](https://redis.io/commands/zlexcount)
 
 ## zrange
 
@@ -5185,11 +5185,11 @@ Full documentation [here](https://redis.io/commands/zlexcount)
 }
 ```
 
-Returns elements from a sorted set depending on their position, from a `start` position index to a `stop` position index (inclusive)
+Returns elements from a sorted set depending on their position, from a `start` position index to a `stop` position index (inclusive).
 
-The `withscores` option includes the respective elements' scores in the result set, using the following format: `["element1 value", "element1 score", "element2 value", "element2 score", ...]`
+The `withscores` option includes the respective elements' scores in the result set, using the following format: `["element1 value", "element1 score", "element2 value", "element2 score", ...]`.
 
-Full documentation [here](https://redis.io/commands/zrange)
+[[_Redis documentation_]](https://redis.io/commands/zrange)
 
 ## zrangebylex
 
@@ -5237,11 +5237,11 @@ Full documentation [here](https://redis.io/commands/zrange)
 }
 ```
 
-Returns elements in a sorted set where all members have equal score, using lexicographical ordering. The `min` and `max` values are inclusive by default. To change this behavior, please check the full documentation
+Returns elements in a sorted set where all members have equal score, using lexicographical ordering. The `min` and `max` values are inclusive by default. To change this behavior, please check the full documentation.
 
 The optional LIMIT argument can be used to only get a range of the matching elements (similar to _SELECT LIMIT offset, count_ in SQL).
 
-Full documentation [here](https://redis.io/commands/zrangebylex)
+[[_Redis documentation_]](https://redis.io/commands/zrangebylex)
 
 ## zrevrangebylex
 
@@ -5289,9 +5289,9 @@ Full documentation [here](https://redis.io/commands/zrangebylex)
 }
 ```
 
-Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order
+Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order.
 
-Full documentation [here](https://redis.io/commands/zrevrangebylex)
+[[_Redis documentation_]](https://redis.io/commands/zrevrangebylex)
 
 ## zrangebyscore
 
@@ -5340,13 +5340,13 @@ Full documentation [here](https://redis.io/commands/zrevrangebylex)
 }
 ```
 
-Returns all the elements in the sorted set at key with a score between `min` and `max` (inclusive). The elements are considered to be ordered from low to high scores
+Returns all the elements in the sorted set at key with a score between `min` and `max` (inclusive). The elements are considered to be ordered from low to high scores.
 
 The optional LIMIT argument can be used to only get a range of the matching elements (similar to _SELECT LIMIT offset, count_ in SQL).
 
-The `withscores` option includes the respective elements' scores in the result set, using the following format: `["element1 value", "element1 score", "element2 value", "element2 score", ...]`
+The `withscores` option includes the respective elements' scores in the result set, using the following format: `["element1 value", "element1 score", "element2 value", "element2 score", ...]`.
 
-Full documentation [here](https://redis.io/commands/zrangebyscore)
+[[_Redis documentation_]](https://redis.io/commands/zrangebyscore)
 
 ## zrank
 
@@ -5387,9 +5387,9 @@ Full documentation [here](https://redis.io/commands/zrangebyscore)
 }
 ```
 
-Returns the position of an element in a sorted set, with scores in ascending order. The index returned is 0-based (the lowest score member has an index of 0)
+Returns the position of an element in a sorted set, with scores in ascending order. The index returned is 0-based (the lowest score member has an index of 0).
 
-Full documentation [here](https://redis.io/commands/zrank)
+[[_Redis documentation_]](https://redis.io/commands/zrank)
 
 ## zrem
 
@@ -5440,9 +5440,9 @@ Full documentation [here](https://redis.io/commands/zrank)
 }
 ```
 
-Removes members from a sorted set
+Removes members from a sorted set.
 
-Full documentation [here](https://redis.io/commands/zrem)
+[[_Redis documentation_]](https://redis.io/commands/zrem)
 
 ## zremrangebylex
 
@@ -5495,9 +5495,9 @@ Full documentation [here](https://redis.io/commands/zrem)
 }
 ```
 
-Removes members from a sorted set where all elements have the same score, using lexicographical ordering. The `min` and `max` interval are inclusive, see the [Redis documentation](https://redis.io/commands/zrangebylex) to change this behavior
+Removes members from a sorted set where all elements have the same score, using lexicographical ordering. The `min` and `max` interval are inclusive, see the [Redis documentation](https://redis.io/commands/zrangebylex) to change this behavior.
 
-Full documentation [here](https://redis.io/commands/zremrangebylex)
+[[_Redis documentation_]](https://redis.io/commands/zremrangebylex)
 
 ## zremrangebyrank
 
@@ -5552,9 +5552,9 @@ Full documentation [here](https://redis.io/commands/zremrangebylex)
 
 Removes members from a sorted set with their position in the set between `start` and `stop` (inclusive).
 
-Positions are 0-based, meaning the first member of the set has a position of 0
+Positions are 0-based, meaning the first member of the set has a position of 0.
 
-Full documentation [here](https://redis.io/commands/zremrangebyrank)
+[[_Redis documentation_]](https://redis.io/commands/zremrangebyrank)
 
 ## zremrangebyscore
 
@@ -5609,9 +5609,9 @@ Full documentation [here](https://redis.io/commands/zremrangebyrank)
 
 Removes members from a sorted set with a score between `min` and `max`.
 
-The `min` and `max` values are inclusive, but this behavior can be changed (see the [redis documentation](https://redis.io/commands/zrangebyscore))
+The `min` and `max` values are inclusive, but this behavior can be changed (see the [redis documentation](https://redis.io/commands/zrangebyscore)).
 
-Full documentation [here](https://redis.io/commands/zremrangebylex)
+[[_Redis documentation_]](https://redis.io/commands/zremrangebylex)
 
 ## zrevrange
 
@@ -5659,9 +5659,9 @@ Full documentation [here](https://redis.io/commands/zremrangebylex)
 }
 ```
 
-Identical to [zrange](#zrange), except that the sorted set is traversed in descending order
+Identical to [zrange](#zrange), except that the sorted set is traversed in descending order.
 
-Full documentation [here](https://redis.io/commands/zrevrange)
+[[_Redis documentation_]](https://redis.io/commands/zrevrange)
 
 ## zrevrangebyscore
 
@@ -5710,9 +5710,9 @@ Full documentation [here](https://redis.io/commands/zrevrange)
 }
 ```
 
-Identical to [zrangebyscore](#zrangebyscore) except that the sorted set is traversed in descending order
+Identical to [zrangebyscore](#zrangebyscore) except that the sorted set is traversed in descending order.
 
-Full documentation [here](https://redis.io/commands/zrevrangebyscore)
+[[_Redis documentation_]](https://redis.io/commands/zrevrangebyscore)
 
 ## zrevrank
 
@@ -5753,9 +5753,9 @@ Full documentation [here](https://redis.io/commands/zrevrangebyscore)
 }
 ```
 
-Returns the position of an element in a sorted set, with scores in descending order. The index returned is 0-based (the lowest score member has an index of 0)
+Returns the position of an element in a sorted set, with scores in descending order. The index returned is 0-based (the lowest score member has an index of 0).
 
-Full documentation [here](https://redis.io/commands/zrevrank)
+[[_Redis documentation_]](https://redis.io/commands/zrevrank)
 
 ## zscan
 
@@ -5808,10 +5808,10 @@ Full documentation [here](https://redis.io/commands/zrevrank)
 }
 ```
 
-Identical to [scan](#scan) but iterates the elements stored in a sorted set
+Identical to [scan](#scan) but iterates the elements stored in a sorted set.
 
 
-Full documentation [here](https://redis.io/commands/zscan)
+[[_Redis documentation_]](https://redis.io/commands/zscan)
 
 ## zscore
 
@@ -5852,9 +5852,9 @@ Full documentation [here](https://redis.io/commands/zscan)
 }
 ```
 
-Returns the score of an element in a sorted set
+Returns the score of an element in a sorted set.
 
-Full documentation [here](https://redis.io/commands/zscore)
+[[_Redis documentation_]](https://redis.io/commands/zscore)
 
 ## zunionstore
 
@@ -5913,11 +5913,11 @@ Full documentation [here](https://redis.io/commands/zscore)
 }
 ```
 
-Computes the union of the provided sorted sets given by the specified `keys`, and stores the result in a new sorted set at `key`
+Computes the union of the provided sorted sets given by the specified `keys`, and stores the result in a new sorted set at `key`.
 
 Optional parameters:
 
 * `weights`: specifies a multiplication factor for each input sorted set
 * `aggregate` (default: `sum`): specifies how members' scores are aggregated during the intersection
 
-Full documentation [here](https://redis.io/commands/zunionstore)
+[[_Redis documentation_]](https://redis.io/commands/zunionstore)
