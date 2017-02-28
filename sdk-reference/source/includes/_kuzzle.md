@@ -92,25 +92,26 @@ If the `connect` option is set to `manual`, the callback will be called after th
 
 ## Properties
 
-| Property name | Type | Description | get/set |
-|--------------|--------|-----------------------------------|---------|
-| ``autoQueue`` | boolean | Automatically queue all requests during offline mode | get/set |
-| ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | get |
-| ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | get/set |
-| ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | get/set |
-| ``defaultIndex`` | string | Kuzzle's default index to use | get |
-| ``headers`` | JSON object | Common headers for all sent documents. | get/set |
-| ``host`` | string | Target Kuzzle host name/address | get/set |
-| ``jwtToken`` | string | Token used in requests for authentication. | get/set |
-| ``metadata`` | JSON object | Common metadata, will be sent to all future requests | get/set |
-| ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | get/set |
-| ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue | get/set |
-| ``port`` | integer | Kuzzle network port | 7512 |
-| ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | get/set |
-| ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | get/set |
-| ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | get/set |
-| ``replayInterval`` | integer | Delay between each replayed requests | get/set |
-| ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | get |
+| Property name | Type | Description |
+|---------------|------|-------------|
+| ``autoQueue`` | boolean | Automatically queue all requests during offline mode |
+| ``autoReconnect`` | boolean | Automatically reconnect after a connection loss |
+| ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event |
+| ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event |
+| ``defaultIndex`` | string | Kuzzle's default index to use |
+| ``headers`` | JSON object | Common headers for all sent documents. |
+| ``host`` | string | Target Kuzzle host name/address |
+| ``jwtToken`` | string | Token used in requests for authentication. |
+| ``metadata`` | JSON object | Common metadata, will be sent to all future requests |
+| ``offlineQueue`` | JSON object | Contains the queued requests during offline mode |
+| ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue |
+| ``port`` | integer | Kuzzle network port |
+| ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued |
+| ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode |
+| ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds |
+| ``replayInterval`` | integer | Delay between each replayed requests |
+| ``reconnectionDelay`` | integer | Number of milliseconds between reconnection attempts |
+| ``sslConnection`` | boolean | Connect to Kuzzle using SSL |
 
 **Notes:**
 
@@ -122,7 +123,7 @@ If the `connect` option is set to `manual`, the callback will be called after th
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are discarded to make room for new requests
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
 * the ``offlineQueueLoader`` must be set with a function, taking no argument, and returning an array of objects containing a `query` member with a Kuzzle query to be replayed, and an optional `cb` member with the corresponding callback to invoke with the query result
-* the ``host`` and ``port`` properties can be changed, but it will only be in effect at the next ``connect`` call
+* updates to ``host``, ``port``, ``autoReconnect``, ``reconnectionDelay`` and ``sslConnection`` properties will only take effect on next ``connect`` call
 
 ## Offline mode
 
