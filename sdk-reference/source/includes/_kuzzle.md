@@ -4,9 +4,6 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 
 ## Constructors
 
-Connects to a Kuzzle instance.
-
-
 ```js
 var kuzzle = new Kuzzle('localhost', {
   defaultIndex: 'some index',
@@ -52,8 +49,9 @@ $kuzzle = new Kuzzle('localhost', [
 ]);
 ```
 
-### Kuzzle(host, [options], [callback])
+Connects to a Kuzzle instance.
 
+### Kuzzle(host, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -213,7 +211,7 @@ Here is the list of these special events:
 | Event Name | Callback arguments | Description |
 |------------|-------------|-------------|
 | ``connected`` | _(none)_ | Fired when the SDK has successfully connected to Kuzzle |
-| `discarded` | `error` (object) | Fired when Kuzzle reject a request (e.g. request can't be parsed, request too large, ...) | 
+| `discarded` | `error` (object) | Fired when Kuzzle reject a request (e.g. request can't be parsed, request too large, ...) |
 | ``disconnected`` | _(none)_ |  Fired when the current session has been unexpectedly disconnected |
 | ``error`` | `error` (object) | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``jwtTokenExpired`` | _(none)_ |  Fired when Kuzzle rejected a request because the authentication token expired |
@@ -351,7 +349,7 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 A JSON object with a `valid` boolean property.  
 If the token is valid, a `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.
 
-## collection
+## collection (property)
 
 ```js
 var collection = kuzzle.collection('collection', 'index');
@@ -1496,7 +1494,7 @@ Returns the `Kuzzle` object to allow chaining.
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
 The `Kuzzle` object will unset the property `jwtToken` if the user is successfully logged out.
 
-## memoryStorage
+## memoryStorage (property)
 
 A `MemoryStorage` singleton.
 
@@ -1854,7 +1852,7 @@ Replays the requests queued during offline mode. Works only if the SDK is not in
 
 Returns the `Kuzzle` object to allow chaining.
 
-## security
+## security (property)
 
 A `Security` singleton.
 
