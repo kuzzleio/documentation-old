@@ -53,8 +53,8 @@ var myRoleDefinition = {
   controllers: {
     < controller|* >: {
       actions: {
-        < action|* >: < action permission* >,
-        < action|* >: < action permission* >,
+        < action|* >: < action permission|* >,
+        < action|* >: < action permission|* >,
         ...
       }
     }
@@ -63,6 +63,8 @@ var myRoleDefinition = {
 ```
 
 Each entry of the `controllers`, `actions` tree can be set to either an explicit value or the "&#42;" wildcard.
+
+When `controller` is declared within a Plugin, its name must be prefixed with the name of the Plugin, like `< plugin-name/controller-name >`.
 
 The `action permission` value can be set either to:
 
