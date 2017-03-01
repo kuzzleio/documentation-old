@@ -40,7 +40,6 @@
   "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
 
   "body": {
-    "profileIds": ["<profileId>"],       // Mandatory. The profile ids for the user
     "name": "John Doe",                   // Additional optional User properties
     ...
   }
@@ -55,7 +54,6 @@
   "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
 
   "body": {
-    "profileIds": ["<profileId>"],        // Mandatory. The profile ids for the user
     "name": "John Doe",                   // Additional optional User properties
     ...
     "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
