@@ -1,46 +1,7 @@
 # MemoryStorage
 
-Kuzzle's memory storage is a separate data store from the database layer.
-It is internally based on Redis. You can access most of Redis functions (all lowercased), except:
-
-* cluster based functions
-* script based functions
-* cursors functions
-
-Here is the list of non implemented commands:
-
-`client`
-`cluster`
-`config`
-`debug`
-`echo`
-`eval`
-`evalsha`
-`flushall`
-`migrate`
-`monitor`
-`move`
-`psubscribe`
-`pubsub`
-`punsubscribe`
-`quit`
-`readonly`
-`readwrite`
-`role`
-`script`
-`select`
-`shutdown`
-`slaveof`
-`slowlog`
-`subscribe`
-`sync`
-`unsubscribe`
-`scan`
-`sscan`
-`hscan`
-`zscan`
-
-You can find a list of all redis command at: [http://redis.io/commands](http://redis.io/commands)
+Kuzzle's memory storage is a data store separated from the database layer.
+It is internally based on Redis, and most of its functions are exposed by Kuzzle.
 
 ## Constructors
 
@@ -75,50 +36,13 @@ $memoryStorage = $kuzzle->memoryStorage();
 $memoryStorage = new MemoryStorage($kuzzle);
 ```
 
-## Example
+### MemoryStorage(Kuzzle)
 
-Here is an example with the `ping` command.
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `Kuzzle` | object | An instantiated `Kuzzle` object |
 
-```js
-var memoryStorage = kuzzle.memoryStorage;
 
-memoryStorage.ping((err, res) => {
-    // Handle result
-});
-```
+## Properties
 
-```java
-// using the static instance
-MemoryStorage memoryStorage = kuzzle.memoryStorage;
-
-memoryStorage.setListener(new ResponseListener<JSONObject>() {
-
-    @Override
-    public void onSuccess(JSONObject result) {
-        // Handle success
-    }
-
-    @Override
-    public void onError(JSONObject error) {
-        // Handle error
-    }
-
-});
-memoryStorage.ping();
-```
-
-```php
-<?php
-
-use \Kuzzle\Kuzzle;
-
-$kuzzle = new Kuzzle('localhost');
-$memoryStorage = $kuzzle->memoryStorage();
-
-try {
-  $result = $memoryStorage->ping();
-} catch (ErrorException $e) {
-  
-}
-
-```
+There are no exposed properties for this object.
