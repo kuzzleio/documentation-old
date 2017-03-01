@@ -351,7 +351,7 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 A JSON object with a `valid` boolean property.  
 If the token is valid, a `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.
 
-## collection
+## collection (Kuzzle)
 
 ```js
 var collection = kuzzle.collection('collection', 'index');
