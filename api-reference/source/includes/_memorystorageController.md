@@ -3783,7 +3783,7 @@ If the destination key already exists, it is overwritten.
   "ex": <seconds>,
   "px": <milliseconds>,
   "nx": [false|true],
-  "px": [false|true]
+  "xx": [false|true]
 }
 ```
 
@@ -3805,7 +3805,7 @@ If the destination key already exists, it is overwritten.
     "ex": <seconds>,
     "px": <milliseconds>,
     "nx": [false|true],
-    "px": [false|true]
+    "xx": [false|true]
   }
 }
 ```
