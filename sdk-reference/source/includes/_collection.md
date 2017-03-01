@@ -997,7 +997,7 @@ Returns the `Collection` object to allow chaining.
 
 Resolves to an updated `Document` object.
 
-## room
+## room (property)
 
 ```js
 var room = kuzzle
