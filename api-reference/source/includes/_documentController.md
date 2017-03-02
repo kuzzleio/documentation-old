@@ -466,8 +466,10 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "action": "scroll",
 
   "body": {
+    // The "scrollId" provided with the last scroll request,
+    // or from the initial search request if it is the first scroll call 
     "scrollId": "<scrollId>"
-    // The scroll parameter tells Elasticsearch to keep the search context open for another 1m.
+    // The scroll parameter tells Elasticsearch to keep the scroll session open for another 1m.
     "scroll": "1m"
   }
 }
@@ -506,17 +508,18 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 }
 ```
 
-While a search request returns a single “page” of results, the scroll API can
+While a `search` request returns a single "page" of results, the scroll API can
 be used to retrieve large numbers of results (or even all results) from a single
-search request, in much the same way as you would use a cursor on a traditional database.
+`search` request, in much the same way as you would use a cursor on a traditional database.
 
 Scrolling is not intended for real time user requests, but rather for processing large amounts of data.
 
-In order to use scrolling, the initial search request should specify the scroll parameter in the query string,
-which tells Elasticsearch how long it should keep the “search context” alive.
+In order to use scrolling, the initial [`search`](#search) request must specify the `scroll` parameter in the request,
+which tells Elasticsearch how long it should keep the "scroll session" alive.
+The query defined in the initial `search` request will then be used for all `scroll` using the provided `_scroll_id`.
 
 <aside class="warning">
-  The results that are returned from a scroll request reflect the state of the index at the time
+  The results that are returned from a `scroll` request reflect the state of the index at the time
   that the initial search request was made, like a snapshot in time. Subsequent changes
   to documents (index, update or delete) will only affect later search requests.
 </aside>
@@ -568,7 +571,9 @@ which tells Elasticsearch how long it should keep the “search context” alive
   },
   // "from" and "size" argument for pagination
   "from": 0,
-  "size": 42
+  "size": 42,
+  // "scroll" argument to start a scroll session
+  "scroll": "60s"
 }
 ```
 
@@ -619,6 +624,13 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 `aggregations` is not mandatory, see the
 [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html)
 for more details.
+
+If a `scroll` argument is provided in the request, a scroll session is started and the response will contain a `_scroll_id` that
+can be used with the [`scroll` action](#scroll).
+The value of the scroll defines the timeout of the session (it will be refreshed with subsequent `scroll` calls).
+ A scroll session is a way to paginate a search request as and when.
+The `search` response will contain the first maching documents. After the first search, the [`scroll` action](#scroll)
+must be used to iterate the pagination.
 
 
 ## mCreate
