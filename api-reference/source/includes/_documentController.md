@@ -466,7 +466,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "action": "scroll",
 
   "body": {
-    // The "scrollId" provided with the last scroll request,
+    // The "scrollId" provided with the last scroll response,
     // or from the initial search request if it is the first scroll call 
     "scrollId": "<scrollId>"
     // The scroll parameter tells Elasticsearch to keep the scroll session open for another 1m.
