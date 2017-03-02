@@ -1315,7 +1315,7 @@ Gets the mapping of the internal `users` collection.
 ```
 Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
-## mDeleteProfile
+## mDeleteProfiles
 
 <section class="http"></section>
 
@@ -1341,7 +1341,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 ```litcoffee
 {
   "controller": "security",
-  "action": "mDeleteProfile",
+  "action": "mDeleteProfiles",
   "body": {
     // ids must be an array of profile ids
     "ids": ["myFirstProfile", "mySecondProfile"]
@@ -1355,7 +1355,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "action": "mDeleteProfile",
+  "action": "mDeleteProfiles",
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": [
@@ -1367,7 +1367,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
 Deletes a list of `profile` objects from Kuzzle's database layer given a list of profile ids.
 
-## mDeleteRole
+## mDeleteRoles
 
 <section class="http"></section>
 
@@ -1393,7 +1393,7 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 ```litcoffee
 {
   "controller": "security",
-  "action": "mDeleteRole",
+  "action": "mDeleteRoles",
   "body": {
     // ids must be an array of profile ids
     "ids": ["myFirstRole", "mySecondRole"]
@@ -1407,7 +1407,7 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "action": "mDeleteRole",
+  "action": "mDeleteRoles",
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": [
@@ -1419,7 +1419,7 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 
 Deletes a list of `roles` objects from Kuzzle's database layer given a list of role ids.
 
-## mDeleteUser
+## mDeleteUsers
 
 <section class="http"></section>
 
@@ -1445,7 +1445,7 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 ```litcoffee
 {
   "controller": "security",
-  "action": "mDeleteRole",
+  "action": "mDeleteRoles",
   "body": {
     // ids must be an array of profile ids
     "ids": ["myFirstUserId", "mySecondUserId"]
@@ -1459,7 +1459,7 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "action": "mDeleteRole",
+  "action": "mDeleteRoles",
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": [
