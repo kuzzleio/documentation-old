@@ -12,7 +12,8 @@ In Kuzzle, data is organized in the following way:
 
 Kuzzle ships with a full data [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) API that enables you to operate in many ways on your documents.
 
-Let's [**create a new document**](/api-reference/#create48), for example, in `mycollection`, within `myindex` via the HTTP protocol. This is done by sending a `POST` request to the API endpoint `http://localhost:7512/myindex/mycollection/_create` with the body set to
+Let's [**create a new document**](/api-reference/#create48), for example, in `mycollection`, within `myindex` via the HTTP protocol.
+This is done by sending a `POST` request to the API endpoint `http://localhost:7512/myindex/mycollection/_create` with the body set to
 
 ```json
 {
@@ -271,6 +272,52 @@ Which gives, as a result, the following response:
   }
 }
 ```
+
+
+### Document mapping
+
+As previously said, Kuzzle relies on Elasticsearch to persist documents. Elasticsearch uses a mapping internaly to match
+a document field to a field type. This mapping is attached to a `collection` (a `type` in Elasticsearch terminology).
+If this mapping has not been defined, Elasticsearch will try to create this mapping automatically with the input documents.
+
+If you want to define this mapping yourself, Kuzzle provides a route to set it.
+This is done by sending a `PUT` request to the API endpoint `http://localhost:7512/myindex/mycollection/_mapping` with the body set to your mapping:
+
+```json
+{
+  "properties": {
+    "someField": {
+      "type": "date"
+    }
+  }
+}
+```
+
+Which gives us the response...
+
+```json
+{
+  "action": "updateMapping", 
+  "collection": "mycollection", 
+  "controller": "collection", 
+  "error": null, 
+  "index": "myindex", 
+  "metadata": null, 
+  "requestId": "8acca50e-592d-4f0d-962c-31719b11e171", 
+  "result": {
+    "acknowledged": true
+  }, 
+  "status": 200
+}
+```
+
+Here we defined a new field called `someField` of type `date` in our collection `mycollection`. This is especially useful when
+dealing with capabilities such as specific types (`date`, `geo_shape`, ...), full-text search and complex data structures (`nested`, ...) of Elasticsearch.
+As the mapping of the collection can not be changed once it is set (even if Elasticsearch did it automatically for you),
+we advise you to define it yourself to avoid surprises.
+
+The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html). 
+
 
 #### Where do we go from here?
 
