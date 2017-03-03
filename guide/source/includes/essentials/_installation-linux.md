@@ -71,7 +71,12 @@ We will run the Kuzzle stack using [pm2](http://pm2.keymetrics.io/), from the cu
 * A [Elasticsearch](https://www.elastic.co/products/elasticsearch) v5.x instance running on localhost:9200 (_preferred version: v5.0, but v2.x is also supported_).
 * A [Redis](http://redis.io/) v3.x instance running on localhost:6379 (_preferred version: v3.2_).
 * [NodeJS](https://nodejs.org/en/download/package-manager/) v6.x or upper.
-* `gcc` and `python`. On Debian-based systems: `sudo apt-get install build-essential python`.
+* [Python](https://www.python.org/) v2.7 preferred.
+* a C++11 compatible compiler.
+
+<aside class="notice">
+ The last two prerequisites can be fulfilled on Debian-based systems by installing packages : `build-essential` and `python`.
+</aside>
 
 #### Step 1 - Retrieve Kuzzle components source code
 
