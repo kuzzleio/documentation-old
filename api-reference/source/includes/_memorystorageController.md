@@ -1624,7 +1624,7 @@ Sets multiple fields at once in a hash.
 }
 ```
 
-Identical to [scan](#scan), except that `hscan` iterates the field contained in a hash.
+Identical to [scan](#scan), except that `hscan` iterates the fields contained in a hash.
 
 
 [[_Redis documentation_]](https://redis.io/commands/hscan)
@@ -3833,7 +3833,7 @@ Additional options can be provided:
 * `ex`: set the specified expire time, in seconds
 * `px`: set the specified expire time, in milliseconds
 * `nx`: only set the key if it does not already exist
-* `xx`: only set the key if it already exist
+* `xx`: only set the key if it already exists
 
 **Note:** setting `ex` and `px` options lead to a `BadRequestError` as these options are mutually exclusive. Same thing goes for `nx` and `xx`.
 
@@ -4269,7 +4269,7 @@ Optional arguments may be provided:
 
 * `alpha`: performs an alphanumerical sort instead of a numeric one
 * `by`: instead of sorting by values directly, sorts by values contained in external keys, using a pattern completed by values of the list/set/sorted set to sort
-* `direction`: sorted in ascendant or descendant order
+* `direction`: sort in ascendant or descendant order
 * `get`: instead of returning the sorted values directly, returns the values contained in external keys, using patterns completed by the sorted values
 * `limit`: limits the result set to `count` elements starting from the `offset` position in the sorted result set
 * `store`: instead of returning the result set, stores it in a list at `destination` key
