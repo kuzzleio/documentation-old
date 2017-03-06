@@ -5026,7 +5026,7 @@ By default, the provided min and max values are inclusive. This behavior can be 
 }
 ```
 
-Increments the score of a `member`in a sorted set by the provided `value`.
+Increments the score of a `member` in a sorted set by the provided `value`.
 
 [[_Redis documentation_]](https://redis.io/commands/zincrby)
 

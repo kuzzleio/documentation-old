@@ -6943,3 +6943,2517 @@ Returns the `MemoryStorage` object to allow chaining.
 ### Callback response
 
 Resolves to an array of removed elements.
+
+## srandmember
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.srandmember('key', function (err, members) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.srandmemberPromise('key')
+  .then(members => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.srandmember("key", new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray members) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $members = $kuzzle->memoryStorage()->srandmember('key');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  "member1",
+  "member2",
+  "..."
+]
+```
+
+Returns one or more members of a set of unique values, at random.  
+If `count` is provided and is positive, the returned values are unique. If `count` is negative, a set member can be returned multiple times.
+
+[[_Redis documentation_]](https://redis.io/commands/srandmember)
+
+### srandmember(key, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `count` | int | Number of members to return. If set with a positive value, the returned values are unique. If `count` is negative, a set member can be returned multiple times | `1` |
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an array of members of a set of unique values.
+
+## srem
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.srem('key', ['member1', 'member2', '...'], function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.sremPromise('key', ['member1', 'member2', '...'])
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+JSONArray members = new JSONArray().put("member1").put("member2").put("...");
+
+kuzzle.memoryStorage.srem("key", members, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->srem('key', ['member1', 'member2', '...']);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+2
+```
+
+Removes members from a set of unique values.
+
+[[_Redis documentation_]](https://redis.io/commands/srem)
+
+### srem(key, members, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `members` | array | List of members to remove from the set |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an integer containing the number of removed elements.
+
+## sscan
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.sscan('key', 0, function (err, page) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.sscanPromise('key', 0)
+  .then(page => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.sscan("key", 0, new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray page) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $page = $kuzzle->memoryStorage()->sscan('key', 0);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  18,
+  [
+    "member1",
+    "member2",
+    "..."
+  ]
+]
+```
+
+Identical to [scan](#scan), except that `sscan` iterates the members held by a set of unique values.
+
+[[_Redis documentation_]](https://redis.io/commands/sscan)
+
+### sscan(key, cursor, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `cursor` | int | Page number (iteration starts with a cursor value of `0`, and ends when the next cursor position is `0`) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| `count` | int | Return the _approximate_ `count` number of items per result page | `10` |
+| `match` | string | Search only for member values matching the provided pattern | `*` |
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to a JSON array containing 2 entries:
+
+* the cursor position for the next page of results (a next position of `0` indicates the end of the scan)
+* a list of members
+
+## strlen
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.strlen('key', function (err, length) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.strlenPromise('key')
+  .then(length => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.strlen("key", new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int length) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $length = $kuzzle->memoryStorage()->strlen('key');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+13
+```
+
+Returns the length of a value stored at `key`.
+
+[[_Redis documentation_]](https://redis.io/commands/strlen)
+
+### strlen(key, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an integer containing the length of a value.
+
+## sunion
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.sunion(['key1', 'key2', '...'], function (err, values) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.sunionPromise(['key1', 'key2', '...'])
+  .then(values => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+
+kuzzle.memoryStorage.sunion(keys, new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray values) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $values = $kuzzle->memoryStorage()->sunion(['key1', 'key2', '...']);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  "union value1",
+  "union value2",
+  "..."
+]
+```
+
+Returns the union of the provided sets of unique values.
+
+[[_Redis documentation_]](https://redis.io/commands/sunion)
+
+### sunion(keys, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `keys` | string | List of sets of unique values |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an array of the values in the computed union.
+
+## sunionstore
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.sunionstore('destination', ['key1', 'key2', '...'], function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.sunionstorePromise('destination', ['key1', 'key2', '...'])
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+
+kuzzle.memoryStorage.sunionstore("destination", keys, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->sunionstore('destination', ['key1', 'key2', '...']);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+4
+```
+
+Computes the union of the provided sets of unique values and stores the result in the `destination` key.
+
+If the destination key already exists, it is overwritten.
+
+[[_Redis documentation_]](https://redis.io/commands/sunionstore)
+
+### sunionstore(destination, keys, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `destination` | string | Destination key identifier |
+| `keys` | string | List of sets of unique values to intersect |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an integer containing the number of elements in the stored union.
+
+## time
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.time(function (err, result) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.timePromise()
+  .then(result => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.time(new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray result) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $result = $kuzzle->memoryStorage()->time();
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  1488791347,
+  494938
+]
+```
+
+Returns the current server time.
+
+[[_Redis documentation_]](https://redis.io/commands/time)
+
+### time([options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an array containing the following two items, in this order:
+
+* a timestamp in [Epoch time](https://en.wikipedia.org/wiki/Unix_time)
+* the number of microseconds already elapsed in the current second
+
+## touch
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.touch(['key1', 'key2', '...'], function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.tocuhPromise(['key1', 'key2', '...'])
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+
+kuzzle.memoryStorage.touch(keys, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->touch(['key1', 'key2', '...']);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+3
+```
+
+Alters the last access time of one or multiple keys. A key is ignored if it does not exist.
+
+[[_Redis documentation_]](https://redis.io/commands/touch)
+
+### touch(keys, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `keys` | array | List of keys to alter |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an integer containing the number of altered keys.
+
+## ttl
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.ttl('key', function (err, ttl) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.ttlPromise('key')
+  .then(ttl => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.ttl("key", new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int ttl) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $ttl = $kuzzle->memoryStorage()->ttl('key');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+42
+```
+
+Returns the remaining time to live of a key, in seconds, or a negative value if the key does not exist or if it is persistent.
+
+[[_Redis documentation_]](https://redis.io/commands/ttl)
+
+### ttl(key, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an integer containing the remaining time to live of the key, in seconds.
+
+## type
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.type('key', function (err, type) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.typePromise('key')
+  .then(type => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.type("key", new ResponseListener<String>() {
+  @Override
+  public void onSuccess(String type) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $type = $kuzzle->memoryStorage()->type('key');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+"zset"
+```
+
+Returns the type of the value held by a key.
+
+[[_Redis documentation_]](https://redis.io/commands/type)
+
+### type(key, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to one of the following values: `hash`, `list`, `set`, `string`, `zset`
+
+## zadd
+
+```js
+var elements = [
+  {'score': 1, 'member': 'foo'},
+  {'score': 2, 'member': 'bar'},
+  {'score': 3, 'member': 'baz'}
+];
+
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zadd('key', elements, function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zaddPromise('key', elements)
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+JSONArray elements = new JSONArray()
+  .put(new JSONObject().put("score", 1).put("member", "foo"))
+  .put(new JSONObject().put("score", 2).put("member", "bar"))
+  .put(new JSONObject().put("score", 3).put("member", "baz"));
+
+kuzzle.memoryStorage.zadd("key", elements new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+$elements = [
+  ['score' => 1, 'member' => 'foo'],
+  ['score' => 2, 'member' => 'bar'],
+  ['score' => 3, 'member' => 'baz']
+];
+
+try {
+  $value = $kuzzle->memoryStorage()->decr('key');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+3
+```
+
+Adds the specified elements to the sorted set stored at `key`. If the key does not exist, it is created, holding an empty sorted set. If it already exists and does not hold a sorted set, an error is returned.
+
+Scores are expressed as floating point numbers.
+
+If a member to insert is already in the sorted set, its score is updated and the member is reinserted at the right position in the set.
+
+[[_Redis documentation_]](https://redis.io/commands/zadd)
+
+### zadd(key, elements, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `elements` | array | List of JSON objects detailing the element to add to the sorted set.<br/>Properties: `score` (element's score, `double`), `member` (element's value, `string`) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `ch` | boolean | Instead of returning the number of added allements, return the total number of changes performed (including updates) | `false` |
+| `incr` | boolean | Instead of adding elements, increment the existing member with the provided `score` value. Only one score+element pair can be specified if this option is set | `false` |
+| `nx` | boolean | Only add new elements, do not update existing ones | `false` |
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `xx` | boolean | Never add new elements, update only exiting ones | `false` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an integer containing the number of elements added to the sorted set.
+
+## zcard
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zcard('key', function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zcardPromise('key')
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zcard("key", new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zcard('key');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+4
+```
+
+Returns the number of elements held by a sorted set.
+
+[[_Redis documentation_]](https://redis.io/commands/zcard)
+
+### zcard(key, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an integer containing the number of elements in a sorted set.
+
+## zcount
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zcount('key', 2, 3, function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zcountPromise('key', 2, 3)
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zcount("key", 2, 3, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zcount('key', 2, 3);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+2
+```
+
+Returns the number of elements held by a sorted set with a score between the provided `min` and `max` values.
+
+By default, the provided min and max values are inclusive. This behavior can be changed using the syntax described in the Redis [ZRANGEBYSCORE](https://redis.io/commands/zrangebyscore) documentation.
+
+[[_Redis documentation_]](https://redis.io/commands/zcount)
+
+### zcount(key, min, max, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | int | Minimum score (inclusive by default) |
+| `max` | int | Maximum score (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an integer containing the number of elements in the provided score range.
+
+## zincrby
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zincrby('key', 'foo', 3.14159, function (err, value) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zincrbyPromise('key', 'foo', 3.14159)
+  .then(value => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zincrby("key", "foo", 3.14159, new ResponseListener<double>() {
+  @Override
+  public void onSuccess(double value) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $value = $kuzzle->memoryStorage()->zincrby('key', 'foo', 3.14159);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+4.14159
+```
+
+Increments the score of a `member` in a sorted set by the provided `value`.
+
+[[_Redis documentation_]](https://redis.io/commands/zincrby)
+
+### zincrby(key, member, increment, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `member` | string | Member element to increment |
+| `increment` | double | Increment value |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to a double containing the updated member's score in the sorted set.
+
+## zinterstore
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zinterstore('destination', ['key1', 'key2', '...'], function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zinterstorePromise('destination', ['key1', 'key2', '...'])
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+
+kuzzle.memoryStorage.zinterstore("destination", keys, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zinterstore('destination', ['key1', 'key2', '...']);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+4
+```
+
+Computes the intersection of the provided sorted sets and stores the result in the `destination` key.
+
+If the destination key already exists, it is overwritten.
+
+[[_Redis documentation_]](https://redis.io/commands/zinterstore)
+
+### zinterstore(destination, keys, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `destination` | string | Destination key identifier |
+| `keys` | string | List of sorted sets to intersect |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `aggregate` | string | Specify how members' scores are aggregated during the intersection.<br/>Allowed values: `min`, `max`, `sum` | `sum` |
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `weights` | array | Specify a multiplication factor for each input sorted set | `[1]` |
+
+
+### Callback response
+
+Resolves to an integer containing the number of members in the stored intersection.
+
+## zlexcount
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zlexcount('key', '[b', '[f' function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zlexcountPromise('key', '[b', '[f')
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zlexcount("key", "[b", "[f", new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zlexcount('key', '[b', '[f');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+2
+```
+
+Counts elements in a sorted set where all members have equal score, using lexicographical ordering. The `min` and `max` values are inclusive by default. To change this behavior, please check the syntax detailed in the [Redis documentation](https://redis.io/commands/zrangebylex).
+
+[[_Redis documentation_]](https://redis.io/commands/zlexcount)
+
+### zlexcount(key, min, max, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | string | Minimum member value (inclusive by default) |
+| `max` | string | Maximum member value (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an integer containing the number of elements in the provided lexicographical value range.
+
+## zrange
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrange('key', 0, -1, function (err, members) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zrangePromise('key', 0, -1)
+  .then(members => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zrange("key", 0, -1, new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray members) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $members = $kuzzle->memoryStorage()->zrange('key', 0, -1);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  { "member": "foo", "score": 1 },
+  { "member": "bar", "score": 2 },
+  { "member": "baz", "score": 3 }
+]
+```
+
+Returns elements from a sorted set depending on their position in the set, from a `start` position index to a `stop` position index (inclusives).  
+First position starts at `0`.
+
+[[_Redis documentation_]](https://redis.io/commands/zrange)
+
+### zrange(key, start, stop, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `start` | int | Start position in the set (index starts at position `0`) |
+| `stop` | int | End position in the set |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an array of objects, each containing the following properties:
+
+* `member`: member value in the sorted set
+* `score`: member associated score
+
+## zrangebylex
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrangebylex('key', '-', '(g', function (err, members) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zrangebylexPromise('key', '-', '(g')
+  .then(members => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zrangebylex("key", "-", "(g", new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray members) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $members = $kuzzle->memoryStorage()->zrangebylex('key', '-', '(g');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  "member1",
+  "member2",
+  "..."
+]
+```
+
+Returns elements in a sorted set where all members have equal score, using lexicographical ordering. The `min` and `max` values are inclusive by default. To change this behavior, please check the full documentation.
+
+[[_Redis documentation_]](https://redis.io/commands/zrangebylex)
+
+### zrangebylex(key, min, max, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | string | Minimum member value (inclusive by default) |
+| `max` | string | Maximum member value (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an array of matching members.
+
+## zrevrangebylex
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrevrangebylex('key', '-', '(g', function (err, members) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zrevrangebylexPromise('key', '-', '(g')
+  .then(members => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zrevrangebylex("key", "-", "(g", new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray members) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $members = $kuzzle->memoryStorage()->zrevrangebylex('key', '-', '(g');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  "member1",
+  "member2",
+  "..."
+]
+```
+
+Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order.
+
+[[_Redis documentation_]](https://redis.io/commands/zrevrangebylex)
+
+### zrevrangebylex(key, min, max, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | string | Minimum member value (inclusive by default) |
+| `max` | string | Maximum member value (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an array of matching members.
+
+## zrangebyscore
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrangebyscore('key', 2, 3, function (err, members) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zrangebyscorePromise('key', 2, 3)
+  .then(members => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zrangebyscore("key", 2, 3, new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray members) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $members = $kuzzle->memoryStorage()->zrangebyscore('key', 2, 3);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  "member1",
+  "member2",
+  "..."
+]
+```
+
+Returns all the elements in the sorted set at key with a score between `min` and `max` (inclusive). The elements are considered to be ordered from low to high scores.
+
+[[_Redis documentation_]](https://redis.io/commands/zrangebyscore)
+
+### zrangebyscore(key, min, max, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | double | Minimum score value (inclusive by default) |
+| `max` | double | Maximum score value (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an array of matching members.
+
+## zrank
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrank('key', 'foo', function (err, position) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zrankPromise('key', 'foo')
+  .then(position => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zrank("key", "member", new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int position) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $position = $kuzzle->memoryStorage()->zrank('key', 'foo');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+0
+```
+
+Returns the position of an element in a sorted set, with scores in ascending order. The index returned is 0-based (the lowest score member has an index of 0).
+
+[[_Redis documentation_]](https://redis.io/commands/zrank)
+
+### zrank(key, member, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `member` | string | Member of the sorted set |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an integer containing the member's position in the sorted set.
+
+## zrem
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrem('key', ['foo', 'bar', 'baz'], function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zremPromise('key', ['foo', 'bar', 'baz'])
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+JSONArray members = new JSONArray().put("foo").put("bar").put("baz");
+
+kuzzle.memoryStorage.zrem("key", members, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zrem('key', ['foo', 'bar', 'baz']);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+3
+```
+
+Removes members from a sorted set.
+
+[[_Redis documentation_]](https://redis.io/commands/zrem)
+
+### zrem(key, members, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `members` | array | List of members to remove |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an integer containing the number of members removed from the sorted set.
+
+## zremrangebylex
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zremrangebylex('key', '[b', '(f', function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zremrangebylexPromise('key', '[b', '(f')
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zremrangebylex("key", "[b", "(f", new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zremrangebylex('key', '[b', '(f');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+2
+```
+
+Removes members from a sorted set where all elements have the same score, using lexicographical ordering. The `min` and `max` interval are inclusive, see the [Redis documentation](https://redis.io/commands/zrangebylex) to change this behavior.
+
+[[_Redis documentation_]](https://redis.io/commands/zremrangebylex)
+
+### zremrangebylex(key, min, max, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | string | Minimum member value (inclusive by default) |
+| `max` | string | Maximum member value (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an integer containing the number of removed members from the sorted set.
+
+## zremrangebyrank
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zremrangebyrank('key', 1, 2, function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zremrangebyrankPromise('key', 1, 2)
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zremrangebyrank("key", 1, 2, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zremrangebyrank('key', 1, 2);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+2
+```
+
+Removes members from a sorted set with their position in the set between `start` and `stop` (inclusive).
+
+Positions are 0-based, meaning the first member of the set has a position of 0.
+
+[[_Redis documentation_]](https://redis.io/commands/zremrangebyrank)
+
+### zremrangebyrank(key, min, max, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | int | Minimum position index (inclusive by default) |
+| `max` | int | Maximum position index (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an integer containing the number of removed members from the sorted set.
+
+## zremrangebyscore
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zremrangebyscore('key', 1, 2, function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zremrangebyscorePromise('key', 1, 2)
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zremrangebyscore("key", 1, 2, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zremrangebyscore('key', 1, 2);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+2
+```
+
+Removes members from a sorted set with a score between `min` and `max` (inclusive by default).
+
+[[_Redis documentation_]](https://redis.io/commands/zremrangebyscore)
+
+### zremrangebyscore(key, min, max, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | double | Minimum score (inclusive by default) |
+| `max` | double | Maximum score (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an integer containing the number of removed members from the sorted set.
+
+## zrevrange
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrevrange('key', 0, -1, function (err, members) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zrevrangePromise('key', 0, -1)
+  .then(members => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zrevrange("key", 0, -1, new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray members) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $members = $kuzzle->memoryStorage()->zrevrange('key', 0, -1);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  { "member": "baz", "score": 3 },
+  { "member": "bar", "score": 2 },
+  { "member": "foo", "score": 1 }
+]
+```
+
+Identical to [zrange](#zrange), except that the sorted set is traversed in descending order.
+
+[[_Redis documentation_]](https://redis.io/commands/zrevrange)
+
+### zrevrange(key, start, stop, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `start` | int | Start position in the set (index starts at position `0`) |
+| `stop` | int | End position in the set |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an array of objects, each containing the following properties:
+
+* `member`: member value in the sorted set
+* `score`: member associated score
+
+## zrevrangebyscore
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrevrangebyscore('key', 2, 3, function (err, members) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zrevrangebyscorePromise('key', 2, 3)
+  .then(members => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zrevrangebyscore("key", 2, 3, new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray members) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $members = $kuzzle->memoryStorage()->zrevrangebyscore('key', 2, 3);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  "...",
+  "member2",
+  "member1"
+]
+```
+
+Identical to [zrangebyscore](#zrangebyscore) except that the sorted set is traversed in descending order.
+
+[[_Redis documentation_]](https://redis.io/commands/zrevrangebyscore)
+
+### zrevrangebyscore(key, min, max, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `min` | double | Minimum score value (inclusive by default) |
+| `max` | double | Maximum score value (inclusive by default) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
+| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
+
+### Callback response
+
+Resolves to an array of matching members.
+
+## zrevrank
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zrevrank('key', 'foo', function (err, position) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zrevrankPromise('key', 'foo')
+  .then(position => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zrevrank("key", "member", new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int position) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $position = $kuzzle->memoryStorage()->zrevrank('key', 'foo');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+0
+```
+
+Returns the position of an element in a sorted set, with scores in descending order. The index returned is 0-based (the lowest score member has an index of 0).
+
+[[_Redis documentation_]](https://redis.io/commands/zrevrank)
+
+### zrevrank(key, member, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `member` | string | Member of the sorted set |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to an integer containing the member's position in the sorted set.
+
+## zscan
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zscan('key', 0, function (err, page) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zscanPromise('key', 0)
+  .then(page => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zscan("key", 0, new ResponseListener<JSONArray>() {
+  @Override
+  public void onSuccess(JSONArray page) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $page = $kuzzle->memoryStorage()->zscan('key', 0);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+[
+  18,
+  [
+    "member1",
+    "member1's score",
+    "member2",
+    "member2's score",
+    "..."
+  ]
+]
+```
+
+Identical to [scan](#scan), except that `zscan` iterates the members held by a sorted set.
+
+[[_Redis documentation_]](https://redis.io/commands/zscan)
+
+### zscan(key, cursor, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `cursor` | int | Page number (iteration starts with a cursor value of `0`, and ends when the next cursor position is `0`) |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| `count` | int | Return the _approximate_ `count` number of items per result page | `10` |
+| `match` | string | Search only for member values matching the provided pattern | `*` |
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to a JSON array containing 2 entries:
+
+* the cursor position for the next page of results (a next position of `0` indicates the end of the scan)
+* a list of, alternatively, sorted set members and their scores
+
+## zscore
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zscore('key', 'bar', function (err, score) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zscorePromise('key', 'bar')
+  .then(score => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+kuzzle.memoryStorage.zscore("key", "bar", new ResponseListener<int>() {
+  @Override
+  public void onSuccess(double score) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $score = $kuzzle->memoryStorage()->zscore('key', 'bar');
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+1
+```
+
+Returns the score of a member in a sorted set.
+
+[[_Redis documentation_]](https://redis.io/commands/zscore)
+
+### zscore(key, member, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `key` | string | Key identifier |
+| `member` | string | Sorted set member |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+
+
+### Callback response
+
+Resolves to the searched member's score.
+
+## zunionstore
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.memoryStorage.zunionstore('destination', ['key1', 'key2', '...'], function (err, count) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+kuzzle.memoryStorage.zunionstorePromise('destination', ['key1', 'key2', '...'])
+  .then(count => {
+    // resolved once the action has completed
+  });
+```
+
+```java
+JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+
+kuzzle.memoryStorage.zunionstore("destination", keys, new ResponseListener<int>() {
+  @Override
+  public void onSuccess(int count) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
+```
+
+```php
+<?php
+
+use \Kuzzle\Kuzzle;
+
+
+$kuzzle = new Kuzzle('localhost');
+
+try {
+  $count = $kuzzle->memoryStorage()->zunionstore('destination', ['key1', 'key2', '...']);
+}
+catch (ErrorException $e) {
+
+}
+```
+
+> Callback response:
+
+```json
+4
+```
+
+Computes the union of the provided sorted sets and stores the result in the `destination` key.
+
+If the destination key already exists, it is overwritten.
+
+[[_Redis documentation_]](https://redis.io/commands/zunionstore)
+
+### zunionstore(destination, keys, [options], callback)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| `destination` | string | Destination key identifier |
+| `keys` | string | List of sorted sets to intersect |
+| `options` | JSON Object | Optional parameters |
+| `callback` | function | Callback |
+
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| `aggregate` | string | Specify how members' scores are aggregated during the intersection.<br/>Allowed values: `min`, `max`, `sum` | `sum` |
+| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `weights` | array | Specify a multiplication factor for each input sorted set | `[1]` |
+
+
+### Callback response
+
+Resolves to an integer containing the number of members in the stored union.
