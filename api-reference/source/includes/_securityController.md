@@ -1615,7 +1615,7 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
 ```litcoffee
 {
   // A roles array containing a list of role IDs can be added
-  "policies":  [
+  "roles": [
     "myrole",
     "admin"
   ],
@@ -1633,8 +1633,8 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
   "controller": "security",
   "action": "searchProfiles",
   "body": {
-    // A roles array containing a list of role IDs can be added
-    "policies":  [
+    // A roles array containing a list of roleIds can be added
+    "roles": [
       "myrole",
       "admin"
     ]
