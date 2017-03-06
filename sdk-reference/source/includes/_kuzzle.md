@@ -1636,7 +1636,7 @@ catch (ErrorException $e) {
     "_source": {},
     "action": "search",
     "collection": "foo",
-    "controller": "read",
+    "controller": "document",
     "hits": {
       "hits": [],
       "max_score": 0,
