@@ -77,9 +77,9 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 | `core:indexCache:reset`                 | Triggered if the indexCache is reset                                   | {index}              |
 | `core:overload` | Triggered when the overload cache is filling up | Overload percentage. Type: Number |
 | `core:profileRepository:save` | Triggered when a profile is created or updated | {_id, policies} |
-| `core:profileRepository:delete` | Triggered when a profile is delete | {_id} |
+| `core:profileRepository:delete` | Triggered when a profile is deleted | {_id} |
 | `core:roleRepository:save` | Triggered when a role is created or updated | {_id, controllers} |
-| `core:roleRepository:delete` | Triggered when a role is delete | {_id} |
+| `core:roleRepository:delete` | Triggered when a role is deleted | {_id} |
 
 
 ## index
