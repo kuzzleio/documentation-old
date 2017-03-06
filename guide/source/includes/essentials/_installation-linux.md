@@ -73,9 +73,10 @@ We will run the Kuzzle stack using [pm2](http://pm2.keymetrics.io/), from the cu
 * [NodeJS](https://nodejs.org/en/download/package-manager/) v6.x or upper.
 * [Python](https://www.python.org/) v2.7 preferred.
 * a C++11 compatible compiler.
+* [GDB](https://www.gnu.org/software/gdb/) v7.7+.
 
 <aside class="notice">
- The last two prerequisites can be fulfilled on Debian-based systems by installing packages : `build-essential` and `python`.
+ The last three prerequisites can be fulfilled on Debian-based systems by installing packages : `build-essential`, `gdb` and `python`.
 </aside>
 
 #### Step 1 - Retrieve Kuzzle components source code
