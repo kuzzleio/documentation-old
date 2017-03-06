@@ -46,25 +46,32 @@ Kuzzle will respond you with a list of the existing routes.
 * Updating docker images used by Kuzzle:  
 `docker-compose -f <docker-compose-file.yml> pull`
 * Showing Kuzzle core or Kuzzle proxy logs:  
-`docker exec -ti <docker core/proxy image name> pm2 logs`
+`docker exec -ti <docker core or proxy container name> pm2 logs`
 * Restarting Kuzzle core or Kuzzle proxy:  
-`docker exec -ti <docker core/proxy image name> pm2 restart all`
+`docker exec -ti <docker core or proxy container name> pm2 restart all`
 * Stopping Kuzzle core or Kuzzle proxy:  
-`docker exec -ti <docker core/proxy image name> pm2 stop all`
+`docker exec -ti <docker core or proxy container name> pm2 stop all`
 * Starting Kuzzle core or Kuzzle proxy:  
-`docker exec -ti <docker core/proxy image name> pm2 start all`
+`docker exec -ti <docker core or proxy container name> pm2 start all`
 * Accessing Kuzzle CLI:  
-`docker exec -ti <docker core image name> bin/kuzzle -h`
+`docker exec -ti <docker core container name> bin/kuzzle -h`
 
-### Manually (on Linux)
+### Manually
 
 In this section we will cover the manual installation on Linux systems, since this is the environment all the components of the Kuzzle stack work natively in.
 
 <aside class="notice">
-By default, Kuzzle expects all the components to be running on localhost. You can use the <a href="#configuring-kuzzle">configuration parameters</a> to change this behavior.
+  By default, Kuzzle expects all the components to be running on localhost. You can use the <a href="#configuring-kuzzle">configuration parameters</a> to change this behavior.
 </aside>
 
 We will run the Kuzzle stack using [pm2](http://pm2.keymetrics.io/), from the current user home directory.
+
+#### Supported operating systems
+
+The following operating systems are actively supported:
+
+* Ubuntu: 14.04 and 16.04
+* Debian: 7 and 8
 
 #### Prerequisites
 
