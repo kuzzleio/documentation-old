@@ -1421,7 +1421,7 @@ Increments the number stored in a hash field by the provided float value.
 }
 ```
 
-Returns all field names containined in a hash.
+Returns all field names contained in a hash.
 
 [[_Redis documentation_]](https://redis.io/commands/hkeys)
 

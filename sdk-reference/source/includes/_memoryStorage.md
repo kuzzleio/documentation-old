@@ -2358,7 +2358,7 @@ catch (ErrorException $e) {
 ]
 ```
 
-Returns all field names containined in a hash.
+Returns all field names contained in a hash.
 
 [[_Redis documentation_]](https://redis.io/commands/hkeys)
 
