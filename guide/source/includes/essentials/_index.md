@@ -4,12 +4,16 @@
 
 #### Persistent data
 
-Kuzzle relies on [Elasticsearch](https://www.elastic.co/) to store and fetch persistent data. You can perform a variety of CRUD and fine-grained search operations on persistent data. Please refer to the [dedicated section](#working-with-persistent-data-in-kuzzle) for more details.
+Kuzzle relies on [Elasticsearch](https://www.elastic.co/) to store and fetch persistent data.
+You can perform a variety of CRUD and fine-grained search operations on persistent data.
+Please refer to the [dedicated section](#working-with-persistent-data) for more details.
 
 #### Real-time notifications
 
 Kuzzle enables you to set up subscriptions to sets of data, in order to be notified in real-time about whatever happens to them.
-You can create a subscription by selecting a set of data. Selections (also called **filters**) are expressed in a Domain-specific Language (DSL) that we tailored for this purpose. Please refer to the [dedicated section](#realtime-notifications-in-kuzzle) for more details.
+You can create a subscription by selecting a set of data. Selections (also called **filters**) are expressed in a
+Domain-specific Language (DSL) that we tailored for this purpose.
+Please refer to the [dedicated section](#real-time-notifications) for more details.
 
 #### SDK
 

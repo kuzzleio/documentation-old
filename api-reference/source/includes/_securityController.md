@@ -108,12 +108,12 @@ Other mandatory additional information are needed depending on the authenticatio
 ```litcoffee
 {
   // The new array of role IDs and restrictions (cannot be empty)
-  "roles": [
+  "policies": [
     {
-      "_id": "<roleId>"
+      "roleId": "<roleId>"
     },
     {
-      "_id": "<anotherRoleId>",
+      "roleId": "<anotherRoleId>",
       "restrictedTo": [
         {
           "index": "<index>"
@@ -142,17 +142,17 @@ Other mandatory additional information are needed depending on the authenticatio
 {
   "controller": "security",
   "action": "createOrReplaceProfile",
-  "_id": "<profileId>",
+  "_id": "<profileId>",               // Mandatory. The id of the profile
 
   // the profile definition
   "body": {
     // The new array of role IDs and restrictions (cannot be empty)
-    "roles": [
+    "policies": [
       {
-        "_id": "<roleId>"
+        "roleId": "<anotherRoleId>"
       },
       {
-        "_id": "<roleId>",
+        "roleId": "<roleId>",
         "restrictedTo": [
           {
             "index": "<index>"
@@ -183,6 +183,9 @@ Other mandatory additional information are needed depending on the authenticatio
     "_index": "%kuzzle",
     "_type": "profiles",
     "_version": 1,
+    "_source": {
+      ...
+    }
     "created": false,
   },
   "requestId": "<unique request identifier>",
@@ -192,7 +195,7 @@ Other mandatory additional information are needed depending on the authenticatio
 }
 ```
 
-Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a profile with a new list of roles.
+Creates or replaces (if `_id` matches an existing one) a profile with a list of policies.
 
 
 ## createOrReplaceRole
@@ -227,7 +230,7 @@ Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a p
 {
   "controller": "security",
   "action": "createOrReplaceRole",
-  "_id": "<roleId>",
+  "_id": "<roleId>",                  // Mandatory. The id of the role
 
   // the role definition
   "body": {
@@ -274,11 +277,9 @@ Creates (if no `_id` provided) or updates (if `_id` matches an existing one) a p
 Validates and stores a role in Kuzzle's persistent data storage.
 
 The body content needs to match Kuzzle's role definition.
-To get some more detailed information on the expected role definition,
-please refer to [Kuzzle's role reference definition documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/roles-reference.md).
 
-To get some more detailed information about Kuzzle's user management model,
-please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/).
+To get more detailed information about the expected role definition or Kuzzle's user management model,
+please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 
 ## createOrReplaceUser
@@ -293,8 +294,8 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
 
 ```litcoffee
 {
-  "profileIds": ["<profileId>", "anotherProfileId", "..."] // Mandatory. The profile ids for the user
-  "name": "John Doe",                                      // Additional optional User properties
+  "profileIds": ["<profileId>", "<anotherProfileId>", "..."] // Mandatory. The profile ids for the user
+  "name": "John Doe",                                        // Additional optional User properties
   ...
 }
 ```
@@ -311,8 +312,8 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
   "action": "createOrReplaceUser",
   "_id": "<userId>",
   "body": {
-    "profileIds": ["<profileId>", "anotherProfileId", "..."] // Mandatory. The profile ids for the user
-    "name": "John Doe",                                      // Additional optional User properties
+    "profileIds": ["<profileId>", "<anotherProfileId>", "..."] // Mandatory. The profile ids for the user
+    "name": "John Doe",                                        // Additional optional User properties
     ...
   }
 }
@@ -334,7 +335,7 @@ please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/ku
     "_id": "<userId>",
     "_index": "%kuzzle",
     "_source": {
-      "profileIds": ["<profileId>", "anotherProfileId", "..."],
+      "profileIds": ["<profileId>", "<anotherProfileId>", "..."],
       "name": "John Doe",
       ...
     },
@@ -365,10 +366,10 @@ The `user` is created if it does not exists yet or replaced with the given objec
   // The new array of role IDs and restrictions (cannot be empty)
   "policies": [
     {
-      "_id": "<roleId>"
+      "roleId": "<roleId>"
     },
     {
-      "_id": "<roleId>",
+      "roleId": "<roleId>",
       "restrictedTo": [
         {
           "index": "<index>"
@@ -397,17 +398,17 @@ The `user` is created if it does not exists yet or replaced with the given objec
 {
   "controller": "security",
   "action": "createProfile",
-  "_id": "<profileId>",
+  "_id": "<profileId>",               // Mandatory. The id of the profile
 
   // the profile definition
   "body": {
     // The new array of role IDs and restrictions (cannot be empty)
     "policies": [
       {
-        "_id": "<roleId>"
+        "roleId": "<roleId>"
       },
       {
-        "_id": "<roleId>",
+        "roleId": "<roleId>",
         "restrictedTo": [
           {
             "index": "<index>"
@@ -485,7 +486,7 @@ Creates a profile with a new list of roles.
 {
   "controller": "security",
   "action": "createRole",
-  "_id": "<roleId>",
+  "_id": "<roleId>",                  // Mandatory. The id of the role
 
   // the role definition
   "body": {
@@ -533,11 +534,9 @@ Validates and stores a role in Kuzzle's persistent data storage.
 **Note:** The `_id` parameter is mandatory.
 
 The body content needs to match Kuzzle's role definition.
-To get some more detailed information on the expected role definition,
-please refer to [Kuzzle's role reference definition documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/roles-reference.md).
 
-To get some more detailed information about Kuzzle's user management model,
-please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/).
+To get more detailed information about the expected role definition or Kuzzle's user management model,
+please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 
 ## createUser
@@ -751,7 +750,7 @@ Other mandatory additional information are needed depending on the authenticatio
   "controller": "security",
   "action": "deleteProfile",
 
-  // The profile unique identifier. It's the same one that Kuzzle sends you
+  // The profile unique identifier. It's the same you set when you create a profile.
   // in its responses when you create a profile.
   "_id": "<profileId>"
 }
@@ -764,7 +763,7 @@ Other mandatory additional information are needed depending on the authenticatio
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<profileId>",             // The profile id
+    "_id": "<profileId>"              // The profile id
   },
   "index": "%kuzzle",
   "collection": "profiles",
@@ -796,7 +795,7 @@ that the related roles will NOT be deleted.
   "controller": "security",
   "action": "deleteRole",
 
-  // The role unique identifier. It's the same one that Kuzzle sends you
+  // The role unique identifier. It's the same you set when you create a role.
   // in its responses when you create a role.
   "_id": "<roleId>"
 }
@@ -840,7 +839,7 @@ Given a `role id`, deletes the corresponding role from the database.
   "controller": "security",
   "action": "deleteUser",
 
-  // The role unique identifier. It's the same one that Kuzzle sends you
+  // The role unique identifier. It's the same you set when you create a user.
   // in its responses when you create a role.
   "_id": "<roleId>"
 }
@@ -853,7 +852,7 @@ Given a `role id`, deletes the corresponding role from the database.
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<roleId>"                 // The role id
+    "_id": "<userId>"                 // The user id
   }
   "index": "%kuzzle",
   "collection": "users",
@@ -884,8 +883,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
   "controller": "security",
   "action": "getProfile",
 
-  // The profile unique identifier. It's the same one that Kuzzle sends you
-  // in its responses when you create a profile.
+  // The profile unique identifier. It's the same you set when you create a profile.
   "_id": "<profileId>"
 }
 ```
@@ -944,47 +942,7 @@ Given a `profile id`, retrieves the corresponding profile from the database.
   "requestId": "<unique request identifier>",
   "result": {
     "mapping": {
-      "policies": {
-        "properties": {
-          "_id": {
-            "type": "keyword"
-          },
-          "allowInternalIndex": {
-            "type": "boolean"
-          },
-          "restrictedTo": {
-            "properties": {
-              "collections": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                  }
-                }
-              },
-              "index": {
-                "type": "text",
-                "fields": {
-                  "keyword": {
-                    "type": "keyword",
-                    "ignore_above": 256
-                  }
-                }
-              }
-            }
-          },
-          "roleId": {
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "ignore_above": 256
-              }
-            }
-          }
-        }
-      }
+      ...
     }
   }
 }
@@ -1011,7 +969,7 @@ Gets the mapping of the internal `profiles` collection.
   "controller": "security",
   "action": "getProfileRights",
 
-  // The profile unique identifier. It's the same one that Kuzzle sends you
+  // The profile unique identifier. It's the same you set when you create a profile.
   // in its responses when you create a profile.
   "_id": "<profileId>"
 }
@@ -1060,7 +1018,7 @@ Given a `profile id`, retrieves the corresponding rights.
   "controller": "security",
   "action": "getRole",
 
-  // The role unique identifier. It's the same one that Kuzzle sends you
+  // The role unique identifier. It's the same you set when you create a role.
   // in its responses when you create a role.
   "_id": "<roleId>"
 }
@@ -1075,7 +1033,7 @@ Given a `profile id`, retrieves the corresponding rights.
   "result": {
     "_id": "<roleId>",                // The role id
     "_source": {
-      "indexes": {
+      "controllers": {
         ...
       }
     }
@@ -1123,10 +1081,7 @@ Given a `role id`, retrieves the corresponding role from the database.
   "requestId": "<unique request identifier>",
   "result": {
     "mapping": {
-      "controllers": {
-        "type": "object",
-        "enabled": false
-      }
+      ...
     }
   }
 }
@@ -1170,7 +1125,7 @@ Gets the mapping of the internal `roles` collection.
   "result": {
     "_id": "<userId>",
     "_source": {
-      "profileId": "<profileId>",
+      "profileIds": ["<profileId>"],
       ...                             // The user object content
     }
   }
@@ -1212,53 +1167,7 @@ Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
   "requestId": "<unique request identifier>",
   "result": {
     "mapping": {
-      "hobby": {
-        "fields": {
-          "keyword": {
-            "ignore_above": 256,
-            "type": "keyword"
-          }
-        },
-        "type": "text"
-      },
-      "name": {
-        "properties": {
-          "first": {
-            "fields": {
-              "keyword": {
-                "ignore_above": 256,
-                "type": "keyword"
-              }
-            },
-            "type": "text"
-          },
-          "last": {
-            "fields": {
-              "keyword": {
-                "ignore_above": 256,
-                "type": "keyword"
-              }
-            },
-            "type": "text"
-          },
-          "real": {
-            "fields": {
-              "keyword": {
-                "ignore_above": 256,
-                "type": "keyword"
-              }
-            },
-            "type": "text"
-          }
-        }
-      },
-      "password": {
-        "index": false,
-        "type": "keyword"
-      },
-      "profileIds": {
-        "type": "keyword"
-      }
+      ...
     }
   }
 }
@@ -1443,7 +1352,7 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 ```litcoffee
 {
   "controller": "security",
-  "action": "mDeleteRoles",
+  "action": "mDeleteUsers",
   "body": {
     // ids must be an array of profile ids
     "ids": ["myFirstUserId", "mySecondUserId"]
@@ -1457,7 +1366,7 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "action": "mDeleteRoles",
+  "action": "mDeleteUsers",
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": [
@@ -1499,7 +1408,7 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
   "action": "mGetProfiles",
   "body": {
     // ids must be an array of profile ids
-    "ids": ["myFirstProfile", "MySecondProfile"]
+    "ids": ["myFirstProfile", "mySecondProfile"]
   }
 }
 ```
@@ -1516,9 +1425,39 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": {
-    "_source": {
-      ...
-    }
+     "_shards": {
+       "failed": 0,
+       "successful": 5,
+       "total": 5
+     },
+     "hits": [
+       {
+         "_id": "myFirstProfile",
+         "_index": "%kuzzle",
+         "_score": 1,
+         "_source": {
+           "policies": [
+             // Policies associated to the profile
+           ]
+         },
+         "_type": "profiles"
+       },
+       {
+         "_id": "mySecondProfile",
+         "_index": "%kuzzle",
+         "_score": 1,
+         "_source": {
+           "policies": [
+             // Policies associated to the profile
+           ]
+         },
+         "_type": "profiles"
+       }
+     ],
+     "max_score": null,
+     "timed_out": false,
+     "took": 1,
+     "total": 2
   }
 }
 ```
@@ -1555,7 +1494,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
   "action": "mGetRoles",
   "body": {
     // ids must be an array of role id
-    "ids": ["myFirstRole", "MySecondRole"]
+    "ids": ["myFirstRole", "mySecondRole"]
   }
 }
 ```
@@ -1571,8 +1510,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
   "index": "%kuzzle",
   "metadata": {},
   "requestId": "<unique request identifier>",
-  "result":
-  {
+  "result": {
      "_shards": {
        "failed": 0,
        "successful": 5,
@@ -1580,12 +1518,24 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
      },
      "hits": [
        {
-         "_id": "test",
+         "_id": "myFirstRole",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
-           "_id": "test",
-           "indexes": {} // Rights for each indexes, controllers, ... can be found here
+           "controllers": {
+             // Rights for each controllers and actions can be found here
+           }
+         },
+         "_type": "roles"
+       },
+       {
+         "_id": "mySecondRole",
+         "_index": "%kuzzle",
+         "_score": 1,
+         "_source": {
+           "controllers": {
+             // Rights for each controllers and actions can be found here
+           }
          },
          "_type": "roles"
        }
@@ -1593,7 +1543,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
      "max_score": null,
      "timed_out": false,
      "took": 1,
-     "total": 1
+     "total": 2
   },
   "status": 200
 }
@@ -1634,8 +1584,8 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
   "action": "searchProfiles",
   "body": {
     // A roles array containing a list of roleIds can be added
-    "roles": [
-      "myrole",
+    "policies": [
+      "myRoleId",
       "admin"
     ]
   },
@@ -1660,18 +1610,27 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
     },
     "hits": [
       {
-        "_id": "my-profile-1",
+        "_id": "myProfile1",
         "_source": {
           "policies": [
-            "_id": "myroleId"
+            {
+              "roleId": "myRoleId",
+              "restrictedTo": [
+                ...
+              ]
+            },
+            ...
           ]
         }
       },
       {
-        "_id": "my-profile-2",
+        "_id": "myProfile2",
         "_source": {
           "policies": [
-            "_id": "myroleId"
+            {
+              "roleId": "admin"
+            },
+            ...
           ]
         }
       }
@@ -1715,8 +1674,8 @@ Available filters:
 
 ```litcoffee
 {
-  // indexes must be an array of index
-  "indexes": ["myindex"]
+  // indexes must be an array of controllers
+  "controllers": ["aController", "anotherController"]
 }
 ```
 
@@ -1731,10 +1690,10 @@ Available filters:
   "controller": "security",
   "action": "searchRoles",
   "body": {
-    "indexes": ["myindex"],
+    "controllers": ["aController", "anotherController"]
     // "from" and "size" argument for pagination
     "from": 0,
-    "size": 10
+    "size": 42
   }
 }
 ```
@@ -1759,12 +1718,13 @@ Available filters:
      },
      "hits": [
        {
-         "_id": "test",
+         "_id": "<roleId>",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
-           "_id": "test",
-           "indexes": {} // Rights for each indexes, controllers, ... can be found here
+           "controllers": {
+             // Rights for each controllers and actions can be found here
+           }
          },
          "_type": "roles"
        }
@@ -1909,10 +1869,10 @@ The `from` and `size` arguments allow pagination.
 {
     "policies": [
       {
-        "_id": "<roleId>"
+        "roleId": "<roleId>"
       },
       {
-        "_id": "<roleId>",
+        "roleId": "<roleId>",
         "restrictedTo": [
           {
             "index": "<index>"
@@ -1945,10 +1905,10 @@ The `from` and `size` arguments allow pagination.
   "body": {
     "policies": [
       {
-        "_id": "<roleId>"
+        "roleId": "<roleId>"
       },
       {
-        "_id": "<roleId>",
+        "roleId": "<roleId>",
         "restrictedTo": [
           {
             "index": "<index>"
@@ -2073,8 +2033,8 @@ At the first initialization, Kuzzle defines a default mapping for the `profiles`
 
 This mapping is intended to store the basic information of a profile; typically, its policies (roles and restrictions).
 
-But if you want to store more information about your users, Kuzzle's API offers a way to update the `profiles` data mapping using the
-[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/mapping.html).
+But if you want to store more information about your profiles, Kuzzle's API offers a way to update the `profiles` data mapping using the
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html).
 
 
 ## updateRole
@@ -2154,7 +2114,7 @@ To get some more detailed information on the expected role definition, please re
 [Kuzzle's role reference definition documentation](https://github.com/kuzzleio/kuzzle/blob/beta/docs/security/roles-reference.md).
 
 To get some more detailed information about Kuzzle's user management model,
-please refer to [Kuzzle's security documentation](https://github.com/kuzzleio/kuzzle/blob/master/docs/security/).
+please refer to [Kuzzle's security documentation](/guide/#permissions).
 
 
 ## updateRoleMapping
@@ -2239,8 +2199,8 @@ At the first initialization, Kuzzle defines a default mapping for the `roles` in
 
 This mapping is intended to store the basic information of a role; typically, its allowed controllers and actions.
 
-But if you want to store more information about your users, Kuzzle's API offers a way to update the `roles` data mapping using the
-[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/mapping.html).
+But if you want to store more information about your roles, Kuzzle's API offers a way to update the `roles` data mapping using the
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html).
 
 
 ## updateUser
