@@ -29,7 +29,7 @@ Once you know who is connected, you need a way to grant your users with some pri
 
 #### Users, profiles and roles
 
-Kuzzle associates `users` to a `profile`.  
+Kuzzle associates `users` to one or more `profiles`.  
 You can think to a `profile` as a user group. All the `users` that share the same `profile` will get the same privileges.
 
 Because some sets of permissions can be shared between several `profiles`, Kuzzle includes an additional level of abstraction below the `profile`: the `roles`.
@@ -53,8 +53,8 @@ var myRoleDefinition = {
   controllers: {
     < controller|* >: {
       actions: {
-        < action|* >: < action permission* >,
-        < action|* >: < action permission* >,
+        < action|* >: < action permission|* >,
+        < action|* >: < action permission|* >,
         ...
       }
     }
@@ -63,6 +63,8 @@ var myRoleDefinition = {
 ```
 
 Each entry of the `controllers`, `actions` tree can be set to either an explicit value or the "&#42;" wildcard.
+
+When `controller` is declared within a Plugin, its name must be prefixed with the name of the Plugin, like `< plugin-name/controller-name >`.
 
 The `action permission` value can be set either to:
 
@@ -79,7 +81,7 @@ Take a look at the example below:
 
 ```js
 var anonymousRole = {
-    controllers: {
+  controllers: {
     auth: {
       actions: {
         login: true,
@@ -97,12 +99,24 @@ In this example, the role grants the user with the permission to perform the `lo
 
 #### Profile definition
 
-A `profile` definition is a Javascript object that contains an array of roles, identified by their IDs:
+A `profile` definition is a Javascript object that contains an array of policies, composed by a roleId and restrictions:
 
 ```js
 var myProfileDefinition = {
-  roles: [
-    {_id: < role Id > (, restrictedTo: < role restrictions > ) },
+  policies: [
+    {
+      roleId: "< role Id >",
+      restrictedTo: [
+        {
+          index: "< some index >",
+          collections: [
+            "< a collection >",
+            "< another collection >"
+          ]
+        },
+        ...
+      ]  
+    },
     <another role>,
     ...
   ]
@@ -111,12 +125,12 @@ var myProfileDefinition = {
 
 A role can be applied globally on the profile, or it can be restricted to a list of indexes or index/collections pairs.
 
-For example, if we have a "publisher" role which allows to request any action of the `write` controller:
+For example, if we have a "publisher" role which allows to request any action of the `document` controller:
 
 ```js
 var publisherRole = {
-    controllers: {
-    write: {
+  controllers: {
+    document: {
       actions: {
         '*': true
       }
@@ -156,9 +170,9 @@ var profile3 = {
 
 With this sample profiles:
 
-* users with `profile1` are allowed to use all `write` controller actions on all indexes and collections.
-* users with `profile2` are only allowed to use `write` controller actions on collections stored in index `index1`.
-* users with `profile3` are only allowed to use `write` controller actions on:
+* users with `profile1` are allowed to use all `document` controller actions on all indexes and collections.
+* users with `profile2` are only allowed to use `document` controller actions on collections stored in index `index1`.
+* users with `profile3` are only allowed to use `document` controller actions on:
   * all collections stored in index `index2`
   * collections `foo` and `bar` stored in index `index1`.
 
@@ -167,6 +181,7 @@ With this sample profiles:
 In Kuzzle, permissions follow the [Whitelist](https://en.wikipedia.org/wiki/Whitelist) strategy, which means that **an action must be explicitly allowed** by at least one role of the user profile (including restrictions).
 
 That means:
+
 * If a role allows it, the action is authorized, *even if another role denies it*.
 * If no role explicitly allows it, the action if denied, even if no role explicitly denies it as well.
 

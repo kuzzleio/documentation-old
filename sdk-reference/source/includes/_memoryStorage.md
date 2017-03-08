@@ -77,8 +77,6 @@ $memoryStorage = new MemoryStorage($kuzzle);
 
 ## Example
 
-Here is an example with the `ping` command.
-
 ```js
 var memoryStorage = kuzzle.memoryStorage;
 
@@ -118,7 +116,8 @@ $memoryStorage = $kuzzle->memoryStorage();
 try {
   $result = $memoryStorage->ping();
 } catch (ErrorException $e) {
-  
-}
 
+}
 ```
+
+Here is an example with the `ping` command.

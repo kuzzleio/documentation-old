@@ -4,9 +4,6 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 
 ## Constructors
 
-Connects to a Kuzzle instance.
-
-
 ```js
 var kuzzle = new Kuzzle('localhost', {
   defaultIndex: 'some index',
@@ -52,8 +49,9 @@ $kuzzle = new Kuzzle('localhost', [
 ]);
 ```
 
-### Kuzzle(host, [options], [callback])
+Connects to a Kuzzle instance.
 
+### Kuzzle(host, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -213,7 +211,7 @@ Here is the list of these special events:
 | Event Name | Callback arguments | Description |
 |------------|-------------|-------------|
 | ``connected`` | _(none)_ | Fired when the SDK has successfully connected to Kuzzle |
-| `discarded` | `error` (object) | Fired when Kuzzle reject a request (e.g. request can't be parsed, request too large, ...) | 
+| `discarded` | `error` (object) | Fired when Kuzzle reject a request (e.g. request can't be parsed, request too large, ...) |
 | ``disconnected`` | _(none)_ |  Fired when the current session has been unexpectedly disconnected |
 | ``error`` | `error` (object) | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``jwtTokenExpired`` | _(none)_ |  Fired when Kuzzle rejected a request because the authentication token expired |
@@ -351,7 +349,7 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 A JSON object with a `valid` boolean property.  
 If the token is valid, a `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.
 
-## collection
+## collection (property)
 
 ```js
 var collection = kuzzle.collection('collection', 'index');
@@ -468,6 +466,67 @@ Empties the offline queue without replaying it.
 ### Return value
 
 Returns the `Kuzzle` object to allow chaining.
+
+## createIndex
+
+```js
+// Using callbacks (node.js or browser)
+kuzzle.createIndex('myIndex', function (err, res) {
+  console.log(res);     // {acknowledge: true}
+});
+
+// Using promises (node.js)
+kuzzle
+  .createIndexPromise('myIndex')
+  .then(res => {
+    console.log(res);   // {acknowledge: true}
+  });
+```
+
+```java
+kuzzle.createIndex("myIndex", new ResponseListener<Boolean>() {
+  @Override
+  public void onSuccess(JSONObject result) {
+    // result var contains the creation status of myIndex.
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+}
+```
+
+```php
+<?php
+use \Kuzzle\Kuzzle;
+
+$kuzzle = new Kuzzle('localhost');
+$result = $kuzzle->createIndex('myIndex');
+
+// $result = [acknowledge => true]
+```
+
+Create a new empty data index, with no associated mapping.
+
+#### createIndex([index], [options], callback)
+
+| Arguments | Type | Description
+|-----------|------|------------
+| `index` | string | Optional index to query. If no set, defaults to [Kuzzle.defaultIndex](#properties)
+| `options` | JSON object | Optional parameters
+| `callback`| function | Callback handling the response
+
+Available options:
+
+| Option | Type | Description | Default
+|--------|------|-------------|---------
+| `queuable` | boolean | Mark this request as (not) queuable | `true`
+
+#### Callback response
+
+The response is a an object reflecting the index `create` status.
+
 
 ## getAllStatistics
 
@@ -1496,7 +1555,7 @@ Returns the `Kuzzle` object to allow chaining.
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
 The `Kuzzle` object will unset the property `jwtToken` if the user is successfully logged out.
 
-## memoryStorage
+## memoryStorage (property)
 
 A `MemoryStorage` singleton.
 
@@ -1638,7 +1697,7 @@ catch (ErrorException $e) {
     "_source": {},
     "action": "search",
     "collection": "foo",
-    "controller": "read",
+    "controller": "document",
     "hits": {
       "hits": [],
       "max_score": 0,
@@ -1854,7 +1913,7 @@ Replays the requests queued during offline mode. Works only if the SDK is not in
 
 Returns the `Kuzzle` object to allow chaining.
 
-## security
+## security (property)
 
 A `Security` singleton.
 
