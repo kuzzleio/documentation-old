@@ -5,7 +5,7 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>`
+>**URL:** `http://kuzzle:7512/<index>/_create`
 >**Method:** `POST`
 
 <section class="others"></section>
