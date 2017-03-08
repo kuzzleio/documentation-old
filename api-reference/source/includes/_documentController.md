@@ -529,7 +529,7 @@ The query defined in the initial `search` request will then be used for all `scr
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42]`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=1m]`
 >**Method:** `POST`
 >**Body:**
 
