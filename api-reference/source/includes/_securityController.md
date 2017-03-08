@@ -280,7 +280,7 @@ Validates and stores a role in Kuzzle's persistent data storage.
 
 The body content needs to match Kuzzle's role definition.
 
-To get more detailed information about on the expected role definition or Kuzzle's user management model,
+To get more detailed information about the expected role definition or Kuzzle's user management model,
 please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 
@@ -537,7 +537,7 @@ Validates and stores a role in Kuzzle's persistent data storage.
 
 The body content needs to match Kuzzle's role definition.
 
-To get more detailed information about on the expected role definition or Kuzzle's user management model,
+To get more detailed information about the expected role definition or Kuzzle's user management model,
 please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 
@@ -752,7 +752,7 @@ Other mandatory additional information are needed depending on the authenticatio
   "controller": "security",
   "action": "deleteProfile",
 
-  // The profile unique identifier. It's the same one that Kuzzle sends you
+  // The profile unique identifier. It's the same you set when you create a profile.
   // in its responses when you create a profile.
   "_id": "<profileId>"
 }
@@ -797,7 +797,7 @@ that the related roles will NOT be deleted.
   "controller": "security",
   "action": "deleteRole",
 
-  // The role unique identifier. It's the same one that Kuzzle sends you
+  // The role unique identifier. It's the same you set when you create a role.
   // in its responses when you create a role.
   "_id": "<roleId>"
 }
@@ -841,7 +841,7 @@ Given a `role id`, deletes the corresponding role from the database.
   "controller": "security",
   "action": "deleteUser",
 
-  // The role unique identifier. It's the same one that Kuzzle sends you
+  // The role unique identifier. It's the same you set when you create a user.
   // in its responses when you create a role.
   "_id": "<roleId>"
 }
@@ -971,7 +971,7 @@ Gets the mapping of the internal `profiles` collection.
   "controller": "security",
   "action": "getProfileRights",
 
-  // The profile unique identifier. It's the same one that Kuzzle sends you
+  // The profile unique identifier. It's the same you set when you create a profile.
   // in its responses when you create a profile.
   "_id": "<profileId>"
 }
@@ -1020,7 +1020,7 @@ Given a `profile id`, retrieves the corresponding rights.
   "controller": "security",
   "action": "getRole",
 
-  // The role unique identifier. It's the same one that Kuzzle sends you
+  // The role unique identifier. It's the same you set when you create a role.
   // in its responses when you create a role.
   "_id": "<roleId>"
 }
