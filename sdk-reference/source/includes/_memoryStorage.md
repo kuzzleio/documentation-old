@@ -8531,9 +8531,9 @@ catch (ErrorException $e) {
 
 ```json
 [
-  "member1",
-  "member2",
-  "..."
+  { "member": "foo", "score": 1 },
+  { "member": "bar", "score": 2 },
+  { "member": "baz", "score": 3 }
 ]
 ```
 
@@ -9101,9 +9101,9 @@ catch (ErrorException $e) {
 
 ```json
 [
-  "...",
-  "member2",
-  "member1"
+  { "member": "baz", "score": 3 },
+  { "member": "bar", "score": 2 },
+  { "member": "foo", "score": 1 }
 ]
 ```
 
