@@ -628,7 +628,7 @@ for more details.
 If a `scroll` argument is provided in the request, a scroll session is started and the response will contain a `_scroll_id` that
 can be used with the [`scroll` action](#scroll).
 The value of the scroll defines the timeout of the session (it will be refreshed with subsequent `scroll` calls).
- A scroll session is a way to paginate a search request as and when.
+ A scroll session is a way to paginate a search request.
 The `search` response will contain the first maching documents. After the first search, the [`scroll` action](#scroll)
 must be used to iterate the pagination.
 
