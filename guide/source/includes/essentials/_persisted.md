@@ -276,11 +276,12 @@ Which gives, as a result, the following response:
 
 ### Document mapping
 
-As previously said, Kuzzle relies on Elasticsearch to persist documents. Elasticsearch uses a mapping internaly to match
+As previously said, Kuzzle relies on Elasticsearch to persist documents. Elasticsearch uses a mapping internally to match
 a document field to a field type. This mapping is attached to a `collection` (a `type` in Elasticsearch terminology).
-If this mapping has not been defined, Elasticsearch will try to create this mapping automatically with the input documents.
+If no mapping is defined, Elasticsearch will infer it automatically from input documents.
 
-If you want to define this mapping yourself, Kuzzle provides a route to set it.
+ou may want to define mappings manually, especially to provide more details to Elasticsearch on how it should interpret the documents stored in your collections.
+To do so, Kuzzle expose a mapping creation API route.
 This is done by sending a `PUT` request to the API endpoint `http://localhost:7512/myindex/mycollection/_mapping` with the body set to your mapping:
 
 ```json
@@ -314,7 +315,7 @@ Which gives us the response...
 Here we defined a new field called `someField` of type `date` in our collection `mycollection`. This is especially useful when
 dealing with capabilities such as specific types (`date`, `geo_shape`, ...), full-text search and complex data structures (`nested`, ...) of Elasticsearch.
 As the mapping of the collection can not be changed once it is set (even if Elasticsearch did it automatically for you),
-we advise you to define it yourself to avoid surprises.
+you should almost always define mappings when creating collections, preferably before sending documents in them.
 
 The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html). 
 
