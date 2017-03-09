@@ -5704,7 +5704,7 @@ Appends the specified value at the end of a list, only if the key already exists
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | `key` | string | Key identifier |
-| `value` | array | Value to add at the end of the list |
+| `value` | string | Value to add at the end of the list |
 | `options` | JSON Object | Optional parameters |
 | `callback` | function | Callback |
 
