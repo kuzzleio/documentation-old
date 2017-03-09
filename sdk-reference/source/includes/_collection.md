@@ -1066,7 +1066,7 @@ kuzzle
 // Using promises (NodeJS only)
 kuzzle
   .collection('collection', 'index')
-  .scrollPromise(scrollId, {scroll: '1m'}, options)
+  .scrollPromise(scrollId, {scroll: '1m'})
   .then(searchResult => {
     searchResult.getDocuments().forEach(document => {
       console.log(document.toString());
