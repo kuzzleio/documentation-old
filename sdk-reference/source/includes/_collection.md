@@ -1110,7 +1110,7 @@ $kuzzle = new Kuzzle('localhost');
 $dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
-  $searchResult = $dataCollection->scroll($scrollId, ['scroll': '1m']);
+  $searchResult = $dataCollection->scroll($scrollId, ['scroll' => '1m']);
 
   // $searchResult instanceof SearchResult
   $searchResult->getTotal();
