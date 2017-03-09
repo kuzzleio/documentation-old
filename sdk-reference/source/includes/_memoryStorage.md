@@ -5699,7 +5699,7 @@ Appends the specified value at the end of a list, only if the key already exists
 
 [[_Redis documentation_]](https://redis.io/commands/rpushx)
 
-### lpush(key, value, [options], [callback])
+### rpushx(key, value, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
