@@ -5243,56 +5243,6 @@ The optional LIMIT argument can be used to only get a range of the matching elem
 
 [[_Redis documentation_]](https://redis.io/commands/zrangebylex)
 
-## zrevrangebylex
-
-<section class="http"></section>
-
->**URL:** `http://kuzzle:7512/ms/_zrevrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
->**Method:** `GET`  
-
-<section class="others"></section>
-
->Query
-
-<section class="others"></section>
-
-```litcoffee
-{
-  "controller": "ms",
-  "action": "zrevrangebylex",
-  "_id": "<key>",
-  "min": "<min interval>",
-  "max": "<max interval>",
-
-  // optional
-  "limit": [<offset>, <count>]
-}
-```
-
->Response
-
-```litcoffee
-{
-  "requestId": "<unique request identifier>",
-  "status": 200,
-  "error": null,
-  "controller": "ms",
-  "action": "zrevrangebylex",
-  "collection": null,
-  "index": null,
-  "metadata": null,
-  "result": [
-    "...",
-    "element2",
-    "element1"
-  ]
-}
-```
-
-Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order.
-
-[[_Redis documentation_]](https://redis.io/commands/zrevrangebylex)
-
 ## zrangebyscore
 
 <section class="http"></section>
@@ -5662,6 +5612,56 @@ The `min` and `max` values are inclusive, but this behavior can be changed (see 
 Identical to [zrange](#zrange), except that the sorted set is traversed in descending order.
 
 [[_Redis documentation_]](https://redis.io/commands/zrevrange)
+
+## zrevrangebylex
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrevrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrevrangebylex",
+  "_id": "<key>",
+  "min": "<min interval>",
+  "max": "<max interval>",
+
+  // optional
+  "limit": [<offset>, <count>]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrevrangebylex",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "...",
+    "element2",
+    "element1"
+  ]
+}
+```
+
+Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order.
+
+[[_Redis documentation_]](https://redis.io/commands/zrevrangebylex)
 
 ## zrevrangebyscore
 
