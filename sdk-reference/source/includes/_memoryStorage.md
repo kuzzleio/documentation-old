@@ -609,7 +609,7 @@ kuzzle.memoryStorage.delPromise(['key1', 'key2', '...'])
 
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
-kuzzle.memoryStorage.decr(keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.del(keys, new ResponseListener<int>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -862,7 +862,7 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->expire('key', 1488372354);
+  $status = $kuzzle->memoryStorage()->expireat('key', 1488372354);
 }
 catch (ErrorException $e) {
 
@@ -1854,7 +1854,7 @@ kuzzle.memoryStorage.hdelPromise('key', ['field1', 'field2'])
 
 ```java
 JSONArray fields = new JSONArray().put("field1").put("field2");
-kuzzle.memoryStorage.decr("key", fields, new ResponseListener<int>() {
+kuzzle.memoryStorage.hdel("key", fields, new ResponseListener<int>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -6340,7 +6340,7 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->hsetnx('key', 'value');
+  $status = $kuzzle->memoryStorage()->setnx('key', 'value');
 }
 catch (ErrorException $e) {
 
@@ -6714,7 +6714,7 @@ kuzzle.memoryStorage.smovePromise('key', 'destination', 'member')
 ```
 
 ```java
-kuzzle.memoryStorage.decr("key", "destination", "member", new ResponseListener<int>() {
+kuzzle.memoryStorage.smove("key", "destination", "member", new ResponseListener<int>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -7786,7 +7786,7 @@ $elements = [
 ];
 
 try {
-  $value = $kuzzle->memoryStorage()->decr('key');
+  $value = $kuzzle->memoryStorage()->zadd('key', elements);
 }
 catch (ErrorException $e) {
 
