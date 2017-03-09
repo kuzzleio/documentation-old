@@ -3402,7 +3402,7 @@ Returns the element at the provided index in a list.
 
 [[_Redis documentation_]](https://redis.io/commands/lindex)
 
-### bitcount(key, [options], callback)
+### lindex(key, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
