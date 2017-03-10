@@ -135,7 +135,7 @@ The idea is pretty simple: you specify a filter that documents must match in ord
 }
 ```
 
-In the example above, we specified that at least one of the fields `price` or `vatPrice` must exist (because if the product has no price, we can't sell).
+In the example above, we specified that at least one of the fields `price` or `vatPrice` must exist (because if the product has no price, we can't sell it).
 We leveraged the `exists` term with the `or` operand, that you can look-up in the [Real-time filters Reference](/real-time-filters/#exists).
 
 You can take a look at the [Kuzzle Data Validation Reference](/validation-reference/) for deeper insight.
