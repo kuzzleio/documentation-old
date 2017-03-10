@@ -10,7 +10,7 @@ Before launching Kuzzle, ensure that your system matches the following pre-requi
 - **Docker-compose v1.8+**, see [intructions here](https://docs.docker.com/compose/install/)
 
 <aside class="notice">
-<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manual-install">manual installation guide</a>.
+<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manually-on-linux">manual installation guide</a>.
 </aside>
 
 Thanks to Docker-compose, running Kuzzle is easy. Just grab the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file, copy it into a directory and start Kuzzle:
