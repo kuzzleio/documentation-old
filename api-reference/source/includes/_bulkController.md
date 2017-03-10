@@ -5,7 +5,7 @@ This is especially useful if you want to create a large number of documents. A b
 a lot faster compared to creating them individually using `create` queries.
 
 For other queries, the syntax for bulk imports closely resembles the
-[ElasticSearch Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-bulk.html).
+[ElasticSearch Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/docs-bulk.html).
 
 <aside class="warning">
 The bulk operations only apply to the persistent data storage layer.
@@ -202,4 +202,4 @@ In such case, the `collection` in which the documents need to be inserted needs 
 The `bulk import` can also be used in a more versatile (yet a little more verbose) way,
 to execute operations on a whole database, modifying multiple data collections in different indexes at once.  
 The `collections` to modify then need to be specified inside the query message,using the `_type`argument, as specified in the
-[ElasticSearch Bluk API](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-bulk.html).
+[ElasticSearch Bluk API](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/docs-bulk.html).

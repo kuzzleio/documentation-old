@@ -310,7 +310,7 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 
 Deletes all the documents matching the given filter or query from Kuzzle's database.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/query-dsl.html) syntax.
 
 
 ## get

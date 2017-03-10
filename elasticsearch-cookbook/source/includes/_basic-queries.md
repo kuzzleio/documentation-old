@@ -1,13 +1,18 @@
 # Basic queries
 
-Search queries are all done with the `GET` method on the search endpoint, and the body of the request is a JSON object representing the query.
-We will present here the most common ways to use the different queries, together with the options that modify their behaviour. For more details about these options you can find more informations in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html).
+Search queries are all done with the `GET` method on the search endpoint,
+and the body of the request is a JSON object representing the query.
+We will present here the most common ways to use the different queries,
+together with the options that modify their behaviour.
+For more details about these options you can find more informations in the
+[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html).
 
 ## The search endpoint (and the `match_all` query)
 
 The search endpoint allows different query parameters to control the output of the search.
 By defaut, the search endpoint will return the **10** first results, sorted by score.
-The `match_all` query returns all the documents in the collection, it can be useful with other queries in a `bool` query for instance.
+The `match_all` query returns all the documents in the collection,
+it can be useful with other queries in a `bool` query for instance.
 
 ### Without query parameters
 
@@ -167,8 +172,10 @@ This is very useful when you want to paginate the results.
 
 ### The `scroll` query parameter
 
-The `scroll` query parameter is useful when dealing with huge data sets, or when you want to be sure the data set will not change during your processing.
-We recommend you to read the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-scroll.html) for more details.
+The `scroll` query parameter is useful when dealing with huge data sets,
+or when you want to be sure the data set will not change during your processing. We recommend you to read the
+[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-scroll.html)
+for more details.
 
 ## The `ids` query
 
@@ -232,7 +239,8 @@ Reply:
 
 ## The `query_string` query
 
-The `query_string` query is a way to "talk" directly to the core engine of Elasticsearch. If you are used to use Solr, it will look familiar.
+The `query_string` query is a way to "talk" directly to the core engine of Elasticsearch.
+If you are used to use Solr, it will look familiar.
 
 ```json
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
@@ -292,7 +300,12 @@ Reply:
 
 ## The `match` query
 
-The `match` query is the one you want to use to perform a full text search. The query you use (here: "hate cake") is analyzed (lowercased, tokenized ...) and then is applied against the analyzed version of the field (which is also lowercased, tokenized...). As a result, the choice of the analyzer applied to a field is very important. To know more about analyzers, We recommend you to read the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-analyzers.html).
+The `match` query is the one you want to use to perform a full text search.
+The query you use (here: "hate cake") is analyzed (lowercased, tokenized ...)
+and then is applied against the analyzed version of the field (which is also lowercased, tokenized...).
+As a result, the choice of the analyzer applied to a field is very important. To know more about analyzers,
+we recommend you to read the
+[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-analyzers.html).
 
 It results in a set of documents where a score is applied.
 
@@ -351,7 +364,9 @@ Reply:
 }
 ```
 
-You can see that the second document does not contain cake at all but is still matching. This is because, by default, the `match` query operator applies a `or` operand to the provided searched terms. To return documents matching all tokens, you have to use the `and` operator:
+You can see that the second document does not contain cake at all but is still matching.
+This is because, by default, the `match` query operator applies a `or` operand to the provided searched terms.
+To return documents matching all tokens, you have to use the `and` operator:
 
 ```json
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
@@ -400,7 +415,8 @@ Reply:
 
 ## The `prefix` query
 
-The `prefix` query matches all the documents where the given field has a value that begins with the given string. In the following example, we want to match all the documents where the value of field status begins with `pub`:
+The `prefix` query matches all the documents where the given field has a value that begins with the given string.
+In the following example, we want to match all the documents where the value of field status begins with `pub`:
 
 ```json
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
@@ -460,7 +476,8 @@ Reply:
 
 ## The `range` query
 
-The `range` query matches all the documents where the value of the given field is included within the specified range. In the following example, we want to match all the document where `published_date` is included within the two specified dates:
+The `range` query matches all the documents where the value of the given field is included within the specified range.
+In the following example, we want to match all the document where `published_date` is included within the two specified dates:
 
 ```json
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
@@ -537,7 +554,9 @@ Reply:
 
 ## The `term` query
 
-The `term` query is used to find exact matches on the *indexed* value of a field. It should not be used on analyzed fields: the analyzed value that is indexed is a modified version of the input value. Analyzers are explain during the cookbook you can come back when it is clearer.
+The `term` query is used to find exact matches on the *indexed* value of a field.
+It should not be used on analyzed fields: the analyzed value that is indexed is a modified version of the input value.
+Analyzers are explain during the cookbook you can come back when it is clearer.
 
 ```json
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
@@ -769,7 +788,8 @@ Reply:
 
 ## The `missing` query
 
-The `missing` query is deprecated. Elasticsearch recommends to use the `exists` query in a `must_not` occurence of a `bool` compound query (and this will introduce you to the `bool` query :-) ).
+The `missing` query has been removed in Elasticsearch 5.x. Elasticsearch recommends to use the `exists` query in a `must_not`
+occurence of a `bool` compound query (and this will introduce you to the `bool` query :-) ).
 
 ```json
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
@@ -806,7 +826,8 @@ Reply:
 
 ## Sorting the result set
 
-If you want to sort your result set in a different order than the `_score` default sort or compound the `_score` sort with other fields, you can specify the sort order alongside to the query:
+If you want to sort your result set in a different order than the `_score` default sort
+or compound the `_score` sort with other fields, you can specify the sort order alongside to the query:
 
 ```json
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{

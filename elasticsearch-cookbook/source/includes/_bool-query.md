@@ -1,6 +1,7 @@
 # The `bool` (Boolean) query
 
-(optional) You may need to explore the theory first, to understand the paradigm behind this kind of query. Thanksfully you can find a good resource on [Wikipedia](https://en.wikipedia.org/wiki/Standard_Boolean_model).
+(optional) You may need to explore the theory first, to understand the paradigm behind this kind of query.
+Thanksfully you can find a good resource on [Wikipedia](https://en.wikipedia.org/wiki/Standard_Boolean_model).
 
 In the boolean compound query, there are 4 occurrence types:
 
@@ -89,9 +90,12 @@ You can find a full description in the [Bool Query documentation](https://www.el
 
 ## The `filter` occurrence type
 
-The `filter` occurrence type allows to filter documents with additional queries without affecting the score. You can even use a `bool` query in a `filter` occurrence type. We will introduce you with some ways to make basic `filter` requests. Up to you to choose your favorite.
+The `filter` occurrence type allows to filter documents with additional queries without affecting the score.
+You can even use a `bool` query in a `filter` occurrence type. We will introduce you with some ways
+to make basic `filter` requests. Up to you to choose your favorite.
 
-Each example is equivalent from one to the others. As you will see there are different ways to achieve the same result using the `filter` occurence type.
+Each example is equivalent from one to the others. As you will see there are different ways to achieve
+the same result using the `filter` occurence type.
 
 
 ### Using a logical `AND` operator between fields
@@ -169,7 +173,8 @@ Both examples above generate the same result:
 }
 ```
 
-You can notice that the score of both documents is *0*: this is because we only use the `filter` occurence type of the `bool` query.
+You can notice that the score of both documents is *0*: this is because we only use the `filter` occurence type
+of the `bool` query.
 
 
 ### Using a logical `AND` operator between terms
@@ -398,7 +403,10 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 
-The last query is tricky. We specified 3 terms in the query, but as the field `status` is not analyzed, the query isn't analyzed either. To split the query string into terms, we have to force the use of the `standard` analyzer. This allows the string `"published pending refused"` to be tokenized into the 3 following terms: `["published", "pending", "refused"]`.
+The last query is tricky. We specified 3 terms in the query, but as the field `status` is not analyzed,
+the query isn't analyzed either. To split the query string into terms, we have to force the use of the `standard` analyzer.
+This allows the string `"published pending refused"` to be tokenized into the 3 following terms:
+`["published", "pending", "refused"]`.
 
 Reply:
 
@@ -569,7 +577,8 @@ Both examples above generate the same result:
 
 ## The `must_not` occurrence type
 
-The `must_not` occurrence type allows to specify a query that will excludes documents from the result set. It acts like a logical `NOT`.
+The `must_not` occurrence type allows to specify a query that will excludes documents from the result set.
+It acts like a logical `NOT`.
 
 ### Usage of `must_not` with one query
 
@@ -644,11 +653,15 @@ Expected reply:
 }
 ```
 
-Unlike `filter` that sets the score to 0 if used alone, the `must_not` occurence type sets the score to 1 when used alone. If you don't want this to happen, you can use the `constant_score` query or include the `bool` with a `must_not` occurence in a filter (like we did in the previous example).
+Unlike `filter` that sets the score to 0 if used alone, the `must_not` occurence type sets the score to 1 when used alone.
+If you don't want this to happen, you can use the `constant_score` query or include the `bool` with a `must_not` occurence
+in a filter (like we did in the previous example).
 
 ### Usage of `must_not` with multiple queries
 
-If you need to use more than one query to use in the `must_not` occurence type, you can replace the object query by an array of query objects. It will evict all documents where the field `status` is equal to "pending" or the field `tags` contains "pet":
+If you need to use more than one query to use in the `must_not` occurence type, you can replace the object query by
+an array of query objects. It will evict all documents where the field `status` is equal to "pending" or the field
+`tags` contains "pet":
 
 ```json
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
@@ -711,9 +724,11 @@ Reply:
 
 ## The `must` occurrence type
 
-The `must` occurrence type can be used used like the `filter` occurence type with the difference that it will influence the score.
-Let's take a look at all the scores we get by replacing  the `filter` occurence type in the previous examples with `must`.
-The `AND` examples give the same score for all documents. It is due to the little number of documents we use, their size and the small size of the corpus.
+The `must` occurrence type can be used used like the `filter` occurence type
+with the difference that it will influence the score.
+Let's take a look at all the scores we get by replacing the `filter` occurence type in the previous examples with `must`.
+The `AND` examples give the same score for all documents. It is due to the little number of documents we use,
+their size and the small size of the corpus.
 
 ### Using a logical `AND` operator between fields
 

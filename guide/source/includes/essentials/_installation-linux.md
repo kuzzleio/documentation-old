@@ -75,12 +75,12 @@ The following operating systems are actively supported:
 
 #### Prerequisites
 
-* A [Elasticsearch](https://www.elastic.co/products/elasticsearch) v5.x instance running on localhost:9200 (_preferred version: v5.0, but v2.x is also supported_).
-* A [Redis](http://redis.io/) v3.x instance running on localhost:6379 (_preferred version: v3.2_).
-* [NodeJS](https://nodejs.org/en/download/package-manager/) v6.x or upper.
-* [Python](https://www.python.org/) v2.7 preferred.
+* A [Elasticsearch](https://www.elastic.co/products/elasticsearch) version 5.0 instance or upper running on localhost:9200.
+* A [Redis](http://redis.io/) version 3.x instance running on localhost:6379 (_preferred version: v3.2_).
+* [NodeJS](https://nodejs.org/en/download/package-manager/) version 6.x or upper.
+* [Python](https://www.python.org/) version 2.7 preferred.
 * a C++11 compatible compiler.
-* [GDB](https://www.gnu.org/software/gdb/) v7.7+.
+* [GDB](https://www.gnu.org/software/gdb/) version 7.7 or upper.
 
 <aside class="notice">
  The last three prerequisites can be fulfilled on Debian-based systems by installing packages : `build-essential`, `gdb` and `python`.
