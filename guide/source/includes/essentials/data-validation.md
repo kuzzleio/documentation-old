@@ -80,7 +80,7 @@ In the example above, we specified that the value of the field `price` (of docum
 
 ### Complex validation via the DSL
 
-When the validation fields are not enough for your need, or you want conditionnal validation,
+When the validation fields are not enough for your need, or you want conditional validation,
 you can switch gears and create a complex validation specification via the [filtering DSL](/real-time-filters/)
 (the same DSL used to create real-time subscriptions).
 The idea is pretty simple: you specify a filter that documents must match in order to be valid.
