@@ -3407,7 +3407,7 @@ Returns the element at the provided index in a list.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | `key` | string | Key identifier |
-| `index` | string | Element position in the list |
+| `index` | int | Element position in the list |
 | `options` | JSON Object | Optional parameters |
 | `callback` | function | Callback |
 
@@ -3421,7 +3421,7 @@ Available options:
 
 ### Callback response
 
-Resolves the retrieved element's value.
+Resolves to a string containing the retrieved element's value.
 
 ## linsert
 
