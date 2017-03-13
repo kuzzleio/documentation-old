@@ -273,6 +273,99 @@ Which gives, as a result, the following response:
 }
 ```
 
+### Document metadata
+
+When you create or update a document, Kuzzle adds metadatas. These metadatas describe the life-cycle of the document.
+They are available in the `_kuzzle_info` part of a document:
+
+```json
+{
+  "_index": "myindex",
+  "_type": "mycollection",
+  "_id": "AVkDLAdCsT6qHI7MxLz4",
+  "_score": 0.25811607,
+  "_source": {
+    "message": "Hey! Ho!"
+  },
+  "_kuzzle_info": {
+    "author": "-1",
+    "createdAt": 1481816934209,
+    "updatedAt": null,
+    "updater": null,
+    "active": true,
+    "deletedAt": null
+  }
+}
+```
+
+* `author`: The author identifier
+* `createdAt`: The UNIX Timestamp of the document creation (create or replace)
+* `updatedAt`: The UNIX Timestamp of the last document update, or `null` if no update has been made
+* `updater`: The updater identifier, or `null` if no update has been made
+* `active`: Always `true` for now
+* `deletedAt`: Always `null` for now
+
+
+They can be used in search queries to filter and sort documents like a normal document field:
+
+```json
+{
+  "query": {
+      "range": {
+          "_kuzzle_info.createdAt": {
+            "lte": 1481816930000
+          }
+      }
+    }
+}
+```
+
+Which gives, as a result, the following response:
+
+```json
+{
+  "status": 200,
+  "error": null,
+  "requestId": "e00cf6d6-8983-498b-8481-96a1fe1b5d46",
+  "controller": "document",
+  "action": "search",
+  "collection": "mycollection",
+  "index": "myindex",
+  "metadata": null,
+  "headers": {},
+  "result": {
+    "took": 6,
+    "timed_out": false,
+    "_shards": {
+      "total": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    "hits": [
+      {
+        "_index": "myindex",
+        "_type": "mycollection",
+        "_id": "AVkDK9iNsT6qHI7MxLz3",
+        "_score": 0,
+        "_source": {
+          "message": "Hello, world!"
+        },
+        "_kuzzle_info": {
+          "author": "-1",
+          "createdAt": 1481816922252,
+          "updatedAt": null,
+          "updater": null,
+          "active": true,
+          "deletedAt": null
+        }
+      }
+    ],
+    "total": 1,
+    "max_score": 0.25811607
+  }
+}
+```
+
 
 ### Document mapping
 
