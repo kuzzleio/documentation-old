@@ -1,8 +1,6 @@
 # Basic queries
 
-Search queries are all done with the `GET` method on the search endpoint,
-and the body of the request is a JSON object representing the query.
-We will present here the most common ways to use the different queries,
+We will present here the most common ways to use the different search queries,
 together with the options that modify their behaviour.
 For more details about these options you can find more informations in the
 [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html).
