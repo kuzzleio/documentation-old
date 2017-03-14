@@ -1054,10 +1054,11 @@ Returns the newly created `Room` object.
 ## scroll
 
 ```js
+// Using callbacks (NodeJS or Web Browser)
 kuzzle
   .collection('collection', 'index')
-  .scroll(scrollId, {scroll: "1m"}, function (err, res) {
-    res.documents.forEach(document => {
+  .scroll(scrollId, {scroll: '1m'}, function (err, searchResult) {
+    searchResult.getDocuments().forEach(function (document) {
       console.log(document.toString());
     });
   });
@@ -1065,9 +1066,9 @@ kuzzle
 // Using promises (NodeJS only)
 kuzzle
   .collection('collection', 'index')
-  .scrollPromise(scrollId, {scroll: "1m"})
-  .then(res => {
-    res.documents.forEach(document => {
+  .scrollPromise(scrollId, {scroll: '1m'})
+  .then(searchResult => {
+    searchResult.getDocuments().forEach(document => {
       console.log(document.toString());
     });
   });
@@ -1079,16 +1080,16 @@ opts.setScroll("1m");
 
 kuzzle
   .collection("collection", "index")
-  .scroll(scrollId, opts, new ResponseListener<DocumentList>() {
+  .scroll(scrollId, opts, new ResponseListener<SearchResult>() {
     @Override
-    public void onSuccess(DocumentList result) {
-      for (Document doc : result.getDocuments()) {
+    public void onSuccess(SearchResult searchResult) {
+      for (Document doc : searchResult.getDocuments()) {
         // Get documents
       }
 
-      result.getTotal(); // return total of documents returned
+      searchResult.getTotal(); // return total of documents returned
 
-      result.getAggregations(): // return a JSONObject representing the aggregations response
+      searchResult.getAggregations(): // return a JSONObject representing the aggregations response
     }
 
     @Override
@@ -1128,14 +1129,7 @@ catch (ErrorException $e) {
 
 > Callback response:
 
-```json
-{ "total": 3,
-  "documents": [<Document>, <Document>, <Document>],
-  "aggregations": {
-    "aggs_name": {"aggregation": "object"}
-  }
-}
-```
+Resolves to an instantiated [SearchResult](#searchresult) object.
 
 <aside class="notice">
   There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
@@ -1145,11 +1139,11 @@ Returns the next page of the scroll session, and the `scrollId` to be used by th
 A scroll session is always initiated by a `search` action by using the `scroll` argument; more information below.
 
 
-### search(filters, [options], callback)
+### scroll(scrollId, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``scrollId`` | JSON object | The "scrollId" provided with the last scroll response or from the initial search request if it is the first scroll call |
+| ``scrollId`` | string | The "scrollId" provided with the last scroll response or from the initial search request if it is the first scroll call |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -1159,7 +1153,7 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``scroll`` | string | (mandatory) Re-initializes the scroll session timeout to its value | ``undefined`` |
+| ``scroll`` | string | Re-initializes the scroll session timeout to its value. If not defined, the scroll timeout is defaulted to a Kuzzle configuration | ``undefined`` |
 
 <aside class="notice">
   To get more information about scroll sessions, please refer to the <a href="/api-reference/#search">API reference documentation</a>.
@@ -1167,12 +1161,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `JSON object` containing:
-
-- the total number of matched documents
-- an `array` of `Document` objects
-- an `array` of `aggregations` objects if some are provided in the request (see the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/search-aggregations.html) for more details)
-
+Resolves to an instantiated [SearchResult](#searchresult) object.
 
 ## search
 
@@ -1209,10 +1198,11 @@ let filter = {
   }
 };
 
+// Using callbacks (NodeJS or Web Browser)
 kuzzle
   .collection('collection', 'index')
-  .search(filter, function (err, res) {
-    res.documents.forEach(document => {
+  .search(filter, function (err, searchResult) {
+    searchResult.getDocuments().forEach(function(document) {
       console.log(document.toString());
     });
   });
@@ -1221,8 +1211,8 @@ kuzzle
 kuzzle
   .collection('collection', 'index')
   .searchPromise({})
-  .then(res => {
-    res.documents.forEach(document => {
+  .then(searchResult => {
+    searchResult.getDocuments().forEach(document => {
       console.log(document.toString());
     });
   });
@@ -1272,16 +1262,16 @@ JSONObject filter = new JSONObject()
 
 kuzzle
   .collection("collection", "index")
-  .search(userFilter, new ResponseListener<DocumentList>() {
+  .search(filter, new ResponseListener<SearchResult>() {
     @Override
-    public void onSuccess(DocumentList result) {
-      for (Document doc : result.getDocuments()) {
+    public void onSuccess(SearchResult searchResult) {
+      for (Document doc : searchResult.getDocuments()) {
         // Get documents
       }
 
-      result.getTotal(); // return total of documents returned
+      searchResult.getTotal(); // return total of documents returned
 
-      result.getAggregations(): // return a JSONObject representing the aggregations response
+      searchResult.getAggregations(): // return a JSONObject representing the aggregations response
     }
 
     @Override
@@ -1354,18 +1344,11 @@ catch (ErrorException $e) {
 
 > Callback response:
 
-```json
-{ "total": 3,
-  "documents": [<Document>, <Document>, <Document>],
-  "aggregations": {
-    "aggs_name": {"aggregation": "object"}
-  }
-}
-```
+Resolves to an instantiated [SearchResult](#searchresult) object.
 
 
 <aside class="notice">
-There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
+  There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
 </aside>
 
 Executes a search on the data collection.
@@ -1384,7 +1367,9 @@ Available options:
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``scroll`` | string | Indicates to start a scroll session by providing the session timeout | ``undefined`` |
+| ``scroll`` | string | Start a scroll session, with a time to live equals to this parameter's value following the [Elastisearch time format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/common-options.html#time-units) | ``undefined`` |
+| ``from`` | number | Provide the starting offset of the request (used to paginate results) | ``0`` |
+| ``size`` | number | Provide the maximum number of results of the request (used to paginate results) | ``10`` |
 
 <aside class="notice">
   To get more information about scroll sessions, please refer to the <a href="/api-reference/#search">API reference documentation</a>.
@@ -1392,11 +1377,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `JSON object` containing:
-
-- the total number of matched documents
-- an `array` of `Document` objects
-- an `array` of `aggregations` objects if some are provided in the request (see the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/search-aggregations.html) for more details)
+Resolves to an instantiated [SearchResult](#searchresult) object.
 
 ## setHeaders
 

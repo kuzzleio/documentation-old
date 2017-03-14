@@ -18,6 +18,7 @@ includes:
   - document
   - memoryStorage
   - room
+  - searchResult
   - security/security
   - security/role
   - security/profile
