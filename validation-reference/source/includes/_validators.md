@@ -1,10 +1,10 @@
-## Validators
+# Validators
 
 The `validators` property is an array of [DSL filters](/real-time-filters). Each filters have to match in order for the document to be valid.
 
 <aside class="warning">You have to take care about the fields you allow to be empty or undefined.</aside>
 
-#### Structure
+## Structure
 
 ```json
 {
