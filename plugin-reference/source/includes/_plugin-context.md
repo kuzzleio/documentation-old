@@ -332,7 +332,7 @@ Replaces a document in the plugin storage.
 
 #### Returns
 
-Returns a `promise` that resolves to 
+Returns a `promise` that resolves to an object representation of the document in Elasticsearch.
 
 #### Usage
 
