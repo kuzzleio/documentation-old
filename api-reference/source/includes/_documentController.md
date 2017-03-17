@@ -441,18 +441,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_scroll/<scrollId>`
->**Method:** `POST`
->**Body:**
-
-<section class="http"></section>
-
-```litcoffee
-{
-  // The scroll parameter tells Elasticsearch to keep the search context open for another 1m.
-  "scroll": "1m"
-}
-```
+>**URL:** `http://kuzzle:7512/_scroll/<scrollId>[?scroll=<scroll ttl]`  
+>**Method:** `GET`  
 
 <section class="others"></section>
 
@@ -464,13 +454,10 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 {
   "controller": "document",
   "action": "scroll",
+  "scrollId": "<scrollId>",
 
-  "body": {
-    // The "scrollId" provided with the last scroll response,
-    // or from the initial search request if it is the first scroll call 
-    "scrollId": "<scrollId>"
-    // The scroll parameter tells Elasticsearch to keep the scroll session open for another 1m.
-    "scroll": "1m"
+  // Optional: time to live of the cursor
+  "scroll": "1m"
   }
 }
 ```
@@ -529,7 +516,7 @@ The query defined in the initial `search` request will then be used for all `scr
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42]`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=1m]`
 >**Method:** `POST`
 >**Body:**
 

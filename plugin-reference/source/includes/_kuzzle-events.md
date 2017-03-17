@@ -69,8 +69,8 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 | Event | Description | Payload |
 |-------|-------------|---------|
 | `core:kuzzleStart`                      | Emitted when Kuzzle is started                                         | /                    |
-| `core:hotelClerk:addSubscription`       | Sends a diff containing the filters and internal hotelClerk updates    | hcR object           |
-| `core:hotelClerk:join`                  | Sends hotelClerk diff when a room is joined                            | hcR object           |
+| `core:hotelClerk:addSubscription`       | Sends a diff containing the filters and internal hotelClerk updates    | Array of `hcR` object |
+| `core:hotelClerk:join`                  | Sends hotelClerk diff when a room is joined                            | `hcR` object          |
 | `core:hotelClerk:removeRoomForCustomer` | Sends the room unsubscription information if it changed                | {connection, roomId} |
 | `core:indexCache:add`                   | Triggered when data is added to Kuzzle's index cache                   | {index, collection}  |
 | `core:indexCache:remove`                | Triggered if some data were actually removed from Kuzzle's index cache | {index, collection}  |

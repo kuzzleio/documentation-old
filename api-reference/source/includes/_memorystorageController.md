@@ -1421,7 +1421,7 @@ Increments the number stored in a hash field by the provided float value.
 }
 ```
 
-Returns all field names containined in a hash.
+Returns all field names contained in a hash.
 
 [[_Redis documentation_]](https://redis.io/commands/hkeys)
 
@@ -1624,7 +1624,7 @@ Sets multiple fields at once in a hash.
 }
 ```
 
-Identical to [scan](#scan), except that `hscan` iterates the field contained in a hash.
+Identical to [scan](#scan), except that `hscan` iterates the fields contained in a hash.
 
 
 [[_Redis documentation_]](https://redis.io/commands/hscan)
@@ -3833,7 +3833,7 @@ Additional options can be provided:
 * `ex`: set the specified expire time, in seconds
 * `px`: set the specified expire time, in milliseconds
 * `nx`: only set the key if it does not already exist
-* `xx`: only set the key if it already exist
+* `xx`: only set the key if it already exists
 
 **Note:** setting `ex` and `px` options lead to a `BadRequestError` as these options are mutually exclusive. Same thing goes for `nx` and `xx`.
 
@@ -4269,7 +4269,7 @@ Optional arguments may be provided:
 
 * `alpha`: performs an alphanumerical sort instead of a numeric one
 * `by`: instead of sorting by values directly, sorts by values contained in external keys, using a pattern completed by values of the list/set/sorted set to sort
-* `direction`: sorted in ascendant or descendant order
+* `direction`: sort in ascendant or descendant order
 * `get`: instead of returning the sorted values directly, returns the values contained in external keys, using patterns completed by the sorted values
 * `limit`: limits the result set to `count` elements starting from the `offset` position in the sorted result set
 * `store`: instead of returning the result set, stores it in a list at `destination` key
@@ -5026,7 +5026,7 @@ By default, the provided min and max values are inclusive. This behavior can be 
 }
 ```
 
-Increments the score of a `member`in a sorted set by the provided `value`.
+Increments the score of a `member` in a sorted set by the provided `value`.
 
 [[_Redis documentation_]](https://redis.io/commands/zincrby)
 
@@ -5242,56 +5242,6 @@ Returns elements in a sorted set where all members have equal score, using lexic
 The optional LIMIT argument can be used to only get a range of the matching elements (similar to _SELECT LIMIT offset, count_ in SQL).
 
 [[_Redis documentation_]](https://redis.io/commands/zrangebylex)
-
-## zrevrangebylex
-
-<section class="http"></section>
-
->**URL:** `http://kuzzle:7512/ms/_zrevrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
->**Method:** `GET`  
-
-<section class="others"></section>
-
->Query
-
-<section class="others"></section>
-
-```litcoffee
-{
-  "controller": "ms",
-  "action": "zrevrangebylex",
-  "_id": "<key>",
-  "min": "<min interval>",
-  "max": "<max interval>",
-
-  // optional
-  "limit": [<offset>, <count>]
-}
-```
-
->Response
-
-```litcoffee
-{
-  "requestId": "<unique request identifier>",
-  "status": 200,
-  "error": null,
-  "controller": "ms",
-  "action": "zrevrangebylex",
-  "collection": null,
-  "index": null,
-  "metadata": null,
-  "result": [
-    "...",
-    "element2",
-    "element1"
-  ]
-}
-```
-
-Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order.
-
-[[_Redis documentation_]](https://redis.io/commands/zrevrangebylex)
 
 ## zrangebyscore
 
@@ -5662,6 +5612,56 @@ The `min` and `max` values are inclusive, but this behavior can be changed (see 
 Identical to [zrange](#zrange), except that the sorted set is traversed in descending order.
 
 [[_Redis documentation_]](https://redis.io/commands/zrevrange)
+
+## zrevrangebylex
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/ms/_zrevrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "ms",
+  "action": "zrevrangebylex",
+  "_id": "<key>",
+  "min": "<min interval>",
+  "max": "<max interval>",
+
+  // optional
+  "limit": [<offset>, <count>]
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "requestId": "<unique request identifier>",
+  "status": 200,
+  "error": null,
+  "controller": "ms",
+  "action": "zrevrangebylex",
+  "collection": null,
+  "index": null,
+  "metadata": null,
+  "result": [
+    "...",
+    "element2",
+    "element1"
+  ]
+}
+```
+
+Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order.
+
+[[_Redis documentation_]](https://redis.io/commands/zrevrangebylex)
 
 ## zrevrangebyscore
 

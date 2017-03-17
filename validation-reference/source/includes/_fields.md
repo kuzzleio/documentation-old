@@ -12,7 +12,7 @@
 
 The property name defines the path of the field in the document. The root fields will use their name directly. Sub fields contained in objects will use their path with the pattern "objectField/<subField>[/ ...]".
 
-### type
+## Field:type
 
 **Possible values (Elasticsearch types)**:
 
@@ -38,7 +38,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Documentation**: You can find more information about Elasticsearch types in the [Elasticearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping-types.html)
 
-### mandatory
+## Field:mandatory
 
 **Possible values**: Boolean true or false
 
@@ -46,7 +46,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Purpose**: Specifies whether the field must be present and different from the NULL value.
 
-### defaultValue
+## Field:defaultValue
 
 **Possible values**: Any value that fits the type of the field. If the field is multi-valued, the default value **MUST** be an array of values (even if it contains only one value).
 
@@ -54,7 +54,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Behavior** : Applies the default value to the given field when it is not specified or its value is `null`.
 
-### description
+## Field:description
 
 **Possible values**: Any string describing the field, its content and its conditions.
 
@@ -62,9 +62,9 @@ The property name defines the path of the field in the document. The root fields
 
 **Purpose**: Allows the author of the validation specification to remember what is the field's purpose (can also contain keywords to search the field in a configuration file).
 
-### multivalued
+## Field:multivalued
 
-#### value
+### value
 
 **Possible values**: Boolean true or false
 
@@ -72,7 +72,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Purpose**: Specifies whether the field must contain an array of values or not. If true, fields[field].multivalued.minCount and fields[field].multivalued.maxCount can be used. **If true, a scalar can not be provided for the field**.
 
-#### minCount
+### minCount
 
 **Possible values**: A positive integer, less or equal to multivalued.maxCount
 
@@ -80,7 +80,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Purpose**: Defines the minimum (**inclusive**) count of items provided in the multi-valued field.
 
-#### maxCount
+### maxCount
 
 **Possible values**: A positive integer, greater or equal to multivalued.minCount
 
@@ -88,11 +88,11 @@ The property name defines the path of the field in the document. The root fields
 
 **Purpose**: Defines the maximum (**inclusive**) count of items provided in the multi-valued field.
 
-### typeOptions
+## Field:typeOptions
 
 This configuration is available depending on the types of the field.
 
-#### range
+### range
 
 **Associated types**: integer, float, date
 
@@ -131,7 +131,7 @@ This configuration is available depending on the types of the field.
 
 <aside class="warning">Beware when using dates as range values: always make sure that, at some point, your rule won't prevent all documents from entering the system.</aside>
 
-#### length
+### length
 
 **Associated type**: string
 
@@ -150,7 +150,7 @@ This configuration is available depending on the types of the field.
 
 **Purpose**: Defines a minimum and/or a maximum (**inclusive**) values for the field.
 
-#### notEmpty
+### notEmpty
 
 **Associated type**: email, ip_address, url
 
@@ -160,7 +160,7 @@ This configuration is available depending on the types of the field.
 
 **Purpose**: Specifies whether a field can contain empty strings or not. If set to false, the field must either be empty or fulfill the field requirement (follow an email format by example).
 
-#### formats
+### formats
 
 **Associated type**: date
 
@@ -261,7 +261,7 @@ Non strict mode is slightly different from the one explained and implemented by 
 Non strict mode has been implemented to fit Elasticsearch date formats but we recommend to use strict mode when possible.
 </aside>
 
-#### strict
+### strict
 
 **Associated type**: object
 
@@ -271,7 +271,7 @@ Non strict mode has been implemented to fit Elasticsearch date formats but we re
 
 **Purpose**: Specifies whether the field can contain non declared fields. If true, a document that attempts to add a not declared field will be rejected.
 
-#### values
+### values
 
 **Associated type**: enum (mandatory)
 
@@ -279,7 +279,7 @@ Non strict mode has been implemented to fit Elasticsearch date formats but we re
 
 **Purpose**:Defines all valid values for an enum field. All field values have to match one of the valid values for a multi-valued field.
 
-#### shapeTypes
+### shapeTypes
 
 **Associated type**: geo_shape (mandatory)
 
