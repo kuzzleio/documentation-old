@@ -63,7 +63,7 @@ kuzzle.memoryStorage.appendPromise('key', 'value')
 ```
 
 ```java
-kuzzle.memoryStorage.append("key", "value", new ResponseListener<int>() {
+kuzzle.memoryStorage.append("key", "value", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int newLength) {
     // callback called once the action has completed
@@ -142,7 +142,7 @@ kuzzle.memoryStorage.bitcountPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.bitcount("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.bitcount("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -219,7 +219,7 @@ kuzzle.memoryStorage.bitopPromise('key', 'AND', ['srckey1', 'srckey2', '...'])
 
 ```java
 JSONArray sourceKeys = new JSONArray().put("srckey1").put("srckey2").put("...");
-kuzzle.memoryStorage.bitop("key", "AND", sourceKeys, new ResponseListener<int>() {
+kuzzle.memoryStorage.bitop("key", "AND", sourceKeys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int length) {
     // callback called once the action has completed
@@ -300,7 +300,7 @@ kuzzle.memoryStorage.bitpos('key', 0)
 ```
 
 ```java
-kuzzle.memoryStorage.bitpos("key", 0, new ResponseListener<int>() {
+kuzzle.memoryStorage.bitpos("key", 0, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int position) {
     // callback called once the action has completed
@@ -378,7 +378,7 @@ kuzzle.memoryStorage.dbsize()
 ```
 
 ```java
-kuzzle.memoryStorage.dbsize(new ResponseListener<int>() {
+kuzzle.memoryStorage.dbsize(new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -451,7 +451,7 @@ kuzzle.memoryStorage.decrPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.decr("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.decr("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int value) {
     // callback called once the action has completed
@@ -529,7 +529,7 @@ kuzzle.memoryStorage.decrbyPromise('key', 42)
 ```
 
 ```java
-kuzzle.memoryStorage.decrby("key", 42, new ResponseListener<int>() {
+kuzzle.memoryStorage.decrby("key", 42, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int value) {
     // callback called once the action has completed
@@ -609,7 +609,7 @@ kuzzle.memoryStorage.delPromise(['key1', 'key2', '...'])
 
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
-kuzzle.memoryStorage.del(keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.del(keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -688,7 +688,7 @@ kuzzle.memoryStorage.existsPromise(['key1', 'key2', '...'])
 
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
-kuzzle.memoryStorage.exists(keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.exists(keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -762,7 +762,7 @@ kuzzle.memoryStorage.expirePromise('key', 42)
 ```
 
 ```java
-kuzzle.memoryStorage.expire("key", 42, new ResponseListener<int>() {
+kuzzle.memoryStorage.expire("key", 42, new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -841,7 +841,7 @@ kuzzle.memoryStorage.expireatPromise('key', 1488372354)
 ```
 
 ```java
-kuzzle.memoryStorage.expireat("key", 1488372354, new ResponseListener<int>() {
+kuzzle.memoryStorage.expireat("key", 1488372354, new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -921,7 +921,7 @@ kuzzle.memoryStorage.flushdbPromise()
 ```
 
 ```java
-kuzzle.memoryStorage.flushdb(new ResponseListener<int>() {
+kuzzle.memoryStorage.flushdb(new ResponseListener<Long>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -1023,7 +1023,7 @@ JSONArray points = new JSONArray()
     .put("name", "Catania")
   );
 
-kuzzle.memoryStorage.geoadd("key", points, new ResponseListener<int>() {
+kuzzle.memoryStorage.geoadd("key", points, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -1623,7 +1623,7 @@ kuzzle.memoryStorage.getbitPromise('key', 10)
 ```
 
 ```java
-kuzzle.memoryStorage.getbit("key", 10, new ResponseListener<int>() {
+kuzzle.memoryStorage.getbit("key", 10, new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int bit) {
     // callback called once the action has completed
@@ -1854,7 +1854,7 @@ kuzzle.memoryStorage.hdelPromise('key', ['field1', 'field2'])
 
 ```java
 JSONArray fields = new JSONArray().put("field1").put("field2");
-kuzzle.memoryStorage.hdel("key", fields, new ResponseListener<int>() {
+kuzzle.memoryStorage.hdel("key", fields, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -1932,7 +1932,7 @@ kuzzle.memoryStorage.hexistsPromise('key', 'field1')
 ```
 
 ```java
-kuzzle.memoryStorage.hexists("key", "field1", new ResponseListener<int>() {
+kuzzle.memoryStorage.hexists("key", "field1", new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int exists) {
     // callback called once the action has completed
@@ -2160,7 +2160,7 @@ kuzzle.memoryStorage.hincrbyPromise('key', 'field', 42)
 ```
 
 ```java
-kuzzle.memoryStorage.hincrby("key", "field", 42, new ResponseListener<int>() {
+kuzzle.memoryStorage.hincrby("key", "field", 42, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int value) {
     // callback called once the action has completed
@@ -2240,7 +2240,7 @@ kuzzle.memoryStorage.hincrbyfloatPromise('key', 'field', 3.14159)
 ```
 
 ```java
-kuzzle.memoryStorage.hincrbyfloat("key", "field", 3.14159, new ResponseListener<int>() {
+kuzzle.memoryStorage.hincrbyfloat("key", "field", 3.14159, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int value) {
     // callback called once the action has completed
@@ -2398,7 +2398,7 @@ kuzzle.memoryStorage.hlenPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.hlen("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.hlen("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -2737,7 +2737,7 @@ kuzzle.memoryStorage.hsetPromise('key', 'field', 'value')
 ```
 
 ```java
-kuzzle.memoryStorage.hset("key", "field", "value", new ResponseListener<int>() {
+kuzzle.memoryStorage.hset("key", "field", "value", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -2817,7 +2817,7 @@ kuzzle.memoryStorage.hsetnxPromise('key', 'field', 'value')
 ```
 
 ```java
-kuzzle.memoryStorage.hsetnx("key", "field", "value", new ResponseListener<int>() {
+kuzzle.memoryStorage.hsetnx("key", "field", "value", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -2897,7 +2897,7 @@ kuzzle.memoryStorage.hstrlenPromise('key', 'field')
 ```
 
 ```java
-kuzzle.memoryStorage.hstrlen("key", "field", new ResponseListener<int>() {
+kuzzle.memoryStorage.hstrlen("key", "field", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int length) {
     // callback called once the action has completed
@@ -3050,7 +3050,7 @@ kuzzle.memoryStorage.incrPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.incr("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.incr("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int value) {
     // callback called once the action has completed
@@ -3128,7 +3128,7 @@ kuzzle.memoryStorage.incrbyPromise('key', -3)
 ```
 
 ```java
-kuzzle.memoryStorage.incrby("key", -3, new ResponseListener<int>() {
+kuzzle.memoryStorage.incrby("key", -3, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int value) {
     // callback called once the action has completed
@@ -3439,7 +3439,7 @@ kuzzle.memoryStorage.linsertPromise('key', 'after', 'foo', 'bar')
 ```
 
 ```java
-kuzzle.memoryStorage.linsert("key", "after", "foo", "bar", new ResponseListener<int>() {
+kuzzle.memoryStorage.linsert("key", "after", "foo", "bar", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -3520,7 +3520,7 @@ kuzzle.memoryStorage.llenPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.llen("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.llen("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -3674,7 +3674,7 @@ kuzzle.memoryStorage.lpushPromise('key', ['foo', 'bar', 'baz'])
 ```java
 JSONArray values = new JSONArray().put("foo").put("bar").put("baz");
 
-kuzzle.memoryStorage.lpush("key", items, new ResponseListener<int>() {
+kuzzle.memoryStorage.lpush("key", items, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -3753,7 +3753,7 @@ kuzzle.memoryStorage.lpushxPromise('key', 'foo')
 ```
 
 ```java
-kuzzle.memoryStorage.lpushx("key", "foo", new ResponseListener<int>() {
+kuzzle.memoryStorage.lpushx("key", "foo", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -3911,7 +3911,7 @@ kuzzle.memoryStorage.lremPromise('key', 1, 'foo')
 ```
 
 ```java
-kuzzle.memoryStorage.lrem("key", 1, "foo", new ResponseListener<int>() {
+kuzzle.memoryStorage.lrem("key", 1, "foo", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -4336,7 +4336,7 @@ JSONArray entries = new JSONArray()
   .put(new JSONObject().put("key", "key2").put("value", "bar"))
   .put(new JSONObject().put("key", "...").put("value", "..."));
 
-kuzzle.memoryStorage.msetnx(entries, new ResponseListener<String>() {
+kuzzle.memoryStorage.msetnx(entries, new ResponseListener<Integer>() {
   @Override
   public void onSuccess(String status) {
     // callback called once the action has completed
@@ -4494,7 +4494,7 @@ kuzzle.memoryStorage.persistPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.persist("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.persist("key", new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -4572,7 +4572,7 @@ kuzzle.memoryStorage.pexpirePromise('key', 42000)
 ```
 
 ```java
-kuzzle.memoryStorage.pexpire("key", 42000, new ResponseListener<int>() {
+kuzzle.memoryStorage.pexpire("key", 42000, new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -4651,7 +4651,7 @@ kuzzle.memoryStorage.pexpireatPromise('key', 1488540242465)
 ```
 
 ```java
-kuzzle.memoryStorage.pexpireat("key", 1488540242465, new ResponseListener<int>() {
+kuzzle.memoryStorage.pexpireat("key", 1488540242465, new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -4733,7 +4733,7 @@ kuzzle.memoryStorage.pfaddPromise('key', ['foo', 'bar', 'baz'])
 ```java
 JSONArray elements = new JSONArray().put("foo").put("bar").put("baz");
 
-kuzzle.memoryStorage.pfadd("key", elements, new ResponseListener<int>() {
+kuzzle.memoryStorage.pfadd("key", elements, new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -4814,7 +4814,7 @@ kuzzle.memoryStorage.pfcountPromise(['key1', 'key2', '...'])
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
 
-kuzzle.memoryStorage.pfcount(keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.pfcount(keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -4852,7 +4852,7 @@ Returns the probabilistic cardinality of a [HyperLogLog](https://en.wikipedia.or
 
 [[_Redis documentation_]](https://redis.io/commands/pfcount)
 
-### pfcount(key, [options], callback)
+### pfcount(keys, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -4890,7 +4890,7 @@ kuzzle.memoryStorage.pfmergePromise('key', ['key1', 'key2', '...'])
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
 
-kuzzle.memoryStorage.pfmerge('key', keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.pfmerge('key', keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -5118,7 +5118,7 @@ kuzzle.memoryStorage.pttlPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.pttl("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.pttl("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int ttl) {
     // callback called once the action has completed
@@ -5582,7 +5582,7 @@ kuzzle.memoryStorage.rpushPromise('key', ['foo', 'bar', 'baz'])
 ```java
 JSONArray values = new JSONArray().put("foo").put("bar").put("baz");
 
-kuzzle.memoryStorage.rpush("key", items, new ResponseListener<int>() {
+kuzzle.memoryStorage.rpush("key", items, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -5661,7 +5661,7 @@ kuzzle.memoryStorage.rpushxPromise('key', 'foo')
 ```
 
 ```java
-kuzzle.memoryStorage.rpushx("key", "foo", new ResponseListener<int>() {
+kuzzle.memoryStorage.rpushx("key", "foo", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -5742,7 +5742,7 @@ kuzzle.memoryStorage.saddPromise('key', ['foo', 'bar', 'baz'])
 ```java
 JSONArray values = new JSONArray().put("foo").put("bar").put("baz");
 
-kuzzle.memoryStorage.sadd("key", items, new ResponseListener<int>() {
+kuzzle.memoryStorage.sadd("key", items, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -5780,7 +5780,7 @@ Adds members to a set of unique values stored at `key`. If the `key` does not ex
 
 [[_Redis documentation_]](https://redis.io/commands/sadd)
 
-### rpush(key, members, [options], [callback])
+### sadd(key, members, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -5911,7 +5911,7 @@ kuzzle.memoryStorage.scardPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.scard("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.scard("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -6073,7 +6073,7 @@ kuzzle.memoryStorage.sdiffstorePromise('key', ['key1', 'key2', '...'], 'destinat
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
 
-kuzzle.memoryStorage.sdiffstore("key", keys, "destination", new ResponseListener<int>() {
+kuzzle.memoryStorage.sdiffstore("key", keys, "destination", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -6319,7 +6319,7 @@ kuzzle.memoryStorage.setnxPromise('key', 'value')
 ```
 
 ```java
-kuzzle.memoryStorage.setnx("key", "value", new ResponseListener<int>() {
+kuzzle.memoryStorage.setnx("key", "value", new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -6480,7 +6480,7 @@ kuzzle.memoryStorage.sinterstorePromise('destination', ['key1', 'key2', '...'])
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
 
-kuzzle.memoryStorage.sinterstore("destination", keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.sinterstore("destination", keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -6525,7 +6525,7 @@ If the destination key already exists, it is overwritten.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | `destination` | string | Destination key identifier |
-| `keys` | string | List of sets of unique values to intersect |
+| `keys` | array | List of sets of unique values to intersect |
 | `options` | JSON Object | Optional parameters |
 | `callback` | function | Callback |
 
@@ -6536,6 +6536,10 @@ Available options:
 |---------------|---------|----------------------------------------|---------|
 | `queuable` | boolean | Mark this request as (not) queuable | `true` |
 
+
+### Return value
+
+Returns the `MemoryStorage` object to allow chaining.
 
 ### Callback response
 
@@ -6557,7 +6561,7 @@ kuzzle.memoryStorage.sismemberPromise('key', 'member')
 ```
 
 ```java
-kuzzle.memoryStorage.sismember("key", "member", new ResponseListener<int>() {
+kuzzle.memoryStorage.sismember("key", "member", new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -6714,7 +6718,7 @@ kuzzle.memoryStorage.smovePromise('key', 'destination', 'member')
 ```
 
 ```java
-kuzzle.memoryStorage.smove("key", "destination", "member", new ResponseListener<int>() {
+kuzzle.memoryStorage.smove("key", "destination", "member", new ResponseListener<Integer>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -6858,7 +6862,7 @@ Available options:
 | `by` | string | Instead of sorting the values stored at `key`, use them to complete the provided key pattern, and return the sorted list of values stored in those keys. | `null` |
 | `direction` | string | Sort in ascendant (`ASC`) or descendant (`DESC`)  order | `ASC` |
 | `get` | array | Sort the values stored at `key` but, instead of returning these directly, return the values contained in external keys, using the provided array of patterns completed by the sorted values | `null` |
-| `limit` | JSON object | Limit the result set to `count` (int) elements, starting from the `offset` (int) position in the sorted result set | `null` |
+| `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
 | `queuable` | boolean | Mark this request as (not) queuable | `true` |
 
 ### Callback response
@@ -7042,7 +7046,7 @@ kuzzle.memoryStorage.sremPromise('key', ['member1', 'member2', '...'])
 ```java
 JSONArray members = new JSONArray().put("member1").put("member2").put("...");
 
-kuzzle.memoryStorage.srem("key", members, new ResponseListener<int>() {
+kuzzle.memoryStorage.srem("key", members, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -7208,7 +7212,7 @@ kuzzle.memoryStorage.strlenPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.strlen("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.strlen("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int length) {
     // callback called once the action has completed
@@ -7364,7 +7368,7 @@ kuzzle.memoryStorage.sunionstorePromise('destination', ['key1', 'key2', '...'])
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
 
-kuzzle.memoryStorage.sunionstore("destination", keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.sunionstore("destination", keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -7522,7 +7526,7 @@ kuzzle.memoryStorage.touchPromise(['key1', 'key2', '...'])
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
 
-kuzzle.memoryStorage.touch(keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.touch(keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -7600,7 +7604,7 @@ kuzzle.memoryStorage.ttlPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.ttl("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.ttl("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int ttl) {
     // callback called once the action has completed
@@ -7759,7 +7763,7 @@ JSONArray elements = new JSONArray()
   .put(new JSONObject().put("score", 2).put("member", "bar"))
   .put(new JSONObject().put("score", 3).put("member", "baz"));
 
-kuzzle.memoryStorage.zadd("key", elements new ResponseListener<int>() {
+kuzzle.memoryStorage.zadd("key", elements new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -7852,7 +7856,7 @@ kuzzle.memoryStorage.zcardPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.zcard("key", new ResponseListener<int>() {
+kuzzle.memoryStorage.zcard("key", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -7926,7 +7930,7 @@ kuzzle.memoryStorage.zcountPromise('key', 2, 3)
 ```
 
 ```java
-kuzzle.memoryStorage.zcount("key", 2, 3, new ResponseListener<int>() {
+kuzzle.memoryStorage.zcount("key", 2, 3, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -8086,7 +8090,7 @@ kuzzle.memoryStorage.zinterstorePromise('destination', ['key1', 'key2', '...'])
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
 
-kuzzle.memoryStorage.zinterstore("destination", keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.zinterstore("destination", keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -8165,7 +8169,7 @@ kuzzle.memoryStorage.zlexcountPromise('key', '[b', '[f')
 ```
 
 ```java
-kuzzle.memoryStorage.zlexcount("key", "[b", "[f", new ResponseListener<int>() {
+kuzzle.memoryStorage.zlexcount("key", "[b", "[f", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -8499,7 +8503,7 @@ kuzzle.memoryStorage.zrankPromise('key', 'foo')
 ```
 
 ```java
-kuzzle.memoryStorage.zrank("key", "member", new ResponseListener<int>() {
+kuzzle.memoryStorage.zrank("key", "member", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int position) {
     // callback called once the action has completed
@@ -8576,7 +8580,7 @@ kuzzle.memoryStorage.zremPromise('key', ['foo', 'bar', 'baz'])
 ```java
 JSONArray members = new JSONArray().put("foo").put("bar").put("baz");
 
-kuzzle.memoryStorage.zrem("key", members, new ResponseListener<int>() {
+kuzzle.memoryStorage.zrem("key", members, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -8655,7 +8659,7 @@ kuzzle.memoryStorage.zremrangebylexPromise('key', '[b', '(f')
 ```
 
 ```java
-kuzzle.memoryStorage.zremrangebylex("key", "[b", "(f", new ResponseListener<int>() {
+kuzzle.memoryStorage.zremrangebylex("key", "[b", "(f", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -8735,7 +8739,7 @@ kuzzle.memoryStorage.zremrangebyrankPromise('key', 1, 2)
 ```
 
 ```java
-kuzzle.memoryStorage.zremrangebyrank("key", 1, 2, new ResponseListener<int>() {
+kuzzle.memoryStorage.zremrangebyrank("key", 1, 2, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -8817,7 +8821,7 @@ kuzzle.memoryStorage.zremrangebyscorePromise('key', 1, 2)
 ```
 
 ```java
-kuzzle.memoryStorage.zremrangebyscore("key", 1, 2, new ResponseListener<int>() {
+kuzzle.memoryStorage.zremrangebyscore("key", 1, 2, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
@@ -9154,7 +9158,7 @@ kuzzle.memoryStorage.zrevrankPromise('key', 'foo')
 ```
 
 ```java
-kuzzle.memoryStorage.zrevrank("key", "member", new ResponseListener<int>() {
+kuzzle.memoryStorage.zrevrank("key", "member", new ResponseListener<Long>() {
   @Override
   public void onSuccess(int position) {
     // callback called once the action has completed
@@ -9318,7 +9322,7 @@ kuzzle.memoryStorage.zscorePromise('key', 'bar')
 ```
 
 ```java
-kuzzle.memoryStorage.zscore("key", "bar", new ResponseListener<int>() {
+kuzzle.memoryStorage.zscore("key", "bar", new ResponseListener<Long>() {
   @Override
   public void onSuccess(double score) {
     // callback called once the action has completed
@@ -9395,7 +9399,7 @@ kuzzle.memoryStorage.zunionstorePromise('destination', ['key1', 'key2', '...'])
 ```java
 JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
 
-kuzzle.memoryStorage.zunionstore("destination", keys, new ResponseListener<int>() {
+kuzzle.memoryStorage.zunionstore("destination", keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {
     // callback called once the action has completed

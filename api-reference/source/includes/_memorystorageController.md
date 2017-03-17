@@ -4208,10 +4208,7 @@ Moves a member from a set of unique values to another.
   "by": "<external key pattern>",
   "direction": "[ASC|DESC]",
   "get": ["pattern1", "pattern2", "..."],
-  "limit": {
-    "offset": <offset>,
-    "count": <count>
-  },
+  "limit": [<offset>, <count>],
   "store": "<destination key>"
 }
 ```
@@ -4233,10 +4230,7 @@ Moves a member from a set of unique values to another.
     "by": "<external key pattern>",
     "direction": "[ASC|DESC]",
     "get": ["pattern1", "pattern2", "..."],
-    "limit": {
-      "offset": <offset>,
-      "count": <count>
-    },
+    "limit": [<offset>, <count>],
     "store": "<destination key>"
   }
 }
@@ -4271,7 +4265,7 @@ Optional arguments may be provided:
 * `by`: instead of sorting by values directly, sorts by values contained in external keys, using a pattern completed by values of the list/set/sorted set to sort
 * `direction`: sort in ascendant or descendant order
 * `get`: instead of returning the sorted values directly, returns the values contained in external keys, using patterns completed by the sorted values
-* `limit`: limits the result set to `count` elements starting from the `offset` position in the sorted result set
+* `limit`: limits the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL). Format: `[<offset(int)>, <count(int)>]`
 * `store`: instead of returning the result set, stores it in a list at `destination` key
 
 [[_Redis documentation_]](https://redis.io/commands/sort)
@@ -5518,8 +5512,8 @@ Positions are 0-based, meaning the first member of the set has a position of 0.
 
 ```litcoffee
 {
-  "min": "<min interval>",
-  "max": "<max interval>"
+  "min": <min interval>,
+  "max": <max interval>
 }
 ```
 
@@ -5535,8 +5529,8 @@ Positions are 0-based, meaning the first member of the set has a position of 0.
   "action": "zremrangebyscore",
   "_id": "<key>",
   "body": {
-    "min": "<min interval>",
-    "max": "<max interval>"
+    "min": <min interval>,
+    "max": <max interval>
   }
 }
 ```
