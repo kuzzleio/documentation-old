@@ -2036,7 +2036,7 @@ Returns all keys matching the provided pattern.
   "controller": "ms",
   "action": "lindex",
   "_id": "<key>",
-  "idx": "<index>"
+  "index": "<index>"
 }
 ```
 
