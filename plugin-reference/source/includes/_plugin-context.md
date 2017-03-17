@@ -12,6 +12,7 @@ Here is the list of shared objects contained in the provided ``context``:
 | `context.accessors.execute` | Access to Kuzzle API |
 | `context.accessors.passport` | Access to Kuzzle [Passport](http://passportjs.org) instance. Allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
 | `context.accessors.router` | Access to Kuzzle protocol communication system. Allow **protocol** plugins to interface themselves with Kuzzle. |
+| `context.accessors.storage` | Access to the plugin storage. This storage can only be accessed by the plugin and can be used to persist plugin datas. |
 | `context.accessors.users` | Access to users management, especially useful for authentication plugins. Provides methods for handling users. This accessor is mainly used by authentication plugins. |
 | `context.accessors.validation` | Access to validation mechanisms, useful to validate documents and add field types. |
 | `context.config` | Contains the entire Kuzzle instance configuration (most of it coming from Kuzzle configuration file) |
@@ -135,6 +136,266 @@ Not calling this method after a connection is dropped will result in a memory-le
 |------|------|----------------------------------|
 |`context`|`RequestContext`| Object identifying the connection context. Obtained by calling `newConnection()`|
 
+
+### `storage.bootstrap`
+
+Allows to initialize the plugin storage index in Elasticsearch. When called, it will create the Elastisearch index
+and the `collections` provided in argument. Can be called at each plugin initialized as long as the mapping is
+not modified.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`collections`|`Object`| An object that contains the collection mappings. See the [guide](/guide#document-mapping) for more explanation about Elasticsearch mapping. |
+
+#### Returns
+
+Returns a `promise` that resolves to a `boolean` that indicates if the index and the collections already existed or not.
+
+#### Usage
+
+```javascript
+context.accessors.storage.bootstrap({
+  someCollection: {
+    properties: {
+      someField: {
+        type: 'keyword'
+      }
+      ,
+      ...
+    }
+  },
+  anotherCollection: {
+    properties: {
+      ...
+    }
+  }
+});
+```
+
+### `storage.create`
+
+Creates a document in the Plugin storage.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`Object`| The document you want to create. It must contain a unique `_id` string property. You don't need to worry about collisions with other plugins as your plugin storage is only accessible by your plugin |
+|`collection`|`string`| The collection where you want to store your document. |
+
+#### Returns
+
+Returns a `promise` that resolves to an object representation of the document in Elasticsearch.
+
+#### Usage
+
+```javascript
+context.accessors.storage.create({
+  _id: '<a unique id>',
+  someField: 'some content',
+  anotherField: 'another content',
+  ...
+}, 'someCollection');
+```
+
+### `storage.createCollection`
+
+Allows to create a collection with its mapping. Can be called at each plugin initialization if the mapping is not
+ modified. Consider using [`storage.bootstrap`](#storage-bootstrap) if your collections are not dynamic.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`collection`|`string`| The collection name |
+|`collectionMapping`|`object`| The collection mapping |
+
+#### Returns
+
+Returns a `promise` that resolves to the object `{ acknowledged: true }`.
+
+#### Usage
+
+```javascript
+context.accessors.storage.createCollection('someCollection', {
+    properties: {
+      someField: {
+        type: 'keyword'
+      }
+      ,
+      ...
+    }
+});
+```
+
+### `storage.createOrReplace`
+
+Creates or replaces a document in the plugin storage.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`object`| The document you want to create or replace. It must contain a unique `_id` string property. You don't need to worry about collisions with other plugins as your plugin storage is only accessible by your plugin |
+|`collection`|`string`| The collection where you want to store your document. |
+
+#### Returns
+
+Returns a `promise` that resolves to an object representation of the document in Elasticsearch.
+
+#### Usage
+
+```javascript
+context.accessors.storage.createOrReplace({
+  _id: '<a unique id>',
+  someField: 'some content',
+  anotherField: 'another content',
+  ...
+}, 'someCollection');
+```
+
+### `storage.delete`
+
+Deletes a document from the plugin storage.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`object`| The document `_id` of the document you want to delete. |
+|`collection`|`string`| The collection where the document is stored. |
+
+#### Returns
+
+Returns a `promise` that resolves to an object representation of the document in Elasticsearch.
+
+#### Usage
+
+```javascript
+context.accessors.storage.delete('someDocumentId', 'someCollection');
+```
+
+### `storage.get`
+
+Retrieves a document from the plugin storage.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`documentId`|`string`| The document identifier of the document you want to retrieve. |
+|`collection`|`string`| The collection of the document. |
+
+#### Returns
+
+Returns a `promise` that resolves to the object reprensentation of the retrieved document. 
+
+#### Usage
+
+```javascript
+context.accessors.storage.get('someDocumentId', 'someCollection');
+```
+
+### `storage.mGet`
+
+Retrieves multiple documents from the plugin storage.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`documentIds`|`array<string>`| An array of document identifier of the documents you want to retrieve. |
+|`collection`|`string`| The collection of the documents. |
+
+#### Returns
+
+Returns a `promise` that resolves to an array of the object reprensentation of the retrieved documents. 
+
+#### Usage
+
+```javascript
+context.accessors.storage.mGet(['someDocumentId', 'anotherDocument'], 'someCollection');
+```
+
+### `storage.replace`
+
+Replaces a document in the plugin storage.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`object`| The content of the document. It must contain a unique `_id` string property. |
+|`collection`|`string`| The collection of the document. |
+
+#### Returns
+
+Returns a `promise` that resolves to 
+
+#### Usage
+
+```javascript
+context.accessors.storage.replace({
+  _id: '<a unique id>',
+  someField: 'some content',
+  anotherField: 'another content',
+  ...
+}, 'someCollection');
+```
+
+### `storage.search`
+
+Searches documents that match the provided `query` in the collection.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`query`|`object`| The [query](/elasticsearch-cookbook/#basic-queries) sent to Elastisearch. |
+|`from`|`integer`| Provides the offset of the returned documents. |
+|`size`|`integer`| Provides the count of the returned documents. |
+|`collection`|`string`| The collection where to search. |
+
+#### Returns
+
+Returns a `promise` that resolves to an object of the form `{total: number, hits: array<object>}` where `hits`
+contains the searched documents and `total` the count of documents that match the query.
+
+#### Usage
+
+```javascript
+context.accessors.storage.search({
+  query: {
+    match_all: {}
+  }
+}, 0, 10, 'someCollection');
+```
+
+### `storage.update`
+
+Updates a document in the plugin storage. You can provide a partial document to add or update one or more fields.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`object`| The partial content of the document. It must contain a unique `_id` string property. |
+|`collection`|`string`| The collection of the document. |
+
+#### Returns
+
+Returns a `promise` that resolves to an object representation of the document in Elasticsearch.
+
+#### Usage
+
+```javascript
+context.accessors.storage.update({
+  _id: '<a unique id>',
+  anotherField: 'another content'
+}, 'someCollection');
+```
 
 ### `users.create`
 
