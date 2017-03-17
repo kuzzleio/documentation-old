@@ -158,7 +158,7 @@ Checks if the given index exists in Kuzzle storage layer.
 ```
 
 The `autoRefresh` flag, when set to true, will make Kuzzle perform a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api) request
 immediately after each write request, forcing the documents to be immediately visible to search.
 
 The `getAutoRefresh` actions returns the current `autoRefresh` status for the given index.
@@ -331,7 +331,7 @@ in the search index.
 By default, this operation can take up to 1 second.
 
 Given an index, the `refresh` action forces a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api),
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api),
 on it, making the documents visible to search immediately.
 
 <aside class="left warning">
@@ -339,7 +339,7 @@ on it, making the documents visible to search immediately.
     A refresh operation comes with some performance costs.<br>
   </p>
   <p>
-    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api">
+    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api">
     Elasticsearch documentation</a>:
     <div class="quote">
       "While a refresh is much lighter than a commit, it still has a performance cost.
@@ -391,7 +391,7 @@ in Kuzzle's database layer, the update needs to be indexed before being reflecte
 By default, this operation can take up to 1 second.
 
 Given an index, the `refreshInternal` action forces a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api),
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api),
 on the internal index, making the documents visible to search immediately.
 
 <aside class="left warning">
@@ -399,7 +399,7 @@ on the internal index, making the documents visible to search immediately.
     A refresh operation comes with some performance costs.<br>
   </p>
   <p>
-    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api">
+    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api">
     Elasticsearch documentation</a>:
     <div class="quote">
       "While a refresh is much lighter than a commit, it still has a performance cost.
@@ -456,7 +456,7 @@ on the internal index, making the documents visible to search immediately.
 ```
 
 The `autoRefresh` flag, when set to true, will make Kuzzle perform a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api) request
 immediately after each write request, forcing the documents to be immediately visible to search.
 
 Given an index, the `setAutoRefresh` action updates its `autoRefresh` status.

@@ -3,7 +3,7 @@
 We will present here the most common ways to use the different search queries,
 together with the options that modify their behaviour.
 For more details about these options you can find more informations in the
-[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html).
+[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html).
 
 ## The search endpoint (and the `match_all` query)
 
@@ -172,7 +172,7 @@ This is very useful when you want to paginate the results.
 
 The `scroll` query parameter is useful when dealing with huge data sets,
 or when you want to be sure the data set will not change during your processing. We recommend you to read the
-[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-scroll.html)
+[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search-request-scroll.html)
 for more details.
 
 ## The `ids` query
@@ -303,7 +303,7 @@ The query you use (here: "hate cake") is analyzed (lowercased, tokenized ...)
 and then is applied against the analyzed version of the field (which is also lowercased, tokenized...).
 As a result, the choice of the analyzer applied to a field is very important. To know more about analyzers,
 we recommend you to read the
-[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-analyzers.html).
+[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/analysis-analyzers.html).
 
 It results in a set of documents where a score is applied.
 

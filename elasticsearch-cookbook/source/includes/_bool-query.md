@@ -85,7 +85,7 @@ Reply (don't spend too much time reading it, we will explain each occurence type
 
 ```
 
-You can find a full description in the [Bool Query documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html).
+You can find a full description in the [Bool Query documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl-bool-query.html).
 
 
 ## The `filter` occurrence type
@@ -1198,7 +1198,7 @@ Both examples above generate the same result:
 
 ## The `should` occurrence type
 
-The `should` occurrence type is different from the 3 others as it allows to specify queries that "SHOULD" match the documents. If used without `filter` or `must` occurence types, at least one query will have to match the document. It could be seen as a logical `OR` operator. Its behaviour can be modified by the `minimum_should_match`. It allows to specify a number or a percentage of queries that have to match in order to select the document. You can see all available value formats of `minimum_should_match` in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-minimum-should-match.html).
+The `should` occurrence type is different from the 3 others as it allows to specify queries that "SHOULD" match the documents. If used without `filter` or `must` occurence types, at least one query will have to match the document. It could be seen as a logical `OR` operator. Its behaviour can be modified by the `minimum_should_match`. It allows to specify a number or a percentage of queries that have to match in order to select the document. You can see all available value formats of `minimum_should_match` in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl-minimum-should-match.html).
 
 ### Usage of `minimum_should_match`
 

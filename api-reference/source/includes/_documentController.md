@@ -63,7 +63,7 @@
 
 Given some filters, gets the number of matching documents from Kuzzle's data storage layer.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
 
 
 ## create
@@ -310,7 +310,7 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 
 Deletes all the documents matching the given filter or query from Kuzzle's database.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
 
 
 ## get
@@ -619,10 +619,10 @@ The query defined in the initial `search` request will then be used for all `scr
 
 Only documents in the persistent data storage layer can be searched.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
 
 `aggregations` is not mandatory, see the
-[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html)
+[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search-aggregations.html)
 for more details.
 
 If a `scroll` argument is provided in the request, a scroll session is started and the response will contain a `_scroll_id` that

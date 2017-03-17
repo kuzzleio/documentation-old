@@ -211,4 +211,4 @@ As you can see, we insert an array in a field ment to be a string. It is one of 
 Any field can be an array of the defined type. For example, the `tags` field is defined as a string, but we chose to use it as an array of strings (and it is totally fine).
 Another feature of Elasticsearch is that you can nest a field to build complex documents.
 It is not addressed in this cookbook but you can find more information in the
-[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html).
+[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/object.html).

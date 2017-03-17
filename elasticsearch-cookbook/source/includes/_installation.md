@@ -9,7 +9,7 @@ You can also trust the output we provide in the cookbook and skip the installati
 ## Launch Elasticsearch
 
 We provide here a way to run Elasticsearch quickly with docker, but you can do it by following the
-[installation documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html).
+[installation documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/_installation.html).
 
 
 To launch Elasticsearch, copy this lines in your terminal:

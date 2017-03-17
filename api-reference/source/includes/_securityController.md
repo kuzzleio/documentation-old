@@ -2034,7 +2034,7 @@ At the first initialization, Kuzzle defines a default mapping for the `profiles`
 This mapping is intended to store the basic information of a profile; typically, its policies (roles and restrictions).
 
 But if you want to store more information about your profiles, Kuzzle's API offers a way to update the `profiles` data mapping using the
-[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html).
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
 
 
 ## updateRole
@@ -2200,7 +2200,7 @@ At the first initialization, Kuzzle defines a default mapping for the `roles` in
 This mapping is intended to store the basic information of a role; typically, its allowed controllers and actions.
 
 But if you want to store more information about your roles, Kuzzle's API offers a way to update the `roles` data mapping using the
-[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html).
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
 
 
 ## updateUser

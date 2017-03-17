@@ -9,4 +9,4 @@ To do so, Elasticsearch computes a score according to the request.
 This score is influenced by each part of the query but the most sophisticated feature resides
 in its ability to tokenize words in a text field and ponderate it according to the frequency of
 these words in the corpus. You can find more information about scoring in the
-[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/guide/current/scoring-theory.html).
+[Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/scoring-theory.html).

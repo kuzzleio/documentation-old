@@ -556,7 +556,7 @@ and your searches may suffer from below-average performances, depending on the a
 stored in a collection and the complexity of your database.
 
 To solve this matter, Kuzzle's API offers a way to create data mapping and to expose the entire
-[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html).
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
 
 
 ## updateSpecifications

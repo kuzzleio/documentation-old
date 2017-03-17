@@ -240,7 +240,7 @@ Adds or updates a field mapping.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``field`` | string | Name of the field from which the mapping is to be added or updated |
-| ``mapping`` | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html)
+| ``mapping`` | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html)
 
 ### Return value
 

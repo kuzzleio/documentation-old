@@ -36,7 +36,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Purpose**: Defines the type of the provided fields. Checks are performed depending on the provided type.
 
-**Documentation**: You can find more information about Elasticsearch types in the [Elasticearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html)
+**Documentation**: You can find more information about Elasticsearch types in the [Elasticearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping-types.html)
 
 ### mandatory
 
@@ -247,7 +247,7 @@ strict_year_month_day
 ```
 
 
-**Documentation**: [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html) (all except date_optional_time)
+**Documentation**: [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping-date-format.html) (all except date_optional_time)
 
 **Default**: ["epoch_millis"]
 
@@ -299,4 +299,4 @@ Non strict mode has been implemented to fit Elasticsearch date formats but we re
 
 **Purpose**: Limit the shapes available for a given geo_shape field.
 
-**Documentation**: [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-shape.html#input-structure)
+**Documentation**: [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/geo-shape.html#input-structure)
