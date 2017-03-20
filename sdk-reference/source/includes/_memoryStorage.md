@@ -2240,7 +2240,7 @@ kuzzle.memoryStorage.hincrbyfloatPromise('key', 'field', 3.14159)
 ```
 
 ```java
-kuzzle.memoryStorage.hincrbyfloat("key", "field", 3.14159, new ResponseListener<Long>() {
+kuzzle.memoryStorage.hincrbyfloat("key", "field", 3.14159, new ResponseListener<Double>() {
   @Override
   public void onSuccess(int value) {
     // callback called once the action has completed
@@ -2302,7 +2302,7 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ### Callback response
 
-Resolves to the new incremented value.
+Resolves to the new incremented value, as a floating point number.
 
 ## hkeys
 
@@ -3207,7 +3207,7 @@ kuzzle.memoryStorage.incrbyfloatPromise('key', -3.14159)
 ```
 
 ```java
-kuzzle.memoryStorage.incrbyfloat("key", -3.14159, new ResponseListener<double>() {
+kuzzle.memoryStorage.incrbyfloat("key", -3.14159, new ResponseListener<Double>() {
   @Override
   public void onSuccess(double value) {
     // callback called once the action has completed
@@ -3268,7 +3268,7 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ### Callback response
 
-Resolves to a double containing the updated key value
+Resolves to a floating point number containing the updated key value
 
 ## keys
 
@@ -9322,7 +9322,7 @@ kuzzle.memoryStorage.zscorePromise('key', 'bar')
 ```
 
 ```java
-kuzzle.memoryStorage.zscore("key", "bar", new ResponseListener<Long>() {
+kuzzle.memoryStorage.zscore("key", "bar", new ResponseListener<Double>() {
   @Override
   public void onSuccess(double score) {
     // callback called once the action has completed
@@ -9379,7 +9379,7 @@ Available options:
 
 ### Callback response
 
-Resolves to the searched member's score.
+Resolves to a floating point number containing the searched member's score.
 
 ## zunionstore
 
