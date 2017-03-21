@@ -677,7 +677,7 @@ Returns a `promise` that resolves to an object which is a representation of the 
 ```javascript
 someCollectionRepository.update({
   _id: '<a unique id>',
-  anotherField: 'another content'
+  anotherField: 'changed content'
 });
 /**
  * Outputs: 
