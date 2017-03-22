@@ -410,7 +410,7 @@ dealing with capabilities such as specific types (`date`, `geo_shape`, ...), ful
 As the mapping of the collection can not be changed once it is set (even if Elasticsearch did it automatically for you),
 you should almost always define mappings when creating collections, preferably before sending documents in them.
 
-The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html). 
+The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
 
 
 #### Where do we go from here?

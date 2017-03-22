@@ -1,23 +1,28 @@
 # Installation
 
-We want you to manipulate Elasticsearch while you are reading this cookbook, to do so you will need [cURL](https://curl.haxx.se/download.html), a terminal (Linux, Mac, Cygwin...) and optionally [docker](https://www.docker.com/products/docker) to speed up the installation.
+We want you to manipulate Elasticsearch while you are reading this cookbook,
+to do so you will need [cURL](https://curl.haxx.se/download.html), a terminal (Linux, Mac, Cygwin...)
+and optionally [docker](https://www.docker.com/products/docker) to speed up the installation.
 
 You can also trust the output we provide in the cookbook and skip the installation chapter.
 
 ## Launch Elasticsearch
 
-We provide here a way to run Elasticsearch quickly with docker, but you can do it by following the [installation documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html).
+We provide here a way to run Elasticsearch quickly with docker, but you can do it by following the
+[installation documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/_installation.html).
 
 
-To launch Elasticsearch, copy this line in your terminal:
+To launch Elasticsearch, copy this lines in your terminal:
 
 ```sh
-docker run -p 9200:9200 elasticsearch:2.3
+$ sudo sysctl -w vm.max_map_count=262144
+$ docker run -p 9200:9200 elasticsearch:5.0
 ```
 
 (To stop Elasticsearch, you can use Ctrl-C)
 
-The container we just launched will be accessed at the port 9200 on localhost. If you installed Elasticsearch using another method, adapt the examples provided in this cookbook to your install.
+The container we just launched will be accessed at the port 9200 on localhost.
+If you installed Elasticsearch using another method, adapt the examples provided in this cookbook to your install.
 
 ## Check that Elasticsearch is reachable
 
@@ -27,20 +32,21 @@ Run the following command:
 curl -g -X GET "http://localhost:9200/"
 ```
 
-You can see below an example of reply. This cookbook assumes that your Elasticsearch `version.number` is between **2.3** and **5.x**:
+You can see below an example of reply. This cookbook assumes that your Elasticsearch `version.number` is above **5.0**:
 
 ```
 {
-  "name" : "Edwin Jarvis",
-  "cluster_name" : "elasticsearch",
-  "version" : {
-    "number" : "2.3.4",
-    "build_hash" : "e455fd0c13dceca8dbbdbb1665d068ae55dabe3f",
-    "build_timestamp" : "2016-06-30T11:24:31Z",
-    "build_snapshot" : false,
-    "lucene_version" : "5.5.0"
-  },
-  "tagline" : "You Know, for Search"
+    "cluster_name": "elasticsearch", 
+    "cluster_uuid": "AyJUa63UTlqQgHV9I9UzXQ", 
+    "name": "kp9tiLV", 
+    "tagline": "You Know, for Search", 
+    "version": {
+        "build_date": "2016-11-24T10:07:18.101Z", 
+        "build_hash": "f6b4951", 
+        "build_snapshot": false, 
+        "lucene_version": "6.2.1", 
+        "number": "5.0.2"
+    }
 }
 ```
 
