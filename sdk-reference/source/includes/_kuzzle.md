@@ -228,9 +228,10 @@ Here is the list of these special events:
 ## addListener
 
 ```js
-  var listenerId = kuzzle.addListener('connected', function () {
+  var callback = function () {
     // Actions to perform when receiving a 'connected' global event
-  });
+  };
+  kuzzle.addListener('connected', callback);
 ```
 
 ```java
@@ -257,6 +258,7 @@ See the [event handling](docs.kuzzle.io/sdk-reference/#event-handling) section f
 
 <aside class="notice">
 The ID returned by this function is required if you want to remove this listener later.
+In Javascript, the method returns the `Kuzzle` instance, so that it can be chained.
 </aside>
 
 ### addListener(event, listener)
@@ -1863,7 +1865,7 @@ Returns the `Kuzzle` object to allow chaining.
 ## removeListener
 
 ```js
-kuzzle.removeListener('disconnected', listenerId);
+kuzzle.removeListener('disconnected', callback);
 ```
 
 ```java
@@ -1881,12 +1883,13 @@ $kuzzle->removeListener('jwtTokenExpired', $listenerId);
 
 Removes a listener from an event.
 
-### removeListener(event, listenerID)
+### removeListener(event, listenerID | callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
 | ``listenerID`` | string | The ID returned by ``addListener`` |
+| ``callback`` | function | the callback |
 
 #### Return value
 
