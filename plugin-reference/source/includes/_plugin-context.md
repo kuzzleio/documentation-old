@@ -574,7 +574,7 @@ Retrieves a document from the plugin storage.
 
 **Returns**
 
-Returns a `promise` that resolves to an `Object` or an `ObjectConstructor` if provided in the constructor. 
+Returns a `promise` that resolves to an `Object` or an `ObjectConstructor` if provided in the constructor.
 
 **Usage**
 
@@ -594,7 +594,7 @@ Retrieves multiple documents from the plugin storage.
 
 **Returns**
 
-Returns a `promise` that resolves to an array of `Object` or `ObjectConstructor` if provided in the constructor. 
+Returns a `promise` that resolves to an array of `Object` or `ObjectConstructor` if provided in the constructor.
 
 **Usage**
 
@@ -680,7 +680,7 @@ someCollectionRepository.update({
   anotherField: 'changed content'
 });
 /**
- * Outputs: 
+ * Outputs:
  * { _index: '%some-plugin',
  *   _type: 'someCollection',
  *   _id: '<a unique id>',
@@ -748,6 +748,8 @@ Read-only
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
+| `origin` | `Request` | `null` | The first request of a requests chain |
+| `previous` | `Request` | `null` | The previous request of a requests chain |
 | `timestamp` | integer | Request creation timestamp |
 
 Writable
