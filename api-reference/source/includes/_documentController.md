@@ -1214,9 +1214,9 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mUpdate[?refresh=wait_for]`
->**Method:** `PUT`
->**Body:**
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mUpdate[?refresh=wait_for][&retryOnConflict=<retries>]`  
+>**Method:** `PUT`  
+>**Body:**  
 
 <section class="http"></section>
 
@@ -1286,6 +1286,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "collection": "<collection>",
   "action": "mUpdate",
   ["refresh": "wait_for",]
+  ["retryOnConflict": <number of retries>,]
   "controller": "document",
   "requestId": "<unique request identifier>",
   "result": {
@@ -1330,12 +1331,15 @@ Returns a partial error (with status 206) if one or more documents can not be up
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
+Conflicts may occur if the same document gets updated multiple times within a short time on a database cluster. When this happens, Kuzzle answers with an error that clients have to handle.  
+You may set the `retryOnConflict` optional argument with a positive integer, asking Kuzzle to retry updating the document that number of times before rejecting the request with an error.
+
 
 ## update
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for]`  
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for][&retryOnConflict=<retries>]`  
 >**Method:** `PUT`  
 >**Body:**  
 
