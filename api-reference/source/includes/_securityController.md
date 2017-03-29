@@ -1550,12 +1550,154 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 
 Retrieves a list of `role` objects from Kuzzle's database layer given a list of role ids.
 
+## scrollProfiles
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/profiles/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "scrollProfiles",
+  "scrollId": "<scrollId>",
+
+  // Optional: new time to live of the cursor
+  "scroll": "<time to live>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "scrollProfiles",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": {
+    // scroll requests may return a new scroll identifier
+    // only the most recent scrollId should be used
+    "scrollId": "<new scroll id>",
+
+    // An array of objects containing your retrieved documents
+    "hits": [
+      {
+        "_id": "myProfile1",
+        "_source": {
+          "policies": [
+            {
+              "roleId": "myRoleId",
+              "restrictedTo": [
+                ...
+              ]
+            },
+            ...
+          ]
+        }
+      },
+      {
+        ...
+      }
+    ],
+    "total": <number of found profiles>
+  }
+}
+```
+
+This method moves forward a result set cursor created by a [`searchProfiles` query](#searchprofiles) with the `scroll` argument provided.
+
+The response may contain a *different* cursor identifier, pointing to the next page of results.
+
+The optional `scroll` argument allows to refresh the cursor duration, with a new [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units) value.
+
+<aside class="warning">
+  The results that are returned from a `scrollProfiles` request reflect the state of the index at the time
+  that the initial search request was made, like a snapshot in time. Subsequent changes
+  to documents (index, update or delete) will only affect later search requests.
+</aside>
+
+## scrollUsers
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/users/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "scrollUsers",
+  "scrollId": "<scrollId>",
+
+  // Optional: new time to live of the cursor
+  "scroll": "<time to live>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "scrollUsers",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": {
+    // scroll requests may return a new scroll identifier
+    // only the most recent scrollId should be used
+    "scrollId": "<new scroll id>",
+
+    // An array of objects containing your retrieved documents
+    "hits": [
+      {
+        "_id": "<userId>",
+        "_source": { ... }             // The user object content
+      },
+      {
+        ...
+      }
+    ],
+    "total": <number of found users>
+  }
+}
+```
+
+This method moves forward a result set cursor created by a [`searchUsers` query](#searchusers) with the `scroll` argument provided.
+
+The response may contain a *different* cursor identifier, pointing to the next page of results.
+
+The optional `scroll` argument allows to refresh the cursor duration, with a new [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units) value.
+
+<aside class="warning">
+  The results that are returned from a `scrollUsers` request reflect the state of the index at the time
+  that the initial search request was made, like a snapshot in time. Subsequent changes
+  to documents (index, update or delete) will only affect later search requests.
+</aside>
+
 
 ## searchProfiles
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_search[?from=0][&size=42]`<br/>
+>**URL:** `http://kuzzle:7512/profiles/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
 >**Method:** `POST`<br/>
 >**Body**
 
@@ -1588,9 +1730,11 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
       "admin"
     ]
   },
-  // filter can handle pagination using the from and size properties
+
+  // Optional arguments
   "from": 0,
-  "size": 42
+  "size": 42,
+  "scroll": "<time to live>"
 }
 ```
 
@@ -1634,32 +1778,25 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
         }
       }
     ],
-    "max_score": 1,
-    "timed_out": false,
-    "took": 1,
     "total": 2
-    },
-    "index": "%kuzzle",
-    "collection": "profiles"
-    "action": "searchProfiles",
-    "controller": "security",
-    "requestId": "<unique request identifier>"
-  }
+  },
+  "index": "%kuzzle",
+  "collection": "profiles"
+  "action": "searchProfiles",
+  "controller": "security",
+  "requestId": "<unique request identifier>"
 }
 ```
 
 Retrieves profiles referring to a given set of roles in their policies.
 
-Attribute `policies` in body is optional.
 
-The `from` and `size` arguments allow pagination.
+Optional arguments:
 
-Available filters:
-
-| Filter | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| ``policies`` | array | Contains an array `policies` with a list of role ids | ``undefined`` |
-
+* `body.policies` contains an array of role identifiers used to filters the search results
+* `size` controls the maximum number of documents returned in the response
+* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
+* `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scrollProfiles` API action](#scrollprofiles)
 
 ## searchRoles
 
@@ -1754,7 +1891,7 @@ Available filters:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42]`<br/>
+>**URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
 >**Method:** `POST`<br/>
 >**Body**
 
@@ -1816,9 +1953,11 @@ Available filters:
       ]
     }
   },
-  // "from" and "size" argument for pagination
+
+  // Optional arguments
   "from": 0,
-  "size": 10
+  "size": 10,
+  "scroll": "<time to live>"
 }
 ```
 
@@ -1849,9 +1988,13 @@ Available filters:
 }
 ```
 
-Retrieves all the users matching the given filter.
+Retrieves users matching the provided filter.
 
-The `from` and `size` arguments allow pagination.
+Optional arguments:
+
+* `size` controls the maximum number of documents returned in the response
+* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
+* `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scrollUsers` API action](#scrollusers)
 
 
 ## updateProfile
