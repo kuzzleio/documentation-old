@@ -72,7 +72,7 @@ Appends a value to a key. If the key does not exist, it is created.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_bitcount/<key>[?start=<integer>&end=<integer>]`  
+>**URL:** `http://kuzzle:7512/ms/_bitcount/<key>[?start=<integer>&end=<integer>]`<br/>
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -116,8 +116,8 @@ The `start` and `end` parameters are optional.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512//ms/_bitop/<destination key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512//ms/_bitop/<destination key>`<br/>
+>**Method:** `POST`<br/>
 >**Body:**  
 
 <section class="http"></section>
@@ -171,8 +171,8 @@ Performs a bitwise operation between multiple keys (containing string values) an
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_bitpos/<key>?bit=[0|1][&start=<integer>&end=<integer>]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_bitpos/<key>?bit=[0|1][&start=<integer>&end=<integer>]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -215,7 +215,7 @@ Returns the position of the first bit set to 1 or 0 in a string, or in a substri
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_dbsize`  
+>**URL:** `http://kuzzle:7512/ms/_dbsize`<br/>
 >**Method:** `GET`  
 
 
@@ -256,7 +256,7 @@ Returns the number of keys in the application database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_decr/<key>`  
+>**URL:** `http://kuzzle:7512/ms/_decr/<key>`<br/>
 >**Method:** `POST`  
 
 <section class="others"></section>
@@ -297,8 +297,8 @@ Decrements the number stored at `key` by 1. If the key does not exist, it is set
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_decrby/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_decrby/<key>`<br/>
+>**Method:** `POST`<br/>
 >**Body:**  
 
 <section class="http"></section>
@@ -350,8 +350,8 @@ Decrements the number stored at `key` by a provided integer value. If the key do
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms`  
->**Method:** `DELETE`  
+>**URL:** `http://kuzzle:7512/ms`<br/>
+>**Method:** `DELETE`<br/>
 >**Body:**  
 
 <section class="http"></section>
@@ -402,7 +402,7 @@ Deletes a list of keys.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_exists?keys=key1,key2,...`  
+>**URL:** `http://kuzzle:7512/ms/_exists?keys=key1,key2,...`<br/>
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -443,8 +443,8 @@ Checks if the specified keys exist in the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_expire/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_expire/<key>`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -496,8 +496,8 @@ Sets a timeout (in seconds) on a key.  After the timeout has expired, the key wi
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_expireat/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_expireat/<key>`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -550,8 +550,8 @@ The `timestamp` parameter accepts an [Epoch time](https://en.wikipedia.org/wiki/
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_flushdb`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_flushdb`<br/>
+>**Method:** `POST`
 
 <section class="others"></section>
 
@@ -590,8 +590,8 @@ Deletes all the keys of the database dedicated to client applications (the reser
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_geoadd/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_geoadd/<key>`<br/>
+>**Method:** `POST`<br/>
 **Body:**
 
 <section class="http"></section>
@@ -667,8 +667,8 @@ Adds geospatial points to the specified key.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_geodist/<key>/<member1>/<member2>[?unit=[m|km|mi|ft]]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_geodist/<key>/<member1>/<member2>[?unit=[m|km|mi|ft]]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -712,8 +712,8 @@ The returned distance is expressed in meters by default.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_geohash/<key>?members=member1,member2,...`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_geohash/<key>?members=member1,member2,...`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -754,8 +754,8 @@ Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provide
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_geopos/<key>?members=member1,member2,...`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_geopos/<key>?members=member1,member2,...`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -801,8 +801,8 @@ Returns the positions (longitude, latitude) of the provided key's members (see [
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_georadius/<key>?lon=<longitude>&lat=<latitude>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_georadius/<key>?lon=<longitude>&lat=<latitude>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -858,8 +858,8 @@ The `result` format may change if `options` parameters are provided: instead of 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_georadiusbymember/<key>?member=<member>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_georadiusbymember/<key>?member=<member>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -913,8 +913,8 @@ The `result` format may change if `options` parameters are provided: instead of 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/<key>`  
->**Method:** `GET`    
+>**URL:** `http://kuzzle:7512/ms/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -954,8 +954,8 @@ Returns the value of a key, or `null` if the key doesn't exist.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_getbit/<key>?offset=<offset>`  
->**Method:** `GET`    
+>**URL:** `http://kuzzle:7512/ms/_getbit/<key>?offset=<offset>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -996,8 +996,8 @@ Returns the bit value at `offset`, in the string value stored in a key.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_getrange/<key>?start=<start>&end=<end>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_getrange/<key>?start=<start>&end=<end>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1039,9 +1039,9 @@ Returns a substring of a key's value.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_getset/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_getset/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1092,9 +1092,9 @@ Sets a new value for a key and returns the previous stored value.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hdel/<key>`  
->**Method:** `DELETE`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_hdel/<key>`<br/>
+>**Method:** `DELETE`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1145,8 +1145,8 @@ Removes fields from a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hexists/<key>/<field>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hexists/<key>/<field>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1187,8 +1187,8 @@ Checks if a field exists in a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hget/<key>/<field>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hget/<key>/<field>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1229,8 +1229,8 @@ Returns the field's value of a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hgetall/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hgetall/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1274,9 +1274,9 @@ Returns all fields and values of a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hincrby/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_hincrby/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1329,9 +1329,9 @@ Increments the number stored in a hash field by the provided integer value.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hincrbyfloat/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_hincrbyfloat/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1384,8 +1384,8 @@ Increments the number stored in a hash field by the provided float value.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hkeys/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hkeys/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1429,8 +1429,8 @@ Returns all field names contained in a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hlen/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hlen/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1470,8 +1470,8 @@ Returns the number of fields contained in a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hmget/<key>?fields=field1,field2,...`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hmget/<key>?fields=field1,field2,...`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1516,9 +1516,9 @@ Returns the values of the specified hash's fields.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hmset/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_hmset/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1577,8 +1577,8 @@ Sets multiple fields at once in a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1633,9 +1633,9 @@ Identical to [scan](#scan), except that `hscan` iterates the fields contained in
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hset/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_hset/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1688,9 +1688,9 @@ Sets a field and its value in a hash. If the key does not exist, a new key holdi
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hsetnx/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_hsetnx/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1743,8 +1743,8 @@ Sets a field and its value in a hash, only if the field does not already exist.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hstrlen/<key>/<field>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hstrlen/<key>/<field>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1785,8 +1785,8 @@ Returns the string length of a field's value in a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_hvals/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_hvals/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -1830,8 +1830,8 @@ Returns all values contained in a hash.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_incr/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_incr/<key>`<br/>
+>**Method:** `POST`
 
 <section class="others"></section>
 
@@ -1871,9 +1871,9 @@ Increments the number stored at `key` by 1. If the key does not exist, it is set
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_incrby/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_incrby/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1924,9 +1924,9 @@ Increments the number stored at `key` by the provided integer value. If the key 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_incrbyfloat/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_incrbyfloat/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -1977,8 +1977,8 @@ Increments the number stored at `key` by the provided float value. If the key do
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_keys/<pattern>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_keys/<pattern>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -2022,8 +2022,8 @@ Returns all keys matching the provided pattern.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_lindex/<key>/<index>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_lindex/<key>/<index>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -2064,9 +2064,9 @@ Returns the element at the provided index in a list.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_linsert/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_linsert/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2121,8 +2121,8 @@ Inserts a value in a list, either before or after the reference pivot value.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_llen/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_llen/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -2162,8 +2162,8 @@ Returns the length of a list.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_lpop/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_lpop/<key>`<br/>
+>**Method:** `POST`
 
 <section class="others"></section>
 
@@ -2203,9 +2203,9 @@ Removes and returns the first element of a list.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_lpush/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_lpush/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2256,9 +2256,9 @@ Prepends the specified values to a list. If the key does not exist, it is create
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_lpushx/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_lpushx/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2309,8 +2309,8 @@ Prepends the specified value to a list, only if the key already exists and if it
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_lrange/<key>?start=<start>&stop=<stop>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_lrange/<key>?start=<start>&stop=<stop>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -2356,9 +2356,9 @@ Returns the list elements between the `start` and `stop` positions.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_lrem/<key>`  
->**Method:** `DELETE`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_lrem/<key>`<br/>
+>**Method:** `DELETE`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2411,9 +2411,9 @@ Removes the first `count` occurences of elements equal to `value` from a list.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_lset/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_lset/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2466,9 +2466,9 @@ Sets the list element at `index` with the provided value.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_ltrim/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_ltrim/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2521,8 +2521,8 @@ Trims an existing list so that it will contain only the specified range of eleme
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_mget?keys=key1,key2,...`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_mget?keys=key1,key2,...`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -2567,9 +2567,9 @@ Returns the values of the provided keys.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_mset`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_mset`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2627,9 +2627,9 @@ Sets the provided keys to their respective values. If a key does not exist, it i
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_msetnx`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_msetnx`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2687,8 +2687,8 @@ Sets the provided keys to their respective values, only if they do not exist. If
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_object/<key>?subcommand=[refcount|encoding|idletime]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_object/<key>?subcommand=[refcount|encoding|idletime]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -2729,8 +2729,8 @@ Inspects the low-level properties of a key.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_persist/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_persist/<key>`<br/>
+>**Method:** `POST`
 
 
 <section class="others"></section>
@@ -2771,9 +2771,9 @@ Removes the expiration delay or timestamp from a key, making it persistent.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_pexpire/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_pexpire/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2824,8 +2824,8 @@ Sets a timeout (in milliseconds) on a key. After the timeout has expired, the ke
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_pexpireat/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_pexpireat/<key>`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -2878,9 +2878,9 @@ The `timestamp` parameter accepts an [Epoch time](https://en.wikipedia.org/wiki/
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_pfadd/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_pfadd/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -2931,8 +2931,8 @@ Adds elements to an [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) dat
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_pfcount?keys=key1,key2,...`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_pfcount?keys=key1,key2,...`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -2972,9 +2972,9 @@ Returns the probabilistic cardinality of a [HyperLogLog](https://en.wikipedia.or
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_pfmerge/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_pfmerge/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3025,8 +3025,8 @@ Merges multiple [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data st
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_ping`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_ping`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -3065,9 +3065,9 @@ Pings the memory storage database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_psetex/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_psetex/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3120,8 +3120,8 @@ Sets a key with the provided value, and an expiration delay expressed in millise
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_pttl/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_pttl/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -3161,9 +3161,9 @@ Returns the remaining time to live of a key, in milliseconds.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_randomkey`  
->**Method:** `GET`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_randomkey`<br/>
+>**Method:** `GET`<br/>
+>**Body:**
 
 
 <section class="others"></section>
@@ -3203,9 +3203,9 @@ Returns a random key from the memory storage.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_rename/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_rename/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3256,9 +3256,9 @@ Renames a key to `newkey`. If `newkey` already exists, it is overwritten.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_renamenx/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_renamenx/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3309,8 +3309,8 @@ Renames a key to `newkey`, only if `newkey` does not already exist.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_rpop/<key>`  
->**Method:** `POST`  
+>**URL:** `http://kuzzle:7512/ms/_rpop/<key>`<br/>
+>**Method:** `POST`
 
 <section class="others"></section>
 
@@ -3350,9 +3350,9 @@ Removes the last element of a list and returns it.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_rpoplpush`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_rpoplpush`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3404,9 +3404,9 @@ Removes the last element of the list at `source` and pushes it back at the start
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_rpush/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_rpush/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3457,9 +3457,9 @@ Appends the specified values at the end of a list. If the key does not exist, it
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_rpushx/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_rpushx/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3510,9 +3510,9 @@ Appends the specified value at the end of a list, only if the key already exists
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sadd/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_sadd/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3563,8 +3563,8 @@ Adds members to a set of unique values stored at `key`. If the `key` does not ex
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_scan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_scan?cursor=<cursor>[&match=<pattern>][&count=<count>]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -3625,8 +3625,8 @@ Optional arguments:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_scard/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_scard/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -3666,8 +3666,8 @@ Returns the number of members stored in a set of unique values.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sdiff/<key>?keys=key1,key2,...`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_sdiff/<key>?keys=key1,key2,...`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -3712,9 +3712,9 @@ Returns the difference between the set of unique values stored at `key` and the 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sdiffstore/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_sdiffstore/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3769,9 +3769,9 @@ If the destination key already exists, it is overwritten.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_set/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_set/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3843,9 +3843,9 @@ Additional options can be provided:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_setex/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_setex/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3898,9 +3898,9 @@ Sets a value and a time to live (in seconds) on a key. If the key already exists
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_setnx/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_setnx/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -3951,8 +3951,8 @@ Sets a value on a key, only if it does not already exist.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sinter?keys=key1,key2,...`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_sinter?keys=key1,key2,...`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -3997,9 +3997,9 @@ Returns the intersection of the provided sets of unique values.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sinterstore`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_sinterstore`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -4053,8 +4053,8 @@ If the destination key already exists, it is overwritten.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sismember/<key>/<member>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_sismember/<key>/<member>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4095,8 +4095,8 @@ Checks if `member` is a member of the set of unique values stored at `key`.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_smembers/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_smembers/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4140,9 +4140,9 @@ Returns the members of a set of unique values.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_smove/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_smove/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -4195,9 +4195,9 @@ Moves a member from a set of unique values to another.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sort/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_sort/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -4274,9 +4274,9 @@ Optional arguments may be provided:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_spop/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_spop/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -4329,8 +4329,8 @@ Removes and returns one or more elements at random from a set of unique values. 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_srandmember/<key>[?count=<count>]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_srandmember/<key>[?count=<count>]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4375,9 +4375,9 @@ If more than 1 member is returned, the result set will be an array of values ins
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_srem/<key>`  
->**Method:** `DELETE`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_srem/<key>`<br/>
+>**Method:** `DELETE`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -4428,8 +4428,8 @@ Removes members from a set of unique values.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_sscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4482,8 +4482,8 @@ Identical to [scan](#scan) but iterates members contained in a set of unique val
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_strlen/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_strlen/<key>`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -4524,8 +4524,8 @@ Returns the length of a value stored at `key`.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sunion?keys=key1,key2,...`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_sunion?keys=key1,key2,...`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4569,9 +4569,9 @@ Returns the union of sets of unique values.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_sunionstore`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_sunionstore`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -4625,8 +4625,8 @@ If the destination key already exists, it is overwritten.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_time`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_time`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4668,9 +4668,9 @@ Returns the current server time as a two items list: a timestamp in [Epoch time]
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_touch`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_touch`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -4720,8 +4720,8 @@ Alters the last access time of one or multiple keys. A key is ignored if it does
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_ttl/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_ttl/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4761,8 +4761,8 @@ Returns the remaining time to live of a key, in seconds, or a negative value if 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_type/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_type/<key>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4802,9 +4802,9 @@ Returns the type of the value held by a key.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zadd/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_zadd/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -4886,8 +4886,8 @@ Optional parameters may be provided to change the default behavior:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zcard/<key>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zcard/<key>`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -4928,8 +4928,8 @@ Returns the number of elements held by a sorted set.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zcount/<key>?min=<min score>&max=<max score>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zcount/<key>?min=<min score>&max=<max score>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -4973,9 +4973,9 @@ By default, the provided min and max values are inclusive. This behavior can be 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zincrby/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_zincrby/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -5028,9 +5028,9 @@ Increments the score of a `member` in a sorted set by the provided `value`.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zinterstore/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_zinterstore/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -5094,8 +5094,8 @@ Optional parameters:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zlexcount/<key>?min=<min value>&max=<max value>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zlexcount/<key>?min=<min value>&max=<max value>`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -5137,8 +5137,8 @@ Counts elements in a sorted set where all members have equal score, using lexico
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -5189,8 +5189,8 @@ The `withscores` option includes the respective elements' scores in the result s
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -5241,8 +5241,8 @@ The optional LIMIT argument can be used to only get a range of the matching elem
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrangebyscore/<key>?min=<min interval>&max=<max interval>[&limit=offset,count][&options=withscores]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zrangebyscore/<key>?min=<min interval>&max=<max interval>[&limit=offset,count][&options=withscores]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -5296,8 +5296,8 @@ The `withscores` option includes the respective elements' scores in the result s
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrank/<key>/<member>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zrank/<key>/<member>`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -5339,9 +5339,9 @@ Returns the position of an element in a sorted set, with scores in ascending ord
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrem/<key>`  
->**Method:** `DELETE`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_zrem/<key>`<br/>
+>**Method:** `DELETE`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -5392,9 +5392,9 @@ Removes members from a sorted set.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zremrangebylex/<key>`  
->**Method:** `DELETE`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_zremrangebylex/<key>`<br/>
+>**Method:** `DELETE`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -5447,9 +5447,9 @@ Removes members from a sorted set where all elements have the same score, using 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zremrangebyrank/<key>`  
->**Method:** `DELETE`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_zremrangebyrank/<key>`<br/>
+>**Method:** `DELETE`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -5504,9 +5504,9 @@ Positions are 0-based, meaning the first member of the set has a position of 0.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zremrangebyscore/<key>`  
->**Method:** `DELETE`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_zremrangebyscore/<key>`<br/>
+>**Method:** `DELETE`<br/>
+>**Body:**
 
 <section class="http"></section>
 
@@ -5561,8 +5561,8 @@ The `min` and `max` values are inclusive, but this behavior can be changed (see 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrevrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zrevrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -5611,8 +5611,8 @@ Identical to [zrange](#zrange), except that the sorted set is traversed in desce
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrevrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zrevrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -5661,8 +5661,8 @@ Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrevrangebyscore/<key>?min=<min interval>&max=<max interval>[&limit=offset,count][&options=withscores]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zrevrangebyscore/<key>?min=<min interval>&max=<max interval>[&limit=offset,count][&options=withscores]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -5712,8 +5712,8 @@ Identical to [zrangebyscore](#zrangebyscore) except that the sorted set is trave
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zrevrank/<key>/<member>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zrevrank/<key>/<member>`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -5755,8 +5755,8 @@ Returns the position of an element in a sorted set, with scores in descending or
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -5811,8 +5811,8 @@ Identical to [scan](#scan) but iterates the elements stored in a sorted set.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zscore/<key>/<member>`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/ms/_zscore/<key>/<member>`<br/>
+>**Method:** `GET`
 
 
 <section class="others"></section>
@@ -5854,9 +5854,9 @@ Returns the score of an element in a sorted set.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/ms/_zunionstore/<key>`  
->**Method:** `POST`  
->**Body:**  
+>**URL:** `http://kuzzle:7512/ms/_zunionstore/<key>`<br/>
+>**Method:** `POST`<br/>
+>**Body:**
 
 <section class="http"></section>
 
