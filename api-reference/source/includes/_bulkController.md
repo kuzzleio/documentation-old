@@ -21,8 +21,8 @@ even if some of the documents in the import match your subscription filters.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_bulk`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_bulk`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -115,8 +115,8 @@ In such case, the `collection` in which the documents need to be inserted needs 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_bulk`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/_bulk`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>

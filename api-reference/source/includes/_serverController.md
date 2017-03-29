@@ -1,11 +1,10 @@
 # ~ server controller
 
-
 ## adminExists
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_adminExists`
+>**URL:** `http://kuzzle:7512/_adminExists`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -44,7 +43,7 @@ Checks if an administrator account has been created, and return a boolean as a r
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getAllStats`
+>**URL:** `http://kuzzle:7512/_getAllStats`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -114,7 +113,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getConfig`  
+>**URL:** `http://kuzzle:7512/_getConfig`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -248,7 +247,7 @@ This route should be opened only to administrators, as it might export sensitive
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getLastStats`  
+>**URL:** `http://kuzzle:7512/_getLastStats`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -312,7 +311,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`
+>**URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`<br/>
 >**Method:** `POST`
 
 <section class="others"></section>
@@ -386,7 +385,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_serverInfo`
+>**URL:** `http://kuzzle:7512/_serverInfo`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -510,7 +509,7 @@ Retrieves information about Kuzzle, its plugins and active services.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_now`
+>**URL:** `http://kuzzle:7512/_now`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
