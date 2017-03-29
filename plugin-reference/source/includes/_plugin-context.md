@@ -46,7 +46,7 @@ Sends a request to [Kuzzle API](/api-reference).
 This argument is the provided request, with its `result` and/or `error` parts filled.
 To obtain the standardized Kuzzle response from it, simply use the getter `request.response`.
 
-Example:
+#### Usage
 
 ```js
 let
@@ -77,11 +77,13 @@ Implements [Passport `use()` method](http://passportjs.org/docs/configure)
 |------|------|----------------------------------|
 | `strategy` | `Strategy object` | A Passport instantiated strategy object |
 
-<aside class="notice">Passport strategy constructors take a "verify" callback.
-As the following example demonstrates, if the provided callback uses "this.[attribute]" attributes,
-then it's necessary to bind the provided callback to the plugin's context</aside>
+<aside class="notice">
+  Passport strategy constructors take a "verify" callback.
+  As the following example demonstrates, if the provided callback uses "this.[attribute]" attributes,
+  then it's necessary to bind the provided callback to the plugin's context
+</aside>
 
-Example:
+#### Usage
 
 ```js
 var LocalStrategy = require('passport-local').Strategy;
@@ -160,7 +162,7 @@ Returns a `promise` that resolves to a `boolean` that indicates if the index and
 
 #### Usage
 
-```javascript
+```js
 context.accessors.storage.bootstrap({
   someCollection: {
     properties: {
@@ -197,7 +199,7 @@ Returns a `promise` that resolves to the object `{ acknowledged: true }`.
 
 #### Usage
 
-```javascript
+```js
 context.accessors.storage.createCollection('someCollection', {
     properties: {
       someField: {
@@ -261,7 +263,7 @@ If `verbose` is set to `true`:
 
 Returns a `promise` that resolves to an `object`:
 
-```javascript
+```js
 {
   errorMessages: ...,
   validation: ...
@@ -287,7 +289,7 @@ Nothing. Can throw a `PluginImplementationError` if the validation type has not 
 
 #### validationType form
 
-```javascript
+```js
 /**
  * @typedef {{
  *   validate: Function,
@@ -471,7 +473,7 @@ Returns a `promise` that resolves to an object respresentation of Elasticsearch 
 
 **Usage**
 
-```javascript
+```js
 someCollectionRepository.create({
   _id: '<a unique id>',
   someField: 'some content',
@@ -515,7 +517,7 @@ Returns a `promise` that resolves to an object respresentation of Elasticsearch 
 
 **Usage**
 
-```javascript
+```js
 someCollectionRepository.createOrReplace({
   _id: '<a unique id>',
   someField: 'some content',
@@ -544,7 +546,7 @@ Returns a `promise` that resolves to an array of objects which is a representati
 
 **Usage**
 
-```javascript
+```js
 someCollectionRepository.delete('someDocumentId')
   .then(result => {
     console.log(result);
@@ -578,7 +580,7 @@ Returns a `promise` that resolves to an `Object` or an `ObjectConstructor` if pr
 
 **Usage**
 
-```javascript
+```js
 someCollectionRepository.get('someDocumentId', 'someCollection');
 ```
 
@@ -598,7 +600,7 @@ Returns a `promise` that resolves to an array of `Object` or `ObjectConstructor`
 
 **Usage**
 
-```javascript
+```js
 someCollectionRepository.mGet(['someDocumentId', 'anotherDocument']);
 ```
 
@@ -618,7 +620,7 @@ Returns a `promise` that resolves to an object respresentation of Elasticsearch 
 
 **Usage**
 
-```javascript
+```js
 someCollectionRepository.replace({
   _id: '<a unique id>',
   someField: 'some content',
@@ -650,7 +652,7 @@ contains an array of `Object` or `ObjectConstructor` if provided in the construc
 
 **Usage**
 
-```javascript
+```js
 someCollectionRepository.search({
   query: {
     match_all: {}
@@ -674,7 +676,7 @@ Returns a `promise` that resolves to an object which is a representation of the 
 
 **Usage**
 
-```javascript
+```js
 someCollectionRepository.update({
   _id: '<a unique id>',
   anotherField: 'changed content'

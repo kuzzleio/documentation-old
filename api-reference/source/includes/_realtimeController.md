@@ -1,6 +1,5 @@
 # ~ realtime controller
 
-
 ## count
 
 <section class="http"></section>
@@ -172,8 +171,8 @@ Lists all subscriptions on all indexes and all collections.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_publish`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_publish`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -513,8 +512,8 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
