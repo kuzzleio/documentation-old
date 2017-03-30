@@ -10,7 +10,7 @@ Here is the list of shared objects contained in the provided ``context``:
 | Attribute path | Purpose                      |
 |----------------|------------------------------|
 | `context.accessors.execute` | Access to Kuzzle API |
-| `context.accessors.passport` | Access to Kuzzle [Passport](http://passportjs.org) instance. Allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
+| `context.accessors.registerStrategy` | Allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
 | `context.accessors.router` | Access to Kuzzle protocol communication system. Allow **protocol** plugins to interface themselves with Kuzzle. |
 | `context.accessors.storage` | Initiate and configure to the plugin storage. This storage can only be accessed by the plugin and can be used to persist plugin datas. |
 | `context.accessors.users` | Access to users management, especially useful for authentication plugins. Provides methods for handling users. This accessor is mainly used by authentication plugins. |
@@ -67,38 +67,48 @@ context.accessors.execute(request, (error, request) => {
 });
 ```
 
-### `passport.use`
+### `registerStrategy`
 
-Implements [Passport `use()` method](http://passportjs.org/docs/configure)
+Register a new authentication strategy to Kuzzle.
 
 #### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-| `strategy` | `Strategy object` | A Passport instantiated strategy object |
+| `Strategy` | `function` | A [Passport strategy](https://github.com/jaredhanson/passport/wiki/Strategies) object constructor |
+| `name` | `string` | Strategy name identifier ([see `auth:login`](/api-reference/#login)) |
+| `context` | `object` | Context in which the `verify` callback will be executed |
+| `verify` | `function` | Callback function invoked to verify an authentication request |
+| `options` | `object` | (Optional) Strategy specific options parameters |
 
-<aside class="notice">
-  Passport strategy constructors take a "verify" callback.
-  As the following example demonstrates, if the provided callback uses "this.[attribute]" attributes,
-  then it's necessary to bind the provided callback to the plugin's context
-</aside>
+The provided `verify` callback signature varies depending on the used strategy.  
+Here is the generic signature: `verify(request, ..., callback)`:
+
+* `request` is the login [`Request` object](#request)
+* `...`: varies, depending on the used strategy
+* `callback` is a function that **must** be called at the end of an authentication process, with the following arguments:
+  * `error`: null if no error occured, an error object otherwise (note: an authentication rejection is
+*not* an error)
+  * `user`: either `false` (authentication rejected) or a user object, provided by the plugin context [`user.load` method](#users-load)
+  * `info`: (optional) the rejection reason
+
 
 #### Usage
 
 ```js
 var LocalStrategy = require('passport-local').Strategy;
 
-function verify (username, password, done) {
+function verify (request, username, password, done) {
   // verification code
   if (userVerified) {
     done(null, userInformation);
   }
   else {
-    done(error);
+    done(null, false, 'Login failed');
   }
 }
 
-pluginContext.accessors.passport.use(new LocalStrategy(verify.bind(this)));
+pluginContext.accessors.registerStrategy(LocalStrategy, 'myLocalStrategy', this, this.verify);
 ```
 
 ### `router.newConnection`
@@ -576,7 +586,7 @@ Retrieves a document from the plugin storage.
 
 **Returns**
 
-Returns a `promise` that resolves to an `Object` or an `ObjectConstructor` if provided in the constructor. 
+Returns a `promise` that resolves to an `Object` or an `ObjectConstructor` if provided in the constructor.
 
 **Usage**
 
@@ -596,7 +606,7 @@ Retrieves multiple documents from the plugin storage.
 
 **Returns**
 
-Returns a `promise` that resolves to an array of `Object` or `ObjectConstructor` if provided in the constructor. 
+Returns a `promise` that resolves to an array of `Object` or `ObjectConstructor` if provided in the constructor.
 
 **Usage**
 
@@ -682,7 +692,7 @@ someCollectionRepository.update({
   anotherField: 'changed content'
 });
 /**
- * Outputs: 
+ * Outputs:
  * { _index: '%some-plugin',
  *   _type: 'someCollection',
  *   _id: '<a unique id>',

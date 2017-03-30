@@ -300,34 +300,34 @@ In any case, the chosen strategy must be available in the Plugin local directory
 
 ### Create a verification function
 
-Since Kuzzle uses [Passport](http://passportjs.org) directly, using a strategy with Kuzzle is the same as using one with Passport.
-
-First, you have to implement a [`verify` function](http://passportjs.org/docs/configure), which will be provided to a Passport strategy constructor. This function is then used by the Passport strategy to authorize or to deny access to a user.
+First, you have to implement a [`verify` function](http://passportjs.org/docs/configure), which will be used by Kuzzle to authorize or to deny access to a user.
 
 The number of arguments taken by this `verify` function depends on the authentication strategy. For instance, a `local password` strategy needs the `verify` callback to be provided with an `user` name and his `password`.
 
-All strategies require this `verify` callback to take a `done` callback as its last argument, supplying Passport with the authenticated user's information.
+Here is the generic signature of the `verify` function you have to implement:
+
+`verify(request, ..., callback)`
+
+* `request` is the login [`Request` object](#request)
+* `...`: varies, depending on the used strategy
+* `callback` is a function that **must** be called at the end of an authentication process, with the following arguments:
+  * `error`: null if no error occured, an error object otherwise (note: an authentication rejection is
+*not* an error)
+  * `user`: either `false` (authentication rejected) or a user object, provided by the plugin context [`user.load` method](#users-load)
+  * `info`: (optional) the rejection reason
 
 ### Register the strategy to Kuzzle
 
-Once you chose a strategy and implemented its corresponding `verify` callback function, all you have to do is to register it to Kuzzle, using the `passport` accessor available in the plugin context:
-
-```js
-pluginContext.accessors.passport.use(strategy);
-```
+Once you chose a strategy and implemented its corresponding `verify` callback function, all you have to do is to register it to Kuzzle, using [the `registerStrategy` accessor method](#registerstrategy), available in the plugin context.
 
 ### (optional) Scope of access
 
 Some authentication procedures, like OAUTH 2.0, need a [scope of access](http://passportjs.org/docs/oauth) to be configured.
 
-Kuzzle Plugins support scope of access. To add one in your plugin, simply expose a `scope` attribute. Its format depends on the provider the strategy implements.
+Kuzzle Plugins support scope of access. To add one in your plugin, simply expose a `scope` attribute. Its format depends on the implemented strategy.
 
 
 ### LocalStrategy Example
-
-<aside class="notice">
-Passport strategy constructors take a "verify" callback. As the following example demonstrates, if the provided callback uses "this.[attribute]" attributes, then it's necessary to bind the provided callback to the Plugin's context
-</aside>
 
 ```javascript
 const LocalStrategy = require('passport-local').Strategy;
@@ -342,16 +342,16 @@ function MyAuthenticationPlugin () {
   this.init = function (customConfig, pluginContext) {
     this.context = pluginContext;
 
-    this.context.accessors.passport.use(new LocalStrategy(this.verify.bind(this)));
+    this.context.accessors.registerStrategy(LocalStrategy, 'myLocalStrategy', this, this.verify);
   }
 
-  this.verify = function (username, password, done) {
+  this.verify = function (request, username, password, callback) {
     // Code performing the necessary verifications
     if (success) {
       done(null, this.context.accessors.users.load(username));
     }
     else {
-      done(new this.context.errors.ForbiddenError('Login failed'));
+      done(null, false, 'Login failed');
     }
   };
 };
@@ -497,5 +497,3 @@ function MyPlugin () {
 // Exports the plugin objects, allowing Kuzzle to instantiate it
 module.exports = MyPlugin;
 ```
-
-
