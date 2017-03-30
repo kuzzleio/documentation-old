@@ -67,7 +67,7 @@ The "Oauth" strategy, implemented by the [Passport Oauth Plugin](https://GitHub.
 
 For more details about OAuth2 protocol, see [here](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2#grant-type-authorization-code).
 
-![auth_scenario_details_oauth2](./images/request-scenarios/auth/details-OAuth2.png)
+![auth_scenario_details_oauth2](./images/request-scenarios/auth/details-oauth2.png)
 
 The authentication flow is a 2-step flow:
 
