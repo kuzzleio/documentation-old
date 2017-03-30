@@ -348,10 +348,10 @@ function MyAuthenticationPlugin () {
   this.verify = function (request, username, password, callback) {
     // Code performing the necessary verifications
     if (success) {
-      done(null, this.context.accessors.users.load(username));
+      callback(null, this.context.accessors.users.load(username));
     }
     else {
-      done(null, false, 'Login failed');
+      callback(null, false, 'Login failed');
     }
   };
 };

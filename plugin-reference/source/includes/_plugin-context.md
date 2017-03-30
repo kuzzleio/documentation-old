@@ -98,13 +98,13 @@ Here is the generic signature: `verify(request, ..., callback)`:
 ```js
 var LocalStrategy = require('passport-local').Strategy;
 
-function verify (request, username, password, done) {
+function verify (request, username, password, callback) {
   // verification code
   if (userVerified) {
-    done(null, userInformation);
+    callback(null, userInformation);
   }
   else {
-    done(null, false, 'Login failed');
+    callback(null, false, 'Login failed');
   }
 }
 
