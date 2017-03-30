@@ -884,7 +884,7 @@ Used to notify about badly formed requests.
 var err = new context.errors.BadRequestError('error message');
 ```
 
-### ForbiddenError`
+### `ForbiddenError`
 
 **Status Code:** `403`
 
