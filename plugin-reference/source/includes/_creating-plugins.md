@@ -148,7 +148,7 @@ To avoid name conflicts, added controllers are prefixed with the plugin name.
 
 Examples:
 
-- HTTP: `GET http://<server>:<port>/<plugin name>/<url defined by the plugin>/<resources>`
+- HTTP: `GET http://<server>:<port>/_plugin/<plugin name>/<url defined by the plugin>/<resources>`
 - Other protocols:
 
 ```javascript
