@@ -327,7 +327,7 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_searchSpecifications`<br/>
+>**URL:** `http://kuzzle:7512/validations/_search`<br/>
 >**Method:** `POST`<br/>
 >**Body**
 

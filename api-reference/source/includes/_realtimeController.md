@@ -14,8 +14,6 @@
 
 ```litcoffee
 {
-  "index": "<index>",
-  "collection": "<collection>",
   "controller": "realtime",
   "action": "count",
   "body": {

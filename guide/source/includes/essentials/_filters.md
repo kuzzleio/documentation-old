@@ -43,7 +43,7 @@ But, how does this work in Kuzzle? **How do we select the data that we want to s
 Let's dive into the implementation of the Collaborative TO-DO list application.
 
 <aside class="notice">
-All the following examples are written in Javascript, therefore using the Javascript Kuzzle SDK. If this is not your usual development language, take a look at the different flavors of the `subscribe` method in the [SDK Reference](/sdk-reference/#subscribe).
+All the following examples are written in Javascript, therefore using the Javascript Kuzzle SDK. If this is not your usual development language, take a look at the different flavors of the `subscribe` method in the <a href="/sdk-reference/#subscribe">SDK Reference</a>).
 </aside>
 
 #### The basic subscription
