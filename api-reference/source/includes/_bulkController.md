@@ -202,4 +202,4 @@ In such case, the `collection` in which the documents need to be inserted needs 
 The `bulk import` can also be used in a more versatile (yet a little more verbose) way,
 to execute operations on a whole database, modifying multiple data collections in different indexes at once.  
 The `collections` to modify then need to be specified inside the query message,using the `_type`argument, as specified in the
-[ElasticSearch Bluk API](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-bulk.html).
+[ElasticSearch Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-bulk.html).
