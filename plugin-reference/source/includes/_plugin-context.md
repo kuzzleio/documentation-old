@@ -220,7 +220,7 @@ Creates a new user in Kuzzle. Will return an error if the user already exists.
 | Name | Type | Default Value | Description                      |
 |------|------|---------------|----------------------------------|
 |`loginName`|`string`| | Name of the user's login to create |
-|`userProfile`|`string`|`default`| [User profile](#permissions) |
+|`userProfile`|`string`|`default`| [User profile](/guide/#permissions) |
 |`userInfo`|`object`| `{}` | Misc. information about the user |
 
 #### Returns
