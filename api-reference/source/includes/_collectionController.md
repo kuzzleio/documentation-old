@@ -321,13 +321,106 @@ Returns the complete list of realtime and stored data collections in requested i
 The `type` argument filters the returned collections. Allowed values: `all`, `stored` and `realtime` (default : `all`).  
 The `from` and `size` arguments allow pagination. They are returned in the response if provided.
 
+## scrollSpecifications
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/validations/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "collections",
+  "action": "scrollSpecifications",
+  "scrollId": "<scrollId>",
+
+  // Optional: new time to live of the cursor
+  "scroll": "<time to live>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "scrollSpecifications",
+  "controller": "collection",
+  "requestId": "<unique request identifier>",
+  "result": {
+    // scroll requests may return a new scroll identifier
+    // only the most recent scrollId should be used
+    "scrollId": "<new scroll id>",
+
+    // An array of objects containing your retrieved documents
+    "hits": [
+      {
+        "_id": "myIndex#myCollection",
+        "_index": "%kuzzle",
+        "_score": 1,
+        "_source": {
+          "collection": "myCollection",
+          "index": "myIndex",
+          "validation": {
+            "fields": {
+              "fieldName": {
+                "defaultValue": "a default value",
+                "mandatory": true,
+                "multivalued": {
+                  "maxCount": 5,
+                  "minCount": 1,
+                  "value": true
+                },
+                "type": "string",
+                "typeOptions": {
+                  "length": {
+                    "max": 12,
+                    "min": 2
+                  }
+                }
+              }
+            },
+            "strict": true
+          }
+        },
+        "_type": "validations"
+      },
+      {
+        ...
+      }
+    ],
+    "total": <number of found specifications>
+  }
+}
+```
+
+This method moves forward a result set cursor created by a [`searchSpecifications` query](#searchspecifications) with the `scroll` argument provided.
+
+The response may contain a *different* cursor identifier, pointing to the next page of results.
+
+The optional `scroll` argument allows to refresh the cursor duration, with a new [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units) value.
+
+<aside class="warning">
+  The results that are returned from a `scrollSpecifications` request reflect the state of the index at the time
+  that the initial search request was made, like a snapshot in time. Subsequent changes
+  to documents (index, update or delete) will only affect later search requests.
+</aside>
+
 
 ## searchSpecifications
 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/validations/_search`<br/>
+>**URL:** `http://kuzzle:7512/validations/_search[?from=0][&size=10][&scroll=<time to live>]`<br/>
 >**Method:** `POST`<br/>
 >**Body**
 
@@ -358,9 +451,10 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
       "Some": "filters"
     }
   },
-  // "from" and "size" argument for pagination
+  // Optional arguments
   "from": 0,
-  "size": 42
+  "size": 42,
+  "scroll": "<time to live>"
 }
 ```
 ```
@@ -414,15 +508,18 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
         "_type": "validations"
       }
     ],
-    "max_score": null,
-    "timed_out": false,
-    "took": 1,
-    "total": <number of results>
+    "total": <number of specifications>
   }
 }
 ```
 
 Allows to search in the persistence layer for collection specifications.
+
+Optional arguments:
+
+* `size` controls the maximum number of documents returned in the response
+* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
+* `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scrollSpecifications` API action](#scrollspecifications)
 
 
 ## truncate

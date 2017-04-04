@@ -441,7 +441,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_scroll/<scrollId>[?scroll=<scroll ttl]`<br/>
+>**URL:** `http://kuzzle:7512/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -456,8 +456,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "action": "scroll",
   "scrollId": "<scrollId>",
 
-  // Optional: time to live of the cursor
-  "scroll": "1m"
+  // Optional: new time to live of the cursor
+  "scroll": "<time to live>"
   }
 }
 ```
@@ -472,8 +472,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "controller": "document",
   "requestId": "<unique request identifier>",
   "result": {
-    // The initial search request and each subsequent scroll request returns a new _scroll_id 
-    // only the most recent _scroll_id should be used.
+    // scroll requests may return a new scroll identifier
+    // only the most recent scrollId should be used
     "_scroll_id": "<new scroll id>",
 
     // An array of objects containing your retrieved documents
@@ -487,23 +487,16 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
         // Another document... and so on
       }
     ],
-    "total": <number of found documents>,
-    "max_score": 1,
-    "timed_out": false,
-    "took": 1
+    "total": <number of found documents>
   }
 }
 ```
 
-While a `search` request returns a single "page" of results, the scroll API can
-be used to retrieve large numbers of results (or even all results) from a single
-`search` request, in much the same way as you would use a cursor on a traditional database.
+This method moves forward a result set cursor created by a [`search` query](#search) with the `scroll` argument provided.
 
-Scrolling is not intended for real time user requests, but rather for processing large amounts of data.
+The response may contain a *different* cursor identifier, pointing to the next page of results.
 
-In order to use scrolling, the initial [`search`](#search) request must specify the `scroll` parameter in the request,
-which tells Elasticsearch how long it should keep the "scroll session" alive.
-The query defined in the initial `search` request will then be used for all `scroll` using the provided `_scroll_id`.
+The optional `scroll` argument allows to refresh the cursor duration, with a new [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units) value.
 
 <aside class="warning">
   The results that are returned from a `scroll` request reflect the state of the index at the time
@@ -516,7 +509,7 @@ The query defined in the initial `search` request will then be used for all `scr
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=1m]`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
 >**Method:** `POST`<br/>
 >**Body:**
 
@@ -556,11 +549,11 @@ The query defined in the initial `search` request will then be used for all `scr
 
     }
   },
-  // "from" and "size" argument for pagination
+
+  // Optional arguments
   "from": 0,
   "size": 42,
-  // "scroll" argument to start a scroll session
-  "scroll": "60s"
+  "scroll": "<time to live>"
 }
 ```
 
@@ -596,10 +589,7 @@ The query defined in the initial `search` request will then be used for all `scr
 
       }
     }
-    "total": <number of found documents>,
-    "max_score": 1,
-    "timed_out": false,
-    "took": 1
+    "total": <number of found documents>
   }
 }
 ```
@@ -608,17 +598,12 @@ Only documents in the persistent data storage layer can be searched.
 
 Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
 
-`aggregations` is not mandatory, see the
-[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search-aggregations.html)
-for more details.
+Optional arguments:
 
-If a `scroll` argument is provided in the request, a scroll session is started and the response will contain a `_scroll_id` that
-can be used with the [`scroll` action](#scroll).
-The value of the scroll defines the timeout of the session (it will be refreshed with subsequent `scroll` calls).
- A scroll session is a way to paginate a search request.
-The `search` response will contain the first maching documents. After the first search, the [`scroll` action](#scroll)
-must be used to iterate the pagination.
-
+* `aggregations` details how to aggregate the search results. See the [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search-aggregations.html) for more details
+* `size` controls the maximum number of documents returned in the response
+* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
+* `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `_scroll_id` property, along with the first page of results. This cursor can then be moved forward using the [`scroll` API action](#scroll)
 
 ## mCreate
 
