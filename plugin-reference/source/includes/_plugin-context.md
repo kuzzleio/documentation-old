@@ -896,6 +896,16 @@ Used to notify about badly formed requests.
 var err = new context.errors.BadRequestError('error message');
 ```
 
+### `ExternalServiceError`
+
+**Status Code:** `500`
+
+Used when an external service answers to a request with an error other than a bad request or a service unavailable one.
+
+```js
+var err = new context.errors.ExternalServiceError('error message');
+```
+
 ### `ForbiddenError`
 
 **Status Code:** `403`
