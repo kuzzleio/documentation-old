@@ -178,6 +178,7 @@ Global events triggered on requests execution.
 |`request:onAuthorized` | Triggered when a request passed authorization checks and is ready to be processed. Triggered before any `<controller>:before<Action>` event | Type: Request |
 |`request:onError` | Triggered when a request execution fails. Triggered after any `<controller>:after<Action>` event | Type: Request |
 |`request:onSuccess` | Triggered when a request execution succeeds. Triggered after any `<controller>:after<Action>` event | Type: Request |
+|`request:onUnauthorized` | Triggered when a request failed authorization checks and is about to be rejected with a `401` error code. | Type: Request |
 
 
 ## room

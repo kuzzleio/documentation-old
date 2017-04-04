@@ -172,7 +172,7 @@ Returns the number of documents matching the provided set of filters.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/query-dsl.html) format |
+| ``filters`` | JSON Object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) format |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -513,7 +513,7 @@ Delete either a stored document, or all stored documents matching search filters
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``documentId`` | string | Unique document identifier |
-| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/query-dsl.html) format |
+| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) format |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
@@ -1161,6 +1161,7 @@ Available options:
 
 ### Callback response
 
+
 Resolves to an instantiated [SearchResult](#searchresult) object.
 
 ## search
@@ -1357,7 +1358,7 @@ Executes a search on the data collection.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/query-dsl.html) format |
+| ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) format |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -1376,6 +1377,7 @@ Available options:
 </aside>
 
 ### Callback response
+
 
 Resolves to an instantiated [SearchResult](#searchresult) object.
 
@@ -1543,7 +1545,7 @@ Available options:
 | ``users`` | string | Filter notifications fired upon a user entering the room (user: ``in``), leaving the room (user: ``out``), or both (user: ``all``). Setting this variable to ``none`` prevents receiving these notifications | ``none`` |
 
 The `options` object is directly passed to the Room constructor.
-See the [Room object](#room) documentation for more information about these options and notifications. 
+See the [Room object](#room) documentation for more information about these options and notifications.
 
 ### Return value
 
@@ -1728,6 +1730,7 @@ Available options:
 | ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| `retryOnConflict` | int | Number of retries to attempt before rejecting this update because of a cluster sync conflict | `0` |
 
 ### Return value
 

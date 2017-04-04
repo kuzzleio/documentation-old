@@ -5,7 +5,7 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_create`
+>**URL:** `http://kuzzle:7512/<index>/_create`<br/>
 >**Method:** `POST`
 
 <section class="others"></section>
@@ -48,7 +48,7 @@ Create an `index` in Kuzzle's persistent storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>`
+>**URL:** `http://kuzzle:7512/<index>`<br/>
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -88,7 +88,7 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_exists`
+>**URL:** `http://kuzzle:7512/<index>/_exists`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -126,7 +126,7 @@ Checks if the given index exists in Kuzzle storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_autoRefresh`
+>**URL:** `http://kuzzle:7512/<index>/_autoRefresh`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -158,7 +158,7 @@ Checks if the given index exists in Kuzzle storage layer.
 ```
 
 The `autoRefresh` flag, when set to true, will make Kuzzle perform a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api) request
 immediately after each write request, forcing the documents to be immediately visible to search.
 
 The `getAutoRefresh` actions returns the current `autoRefresh` status for the given index.
@@ -178,7 +178,7 @@ The `getAutoRefresh` actions returns the current `autoRefresh` status for the gi
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_list`
+>**URL:** `http://kuzzle:7512/_list`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -222,8 +222,8 @@ Returns the complete data indexes.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_mDelete`
->**Method:** `DELETE`
+>**URL:** `http://kuzzle:7512/_mDelete`<br/>
+>**Method:** `DELETE`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -289,7 +289,7 @@ The response contains the list of indexes that were actually deleted.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_refresh`
+>**URL:** `http://kuzzle:7512/<index>/_refresh`<br/>
 >**Method:** `POST`
 
 <section class="others"></section>
@@ -331,7 +331,7 @@ in the search index.
 By default, this operation can take up to 1 second.
 
 Given an index, the `refresh` action forces a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api),
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api),
 on it, making the documents visible to search immediately.
 
 <aside class="left warning">
@@ -339,7 +339,7 @@ on it, making the documents visible to search immediately.
     A refresh operation comes with some performance costs.<br>
   </p>
   <p>
-    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api">
+    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api">
     Elasticsearch documentation</a>:
     <div class="quote">
       "While a refresh is much lighter than a commit, it still has a performance cost.
@@ -355,7 +355,7 @@ on it, making the documents visible to search immediately.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_refreshInternal`
+>**URL:** `http://kuzzle:7512/_refreshInternal`<br/>
 >**Method:** `POST`
 
 <section class="others"></section>
@@ -391,7 +391,7 @@ in Kuzzle's database layer, the update needs to be indexed before being reflecte
 By default, this operation can take up to 1 second.
 
 Given an index, the `refreshInternal` action forces a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api),
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api),
 on the internal index, making the documents visible to search immediately.
 
 <aside class="left warning">
@@ -399,7 +399,7 @@ on the internal index, making the documents visible to search immediately.
     A refresh operation comes with some performance costs.<br>
   </p>
   <p>
-    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api">
+    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api">
     Elasticsearch documentation</a>:
     <div class="quote">
       "While a refresh is much lighter than a commit, it still has a performance cost.
@@ -415,7 +415,7 @@ on the internal index, making the documents visible to search immediately.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_autoRefresh`
+>**URL:** `http://kuzzle:7512/<index>/_autoRefresh`<br/>
 >**Method:** `POST`
 
 >Query
@@ -456,7 +456,7 @@ on the internal index, making the documents visible to search immediately.
 ```
 
 The `autoRefresh` flag, when set to true, will make Kuzzle perform a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) request
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api) request
 immediately after each write request, forcing the documents to be immediately visible to search.
 
 Given an index, the `setAutoRefresh` action updates its `autoRefresh` status.

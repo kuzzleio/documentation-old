@@ -1,12 +1,11 @@
 # ~ security controller
 
-
 ## createFirstAdmin
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<userId>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7512/_createFirstAdmin[?reset=1]`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<userId>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7512/_createFirstAdmin[?reset=1]`<br/>
+>**Method:** `POST`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -99,8 +98,8 @@ Other mandatory additional information are needed depending on the authenticatio
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/<profileId>`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/profiles/<profileId>`<br/>
+>**Method:** `PUT`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -202,8 +201,8 @@ Creates or replaces (if `_id` matches an existing one) a profile with a list of 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<roleId>`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/roles/<roleId>`<br/>
+>**Method:** `PUT`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -286,8 +285,8 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/users/<userId>`<br/>
+>**Method:** `PUT`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -355,8 +354,8 @@ The `user` is created if it does not exists yet or replaced with the given objec
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/<profileId>/_create`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/profiles/<profileId>/_create`<br/>
+>**Method:** `POST`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -458,8 +457,8 @@ Creates a profile with a new list of roles.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<roleId>/_create`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/roles/<roleId>/_create`<br/>
+>**Method:** `POST`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -543,8 +542,8 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_create` or `http://kuzzle:7512/users/_create`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/users/<userId>/_create` or `http://kuzzle:7512/users/_create`<br/>
+>**Method:** `POST`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -642,8 +641,8 @@ Other mandatory additional information are needed depending on the authenticatio
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/users/<userId>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`<br/>
+>**Method:** `POST`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -736,7 +735,7 @@ Other mandatory additional information are needed depending on the authenticatio
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_profiles/<profileId>`
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>`<br/>
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -781,7 +780,7 @@ that the related roles will NOT be deleted.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<roleId>`
+>**URL:** `http://kuzzle:7512/roles/<roleId>`<br/>
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -825,7 +824,7 @@ Given a `role id`, deletes the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>`
+>**URL:** `http://kuzzle:7512/users/<userId>`<br/>
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -869,7 +868,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_profiles/<profileId>`
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -915,7 +914,7 @@ Given a `profile id`, retrieves the corresponding profile from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_mapping`
+>**URL:** `http://kuzzle:7512/profiles/_mapping`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -955,7 +954,7 @@ Gets the mapping of the internal `profiles` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_profiles/<profileId>/_rights`
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>/_rights`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1004,7 +1003,7 @@ Given a `profile id`, retrieves the corresponding rights.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<role id>`
+>**URL:** `http://kuzzle:7512/roles/<role id>`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1054,7 +1053,7 @@ Given a `role id`, retrieves the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_mapping`
+>**URL:** `http://kuzzle:7512/roles/_mapping`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1094,7 +1093,7 @@ Gets the mapping of the internal `roles` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>`
+>**URL:** `http://kuzzle:7512/users/<userId>`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1140,7 +1139,7 @@ Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_mapping`
+>**URL:** `http://kuzzle:7512/users/_mapping`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1180,7 +1179,7 @@ Gets the mapping of the internal `users` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_users/<userId>/_rights`
+>**URL:** `http://kuzzle:7512/_users/<userId>/_rights`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1226,7 +1225,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_mDelete`
+>**URL:** `http://kuzzle:7512/profiles/_mDelete`<br/>
 >**Method:** `POST`
 >**Body:**
 
@@ -1278,8 +1277,8 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_mDelete`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/roles/_mDelete`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -1330,8 +1329,8 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_mDelete`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/users/_mDelete`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -1383,8 +1382,8 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_mGet`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/profiles/_mGet`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -1469,8 +1468,8 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_mGet`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/roles/_mGet`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -1551,13 +1550,155 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 
 Retrieves a list of `role` objects from Kuzzle's database layer given a list of role ids.
 
+## scrollProfiles
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/profiles/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "scrollProfiles",
+  "scrollId": "<scrollId>",
+
+  // Optional: new time to live of the cursor
+  "scroll": "<time to live>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "scrollProfiles",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": {
+    // scroll requests may return a new scroll identifier
+    // only the most recent scrollId should be used
+    "scrollId": "<new scroll id>",
+
+    // An array of objects containing your retrieved documents
+    "hits": [
+      {
+        "_id": "myProfile1",
+        "_source": {
+          "policies": [
+            {
+              "roleId": "myRoleId",
+              "restrictedTo": [
+                ...
+              ]
+            },
+            ...
+          ]
+        }
+      },
+      {
+        ...
+      }
+    ],
+    "total": <number of found profiles>
+  }
+}
+```
+
+This method moves forward a result set cursor created by a [`searchProfiles` query](#searchprofiles) with the `scroll` argument provided.
+
+The response may contain a *different* cursor identifier, pointing to the next page of results.
+
+The optional `scroll` argument allows to refresh the cursor duration, with a new [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units) value.
+
+<aside class="warning">
+  The results that are returned from a `scrollProfiles` request reflect the state of the index at the time
+  that the initial search request was made, like a snapshot in time. Subsequent changes
+  to documents (index, update or delete) will only affect later search requests.
+</aside>
+
+## scrollUsers
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/users/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**Method:** `GET`
+
+<section class="others"></section>
+
+>Query
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "scrollUsers",
+  "scrollId": "<scrollId>",
+
+  // Optional: new time to live of the cursor
+  "scroll": "<time to live>"
+  }
+}
+```
+
+>Response
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "scrollUsers",
+  "controller": "security",
+  "requestId": "<unique request identifier>",
+  "result": {
+    // scroll requests may return a new scroll identifier
+    // only the most recent scrollId should be used
+    "scrollId": "<new scroll id>",
+
+    // An array of objects containing your retrieved documents
+    "hits": [
+      {
+        "_id": "<userId>",
+        "_source": { ... }             // The user object content
+      },
+      {
+        ...
+      }
+    ],
+    "total": <number of found users>
+  }
+}
+```
+
+This method moves forward a result set cursor created by a [`searchUsers` query](#searchusers) with the `scroll` argument provided.
+
+The response may contain a *different* cursor identifier, pointing to the next page of results.
+
+The optional `scroll` argument allows to refresh the cursor duration, with a new [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units) value.
+
+<aside class="warning">
+  The results that are returned from a `scrollUsers` request reflect the state of the index at the time
+  that the initial search request was made, like a snapshot in time. Subsequent changes
+  to documents (index, update or delete) will only affect later search requests.
+</aside>
+
 
 ## searchProfiles
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_search[?from=0][&size=42]`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/profiles/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
+>**Method:** `POST`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -1589,9 +1730,11 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
       "admin"
     ]
   },
-  // filter can handle pagination using the from and size properties
+
+  // Optional arguments
   "from": 0,
-  "size": 42
+  "size": 42,
+  "scroll": "<time to live>"
 }
 ```
 
@@ -1635,39 +1778,32 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
         }
       }
     ],
-    "max_score": 1,
-    "timed_out": false,
-    "took": 1,
     "total": 2
-    },
-    "index": "%kuzzle",
-    "collection": "profiles"
-    "action": "searchProfiles",
-    "controller": "security",
-    "requestId": "<unique request identifier>"
-  }
+  },
+  "index": "%kuzzle",
+  "collection": "profiles"
+  "action": "searchProfiles",
+  "controller": "security",
+  "requestId": "<unique request identifier>"
 }
 ```
 
 Retrieves profiles referring to a given set of roles in their policies.
 
-Attribute `policies` in body is optional.
 
-The `from` and `size` arguments allow pagination.
+Optional arguments:
 
-Available filters:
-
-| Filter | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| ``policies`` | array | Contains an array `policies` with a list of role ids | ``undefined`` |
-
+* `body.policies` contains an array of role identifiers used to filters the search results
+* `size` controls the maximum number of documents returned in the response
+* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
+* `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scrollProfiles` API action](#scrollprofiles)
 
 ## searchRoles
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_search[?from=0][&size=42]`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/roles/_search[?from=0][&size=42]`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -1755,8 +1891,8 @@ Available filters:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42]`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
+>**Method:** `POST`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -1817,9 +1953,11 @@ Available filters:
       ]
     }
   },
-  // "from" and "size" argument for pagination
+
+  // Optional arguments
   "from": 0,
-  "size": 10
+  "size": 10,
+  "scroll": "<time to live>"
 }
 ```
 
@@ -1850,17 +1988,21 @@ Available filters:
 }
 ```
 
-Retrieves all the users matching the given filter.
+Retrieves users matching the provided filter.
 
-The `from` and `size` arguments allow pagination.
+Optional arguments:
+
+* `size` controls the maximum number of documents returned in the response
+* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
+* `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scrollUsers` API action](#scrollusers)
 
 
 ## updateProfile
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/<profile id>/_update`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/profiles/<profile id>/_update`<br/>
+>**Method:** `PUT`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -1955,8 +2097,8 @@ Given a `profile id`, updates the matching Profile object in Kuzzle's database l
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_mapping`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/profiles/_mapping`<br/>
+>**Method:** `PUT`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -2034,15 +2176,15 @@ At the first initialization, Kuzzle defines a default mapping for the `profiles`
 This mapping is intended to store the basic information of a profile; typically, its policies (roles and restrictions).
 
 But if you want to store more information about your profiles, Kuzzle's API offers a way to update the `profiles` data mapping using the
-[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html).
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
 
 
 ## updateRole
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<roleId>/_update`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/roles/<roleId>/_update`<br/>
+>**Method:** `PUT`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -2121,8 +2263,8 @@ please refer to [Kuzzle's security documentation](/guide/#permissions).
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_mapping`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/roles/_mapping`<br/>
+>**Method:** `PUT`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -2200,15 +2342,15 @@ At the first initialization, Kuzzle defines a default mapping for the `roles` in
 This mapping is intended to store the basic information of a role; typically, its allowed controllers and actions.
 
 But if you want to store more information about your roles, Kuzzle's API offers a way to update the `roles` data mapping using the
-[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html).
+[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
 
 
 ## updateUser
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_update`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/users/<userId>/_update`<br/>
+>**Method:** `PUT`<br/>
 >**Body**
 
 <section class="http"></section>
@@ -2267,8 +2409,8 @@ Given a `user id`, updates the matching User object in Kuzzle's database layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_mapping`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/users/_mapping`<br/>
+>**Method:** `PUT`<br/>
 >**Body:**
 
 <section class="http"></section>

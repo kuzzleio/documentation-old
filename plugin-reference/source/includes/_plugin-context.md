@@ -10,12 +10,14 @@ Here is the list of shared objects contained in the provided ``context``:
 | Attribute path | Purpose                      |
 |----------------|------------------------------|
 | `context.accessors.execute` | Access to Kuzzle API |
-| `context.accessors.passport` | Access to Kuzzle [Passport](http://passportjs.org) instance. Allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
+| `context.accessors.registerStrategy` | Allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
 | `context.accessors.router` | Access to Kuzzle protocol communication system. Allow **protocol** plugins to interface themselves with Kuzzle. |
+| `context.accessors.storage` | Initiate and configure to the plugin storage. This storage can only be accessed by the plugin and can be used to persist plugin datas. |
 | `context.accessors.users` | Access to users management, especially useful for authentication plugins. Provides methods for handling users. This accessor is mainly used by authentication plugins. |
 | `context.accessors.validation` | Access to validation mechanisms, useful to validate documents and add field types. |
 | `context.config` | Contains the entire Kuzzle instance configuration (most of it coming from Kuzzle configuration file) |
 | `context.constructors.Dsl` | Constructor allowing plugins to instantiate their own Kuzzle real-time engine instance |
+| `context.constructors.Repository` | Constructor allowing plugins to instantiate their Repositories allowing them to interact with their plugin storage |
 | `context.constructors.Request` | Constructor for standardized requests sent to Kuzzle |
 | `context.constructors.BaseValidationType` | Constructor for the Validation Type base constructor |
 | `context.errors.<ErrorConstructor>` |Kuzzle error constructors, built dynamically from available Kuzzle error objects at runtime |
@@ -40,9 +42,11 @@ Sends a request to [Kuzzle API](/api-reference).
 | `request` | `Request` | A [`Request`](#request) to execute  |
 | `callback(error, request)` | `Function` | Function executed with the request's result |
 
-**Note:** when `callback` is invoked, the `request` argument is ALWAYS filled, even when there is an error. This argument is the provided request, with its `result` and/or `error` parts filled. To obtain the standardized Kuzzle response from it, simply use the getter `request.response`.
+**Note:** when `callback` is invoked, the `request` argument is ALWAYS filled, even when there is an error.
+This argument is the provided request, with its `result` and/or `error` parts filled.
+To obtain the standardized Kuzzle response from it, simply use the getter `request.response`.
 
-Example:
+#### Usage
 
 ```js
 let
@@ -63,34 +67,48 @@ context.accessors.execute(request, (error, request) => {
 });
 ```
 
-### `passport.use`
+### `registerStrategy`
 
-Implements [Passport `use()` method](http://passportjs.org/docs/configure)
+Register a new authentication strategy to Kuzzle.
 
 #### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-| `strategy` | `Strategy object` | A Passport instantiated strategy object |
+| `Strategy` | `function` | A [Passport strategy](https://github.com/jaredhanson/passport/wiki/Strategies) object constructor |
+| `name` | `string` | Strategy name identifier ([see `auth:login`](/api-reference/#login)) |
+| `context` | `object` | Context in which the `verify` callback will be executed |
+| `verify` | `function` | Callback function invoked to verify an authentication request |
+| `options` | `object` | (Optional) Strategy specific options parameters |
 
-<aside class="notice">Passport strategy constructors take a "verify" callback. As the following example demonstrates, if the provided callback uses "this.[attribute]" attributes, then it's necessary to bind the provided callback to the plugin's context</aside>
+The provided `verify` callback signature varies depending on the used strategy.  
+Here is the generic signature: `verify(request, ..., callback)`:
 
-Example:
+* `request` is the login [`Request` object](#request)
+* `...`: varies, depending on the used strategy
+* `callback` is a function that **must** be called at the end of an authentication process, with the following arguments:
+  * `error`: null if no error occured, an error object otherwise (note: an authentication rejection is
+*not* an error)
+  * `user`: either `false` (authentication rejected) or a user object, provided by the plugin context [`user.load` method](#users-load)
+  * `info`: (optional) the rejection reason
+
+
+#### Usage
 
 ```js
 var LocalStrategy = require('passport-local').Strategy;
 
-function verify (username, password, done) {
+function verify (request, username, password, callback) {
   // verification code
   if (userVerified) {
-    done(null, userInformation);
+    callback(null, userInformation);
   }
   else {
-    done(error);
+    callback(null, false, 'Login failed');
   }
 }
 
-pluginContext.accessors.passport.use(new LocalStrategy(verify.bind(this)));
+pluginContext.accessors.registerStrategy(LocalStrategy, 'myLocalStrategy', this, this.verify);
 ```
 
 ### `router.newConnection`
@@ -136,6 +154,73 @@ Not calling this method after a connection is dropped will result in a memory-le
 |`context`|`RequestContext`| Object identifying the connection context. Obtained by calling `newConnection()`|
 
 
+### `storage.bootstrap`
+
+Allows to initialize the plugin storage index in Elasticsearch. When called, it will create the Elastisearch index
+and the `collections` provided in argument. Can be called at each plugin initialized as long as the mapping is
+not modified.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`collections`|`Object`| An object that contains the collection mappings. See the [guide](/guide#document-mapping) for more explanation about Elasticsearch mapping. |
+
+#### Returns
+
+Returns a `promise` that resolves to a `boolean` that indicates if the index and the collections already existed or not.
+
+#### Usage
+
+```js
+context.accessors.storage.bootstrap({
+  someCollection: {
+    properties: {
+      someField: {
+        type: 'keyword'
+      }
+      ,
+      ...
+    }
+  },
+  anotherCollection: {
+    properties: {
+      ...
+    }
+  }
+});
+```
+
+### `storage.createCollection`
+
+Allows to create a collection with its mapping. Can be called at each plugin initialization if the mapping is not
+ modified. Consider using [`storage.bootstrap`](#storage-bootstrap) if your collections are not dynamic.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`collection`|`string`| The collection name |
+|`collectionMapping`|`object`| The collection mapping |
+
+#### Returns
+
+Returns a `promise` that resolves to the object `{ acknowledged: true }`.
+
+#### Usage
+
+```js
+context.accessors.storage.createCollection('someCollection', {
+    properties: {
+      someField: {
+        type: 'keyword'
+      }
+      ,
+      ...
+    }
+});
+```
+
 ### `users.create`
 
 Creates a new user in Kuzzle. Will return an error if the user already exists.
@@ -145,7 +230,7 @@ Creates a new user in Kuzzle. Will return an error if the user already exists.
 | Name | Type | Default Value | Description                      |
 |------|------|---------------|----------------------------------|
 |`loginName`|`string`| | Name of the user's login to create |
-|`userProfile`|`string`|`default`| [User profile](#permissions) |
+|`userProfile`|`string`|`default`| [User profile](/guide/#permissions) |
 |`userInfo`|`object`| `{}` | Misc. information about the user |
 
 #### Returns
@@ -188,7 +273,7 @@ If `verbose` is set to `true`:
 
 Returns a `promise` that resolves to an `object`:
 
-```javascript
+```js
 {
   errorMessages: ...,
   validation: ...
@@ -214,7 +299,7 @@ Nothing. Can throw a `PluginImplementationError` if the validation type has not 
 
 #### validationType form
 
-```javascript
+```js
 /**
  * @typedef {{
  *   validate: Function,
@@ -233,13 +318,17 @@ See constructor `BaseValidationType` for more details.
 
 ### `BaseValidationType`
 
-The `BaseValidationType` constructor provides a base to create your own validation types. It provides a common structure for all validation types developped in Kuzzle.
+The `BaseValidationType` constructor provides a base to create your own validation types.
+It provides a common structure for all validation types developped in Kuzzle.
 
-You can find an example of a type creation in the [Kuzzle source code](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template).
+You can find an example of a type creation in the
+[Kuzzle source code](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template).
 
 ### `Dsl`
 
-The DSL constructor provided in the plugin context gives access to [Kuzzle real-time filtering capabilities](#filtering-syntax). It allows managing filters, and testing data to get a list of matching filters.
+The DSL constructor provided in the plugin context gives access to
+[Kuzzle real-time filtering capabilities](#filtering-syntax).
+It allows managing filters, and testing data to get a list of matching filters.
 
 Each plugin can instantiate its own sandboxed DSL instance:
 
@@ -346,12 +435,282 @@ Tests the provided filters without storing them in the system, to check whether 
 
 A resolved promise if the provided filters are valid, or a rejected one with the appropriate error object otherwise.
 
+### `Repository`
+
+The Repository constructor provided in the plugin context gives access to methods
+that allow the plugin to interact with its plugin storage. The plugin storage is a dedicated
+index in Elasticsearch where the plugin can [create collections](#storage-createcollection).
+To do so the plugin should first [bootstrap](#storage-bootstrap) the index.
+
+Once done, the plugin can instantiate repositories to interact with the different collections it created.
+
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `collection` | `string` | The collection linked to the repository |
+| `ObjectConstructor` |`constructor function` | (optional) Will be used as constructor for the fetched documents instead of `Object` |
+
+
+**Usage**
+
+Each plugin can instantiate its own repositories linked to its own sandboxed plugin storage:
+
+```js
+function ObjectConstructor() {
+  this.someProperty = 'someValue';
+}
+
+var someCollectionRepository = new context.constructors.Repository('someCollection', ObjectConstructor);
+```
+
+The Repository exposes the following methods:
+
+#### `create`
+
+Creates a document in the plugin storage.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`Object`| The document you want to create. It must contain a unique `_id` string property. You don't need to worry about collisions with other plugins as your plugin storage is only accessible by your plugin |
+
+**Returns**
+
+Returns a `promise` that resolves to an object respresentation of Elasticsearch request result.
+
+**Usage**
+
+```js
+someCollectionRepository.create({
+  _id: '<a unique id>',
+  someField: 'some content',
+  anotherField: 'another content',
+  ...
+})
+  .then(result => {
+    console.log(result);
+  });
+
+/**
+ * Outputs:
+ * { _index: '%some-plugin',
+ *   _type: 'someCollection',
+ *   _id: '<a unique id>',
+ *   _version: 1,
+ *   result: 'created',
+ *   _shards: { total: 2, successful: 1, failed: 0 },
+ *   created: true,
+ *   _source: { someField: 'some content', anotherField: 'another content' } }
+ */
+```
+
+<aside class="warning">
+  The document provided as argument should be a plain object representing the document you want to store.
+</aside>
+
+#### `createOrReplace`
+
+Creates or replaces a document in the plugin storage.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`object`| The document you want to create or replace. It must contain a unique `_id` string property. You don't need to worry about collisions with other plugins as your plugin storage is only accessible by your plugin |
+
+**Returns**
+
+Returns a `promise` that resolves to an object respresentation of Elasticsearch request result (see [create usage](#create)).
+
+**Usage**
+
+```js
+someCollectionRepository.createOrReplace({
+  _id: '<a unique id>',
+  someField: 'some content',
+  anotherField: 'another content',
+  ...
+});
+```
+
+<aside class="warning">
+  The document provided as argument should be a plain object representing the document you want to store.
+</aside>
+
+#### `delete`
+
+Deletes a document from the plugin storage.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`object`| The document `_id` of the document you want to delete. |
+
+**Returns**
+
+Returns a `promise` that resolves to an array of objects which is a representation of the Elasticsearch request result.
+
+**Usage**
+
+```js
+someCollectionRepository.delete('someDocumentId')
+  .then(result => {
+    console.log(result);
+  });
+
+/**
+ * Outputs:
+ *  [ { found: true,
+ *    _index: '%some-plugin',
+ *    _type: 'someCollection',
+ *    _id: '<a unique id>',
+ *    _version: 3,
+ *    result: 'deleted',
+ *    _shards: { total: 2, successful: 1, failed: 0 } } ]
+ */
+```
+
+#### `get`
+
+Retrieves a document from the plugin storage.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`documentId`|`string`| The document identifier of the document you want to retrieve. |
+
+**Returns**
+
+Returns a `promise` that resolves to an `Object` or an `ObjectConstructor` if provided in the constructor.
+
+**Usage**
+
+```js
+someCollectionRepository.get('someDocumentId', 'someCollection');
+```
+
+#### `mGet`
+
+Retrieves multiple documents from the plugin storage.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`documentIds`|`array<string>`| An array of document identifier of the documents you want to retrieve. |
+
+**Returns**
+
+Returns a `promise` that resolves to an array of `Object` or `ObjectConstructor` if provided in the constructor.
+
+**Usage**
+
+```js
+someCollectionRepository.mGet(['someDocumentId', 'anotherDocument']);
+```
+
+#### `replace`
+
+Replaces a document in the plugin storage.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`object`| The content of the document. It must contain a unique `_id` string property. |
+
+**Returns**
+
+Returns a `promise` that resolves to an object respresentation of Elasticsearch request result (see [create usage](#create)).
+
+**Usage**
+
+```js
+someCollectionRepository.replace({
+  _id: '<a unique id>',
+  someField: 'some content',
+  anotherField: 'another content',
+  ...
+});
+```
+
+<aside class="warning">
+  The document provided as argument should be a plain object representing the document you want to store.
+</aside>
+
+#### `search`
+
+Searches documents that match the provided `query` in the collection.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`query`|`object`| The [query](/elasticsearch-cookbook/#basic-queries) sent to Elastisearch. |
+|`from`|`integer`| Provides the offset of the returned documents. |
+|`size`|`integer`| Provides the count of the returned documents. |
+
+**Returns**
+
+Returns a `promise` that resolves to an object of the form `{total: number, hits: array<object>}` where `hits`
+contains an array of `Object` or `ObjectConstructor` if provided in the constructor and `total` the count of documents that match the query.
+
+**Usage**
+
+```js
+someCollectionRepository.search({
+  query: {
+    match_all: {}
+  }
+}, 0, 10);
+```
+
+#### `update`
+
+Updates a document in the plugin storage. You can provide a partial document to add or update one or more fields.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`document`|`object`| The partial content of the document. It must contain a unique `_id` string property. |
+
+**Returns**
+
+Returns a `promise` that resolves to an object which is a representation of the Elasticsearch request result.
+
+**Usage**
+
+```js
+someCollectionRepository.update({
+  _id: '<a unique id>',
+  anotherField: 'changed content'
+});
+/**
+ * Outputs:
+ * { _index: '%some-plugin',
+ *   _type: 'someCollection',
+ *   _id: '<a unique id>',
+ *   _version: 2,
+ *   result: 'updated',
+ *   _shards: { total: 0, successful: 0, failed: 0 } }
+ */
+```
+
 ### `Request`
 
 This constructor is used to transform an [API call](/api-reference/?others#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](/api-reference/?others#kuzzle-response) to be forwarded to the requesting client.
 
-Network protocol specific headers can be added to the response. If the protocol can handle them, these headers will be used to configure the response sent to the client.    
-As Kuzzle supports the HTTP protocol natively, this object handles HTTP headers special cases. Other network protocols headers are stored in raw format, and protocol plugins need to handle their own specific headers manually.
+Network protocol specific headers can be added to the response. If the protocol can handle them,
+these headers will be used to configure the response sent to the client.    
+As Kuzzle supports the HTTP protocol natively, this object handles HTTP headers special cases.
+Other network protocols headers are stored in raw format, and protocol plugins need to handle
+their own specific headers manually.
 
 For more information about this object, please check [our detailed documentation](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#request).
 
@@ -401,6 +760,8 @@ Read-only
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
+| `origin` | `Request` | `null` | The first request of a requests chain |
+| `previous` | `Request` | `null` | The previous request of a requests chain |
 | `timestamp` | integer | Request creation timestamp |
 
 Writable
@@ -466,9 +827,11 @@ Adds a header `name` with value `value` to the response headers.
 | `name` | `string` | Header name |
 | `value` | `string` | Header value |
 
-For standard headers, if `name` already exists, then the provided `value` will be concatenated to the existing value, separated by a comma.  
+For standard headers, if `name` already exists, then the provided `value` will be concatenated
+to the existing value, separated by a comma.  
 
-As Kuzzle implements HTTP natively, this behavior changes for some HTTP specific headers, to comply with the norm. For instance `set-cookie` values are amended in an array, and other headers like `user-agent` or `host` can store only 1 value.
+As Kuzzle implements HTTP natively, this behavior changes for some HTTP specific headers,
+to comply with the norm. For instance `set-cookie` values are amended in an array, and other headers like `user-agent` or `host` can store only 1 value.
 
 
 #### `serialize`
@@ -512,7 +875,7 @@ The `options` argument may contain the following properties:
 |------|------|----------------------------------|---------|
 | `status` | `integer` | HTTP status code | `200` |
 | `headers` | `object` | Protocol specific headers | `null` |
-| `raw` | `boolean` | Asks Kuzzle to send the provided result directly, instead of encapsulating it in a Kuzzle JSON response | `false` |
+| `raw` | `boolean` | Asks Kuzzle to send the provided result directly,instead of encapsulating it in a Kuzzle JSON response | `false` |
 
 ## Errors
 
@@ -543,7 +906,7 @@ Used when an external service answers to a request with an error other than a ba
 var err = new context.errors.ExternalServiceError('error message');
 ```
 
-### ForbiddenError`
+### `ForbiddenError`
 
 **Status Code:** `403`
 

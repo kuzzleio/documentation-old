@@ -5,8 +5,8 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_count`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_count`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -63,15 +63,15 @@
 
 Given some filters, gets the number of matching documents from Kuzzle's data storage layer.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
 
 
 ## create
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]` or `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]` or `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -135,8 +135,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`<br/>
+>**Method:** `PUT`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -200,7 +200,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`<br/>
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -252,8 +252,8 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_query`
->**Method:** `DELETE`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_query`<br/>
+>**Method:** `DELETE`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -310,14 +310,14 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 
 Deletes all the documents matching the given filter or query from Kuzzle's database.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
 
 
 ## get
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>`<br/>
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -376,8 +376,8 @@ Only documents in the persistent data storage layer can be retrieved.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_replace[?refresh=wait_for]`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_replace[?refresh=wait_for]`<br/>
+>**Method:** `PUT`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -441,8 +441,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_scroll/<scrollId>[?scroll=<scroll ttl]`  
->**Method:** `GET`  
+>**URL:** `http://kuzzle:7512/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**Method:** `GET`
 
 <section class="others"></section>
 
@@ -456,8 +456,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "action": "scroll",
   "scrollId": "<scrollId>",
 
-  // Optional: time to live of the cursor
-  "scroll": "1m"
+  // Optional: new time to live of the cursor
+  "scroll": "<time to live>"
   }
 }
 ```
@@ -472,8 +472,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "controller": "document",
   "requestId": "<unique request identifier>",
   "result": {
-    // The initial search request and each subsequent scroll request returns a new _scroll_id 
-    // only the most recent _scroll_id should be used.
+    // scroll requests may return a new scroll identifier
+    // only the most recent scrollId should be used
     "_scroll_id": "<new scroll id>",
 
     // An array of objects containing your retrieved documents
@@ -487,23 +487,16 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
         // Another document... and so on
       }
     ],
-    "total": <number of found documents>,
-    "max_score": 1,
-    "timed_out": false,
-    "took": 1
+    "total": <number of found documents>
   }
 }
 ```
 
-While a `search` request returns a single "page" of results, the scroll API can
-be used to retrieve large numbers of results (or even all results) from a single
-`search` request, in much the same way as you would use a cursor on a traditional database.
+This method moves forward a result set cursor created by a [`search` query](#search) with the `scroll` argument provided.
 
-Scrolling is not intended for real time user requests, but rather for processing large amounts of data.
+The response may contain a *different* cursor identifier, pointing to the next page of results.
 
-In order to use scrolling, the initial [`search`](#search) request must specify the `scroll` parameter in the request,
-which tells Elasticsearch how long it should keep the "scroll session" alive.
-The query defined in the initial `search` request will then be used for all `scroll` using the provided `_scroll_id`.
+The optional `scroll` argument allows to refresh the cursor duration, with a new [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units) value.
 
 <aside class="warning">
   The results that are returned from a `scroll` request reflect the state of the index at the time
@@ -516,8 +509,8 @@ The query defined in the initial `search` request will then be used for all `scr
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=1m]`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -556,11 +549,11 @@ The query defined in the initial `search` request will then be used for all `scr
 
     }
   },
-  // "from" and "size" argument for pagination
+
+  // Optional arguments
   "from": 0,
   "size": 42,
-  // "scroll" argument to start a scroll session
-  "scroll": "60s"
+  "scroll": "<time to live>"
 }
 ```
 
@@ -596,36 +589,28 @@ The query defined in the initial `search` request will then be used for all `scr
 
       }
     }
-    "total": <number of found documents>,
-    "max_score": 1,
-    "timed_out": false,
-    "took": 1
+    "total": <number of found documents>
   }
 }
 ```
 
 Only documents in the persistent data storage layer can be searched.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
 
-`aggregations` is not mandatory, see the
-[Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html)
-for more details.
+Optional arguments:
 
-If a `scroll` argument is provided in the request, a scroll session is started and the response will contain a `_scroll_id` that
-can be used with the [`scroll` action](#scroll).
-The value of the scroll defines the timeout of the session (it will be refreshed with subsequent `scroll` calls).
- A scroll session is a way to paginate a search request.
-The `search` response will contain the first maching documents. After the first search, the [`scroll` action](#scroll)
-must be used to iterate the pagination.
-
+* `aggregations` details how to aggregate the search results. See the [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search-aggregations.html) for more details
+* `size` controls the maximum number of documents returned in the response
+* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
+* `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `_scroll_id` property, along with the first page of results. This cursor can then be moved forward using the [`scroll` API action](#scroll)
 
 ## mCreate
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreate[?refresh=wait_for]`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreate[?refresh=wait_for]`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -768,8 +753,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreateOrReplace[?refresh=wait_for]`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreateOrReplace[?refresh=wait_for]`<br/>
+>**Method:** `PUT`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -910,8 +895,8 @@ Returns a partial error (with status 206) if one or more documents can not be cr
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mDelete[?refresh=wait_for]`
->**Method:** `DELETE`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mDelete[?refresh=wait_for]`<br/>
+>**Method:** `DELETE`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -972,8 +957,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mGet`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mGet`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -1069,8 +1054,8 @@ Only documents in the persistent data storage layer can be retrieved.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mReplace[?refresh=wait_for]`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mReplace[?refresh=wait_for]`<br/>
+>**Method:** `PUT`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -1214,9 +1199,9 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mUpdate[?refresh=wait_for]`
->**Method:** `PUT`
->**Body:**
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mUpdate[?refresh=wait_for][&retryOnConflict=<retries>]`<br/>
+>**Method:** `PUT`<br/>
+>**Body:**  
 
 <section class="http"></section>
 
@@ -1286,6 +1271,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "collection": "<collection>",
   "action": "mUpdate",
   ["refresh": "wait_for",]
+  ["retryOnConflict": <number of retries>,]
   "controller": "document",
   "requestId": "<unique request identifier>",
   "result": {
@@ -1330,13 +1316,16 @@ Returns a partial error (with status 206) if one or more documents can not be up
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
+Conflicts may occur if the same document gets updated multiple times within a short time on a database cluster. When this happens, Kuzzle answers with an error that clients have to handle.  
+You may set the `retryOnConflict` optional argument with a positive integer, asking Kuzzle to retry updating the document that number of times before rejecting the request with an error.
+
 
 ## update
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for]`
->**Method:** `PUT`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for][&retryOnConflict=<retries>]`<br/>
+>**Method:** `PUT`<br/>
 >**Body:**
 
 <section class="http"></section>
@@ -1362,6 +1351,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
   "controller": "document",
   "action": "update",
   ["refresh": "wait_for",]
+  ["retryOnConflict": <number of retries>,]
   // The document id you provided or that was generated at document creation.
   // it is also the one returned during a search query.
   "_id": "<documentId>"
@@ -1399,13 +1389,16 @@ Only documents in the persistent data storage layer can be updated.
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
+Conflicts may occur if the same document gets updated multiple times within a short time on a database cluster. When this happens, Kuzzle answers with an error that clients have to handle.  
+You may set the `retryOnConflict` optional argument with a positive integer, asking Kuzzle to retry updating the document that number of times before rejecting the request with an error.
+
 
 ## validate
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`<br/>
+>**Method:** `POST`<br/>
 >**Body:**
 
 <section class="http"></section>

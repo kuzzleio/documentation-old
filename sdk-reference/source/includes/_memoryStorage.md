@@ -2737,9 +2737,9 @@ kuzzle.memoryStorage.hsetPromise('key', 'field', 'value')
 ```
 
 ```java
-kuzzle.memoryStorage.hset("key", "field", "value", new ResponseListener<Long>() {
+kuzzle.memoryStorage.hset("key", "field", "value", new ResponseListener<Integer>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Integer status) {
     // callback called once the action has completed
   }
 
@@ -2817,9 +2817,9 @@ kuzzle.memoryStorage.hsetnxPromise('key', 'field', 'value')
 ```
 
 ```java
-kuzzle.memoryStorage.hsetnx("key", "field", "value", new ResponseListener<Long>() {
+kuzzle.memoryStorage.hsetnx("key", "field", "value", new ResponseListener<Integer>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Integer status) {
     // callback called once the action has completed
   }
 
@@ -3250,7 +3250,7 @@ Increments the number stored at `key` by the provided float value. If the key do
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | `key` | string | Key identifier |
-| `value` | int | Increment value |
+| `value` | double | Increment value |
 | `options` | JSON Object | Optional parameters |
 | `callback` | function | Callback |
 
