@@ -760,6 +760,8 @@ Read-only
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
+| `origin` | `Request` | `null` | The first request of a requests chain |
+| `previous` | `Request` | `null` | The previous request of a requests chain |
 | `timestamp` | integer | Request creation timestamp |
 
 Writable
