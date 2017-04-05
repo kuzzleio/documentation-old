@@ -55,14 +55,26 @@ $dataCollection = new Collection($kuzzle, 'my-collection', 'my-index');
 let dataMapping = kuzzle
   .collection('collection', 'index')
   .collectionMapping({someField: {type: 'string', index: 'analyzed'}})
-  .apply();
+  .apply(function (error, result) {
+    // called once the mapping action has been completed
+  });
 ```
 
 ```java
 CollectionMapping dataMapping = kuzzle
   .collection("collection", "index")
   .collectionMapping(new JSONObject().put("someFiled", new JSONObject().put("type", "string").put("index", "analyzed"))
-  .apply();
+  .apply(new ResponseListener<CollectionMapping>() {
+     @Override
+     public void onSuccess(CollectionMapping object) {
+       // called once the mapping action has been completed
+     }
+
+     @Override
+     public void onError(JSONObject error) {
+       // Handle error
+     }
+  });
 ```
 
 ```php
