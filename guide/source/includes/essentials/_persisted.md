@@ -48,7 +48,7 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
     "created": true,
     "_source": {
       "message": "Hello, world!",
-      "_kuzzle_info": {
+      "_meta": {
         "author": "-1",
         "createdAt": 1481814465050,
         "updatedAt": null,
@@ -165,7 +165,7 @@ Say we want to [**find**](/api-reference/?http#search) all the documents within 
         "_source": {
           "message": "Hey! Ho!"
         },
-        "_kuzzle_info": {
+        "_meta": {
           "author": "-1",
           "createdAt": 1481816934209,
           "updatedAt": null,
@@ -182,7 +182,7 @@ Say we want to [**find**](/api-reference/?http#search) all the documents within 
         "_source": {
           "message": "Hello, world!"
         },
-        "_kuzzle_info": {
+        "_meta": {
           "author": "-1",
           "createdAt": 1481816922252,
           "updatedAt": null,
@@ -199,7 +199,7 @@ Say we want to [**find**](/api-reference/?http#search) all the documents within 
         "_source": {
           "message": "Let's go!"
         },
-        "_kuzzle_info": {
+        "_meta": {
           "author": "-1",
           "createdAt": 1481816942415,
           "updatedAt": null,
@@ -257,7 +257,7 @@ Which gives, as a result, the following response:
         "_source": {
           "message": "Hey! Ho!"
         },
-        "_kuzzle_info": {
+        "_meta": {
           "author": "-1",
           "createdAt": 1481816934209,
           "updatedAt": null,
@@ -276,7 +276,7 @@ Which gives, as a result, the following response:
 ### Document volatile
 
 When you create or update a document, Kuzzle adds volatiles. These volatiles describe the life-cycle of the document.
-They are available in the `_kuzzle_info` part of a document:
+They are available in the `_meta` part of a document:
 
 ```json
 {
@@ -287,7 +287,7 @@ They are available in the `_kuzzle_info` part of a document:
   "_source": {
     "message": "Hey! Ho!"
   },
-  "_kuzzle_info": {
+  "_meta": {
     "author": "-1",
     "createdAt": 1481816934209,
     "updatedAt": null,
@@ -312,7 +312,7 @@ They can be used in search queries to filter and sort documents like a normal do
 {
   "query": {
       "range": {
-          "_kuzzle_info.createdAt": {
+          "_meta.createdAt": {
             "lte": 1481816930000
           }
       }
@@ -350,7 +350,7 @@ Which gives, as a result, the following response:
         "_source": {
           "message": "Hello, world!"
         },
-        "_kuzzle_info": {
+        "_meta": {
           "author": "-1",
           "createdAt": 1481816922252,
           "updatedAt": null,

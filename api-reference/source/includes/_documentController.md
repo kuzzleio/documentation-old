@@ -694,7 +694,7 @@ Optional arguments:
           "total": 2
         },
         "_source": {
-          "_kuzzle_info": {
+          "_meta": {
             "active": true,
             "author": "-1",
             "createdAt": 1484225532686,
@@ -718,7 +718,7 @@ Optional arguments:
           "total": 2
         },
         "_source": {
-          "_kuzzle_info": {
+          "_meta": {
             "active": true,
             "author": "-1",
             "createdAt": 1484225532686,
@@ -838,7 +838,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
           "total": 2
         },
         "_source": {
-          "_kuzzle_info": {
+          "_meta": {
             "active": true,
             "author": "-1",
             "createdAt": 1484226104822,
@@ -862,7 +862,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
           "total": 2
         },
         "_source": {
-          "_kuzzle_info": {
+          "_meta": {
             "active": true,
             "author": "-1",
             "createdAt": 1484226104822,
@@ -1004,7 +1004,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
         "_id": "<documentId>",
         "_index": "<index>",
         "_source": {
-          "_kuzzle_info": {
+          "_meta": {
             "active": true,
             "author": "-1",
             "createdAt": 1484226562795,
@@ -1022,7 +1022,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
         "_id": "<anotherDocumentId>",
         "_index": "<index>",
         "_source": {
-          "_kuzzle_info": {
+          "_meta": {
             "active": true,
             "author": "-1",
             "createdAt": 1484226562795,
@@ -1139,7 +1139,7 @@ Only documents in the persistent data storage layer can be retrieved.
           "total": 2
         },
         "_source": {
-          "_kuzzle_info": {
+          "_meta": {
             "active": true,
             "author": "-1",
             "createdAt": 1484226104822,
@@ -1163,7 +1163,7 @@ Only documents in the persistent data storage layer can be retrieved.
           "total": 2
         },
         "_source": {
-          "_kuzzle_info": {
+          "_meta": {
             "active": true,
             "author": "-1",
             "createdAt": 1484226104822,
