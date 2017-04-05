@@ -1438,7 +1438,7 @@ You may set the `retryOnConflict` optional argument with a positive integer, ask
   collection: "<collection>",
   controller: "document",
   action: "validate",
-  metadata: {},
+  volatile: {},
   result: {
     errorMessages: {},              // There is no error messages
     valid: true                     // The document complies with validation specifications

@@ -146,7 +146,7 @@ Available options:
 
 * the ``headers`` property is inherited from the provided ``Collection`` object and can be overridden
 * updating the ``volatile`` property takes effect after ``renew`` is called
-* by default, the global Kuzzle ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``metadata`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
+* by default, the global Kuzzle ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``volatile`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
 
 ## count
 

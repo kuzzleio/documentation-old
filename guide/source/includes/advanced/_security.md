@@ -53,7 +53,7 @@ Sample response:
   "action": "login",
   "state": "done",
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
-  "metadata": {},
+  "volatile": {},
   "result": {
     "_id": "my_username",
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJteV91c2VybmFtZSIsIm5hbWUiOiJKb2huIERvZSIsImFkbWluIjp0cnVlfQ.BefoyfAKzwXuGhbYe0iPeG0v9F4HmikvahqwqzQr3pE"
@@ -107,7 +107,7 @@ The authentication flow is a 2-step flow:
   "action": "login",
   "controller": "auth",
   "error": null,
-  "metadata": {},
+  "volatile": {},
   "requestId": "fd4246f9-717c-4503-b50b-3a5bf0f142b5",
   "result": {
     "headers": {

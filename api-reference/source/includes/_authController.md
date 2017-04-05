@@ -233,7 +233,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
   "controller": "auth",
   "action": "login",
   "requestId": "<unique request identifier>",
-  "metadata": {},
+  "volatile": {},
   "result": {
     "_id": "<userId>",
     "jwt": "<JWT encrypted token>"
@@ -342,7 +342,7 @@ The **_logout** action doesn't take strategy.
   "error": null,                      // Assuming everything went well
   "action": "updateSelf",
   "controller": "auth",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
     "_id": "<userId>",

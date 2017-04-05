@@ -70,7 +70,7 @@ Available options:
 | ``connect`` | string | Manually or automatically connect to the Kuzzle instance | ``auto`` |
 | ``defaultIndex`` | string | Set the default index to use | |
 | ``headers`` | JSON object | Common headers for all sent documents | |
-| ``volatile`` | JSON object | Common metadata, will be sent to all future requests | |
+| ``volatile`` | JSON object | Common volatile data, will be sent to all future requests | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
 | ``port`` | integer | Kuzzle network port | 7512 |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | ``120000`` |
@@ -100,7 +100,7 @@ If the `connect` option is set to `manual`, the callback will be called after th
 | ``headers`` | JSON object | Common headers for all sent documents. |
 | ``host`` | string | Target Kuzzle host name/address |
 | ``jwtToken`` | string | Token used in requests for authentication. |
-| ``volatile`` | JSON object | Common metadata, will be sent to all future requests |
+| ``volatile`` | JSON object | Common volatile data, will be sent to all future requests |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode |
 | ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue |
 | ``port`` | integer | Kuzzle network port |
@@ -115,7 +115,7 @@ If the `connect` option is set to `manual`, the callback will be called after th
 
 * if ``connect`` is set to ``manual``, the ``connect`` method will have to be called manually
 * the kuzzle instance will automatically queue all requests, and play them automatically once a first connection is established, regardless of the ``connect`` or offline mode option values.
-* multiple methods allow passing specific ``volatile`` data. These ``volatile`` data will be merged with the global Kuzzle object ``volatile`` when sending the request, with the request specific ``metadata`` taking priority over the global ones.
+* multiple methods allow passing specific ``volatile`` data. These ``volatile`` data will be merged with the global Kuzzle object ``volatile`` when sending the request, with the request specific ``volatile`` taking priority over the global ones.
 * the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle API](/api-reference/#query-syntax) format
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are discarded to make room for new requests

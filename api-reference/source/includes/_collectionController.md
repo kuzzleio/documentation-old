@@ -467,7 +467,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
   "error": null,                      // Assuming everything went well
   "controller": "collection",
   "action": "searchSpecifications",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
     "_shards": {
@@ -739,7 +739,7 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
       "valid": false // the specifications are not valid
     }
   },
-  "metadata": {},
+  "volatile": {},
   "result": {
     "myindex": {
       "mycollection": {

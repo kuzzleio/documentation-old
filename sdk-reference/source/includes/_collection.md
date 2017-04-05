@@ -1388,7 +1388,7 @@ kuzzle
   .collection('collection', 'index')
   .setHeaders({
     someContent: 'someValue',
-    volatile: { someMetaData: ['with', 'some', 'values']}
+    volatile: { someVolatileData: ['with', 'some', 'values']}
   }, true);
 ```
 
@@ -1396,7 +1396,7 @@ kuzzle
 JSONObject headers = new JSONObject()
   .put("someContent", "someValue")
   .put("volatile", new JSONObject()
-    .put("someMetaData", new JSONArray()
+    .put("someVolatileData", new JSONArray()
       .put("with")
       .put("some")
       .put("values")

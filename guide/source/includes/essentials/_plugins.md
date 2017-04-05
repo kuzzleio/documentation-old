@@ -104,7 +104,7 @@ Which means you can call the `http://localhost:7512/_plugin/kuzzle-plugin-hellow
   "action": "sayHello",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "Hello world"
 }
 ```

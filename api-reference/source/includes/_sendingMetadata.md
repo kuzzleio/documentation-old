@@ -1,20 +1,17 @@
 ---
-title: Sending metadata
+title: Sending volatile data
 ---
 
 # Sending metadata
 
-In every request you send to Kuzzle, you can include a `metadata` object.
+In every request you send to Kuzzle, you can include a `volatile` object.
 This object content will be ignored by Kuzzle,
 but it will also be forwarded back in `responses` and in `notifications` (see below).
 
-You can also include metadata information to a subscription request.
-These metadata information will be forwarded to other subscribers at the moment of the subscription,
+You can also include volatile information to a subscription request.
+These volatile information will be forwarded to other subscribers at the moment of the subscription,
 and when you leave the room. Please note that when leaving the room,
-the forwarded metadata are those provided in the **subscription** request.
-
-This feature is especially useful to include volatile information about the performed request.
-
+the forwarded volatile data are those provided in the **subscription** request.
 
 ## Updating a document
 
@@ -34,7 +31,7 @@ This feature is especially useful to include volatile information about the perf
   "body": {
     "somefield": "now has a new value"
   },
-  "metadata": {
+  "volatile": {
     "modifiedBy": "awesome me",
     "reason": "it needed to be modified"
   }
@@ -57,7 +54,7 @@ This feature is especially useful to include volatile information about the perf
   "action": "update",
   "state": "pending",
   "scope": "<in|out>",
-  "metadata": {
+  "volatile": {
     "modifiedBy": "awesome me",
     "reason": "it needed to be modified"
   },
@@ -90,7 +87,7 @@ This feature is especially useful to include volatile information about the perf
   "body": {
     // subscription filters
   },
-  "metadata": {
+  "volatile": {
     "hello": "my name is Bob"
   }
 }
@@ -112,7 +109,7 @@ This feature is especially useful to include volatile information about the perf
   "action": "unsubscribe",
   "state": "done",
   "scope": "out",
-  "metadata": {
+  "volatile": {
     "hello": "my name is Bob"
   },
   "requestId": "<unique request identifier>",

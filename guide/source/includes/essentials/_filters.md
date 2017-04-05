@@ -80,7 +80,7 @@ Now, imagine this code is executed on Tom's client: when Ann creates the new TO-
   "action": "create",
   "state": "done",
   "scope": "in",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
     "_id": "fswdfsrt43e6t2q3rfw",

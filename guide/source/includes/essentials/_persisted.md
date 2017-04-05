@@ -32,7 +32,7 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
   "action": "create",
   "collection": "mycollection",
   "index": "myindex",
-  "metadata": null,
+  "volatile": null,
   "headers": {},
   "result": {
     "_index": "myindex",
@@ -74,7 +74,7 @@ One more thing you may notice is that `myindex` and `mycollection` are created o
   "action": "list",
   "collection": null,
   "index": "myindex",
-  "metadata": null,
+  "volatile": null,
   "headers": {},
   "result": {
     "collections": [
@@ -110,7 +110,7 @@ Which gives us the response...
   "action": "update",
   "collection": "mycollection",
   "index": "myindex",
-  "metadata": null,
+  "volatile": null,
   "headers": {},
   "result": {
     "_index": "myindex",
@@ -146,7 +146,7 @@ Say we want to [**find**](/api-reference/?http#search) all the documents within 
   "action": "search",
   "collection": "mycollection",
   "index": "myindex",
-  "metadata": null,
+  "volatile": null,
   "headers": {},
   "result": {
     "took": 69,
@@ -238,7 +238,7 @@ Which gives, as a result, the following response:
   "action": "search",
   "collection": "mycollection",
   "index": "myindex",
-  "metadata": null,
+  "volatile": null,
   "headers": {},
   "result": {
     "took": 6,
@@ -273,9 +273,9 @@ Which gives, as a result, the following response:
 }
 ```
 
-### Document metadata
+### Document volatile
 
-When you create or update a document, Kuzzle adds metadatas. These metadatas describe the life-cycle of the document.
+When you create or update a document, Kuzzle adds volatiles. These volatiles describe the life-cycle of the document.
 They are available in the `_kuzzle_info` part of a document:
 
 ```json
@@ -331,7 +331,7 @@ Which gives, as a result, the following response:
   "action": "search",
   "collection": "mycollection",
   "index": "myindex",
-  "metadata": null,
+  "volatile": null,
   "headers": {},
   "result": {
     "took": 6,
@@ -396,7 +396,7 @@ Which gives us the response...
   "controller": "collection", 
   "error": null, 
   "index": "myindex", 
-  "metadata": null, 
+  "volatile": null, 
   "requestId": "8acca50e-592d-4f0d-962c-31719b11e171", 
   "result": {
     "acknowledged": true
