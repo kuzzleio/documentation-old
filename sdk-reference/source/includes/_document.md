@@ -141,7 +141,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
@@ -190,7 +190,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 ### Return value
@@ -328,7 +328,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
@@ -448,7 +448,7 @@ document
   });
 
 document
-  .subscribe({subscribeToSelf: true, metadata: { myId: 'someId'}}, function (error, notification) {
+  .subscribe({subscribeToSelf: true, volatile: { myId: 'someId'}}, function (error, notification) {
     // called each time a change occurs on this document
   })
   .onDone(function (error, roomObject) {

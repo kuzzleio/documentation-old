@@ -252,7 +252,7 @@ catch (ErrorException $e) {
   "action": "createCollection",
   "collection": "newly created collection",
   "index": "index",
-  "metadata": {},
+  "volatile": {},
   "state": "done",
   "scope": null,
   "result": {}
@@ -370,7 +370,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 | ``ifExist`` | string | If the same document already exists: resolves to an error if sets to ``error``. Replaces the existing document if set to ``replace`` | ``false`` |
@@ -522,7 +522,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
@@ -853,8 +853,8 @@ kuzzle
 
 ```java
 JSONObject message = new JSONObject().put("some", "content");
-JSONObject metadata = new JSONObject().put("metadata", "are volatile information");
-Options opts = new Options().setMetadata(metadata);
+JSONObject volatile = new JSONObject().put("volatile", "are volatile information");
+Options opts = new Options().setVolatile(volatile);
 
 kuzzle
   .collection("collection", "index")
@@ -898,7 +898,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 ### Return value
@@ -985,7 +985,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
@@ -1388,14 +1388,14 @@ kuzzle
   .collection('collection', 'index')
   .setHeaders({
     someContent: 'someValue',
-    metadata: { someMetaData: ['with', 'some', 'values']}
+    volatile: { someMetaData: ['with', 'some', 'values']}
   }, true);
 ```
 
 ```java
 JSONObject headers = new JSONObject()
   .put("someContent", "someValue")
-  .put("metadata", new JSONObject()
+  .put("volatile", new JSONObject()
     .put("someMetaData", new JSONArray()
       .put("with")
       .put("some")
@@ -1538,7 +1538,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``scope`` | string | Filter document notifications depending on their scope status. You may receive entering documents (scope: ``in``), leaving documents (scope: ``out``), all documents changes (scope: ``all``) or filter these notifications completely (scope: ``none``). This filter does not affect pub/sub messages or user events. | ``all`` |
 | ``state`` | string | Filter document notifications depending on the state of the modifying request. You may receive real-time notifications when a document is about to be changed (state: ``pending``), or be notified when the change has been fully written in the database (state: ``done``), or both (state: ``all``). This filter does not affect pub/sub messages or user events. | ``done`` |
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | ``true`` |
@@ -1619,7 +1619,7 @@ catch (ErrorException $e) {
   "action": "truncateCollection",
   "collection": "name of the truncated collection",
   "index": "name of the index containing the truncated collection",
-  "metadata": {},
+  "volatile": {},
   "state": "done",
   "result": { "acknowledged": true }
 }
@@ -1727,7 +1727,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 | `retryOnConflict` | int | Number of retries to attempt before rejecting this update because of a cluster sync conflict | `0` |
