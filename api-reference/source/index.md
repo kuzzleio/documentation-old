@@ -14,7 +14,7 @@ includes:
   - connectToKuzzle
   - querySyntax
   - kuzzleResponse
-  - sendingMetadata
+  - sendingVolatileData
   - notifications
   - authController
   - bulkController

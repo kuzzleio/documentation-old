@@ -2,7 +2,7 @@
 title: Sending volatile data
 ---
 
-# Sending metadata
+# Sending volatile data
 
 In every request you send to Kuzzle, you can include a `volatile` object.
 This object content will be ignored by Kuzzle,
