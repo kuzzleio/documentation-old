@@ -1367,9 +1367,9 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
+| ``from`` | number | Provide the starting offset of the request (used to paginate results) | ``0`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``scroll`` | string | Start a scroll session, with a time to live equals to this parameter's value following the [Elastisearch time format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/common-options.html#time-units) | ``undefined`` |
-| ``from`` | number | Provide the starting offset of the request (used to paginate results) | ``0`` |
 | ``size`` | number | Provide the maximum number of results of the request (used to paginate results) | ``10`` |
 
 <aside class="notice">

@@ -1597,7 +1597,9 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
+| ``from`` | number | Starting offset | ``0`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``size`` | number |  Number of hits to return | ``20`` |
 
 ### Callback response
 
