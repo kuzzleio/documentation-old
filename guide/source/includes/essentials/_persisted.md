@@ -273,9 +273,9 @@ Which gives, as a result, the following response:
 }
 ```
 
-### Document volatile
+### Document metadata
 
-When you create or update a document, Kuzzle adds volatiles. These volatiles describe the life-cycle of the document.
+When you create or update a document, Kuzzle adds metadata. These metadata describe the life-cycle of the document.
 They are available in the `_meta` part of a document:
 
 ```json
