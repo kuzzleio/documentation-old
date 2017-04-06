@@ -77,7 +77,7 @@ Register a new authentication strategy to Kuzzle.
 |------|------|----------------------------------|
 | `Strategy` | `function` | A [Passport strategy](https://github.com/jaredhanson/passport/wiki/Strategies) object constructor |
 | `name` | `string` | Strategy name identifier ([see `auth:login`](/api-reference/#login)) |
-| `context` | `object` | Context in which the `verify` callback will be executed |
+| `context` | `object` | [Context](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this) in which the `verify` callback will be executed |
 | `verify` | `function` | Callback function invoked to verify an authentication request |
 | `options` | `object` | (Optional) Strategy specific options parameters |
 
