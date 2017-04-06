@@ -768,11 +768,7 @@ Writable
 
 | Name | Type | default | Description                      |
 |------|------|---------|----------------------------------|
-| `context` | `RequestContext` | [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) object | Request connection context |
-| `error` | `KuzzleError` | `null` | Request error, if any |
 | `id` | `string` | Auto-generated UUID | Request unique identifier |
-| `input` | `RequestInput` | [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object | Request's parameters |
-| `result` | *(varies)* | `null` | Request result, if any |
 | `status` | `integer` | `102` | HTTP status code |
 
 Any undefined attribute from the list above will be set to null.
@@ -783,7 +779,11 @@ Getters
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
+| `context` | `RequestContext` | [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) object | Request connection context |
+| `error` | `KuzzleError` | `null` | Request error, if any |
+| `input` | `RequestInput` | [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object | Request's parameters |
 | `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](/api-reference/?others#kuzzle-response) |
+| `result` | *(varies)* | `null` | Request result, if any |
 
 
 #### `response.getHeader`
@@ -795,22 +795,6 @@ Returns the value registered for the response header `name`
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `name` | `string` | Header name |
-
-#### `response.getHeaders()`
-
-Returns an object describing all currently registered headers on that response.
-
-```
-if (request.context.protocol === 'http') {
-  request.response.setHeader('Content-Type', 'text/plain');
-
-  /*
-    Prints:
-    { "Content-Type": "text/plain" }
-   */
-  console.log(request.response.getHeaders());
-}
-```
 
 #### `response.removeHeader`
 

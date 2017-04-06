@@ -55,14 +55,26 @@ $dataCollection = new Collection($kuzzle, 'my-collection', 'my-index');
 let dataMapping = kuzzle
   .collection('collection', 'index')
   .collectionMapping({someField: {type: 'string', index: 'analyzed'}})
-  .apply();
+  .apply(function (error, result) {
+    // called once the mapping action has been completed
+  });
 ```
 
 ```java
 CollectionMapping dataMapping = kuzzle
   .collection("collection", "index")
   .collectionMapping(new JSONObject().put("someFiled", new JSONObject().put("type", "string").put("index", "analyzed"))
-  .apply();
+  .apply(new ResponseListener<CollectionMapping>() {
+     @Override
+     public void onSuccess(CollectionMapping object) {
+       // called once the mapping action has been completed
+     }
+
+     @Override
+     public void onError(JSONObject error) {
+       // Handle error
+     }
+  });
 ```
 
 ```php
@@ -1367,9 +1379,9 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
+| ``from`` | number | Provide the starting offset of the request (used to paginate results) | ``0`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``scroll`` | string | Start a scroll session, with a time to live equals to this parameter's value following the [Elastisearch time format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/common-options.html#time-units) | ``undefined`` |
-| ``from`` | number | Provide the starting offset of the request (used to paginate results) | ``0`` |
 | ``size`` | number | Provide the maximum number of results of the request (used to paginate results) | ``10`` |
 
 <aside class="notice">
