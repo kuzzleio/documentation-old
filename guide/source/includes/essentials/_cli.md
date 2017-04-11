@@ -8,7 +8,7 @@ Kuzzle ships with a [Command line interface](https://en.wikipedia.org/wiki/Comma
 * reset Kuzzle internal data _(use with caution !)_.
 
 <aside class="warning">
-If you are running Kuzzle in a Docker container, you will have to [enter the Kuzzle container](https://docs.docker.com/engine/reference/commandline/exec/) to run these commands.
+If you are running Kuzzle in a Docker container, you will have to <a href="https://docs.docker.com/engine/reference/commandline/exec/">enter the Kuzzle container</a> to run these commands.
 </aside>
 
 ```bash

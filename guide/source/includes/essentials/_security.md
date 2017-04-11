@@ -20,7 +20,7 @@ If the "local" strategy (i.e. storing the users' credentials in the local databa
 If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests](/api-reference/#authorization-header).
 
 <aside class="notice">
-More information on the login process [here](/api-reference/#login).
+More information on the login process <a href="/api-reference/#login">here</a>.
 </aside>
 
 ### Permissions

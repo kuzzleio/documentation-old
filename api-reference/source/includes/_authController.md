@@ -279,23 +279,6 @@ Revokes the token validity & unsubscribe from registered rooms.
 
 The **_logout** action doesn't take strategy.
 
-<aside class="warning">
-    <strong>The auth/logout action will be removed on the next RC1 release of Kuzzle.</strong>
-    <br>
-    <br>
-    Kuzzle will implement two authentication modes soon:
-  <ol>
-    <li>
-      A default stateless mode, in which the expiration will solely rely on the JWT ttl.
-      The logout action won't be available in this mode.
-    </li>
-    <li>
-      A full Session mode, handled by a plugin, in which the logout route will be updated (@tbd).
-    </li>
-  </ol>
-</aside>
-
-
 ## updateSelf
 
 <section class="http"></section>
