@@ -22,7 +22,7 @@
   "scope": "<in|out>",
 
   // Arbitrary data repeated from the initial request (optional).
-  "metadata": { foo: "bar" },
+  "volatile": { foo: "bar" },
 
   // Your query unique identifier.
   "requestId": "<unique request identifier>",

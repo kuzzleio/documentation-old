@@ -39,7 +39,7 @@ The `input` field contains all the parameters that express the request from the 
 RequestInput {
     // members
     args,           // {Object}     Parametric arguments. i.e. for REST, taken from the query string
-    metadata,       // {Object}
+    volatile,       // {Object}
     body,           // {Object}     Content of the resource for REST like routes, main parameters for others
     controller,     // {string}
     action,         // {string}

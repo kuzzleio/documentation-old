@@ -19,8 +19,8 @@
   "body": {
     "roomId": "unique room ID"
   },
-  "metadata": {
-    // query metadata
+  "volatile": {
+    // query volatile data
   }
 }
 ```
@@ -73,8 +73,8 @@ The expected parameter is the roomId returned by Kuzzle during the subscription.
   "body": {
     "roomId": "<the room identifier to join>"
   },
-  "metadata": {
-    // query metadata
+  "volatile": {
+    // query volatile data
   },
   "scope": "<all|in|out|none>",
   "state": "<all|pending|done>",
@@ -96,7 +96,7 @@ The expected parameter is the roomId returned by Kuzzle during the subscription.
   "collection": "<collection>",
   "controller": "realtime",
   "action": "subscribe",
-  "metadata": {},                     // subscription metadata
+  "volatile": {},                     // subscription volatile data
   "requestId": "<unique request identifier>",
   "result": {
     "roomId": "<unique Kuzzle room identifier>"
@@ -139,7 +139,7 @@ The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to s
   "collection": "<collection>",
   "controller": "realtime",
   "action": "publish",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
     "<index>": {
@@ -210,7 +210,7 @@ Lists all subscriptions on all indexes and all collections.
   "collection": "<collection>",
   "controller": "realtime",
   "action": "publish",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {}
 }
@@ -245,8 +245,8 @@ who have subscribed to a subscription for which the filters match the message co
   "body": {
     // subscription filters
   },
-  "metadata": {
-    // query metadata
+  "volatile": {
+    // query volatile data
   },
 
   /*
@@ -308,7 +308,7 @@ who have subscribed to a subscription for which the filters match the message co
   "collection": "<collection>",
   "controller": "realtime",
   "action": "subscribe",
-  "metadata": {},                     // subscription metadata
+  "volatile": {},                     // subscription volatile data
   "requestId": "<unique request identifier>",
   "result": {
     "roomId": "<unique Kuzzle room identifier>",
@@ -399,7 +399,7 @@ who have subscribed to a subscription for which the filters match the message co
         "controller": "realtime",
         "action": "subscribe",
         "state": "done",
-        "metadata": {},
+        "volatile": {},
         "result": {
           "roomId": "632682a9eac95cfb95e3a697b29b7739",
           "requestId": "mySubscription",
@@ -472,8 +472,8 @@ How subscription works:
   "body": {
     "roomId": "<unique room ID>"
   },
-  "metadata": {
-    // query metadata
+  "volatile": {
+    // query volatile data
   }
 }
 ```
@@ -492,7 +492,7 @@ How subscription works:
   "collection": "<data collection>",
   "controller": "realtime",
   "action": "unsubscribe",
-  "metadata": {},                       // subscription metadata
+  "volatile": {},                       // subscription volatile data
   "requestId": "<unique request identifier>",
   "result": {
     "roomId": "<unique Kuzzle room identifier>"
@@ -551,7 +551,7 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
   collection: "<collection>",
   controller: "realtime",
   action: "validate",
-  metadata: {},
+  volatile: {},
   result: {
     errorMessages: {},              // There is no error messages
     valid: true                     // The document complies with validation specifications

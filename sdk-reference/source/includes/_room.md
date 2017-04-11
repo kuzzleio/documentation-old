@@ -27,7 +27,7 @@ You may subscribe multiple times to the same room, with identical or different s
   "action": "name of the action that generated the notification",
   "collection": "collection name",
   "index": "index name",
-  "metadata": {},
+  "volatile": {},
   "state": "done",
   "scope": "in",
   "result": {
@@ -50,7 +50,7 @@ You may subscribe multiple times to the same room, with identical or different s
   "action": "on",
   "protocol": "protocol used by the notifying user",
   "timestamp": 1453193069592,
-  "metadata": {
+  "volatile": {
     "optional": "user informations"
   },
   "result": {
@@ -78,7 +78,7 @@ On the right panel you can see a document and a user notification examples.
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
 | `action` | string | Indicates if the user enters or leaves the subscribed room | `on`, `off` |
-| `metadata` | JSON object | If provided during subscription, contains application specific informations | |
+| `volatile` | JSON object | If provided during subscription, contains application specific informations | |
 | `result.count` | integer | Updated number of users subscribing to this room | |
 
 ## Constructors
@@ -124,7 +124,7 @@ Available options:
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
+| ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``scope`` | string | Filter document notifications depending on their scope status. You may receive entering documents (scope: ``in``), leaving documents (scope: ``out``), all documents changes (scope: ``all``) or filter these notifications completely (scope: ``none``). This filter does not affect pub/sub messages or user events. | ``all`` |
 | ``state`` | string | Filter document notifications depending on the state of the modifying request. You may receive real-time notifications when a document is about to be changed (state: ``pending``), or be notified when the change has been fully written in the database (state: ``done``), or both (state: ``all``). This filter does not affect pub/sub messages or user events. | ``done`` |
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | ``true`` |
@@ -138,15 +138,15 @@ Available options:
 | ``collection`` | string | The subscribed data collection | get |
 | ``filters`` | JSON object | The current set of filters of this room | get/set |
 | ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
-| ``metadata`` | JSON Object | Additional information passed to notifications to other users | get/set |
+| ``volatile`` | JSON Object | Additional information passed to notifications to other users | get/set |
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | get/set |
 | ``roomId`` | string | Unique room identifier | get |
 
 **Notes:**
 
 * the ``headers`` property is inherited from the provided ``Collection`` object and can be overridden
-* updating the ``metadata`` property takes effect after ``renew`` is called
-* by default, the global Kuzzle ``metadata`` properties are sent along with the subscription request. If a ``metadata`` option is provided during subscription, it will be merged with the global ``metadata`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
+* updating the ``volatile`` property takes effect after ``renew`` is called
+* by default, the global Kuzzle ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``volatile`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
 
 ## count
 

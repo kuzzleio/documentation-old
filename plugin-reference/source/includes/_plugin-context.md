@@ -748,7 +748,7 @@ let derivedRequest = new context.constructors.Request(request, {
   body: {
     document: 'content'
   },
-  metadata: {
+  volatile: {
     some: 'volatile data'
   }
 });

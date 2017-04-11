@@ -107,7 +107,7 @@ Kuzzle {
     "collection": "collection",
     "controller": "document",
     "created": true,
-    "metadata": {},
+    "volatile": {},
     "requestId":"5cb4d930-62f4-4393-afc1-9a71e284a214"
   },
   "status": 200

@@ -68,7 +68,7 @@
   "error": null,                      // Assuming everything went well
   "controller": "security",
   "action": "createFirstAdmin",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
     "_id": "<user id, either provided or auto-generated>",
@@ -190,7 +190,7 @@ Other mandatory additional information are needed depending on the authenticatio
   "requestId": "<unique request identifier>",
   "controller": "security",
   "action": "createOrReplaceProfile",
-  "metadata": {}
+  "volatile": {}
 }
 ```
 
@@ -269,7 +269,7 @@ Creates or replaces (if `_id` matches an existing one) a profile with a list of 
   "requestId": "<unique request identifier>",
   "controller": "security",
   "action": "createOrReplaceRole",
-  "metadata": {},
+  "volatile": {},
 }
 ```
 
@@ -375,7 +375,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
   "requestId": "<unique request identifier>",
   "controller": "security",
   "action": "createProfile",
-  "metadata": {},
+  "volatile": {},
 }
 ```
 
@@ -456,7 +456,7 @@ Creates a profile with a new list of roles.
   "requestId": "<unique request identifier>",
   "controller": "security",
   "action": "createRole",
-  "metadata": {},
+  "volatile": {},
 }
 ```
 
@@ -541,7 +541,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
   "collection": "users",
   "controller": "security",
   "action": "createUser",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
     "_id": "<user id, either provided or auto-generated>",
@@ -634,7 +634,7 @@ Other mandatory additional information are needed depending on the authenticatio
   "collection": "users",
   "controller": "security",
   "action": "createRestrictedUser",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
     "_id": "<userId>",
@@ -972,7 +972,7 @@ Given a `profile id`, retrieves the corresponding rights.
   "collection": "roles"
   "action": "getRole",
   "controller": "security",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>"
 }
 ```
@@ -1438,7 +1438,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
   "controller": "security",
   "error": null,
   "index": "%kuzzle",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
      "_shards": {
@@ -1774,7 +1774,7 @@ Optional arguments:
   "controller": "security",
   "error": null,
   "index": ""%kuzzle",
-  "metadata": {},
+  "volatile": {},
   "requestId": "<unique request identifier>",
   "result":
   {

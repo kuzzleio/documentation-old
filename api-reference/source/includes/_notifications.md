@@ -156,7 +156,7 @@ mqtt/myId {
   "collection": "collection",
   "controller": "controller",
   "action": "action",
-  "metadata": {},
+  "volatile": {},
   "requestId": "60621753-2da2-441a-b30b-546127f26cd1",
   "result": {
     "roomId": "632682a9eac95cfb95e3a697b29b7739",
@@ -187,7 +187,7 @@ node_modules/.bin/mqtt publish -h rabbit -t kuzzle -m '{
   "action": "action",
   "state": "done",
   "scope": "in",
-  "metadata": {},
+  "volatile": {},
   "requestId": "10bca195-f375-4b72-817a-04fcb22b3681",
   "result": {
     "_source": {"foo":"bar"}
@@ -234,8 +234,8 @@ You can receive the following types of notifications:
   "action": "create",
   "state": "done",                      // The document has been fully created
   "scope": "in",                        // The document entered your room scope
-  "metadata": {
-    // metadata embedded in the request
+  "volatile": {
+    // volatile embedded in the request
   },
   "requestId": "<unique request identifier>",
   "result": {                           // The created document
@@ -260,8 +260,8 @@ You can receive the following types of notifications:
   "action": "update",
   "state": "done",                      // The document has been fully updated
   "scope": "in",                        // The document entered your room scope
-  "metadata": {
-    // metadata embedded in the request
+  "volatile": {
+    // volatile embedded in the request
   },
   "requestId": "<unique request identifier>",
   "result": {                           // The updated document
@@ -286,8 +286,8 @@ You can receive the following types of notifications:
   "action": "update",
   "state": "done",                     // The document has been fully updated
   "scope": "out",                      // The document left your room scope
-  "metadata": {
-    // metadata embedded in the request
+  "volatile": {
+    // volatile embedded in the request
   },
   "requestId": "<unique request identifier>",
   "result": {                          // The updated document
@@ -312,8 +312,8 @@ You can receive the following types of notifications:
   "action": "delete",
   "state": "done",                     // The document has been fully deleted
   "scope": "out",                      // The document left your room scope
-  "metadata": {
-    // metadata embedded in the request
+  "volatile": {
+    // volatile embedded in the request
   },
   "requestId": "<unique request identifier>",
   "result": {                          // The updated document
@@ -337,7 +337,7 @@ You can receive the following types of notifications:
   "controller": "document",
   "action": "create",
   "state": "pending",                   // Indicates that the document will be created
-  "metadata": {},
+  "volatile": {},
   "result": {}
 }
 ```
@@ -356,7 +356,7 @@ You can receive the following types of notifications:
   "controller": "document",
   "action": "delete",
   "state": "pending",                   // Indicates that the document will be deleted
-  "metadata": {},
+  "volatile": {},
   "result": {}
 }
 ```
@@ -374,8 +374,8 @@ You can receive the following types of notifications:
   "collection": "<collection>",
   "controller": "realtime",
   "action": "subscribe",
-  "metadata": {
-    // metadata embedded in the request
+  "volatile": {
+    // volatile embedded in the request
   },
   "requestId": "<unique request identifier>",
   "result": {
@@ -398,8 +398,8 @@ You can receive the following types of notifications:
   "collection": "<collection>",
   "controller": "realtime",
   "action": "unsubscribe",
-  "metadata": {
-    // metadata embedded in the request
+  "volatile": {
+    // volatile embedded in the request
   },
   "requestId": "<unique request identifier>",
   "result": {

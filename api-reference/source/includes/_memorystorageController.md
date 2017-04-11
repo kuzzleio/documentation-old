@@ -59,7 +59,7 @@ The in-memory database accessible by this controller is separated from the space
   "action": "append",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <new value length after the append operation>
 }
 ```
@@ -102,7 +102,7 @@ Appends a value to a key. If the key does not exist, it is created.
   "action": "bitcount",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <count>
 }
 ```
@@ -158,7 +158,7 @@ The `start` and `end` parameters are optional.
   "action": "bitop",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <new destination key length>
 }
 ```
@@ -202,7 +202,7 @@ Performs a bitwise operation between multiple keys (containing string values) an
   "action": "bitpos",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <bit 1st position (integer)>
 }
 ```
@@ -243,7 +243,7 @@ Returns the position of the first bit set to 1 or 0 in a string, or in a substri
   "action": "dbsize",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of keys>
 }
 ```
@@ -284,7 +284,7 @@ Returns the number of keys in the application database.
   "action": "decr",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated key value>
 }
 ```
@@ -337,7 +337,7 @@ Decrements the number stored at `key` by 1. If the key does not exist, it is set
   "action": "decrby",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated key value>
 }
 ```
@@ -389,7 +389,7 @@ Decrements the number stored at `key` by a provided integer value. If the key do
   "action": "del",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of deleted keys>
 }
 ```
@@ -430,7 +430,7 @@ Deletes a list of keys.
   "action": "exists",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of existing keys>
 }
 ```
@@ -483,7 +483,7 @@ Checks if the specified keys exist in the database.
   "action": "expire",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <0|1 - success status>
 }
 ```
@@ -536,7 +536,7 @@ Sets a timeout (in seconds) on a key.  After the timeout has expired, the key wi
   "action": "expireat",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <0|1 - success status>
 }
 ```
@@ -577,7 +577,7 @@ The `timestamp` parameter accepts an [Epoch time](https://en.wikipedia.org/wiki/
   "action": "flushdb",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": 1
 }
 ```
@@ -654,7 +654,7 @@ Deletes all the keys of the database dedicated to client applications (the reser
   "action": "geoadd",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of points added>
 }
 ```
@@ -698,7 +698,7 @@ Adds geospatial points to the specified key.
   "action": "geodist",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <calculated distance>
 }
 ```
@@ -741,7 +741,7 @@ The returned distance is expressed in meters by default.
   "action": "geohash",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": ["geohash1", "geohash2", "..."]
 }
 ```
@@ -784,7 +784,7 @@ Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provide
   "action": "geopos",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     [<longitude of member1>, <latitude of member1>],
     [<longitude of member2>, <latitude of member2>],
@@ -835,7 +835,7 @@ Returns the positions (longitude, latitude) of the provided key's members (see [
   "action": "georadius",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "member1",
     "member2",
@@ -890,7 +890,7 @@ The `result` format may change if `options` parameters are provided: instead of 
   "action": "georadiusbymember",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "member1",
     "member2",
@@ -941,7 +941,7 @@ The `result` format may change if `options` parameters are provided: instead of 
   "action": "get",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "value"
 }
 ```
@@ -983,7 +983,7 @@ Returns the value of a key, or `null` if the key doesn't exist.
   "action": "getbit",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -1026,7 +1026,7 @@ Returns the bit value at `offset`, in the string value stored in a key.
   "action": "getrange",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "<value substring>"
 }
 ```
@@ -1079,7 +1079,7 @@ Returns a substring of a key's value.
   "action": "getset",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "key's previous value"
 }
 ```
@@ -1132,7 +1132,7 @@ Sets a new value for a key and returns the previous stored value.
   "action": "hdel",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of removed fields>
 }
 ```
@@ -1174,7 +1174,7 @@ Removes fields from a hash.
   "action": "hexists",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -1216,7 +1216,7 @@ Checks if a field exists in a hash.
   "action": "hget",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "field value"
 }
 ```
@@ -1257,7 +1257,7 @@ Returns the field's value of a hash.
   "action": "hgetall",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": {
     "field1": "value",
     "field2": "value",
@@ -1316,7 +1316,7 @@ Returns all fields and values of a hash.
   "action": "hincrby",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <new field value>
 }
 ```
@@ -1371,7 +1371,7 @@ Increments the number stored in a hash field by the provided integer value.
   "action": "hincrbyfloat",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <new field value>
 }
 ```
@@ -1412,7 +1412,7 @@ Increments the number stored in a hash field by the provided float value.
   "action": "hkeys",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "field1",
     "field2",
@@ -1457,7 +1457,7 @@ Returns all field names contained in a hash.
   "action": "hlen",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of fields contained in the hash>
 }
 ```
@@ -1499,7 +1499,7 @@ Returns the number of fields contained in a hash.
   "action": "hmget",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "field1's value",
     "field2's value",
@@ -1564,7 +1564,7 @@ Returns the values of the specified hash's fields.
   "action": "hmset",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -1610,7 +1610,7 @@ Sets multiple fields at once in a hash.
   "action": "hscan",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     <new cursor position>,
     [
@@ -1675,7 +1675,7 @@ Identical to [scan](#scan), except that `hscan` iterates the fields contained in
   "action": "hset",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -1730,7 +1730,7 @@ Sets a field and its value in a hash. If the key does not exist, a new key holdi
   "action": "hsetnx",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -1772,7 +1772,7 @@ Sets a field and its value in a hash, only if the field does not already exist.
   "action": "hstrlen",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <value string length>
 }
 ```
@@ -1813,7 +1813,7 @@ Returns the string length of a field's value in a hash.
   "action": "hvals",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "<value of field1>",
     "<value of field2>",
@@ -1858,7 +1858,7 @@ Returns all values contained in a hash.
   "action": "incr",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated key value>
 }
 ```
@@ -1911,7 +1911,7 @@ Increments the number stored at `key` by 1. If the key does not exist, it is set
   "action": "incrby",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated key value>
 }
 ```
@@ -1964,7 +1964,7 @@ Increments the number stored at `key` by the provided integer value. If the key 
   "action": "incrbyfloat",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated key value>
 }
 ```
@@ -2005,7 +2005,7 @@ Increments the number stored at `key` by the provided float value. If the key do
   "action": "keys",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "key1",
     "key2",
@@ -2051,7 +2051,7 @@ Returns all keys matching the provided pattern.
   "action": "lindex",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "<value>"
 }
 ```
@@ -2108,7 +2108,7 @@ Returns the element at the provided index in a list.
   "action": "linsert",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated number of items in the list>
 }
 ```
@@ -2149,7 +2149,7 @@ Inserts a value in a list, either before or after the reference pivot value.
   "action": "llen",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <length of the list>
 }
 ```
@@ -2190,7 +2190,7 @@ Returns the length of a list.
   "action": "lpop",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "<removed value>"
 }
 ```
@@ -2243,7 +2243,7 @@ Removes and returns the first element of a list.
   "action": "lpush",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated number of elements in the list>
 }
 ```
@@ -2296,7 +2296,7 @@ Prepends the specified values to a list. If the key does not exist, it is create
   "action": "lpushx",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated number of elements in the list>
 }
 ```
@@ -2339,7 +2339,7 @@ Prepends the specified value to a list, only if the key already exists and if it
   "action": "lrange",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "value1",
     "value2",
@@ -2398,7 +2398,7 @@ Returns the list elements between the `start` and `stop` positions.
   "action": "lrem",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of removed elements>
 }
 ```
@@ -2453,7 +2453,7 @@ Removes the first `count` occurences of elements equal to `value` from a list.
   "action": "lset",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -2508,7 +2508,7 @@ Sets the list element at `index` with the provided value.
   "action": "ltrim",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -2550,7 +2550,7 @@ Trims an existing list so that it will contain only the specified range of eleme
   "action": "mget",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "value of key1",
     "value of key2",
@@ -2614,7 +2614,7 @@ Returns the values of the provided keys.
   "action": "mset",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -2674,7 +2674,7 @@ Sets the provided keys to their respective values. If a key does not exist, it i
   "action": "msetnx",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -2716,7 +2716,7 @@ Sets the provided keys to their respective values, only if they do not exist. If
   "action": "object",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <object inspection result>
 }
 ```
@@ -2758,7 +2758,7 @@ Inspects the low-level properties of a key.
   "action": "persist",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -2811,7 +2811,7 @@ Removes the expiration delay or timestamp from a key, making it persistent.
   "action": "pexpire",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -2864,7 +2864,7 @@ Sets a timeout (in milliseconds) on a key. After the timeout has expired, the ke
   "action": "pexpireat",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -2918,7 +2918,7 @@ The `timestamp` parameter accepts an [Epoch time](https://en.wikipedia.org/wiki/
   "action": "pfadd",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -2959,7 +2959,7 @@ Adds elements to an [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) dat
   "action": "pfcount",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <probabilistic cardinality>
 }
 ```
@@ -3012,7 +3012,7 @@ Returns the probabilistic cardinality of a [HyperLogLog](https://en.wikipedia.or
   "action": "pfmerge",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -3052,7 +3052,7 @@ Merges multiple [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data st
   "action": "ping",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "PONG"
 }
 ```
@@ -3107,7 +3107,7 @@ Pings the memory storage database.
   "action": "psetex",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -3148,7 +3148,7 @@ Sets a key with the provided value, and an expiration delay expressed in millise
   "action": "pttl",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <remaining time to live, in milliseconds>
 }
 ```
@@ -3190,7 +3190,7 @@ Returns the remaining time to live of a key, in milliseconds.
   "action": "randomkey",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "<one of the database's key, at random>"
 }
 ```
@@ -3243,7 +3243,7 @@ Returns a random key from the memory storage.
   "action": "rename",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -3296,7 +3296,7 @@ Renames a key to `newkey`. If `newkey` already exists, it is overwritten.
   "action": "renamenx",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -3337,7 +3337,7 @@ Renames a key to `newkey`, only if `newkey` does not already exist.
   "action": "rpop",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "<removed element value>"
 }
 ```
@@ -3391,7 +3391,7 @@ Removes the last element of a list and returns it.
   "action": "rpoplpush",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "<popped/pushed element>"
 }
 ```
@@ -3444,7 +3444,7 @@ Removes the last element of the list at `source` and pushes it back at the start
   "action": "rpush",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated number of elements in the list>
 }
 ```
@@ -3497,7 +3497,7 @@ Appends the specified values at the end of a list. If the key does not exist, it
   "action": "rpushx",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <updated number of elements in the list>
 }
 ```
@@ -3550,7 +3550,7 @@ Appends the specified value at the end of a list, only if the key already exists
   "action": "sadd",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of elements added to the set>
 }
 ```
@@ -3595,7 +3595,7 @@ Adds members to a set of unique values stored at `key`. If the `key` does not ex
   "action": "scan",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     <new cursor position>,
     [
@@ -3653,7 +3653,7 @@ Optional arguments:
   "action": "scard",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of members of the set>
 }
 ```
@@ -3695,7 +3695,7 @@ Returns the number of members stored in a set of unique values.
   "action": "sdiff",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "diff value1",
     "diff value2",
@@ -3754,7 +3754,7 @@ Returns the difference between the set of unique values stored at `key` and the 
   "action": "sdiffstore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of elements stored in the resulting set>
 }
 ```
@@ -3821,7 +3821,7 @@ If the destination key already exists, it is overwritten.
   "action": "set",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -3885,7 +3885,7 @@ Additional options can be provided:
   "action": "setex",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "OK"
 }
 ```
@@ -3938,7 +3938,7 @@ Sets a value and a time to live (in seconds) on a key. If the key already exists
   "action": "setnx",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -3980,7 +3980,7 @@ Sets a value on a key, only if it does not already exist.
   "action": "sinter",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "intersection value1",
     "intersection value2",
@@ -4038,7 +4038,7 @@ Returns the intersection of the provided sets of unique values.
   "action": "sinterstore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of elements in the resulting set>
 }
 ```
@@ -4082,7 +4082,7 @@ If the destination key already exists, it is overwritten.
   "action": "sismember",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -4123,7 +4123,7 @@ Checks if `member` is a member of the set of unique values stored at `key`.
   "action": "smembers",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "member1",
     "member2",
@@ -4182,7 +4182,7 @@ Returns the members of a set of unique values.
   "action": "smove",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [0|1]
 }
 ```
@@ -4247,7 +4247,7 @@ Moves a member from a set of unique values to another.
   "action": "sort",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "sorted element1",
     "sorted element2",
@@ -4316,7 +4316,7 @@ Optional arguments may be provided:
   "action": "spop",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "<removed element>"
 }
 ```
@@ -4359,7 +4359,7 @@ Removes and returns one or more elements at random from a set of unique values. 
   "action": "srandmember",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "<member value>"
 }
 ```
@@ -4415,7 +4415,7 @@ If more than 1 member is returned, the result set will be an array of values ins
   "action": "srem",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of removed members>
 }
 ```
@@ -4461,7 +4461,7 @@ Removes members from a set of unique values.
   "action": "sscan",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     <new cursor position>,
     [
@@ -4511,7 +4511,7 @@ Identical to [scan](#scan) but iterates members contained in a set of unique val
   "action": "strlen",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <string length>
 }
 ```
@@ -4552,7 +4552,7 @@ Returns the length of a value stored at `key`.
   "action": "sunion",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "value1",
     "value2",
@@ -4610,7 +4610,7 @@ Returns the union of sets of unique values.
   "action": "sunionstore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of members in the new set>
 }
 ```
@@ -4652,7 +4652,7 @@ If the destination key already exists, it is overwritten.
   "action": "time",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     <Epoch time>,
     <microseconds>
@@ -4707,7 +4707,7 @@ Returns the current server time as a two items list: a timestamp in [Epoch time]
   "action": "touch",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of touched keys>
 }
 ```
@@ -4748,7 +4748,7 @@ Alters the last access time of one or multiple keys. A key is ignored if it does
   "action": "ttl",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <remaining time to live, in seconds>
 }
 ```
@@ -4789,7 +4789,7 @@ Returns the remaining time to live of a key, in seconds, or a negative value if 
   "action": "type",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": "[hash|list|string|set|zset]"
 }
 ```
@@ -4862,7 +4862,7 @@ Returns the type of the value held by a key.
   "action": "zadd",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of added elements>
 }
 ```
@@ -4915,7 +4915,7 @@ Optional parameters may be provided to change the default behavior:
   "action": "zcard",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of elements in the set>
 }
 ```
@@ -4958,7 +4958,7 @@ Returns the number of elements held by a sorted set.
   "action": "zcount",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of elements in the specified range>
 }
 ```
@@ -5015,7 +5015,7 @@ By default, the provided min and max values are inclusive. This behavior can be 
   "action": "zincrby",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <new score value>
 }
 ```
@@ -5076,7 +5076,7 @@ Increments the score of a `member` in a sorted set by the provided `value`.
   "action": "zinterstore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <the number of elements in the new sorted set>
 }
 ```
@@ -5124,7 +5124,7 @@ Optional parameters:
   "action": "zlexcount",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <elements count>
 }
 ```
@@ -5170,7 +5170,7 @@ Counts elements in a sorted set where all members have equal score, using lexico
   "action": "zrange",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "element1",
     "element2",
@@ -5222,7 +5222,7 @@ The `withscores` option includes the respective elements' scores in the result s
   "action": "zrangebylex",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "element1",
     "element2",
@@ -5275,7 +5275,7 @@ The optional LIMIT argument can be used to only get a range of the matching elem
   "action": "zrangebyscore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "element1",
     "element2",
@@ -5326,7 +5326,7 @@ The `withscores` option includes the respective elements' scores in the result s
   "action": "zrank",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <element's position in the sorted set>
 }
 ```
@@ -5379,7 +5379,7 @@ Returns the position of an element in a sorted set, with scores in ascending ord
   "action": "zrem",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of removed members>
 }
 ```
@@ -5434,7 +5434,7 @@ Removes members from a sorted set.
   "action": "zremrangebylex",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of removed members>
 }
 ```
@@ -5489,7 +5489,7 @@ Removes members from a sorted set where all elements have the same score, using 
   "action": "zremrangebyrank",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of removed members>
 }
 ```
@@ -5546,7 +5546,7 @@ Positions are 0-based, meaning the first member of the set has a position of 0.
   "action": "zremrangebyscore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <number of removed members>
 }
 ```
@@ -5594,7 +5594,7 @@ The `min` and `max` values are inclusive, but this behavior can be changed (see 
   "action": "zrevrange",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "...",
     "element2",
@@ -5644,7 +5644,7 @@ Identical to [zrange](#zrange), except that the sorted set is traversed in desce
   "action": "zrevrangebylex",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "...",
     "element2",
@@ -5695,7 +5695,7 @@ Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed
   "action": "zrevrangebyscore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     "...",
     "element2",
@@ -5742,7 +5742,7 @@ Identical to [zrangebyscore](#zrangebyscore) except that the sorted set is trave
   "action": "zrevrank",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <element's position in the sorted set>
 }
 ```
@@ -5788,7 +5788,7 @@ Returns the position of an element in a sorted set, with scores in descending or
   "action": "zscan",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": [
     <new cursor position>,
     [
@@ -5841,7 +5841,7 @@ Identical to [scan](#scan) but iterates the elements stored in a sorted set.
   "action": "zscore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <score>
 }
 ```
@@ -5902,7 +5902,7 @@ Returns the score of an element in a sorted set.
   "action": "zunionstore",
   "collection": null,
   "index": null,
-  "metadata": null,
+  "volatile": null,
   "result": <the number of elements in the new sorted set>
 }
 ```
