@@ -308,7 +308,7 @@ Here is the generic signature of the `verify` function you have to implement:
 
 `verify(request, ..., callback)`
 
-* `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [ the `Request` documentation](#request)
+* `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [ the `Request` documentation](#request))
 * `...`: varies, depending on the used strategy
 * `callback` is a function that **must** be called at the end of an authentication process, with the following arguments:
   * `error`: null if no error occured, an error object otherwise (note: an authentication rejection is
