@@ -70,3 +70,4 @@ services:
 <aside class="notice">
   For an exhaustive list of configuration parameters, please refer to the <a href="https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample">kuzzlerc</a> file.
 </aside>
+

@@ -13,6 +13,7 @@ includes:
   - essentials/index
   - essentials/installation-linux
   - essentials/configuration
+  - essentials/proxy-configuration
   - essentials/persisted
   - essentials/data-validation
   - essentials/filters
