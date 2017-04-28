@@ -9,7 +9,7 @@ Kuzzle proxy uses [rc](https://github.com/dominictarr/rc) to **override** its de
 
 ### Logs
 
-Kuzzle proxy uses two loggers: one is dedicated to output `access` logs, the second one is in charge or outputing `errors`.
+Kuzzle proxy uses two loggers: one is dedicated to output `access` logs, the second one is in charge of outputing `errors`.
 
 #### Default configuration
 
@@ -28,7 +28,7 @@ Kuzzle proxy internally relies on [winston](https://github.com/winstonjs/winston
 
 Any option given under `logs/<log type>/transport` will be passed as-is to Winston related transport.
 
-<aside class="warning">As Kuzzle proxy configuration is stored in text mode, any option where Winstong would accept a function is not supported</aside>
+<aside class="warning">As Kuzzle proxy configuration is stored in text mode, any option where Winston would accept a function is not supported</aside>
 
 #### Supported transports
 
@@ -47,7 +47,7 @@ In addition to standard Winston options, Kuzzle proxy access logs accept two add
 | Option | Description |
 | ------ | ----------- |
 | **accessLogFormat** | Accepted values: **combined** (default) or **logstash**. If set to **logstash**, access logs are outputed in `JSON` |
-| **accessLogIpOffset** | The offset starting from the right to extract the end-user ip address from the [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For) header. This header is set by Kuzzle proxy protocols. The default value is _0_, which takes the last ip address from the header.<br>You may need to modify this value is Kuzzle is running behind a reverse proxy |
+| **accessLogIpOffset** | The offset starting from the right to extract the end-user ip address from the [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For) header. This header is set by Kuzzle proxy protocols. The default value is _0_, which takes the last ip address from the header.<br>You may need to modify this value if Kuzzle is running behind a reverse proxy |
 
 #### Example - store logs to files
 
