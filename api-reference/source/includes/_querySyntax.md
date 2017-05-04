@@ -11,8 +11,8 @@ Please refer to the code samples on the right pane for more detail on the specif
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<action route>[route options]`<br/>
->**Method:** `get|post|put|delete`<br/>
+>**URL:** `http://kuzzle:7512/<action route>[route options]`  
+>**Method:** `get|post|put|delete`  
 >**Body:** Can be empty (usually with get and delete methods) or a JSON object
 of the resource body (usually with post and put methods).
 
@@ -20,13 +20,13 @@ of the resource body (usually with post and put methods).
 
 >**Websocket:** The Websocket layer listens to a specific socket room in order
 to forward your queries to the right Kuzzle controller.<br/>
->**Room name:** `kuzzle`<br/>
+>**Room name:** `kuzzle`  
 >**Query body syntax (JSON data):**
 
 <section class="others"></section>
 
->**MQTT:** The MQTT layer listens to a specific topic in order to forward your queries to the right Kuzzle controller.<br/>
->**Topic name:** `kuzzle`<br/>
+>**MQTT:** The MQTT layer listens to a specific topic in order to forward your queries to the right Kuzzle controller.  
+>**Topic name:** `kuzzle`  
 >**Query body syntax (JSON data):**
 
 <section class="others"></section>

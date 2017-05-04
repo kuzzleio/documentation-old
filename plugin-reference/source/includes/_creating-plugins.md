@@ -298,67 +298,167 @@ Any strategy supported by [Passport](http://passportjs.org/) can be used to exte
 
 In any case, the chosen strategy must be available in the Plugin local directory when Kuzzle installs it, either by adding the strategy in the Plugin's NPM dependencies, or by including the strategy code directly in the Plugin repository.
 
-### Create a verification function
+### Expose a `strategies` attribute
 
-First, you have to implement a [`verify` function](http://passportjs.org/docs/configure), which will be used by Kuzzle to authorize or to deny access to a user.
+The `strategies` object must contain one attribute per added strategy. This attribute must be named after the strategy name and be an object containing:
 
-The number of arguments taken by this `verify` function depends on the authentication strategy. For instance, a `local password` strategy needs the `verify` callback to be provided with an `user` name and his `password`.
+* config: The configuration part
+  * constructor: The constructor of the Passport strategy
+  * strategyOptions: The options provided to the Passport strategy constructor
+  * authenticateOptions: The options provided to the Passport's (authenticate method)[http://passportjs.org/docs/authenticate].
+  * fields: The list of fields that can be provided to the plugin.
+  * verify: The name of the `verify` function in the plugin object.
+* methods:
+  * exists: The name of the `exists` function in the plugin object.
+  * validate: The name of the `validate` function in the plugin object.
+  * create: The name of the `create` function in the plugin object.
+  * update: The name of the `update` function in the plugin object.
+  * delete: The name of the `delete` function in the plugin object.
+  * getInfo: The name of the `getInfo` function in the plugin object.
+
+
+#### Example of the plugin auth-local
+
+Here is the example of the (local authentication plugin)[https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local].
+
+```javascript
+this.strategies = {
+  local: {
+    config: {
+      constructor: LocalStrategy,
+      strategyOptions: {},
+      authenticateOptions: {
+        scope: []
+      },
+      fields: ['login', 'password'],
+      verify: 'verify'
+    },
+    methods: {
+      exists: 'exists',
+      validate: 'validate',
+      create: 'create',
+      update: 'update',
+      delete: 'delete',
+      getInfo: 'getInfo'
+    }
+  }
+};
+```
+
+
+### The verify function
+
+You have to implement a [`verify` function](http://passportjs.org/docs/configure) (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to authorize or to deny access to a user.
+
+The number of arguments taken by this `verify` function depends on the authentication strategy. For instance, a `local password` strategy needs the `verify` callback to be provided with an `username` and his `password`.
 
 Here is the generic signature of the `verify` function you have to implement:
 
-`verify(request, ..., callback)`
+`verify(request, ...)`
 
-* `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [ the `Request` documentation](#request))
+* `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [the `Request` documentation](#request))
 * `...`: varies, depending on the used strategy
-* `callback` is a function that **must** be called at the end of an authentication process, with the following arguments:
-  * `error`: null if no error occured, an error object otherwise (note: an authentication rejection is
-*not* an error)
-  * `user`: either `false` (authentication rejected) or a user object, provided by the plugin context [`user.load` method](#users-load)
-  * `info`: (optional) the rejection reason
 
-### Register the strategy to Kuzzle
-
-Once you chose a strategy and implemented its corresponding `verify` callback function, all you have to do is to register it to Kuzzle, using [the `registerStrategy` accessor method](#registerstrategy), available in the plugin context.
-
-### (optional) Scope of access
-
-Some authentication procedures, like OAUTH 2.0, need a [scope of access](http://passportjs.org/docs/oauth) to be configured.
-
-Kuzzle Plugins support scope of access. To add one in your plugin, simply expose a `scope` attribute. Its format depends on the implemented strategy.
+The function **must** return a `Promise` that resolves to either the user id if the user is authenticated, or an object containing a message string attribute giving the reason why it can not be authenticated. The function should reject the Promise if an error occures (note: an authentication rejection is *not* an error).
 
 
-### LocalStrategy Example
+### The exists function
 
-```javascript
-const LocalStrategy = require('passport-local').Strategy;
+You have to implement an `exists` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to verify if a user can authenticated with your strategy.
 
-function MyAuthenticationPlugin () {
-  this.context = null;
+Here is the generic signature of the `exists` function you have to implement:
 
-  /*
-    Required plugin initialization function
-    (see the "Plugin prerequisites" section)
-   */
-  this.init = function (customConfig, pluginContext) {
-    this.context = pluginContext;
+`exists (request, userId)`
 
-    this.context.accessors.registerStrategy(LocalStrategy, 'myLocalStrategy', this, this.verify);
-  }
+* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `userId` is the id of the Kuzzle user.
 
-  this.verify = function (request, username, password, callback) {
-    // Code performing the necessary verifications
-    if (success) {
-      callback(null, this.context.accessors.users.load(username));
-    }
-    else {
-      callback(null, false, 'Login failed');
-    }
-  };
-};
+The function **must** return a `Promise` that resolves to a boolean depending on the user ability to authenticate with a strategy.
 
-// Exports the plugin objects, allowing Kuzzle to instantiate it
-module.exports = MyAuthenticationPlugin;
-```
+### The create function
+
+You have to implement an `create` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to create the credentials of your strategy.
+
+Here is the generic signature of the `create` function you have to implement:
+
+`create (request, credentials, userId)`
+
+* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `credentials` is the content of the credentials to create, that have already been passed to your `validate` function.
+* `userId` is the id of the Kuzzle user.
+
+The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
+
+<aside class="warning">
+  The credentials have to be persisted, either by using the <a href="#repository">Repository constructor</a>, or any external service.
+</aside>
+
+
+### The update function
+
+You have to implement an `update` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to update the credentials of your strategy.
+
+Here is the generic signature of the `update` function you have to implement:
+
+`update (request, credentials, userId)`
+
+* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `credentials` is the content of the credentials to create, that have already been passed to your `validate` function.
+* `userId` is the id of the Kuzzle user.
+
+The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
+
+<aside class="warning">
+  The credentials have to be persisted, either by using the <a href="#repository">Repository constructor</a>, or any external service.
+</aside>
+
+
+### The delete function
+
+You have to implement a `delete` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to delete the credentials of your strategy.
+
+Here is the generic signature of the `delete` function you have to implement:
+
+`delete (request, userId)`
+
+* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `userId` is the id of the Kuzzle user.
+
+The function **must** return a `Promise` that resolves to an object `{acknowledged: true}`.
+
+
+### The getInfo function
+
+You can (optional) implement a `getInfo` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to get **non sensitive** credential information of your strategy.
+
+Here is the generic signature of the `getInfo` function you have to implement:
+
+`getInfo (request, userId)`
+
+* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `userId` is the id of the Kuzzle user.
+
+The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
+
+
+### The validate function
+
+You have to implement a `validate` (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to validate the credentials of your strategy.
+
+Here is the generic signature of the `validate` function you have to implement:
+
+`validate (request, credentials, userId, isUpdate)`
+
+* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `credentials` is the content of the credentials to create or update.
+* `userId` is the id of the Kuzzle user.
+* `isUpdate` is true if `validate` is called during an update.
+
+The function **must** return a `Promise` that resolves to true or rejects with an error explaining the reason.
+
+<aside class="warning">
+  Validate can be called during an update with partial information. The validation should behave accordingly when isUpdate is true, knowing that mandatory information should already have been stored during a previous create call.
+</aside>
 
 ## Adding a new communication protocol
 
