@@ -1277,6 +1277,10 @@ h3 .heading-links {
   color: #FFF;
   font-weight: 600;
 }
+.content aside.notice a:visited,
+.content aside.notice a {
+  color: $dark;
+}
 
 .content .panels {
   padding: 35px;
