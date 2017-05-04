@@ -7,7 +7,7 @@ title: Connecting to Kuzzle
 The connection to Kuzzle depends on the protocol to be used.
 
 HTTP, WebSocket and SocketIO protocols are shipped in Kuzzle's core.
-Other protocols can be added with [Protocol Plugins](/plugin-reference/#protocol-plugins).
+Other protocols can be added with [Protocol Plugins](../plugin-reference/#protocol-plugins).
 
 
 ## HTTP

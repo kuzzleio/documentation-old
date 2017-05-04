@@ -116,7 +116,7 @@ If the `connect` option is set to `manual`, the callback will be called after th
 * if ``connect`` is set to ``manual``, the ``connect`` method will have to be called manually
 * the kuzzle instance will automatically queue all requests, and play them automatically once a first connection is established, regardless of the ``connect`` or offline mode option values.
 * multiple methods allow passing specific ``volatile`` data. These ``volatile`` data will be merged with the global Kuzzle object ``volatile`` when sending the request, with the request specific ``volatile`` taking priority over the global ones.
-* the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle API](/api-reference/#query-syntax) format
+* the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle API](../api-reference/#query-syntax) format
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are discarded to make room for new requests
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
@@ -1716,7 +1716,7 @@ This is a low-level method, exposed to allow advanced SDK users to bypass high-l
 Check the Kuzzle API Reference available <a href="/api-reference">here</a>
 </aside>
 
-Base method used to send queries to Kuzzle, following the [API Reference](/api-reference)
+Base method used to send queries to Kuzzle, following the [API Reference](../api-reference)
 
 ### query(queryArgs, query, [options], [callback])
 

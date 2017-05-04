@@ -10,7 +10,7 @@ Here is the list of shared objects contained in the provided ``context``:
 | Attribute path | Purpose                      |
 |----------------|------------------------------|
 | `context.accessors.execute` | Access to Kuzzle API |
-| `context.accessors.registerStrategy` | Allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
+| `context.accessors.registerStrategy` | Allow [authentication plugins](#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
 | `context.accessors.router` | Access to Kuzzle protocol communication system. Allow **protocol** plugins to interface themselves with Kuzzle. |
 | `context.accessors.storage` | Initiate and configure to the plugin storage. This storage can only be accessed by the plugin and can be used to persist plugin datas. |
 | `context.accessors.users` | Access to users management, especially useful for authentication plugins. Provides methods for handling users. This accessor is mainly used by authentication plugins. |
@@ -33,7 +33,7 @@ Here is the list of shared objects contained in the provided ``context``:
 
 ### `execute`
 
-Sends a request to [Kuzzle API](/api-reference).
+Sends a request to [Kuzzle API](../api-reference).
 
 #### Arguments
 
@@ -76,7 +76,7 @@ Register a new authentication strategy to Kuzzle.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `Strategy` | `function` | A [Passport strategy](https://github.com/jaredhanson/passport/wiki/Strategies) object constructor |
-| `name` | `string` | Strategy name identifier ([see `auth:login`](/api-reference/#login)) |
+| `name` | `string` | Strategy name identifier ([see `auth:login`](../api-reference/#login)) |
 | `context` | `object` | [Context](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this) in which the `verify` callback will be executed |
 | `verify` | `function` | Callback function invoked to verify an authentication request |
 | `options` | `object` | (Optional) Strategy specific options parameters |
@@ -140,7 +140,7 @@ Forward a request to Kuzzle.
 #### Callback
 
 The callback is invoked once the request has been processed by Kuzzle.  
-The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response](/api-reference/#kuzzle-response).
+The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response](../api-reference/#kuzzle-response).
 
 ### `router.removeConnection`
 
@@ -164,7 +164,7 @@ not modified.
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`collections`|`Object`| An object that contains the collection mappings. See the [guide](/guide#document-mapping) for more explanation about Elasticsearch mapping. |
+|`collections`|`Object`| An object that contains the collection mappings. See the [guide](../guide#document-mapping) for more explanation about Elasticsearch mapping. |
 
 #### Returns
 
@@ -230,7 +230,7 @@ Creates a new user in Kuzzle. Will return an error if the user already exists.
 | Name | Type | Default Value | Description                      |
 |------|------|---------------|----------------------------------|
 |`loginName`|`string`| | Name of the user's login to create |
-|`userProfile`|`string`|`default`| [User profile](/guide/#permissions) |
+|`userProfile`|`string`|`default`| [User profile](../guide/#permissions) |
 |`userInfo`|`object`| `{}` | Misc. information about the user |
 
 #### Returns
@@ -651,7 +651,7 @@ Searches documents that match the provided `query` in the collection.
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`query`|`object`| The [query](/elasticsearch-cookbook/#basic-queries) sent to Elastisearch. |
+|`query`|`object`| The [query](../elasticsearch-cookbook/#basic-queries) sent to Elastisearch. |
 |`from`|`integer`| Provides the offset of the returned documents. |
 |`size`|`integer`| Provides the count of the returned documents. |
 
@@ -704,7 +704,7 @@ someCollectionRepository.update({
 
 ### `Request`
 
-This constructor is used to transform an [API call](/api-reference/?others#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](/api-reference/?others#kuzzle-response) to be forwarded to the requesting client.
+This constructor is used to transform an [API call](../api-reference/?others#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](../api-reference/?others#kuzzle-response) to be forwarded to the requesting client.
 
 Network protocol specific headers can be added to the response. If the protocol can handle them,
 these headers will be used to configure the response sent to the client.    
@@ -773,7 +773,7 @@ Writable
 
 Any undefined attribute from the list above will be set to null.
 
-Please refer to our [API Reference](/api-reference/?others) for a complete list of controllers-actions and their purposes.
+Please refer to our [API Reference](../api-reference/?others) for a complete list of controllers-actions and their purposes.
 
 Getters
 
@@ -782,7 +782,7 @@ Getters
 | `context` | `RequestContext` | [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) object | Request connection context |
 | `error` | `KuzzleError` | `null` | Request error, if any |
 | `input` | `RequestInput` | [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object | Request's parameters |
-| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](/api-reference/?others#kuzzle-response) |
+| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](../api-reference/?others#kuzzle-response) |
 | `result` | *(varies)* | `null` | Request result, if any |
 
 

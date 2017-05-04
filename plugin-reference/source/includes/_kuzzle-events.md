@@ -4,7 +4,7 @@ Every time Kuzzle receives a request coming from a client, it routes it towards 
 
 ## [Plugins events]
 
-[Plugins](/plugin-reference/#adding-a-controller-route) may add new controllers and actions to Kuzzle's API. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
+[Plugins](#adding-a-controller-route) may add new controllers and actions to Kuzzle's API. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -23,7 +23,7 @@ When an API request invokes this new API route, Kuzzle will automatically trigge
 
 ## auth
 
-Events triggered when a request is treated in the [`auth` controller](/api-reference/#auth-controller)
+Events triggered when a request is treated in the [`auth` controller](../api-reference/#auth-controller)
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -33,7 +33,7 @@ Events triggered when a request is treated in the [`auth` controller](/api-refer
 
 ## bulk
 
-Events triggered when a request is treated in the [`bulk` controller](/api-reference/#bulk-controller)
+Events triggered when a request is treated in the [`bulk` controller](../api-reference/#bulk-controller)
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -54,7 +54,7 @@ Events triggered when a database reset is asked to the command-line interface.
 
 ## collection
 
-Events triggered when a request is treated in the [`collection` controller](/api-reference/#collection-controller).
+Events triggered when a request is treated in the [`collection` controller](../api-reference/#collection-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -84,7 +84,7 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 
 ## index
 
-Events triggered when a request is treated in the [`index` controller](/api-reference/#index-controller).
+Events triggered when a request is treated in the [`index` controller](../api-reference/#index-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -94,7 +94,7 @@ Events triggered when a request is treated in the [`index` controller](/api-refe
 
 ## document
 
-Events triggered when a request is treated in the [`document` controller](/api-reference/#document-controller).
+Events triggered when a request is treated in the [`document` controller](../api-reference/#document-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -124,7 +124,7 @@ Events triggered by the Kuzzle internal message broker, used to transmit data be
 
 ## ms (memoryStorage)
 
-Events triggered when a request is sent to the [`memoryStorage` controller](/#memorystorage-controller).
+Events triggered when a request is sent to the [`memoryStorage` controller](#memorystorage-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -162,7 +162,7 @@ Events triggered when interacting with `proxy`.
 
 ## realtime
 
-Events triggered when a request is sent to the [`realtime` controller](/api-reference/#realtime-controller).
+Events triggered when a request is sent to the [`realtime` controller](../api-reference/#realtime-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -193,7 +193,7 @@ Events triggered on subscription rooms activity.
 
 ## security
 
-Events triggered when a request is sent to the [`security` controller](/api-reference/#security-controller).
+Events triggered when a request is sent to the [`security` controller](../api-reference/#security-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -204,7 +204,7 @@ Events triggered when a request is sent to the [`security` controller](/api-refe
 
 ## server
 
-Events triggered on server special events or when a request is sent to the [`server` controller](/api-reference/#server-controller).
+Events triggered on server special events or when a request is sent to the [`server` controller](../api-reference/#server-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|

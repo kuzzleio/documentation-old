@@ -17,7 +17,7 @@ Kuzzle ships by default with a local login/password strategy.
 
 If the "local" strategy (i.e. storing the users' credentials in the local database) doesn't fit your needs, you can use the [Oauth authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), or develop your own (see [Core documentation](#authentication-process) for more details).
 
-If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests](/api-reference/#authorization-header).
+If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests](../api-reference/#authorization-header).
 
 <aside class="notice">
 More information on the login process <a href="/api-reference/#login">here</a>.

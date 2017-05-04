@@ -112,5 +112,5 @@ Here is how it works.
   - The raw response of the controller is set to the `result` field.
   - If an error occurs, Kuzzle updates the `error` field via the `setError` method.
   - The `status` field is update consequently with a HTTP-compliant numeric code.
-  - Kuzzle fills the `response` field with an object compliant with the [Kuzzle Response API standard](/api-reference/?websocket#kuzzle-response)
+  - Kuzzle fills the `response` field with an object compliant with the [Kuzzle Response API standard](../api-reference/?websocket#kuzzle-response)
 * Kuzzle sends the response back to the client.

@@ -34,7 +34,7 @@ Clients can subscribe to many types of notifications. Below are some examples:
 3. **changes happening** on any document within a collection (e.g. Matt checks an item as "done");
 4. **changes happening on a given set of documents** (e.g. clients must play a sound every time an item containing the word "URGENT" is created).
 
-The scope of possibilities is huge. Take a look at the [Notifications section](/api-reference/?others#notifications) in the API Reference for more details.
+The scope of possibilities is huge. Take a look at the [Notifications section](../api-reference/?others#notifications) in the API Reference for more details.
 
 ### Examples
 
@@ -98,15 +98,15 @@ The Notification bears some useful information about what just happened:
 * the `index` and `collection` attributes show *where* it happened;
 * the `result` shows *the consequence* of what just happened (in this case, the newly created document).
 
-We won't analyze the other attributes for the moment. Take a look at the [Notifications section of the API Reference](/api-reference/#notifications) for a comprehensive list of the available notification events.
+We won't analyze the other attributes for the moment. Take a look at the [Notifications section of the API Reference](../api-reference/#notifications) for a comprehensive list of the available notification events.
 
-This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Real-time Filtering DSL](/real-time-filters/) coming up in the following section.
+This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Real-time Filtering DSL](../real-time-filters/) coming up in the following section.
 
 #### Subscription with filters
 
-Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions](/real-time-filters/). It is heavily inspired in the Elasticsearch DSL and enables you to perform fine-grained selections on the documents you want to subscribe to.
+Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions](../real-time-filters/). It is heavily inspired in the Elasticsearch DSL and enables you to perform fine-grained selections on the documents you want to subscribe to.
 
-In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp](/real-time-filters/#regexp) filter.
+In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp](../real-time-filters/#regexp) filter.
 
 
 ```javascript
@@ -124,7 +124,7 @@ kuzzle
     })
 ```
 
-This way, Tom will be notified about urgent TO-DO items. Take a look at the [Filtering DSL Refernce](/real-time-filters/) for a comprehensive list of the available filters.
+This way, Tom will be notified about urgent TO-DO items. Take a look at the [Filtering DSL Refernce](../real-time-filters/) for a comprehensive list of the available filters.
 
 There are a few things that deserve to be noticed here:
 
@@ -137,7 +137,7 @@ The last point may seem a little bit inconvenient. What if Tom does not want to 
 
 The `subscribe` method can be called with an extra argument, which is an object containing a set of options to be passed to the subscription Room.
 
-We just introduced a new concept here, the Room. A [Room](/sdk-reference/#room) is a class representing a single subscription and its constructor is called internally by the `subscribe` method. The "options" are passed directly to the [Room Constructor](/sdk-reference/#constructors82).
+We just introduced a new concept here, the Room. A [Room](../sdk-reference/#room) is a class representing a single subscription and its constructor is called internally by the `subscribe` method. The "options" are passed directly to the [Room Constructor](../sdk-reference/#constructors82).
 
 The option we are looking for is `subscribeToSelf`, which is set to `true` by default.
 
@@ -163,4 +163,4 @@ let room = kuzzle
 
 In the code right above, we added the extra "options" object as the second argument to avoid subscribing Tom to his own events.
 
-You may have noticed that, on the very first line, we stored the return value of the `subscribe` method in a variable. Guess what type is its value? [Room](/sdk-reference/#room).
+You may have noticed that, on the very first line, we stored the return value of the `subscribe` method in a variable. Guess what type is its value? [Room](../sdk-reference/#room).

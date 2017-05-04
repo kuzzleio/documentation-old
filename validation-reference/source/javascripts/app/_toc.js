@@ -35,6 +35,14 @@
 
     $(".page-wrapper").click(closeToc);
     $(".tocify-item").click(closeToc);
+
+    $('.content').on('click', 'a[href^="#"]', function (e) {
+      if (e.ctrlKey) {
+        return true;
+      }
+      e.preventDefault();
+      $('li[data-unique="' + $(this).attr('href').replace(/^#/, '') + '"] a').click();
+    });
   };
 
   // Hack to make already open sections to start opened,
