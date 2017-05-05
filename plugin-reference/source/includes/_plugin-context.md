@@ -399,6 +399,13 @@ Creates a document in the plugin storage.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`Object`| The document you want to create. It must contain a unique `_id` string property. You don't need to worry about collisions with other plugins as your plugin storage is only accessible by your plugin |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
@@ -443,6 +450,13 @@ Creates or replaces a document in the plugin storage.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`object`| The document you want to create or replace. It must contain a unique `_id` string property. You don't need to worry about collisions with other plugins as your plugin storage is only accessible by your plugin |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
@@ -472,6 +486,13 @@ Deletes a document from the plugin storage.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`object`| The document `_id` of the document you want to delete. |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
@@ -546,6 +567,13 @@ Replaces a document in the plugin storage.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`object`| The content of the document. It must contain a unique `_id` string property. |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
@@ -602,6 +630,13 @@ Updates a document in the plugin storage. You can provide a partial document to 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`object`| The partial content of the document. It must contain a unique `_id` string property. |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
