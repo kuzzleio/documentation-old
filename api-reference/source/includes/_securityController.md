@@ -73,7 +73,7 @@
 }
 ```
 
-Create credentials of the specified `<strategy>` for the user `<userId>`. The credentials to send depend completely on the authenication plugin and strategy you want to create credentials for.
+Create credentials of the specified `<strategy>` for the user `<userId>`. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## createFirstAdmin
@@ -1009,7 +1009,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 ```litcoffee
 {
   "controller": "security",
-  "action": "getCredentials",
+  "action": "getAllCredentialFields",
   "_id": "<userId>"
 }
 ```
@@ -1022,9 +1022,8 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "action": "getCredentials",
+  "action": "getAllCredentialFields",
   "controller": "security",
-  "_id": "<userId>",
   "result": {
     "local": ["username", "password"],
     ...
@@ -1032,7 +1031,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 }
 ```
 
-Get an object that contain an attribute per strategy. Each attribute contains an array of the field names expected by the specified corresponding to the attribute name. These fields may be mandatory or optional.
+Retrieve a list of accepted fields per authentication strategy. These fields might either be required or optional.
 
 
 ## getCredentialFields
@@ -1051,7 +1050,7 @@ Get an object that contain an attribute per strategy. Each attribute contains an
 ```litcoffee
 {
   "controller": "security",
-  "action": "getCredentials",
+  "action": "getCredentialFields",
   "strategy": "<strategy>",
   "_id": "<userId>"
 }
@@ -1065,15 +1064,13 @@ Get an object that contain an attribute per strategy. Each attribute contains an
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "action": "getCredentials",
+  "action": "getCredentialFields",
   "controller": "security",
-  "_id": "<userId>",
   "result": ["username", "password"]
 }
 ```
 
-Get an array of the field names expected by the specified `<strategy>`. These fields may be mandatory or optional.
-
+Retrieve the list of accepted field names by the specified `<strategy>`. These fields might either be required or optional.
 
 ## getCredentials
 
@@ -1114,7 +1111,7 @@ Get an array of the field names expected by the specified `<strategy>`. These fi
 }
 ```
 
-Get **non sensitive** credential information of the specified `<strategy>` for the user `<userId>`. Provided information completely depend of the strategy. The result can be empty.
+Get credential information of the specified `<strategy>` for the user `<userId>`. Provided information completely depend of the strategy. The result can be an empty object.
 
 
 ## getProfile
@@ -2358,7 +2355,7 @@ Optional arguments:
 }
 ```
 
-Updates credentials of the specified `<strategy>` for the user `<userId>`. The credentials to send depend completely on the authenication plugin and strategy you want to create credentials for.
+Updates credentials of the specified `<strategy>` for the user `<userId>`. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## updateProfile
@@ -2928,4 +2925,4 @@ But if you want to store more information about your users, Kuzzle's API offers 
 }
 ```
 
-Validate credentials of the specified `<strategy>` for the user `<userId>`. `result` is true if provided credentials are valid; an error is triggered otherwise. The credentials to send depend completely on the authenication plugin and strategy you want to create credentials for.
+Validate credentials of the specified `<strategy>` for the user `<userId>`. `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.

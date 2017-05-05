@@ -151,10 +151,10 @@ Examples:
 - HTTP: `GET http://<server>:<port>/_plugin/<plugin name>/<url defined by the plugin>/<resources>`
 - Other protocols:
 
-```javascript
+```litcoffee
 {
-  controller: '<plugin name>/<added controller name>',
-  action: '<action of the added controller>',
+  "controller": "<plugin name>/<added controller name>",
+  "action": "<action of the added controller>",
   ...
 }
 ```
@@ -307,42 +307,176 @@ The `strategies` object must contain one attribute per added strategy. This attr
   * strategyOptions: The options provided to the Passport strategy constructor
   * authenticateOptions: The options provided to the Passport's (authenticate method)[http://passportjs.org/docs/authenticate].
   * fields: The list of fields that can be provided to the plugin.
-  * verify: The name of the `verify` function in the plugin object.
 * methods:
-  * exists: The name of the `exists` function in the plugin object.
-  * validate: The name of the `validate` function in the plugin object.
   * create: The name of the `create` function in the plugin object.
-  * update: The name of the `update` function in the plugin object.
   * delete: The name of the `delete` function in the plugin object.
+  * exists: The name of the `exists` function in the plugin object.
   * getInfo: The name of the `getInfo` function in the plugin object.
+  * update: The name of the `update` function in the plugin object.
+  * validate: The name of the `validate` function in the plugin object.
+  * verify: The name of the `verify` function in the plugin object.
 
 
-#### Example of the plugin auth-local
+#### Example
 
-Here is the example of the (local authentication plugin)[https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local].
+Here is a skeleton of authentication plugin
 
 ```javascript
-this.strategies = {
-  local: {
-    config: {
-      constructor: LocalStrategy,
-      strategyOptions: {},
-      authenticateOptions: {
-        scope: []
-      },
-      fields: ['login', 'password'],
-      verify: 'verify'
-    },
-    methods: {
-      exists: 'exists',
-      validate: 'validate',
-      create: 'create',
-      update: 'update',
-      delete: 'delete',
-      getInfo: 'getInfo'
-    }
+const StrategyConstructor = require('some-passport-strategy');
+
+/**
+ * @class AuthenticationPlugin
+ */
+class AuthenticationPlugin {
+  /**
+   * @constructor
+   */
+  constructor() {}
+
+  /**
+   * @param {object} customConfig
+   * @param {KuzzlePluginContext} context
+   * @returns {*}
+   */
+  init (customConfig, context) {
+    this.strategies = {
+      // The name of the strategy
+      strategyName: {
+        config: {
+          // The constructor of the passport strategy you chose
+          constructor: StrategyConstructor,
+          // The options provided to the strategy constructor at instanciation
+          strategyOptions: {},
+          // The options provided to the authenticate function during the authentication process
+          authenticateOptions: {
+            scope: []
+          },
+          // The list of fields that may be provided in the credentials
+          fields: ['login', 'password']
+        },
+        methods: {
+          // The name of the create function
+          create: 'create',
+          // The name of the delete function
+          delete: 'delete',
+          // The name of the exists function
+          exists: 'exists',
+          // The name of the getInfo function
+          getInfo: 'getInfo',
+          // The name of the update function
+          update: 'update',
+          // The name of the validate function
+          validate: 'validate',
+          // The name of the verify function
+          verify: 'verify'
+        }
+      }
+    };
   }
-};
+
+  /**
+   * Persists the provided credentials in some way
+   * Must keep a link between the persisted credentials
+   * and the userId
+   *
+   * @param {KuzzleRequest} request
+   * @param {object} credentials
+   * @param {string} userId
+   * @returns {Promise<object>}
+   */
+  create (request, credentials, userId) {
+    // persist credentials
+    Promise.resolve(/* non sensitive credentials info */);
+  }
+
+  /**
+   * Removes the user's stored credentials from
+   * the plugin persistence layer
+   *
+   * @param {KuzzleRequest} request
+   * @param {string} userId
+   * @returns {Promise<object>}
+   */
+  delete (request, userId) {
+    // remove credentials
+    Promise.resolve(/* any value */);
+  }
+
+  /**
+   * Checks if user's credentials exist in the persistence layer
+   *
+   * @param {KuzzleRequest} request
+   * @param {string} userId
+   * @returns {Promise<boolean>}
+   */
+  exists (request, userId) {
+    // check credentials existence
+    Promise.resolve(/* true|false */);
+  }
+
+  /**
+   * Retrieves the non sensitive user's credentials information
+   * from the persistence layer
+   *
+   * @param {KuzzleRequest} request
+   * @param {string} userId
+   * @returns {Promise<object>}
+   */
+  getInfo (request, userId) {
+    // retrieve credentials
+    Promise.resolve(/* non sensitive credentials info */);
+  }
+
+  /**
+   * Updates the user's credentials information in the
+   * persistence layer
+   *
+   * @param {KuzzleRequest} request
+   * @param {object} credentials
+   * @param {string} userId
+   * @returns {Promise<object>}
+   */
+  update (request, credentials, userId) {
+    // update credentials
+    Promise.resolve(/* non sensitive credentials info */);
+  }
+
+  /**
+   * Validates credentials validity conforming to the
+   * authentication strategy rules (mandatory fields,
+   * password length, username uniqueness, ...)
+   *
+   * @param {KuzzleRequest} request
+   * @param {object} credentials
+   * @param {string} userId
+   * @param {boolean} isUpdate
+   * @returns {Promise<boolean>}
+   */
+  validate (request, credentials, userId, isUpdate) {
+    // validate credentials
+    Promise.resolve(/* true|false */);
+  }
+
+  /**
+   * Provided to the Passport strategy as verify function
+   * Should return the userId if the user can authentify
+   * or an object with the login failure reason as message attribute
+   * 
+   * @param {KuzzleRequest} request
+   * @param {*[]} args - provided arguments depends on the Passport strategy
+   * @returns {Promise<string|{message: string}>}
+   */
+  verify (request, ...args) {
+    // verify if the user can authentify
+    const userId = getUserIdFromCredentials(args);
+    
+    if (userId) {
+      return Promise.resolve(userId);
+    }
+    
+    return Promise.resolve({message: 'Login failed - Reason ...'});
+  }
+}
 ```
 
 
@@ -359,12 +493,12 @@ Here is the generic signature of the `verify` function you have to implement:
 * `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [the `Request` documentation](#request))
 * `...`: varies, depending on the used strategy
 
-The function **must** return a `Promise` that resolves to either the user id if the user is authenticated, or an object containing a message string attribute giving the reason why it can not be authenticated. The function should reject the Promise if an error occures (note: an authentication rejection is *not* an error).
+The function **must** return a `Promise` that resolves to either the user id if the user is authenticated, or an object containing a message string attribute giving the reason why it can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is *not* an error).
 
 
 ### The exists function
 
-You have to implement an `exists` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to verify if a user can authenticated with your strategy.
+You have to implement an `exists` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to verify if a user can be authenticated using your strategy.
 
 Here is the generic signature of the `exists` function you have to implement:
 
@@ -377,7 +511,7 @@ The function **must** return a `Promise` that resolves to a boolean depending on
 
 ### The create function
 
-You have to implement an `create` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to create the credentials of your strategy.
+You have to implement an `create` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to add credentials to a user using this strategy.
 
 Here is the generic signature of the `create` function you have to implement:
 
@@ -396,7 +530,7 @@ The function **must** return a `Promise` that resolves to an object that contain
 
 ### The update function
 
-You have to implement an `update` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to update the credentials of your strategy.
+You have to implement an `update` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to update a user's credentials to this strategy.
 
 Here is the generic signature of the `update` function you have to implement:
 
@@ -415,7 +549,7 @@ The function **must** return a `Promise` that resolves to an object that contain
 
 ### The delete function
 
-You have to implement a `delete` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to delete the credentials of your strategy.
+You have to implement a `delete` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to delete a user's credentials to this strategy.
 
 Here is the generic signature of the `delete` function you have to implement:
 
@@ -424,12 +558,12 @@ Here is the generic signature of the `delete` function you have to implement:
 * `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
 * `userId` is the id of the Kuzzle user.
 
-The function **must** return a `Promise` that resolves to an object `{acknowledged: true}`.
+The function **must** return a `Promise` that resolves to any value if deletion succeeds.
 
 
 ### The getInfo function
 
-You can (optional) implement a `getInfo` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to get **non sensitive** credential information of your strategy.
+You may implement a `getInfo` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to get informations about a user's credentials to this strategy. For security reasons, only **non sensitive** informations should be returned.
 
 Here is the generic signature of the `getInfo` function you have to implement:
 
@@ -439,6 +573,10 @@ Here is the generic signature of the `getInfo` function you have to implement:
 * `userId` is the id of the Kuzzle user.
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
+
+<aside class="info">
+  If not getInfo function is provided, an empty object will be returned in the controllers that use it.
+</aside>
 
 
 ### The validate function

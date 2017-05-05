@@ -134,7 +134,7 @@ This API route does not require to be logged in.
 }
 ```
 
-Create credentials of the specified `<strategy>` for the current user. The credentials to send depend completely on the authenication plugin and strategy you want to create credentials for.
+Create credentials of the specified `<strategy>` for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## deleteMyCredentials
@@ -175,7 +175,7 @@ Create credentials of the specified `<strategy>` for the current user. The crede
 }
 ```
 
-Delete credentials of the specified `<strategy>` for the current user. Once done, the current user will not be able to connect with this strategy anymore.
+Delete credentials of the specified `<strategy>` for the current user. If the credentials that generated the current JWT are removed, the user will remain logged in until he logs out or his session expires, but won't be able to log in with these credentials afterward.
 
 
 ## getCurrentUser
@@ -215,14 +215,14 @@ Delete credentials of the specified `<strategy>` for the current user. Once done
       "name": {
         "first": "Steve",
         "last": "Wozniak"
-        },
-        ...                         // The user object content
-        "profile": {
-          "_id":"<profileId>",
-          "roles": [
-            ...                     // Users roles definitions
-          ]
-        }
+      },
+      ...                         // The user object content
+      "profile": {
+        "_id":"<profileId>",
+        "roles": [
+          ...                     // Users roles definitions
+        ]
+      }
     }
   }
 }
@@ -270,7 +270,7 @@ Gets the user object identified by the `JSON Web Token` provided in the query or
 }
 ```
 
-Get **non sensitive** credential information of the specified `<strategy>` for the current user. Provided information completely depend of the strategy. The result can be empty.
+Get credential information of the specified `<strategy>` for the current user. Provided information completely depend of the strategy. The result can be an empty object.
 
 
 ## getMyRights
@@ -321,7 +321,7 @@ Get **non sensitive** credential information of the specified `<strategy>` for t
 Gets the rights of the user identified by the `JSON Web Token` provided in the query or the `Authorization` header.
 
 
-## hasMyCredentials
+## credentialsExist
 
 <section class="http"></section>
 
@@ -338,7 +338,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
 ```litcoffee
 {
   "controller": "auth",
-  "action": "hasMyCredentials",
+  "action": "credentialsExist",
   "strategy": "<strategy>",
   "jwt": "<encrypted_jwt_token>"
 }
@@ -350,7 +350,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "action": "hasMyCredentials",
+  "action": "credentialsExist",
   "controller": "auth",
   "result": true
 }
@@ -546,7 +546,7 @@ The **_logout** action doesn't take strategy.
 }
 ```
 
-Create credentials of the specified `<strategy>` for the current user. The credentials to send depend completely on the authenication plugin and strategy you want to create credentials for.
+Create credentials of the specified `<strategy>` for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## validateMyCredentials
@@ -620,7 +620,7 @@ Create credentials of the specified `<strategy>` for the current user. The crede
 }
 ```
 
-Validate credentials of the specified `<strategy>` for the current user. `result` is true if provided credentials are valid; an error is triggered otherwise. The credentials to send depend completely on the authenication plugin and strategy you want to create credentials for.
+Validate credentials of the specified `<strategy>` for the current user. `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## updateSelf

@@ -24,7 +24,7 @@ The "Local" strategy (implemented by the [Passport Local Plugin](https://GitHub.
 
 * The user calls the `login` action of the Auth Controller:
 
-```javascripton
+```litcoffee
 {
   "controller": "auth",
   "action": "login",
