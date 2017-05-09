@@ -290,7 +290,7 @@ All action functions receive a [Request](#gt-constructor-request) object as main
 
 Kuzzle handles users security and authentication. The supported authentication strategies can be extended by Plugins.
 
-Any strategy supported by [Passport](http://passportjs.org/) can be used to extend Kuzzle supported strategies, like we did with our official [OAUTH2 Authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth).  
+Any strategy supported by [Passport](http://passportjs.org/) can be used to extend Kuzzle supported strategies, like we did with our official [OAUTH2 Authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth).
 
 ### Choose or implement a Passport strategy
 
@@ -377,14 +377,14 @@ class AuthenticationPlugin {
   /**
    * Persists the provided credentials in some way
    * Must keep a link between the persisted credentials
-   * and the userId
+   * and the kuid
    *
    * @param {KuzzleRequest} request
    * @param {object} credentials
-   * @param {string} userId
+   * @param {string} kuid
    * @returns {Promise<object>}
    */
-  create (request, credentials, userId) {
+  create (request, credentials, kuid) {
     // persist credentials
     Promise.resolve(/* non sensitive credentials info */);
   }
@@ -394,10 +394,10 @@ class AuthenticationPlugin {
    * the plugin persistence layer
    *
    * @param {KuzzleRequest} request
-   * @param {string} userId
+   * @param {string} kuid
    * @returns {Promise<object>}
    */
-  delete (request, userId) {
+  delete (request, kuid) {
     // remove credentials
     Promise.resolve(/* any value */);
   }
@@ -406,10 +406,10 @@ class AuthenticationPlugin {
    * Checks if user's credentials exist in the persistence layer
    *
    * @param {KuzzleRequest} request
-   * @param {string} userId
+   * @param {string} kuid
    * @returns {Promise<boolean>}
    */
-  exists (request, userId) {
+  exists (request, kuid) {
     // check credentials existence
     Promise.resolve(/* true|false */);
   }
@@ -419,10 +419,10 @@ class AuthenticationPlugin {
    * from the persistence layer
    *
    * @param {KuzzleRequest} request
-   * @param {string} userId
+   * @param {string} kuid
    * @returns {Promise<object>}
    */
-  getInfo (request, userId) {
+  getInfo (request, kuid) {
     // retrieve credentials
     Promise.resolve(/* non sensitive credentials info */);
   }
@@ -433,10 +433,10 @@ class AuthenticationPlugin {
    *
    * @param {KuzzleRequest} request
    * @param {object} credentials
-   * @param {string} userId
+   * @param {string} kuid
    * @returns {Promise<object>}
    */
-  update (request, credentials, userId) {
+  update (request, credentials, kuid) {
     // update credentials
     Promise.resolve(/* non sensitive credentials info */);
   }
@@ -448,18 +448,18 @@ class AuthenticationPlugin {
    *
    * @param {KuzzleRequest} request
    * @param {object} credentials
-   * @param {string} userId
+   * @param {string} kuid
    * @param {boolean} isUpdate
    * @returns {Promise<boolean>}
    */
-  validate (request, credentials, userId, isUpdate) {
+  validate (request, credentials, kuid, isUpdate) {
     // validate credentials
     Promise.resolve(/* true|false */);
   }
 
   /**
    * Provided to the Passport strategy as verify function
-   * Should return the userId if the user can authentify
+   * Should return the kuid if the user can authentify
    * or an object with the login failure reason as message attribute
    * 
    * @param {KuzzleRequest} request
@@ -468,10 +468,10 @@ class AuthenticationPlugin {
    */
   verify (request, ...args) {
     // verify if the user can authentify
-    const userId = getUserIdFromCredentials(args);
+    const kuid = getUserIdFromCredentials(args);
     
-    if (userId) {
-      return Promise.resolve(userId);
+    if (kuid) {
+      return Promise.resolve(kuid);
     }
     
     return Promise.resolve({message: 'Login failed - Reason ...'});
@@ -493,7 +493,7 @@ Here is the generic signature of the `verify` function you have to implement:
 * `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [the `Request` documentation](#request))
 * `...`: varies, depending on the used strategy
 
-The function **must** return a `Promise` that resolves to either the user id if the user is authenticated, or an object containing a message string attribute giving the reason why it can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is *not* an error).
+The function **must** return a `Promise` that resolves to either the user [`<kuid>`](/guide/#the-kuzzle-user-identifier) if the user is authenticated, or an object containing a message string attribute giving the reason why it can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is *not* an error).
 
 
 ### The exists function
@@ -502,10 +502,10 @@ You have to implement an `exists` function (its name depends on the configuratio
 
 Here is the generic signature of the `exists` function you have to implement:
 
-`exists (request, userId)`
+`exists (request, kuid)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
-* `userId` is the id of the Kuzzle user.
+* `kuid` is the user [`<kuid>`](/guide/#the-kuzzle-user-identifier).
 
 The function **must** return a `Promise` that resolves to a boolean depending on the user ability to authenticate with a strategy.
 
@@ -515,11 +515,11 @@ You have to implement an `create` function (its name depends on the configuratio
 
 Here is the generic signature of the `create` function you have to implement:
 
-`create (request, credentials, userId)`
+`create (request, credentials, kuid)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
 * `credentials` is the content of the credentials to create, that have already been passed to your `validate` function.
-* `userId` is the id of the Kuzzle user.
+* `kuid` is the user [`<kuid>`](/guide/#the-kuzzle-user-identifier).
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
@@ -534,11 +534,11 @@ You have to implement an `update` function (its name depends on the configuratio
 
 Here is the generic signature of the `update` function you have to implement:
 
-`update (request, credentials, userId)`
+`update (request, credentials, kuid)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
 * `credentials` is the content of the credentials to create, that have already been passed to your `validate` function.
-* `userId` is the id of the Kuzzle user.
+* `kuid` is the user [`<kuid>`](/guide/#the-kuzzle-user-identifier).
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
@@ -553,10 +553,10 @@ You have to implement a `delete` function (its name depends on the configuration
 
 Here is the generic signature of the `delete` function you have to implement:
 
-`delete (request, userId)`
+`delete (request, kuid)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
-* `userId` is the id of the Kuzzle user.
+* `kuid` is the user [`<kuid>`](/guide/#the-kuzzle-user-identifier).
 
 The function **must** return a `Promise` that resolves to any value if deletion succeeds.
 
@@ -567,10 +567,10 @@ You may implement a `getInfo` function (its name depends on the configuration pr
 
 Here is the generic signature of the `getInfo` function you have to implement:
 
-`getInfo (request, userId)`
+`getInfo (request, kuid)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
-* `userId` is the id of the Kuzzle user.
+* `kuid` is the user [`<kuid>`](/guide/#the-kuzzle-user-identifier).
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
@@ -581,15 +581,15 @@ The function **must** return a `Promise` that resolves to an object that contain
 
 ### The validate function
 
-You have to implement a `validate` (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to validate the credentials of your strategy.
+You have to implement a `validate` (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to check if the provided user's credentials to this strategy are well-formed.
 
 Here is the generic signature of the `validate` function you have to implement:
 
-`validate (request, credentials, userId, isUpdate)`
+`validate (request, credentials, kuid, isUpdate)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
 * `credentials` is the content of the credentials to create or update.
-* `userId` is the id of the Kuzzle user.
+* `kuid` is the user [`<kuid>`](/guide/#the-kuzzle-user-identifier).
 * `isUpdate` is true if `validate` is called during an update.
 
 The function **must** return a `Promise` that resolves to true or rejects with an error explaining the reason.

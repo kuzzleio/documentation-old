@@ -368,7 +368,7 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 $userDefinition = [
   'profileIds' => ['myProfile'],
   'password' => 'secret',
@@ -380,7 +380,7 @@ $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 try {
-  $user = $security->createUser($userId, $userDefinition);
+  $user = $security->createUser($kuid, $userDefinition);
 
   // $user instanceof User
 }
@@ -477,8 +477,8 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
-$userDefinition => [
+$kuid = 'myUser';
+$userDefinition = [
   'password' => 'secret',
   'firstname' => 'John',
   'lastname' => 'Doe'
@@ -488,7 +488,7 @@ $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 try {
-  $user = $security->createRestrictedUser($userId, $userDefinition);
+  $user = $security->createRestrictedUser($kuid, $userDefinition);
 
   // $user instanceof User
 }
@@ -732,12 +732,12 @@ kuzzle
 
 use \Kuzzle\Kuzzle;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $kuzzle->security()->deleteUser($userId);
+  $kuzzle->security()->deleteUser($kuid);
 }
 catch (ErrorException $e) {
 
@@ -967,12 +967,12 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $user = $kuzzle->security()->fetchUser($userId);
+  $user = $kuzzle->security()->fetchUser($kuid);
 
   // $user instanceof User
 }
@@ -1043,12 +1043,12 @@ kuzzle
 
 use \Kuzzle\Kuzzle;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $rights = $kuzzle->security()->getUserRights($userId);
+  $rights = $kuzzle->security()->getUserRights($kuid);
 
 }
 catch (ErrorException $e) {
@@ -2012,7 +2012,7 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 $userDefinition = [
   'firstname' => 'My Name Is',
   'lastname' => 'Jonas'
@@ -2022,7 +2022,7 @@ $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 try {
-  $user = $security->updateUser($userId, $userDefinition);
+  $user = $security->updateUser($kuid, $userDefinition);
 
   // $user instanceof User
 }
@@ -2085,7 +2085,7 @@ JSONObject userContent = new JSONObject()
     .put("firstname", "John")
     .put("lastname", "Doe");
 
-User user = kuzzle.security.user("userId", userContent);  
+User user = kuzzle.security.user("<kuid>", userContent);  
 ```
 
 ```php
@@ -2094,7 +2094,7 @@ User user = kuzzle.security.user("userId", userContent);
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 $userDefinition = [
   // A "profileIds" field is required to bind a user to an existing profile
   'profileIds' => ['myProfile'],
@@ -2107,7 +2107,7 @@ $userDefinition = [
 $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
-$user = $security->user($userId, $userDefinition);
+$user = $security->user($kuid, $userDefinition);
 // $user instanceof User
 ```
 

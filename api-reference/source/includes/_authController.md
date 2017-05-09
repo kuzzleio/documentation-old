@@ -210,20 +210,21 @@ Delete credentials of the specified `<strategy>` for the current user. If the cr
   "action": "getCurrentUser",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id":"<userId>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "_source": {
       "name": {
         "first": "Steve",
         "last": "Wozniak"
       },
-      ...                         // The user object content
+      ...                             // The user object content
       "profile": {
         "_id":"<profileId>",
         "roles": [
-          ...                     // Users roles definitions
+          ...                         // Users roles definitions
         ]
       }
-    }
+    },
+    "strategies": ["available", "strategies"]
   }
 }
 ```
@@ -431,7 +432,7 @@ Check the existence of the specified `<strategy>`'s credentials for the current 
   "requestId": "<unique request identifier>",
   "volatile": {},
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "jwt": "<JWT encrypted token>"
   }
 }
@@ -672,7 +673,7 @@ Validate credentials of the specified `<strategy>` for the current user. `result
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "_source": {
       "foo": "bar",
       "name": "Walter Smith",

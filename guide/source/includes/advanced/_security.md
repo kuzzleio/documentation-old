@@ -1,3 +1,11 @@
+## The Kuzzle User Identifier
+
+The kuzzle user identifier is a string that identifies a kuzzle user uniquely. It is used internally to link the user stored in Kuzzle with its credentials within the different authentication strategies.
+
+When a user is created, this identifier can either be set by the request, or generated directly by Kuzzle.
+
+When an authentication strategy stores its credentials in its own storage (internal or external) with its own storage nomenclature they have to store a reference to this value. This way it can retrieve the Kuzzle user identifier when the user credentials are provided during a log in request.
+
 ## Authentication
 
 Kuzzle uses [PassportJS](http://PassportJS.org/) to enable authentication through a large amount of providers, for example:
@@ -209,7 +217,7 @@ The permission function has the following signature:
 ```javascript
 /**
  * @param {Request} $request              The current action request.
- * @param {string} $currentUserId         The current user Id. Shortcut to request.context.token.userId
+ * @param {string} $currentUserId         The current user kuid. Shortcut to request.context.token.userId
  * @param {Object} args                   The result of the evaluated args definition.
  *
  * @return {Boolean}
@@ -227,7 +235,7 @@ The [Request](https://github.com/kuzzleio/kuzzle-common-objects#request) object 
 
 ##### $currentUserId
 
-The `$currentUserId` variable contains the current user ID. It is an alias for `request.context.token.userId`.
+The `$currentUserId` variable contains the current user [`<kuid>`](/guide/#the-kuzzle-user-identifier). It is an alias for `request.context.token.userId`.
 
 ##### args
 
@@ -385,10 +393,8 @@ The search results are available in the Permission Function as an array of docum
 
 ```javascript
 args.myDocuments = [
-  { id: "id_1", content: {name: "foo", description: "Cum sociis natoque penatibus et magnis dis parturient montes"},
-  }
-  { id: "id_2", content: {name: "foo bar", description: "nascetur ridiculus mus. Nulla nunc velit"},
-  }
+  { id: "id_1", content: {name: "foo", description: "Cum sociis natoque penatibus et magnis dis parturient montes"}},
+  { id: "id_2", content: {name: "foo bar", description: "nascetur ridiculus mus. Nulla nunc velit"}},
   ...
 ]
 ```

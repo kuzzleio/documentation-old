@@ -4,7 +4,7 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/credentials/<strategy>/<userId>/_create`  
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_create`  
 >**Method:** `POST`  
 >**Body**
 
@@ -35,7 +35,7 @@
   "controller": "security",
   "action": "createCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>",
+  "_id": "<kuid>",                  // The kuzzle user identifier
   "body": {
     "credentialField": "someValue",
     ...
@@ -48,7 +48,7 @@
   "controller": "security",
   "action": "createCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>",
+  "_id": "<kuid>",                  // The kuzzle user identifier
   "body": {
     "username": "MyUser",
     "password": "MyPassword"
@@ -66,21 +66,21 @@
   "error": null,                      // Assuming everything went well
   "action": "createCredentials",
   "controller": "security",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "result": {
     "username": "MyUser"
   }
 }
 ```
 
-Create credentials of the specified `<strategy>` for the user `<userId>`. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Create credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## createFirstAdmin
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<userId>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7512/_createFirstAdmin[?reset=1]`  
+>**URL:** `http://kuzzle:7512/<kuid>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7512/_createFirstAdmin[?reset=1]`  
 >**Method:** `POST`  
 >**Body**
 
@@ -126,7 +126,7 @@ Create credentials of the specified `<strategy>` for the user `<userId>`. The cr
   "controller": "security",
   "action": "createFirstAdmin",
   "reset": true|false,                    // Optional. Will reset the preset roles if set to true.
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
+  "_id": "<kuid>",                        // Optional. The kuzzle user identifier. If not provided, will be generated automatically.
   "body": {
     "content": {
       "name": "John Doe",                 // Additional optional User properties
@@ -146,7 +146,7 @@ Create credentials of the specified `<strategy>` for the user `<userId>`. The cr
   "controller": "security",
   "action": "createFirstAdmin",
   "reset": true|false,                    // Optional. Will reset the preset roles if set to true.
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
+  "_id": "<kuid>",                        // Optional. The kuzzle user identifier. If not provided, will be generated automatically.
   "body": {
     "content": {
       "name": "John Doe",                 // Additional optional User properties
@@ -173,7 +173,7 @@ Create credentials of the specified `<strategy>` for the user `<userId>`. The cr
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id, either provided or auto-generated>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "_source": {
       "name": "John Doe",
       "profileIds": [
@@ -187,7 +187,7 @@ Create credentials of the specified `<strategy>` for the user `<userId>`. The cr
 
 Creates the first admin `user` in Kuzzle's database layer. Does nothing if an admin user already exists.
 
-If an `_id` is provided in the query and if a `user` already exists with the given `_id`,
+If an `_id` is provided in the query and if the user [`<kuid>`](/guide/#the-kuzzle-user-identifier) already exists,
 it will be replaced and its `profileIds` will be set to `["admin"]`. If not provided, the `_id` will be auto-generated.
 
 If the optional field `reset` is set to `true` (`1` with http),
@@ -575,7 +575,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_create` or `http://kuzzle:7512/users/_create`  
+>**URL:** `http://kuzzle:7512/users/<kuid>/_create` or `http://kuzzle:7512/users/_create`  
 >**Method:** `POST`  
 >**Body**
 
@@ -622,7 +622,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 {
   "controller": "security",
   "action": "createUser",
-  "_id": "<userId>",                        // Optional. If not provided, will be generated automatically.
+  "_id": "<kuid>",                          // Optional. If not provided, will be generated automatically.
   "body": {
     "content": {
       "profileIds": ["<profileId>"],        // Mandatory. The profile ids for the user
@@ -642,8 +642,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 {
   "controller": "security",
   "action": "createUser",
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
-
+  "_id": "<kuid>",                        // Optional. If not provided, will be generated automatically.
   "body": {
     "content": {
       "profileIds": ["<profileId>"],      // Mandatory. The profile ids for the user
@@ -673,7 +672,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id, either provided or auto-generated>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "_index": "%kuzzle",
     "_source": {
       "profileIds": ["<profileId>"],
@@ -689,7 +688,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 Creates a new `user` in Kuzzle's database layer.
 
-If an `_id` is provided in the query and if a `user` already exists with the given `_id`, an error is returned.
+If an `_id` is provided in the query and if a user [`<kuid>`](/guide/#the-kuzzle-user-identifier) already exists, an error is returned.
 If not provided, the `_id` will be auto-generated.
 
 Provided profile ids are used to set the permissions of the user.
@@ -701,7 +700,7 @@ Other mandatory additional information are needed in the `credentials` attribute
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`  
+>**URL:** `http://kuzzle:7512/users/<kuid>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`  
 >**Method:** `POST`  
 >**Body**
 
@@ -746,7 +745,7 @@ Other mandatory additional information are needed in the `credentials` attribute
 {
   "controller": "security",
   "action": "createRestrictedUser",
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
+  "_id": "<kuid>",                          // Optional. If not provided, will be generated automatically.
   "body": {
     "content": {
       "name": "John Doe",                   // Additional optional User properties
@@ -765,7 +764,7 @@ Other mandatory additional information are needed in the `credentials` attribute
 {
   "controller": "security",
   "action": "createRestrictedUser",
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
+  "_id": "<kuid>",                        // Optional. If not provided, will be generated automatically.
   "body": {
     "content": {
       "profileIds": ["<profileId>"],      // Mandatory. The profile ids for the user
@@ -795,7 +794,7 @@ Other mandatory additional information are needed in the `credentials` attribute
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",
     "_index": "%kuzzle",
     "_source": {
       "profileIds": ["<profileId>"],
@@ -824,7 +823,7 @@ Other mandatory additional information are needed in the `credentials` attribute
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/credentials/<strategy>/<userId>`  
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>`  
 >**Method:** `DELETE`  
 
 <section class="others"></section>
@@ -838,7 +837,7 @@ Other mandatory additional information are needed in the `credentials` attribute
   "controller": "security",
   "action": "deleteCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>"
+  "_id": "<kuid>"
 }
 ```
 
@@ -850,14 +849,14 @@ Other mandatory additional information are needed in the `credentials` attribute
   "error": null,                      // Assuming everything went well
   "action": "deleteCredentials",
   "controller": "security",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "result": {
     "acknowledged": true
   }
 }
 ```
 
-Delete credentials of the specified `<strategy>` for the user `<userId>`.
+Delete credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier) .
 
 
 ## deleteProfile
@@ -953,7 +952,7 @@ Given a `role id`, deletes the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>`  
+>**URL:** `http://kuzzle:7512/users/<kuid>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
@@ -980,7 +979,7 @@ Given a `role id`, deletes the corresponding role from the database.
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<userId>"                 // The user id
+    "_id": "<kuid>",                  // The kuzzle user identifier
   }
   "index": "%kuzzle",
   "collection": "users",
@@ -990,7 +989,7 @@ Given a `role id`, deletes the corresponding role from the database.
 }
 ```
 
-Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer.
+Given a `user id`, deletes the corresponding [`<kuid>`](/guide/#the-kuzzle-user-identifier) from Kuzzle's database layer.
 
 
 ## getAllCredentialFields
@@ -1009,8 +1008,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 ```litcoffee
 {
   "controller": "security",
-  "action": "getAllCredentialFields",
-  "_id": "<userId>"
+  "action": "getAllCredentialFields"
 }
 ```
 
@@ -1051,8 +1049,7 @@ Retrieve a list of accepted fields per authentication strategy. These fields mig
 {
   "controller": "security",
   "action": "getCredentialFields",
-  "strategy": "<strategy>",
-  "_id": "<userId>"
+  "strategy": "<strategy>"
 }
 ```
 
@@ -1076,7 +1073,7 @@ Retrieve the list of accepted field names by the specified `<strategy>`. These f
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/credentials/<strategy>/<userId>`  
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -1090,7 +1087,7 @@ Retrieve the list of accepted field names by the specified `<strategy>`. These f
   "controller": "security",
   "action": "getCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>"
+  "_id": "<kuid>"
 }
 ```
 
@@ -1104,14 +1101,14 @@ Retrieve the list of accepted field names by the specified `<strategy>`. These f
   "error": null,                      // Assuming everything went well
   "action": "getCredentials",
   "controller": "security",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "result": {
     "username": "MyUser"
   }
 }
 ```
 
-Get credential information of the specified `<strategy>` for the user `<userId>`. Provided information completely depend of the strategy. The result can be an empty object.
+Get credential information of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier). Provided information completely depend of the strategy. The result can be an empty object.
 
 
 ## getProfile
@@ -1342,7 +1339,7 @@ Gets the mapping of the internal `roles` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>`  
+>**URL:** `http://kuzzle:7512/users/<kuid>`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1355,7 +1352,7 @@ Gets the mapping of the internal `roles` collection.
 {
   "controller": "security",
   "action": "getUser",
-  "_id": "<userId>"
+  "_id": "<kuid>"
 }
 ```
 
@@ -1371,7 +1368,7 @@ Gets the mapping of the internal `roles` collection.
   "action": "getUser",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",
     "_source": {
       "profileIds": ["<profileId>"],
       ...                             // The user object content
@@ -1381,7 +1378,7 @@ Gets the mapping of the internal `roles` collection.
 ```
 
 
-Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
+Given a user [`<kuid>`](/guide/#the-kuzzle-user-identifier), gets the matching user from Kuzzle's dabatase layer.
 
 
 ## getUserMapping
@@ -1428,7 +1425,7 @@ Gets the mapping of the internal `users` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_users/<userId>/_rights`  
+>**URL:** `http://kuzzle:7512/_users/<kuid>/_rights`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -1441,7 +1438,7 @@ Gets the mapping of the internal `users` collection.
 {
   "controller": "security",
   "action": "getUserRights",
-  "_id": "<userId>"
+  "_id": "<kuid>"
 }
 ```
 
@@ -1475,7 +1472,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/credentials/<strategy>/<userId>/_exists`  
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_exists`  
 >**Method:** `GET`  
 
 <section class="others"></section>
@@ -1489,7 +1486,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
   "controller": "security",
   "action": "hasCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>"
+  "_id": "<kuid>"
 }
 ```
 
@@ -1501,12 +1498,12 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
   "error": null,                      // Assuming everything went well
   "action": "hasCredentials",
   "controller": "security",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "result": true
 }
 ```
 
-Check the existence of the specified `<strategy>`'s credentials for the user `<userId>`.
+Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier).
 
 
 ## mDeleteProfiles
@@ -1626,7 +1623,7 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 ```litcoffee
 {
   // ids must be an array of profile ids
-  "ids": ["myFirstUserId", "mySecondUserId"]
+  "ids": ["firstKuid", "secondKuid"]
 }
 ```
 
@@ -1641,8 +1638,8 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
   "controller": "security",
   "action": "mDeleteUsers",
   "body": {
-    // ids must be an array of profile ids
-    "ids": ["myFirstUserId", "mySecondUserId"]
+    // ids must be an array of kuids
+    "ids": ["firstKuid", "secondKuid"]
   }
 }
 ```
@@ -1657,14 +1654,14 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": [
-    "myFirstUserId",
-    "mySecondUserId"
+    "firstKuid",
+    "secondKuid"
    ]
   }
 }
 ```
 
-Deletes a list of `users` objects from Kuzzle's database layer given a list of user ids.
+Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`](/guide/#the-kuzzle-user-identifier).
 
 ## mGetProfiles
 
@@ -1679,7 +1676,7 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
 ```litcoffee
 {
   // ids must be an array of profile ids
-  "ids": ["myFirstProfile", "MySecondProfile"]
+  "ids": ["firstProfileId", "secondProfileId"]
 }
 ```
 
@@ -1695,7 +1692,7 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
   "action": "mGetProfiles",
   "body": {
     // ids must be an array of profile ids
-    "ids": ["myFirstProfile", "mySecondProfile"]
+    "ids": ["firstProfileId", "secondProfileId"]
   }
 }
 ```
@@ -1719,7 +1716,7 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
      },
      "hits": [
        {
-         "_id": "myFirstProfile",
+         "_id": "firstProfileId",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
@@ -1730,7 +1727,7 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
          "_type": "profiles"
        },
        {
-         "_id": "mySecondProfile",
+         "_id": "secondProfileId",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
@@ -1765,7 +1762,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 ```litcoffee
 {
   // ids must be an array of role id
-  "ids": ["myFirstRole", "MySecondRole"]
+  "ids": ["firstRoleId", "secondRoleId"]
 }
 ```
 
@@ -1781,7 +1778,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
   "action": "mGetRoles",
   "body": {
     // ids must be an array of role id
-    "ids": ["myFirstRole", "mySecondRole"]
+    "ids": ["firstRoleId", "secondRoleId"]
   }
 }
 ```
@@ -1805,7 +1802,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
      },
      "hits": [
        {
-         "_id": "myFirstRole",
+         "_id": "firstRoleId",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
@@ -1816,7 +1813,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
          "_type": "roles"
        },
        {
-         "_id": "mySecondRole",
+         "_id": "secondRoleId",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
@@ -1880,11 +1877,11 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
     // An array of objects containing your retrieved documents
     "hits": [
       {
-        "_id": "myProfile1",
+        "_id": "firstProfileId",
         "_source": {
           "policies": [
             {
-              "roleId": "myRoleId",
+              "roleId": "firstRoleId",
               "restrictedTo": [
                 ...
               ]
@@ -1956,7 +1953,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
     // An array of objects containing your retrieved documents
     "hits": [
       {
-        "_id": "<userId>",
+        "_id": "<firstKuid>",
         "_source": { ... }             // The user object content
       },
       {
@@ -1993,11 +1990,11 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 
 ```litcoffee
 {
-  // A roles array containing a list of role IDs can be added
+  // A roles array containing a list of role Ids can be added
   "roles": [
-    "myrole",
+    "firstRoleId",
     "admin"
-  ],
+  ]
 }
 ```
 
@@ -2041,11 +2038,11 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
     },
     "hits": [
       {
-        "_id": "myProfile1",
+        "_id": "firstProfileId",
         "_source": {
           "policies": [
             {
-              "roleId": "myRoleId",
+              "roleId": "firstRoleId",
               "restrictedTo": [
                 ...
               ]
@@ -2055,7 +2052,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
         }
       },
       {
-        "_id": "myProfile2",
+        "_id": "secondProfileId",
         "_source": {
           "policies": [
             {
@@ -2265,7 +2262,7 @@ Available filters:
     // An array of user objects
     "hits": [
       {
-        "_id": "<userId>",
+        "_id": "<kuid>",
         "_source": { ... }             // The user object content
       },
       {
@@ -2288,7 +2285,7 @@ Optional arguments:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/credentials/<strategy>/<userId>/_update`  
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_update`  
 >**Method:** `PUT`  
 >**Body**
 
@@ -2318,7 +2315,7 @@ Optional arguments:
   "controller": "security",
   "action": "updateCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "body": {
     "credentialField": "someValue",
     ...
@@ -2331,7 +2328,7 @@ Optional arguments:
   "controller": "security",
   "action": "updateCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "body": {
     "password": "MyPassword"
   }
@@ -2348,21 +2345,21 @@ Optional arguments:
   "error": null,                      // Assuming everything went well
   "action": "updateCredentials",
   "controller": "security",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "result": {
     "username": "MyUser"
   }
 }
 ```
 
-Updates credentials of the specified `<strategy>` for the user `<userId>`. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Updates credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## updateProfile
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/<profile id>/_update`  
+>**URL:** `http://kuzzle:7512/profiles/<profileId>/_update`  
 >**Method:** `PUT`  
 >**Body**
 
@@ -2451,7 +2448,7 @@ Updates credentials of the specified `<strategy>` for the user `<userId>`. The c
 }
 ```
 
-Given a `profile id`, updates the matching Profile object in Kuzzle's database layer.
+Given a `profileId`, updates the matching Profile object in Kuzzle's database layer.
 
 
 ## updateProfileMapping
@@ -2710,7 +2707,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_update`  
+>**URL:** `http://kuzzle:7512/users/<kuid>/_update`  
 >**Method:** `PUT`  
 >**Body**
 
@@ -2734,7 +2731,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 {
   "controller": "security",
   "action": "updateUser",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "body": {
     "foo": "bar",                    // Some properties to update
     "name": "Walter Smith",
@@ -2755,7 +2752,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",
     "_index": "%kuzzle",
     "_type": "users",
     "_version": 2
@@ -2763,7 +2760,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 }
 ```
 
-Given a `user id`, updates the matching User object in Kuzzle's database layer.
+Given a [`<kuid>`](/guide/#the-kuzzle-user-identifier), updates the matching User object in Kuzzle's database layer.
 
 
 ## updateUserMapping
@@ -2856,7 +2853,7 @@ But if you want to store more information about your users, Kuzzle's API offers 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/credentials/<strategy>/<userId>/_validate`  
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_validate`  
 >**Method:** `POST`  
 >**Body**
 
@@ -2887,7 +2884,7 @@ But if you want to store more information about your users, Kuzzle's API offers 
   "controller": "security",
   "action": "validateCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "body": {
     "credentialField": "someValue",
     ...
@@ -2900,7 +2897,7 @@ But if you want to store more information about your users, Kuzzle's API offers 
   "controller": "security",
   "action": "validateCredentials",
   "strategy": "<strategy>",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "body": {
     "username": "MyUser",
     "password": "MyPassword"
@@ -2918,11 +2915,11 @@ But if you want to store more information about your users, Kuzzle's API offers 
   "error": null,                      // Assuming everything went well
   "action": "validateCredentials",
   "controller": "security",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "result": {
     "username": "MyUser"
   }
 }
 ```
 
-Validate credentials of the specified `<strategy>` for the user `<userId>`. `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Validate credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier). `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
