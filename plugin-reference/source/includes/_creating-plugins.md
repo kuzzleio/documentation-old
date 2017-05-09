@@ -375,6 +375,18 @@ class AuthenticationPlugin {
   }
 
   /**
+   * Called after the strategy has been built with the constructor
+   *
+   * @param {string} strategyName
+   * @param {*} constructedStrategy
+   * @returns {Promise<object>}
+   */
+  afterRegister (strategyName, constructedStrategy) {
+    // do some action
+    Promise.resolve(/* any value */);
+  }
+
+  /**
    * Persists the provided credentials in some way
    * Must keep a link between the persisted credentials
    * and the kuid
@@ -575,7 +587,24 @@ Here is the generic signature of the `getInfo` function you have to implement:
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
 <aside class="info">
-  If not getInfo function is provided, an empty object will be returned in the controllers that use it.
+  If no getInfo function is provided, an empty object will be returned in the controllers that use it.
+</aside>
+
+
+### The afterRegister function
+
+You may implement a `afterRegister` function (its name depends on the configuration provided in the `strategies` attribute), which will be called once the strategy constructor has been build
+
+Here is the generic signature of the `afterRegister` function you have to implement:
+
+`afterRegister (constructedStrategy)`
+
+* `constructedStrategy` is the instance of the Passport strategy constructor.
+
+The function **may** return any value as it will be ignored.
+
+<aside class="info">
+  If no afterRegister function is provided, Kuzzle won't try to call it, and register will process as expected.
 </aside>
 
 
