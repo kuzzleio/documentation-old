@@ -8,7 +8,7 @@ In this section we'll take a deeper look at the Kuzzle Core internals.
 
 The above schema shows the main architecture in Kuzzle, which is composed of the following entities.
 
-* **Kuzzle Proxy**: handles the communication beetween the client and Kuzzle (see [Connecting to kuzzle](../api-reference/#connecting-to-kuzzle)), and forwards the input message to the Router.
+* **Kuzzle Proxy**: handles the communication between the client and Kuzzle (see [Connecting to kuzzle](../api-reference/#connecting-to-kuzzle)), and forwards the input message to the Router.
 * **Router**: exposes the API routes, normalizes the Request and sends them to the Funnel.
 * **Funnel**: analyses the Request and forwards it to the appropriate Controller.
 * **Controllers**: handle the Request (see [API reference](../api-reference)) and return a response (or an error).
