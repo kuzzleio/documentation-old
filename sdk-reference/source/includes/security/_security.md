@@ -282,7 +282,7 @@ That means that a profile that was just been created will not be returned by <co
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique profile identifier |
-| ``content`` | JSON Object | A plain JSON object representing the profile |
+| ``content`` | JSON Object | A plain JSON object representing the profile and credentials |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | Callback handling the response |
 
@@ -302,15 +302,19 @@ Resolves to a `Profile` object.
 
 ```js
 var userContent = {
-  // A "profile" field is required to bind a user to an existing profile
-  profileIds: ['admin'],
-
-  // The "local" authentication strategy requires a password
-  password: 'secretPassword',
-
-  // You can also set custom fields to your user
-  firstname: 'John',
-  lastname: 'Doe'
+  content: {
+    // A "profile" field is required to bind a user to an existing profile
+    profileIds: ['admin'],
+  },
+  credentials: {
+    local: {
+      // The "local" authentication strategy requires a password
+      password: 'secretPassword',
+      // You can also set custom fields to your user
+      firstname: 'John',
+      lastname: 'Doe'
+    }
+  }
 };
 
 // You can chose to replace the given user if already exists
@@ -336,14 +340,20 @@ kuzzle
 ```
 
 ```java
-JSONObject newUser = new JSONObject()
+JSONObject content = new JSONObject()
   // A "profile" field is required to bind a user to an existing profile
   .put("profileIds", new JSONArray().put("admin"))
+JSONObject newUser = new JSONObject().put("content", content);
+
+JSONObject credentials = new JSONObject()
+  .put("local", new JSONObject()
   // The "local" authentication strategy requires a password
   .put("password", "secret password")
   // You can also set custom fields to your user
   .put("firstname", "John")
-  .put("lastname", "Doe");
+  .put("lastname", "Doe"));
+  
+newUser.put("credentials", credentials);
 
 Options opts = new Options().setReplaceIfExist(true);
 
@@ -370,11 +380,20 @@ use \Kuzzle\Security\User;
 
 $userId = 'myUser';
 $userDefinition = [
-  'profileIds' => ['myProfile'],
-  'password' => 'secret',
-  'firstname' => 'John',
-  'lastname' => 'Doe'
-];
+    'content' => [
+      // A "profile" field is required to bind a user to an existing profile
+      'profileIds' => ['admin'],
+    ],
+    'credentials' => [
+      'local' => [
+        // The "local" authentication strategy requires a password
+        'password' => 'secretPassword',
+        // You can also set custom fields to your user
+        'firstname' => 'John',
+        'lastname' => 'Doe'
+      ]
+    ]
+  ];
 
 $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
@@ -421,12 +440,17 @@ Resolves to a `User` object.
 
 ```js
 var userContent = {
-  // The "local" authentication strategy requires a password
-  password: 'secretPassword',
-
-  // You can also set custom fields to your user
-  firstname: 'John',
-  lastname: 'Doe'
+  content: {
+  },
+  credentials: {
+    local: {
+      // The "local" authentication strategy requires a password
+      password: 'secretPassword',
+      // You can also set custom fields to your user
+      firstname: 'John',
+      lastname: 'Doe'
+    }
+  }
 };
 
 
@@ -447,18 +471,25 @@ kuzzle
 ```
 
 ```java
-JSONObject newUser = new JSONObject()
+JSONObject content = new JSONObject();
+  
+JSONObject newUser = new JSONObject().put("content", content);
+
+JSONObject credentials = new JSONObject()
+  .put("local", new JSONObject()
   // The "local" authentication strategy requires a password
   .put("password", "secret password")
   // You can also set custom fields to your user
   .put("firstname", "John")
-  .put("lastname", "Doe");
+  .put("lastname", "Doe"));
+  
+newUser.put("credentials", credentials);
 
 Options opts = new Options().setReplaceIfExist(true);
 
 kuzzle
   .security
-  .createRestrictedUser("myNewUser", newUser, opts, new ResponseListener<User>() {
+  .createUser("myNewUser", newUser, opts, new ResponseListener<User>() {
     @Override
     public void onSuccess(User user) {
 
@@ -478,11 +509,19 @@ use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
 $userId = 'myUser';
-$userDefinition => [
-  'password' => 'secret',
-  'firstname' => 'John',
-  'lastname' => 'Doe'
-];
+$userDefinition = [
+    'content' => [
+    ],
+    'credentials' => [
+      'local' => [
+        // The "local" authentication strategy requires a password
+        'password' => 'secretPassword',
+        // You can also set custom fields to your user
+        'firstname' => 'John',
+        'lastname' => 'Doe'
+      ]
+    ]
+  ];
 
 $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
