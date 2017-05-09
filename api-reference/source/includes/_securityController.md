@@ -73,7 +73,7 @@
 }
 ```
 
-Create credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Create credentials of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## createFirstAdmin
@@ -187,7 +187,7 @@ Create credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/
 
 Creates the first admin `user` in Kuzzle's database layer. Does nothing if an admin user already exists.
 
-If an `_id` is provided in the query and if the user [`<kuid>`](/guide/#the-kuzzle-user-identifier) already exists,
+If an `_id` is provided in the query and if the user [`<kuid>`](../guide/#the-kuzzle-user-identifier) already exists,
 it will be replaced and its `profileIds` will be set to `["admin"]`. If not provided, the `_id` will be auto-generated.
 
 If the optional field `reset` is set to `true` (`1` with http),
@@ -688,7 +688,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 Creates a new `user` in Kuzzle's database layer.
 
-If an `_id` is provided in the query and if a user [`<kuid>`](/guide/#the-kuzzle-user-identifier) already exists, an error is returned.
+If an `_id` is provided in the query and if a user [`<kuid>`](../guide/#the-kuzzle-user-identifier) already exists, an error is returned.
 If not provided, the `_id` will be auto-generated.
 
 Provided profile ids are used to set the permissions of the user.
@@ -856,7 +856,7 @@ Other mandatory additional information are needed in the `credentials` attribute
 }
 ```
 
-Delete credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier) .
+Delete credentials of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier) .
 
 
 ## deleteProfile
@@ -989,7 +989,7 @@ Given a `role id`, deletes the corresponding role from the database.
 }
 ```
 
-Given a `user id`, deletes the corresponding [`<kuid>`](/guide/#the-kuzzle-user-identifier) from Kuzzle's database layer.
+Given a `user id`, deletes the corresponding [`<kuid>`](../guide/#the-kuzzle-user-identifier) from Kuzzle's database layer.
 
 
 ## getAllCredentialFields
@@ -1108,7 +1108,7 @@ Retrieve the list of accepted field names by the specified `<strategy>`. These f
 }
 ```
 
-Get credential information of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier). Provided information completely depend of the strategy. The result can be an empty object.
+Get credential information of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). Provided information completely depend of the strategy. The result can be an empty object.
 
 
 ## getProfile
@@ -1378,7 +1378,7 @@ Gets the mapping of the internal `roles` collection.
 ```
 
 
-Given a user [`<kuid>`](/guide/#the-kuzzle-user-identifier), gets the matching user from Kuzzle's dabatase layer.
+Given a user [`<kuid>`](../guide/#the-kuzzle-user-identifier), gets the matching user from Kuzzle's dabatase layer.
 
 
 ## getUserMapping
@@ -1503,7 +1503,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 }
 ```
 
-Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier).
+Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
 
 
 ## mDeleteProfiles
@@ -1661,7 +1661,7 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 }
 ```
 
-Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`](/guide/#the-kuzzle-user-identifier).
+Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`](../guide/#the-kuzzle-user-identifier).
 
 ## mGetProfiles
 
@@ -2352,7 +2352,7 @@ Optional arguments:
 }
 ```
 
-Updates credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Updates credentials of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 
 
 ## updateProfile
@@ -2760,7 +2760,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 }
 ```
 
-Given a [`<kuid>`](/guide/#the-kuzzle-user-identifier), updates the matching User object in Kuzzle's database layer.
+Given a [`<kuid>`](../guide/#the-kuzzle-user-identifier), updates the matching User object in Kuzzle's database layer.
 
 
 ## updateUserMapping
@@ -2922,4 +2922,4 @@ But if you want to store more information about your users, Kuzzle's API offers 
 }
 ```
 
-Validate credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/#the-kuzzle-user-identifier). `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Validate credentials of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
