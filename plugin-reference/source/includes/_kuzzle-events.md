@@ -82,16 +82,6 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 | `core:roleRepository:delete` | Triggered when a role is deleted | {_id} |
 
 
-## index
-
-Events triggered when a request is treated in the [`index` controller](/api-reference/#index-controller).
-
-| Event | Description | Payload |
-|-------|-------------|---------|
-| `index:after<Action>`  | All actions in `index` controller trigger an event after executing  | Type: Request |
-| `index:before<Action>` | All actions in `index` controller trigger an event before executing | Type: Request |
-
-
 ## document
 
 Events triggered when a request is treated in the [`document` controller](/api-reference/#document-controller).
@@ -107,6 +97,15 @@ Events triggered when a request is treated in the [`document` controller](/api-r
 |-------|-------------|---------|
 | `http:options` | Triggered whenever a HTTP OPTIONS methods is handled | Type: Request |
 
+## index
+
+Events triggered when a request is treated in the [`index` controller](/api-reference/#index-controller).
+
+| Event | Description | Payload |
+|-------|-------------|---------|
+| `index:after<Action>`  | All actions in `index` controller trigger an event after executing  | Type: Request |
+| `index:before<Action>` | All actions in `index` controller trigger an event before executing | Type: Request |
+
 ## internalBroker
 
 <aside class="warning">Internal use only</aside>
@@ -118,7 +117,22 @@ Events triggered by the Kuzzle internal message broker, used to transmit data be
 | `internalBroker:connected`     | Triggered when the internal broker is connected    | Type: String.<br> Server address (`ws://` / `ws+unix://`) |
 | `internalBroker:error`         | Triggered when an error occured in internal broker | Type: Object.<br> `{host, port, message, retry}` |
 | `internalBroker:reregistering` | Triggered when the internal broker is reregistered | Type: String.<br> room name |
-| `internalBroker:socketClosed`  | Triggered when the socket is closed                | Type: Number <br> code |   
+| `internalBroker:socketClosed`  | Triggered when the socket is closed                | Type: Number <br> code |
+
+## log
+
+Events triggered by Kuzzle to log messages or events. These events are **read-only** and only hooks can be plugged on these.
+
+Each log event has an associated log level and, depending on the minimum log level in the Kuzzle configuration file, some of these events may never be triggered.
+
+| Event | Description | Payload |
+|-------|-------------|---------|
+| `log:error` | Log level 0 | Type: String |
+| `log:warn` | Log level 1 | Type: String |
+| `log:info` | Log level 2 | Type: String |
+| `log:verbose` | Log level 3 | Type: String |
+| `log:debug` | Log level 4 | Type: String |
+| `log:silly` | Log level 5 | Type: String |
 
 
 ## ms (memoryStorage)
