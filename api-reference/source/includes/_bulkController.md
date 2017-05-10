@@ -1,17 +1,17 @@
 # ~ bulk controller
 
+<aside class="warning">
+The bulk operations only apply to the persistent data storage layer.
+You <strong>won't receive any real-time notfications</strong> on your document subcriptions
+even if some of the documents in the import match your subscription filters.
+</aside>
+
 A bulk import allows your application to perform multiple writing operations thanks to a single query.
 This is especially useful if you want to create a large number of documents. A bulk import will be
 a lot faster compared to creating them individually using `create` queries.
 
 For other queries, the syntax for bulk imports closely resembles the
 [ElasticSearch Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-bulk.html).
-
-<aside class="warning">
-The bulk operations only apply to the persistent data storage layer.
-You <strong>won't receive any real-time notfications</strong> on your document subcriptions
-even if some of the documents in the import match your subscription filters.
-</aside>
 
 
 ## import
@@ -110,6 +110,7 @@ even if some of the documents in the import match your subscription filters.
 You can use the `bulk import` to save a list of documents in one specific `collection` in a specified `index`.  
 In such case, the `collection` in which the documents need to be inserted needs to be specified in the query.
 
+In case a subset of the queries sent within the request fail, the client will receive a <a href="#partialerror">PartialError</a> object.
 
 ### Performing a global bulk import
 

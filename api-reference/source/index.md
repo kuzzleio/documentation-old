@@ -25,6 +25,7 @@ includes:
   - realtimeController
   - securityController
   - serverController
+  - errors
 
 search: true
 ---

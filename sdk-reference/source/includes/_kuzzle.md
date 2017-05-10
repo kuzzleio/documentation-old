@@ -228,18 +228,20 @@ Here is the list of these special events:
 ## addListener
 
 ```js
-  var listenerId = kuzzle.addListener('connected', function () {
+  var callback = function () {
     // Actions to perform when receiving a 'connected' global event
-  });
+  };
+  kuzzle.addListener('connected', callback);
 ```
 
 ```java
-String listenerId = kuzzle.addListener(Event.connected, new EventListener() {
+EventListener eventListener = new EventListener() {
   @Override
-  public void trigger() {
-    // Actions to perform when receiving a 'connected' global event
+  public void trigger(Object... args) {
+    // Actions to perform when receiving a 'subscribed' global event
   }
-});
+};
+kuzzle.addListener(Event.connected, eventListener);
 ```
 
 ```php
@@ -255,10 +257,6 @@ Adds a listener to a Kuzzle global event. When an event is fired, listeners are 
 
 See the [event handling](docs.kuzzle.io/sdk-reference/#event-handling) section for a full events list.
 
-<aside class="notice">
-The ID returned by this function is required if you want to remove this listener later.
-</aside>
-
 ### addListener(event, listener)
 
 | Arguments | Type | Description |
@@ -268,7 +266,7 @@ The ID returned by this function is required if you want to remove this listener
 
 ### Return value
 
-Returns a `string` containing an unique listener ID.
+Returns the `Kuzzle` object to allow chaining.
 
 ## checkToken
 
@@ -1863,11 +1861,11 @@ Returns the `Kuzzle` object to allow chaining.
 ## removeListener
 
 ```js
-kuzzle.removeListener('disconnected', listenerId);
+kuzzle.removeListener('disconnected', callback);
 ```
 
 ```java
-kuzzle.removeListener(Event.disconnected, "listenerId");
+kuzzle.removeListener(Event.disconnected, eventListener);
 ```
 
 ```php
@@ -1876,17 +1874,17 @@ use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
 
-$kuzzle->removeListener('jwtTokenExpired', $listenerId);
+$kuzzle->removeListener('jwtTokenExpired', $callback);
 ```
 
 Removes a listener from an event.
 
-### removeListener(event, listenerID)
+### removeListener(event, callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
-| ``listenerID`` | string | The ID returned by ``addListener`` |
+| ``callback`` | function/object | the callback |
 
 #### Return value
 

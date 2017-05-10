@@ -744,7 +744,7 @@ Optional arguments:
 
 Creates new documents in the persistent data storage.
 
-Returns a partial error (with status 206) if one or more documents already exist.
+Returns a [partial error](#partialerror) (with status 206) if one or more documents creation fails.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
@@ -888,7 +888,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 Creates or replaces documents in the persistent data storage.
 
-Returns a partial error (with status 206) if one or more documents can not be created or replaced.
+Returns a [partial error](#partialerror) (with status 206) if one or more documents can not be created or replaced.
 
 
 ## mDelete
@@ -947,7 +947,7 @@ Returns a partial error (with status 206) if one or more documents can not be cr
 
 Deletes documents in the persistent data storage.
 
-Returns a partial error (with status 206) if one or more document can not be deleted.
+Returns a [partial error](#partialerror) (with status 206) if one or more document can not be deleted.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
@@ -1049,6 +1049,7 @@ Given `document ids`, retrieves the corresponding documents from the database.
 
 Only documents in the persistent data storage layer can be retrieved.
 
+Returns a [partial error](#partialerror) (with status 206) if one or more document can not be retrieved.
 
 ## mReplace
 
@@ -1189,7 +1190,7 @@ Only documents in the persistent data storage layer can be retrieved.
 
 Replaces documents in the persistent data storage.
 
-Returns a partial error (with status 206) if one or more documents can not be replaced.
+Returns a [partial error](#partialerror) (with status 206) if one or more documents can not be replaced.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).

@@ -2,11 +2,7 @@
 
 ### Writing plugin code
 
-Plugins must be written in Javascript, for the Node.js interpreter. You must be accustomed to [how modules are loaded and exported](https://nodejs.org/docs/v4.6.2/doc/api/modules.html).
-
-As Kuzzle treats plugins as Node.js modules, plugins must make themselves available to Kuzzle using `module.exports`. Otherwise Kuzzle won't be able to instantiate them.
-
-Plugins must be valid NodeJS require-able modules, usually shipped as a directory containing either:
+Plugins must be valid NodeJS require-able [modules](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html), usually shipped as a directory containing either:
 
 * an `index.js` file in its root directory, exporting a valid Javascript class exposing an `init` method, or
 * a well-formed `package.json` file in its root directory, specifying the path of the main require-able in the `main` field.
