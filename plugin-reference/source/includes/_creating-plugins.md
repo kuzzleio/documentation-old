@@ -377,11 +377,10 @@ class AuthenticationPlugin {
   /**
    * Called after the strategy has been built with the constructor
    *
-   * @param {string} strategyName
    * @param {*} constructedStrategy
    * @returns {Promise<object>}
    */
-  afterRegister (strategyName, constructedStrategy) {
+  afterRegister (constructedStrategy) {
     // do some action
     Promise.resolve(/* any value */);
   }
