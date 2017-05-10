@@ -21,8 +21,8 @@ For other queries, the syntax for bulk imports closely resembles the
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_bulk`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_bulk`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -44,7 +44,7 @@ For other queries, the syntax for bulk imports closely resembles the
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -70,7 +70,7 @@ For other queries, the syntax for bulk imports closely resembles the
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -116,8 +116,8 @@ In case a subset of the queries sent within the request fail, the client will re
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_bulk`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/_bulk`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -140,7 +140,7 @@ In case a subset of the queries sent within the request fail, the client will re
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -165,7 +165,7 @@ In case a subset of the queries sent within the request fail, the client will re
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {

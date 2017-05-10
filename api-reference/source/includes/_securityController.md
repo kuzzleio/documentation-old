@@ -1,33 +1,123 @@
 # ~ security controller
 
-## createFirstAdmin
+## createCredentials
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<userId>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7512/_createFirstAdmin[?reset=1]`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_create`  
+>**Method:** `POST`  
 >**Body**
 
 <section class="http"></section>
 
 ```litcoffee
 {
-  "name": "John Doe",                     // Additional optional User properties
+  "credentialField": "someValue",
   ...
 }
 
 // example with a "local" authentication
 
 {
-  "name": "John Doe",                     // Additional optional User properties
-  ...
-  "password": "MyPassword"                // ie: Mandatory for "local" authentication plugin
+  "username": "MyUser",
+  "password": "MyPassword"
 }
 ```
 
 <section class="others"></section>
 
->Query
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "createCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>",                  // The kuzzle user identifier
+  "body": {
+    "credentialField": "someValue",
+    ...
+  }
+}
+
+// example with a "local" authentication
+
+{
+  "controller": "security",
+  "action": "createCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>",                  // The kuzzle user identifier
+  "body": {
+    "username": "MyUser",
+    "password": "MyPassword"
+  }
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "createCredentials",
+  "controller": "security",
+  "_id": "<kuid>",
+  "result": {
+    "username": "MyUser"
+  }
+}
+```
+
+Create credentials of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+
+
+## createFirstAdmin
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/<kuid>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7512/_createFirstAdmin[?reset=1]`  
+>**Method:** `POST`  
+>**Body**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "content": {
+    "name": "John Doe",                     // Additional optional User properties
+    ...
+  },
+  "credentials": {
+    "strategy-name": {
+      ...
+    }
+  }
+}
+
+// example with a "local" authentication
+
+{
+  "content": {
+    "name": "John Doe",                   // Additional optional User properties
+    ...
+  },
+  "credentials": {
+    "local": {
+      "username": "userAdmin",            // ie: Mandatory for "local" authentication plugin
+      "password": "myPassword"            // ie: Mandatory for "local" authentication plugin
+    }
+  }
+}
+```
+
+<section class="others"></section>
+
+>**Query**
 
 <section class="others"></section>
 
@@ -36,11 +126,17 @@
   "controller": "security",
   "action": "createFirstAdmin",
   "reset": true|false,                    // Optional. Will reset the preset roles if set to true.
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
-
+  "_id": "<kuid>",                        // Optional. The kuzzle user identifier. If not provided, will be generated automatically.
   "body": {
-    "name": "John Doe",                   // Additional optional User properties
-    ...
+    "content": {
+      "name": "John Doe",                 // Additional optional User properties
+      ...
+    },
+    "credentials": {
+      "strategy-name": {
+        ...
+      }
+    }
   }
 }
 
@@ -50,17 +146,23 @@
   "controller": "security",
   "action": "createFirstAdmin",
   "reset": true|false,                    // Optional. Will reset the preset roles if set to true.
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
-
+  "_id": "<kuid>",                        // Optional. The kuzzle user identifier. If not provided, will be generated automatically.
   "body": {
-    "name": "John Doe",                   // Additional optional User properties
-    ...
-    "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
+    "content": {
+      "name": "John Doe",                 // Additional optional User properties
+      ...
+    },
+    "credentials": {
+      "local": {
+        "username": "userAdmin",          // ie: Mandatory for "local" authentication plugin
+        "password": "myPassword"          // ie: Mandatory for "local" authentication plugin
+      }
+    }
   }
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -71,7 +173,7 @@
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id, either provided or auto-generated>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "_source": {
       "name": "John Doe",
       "profileIds": [
@@ -85,21 +187,21 @@
 
 Creates the first admin `user` in Kuzzle's database layer. Does nothing if an admin user already exists.
 
-If an `_id` is provided in the query and if a `user` already exists with the given `_id`,
+If an `_id` is provided in the query and if the user [`<kuid>`](../guide/#the-kuzzle-user-identifier) already exists,
 it will be replaced and its `profileIds` will be set to `["admin"]`. If not provided, the `_id` will be auto-generated.
 
 If the optional field `reset` is set to `true` (`1` with http),
 the preset roles (`anonymous` and `default`) will be reset with more restrictive rights.
 
-Other mandatory additional information are needed depending on the authentication plugins installed you want to use.
+Other mandatory additional information are needed in the `credentials` attribute depending on the installed authentication plugins you want to use.
 
 
 ## createOrReplaceProfile
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/<profileId>`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/profiles/<profileId>`  
+>**Method:** `PUT`  
 >**Body**
 
 <section class="http"></section>
@@ -133,7 +235,7 @@ Other mandatory additional information are needed depending on the authenticatio
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -171,7 +273,7 @@ Other mandatory additional information are needed depending on the authenticatio
 }
 ```
 
-> Response
+>**Response**
 
 ```litcoffee
 {
@@ -201,8 +303,8 @@ Creates or replaces (if `_id` matches an existing one) a profile with a list of 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<roleId>`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/roles/<roleId>`  
+>**Method:** `PUT`  
 >**Body**
 
 <section class="http"></section>
@@ -221,7 +323,7 @@ Creates or replaces (if `_id` matches an existing one) a profile with a list of 
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -244,7 +346,7 @@ Creates or replaces (if `_id` matches an existing one) a profile with a list of 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -285,8 +387,8 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/<profileId>/_create`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/profiles/<profileId>/_create`  
+>**Method:** `POST`  
 >**Body**
 
 <section class="http"></section>
@@ -320,7 +422,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -358,7 +460,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 }
 ```
 
-> Response
+>**Response**
 
 ```litcoffee
 {
@@ -388,8 +490,8 @@ Creates a profile with a new list of roles.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<roleId>/_create`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/roles/<roleId>/_create`  
+>**Method:** `POST`  
 >**Body**
 
 <section class="http"></section>
@@ -408,7 +510,7 @@ Creates a profile with a new list of roles.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -431,7 +533,7 @@ Creates a profile with a new list of roles.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -473,32 +575,46 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_create` or `http://kuzzle:7512/users/_create`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/users/<kuid>/_create` or `http://kuzzle:7512/users/_create`  
+>**Method:** `POST`  
 >**Body**
 
 <section class="http"></section>
 
 ```litcoffee
 {
-  "profileIds": ["<profileId>"],          // Mandatory. The profile ids for the user
-  "name": "John Doe",                     // Additional optional User properties
-  ...
+  "content": {
+    "profileIds": ["<profileId>"],          // Mandatory. The profile ids for the user
+    "name": "John Doe",                     // Additional optional User properties
+    ...
+  },
+  "credentials": {
+    "strategy-name": {
+      ...
+    }
+  }
 }
 
 // example with a "local" authentication
 
 {
-  "profileIds": ["<profileId>"],          // Mandatory. The profile ids for the user
-  "name": "John Doe",                     // Additional optional User properties
-  ...
-  "password": "MyPassword"                // ie: Mandatory for "local" authentication plugin
+  "content": {
+    "profileIds": ["<profileId>"],          // Mandatory. The profile ids for the user
+    "name": "John Doe",                     // Additional optional User properties
+    ...
+  },
+  "credentials": {
+    "local": {
+      "username": "MyUser"                  // ie: Mandatory for "local" authentication plugin
+      "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
+    } 
+  }
 }
 ```
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -506,12 +622,18 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 {
   "controller": "security",
   "action": "createUser",
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
-
+  "_id": "<kuid>",                          // Optional. If not provided, will be generated automatically.
   "body": {
-    "profileIds": ["<profileId>"],        // Mandatory. The profile ids for the user
-    "name": "John Doe",                   // Additional optional User properties
-    ...
+    "content": {
+      "profileIds": ["<profileId>"],        // Mandatory. The profile ids for the user
+      "name": "John Doe",                   // Additional optional User properties
+      ...
+    },
+    "credentials": {
+      "strategy-name": {
+        ...
+      }
+    }
   }
 }
 
@@ -520,18 +642,24 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 {
   "controller": "security",
   "action": "createUser",
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
-
+  "_id": "<kuid>",                        // Optional. If not provided, will be generated automatically.
   "body": {
-    "profileIds": ["<profileId>"],        // Mandatory. The profile ids for the user
-    "name": "John Doe",                   // Additional optional User properties
-    ...
-    "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
+    "content": {
+      "profileIds": ["<profileId>"],      // Mandatory. The profile ids for the user
+      "name": "John Doe",                 // Additional optional User properties
+      ...
+    },
+    "credentials": {
+      "local": {
+        "username": "MyUser"              // ie: Mandatory for "local" authentication plugin
+        "password": "MyPassword"          // ie: Mandatory for "local" authentication plugin
+      } 
+    }
   }
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -544,7 +672,7 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<user id, either provided or auto-generated>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "_index": "%kuzzle",
     "_source": {
       "profileIds": ["<profileId>"],
@@ -560,42 +688,56 @@ please refer to [Kuzzle's permissions documentation](/guide/#permissions).
 
 Creates a new `user` in Kuzzle's database layer.
 
-If an `_id` is provided in the query and if a `user` already exists with the given `_id`, an error is returned.
+If an `_id` is provided in the query and if a user [`<kuid>`](../guide/#the-kuzzle-user-identifier) already exists, an error is returned.
 If not provided, the `_id` will be auto-generated.
 
 Provided profile ids are used to set the permissions of the user.
 
-Other mandatory additional information are needed depending on the authentication plugins installed you want to use.
+Other mandatory additional information are needed in the `credentials` attribute depending on the installed authentication plugins you want to use.
 
 
 ## createRestrictedUser
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/users/<kuid>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`  
+>**Method:** `POST`  
 >**Body**
 
 <section class="http"></section>
 
 ```litcoffee
 {
-  "name": "John Doe",                     // Additional optional User properties
-  ...
+  "content": {
+    "name": "John Doe",                     // Additional optional User properties
+    ...
+  },
+  "credentials": {
+    "strategy-name": {
+      ...
+    }
+  }
 }
 
 // example with a "local" authentication
 
 {
-  "name": "John Doe",                     // Additional optional User properties
-  ...
-  "password": "MyPassword"                // ie: Mandatory for "local" authentication plugin
+  "content": {
+    "name": "John Doe",                     // Additional optional User properties
+    ...
+  },
+  "credentials": {
+    "local": {
+      "username": "MyUser"                  // ie: Mandatory for "local" authentication plugin
+      "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
+    } 
+  }
 }
 ```
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -603,10 +745,17 @@ Other mandatory additional information are needed depending on the authenticatio
 {
   "controller": "security",
   "action": "createRestrictedUser",
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
+  "_id": "<kuid>",                          // Optional. If not provided, will be generated automatically.
   "body": {
-    "name": "John Doe",                   // Additional optional User properties
-    ...
+    "content": {
+      "name": "John Doe",                   // Additional optional User properties
+      ...
+    },
+    "credentials": {
+      "strategy-name": {
+        ...
+      }
+    }
   }
 }
 
@@ -615,16 +764,24 @@ Other mandatory additional information are needed depending on the authenticatio
 {
   "controller": "security",
   "action": "createRestrictedUser",
-  "_id": "<userId>",                      // Optional. If not provided, will be generated automatically.
+  "_id": "<kuid>",                        // Optional. If not provided, will be generated automatically.
   "body": {
-    "name": "John Doe",                   // Additional optional User properties
-    ...
-    "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
+    "content": {
+      "profileIds": ["<profileId>"],      // Mandatory. The profile ids for the user
+      "name": "John Doe",                 // Additional optional User properties
+      ...
+    },
+    "credentials": {
+      "local": {
+        "username": "MyUser"              // ie: Mandatory for "local" authentication plugin
+        "password": "MyPassword"          // ie: Mandatory for "local" authentication plugin
+      } 
+    }
   }
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -637,7 +794,7 @@ Other mandatory additional information are needed depending on the authenticatio
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",
     "_index": "%kuzzle",
     "_source": {
       "profileIds": ["<profileId>"],
@@ -659,19 +816,59 @@ If not provided, the `_id` will be auto-generated.
 Profile ids are set accordingly to the Kuzzle configuration.
 This route is especially useful to allow anonymous users to create a user.
 
-Other mandatory additional information are needed depending on the authentication plugins installed you want to use.
+Other mandatory additional information are needed in the `credentials` attribute depending on the installed authentication plugins you want to use.
+
+
+## deleteCredentials
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>`  
+>**Method:** `DELETE`  
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "deleteCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>"
+}
+```
+
+>**Response**
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "deleteCredentials",
+  "controller": "security",
+  "_id": "<kuid>",
+  "result": {
+    "acknowledged": true
+  }
+}
+```
+
+Delete credentials of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier) .
 
 
 ## deleteProfile
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_profiles/<profileId>`<br/>
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -686,7 +883,7 @@ Other mandatory additional information are needed depending on the authenticatio
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -711,12 +908,12 @@ that the related roles will NOT be deleted.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<roleId>`<br/>
+>**URL:** `http://kuzzle:7512/roles/<roleId>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -731,7 +928,7 @@ that the related roles will NOT be deleted.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -755,12 +952,12 @@ Given a `role id`, deletes the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>`<br/>
+>**URL:** `http://kuzzle:7512/users/<kuid>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -775,14 +972,14 @@ Given a `role id`, deletes the corresponding role from the database.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
   "result": {
-    "_id": "<userId>"                 // The user id
+    "_id": "<kuid>",                  // The kuzzle user identifier
   }
   "index": "%kuzzle",
   "collection": "users",
@@ -792,19 +989,138 @@ Given a `role id`, deletes the corresponding role from the database.
 }
 ```
 
-Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer.
+Given a `user id`, deletes the corresponding [`<kuid>`](../guide/#the-kuzzle-user-identifier) from Kuzzle's database layer.
+
+
+## getAllCredentialFields
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/_fields`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "getAllCredentialFields"
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "getAllCredentialFields",
+  "controller": "security",
+  "result": {
+    "local": ["username", "password"],
+    ...
+  }
+}
+```
+
+Retrieve a list of accepted fields per authentication strategy. These fields might either be required or optional.
+
+
+## getCredentialFields
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/_fields`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "getCredentialFields",
+  "strategy": "<strategy>"
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "getCredentialFields",
+  "controller": "security",
+  "result": ["username", "password"]
+}
+```
+
+Retrieve the list of accepted field names by the specified `<strategy>`. These fields might either be required or optional.
+
+## getCredentials
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "getCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>"
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "getCredentials",
+  "controller": "security",
+  "_id": "<kuid>",
+  "result": {
+    "username": "MyUser"
+  }
+}
+```
+
+Get credential information of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). Provided information completely depend of the strategy. The result can be an empty object.
 
 
 ## getProfile
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_profiles/<profileId>`<br/>
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -818,7 +1134,7 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -840,17 +1156,16 @@ Given a `user id`, deletes the corresponding `user` from Kuzzle's database layer
 Given a `profile id`, retrieves the corresponding profile from the database.
 
 
-
 ## getProfileMapping
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_mapping`<br/>
+>**URL:** `http://kuzzle:7512/profiles/_mapping`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -861,7 +1176,7 @@ Given a `profile id`, retrieves the corresponding profile from the database.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -885,12 +1200,12 @@ Gets the mapping of the internal `profiles` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_profiles/<profileId>/_rights`<br/>
+>**URL:** `http://kuzzle:7512/_profiles/<profileId>/_rights`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -905,7 +1220,7 @@ Gets the mapping of the internal `profiles` collection.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -934,12 +1249,12 @@ Given a `profile id`, retrieves the corresponding rights.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<role id>`<br/>
+>**URL:** `http://kuzzle:7512/roles/<role id>`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -954,7 +1269,7 @@ Given a `profile id`, retrieves the corresponding rights.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -984,12 +1299,12 @@ Given a `role id`, retrieves the corresponding role from the database.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_mapping`<br/>
+>**URL:** `http://kuzzle:7512/roles/_mapping`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1000,7 +1315,7 @@ Given a `role id`, retrieves the corresponding role from the database.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1024,12 +1339,12 @@ Gets the mapping of the internal `roles` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>`<br/>
+>**URL:** `http://kuzzle:7512/users/<kuid>`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1037,11 +1352,11 @@ Gets the mapping of the internal `roles` collection.
 {
   "controller": "security",
   "action": "getUser",
-  "_id": "<userId>"
+  "_id": "<kuid>"
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1053,7 +1368,7 @@ Gets the mapping of the internal `roles` collection.
   "action": "getUser",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",
     "_source": {
       "profileIds": ["<profileId>"],
       ...                             // The user object content
@@ -1063,19 +1378,19 @@ Gets the mapping of the internal `roles` collection.
 ```
 
 
-Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
+Given a user [`<kuid>`](../guide/#the-kuzzle-user-identifier), gets the matching user from Kuzzle's dabatase layer.
 
 
 ## getUserMapping
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_mapping`<br/>
+>**URL:** `http://kuzzle:7512/users/_mapping`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1086,7 +1401,7 @@ Given a `user id`, gets the matching user from Kuzzle's dabatase layer.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1110,12 +1425,12 @@ Gets the mapping of the internal `users` collection.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_users/<userId>/_rights`<br/>
+>**URL:** `http://kuzzle:7512/_users/<kuid>/_rights`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1123,12 +1438,12 @@ Gets the mapping of the internal `users` collection.
 {
   "controller": "security",
   "action": "getUserRights",
-  "_id": "<userId>"
+  "_id": "<kuid>"
 }
 ```
 
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1152,12 +1467,51 @@ Gets the mapping of the internal `users` collection.
 ```
 Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
+
+## hasCredentials
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_exists`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "hasCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>"
+}
+```
+
+>**Response**
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "hasCredentials",
+  "controller": "security",
+  "_id": "<kuid>",
+  "result": true
+}
+```
+
+Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
+
+
 ## mDeleteProfiles
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_mDelete`<br/>
->**Method:** `POST`
+>**URL:** `http://kuzzle:7512/profiles/_mDelete`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -1171,7 +1525,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1186,7 +1540,7 @@ Given a `user id`, gets the matching user's rights from Kuzzle's dabatase layer.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1208,8 +1562,8 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_mDelete`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/roles/_mDelete`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -1223,7 +1577,7 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1238,7 +1592,7 @@ Deletes a list of `profile` objects from Kuzzle's database layer given a list of
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1260,8 +1614,8 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_mDelete`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/users/_mDelete`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -1269,13 +1623,13 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
 ```litcoffee
 {
   // ids must be an array of profile ids
-  "ids": ["myFirstUserId", "mySecondUserId"]
+  "ids": ["firstKuid", "secondKuid"]
 }
 ```
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1284,13 +1638,13 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
   "controller": "security",
   "action": "mDeleteUsers",
   "body": {
-    // ids must be an array of profile ids
-    "ids": ["myFirstUserId", "mySecondUserId"]
+    // ids must be an array of kuids
+    "ids": ["firstKuid", "secondKuid"]
   }
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1300,21 +1654,21 @@ Deletes a list of `roles` objects from Kuzzle's database layer given a list of r
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": [
-    "myFirstUserId",
-    "mySecondUserId"
+    "firstKuid",
+    "secondKuid"
    ]
   }
 }
 ```
 
-Deletes a list of `users` objects from Kuzzle's database layer given a list of user ids.
+Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`](../guide/#the-kuzzle-user-identifier).
 
 ## mGetProfiles
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_mGet`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/profiles/_mGet`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -1322,13 +1676,13 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
 ```litcoffee
 {
   // ids must be an array of profile ids
-  "ids": ["myFirstProfile", "MySecondProfile"]
+  "ids": ["firstProfileId", "secondProfileId"]
 }
 ```
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1338,12 +1692,12 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
   "action": "mGetProfiles",
   "body": {
     // ids must be an array of profile ids
-    "ids": ["myFirstProfile", "mySecondProfile"]
+    "ids": ["firstProfileId", "secondProfileId"]
   }
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1362,7 +1716,7 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
      },
      "hits": [
        {
-         "_id": "myFirstProfile",
+         "_id": "firstProfileId",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
@@ -1373,7 +1727,7 @@ Deletes a list of `users` objects from Kuzzle's database layer given a list of u
          "_type": "profiles"
        },
        {
-         "_id": "mySecondProfile",
+         "_id": "secondProfileId",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
@@ -1399,8 +1753,8 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_mGet`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/roles/_mGet`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -1408,15 +1762,15 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
 ```litcoffee
 {
   // ids must be an array of role id
-  "ids": ["myFirstRole", "MySecondRole"]
+  "ids": ["firstRoleId", "secondRoleId"]
 }
 ```
 
 <section class="others"></section>
 
->Query
+>**Query**
 
-<section class="websocket"></section>
+<section class="others"></section>
 
 ```litcoffee
 {
@@ -1424,12 +1778,12 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
   "action": "mGetRoles",
   "body": {
     // ids must be an array of role id
-    "ids": ["myFirstRole", "mySecondRole"]
+    "ids": ["firstRoleId", "secondRoleId"]
   }
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1448,7 +1802,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
      },
      "hits": [
        {
-         "_id": "myFirstRole",
+         "_id": "firstRoleId",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
@@ -1459,7 +1813,7 @@ Retrieves a list of `profile` objects from Kuzzle's database layer given a list 
          "_type": "roles"
        },
        {
-         "_id": "mySecondRole",
+         "_id": "secondRoleId",
          "_index": "%kuzzle",
          "_score": 1,
          "_source": {
@@ -1485,12 +1839,12 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**URL:** `http://kuzzle:7512/profiles/_scroll/<scrollId>[?scroll=<time to live>]`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1506,7 +1860,7 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1523,11 +1877,11 @@ Retrieves a list of `role` objects from Kuzzle's database layer given a list of 
     // An array of objects containing your retrieved documents
     "hits": [
       {
-        "_id": "myProfile1",
+        "_id": "firstProfileId",
         "_source": {
           "policies": [
             {
-              "roleId": "myRoleId",
+              "roleId": "firstRoleId",
               "restrictedTo": [
                 ...
               ]
@@ -1561,12 +1915,12 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**URL:** `http://kuzzle:7512/users/_scroll/<scrollId>[?scroll=<time to live>]`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1582,7 +1936,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1599,7 +1953,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
     // An array of objects containing your retrieved documents
     "hits": [
       {
-        "_id": "<userId>",
+        "_id": "<firstKuid>",
         "_source": { ... }             // The user object content
       },
       {
@@ -1628,25 +1982,25 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/profiles/_search[?from=0][&size=42][&scroll=<time to live>]`  
+>**Method:** `POST`  
 >**Body**
 
 <section class="http"></section>
 
 ```litcoffee
 {
-  // A roles array containing a list of role IDs can be added
+  // A roles array containing a list of role Ids can be added
   "roles": [
-    "myrole",
+    "firstRoleId",
     "admin"
-  ],
+  ]
 }
 ```
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1669,7 +2023,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1684,11 +2038,11 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
     },
     "hits": [
       {
-        "_id": "myProfile1",
+        "_id": "firstProfileId",
         "_source": {
           "policies": [
             {
-              "roleId": "myRoleId",
+              "roleId": "firstRoleId",
               "restrictedTo": [
                 ...
               ]
@@ -1698,7 +2052,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
         }
       },
       {
-        "_id": "myProfile2",
+        "_id": "secondProfileId",
         "_source": {
           "policies": [
             {
@@ -1733,8 +2087,8 @@ Optional arguments:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_search[?from=0][&size=42]`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/roles/_search[?from=0][&size=42]`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -1748,7 +2102,7 @@ Optional arguments:
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1765,7 +2119,7 @@ Optional arguments:
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1822,8 +2176,8 @@ Available filters:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42][&scroll=<time to live>]`  
+>**Method:** `POST`  
 >**Body**
 
 <section class="http"></section>
@@ -1853,7 +2207,7 @@ Available filters:
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1892,7 +2246,7 @@ Available filters:
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1908,7 +2262,7 @@ Available filters:
     // An array of user objects
     "hits": [
       {
-        "_id": "<userId>",
+        "_id": "<kuid>",
         "_source": { ... }             // The user object content
       },
       {
@@ -1927,13 +2281,86 @@ Optional arguments:
 * `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
 * `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scrollUsers` API action](#scrollusers)
 
+## updateCredentials
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_update`  
+>**Method:** `PUT`  
+>**Body**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "credentialField": "someValue",
+  ...
+}
+
+// example with a "local" authentication
+
+{
+  "password": "MyPassword"
+}
+```
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "updateCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>",
+  "body": {
+    "credentialField": "someValue",
+    ...
+  }
+}
+
+// example with a "local" authentication
+
+{
+  "controller": "security",
+  "action": "updateCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>",
+  "body": {
+    "password": "MyPassword"
+  }
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "updateCredentials",
+  "controller": "security",
+  "_id": "<kuid>",
+  "result": {
+    "username": "MyUser"
+  }
+}
+```
+
+Updates credentials of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+
 
 ## updateProfile
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/<profile id>/_update`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/profiles/<profileId>/_update`  
+>**Method:** `PUT`  
 >**Body**
 
 <section class="http"></section>
@@ -1966,7 +2393,7 @@ Optional arguments:
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -2001,7 +2428,7 @@ Optional arguments:
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -2021,15 +2448,15 @@ Optional arguments:
 }
 ```
 
-Given a `profile id`, updates the matching Profile object in Kuzzle's database layer.
+Given a `profileId`, updates the matching Profile object in Kuzzle's database layer.
 
 
 ## updateProfileMapping
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/profiles/_mapping`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/profiles/_mapping`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -2057,7 +2484,7 @@ Given a `profile id`, updates the matching Profile object in Kuzzle's database l
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -2087,7 +2514,7 @@ Given a `profile id`, updates the matching Profile object in Kuzzle's database l
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -2114,8 +2541,8 @@ But if you want to store more information about your profiles, Kuzzle's API offe
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/<roleId>/_update`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/roles/<roleId>/_update`  
+>**Method:** `PUT`  
 >**Body**
 
 <section class="http"></section>
@@ -2134,7 +2561,7 @@ But if you want to store more information about your profiles, Kuzzle's API offe
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -2155,7 +2582,7 @@ But if you want to store more information about your profiles, Kuzzle's API offe
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -2194,8 +2621,8 @@ please refer to [Kuzzle's security documentation](/guide/#permissions).
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/roles/_mapping`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/roles/_mapping`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -2223,7 +2650,7 @@ please refer to [Kuzzle's security documentation](/guide/#permissions).
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -2253,7 +2680,7 @@ please refer to [Kuzzle's security documentation](/guide/#permissions).
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -2280,8 +2707,8 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/<userId>/_update`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/users/<kuid>/_update`  
+>**Method:** `PUT`  
 >**Body**
 
 <section class="http"></section>
@@ -2296,7 +2723,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -2304,7 +2731,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 {
   "controller": "security",
   "action": "updateUser",
-  "_id": "<userId>",
+  "_id": "<kuid>",
   "body": {
     "foo": "bar",                    // Some properties to update
     "name": "Walter Smith",
@@ -2313,7 +2740,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -2325,7 +2752,7 @@ But if you want to store more information about your roles, Kuzzle's API offers 
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",
     "_index": "%kuzzle",
     "_type": "users",
     "_version": 2
@@ -2333,15 +2760,15 @@ But if you want to store more information about your roles, Kuzzle's API offers 
 }
 ```
 
-Given a `user id`, updates the matching User object in Kuzzle's database layer.
+Given a [`<kuid>`](../guide/#the-kuzzle-user-identifier), updates the matching User object in Kuzzle's database layer.
 
 
 ## updateUserMapping
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_mapping`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/users/_mapping`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -2369,7 +2796,7 @@ Given a `user id`, updates the matching User object in Kuzzle's database layer.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -2399,7 +2826,7 @@ Given a `user id`, updates the matching User object in Kuzzle's database layer.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -2420,3 +2847,79 @@ This mapping is intended to store the basic information of a user; typically, it
 
 But if you want to store more information about your users, Kuzzle's API offers a way to update the `users` data mapping using the
 [mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/mapping.html).
+
+
+## validateCredentials
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_validate`  
+>**Method:** `POST`  
+>**Body**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "credentialField": "someValue",
+  ...
+}
+
+// example with a "local" authentication
+
+{
+  "username": "MyUser",
+  "password": "MyPassword"
+}
+```
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "validateCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>",
+  "body": {
+    "credentialField": "someValue",
+    ...
+  }
+}
+
+// example with a "local" authentication
+
+{
+  "controller": "security",
+  "action": "validateCredentials",
+  "strategy": "<strategy>",
+  "_id": "<kuid>",
+  "body": {
+    "username": "MyUser",
+    "password": "MyPassword"
+  }
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "validateCredentials",
+  "controller": "security",
+  "_id": "<kuid>",
+  "result": {
+    "username": "MyUser"
+  }
+}
+```
+
+Validate credentials of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.

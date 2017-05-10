@@ -4,12 +4,12 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_adminExists`<br/>
+>**URL:** `http://kuzzle:7512/_adminExists`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -20,7 +20,7 @@
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -43,12 +43,12 @@ Checks if an administrator account has been created, and return a boolean as a r
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getAllStats`<br/>
+>**URL:** `http://kuzzle:7512/_getAllStats`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -59,7 +59,7 @@ Checks if an administrator account has been created, and return a boolean as a r
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -113,12 +113,12 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getConfig`<br/>
+>**URL:** `http://kuzzle:7512/_getConfig`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -129,7 +129,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -247,12 +247,12 @@ This route should be opened only to administrators, as it might export sensitive
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getLastStats`<br/>
+>**URL:** `http://kuzzle:7512/_getLastStats`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -263,7 +263,7 @@ This route should be opened only to administrators, as it might export sensitive
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -311,12 +311,12 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`<br/>
+>**URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`  
 >**Method:** `POST`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -331,7 +331,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -385,12 +385,12 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_serverInfo`<br/>
+>**URL:** `http://kuzzle:7512/_serverInfo`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -401,7 +401,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 }
 ```
 
-> Response
+>**Response**
 
 ```litcoffee
 {
@@ -509,7 +509,7 @@ Retrieves information about Kuzzle, its plugins and active services.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_now`<br/>
+>**URL:** `http://kuzzle:7512/_now`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -521,7 +521,7 @@ Retrieves information about Kuzzle, its plugins and active services.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {

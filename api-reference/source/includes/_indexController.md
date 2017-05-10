@@ -5,12 +5,12 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_create`<br/>
+>**URL:** `http://kuzzle:7512/<index>/_create`  
 >**Method:** `POST`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -22,7 +22,7 @@
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -48,12 +48,12 @@ Create an `index` in Kuzzle's persistent storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>`<br/>
+>**URL:** `http://kuzzle:7512/<index>`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -65,7 +65,7 @@ Create an `index` in Kuzzle's persistent storage layer.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -88,12 +88,12 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_exists`<br/>
+>**URL:** `http://kuzzle:7512/<index>/_exists`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -105,7 +105,7 @@ Deletes an entire `index` from Kuzzle's persistent storage layer.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -126,12 +126,12 @@ Checks if the given index exists in Kuzzle storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_autoRefresh`<br/>
+>**URL:** `http://kuzzle:7512/<index>/_autoRefresh`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -143,7 +143,7 @@ Checks if the given index exists in Kuzzle storage layer.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -178,12 +178,12 @@ The `getAutoRefresh` actions returns the current `autoRefresh` status for the gi
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_list`<br/>
+>**URL:** `http://kuzzle:7512/_list`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -194,7 +194,7 @@ The `getAutoRefresh` actions returns the current `autoRefresh` status for the gi
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -222,8 +222,8 @@ Returns the complete data indexes.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_mDelete`<br/>
->**Method:** `DELETE`<br/>
+>**URL:** `http://kuzzle:7512/_mDelete`  
+>**Method:** `DELETE`  
 >**Body:**
 
 <section class="http"></section>
@@ -238,7 +238,7 @@ indexes: [
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -256,7 +256,7 @@ indexes: [
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -289,12 +289,12 @@ The response contains the list of indexes that were actually deleted.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_refresh`<br/>
+>**URL:** `http://kuzzle:7512/<index>/_refresh`  
 >**Method:** `POST`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -306,7 +306,7 @@ The response contains the list of indexes that were actually deleted.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -355,12 +355,12 @@ on it, making the documents visible to search immediately.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_refreshInternal`<br/>
+>**URL:** `http://kuzzle:7512/_refreshInternal`  
 >**Method:** `POST`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -371,7 +371,7 @@ on it, making the documents visible to search immediately.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -415,10 +415,10 @@ on the internal index, making the documents visible to search immediately.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_autoRefresh`<br/>
+>**URL:** `http://kuzzle:7512/<index>/_autoRefresh`  
 >**Method:** `POST`
-
->Query
+  
+>**Query**
 
 <section class="http"></section>
 
@@ -441,7 +441,7 @@ on the internal index, making the documents visible to search immediately.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {

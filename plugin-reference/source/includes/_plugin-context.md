@@ -10,10 +10,8 @@ Here is the list of shared objects contained in the provided ``context``:
 | Attribute path | Purpose                      |
 |----------------|------------------------------|
 | `context.accessors.execute` | Access to Kuzzle API |
-| `context.accessors.registerStrategy` | Allow [authentication plugins](/#gt-authentication-plugin) to register a new login strategy to Kuzzle. |
 | `context.accessors.router` | Access to Kuzzle protocol communication system. Allow **protocol** plugins to interface themselves with Kuzzle. |
 | `context.accessors.storage` | Initiate and configure to the plugin storage. This storage can only be accessed by the plugin and can be used to persist plugin datas. |
-| `context.accessors.users` | Access to users management, especially useful for authentication plugins. Provides methods for handling users. This accessor is mainly used by authentication plugins. |
 | `context.accessors.validation` | Access to validation mechanisms, useful to validate documents and add field types. |
 | `context.config` | Contains the entire Kuzzle instance configuration (most of it coming from Kuzzle configuration file) |
 | `context.constructors.Dsl` | Constructor allowing plugins to instantiate their own Kuzzle real-time engine instance |
@@ -65,50 +63,6 @@ context.accessors.execute(request, (error, request) => {
    See Request constructor documentation for more information
    */
 });
-```
-
-### `registerStrategy`
-
-Register a new authentication strategy to Kuzzle.
-
-#### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-| `Strategy` | `function` | A [Passport strategy](https://github.com/jaredhanson/passport/wiki/Strategies) object constructor |
-| `name` | `string` | Strategy name identifier ([see `auth:login`](/api-reference/#login)) |
-| `context` | `object` | [Context](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this) in which the `verify` callback will be executed |
-| `verify` | `function` | Callback function invoked to verify an authentication request |
-| `options` | `object` | (Optional) Strategy specific options parameters |
-
-The provided `verify` callback signature varies depending on the used strategy.  
-Here is the generic signature: `verify(request, ..., callback)`:
-
-* `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [ the `Request` documentation](#request))
-* `...`: varies, depending on the used strategy
-* `callback` is a function that **must** be called at the end of an authentication process, with the following arguments:
-  * `error`: null if no error occured, an error object otherwise (note: an authentication rejection is
-*not* an error)
-  * `user`: either `false` (authentication rejected) or a user object, provided by the plugin context [`user.load` method](#users-load)
-  * `info`: (optional) the rejection reason
-
-
-#### Usage
-
-```js
-var LocalStrategy = require('passport-local').Strategy;
-
-function verify (request, username, password, callback) {
-  // verification code
-  if (userVerified) {
-    callback(null, userInformation);
-  }
-  else {
-    callback(null, false, 'Login failed');
-  }
-}
-
-pluginContext.accessors.registerStrategy(LocalStrategy, 'myLocalStrategy', this, this.verify);
 ```
 
 ### `router.newConnection`
@@ -220,37 +174,6 @@ context.accessors.storage.createCollection('someCollection', {
     }
 });
 ```
-
-### `users.create`
-
-Creates a new user in Kuzzle. Will return an error if the user already exists.
-
-#### Arguments
-
-| Name | Type | Default Value | Description                      |
-|------|------|---------------|----------------------------------|
-|`loginName`|`string`| | Name of the user's login to create |
-|`userProfile`|`string`|`default`| [User profile](/guide/#permissions) |
-|`userInfo`|`object`| `{}` | Misc. information about the user |
-
-#### Returns
-
-A `promise` resolving a `user` object containing the created information.
-
-### `users.load`
-
-Loads a user from Kuzzle
-
-#### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`loginName`|`string`| Name of the user's login to load |
-
-#### Returns
-
-A `promise` resolving to a `user` object containing the user information.
-
 
 ### `validation.validate`
 
@@ -476,6 +399,13 @@ Creates a document in the plugin storage.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`Object`| The document you want to create. It must contain a unique `_id` string property. You don't need to worry about collisions with other plugins as your plugin storage is only accessible by your plugin |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
@@ -520,6 +450,13 @@ Creates or replaces a document in the plugin storage.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`object`| The document you want to create or replace. It must contain a unique `_id` string property. You don't need to worry about collisions with other plugins as your plugin storage is only accessible by your plugin |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
@@ -549,6 +486,13 @@ Deletes a document from the plugin storage.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`object`| The document `_id` of the document you want to delete. |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
@@ -623,6 +567,13 @@ Replaces a document in the plugin storage.
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`object`| The content of the document. It must contain a unique `_id` string property. |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 
@@ -679,6 +630,13 @@ Updates a document in the plugin storage. You can provide a partial document to 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`document`|`object`| The partial content of the document. It must contain a unique `_id` string property. |
+|`options`|`Object`| Optional arguments |
+
+If a raw `options` object is provided, it may contain:
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `refresh` | `string` | Value can only be `wait_for` if provided. See [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-refresh.html) for more information. |
 
 **Returns**
 

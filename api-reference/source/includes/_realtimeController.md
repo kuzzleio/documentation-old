@@ -8,7 +8,7 @@
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -27,7 +27,7 @@
 
 <section class="others"></section>
 
->Response
+>**Response**
 
 <section class="others"></section>
 
@@ -60,7 +60,7 @@ The expected parameter is the roomId returned by Kuzzle during the subscription.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -84,7 +84,7 @@ The expected parameter is the roomId returned by Kuzzle during the subscription.
 
 <section class="others"></section>
 
->Response
+>**Response**
 
 <section class="others"></section>
 
@@ -113,12 +113,12 @@ The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to s
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_listSubscriptions`
+>**URL:** `http://kuzzle:7512/_listSubscriptions`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -129,7 +129,7 @@ The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to s
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -169,8 +169,8 @@ Lists all subscriptions on all indexes and all collections.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_publish`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_publish`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -183,7 +183,7 @@ Lists all subscriptions on all indexes and all collections.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -200,7 +200,7 @@ Lists all subscriptions on all indexes and all collections.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -232,7 +232,7 @@ who have subscribed to a subscription for which the filters match the message co
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -296,7 +296,7 @@ who have subscribed to a subscription for which the filters match the message co
 
 <section class="others"></section>
 
->Response
+>**Response**
 
 <section class="others"></section>
 
@@ -462,7 +462,7 @@ When using other protocols, such as `MQTT`, the client may have to perform these
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -484,7 +484,7 @@ When using other protocols, such as `MQTT`, the client may have to perform these
 
 <section class="others"></section>
 
->Response
+>**Response**
 
 <section class="others"></section>
 
@@ -514,8 +514,8 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -528,7 +528,7 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -545,7 +545,7 @@ The expected parameter is the `roomId` that Kuzzle returned during the subscript
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
