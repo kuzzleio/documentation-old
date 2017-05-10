@@ -305,14 +305,15 @@ var userContent = {
   content: {
     // A "profile" field is required to bind a user to an existing profile
     profileIds: ['admin'],
+    firstname: 'John',
+    lastname: 'Doe'
   },
   credentials: {
     local: {
       // The "local" authentication strategy requires a password
       password: 'secretPassword',
       // You can also set custom fields to your user
-      firstname: 'John',
-      lastname: 'Doe'
+      lastLoggedIn: 1494411803
     }
   }
 };
@@ -342,16 +343,17 @@ kuzzle
 ```java
 JSONObject content = new JSONObject()
   // A "profile" field is required to bind a user to an existing profile
-  .put("profileIds", new JSONArray().put("admin"))
+  .put("profileIds", new JSONArray().put("admin")
+  // You can also set custom fields to your user
+  .put("firstname", "John")
+  .put("lastname", "Doe"))
 JSONObject newUser = new JSONObject().put("content", content);
 
 JSONObject credentials = new JSONObject()
   .put("local", new JSONObject()
   // The "local" authentication strategy requires a password
   .put("password", "secret password")
-  // You can also set custom fields to your user
-  .put("firstname", "John")
-  .put("lastname", "Doe"));
+  .put("lastLoggedIn", 1494411803);
   
 newUser.put("credentials", credentials);
 
@@ -383,14 +385,15 @@ $userDefinition = [
     'content' => [
       // A "profile" field is required to bind a user to an existing profile
       'profileIds' => ['admin'],
+      // You can also set custom fields to your user
+      'firstname' => 'John',
+      'lastname' => 'Doe'
     ],
     'credentials' => [
       'local' => [
         // The "local" authentication strategy requires a password
         'password' => 'secretPassword',
-        // You can also set custom fields to your user
-        'firstname' => 'John',
-        'lastname' => 'Doe'
+        'lastLoggedIn' => 1494411803
       ]
     ]
   ];
@@ -446,9 +449,7 @@ var userContent = {
     local: {
       // The "local" authentication strategy requires a password
       password: 'secretPassword',
-      // You can also set custom fields to your user
-      firstname: 'John',
-      lastname: 'Doe'
+      lastLoggedIn: 1494411803
     }
   }
 };
@@ -479,9 +480,7 @@ JSONObject credentials = new JSONObject()
   .put("local", new JSONObject()
   // The "local" authentication strategy requires a password
   .put("password", "secret password")
-  // You can also set custom fields to your user
-  .put("firstname", "John")
-  .put("lastname", "Doe"));
+  .put("lastLoggedIn", 1494411803));
   
 newUser.put("credentials", credentials);
 
@@ -516,9 +515,7 @@ $userDefinition = [
       'local' => [
         // The "local" authentication strategy requires a password
         'password' => 'secretPassword',
-        // You can also set custom fields to your user
-        'firstname' => 'John',
-        'lastname' => 'Doe'
+        'lastLoggedIn' => 1494411803
       ]
     ]
   ];
