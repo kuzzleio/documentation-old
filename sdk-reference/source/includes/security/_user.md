@@ -142,7 +142,7 @@ $user->addProfile('myProfile');
 ```
 
 <aside class="note">
-Updating an user will have no impact until the <code>save</code> method is called
+Updating an user will have no impact until the <code>create</code> or <code>replace</code> method is called
 </aside>
 
 
@@ -160,6 +160,83 @@ Replace the profile associated to the user
 ### Return value
 
 Returns the `User` object.
+
+## create
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+user
+  .create(function(error, result) {
+    // result is a User object
+  });
+
+// Using promises (NodeJS)
+user
+  .createPromise()
+  .then((result) => {
+    // result is a User object
+  });
+```
+
+```java
+user.create(new ResponseListener<User>() {
+  @Override
+  public void onSuccess(User user) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
+```
+
+```php
+<?php
+
+use Kuzzle\Security\User;
+
+// ...
+
+/*
+ * @var $user User
+ */
+
+try {
+  $user->create();
+}
+catch (ErrorException $e) {
+
+}
+```
+
+Create the user in kuzzle. Credentials can be created during the process by using `setCredentials` beforehand.
+
+<aside class="warning">
+  This method call can rise an error if the associated profile is not created in Kuzzle
+</aside>
+
+### create([options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+### Return value
+
+Returns the `User` object to allow chaining.
+
+### Callback response
+
+Resolves to a `User` object.
 
 ## delete
 
@@ -250,25 +327,25 @@ Returns this user associated profiles.
 
 Returns an array of associated profiles
 
-## save
+## replace
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 user
-  .save(function(error, result) {
+  .replace(function(error, result) {
     // result is a User object
   });
 
 // Using promises (NodeJS)
 user
-  .savePromise()
+  .replacePromise()
   .then((result) => {
     // result is a User object
   });
 ```
 
 ```java
-user.save(new ResponseListener<User>() {
+user.replace(new ResponseListener<User>() {
   @Override
   public void onSuccess(User user) {
 
@@ -293,20 +370,20 @@ use Kuzzle\Security\User;
  */
 
 try {
-  $user->save();
+  $user->replace();
 }
 catch (ErrorException $e) {
 
 }
 ```
 
-Create or replace the user in kuzzle
+Replaces the user in kuzzle.
 
 <aside class="warning">
-Saving this object can rise an error if the associated profile is not created in Kuzzle
+  This method call can rise an error if the associated profile is not created in Kuzzle
 </aside>
 
-### save([options], [callback])
+### create([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -440,7 +517,7 @@ $user->setContent($userContent);
 ```
 
 <aside class="note">
-Updating an user will have no impact until the <code>save</code> method is called
+Updating an user will have no impact until the <code>create</code> or <code>replace</code> method is called
 </aside>
 
 Replaces the content of User
@@ -450,6 +527,52 @@ Replaces the content of User
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``data`` | JSON Object |  User content |
+
+### Return value
+
+Returns the `User` object.
+
+
+## setCredentials
+
+```js
+user.setCredentials({some: 'credentials'});
+```
+
+```java
+JSONObject credentials = new JSONObject().putString("some", "credentials");  
+user.setCredentials(credentials);
+```
+
+```php
+<?php
+
+use Kuzzle\Security\User;
+
+
+/*
+ * @var $user User
+ */
+
+// Updating the profile with a Profile object
+$user->setCredentials(['some' => 'credentials']);
+```
+
+<aside class="note">
+  Updating user credentials will have no impact until the <code>create</code> method is called
+</aside>
+
+
+Replace the profile associated to the user
+
+### setProfiles(profileIds)
+
+### setProfiles(profiles)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``profileIds`` | array of strings | List of profile IDs |
+| ``profiles`` | array of Profile objects | An array of instantiated Profile objects |
 
 ### Return value
 
@@ -514,7 +637,7 @@ $user->setProfiles(['myProfile']);
 ```
 
 <aside class="note">
-Updating an user will have no impact until the <code>save</code> method is called
+Updating an user will have no impact until the <code>create</code> or <code>replace</code> method is called
 </aside>
 
 
@@ -544,7 +667,7 @@ var updateContent = {
 // Using callbacks (NodeJS or Web Browser)
 user.update(updateContent, function(err, updatedUser) {
   // the updatedUser variable is the updated User object
-})
+});
 
 // Using promises (NodeJS)
 role

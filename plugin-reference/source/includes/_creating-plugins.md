@@ -439,6 +439,19 @@ class AuthenticationPlugin {
   }
 
   /**
+   * Retrieves the non sensitive user's credentials information
+   * from the persistence layer using the strategy internal id
+   *
+   * @param {KuzzleRequest} request
+   * @param {string} id
+   * @returns {Promise<object>}
+   */
+  getById (request, id) {
+    // retrieve credentials
+    Promise.resolve(/* non sensitive credentials info */);
+  }
+
+  /**
    * Updates the user's credentials information in the
    * persistence layer
    *
@@ -587,6 +600,23 @@ The function **must** return a `Promise` that resolves to an object that contain
 
 <aside class="info">
   If no getInfo function is provided, an empty object will be returned in the controllers that use it.
+</aside>
+
+### The getById function
+
+You may implement a `getById` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to get informations about a user's credentials to this strategy searching by the strategy storage identifier (`_id`). For security reasons, only **non sensitive** informations should be returned.
+
+Here is the generic signature of the `getInfo` function you have to implement:
+
+`getInfo (request, id)`
+
+* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `id` is the user's storage identifier in the strategy.
+
+The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
+
+<aside class="info">
+  If no getById function is provided, an empty object will be returned in the controllers that use it.
 </aside>
 
 
