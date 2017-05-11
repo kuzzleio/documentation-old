@@ -16,7 +16,7 @@ var profileDefinition = {
   ]
 };
 
-var role = kuzzle.security.profile('myprofile', profileDefinition);
+var profile = kuzzle.security.profile('myprofile', profileDefinition);
 ```
 
 ```java
@@ -513,6 +513,30 @@ profile.update(updateContent, new ResponseListener<Profile>() {
 
   }
 });
+```
+
+```php
+<?php
+
+use Kuzzle\Security\Profile;
+
+// ...
+
+/*
+ * @var $profile Profile
+ */
+$profileContent = [
+  'policies' => [
+    ['roleId' => 'myrole']
+  ]
+];
+
+try {
+  $profile->update($profileContent);
+}
+catch (ErrorException $e) {
+
+}
 ```
 
 Performs a partial content update on this object.

@@ -167,7 +167,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Role` object.
+Resolves to a [Role](#role) object.
 
 ## createProfile
 
@@ -295,7 +295,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Profile` object.
+Resolves to a [Profile](#profile) object.
 
 
 ## createUser
@@ -354,7 +354,7 @@ JSONObject credentials = new JSONObject()
   // The "local" authentication strategy requires a password
   .put("password", "secret password")
   .put("lastLoggedIn", 1494411803);
-  
+
 newUser.put("credentials", credentials);
 
 Options opts = new Options().setReplaceIfExist(true);
@@ -437,7 +437,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `User` object.
+Resolves to a [User](#user) object.
 
 ## createRestrictedUser
 
@@ -473,7 +473,7 @@ kuzzle
 
 ```java
 JSONObject content = new JSONObject();
-  
+
 JSONObject newUser = new JSONObject().put("content", content);
 
 JSONObject credentials = new JSONObject()
@@ -481,7 +481,7 @@ JSONObject credentials = new JSONObject()
   // The "local" authentication strategy requires a password
   .put("password", "secret password")
   .put("lastLoggedIn", 1494411803));
-  
+
 newUser.put("credentials", credentials);
 
 Options opts = new Options().setReplaceIfExist(true);
@@ -533,7 +533,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new restricted user in Kuzzle.
+Create a new restricted user in Kuzzle.  
 This function allows anonymous users for instance to create a "restricted" user with predefined rights.
 
 <aside class="notice">
@@ -561,7 +561,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `User` object.
+Resolves to a [User](#user) object.
 
 
 ## deleteProfile
@@ -616,7 +616,13 @@ catch (ErrorException $e) {
 }
 ```
 
-Delete profile.
+> Callback response
+
+```json
+"deleted profile identifier"
+```
+
+Delete the provided profile.
 
 <aside class="notice">
 There is a small delay between profile deletion and their deletion in our search layer, usually a couple of seconds.
@@ -698,7 +704,13 @@ catch (ErrorException $e) {
 }
 ```
 
-Delete role.
+> Callback response
+
+```json
+"deleted role identifier"
+```
+
+Delete the provided role.
 
 <aside class="notice">
 There is a small delay between role deletion and their deletion in our search layer, usually a couple of seconds.
@@ -780,7 +792,13 @@ catch (ErrorException $e) {
 }
 ```
 
-Delete user.
+> Callback response
+
+```json
+"deleted user identifier"
+```
+
+Delete the provided user.
 
 <aside class="notice">
 There is a small delay between user deletion and their deletion in our search layer, usually a couple of seconds.
@@ -884,7 +902,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Profile` object.
+Resolves to a [Profile](#profile) object.
 
 ## fetchRole
 
@@ -960,7 +978,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Role` object.
+Resolves to a [Role](#role) object.
 
 ## fetchUser
 
@@ -1035,7 +1053,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `User` object.
+Resolves to a [User](#user) object.
 
 
 ## getUserRights
@@ -1133,7 +1151,8 @@ Resolves to a `JSON` object.
 ```js
 kuzzle.security.getMyRights((err, rights) => {
     if (!err) {
-        kuzzle.security.isActionAllowed(rights, 'read', 'get', 'index1', 'collection1');
+        // returns either "allowed", "denied" or "conditional"
+        var allowed = kuzzle.security.isActionAllowed(rights, 'read', 'get', 'index1', 'collection1');
     }
 });
 ```
@@ -1142,7 +1161,9 @@ kuzzle.security.getMyRights((err, rights) => {
 kuzzle.security.getMyRights(new ResponseListener<JSONArray>() {
     @Override
     public void onSuccess(JSONArray rights) {
-        Rights rights = kuzzle.security.isActionAllowed(rights, "read", "get", "index1", "collection1");
+        // Policies is an enum with the following properties:
+        // allowed, denied, conditional
+        Policies authorization = kuzzle.security.isActionAllowed(rights, "read", "get", "index1", "collection1");
     }
 
     @Override
@@ -1180,10 +1201,12 @@ catch (ErrorException $e) {
 }
 ```
 
-Tells whether an action is allowed, denied or conditional based on the rights provided as the first argument.
+Tells whether an action is allowed, denied or conditional based on the rights provided as the first argument:
+
 - `allowed` is returned when an action is authorized without condition
 - `conditional` is returned when the authorization depends on a closure
 - `denied` is returned when the action is forbidden
+
 An action is defined as a couple of action and controller (mandatory), plus an index and a collection(optional).
 
 <aside class="notice">
@@ -1270,7 +1293,7 @@ $profile = $security->profile($profileId, $profileDefinition);
 // $profile instanceof Profile
 ```
 
-Instantiate a new Profile object.
+Instantiate a new [Profile](#profile) object.
 
 ### profile(id, content)
 
@@ -1281,7 +1304,7 @@ Instantiate a new Profile object.
 
 ### Return value
 
-Returns the `Profile` object.
+Returns the new [Profile](#profile) object.
 
 
 ## role
@@ -1339,7 +1362,7 @@ $role = $security->role($roleId, $roleDefinition);
 // $role instanceof Role
 ```
 
-Instantiate a new `Role` object.
+Instantiate a new [Role](#role) object.
 
 ### role(id, content)
 
@@ -1350,7 +1373,7 @@ Instantiate a new `Role` object.
 
 ### Return value
 
-Returns the `Role` object.
+Returns the new [Role](#role) object.
 
 
 ## searchProfiles
@@ -1368,7 +1391,11 @@ var filters = {
 kuzzle
   .security
   .searchProfiles(filters, function(error, result) {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<Profile object>, <Profile object>, ...]
+    // }
   });
 
 // Using promises (NodeJS)
@@ -1376,7 +1403,11 @@ kuzzle
   .security
   .searchProfilesPromise(filters)
   .then((result) => {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<Profile object>, <Profile object>, ...]
+    // }
   });
 ```
 
@@ -1436,7 +1467,6 @@ try {
   $result = $security->searchProfiles($filters, $options);
 
   // $result instanceof ProfilesSearchResult
-
   foreach($result->getProfiles() as $profile) {
     // $profile instanceof Profile
   }
@@ -1452,7 +1482,7 @@ catch (ErrorException $e) {
 {
   "total": 124,
   "documents": [
-    // array of Profile
+    // array of Profile objects
   ]
 }
 ```
@@ -1483,7 +1513,7 @@ Available filters:
 
 ### Callback response
 
-Resolves to a JSON Object
+Resolves to a JSON Object containing the number of found profiles and an array of [Profile](#profile) objects.
 
 
 ## searchUsers
@@ -1513,7 +1543,11 @@ var filter = {
 kuzzle
   .security
   .searchUsers(filters, function(error, result) {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<User object>, <User object>, ...]
+    // }
   });
 
 // Using promises (NodeJS)
@@ -1521,7 +1555,11 @@ kuzzle
   .security
   .searchUsersPromise(filters)
   .then((result) => {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<User object>, <User object>, ...]
+    // }
   });
 ```
 
@@ -1639,7 +1677,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a JSON Object
+Resolves to a JSON Object containing the total number of found users, and an array of [User](#user) objects.
 
 
 ## searchRoles
@@ -1657,7 +1695,11 @@ var filters = {
 kuzzle
   .security
   .searchRoles(filters, function(error, result) {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<Role object>, <Role object>, ...]
+    // }
   });
 
 // Using promises (NodeJS)
@@ -1665,7 +1707,11 @@ kuzzle
   .security
   .searchRolesPromise(filters)
   .then((result) => {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<Role object>, <Role object>, ...]
+    // }
   });
 ```
 
@@ -1765,7 +1811,7 @@ Available filters:
 
 ### Callback response
 
-Resolves to a JSON Object
+Resolves to a JSON Object containing the total number of found roles and an array of [Role](#role) objects.
 
 ## updateProfile
 
@@ -1780,7 +1826,7 @@ var newContent = {
 kuzzle
   .security
   .updateProfile("profile ID", newContent, function (err, updatedProfile) {
-
+    // "updatedProfile" is an instance of a Profile object
   });
 
 // Using promises (NodeJS)
@@ -1788,7 +1834,7 @@ kuzzle
   .security
   .updateProfilePromise("profile ID", newContent)
   .then(updatedProfile => {
-
+    // "updatedProfile" is an instance of a Profile object
   });
 ```
 
@@ -1884,7 +1930,7 @@ Returns the `Security` object to allow chaining.
 
 ### Callback response
 
-Resolves to an updated `Profile` object
+Resolves to an updated [Profile](#profile) object
 
 ## updateRole
 
@@ -1903,7 +1949,7 @@ var roleDefinition = {
 kuzzle
   .security
   .updateRole("role ID", roleDefinition, function (err, updatedRole) {
-
+    // "updatedRole" is an instance of a Role object
   });
 
 // Using promises (NodeJS)
@@ -1911,7 +1957,7 @@ kuzzle
   .security
   .updateRolePromise("profile ID", roleDefinition)
   .then(updatedRole => {
-
+    // "updatedRole" is an instance of a Role object
   });
 ```
 
@@ -1994,7 +2040,7 @@ Returns the `Security` object to allow chaining.
 
 ### Callback response
 
-Resolves to an updated `Role` object
+Resolves to an updated [Role](#role) object
 
 
 ## updateUser
@@ -2010,7 +2056,7 @@ var newContent = {
 kuzzle
   .security
   .updateUser("User ID", newContent, function (err, updatedUser) {
-
+    // "updatedUser" is an instance of a User object
   });
 
 // Using promises (NodeJS)
@@ -2018,7 +2064,7 @@ kuzzle
   .security
   .updateUserPromise("User ID", newContent)
   .then(updatedUser => {
-
+    // "updatedUser" is an instance of a User object
   });
 ```
 
@@ -2067,7 +2113,6 @@ catch (ErrorException $e) {
 }
 ```
 
-
 #### updateUser(id, content, [options], [callback])
 
 Performs a partial update on an existing user.
@@ -2091,7 +2136,7 @@ Returns the `Security` object to allow chaining.
 
 ### Callback response
 
-Resolves to an updated `User` object
+Resolves to an updated [User](#user) object
 
 ## user
 
@@ -2147,7 +2192,7 @@ $user = $security->user($kuid, $userDefinition);
 // $user instanceof User
 ```
 
-Instantiates a new User object.
+Instantiates a new [User](#user) object.
 
 ### user(id, content)
 
@@ -2158,4 +2203,4 @@ Instantiates a new User object.
 
 ### Return value
 
-Returns the `User` object.
+Returns the new [User](#user) object.
