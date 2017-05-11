@@ -104,7 +104,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates a new `CollectionMapping` object, using its constructor.
+Creates a new [CollectionMapping](#collectionmapping) object, using its constructor.
 
 ### collectionMapping([mapping])
 
@@ -114,7 +114,7 @@ Creates a new `CollectionMapping` object, using its constructor.
 
 ### Return value
 
-Returns the newly created `CollectionMapping` object.
+Returns the newly created [CollectionMapping](#collectionmapping) object.
 
 ## count
 
@@ -364,7 +364,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new document in Kuzzle.
+Create a new document in Kuzzle and resolves to a [Document](#document) object.
 
 ### createDocument(Document, [options], [callback])
 
@@ -393,7 +393,7 @@ Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
-Resolves to a `Document` object containing the newly created document.
+Resolves to a [Document](#document) object containing the newly created document.
 
 ## delete
 
@@ -589,7 +589,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates a new `Document` object, using its constructor.
+Creates a new [Document](#document) object, using its constructor.
 
 ### document([id], [content])
 
@@ -600,7 +600,7 @@ Creates a new `Document` object, using its constructor.
 
 ### Return value
 
-Returns the newly created `Document` object.
+Returns the newly created [Document](#document) object.
 
 ## fetchDocument
 
@@ -658,7 +658,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves a single stored document using its unique document ID.
+Retrieves a single stored document using its unique document ID, and returns it as a [Document](#document) object.
 
 ### fetchDocument(documentId, [options], callback)
 
@@ -678,7 +678,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Document` object.
+Resolves to a [Document](#document) object.
 
 ## fetchAllDocuments
 
@@ -778,7 +778,7 @@ Available options:
 Resolves to an object containing:
 
 - the total number of retrieved documents
-- a `array` of `Document` objects
+- a `array` of [Document](#document) objects
 
 
 ## getMapping
@@ -835,7 +835,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves the current mapping of this collection.
+Retrieves the current mapping of this collection as a [CollectionMapping](#collectionmapping) object.
 
 ### getMapping([options], callback)
 
@@ -853,7 +853,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `CollectionMapping` object.
+Resolves to a [CollectionMapping](#collectionmapping) object.
 
 ## publishMessage
 
@@ -893,7 +893,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Publish a realtime message
+Publish a real-time message.
 
 ### publishMessage(Document, [options], [callback])
 
@@ -982,7 +982,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Replace an existing document with a new one.
+Replace an existing document and returns the updated version of it as a [Document](#document) object.
 
 ### replaceDocument(documentId, content, [options], [callback])
 
@@ -1007,7 +1007,7 @@ Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
-Resolves to an updated `Document` object.
+Resolves to an updated [Document](#document) object.
 
 ## room (property)
 
@@ -1051,7 +1051,7 @@ Room room = kuzzle.collection("collection", "index")
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Creates a new `Room` object, using its constructor.
+Creates a new [Room](#room) object, using its constructor.
 
 ### room([options])
 
@@ -1139,15 +1139,11 @@ catch (ErrorException $e) {
 }
 ```
 
-> Callback response:
-
-Resolves to an instantiated [SearchResult](#searchresult) object.
-
 <aside class="notice">
   There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
 </aside>
 
-Returns the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.
+Returns a [SearchResult](#searchresult) object containing the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.  
 A scroll session is always initiated by a `search` action by using the `scroll` argument; more information below.
 
 
@@ -1172,7 +1168,6 @@ Available options:
 </aside>
 
 ### Callback response
-
 
 Resolves to an instantiated [SearchResult](#searchresult) object.
 
@@ -1355,10 +1350,6 @@ catch (ErrorException $e) {
 }
 ```
 
-> Callback response:
-
-Resolves to an instantiated [SearchResult](#searchresult) object.
-
 
 <aside class="notice">
   There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
@@ -1389,7 +1380,6 @@ Available options:
 </aside>
 
 ### Callback response
-
 
 Resolves to an instantiated [SearchResult](#searchresult) object.
 
@@ -1723,7 +1713,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Update parts of a document, by replacing some fields or adding new ones.
+Update parts of a document, by replacing some fields or adding new ones.  
 Note that you cannot remove fields this way: missing fields will simply be left unchanged.
 
 ### updateDocument(documentId, content, [options], [callback])
@@ -1750,4 +1740,4 @@ Returns the `Collection` object to allow chaining.
 
 ### Callback response
 
-Resolves to an up-to-date `Document` object.
+Resolves to an up-to-date [Document](#document) object.

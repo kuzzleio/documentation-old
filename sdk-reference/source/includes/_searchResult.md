@@ -26,12 +26,12 @@ kuzzle
       for (Document doc : result.getDocuments()) {
         // fetched documents
       }
- 
+
       result.getTotal(); // returns the total number of documents returnable
- 
+
       result.getAggregations(): // returns a JSONObject representing the aggregations response
     }
- 
+
     @Override
     public void onError(JSONObject error) {
       // Handle error
@@ -72,9 +72,9 @@ catch (ErrorException $e) {
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``collection`` | Collection | An instantiated Collection object |
+| ``collection`` | Collection | An instantiated [Collection](#collection) object |
 | ``total`` | integer | The total number of results of the search/scroll request |
-| ``documents`` | Document[] | An array of instantiated Document objects |
+| ``documents`` | Document[] | An array of instantiated [Document](#document) objects |
 | ``aggregations`` | object | The result of an aggregation produced by a search request |
 | ``options`` | object | The arguments of the search/scroll request |
 | ``filters`` | object | The filters of the search request |
@@ -97,6 +97,7 @@ catch (ErrorException $e) {
 ## Getters
 
 | Getter name | Type | Description |
+|-------------|------|--------------------------------------------|
 | ``getAggregations()`` | object | Returns the `aggregation` property value |
 | ``getCollection()`` | Collection | Returns the `collection` property value |
 | ``getDocuments()`` | Document[] | Returns the `documents` property value |

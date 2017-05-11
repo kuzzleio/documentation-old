@@ -398,7 +398,7 @@ The ``index`` argument takes precedence over the default index.
 
 ### Return value
 
-Returns a `Collection` object.
+Returns a [Collection](#collection) object.
 
 ## connect
 
@@ -1556,7 +1556,7 @@ The `Kuzzle` object will unset the property `jwtToken` if the user is successful
 
 ## memoryStorage (property)
 
-A `MemoryStorage` singleton.
+A [MemoryStorage](#memorystorage) singleton.
 
 ## now
 
@@ -1914,7 +1914,7 @@ Returns the `Kuzzle` object to allow chaining.
 
 ## security (property)
 
-A `Security` singleton.
+A [Security](#security) singleton.
 
 ## setAutoRefresh
 
@@ -2317,4 +2317,4 @@ Retrieves current user object.
 
 ### Callback response
 
-An instantiated `User` object.
+An instantiated [User](#user) object.
