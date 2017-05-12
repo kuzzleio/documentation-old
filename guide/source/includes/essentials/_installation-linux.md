@@ -4,6 +4,7 @@
 
 Before launching Kuzzle, ensure that your system matches the following pre-requisites:
 
+- **64-bit environment**
 - **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
 - **Docker-compose v1.8+**, see [instructions here](https://docs.docker.com/compose/install/)
 
@@ -68,7 +69,7 @@ We will run the Kuzzle stack using [pm2](http://pm2.keymetrics.io/), from the cu
 
 #### Supported operating systems
 
-The following operating systems are actively supported:
+The following operating systems are actively supported (64-bit versions only):
 
 * Ubuntu: 14.04 and 16.04
 * Debian: 7 and 8
