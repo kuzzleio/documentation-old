@@ -6,6 +6,7 @@ In this tutorial you will learn in a few steps how to **launch** Kuzzle and how 
 
 Before launching Kuzzle, ensure that your system matches the following pre-requisites:
 
+- **64-bit environment**
 - **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
 - **Docker-compose v1.8+**, see [intructions here](https://docs.docker.com/compose/install/)
 
