@@ -173,7 +173,7 @@ user
 // Using promises (NodeJS)
 user
   .createPromise()
-  .then((result) => {
+  .then(result => {
     // result is a User object
   });
 ```
@@ -213,9 +213,6 @@ catch (ErrorException $e) {
 
 Create the user in kuzzle. Credentials can be created during the process by using `setCredentials` beforehand.
 
-<aside class="warning">
-  This method call can rise an error if the associated profile is not created in Kuzzle
-</aside>
 
 ### create([options], [callback])
 
@@ -250,7 +247,7 @@ user
 // Using promises (NodeJS)
 user
   .deletePromise()
-  .then((result) => {
+  .then(result => {
     // result is the id of deleted user
   });
 ```
@@ -339,7 +336,7 @@ user
 // Using promises (NodeJS)
 user
   .replacePromise()
-  .then((result) => {
+  .then(result => {
     // result is a User object
   });
 ```
@@ -379,11 +376,7 @@ catch (ErrorException $e) {
 
 Replaces the user in kuzzle.
 
-<aside class="warning">
-  This method call can rise an error if the associated profile is not created in Kuzzle
-</aside>
-
-### create([options], [callback])
+### replace([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -416,7 +409,7 @@ user
 // Using promises (NodeJS)
 user
   .saveRestrictedPromise()
-  .then((result) => {
+  .then(result => {
     // result is a User object
   });
 ```
@@ -536,11 +529,18 @@ Returns the `User` object.
 ## setCredentials
 
 ```js
-user.setCredentials({some: 'credentials'});
+user.setCredentials({
+  '<strategy name>': {
+    some: 'credentials'
+  }
+});
 ```
 
 ```java
-JSONObject credentials = new JSONObject().putString("some", "credentials");  
+JSONObject
+  strategyCredentials = new JSONObject().put("some", "credentials"),
+  credentials = new JSONObject().put("<strategy name>", strategyCredentials);
+
 user.setCredentials(credentials);
 ```
 
@@ -555,15 +555,18 @@ use Kuzzle\Security\User;
  */
 
 // Updating the profile with a Profile object
-$user->setCredentials(['some' => 'credentials']);
+$user->setCredentials([
+    '<strategy name>' => [
+        'some' => 'credentials'
+    ]
+]);
 ```
 
 <aside class="note">
   Updating user credentials will have no impact until the <code>create</code> method is called
 </aside>
 
-
-Replace the profile associated to the user
+Sets the credentials associated to a user
 
 ### setProfiles(profileIds)
 

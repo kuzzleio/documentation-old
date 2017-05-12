@@ -599,7 +599,7 @@ Here is the generic signature of the `getInfo` function you have to implement:
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
 <aside class="info">
-  If no getInfo function is provided, an empty object will be returned in the controllers that use it.
+  If no getInfo function is provided, an empty object will be returned by controllers that use it.
 </aside>
 
 ### The getById function
@@ -616,7 +616,7 @@ Here is the generic signature of the `getInfo` function you have to implement:
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
 <aside class="info">
-  If no getById function is provided, an empty object will be returned in the controllers that use it.
+  If no getById function is provided, an empty object will be returned by controllers that use it.
 </aside>
 
 
