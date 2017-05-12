@@ -2,10 +2,10 @@
 layout: side-code.html
 language-tab: true
 algolia: true
-title: room (property)
+title: room
 ---
 
-# room (property)
+## room
 
 ```js
 let room = kuzzle
@@ -47,14 +47,22 @@ Room room = kuzzle.collection("collection", "index")
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Creates a new `Room` object, using its constructor.
+Creates a new [Room](/sdk-reference/room/) object, using its constructor.
 
-## room([options])
+---
+
+### room([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | object | Subscription configuration |
 
-## Return value
+### Options
 
-Returns the newly created `Room` object.
+Provided options are passed directly to the [Room](/sdk-reference/room/) object constructor.
+
+---
+
+### Return value
+
+Returns the newly created [Room](/sdk-reference/room/) object.

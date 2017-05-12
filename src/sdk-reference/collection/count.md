@@ -5,7 +5,7 @@ algolia: true
 title: count
 ---
 
-# count
+## count
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -68,7 +68,10 @@ catch (ErrorException $e) {
 <aside class="notice">There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function</aside>
 
 Returns the number of documents matching the provided set of filters.
-## count(filters, [options], callback)
+
+---
+
+### count(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -76,13 +79,16 @@ Returns the number of documents matching the provided set of filters.
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+---
 
-## Callback response
+### Callback response
 
 Resolves to the matched documents count as a ``integer``.

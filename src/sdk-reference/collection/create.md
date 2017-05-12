@@ -5,7 +5,7 @@ algolia: true
 title: create
 ---
 
-# create
+## create
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -79,23 +79,31 @@ catch (ErrorException $e) {
 
 Create a new empty data collection, with no associated mapping.
 
-## create([options], [callback])
+---
+
+### create([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-## Return value
+---
+
+### Return value
 
 Returns the `Collection` object to allow chaining.
 
-## Callback response
+---
+
+### Callback response
 
 Resolves to a `JSON object` containing the raw Kuzzle response.

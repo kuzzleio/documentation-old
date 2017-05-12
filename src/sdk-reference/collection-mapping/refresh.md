@@ -48,6 +48,8 @@ $dataMapping->refresh();
 
 Instantiates a new CollectionMapping object with an up-to-date content.
 
+---
+
 ### refresh([options], callback)
 
 | Arguments | Type | Description |
@@ -55,12 +57,15 @@ Instantiates a new CollectionMapping object with an up-to-date content.
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback |
 
-Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+---
 
 ### Callback response
 

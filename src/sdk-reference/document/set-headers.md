@@ -36,6 +36,8 @@ $document->setHeaders($headers);
 
 This is a helper function returning itself, allowing to easily chain calls.
 
+---
+
 ### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
@@ -44,6 +46,8 @@ This is a helper function returning itself, allowing to easily chain calls.
 | ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
+
+---
 
 ### Return value
 

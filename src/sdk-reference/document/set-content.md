@@ -41,6 +41,7 @@ Changes made by this function won't be applied until the <code>save</code> metho
 Replaces the current content with new data.  
 This is a helper function returning itself, allowing to easily chain calls.
 
+---
 
 ### setContent(data, [replace])
 
@@ -50,6 +51,8 @@ This is a helper function returning itself, allowing to easily chain calls.
 | ``replace`` | boolean | true: replace the current content with the provided data, false: merge it |
 
 **Note:** by default, the ``replace`` argument is set to ``false``
+
+---
 
 ### Return value
 

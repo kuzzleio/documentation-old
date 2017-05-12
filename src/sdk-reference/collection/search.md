@@ -4,7 +4,8 @@ language-tab: true
 algolia: true
 title: search
 ---
-# search
+
+## search
 
 ```js
 let filter = {
@@ -183,10 +184,6 @@ catch (ErrorException $e) {
 }
 ```
 
-> Callback response:
-
-Resolves to an instantiated [SearchResult](#searchresult) object.
-
 
 <aside class="notice">
   There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
@@ -194,7 +191,9 @@ Resolves to an instantiated [SearchResult](#searchresult) object.
 
 Executes a search on the data collection.
 
-## search(filters, [options], callback)
+---
+
+### search(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -202,8 +201,9 @@ Executes a search on the data collection.
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
+---
 
-### Available options:
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -213,10 +213,11 @@ Executes a search on the data collection.
 | ``size`` | number | Provide the maximum number of results of the request (used to paginate results) | ``10`` |
 
 <aside class="notice">
-  To get more information about scroll sessions, please refer to the <a href="/api-reference/#search">API reference documentation</a>.
+  To get more information about scroll sessions, please refer to the <a href="/api-reference/collection/search">API reference documentation</a>.
 </aside>
 
-## Callback response
+---
 
+### Callback response
 
-Resolves to an instantiated [SearchResult](#searchresult) object.
+Resolves to an instantiated [SearchResult](/sdk-reference/search-result) object.

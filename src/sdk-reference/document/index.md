@@ -3,13 +3,10 @@ layout: side-code.html
 language-tab: true
 algolia: true
 title: Document
+order: 4
 ---
 
 # Document
-
-Kuzzle handles documents, either as realtime messages or as stored documents. Document is the object representation of one of these documents.
-
-## Constructors
 
 ```js
 /*
@@ -63,6 +60,10 @@ $document = $dataCollection->document($documentId, $documentContent);
 $document = new Document($dataCollection, $documentId, $documentContent);
 ```
 
+Kuzzle handles documents, either as realtime messages or as stored documents. Document is the object representation of one of these documents.
+
+---
+
 ### Document(Collection, [documentId], [content])
 
 | Arguments | Type | Description |
@@ -72,6 +73,8 @@ $document = new Document($dataCollection, $documentId, $documentContent);
 | ``documentId`` | string | ID of an existing document. |
 
 **Note:**  this constructor won't make any call to Kuzzle. When providing only a document ID, the `refresh` method should be called to retrieve the corresponding document content.
+
+---
 
 ## Properties
 

@@ -56,6 +56,8 @@ Saves this document into Kuzzle.
 If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
 Otherwise, this method will replace the latest version of this document in Kuzzle by the current content of this object.
 
+---
+
 ### save([options], [callback])
 
 | Arguments | Type | Description |
@@ -63,7 +65,9 @@ Otherwise, this method will replace the latest version of this document in Kuzzl
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -71,9 +75,13 @@ Available options:
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
+---
+
 ### Return value
 
 Returns this `Document` object to allow chaining.
+
+---
 
 ### Callback response
 

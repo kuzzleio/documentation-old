@@ -5,7 +5,7 @@ algolia: true
 title: replaceDocument
 ---
 
-# replaceDocument
+## replaceDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -66,9 +66,11 @@ catch (ErrorException $e) {
 }
 ```
 
-Replace an existing document with a new one.
+Replace an existing document and returns the updated version of it as a [Document](/sdk-reference/document/) object.
 
-## replaceDocument(documentId, content, [options], [callback])
+---
+
+### replaceDocument(documentId, content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -77,7 +79,9 @@ Replace an existing document with a new one.
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -85,10 +89,14 @@ Replace an existing document with a new one.
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
-## Return value
+---
+
+### Return value
 
 Returns the `Collection` object to allow chaining.
 
-## Callback response
+---
 
-Resolves to an updated `Document` object.
+### Callback response
+
+Resolves to an updated [Document](/sdk-reference/document/) object.
