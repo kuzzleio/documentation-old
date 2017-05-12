@@ -99,23 +99,41 @@ $ cd ~/kuzzle
 2. Create a directory for Kuzzle Proxy and install it:
 
 ```bash
-$ cd ~/kuzzle
-$ git clone https://github.com/kuzzleio/kuzzle-proxy.git
-$ cd kuzzle-proxy
-$ git submodule init
-$ git submodule update
-$ npm install
+cd ~/kuzzle
+git clone https://github.com/kuzzleio/kuzzle-proxy.git
+cd kuzzle-proxy
+npm install
+
+# init submodules to install defaults proxy plugins
+git submodule init
+git submodule update
+
+# install dependencies for all enabled plugins
+for PLUGIN in ./plugins/enabled/*; do
+  if [ -d "${PLUGIN}" ]; then
+    ( cd "${PLUGIN}" && npm install )
+  fi
+done
 ```
 
 3. Create a directory for Kuzzle Core and install it:
 
 ```bash
-$ cd ~/kuzzle
-$ git clone https://github.com/kuzzleio/kuzzle.git
-$ cd kuzzle
-$ git submodule init
-$ git submodule update
-$ npm install
+cd ~/kuzzle
+git clone https://github.com/kuzzleio/kuzzle.git
+cd kuzzle
+npm install
+
+# init submodules to install defaults kuzzle plugins
+git submodule init
+git submodule update
+
+# install dependencies for all enabled plugins
+for PLUGIN in ./plugins/enabled/*; do
+  if [ -d "${PLUGIN}" ]; then
+    ( cd "${PLUGIN}" && npm install )
+  fi
+done
 ```
 
 4. Create a directory for Kuzzle Back Office and [install it](#running-kuzzle-backoffice).
