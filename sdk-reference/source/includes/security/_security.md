@@ -318,10 +318,7 @@ var userContent = {
   }
 };
 
-// You can chose to replace the given user if already exists
-var options = {
-  replaceIfExist: true
-};
+var options = {};
 
 
 // Using callbacks (NodeJS or Web Browser)
@@ -357,7 +354,7 @@ JSONObject credentials = new JSONObject()
 
 newUser.put("credentials", credentials);
 
-Options opts = new Options().setReplaceIfExist(true);
+Options opts = new Options();
 
 kuzzle
   .security
@@ -432,7 +429,6 @@ Available options:
 
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``replaceIfExist`` | boolean | If the same user already exists: throw an error if sets to false. Replace the existing user otherwise | ``false`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
 ### Callback response

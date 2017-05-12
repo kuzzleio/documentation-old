@@ -129,7 +129,8 @@ This API route does not require to be logged in.
   "action": "createMyCredentials",
   "controller": "auth",
   "result": {
-    "username": "MyUser"
+    "username": "MyUser",
+    "kuid": "<kuid>"
   }
 }
 ```
@@ -266,7 +267,8 @@ Gets the user object identified by the `JSON Web Token` provided in the query or
   "action": "getMyCredentials",
   "controller": "auth",
   "result": {
-    "username": "MyUser"
+    "username": "MyUser",
+    "kuid": "<kuid>"
   }
 }
 ```
@@ -542,7 +544,8 @@ The **_logout** action doesn't take strategy.
   "action": "updateMyCredentials",
   "controller": "auth",
   "result": {
-    "username": "MyUser"
+    "username": "MyUser",
+    "kuid": "<kuid>"
   }
 }
 ```

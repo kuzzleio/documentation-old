@@ -142,7 +142,7 @@ $user->addProfile('myProfile');
 ```
 
 <aside class="note">
-Updating an user will have no impact until the <code>save</code> method is called
+Updating an user will have no impact until the <code>create</code> or <code>replace</code> method is called
 </aside>
 
 
@@ -161,6 +161,80 @@ Replace the profile associated to the user
 
 Returns the `User` object.
 
+## create
+
+```js
+// Using callbacks (NodeJS or Web Browser)
+user
+  .create(function(error, result) {
+    // result is a User object
+  });
+
+// Using promises (NodeJS)
+user
+  .createPromise()
+  .then(result => {
+    // result is a User object
+  });
+```
+
+```java
+user.create(new ResponseListener<User>() {
+  @Override
+  public void onSuccess(User user) {
+
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+
+  }
+});
+```
+
+```php
+<?php
+
+use Kuzzle\Security\User;
+
+// ...
+
+/*
+ * @var $user User
+ */
+
+try {
+  $user->create();
+}
+catch (ErrorException $e) {
+
+}
+```
+
+Create the user in kuzzle. Credentials can be created during the process by using `setCredentials` beforehand.
+
+
+### create([options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | (Optional) Callback handling the response |
+
+Available options:
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+### Return value
+
+Returns the `User` object to allow chaining.
+
+### Callback response
+
+Resolves to a `User` object.
+
 ## delete
 
 ```js
@@ -173,7 +247,7 @@ user
 // Using promises (NodeJS)
 user
   .deletePromise()
-  .then((result) => {
+  .then(result => {
     // result is the id of deleted user
   });
 ```
@@ -250,25 +324,25 @@ Returns this user associated profiles.
 
 Returns an array of associated profiles
 
-## save
+## replace
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 user
-  .save(function(error, result) {
+  .replace(function(error, result) {
     // result is a User object
   });
 
 // Using promises (NodeJS)
 user
-  .savePromise()
-  .then((result) => {
+  .replacePromise()
+  .then(result => {
     // result is a User object
   });
 ```
 
 ```java
-user.save(new ResponseListener<User>() {
+user.replace(new ResponseListener<User>() {
   @Override
   public void onSuccess(User user) {
 
@@ -293,20 +367,16 @@ use Kuzzle\Security\User;
  */
 
 try {
-  $user->save();
+  $user->replace();
 }
 catch (ErrorException $e) {
 
 }
 ```
 
-Create or replace the user in kuzzle
+Replaces the user in kuzzle.
 
-<aside class="warning">
-Saving this object can rise an error if the associated profile is not created in Kuzzle
-</aside>
-
-### save([options], [callback])
+### replace([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -339,7 +409,7 @@ user
 // Using promises (NodeJS)
 user
   .saveRestrictedPromise()
-  .then((result) => {
+  .then(result => {
     // result is a User object
   });
 ```
@@ -440,7 +510,7 @@ $user->setContent($userContent);
 ```
 
 <aside class="note">
-Updating an user will have no impact until the <code>save</code> method is called
+Updating an user will have no impact until the <code>create</code> or <code>replace</code> method is called
 </aside>
 
 Replaces the content of User
@@ -450,6 +520,60 @@ Replaces the content of User
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``data`` | JSON Object |  User content |
+
+### Return value
+
+Returns the `User` object.
+
+
+## setCredentials
+
+```js
+user.setCredentials({
+  '<strategy name>': {
+    some: 'credentials'
+  }
+});
+```
+
+```java
+JSONObject
+  strategyCredentials = new JSONObject().put("some", "credentials"),
+  credentials = new JSONObject().put("<strategy name>", strategyCredentials);
+
+user.setCredentials(credentials);
+```
+
+```php
+<?php
+
+use Kuzzle\Security\User;
+
+
+/*
+ * @var $user User
+ */
+
+// Updating the profile with a Profile object
+$user->setCredentials([
+    '<strategy name>' => [
+        'some' => 'credentials'
+    ]
+]);
+```
+
+<aside class="note">
+  Updating user credentials will have no impact until the <code>create</code> method is called.<br />
+  The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+</aside>
+
+Sets the credentials associated to a user
+
+### setCredentials(credentials)
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``credentials`` | object | An object containing an attribute for each strategy you want to create for the user. |
 
 ### Return value
 
@@ -514,7 +638,7 @@ $user->setProfiles(['myProfile']);
 ```
 
 <aside class="note">
-Updating an user will have no impact until the <code>save</code> method is called
+Updating an user will have no impact until the <code>create</code> or <code>replace</code> method is called
 </aside>
 
 
@@ -544,7 +668,7 @@ var updateContent = {
 // Using callbacks (NodeJS or Web Browser)
 user.update(updateContent, function(err, updatedUser) {
   // the updatedUser variable is the updated User object
-})
+});
 
 // Using promises (NodeJS)
 role

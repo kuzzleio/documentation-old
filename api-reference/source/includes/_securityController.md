@@ -68,7 +68,8 @@
   "controller": "security",
   "_id": "<kuid>",
   "result": {
-    "username": "MyUser"
+    "username": "MyUser",
+    "kuid": "<kuid>"
   }
 }
 ```
@@ -1103,12 +1104,55 @@ Retrieve the list of accepted field names by the specified `<strategy>`. These f
   "controller": "security",
   "_id": "<kuid>",
   "result": {
-    "username": "MyUser"
+    "username": "MyUser",
+    "kuid": "<kuid>"
   }
 }
 ```
 
 Get credential information of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). Provided information completely depend of the strategy. The result can be an empty object.
+
+## getCredentialsById
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_byId`  
+>**Method:** `GET`  
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "security",
+  "action": "getCredentialsById",
+  "strategy": "<strategy>",
+  "_id": "<strategyId>"
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "getCredentialsById",
+  "controller": "security",
+  "_id": "<kuid>",
+  "result": {
+    "username": "MyUser",
+    "kuid": "<kuid>"
+  }
+}
+```
+
+Get credential information of the specified `<strategyId>` (storage key of the strategy) of the user. Storage key and provided information completely depend of the strategy. The result can be an empty object.
 
 
 ## getProfile
@@ -2347,7 +2391,8 @@ Optional arguments:
   "controller": "security",
   "_id": "<kuid>",
   "result": {
-    "username": "MyUser"
+    "username": "MyUser",
+    "kuid": "<kuid>"
   }
 }
 ```
@@ -2917,7 +2962,8 @@ But if you want to store more information about your users, Kuzzle's API offers 
   "controller": "security",
   "_id": "<kuid>",
   "result": {
-    "username": "MyUser"
+    "username": "MyUser",
+    "kuid": "<kuid>"
   }
 }
 ```
