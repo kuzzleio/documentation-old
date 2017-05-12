@@ -267,8 +267,8 @@ The `args` element is the place where we define our Fetch Definitions and has th
 {
   "args": {
     "<some variable>": {
-      "index": <index from which to fetch the document(s)>,
-      "collection": <collection from which to fetch the document(s)>,
+      "index": "<index from which to fetch the document(s)>",
+      "collection": "<collection from which to fetch the document(s)>",
       "action": {
         "<action type (get|mget|search)>": <action type specific parameters>
       }
