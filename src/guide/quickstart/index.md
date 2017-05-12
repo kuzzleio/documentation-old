@@ -16,19 +16,21 @@ In this tutorial you will learn in a few steps how to **launch** Kuzzle and how 
 
 Before launching Kuzzle, ensure that your system matches the following pre-requisites:
 
+- **64-bit environment**
 - **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
 - **Docker-compose v1.8+**, see [intructions here](https://docs.docker.com/compose/install/)
 
 <aside class="notice">
-<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manual-install">manual installation guide</a>.
+<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manually">manual installation guide</a>.
 </aside>
 
 Thanks to Docker-compose, running Kuzzle is easy. Just grab the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file, copy it into a directory and start Kuzzle:
 
 ```bash
-$ sudo sysctl -w vm.max_map_count=262144
-$ wget http://kuzzle.io/docker-compose.yml
-$ docker-compose up
+sudo sysctl -w vm.max_map_count=262144
+wget http://kuzzle.io/docker-compose.yml
+
+docker-compose up
 ```
 
 <aside class="notice">
@@ -37,14 +39,14 @@ The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="http
 
 Your terminal will show the log messages of Kuzzle's components starting. After only a few seconds, you should see the following ready message appear:
 
-```
-kuzzle_1         | [✔] Kuzzle server ready
+```bash
+# kuzzle_1         | [✔] Kuzzle server ready
 ```
 
 Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512?pretty=true">http://localhost:7512?pretty=true</a> or via cURL on the command line:
 
 ```bash
-$ curl "http://localhost:7512/?pretty=true"
+curl "http://localhost:7512/?pretty=true"
 ```
 
 Kuzzle will respond you with a list of the existing routes.
@@ -82,7 +84,7 @@ You can also <a href="#installing-kuzzle-manually-on-linux">install Kuzzle manua
 
 ## SDK play time
 
-It's time to play with the [Kuzzle SDK](/sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
+It's time to play with the [Kuzzle SDK](../sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
 
 Before proceeding, ensure that your system matches the following requisites:
 
@@ -91,12 +93,12 @@ Before proceeding, ensure that your system matches the following requisites:
 
 ### Create your first "Hello World" document
 
-Create your playground directory and install the [Javascript SDK](/sdk-reference) from the command line using npm:
+Create your playground directory and install the [Javascript SDK](../sdk-reference) from the command line using npm:
 
 ```bash
-$ mkdir kuzzle-playground
-$ cd kuzzle-playground
-$ npm install kuzzle-sdk
+mkdir "kuzzle-playground"
+cd "kuzzle-playground"
+npm install kuzzle-sdk
 ```
 
 Save the following JS code in the new `create.js` file:
@@ -124,7 +126,7 @@ collection.createDocument(document)
 Run your file in NodeJS
 
 ```bash
-$ node create.js
+node create.js
 ```
 
 <aside class="success">
@@ -135,7 +137,7 @@ You have persisted your first document in Kuzzle. If you are running the Backoff
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
 
-_You can find more resources about Kuzzle SDK in the [SDK Documentation](/sdk-reference)._
+_You can find more resources about Kuzzle SDK in the [SDK Documentation](../sdk-reference)._
 
 ### Subscribe to data changes (pub/sub)
 

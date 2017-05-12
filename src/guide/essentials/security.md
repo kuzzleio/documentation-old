@@ -2,11 +2,14 @@
 layout: full.html
 algolia: true
 title: Security
+order: 7
 ---
 
 # Security
 
 Kuzzle provides a full set of functionalities to finely define the permissions for your data.
+
+---
 
 ## Fresh installation default rights.
 
@@ -16,6 +19,8 @@ Once a first admin user is created, either via the [Kuzzle Back Office](#create-
 
 You can then use the Back Office to administrate your user rights.
 
+---
+
 ## Authentication
 
 The first step to secure your data is to be able to identify your users.
@@ -23,11 +28,13 @@ Kuzzle ships by default with a local login/password strategy.
 
 If the "local" strategy (i.e. storing the users' credentials in the local database) doesn't fit your needs, you can use the [Oauth authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), or develop your own (see [Core documentation](#authentication-process) for more details).
 
-If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests](/api-reference/#authorization-header).
+If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests](../api-reference/#authorization-header).
 
 <aside class="notice">
 More information on the login process <a href="/api-reference/#login">here</a>.
 </aside>
+
+---
 
 ## Permissions
 
@@ -46,9 +53,11 @@ A `profile` is associated to a set of `roles`. Each `role` defines a set of perm
 
 In the simple example above, the *editor* profile is a superset of the *contributor* one, which, in turn, extends the *default* profile.
 
-`roles` and `profiles` can be edited in [Kuzzle Back Office](https://github.com/kuzzleio/kuzzle-backoffice).
+`roles` and `profiles` can be edited in [Kuzzle Back Office](https://github.com/kuzzleio/kuzzle-bo).
 
-### Role definition
+---
+
+## Role definition
 
 A `role` definition is a hierarchical JSON object in which permissions can be defined at `controller` and `action` level.
 
@@ -80,7 +89,7 @@ The `action permission` value can be set either to:
 You can find a **comprehensive summary of all the available controllers** and actions by sending a `GET` request to the root endpoint of the Kuzzle API via the HTTP protocol:
 
 ```bash
-$ curl -XGET http://localhost:7512/\?pretty\=true
+curl -XGET http://localhost:7512/\?pretty\=true
 ```
 
 Take a look at the example below:
@@ -103,7 +112,9 @@ The example above is the permission definition set by Kuzzle for the Anonymous u
 
 In this example, the role grants the user with the permission to perform the `login`, `checkToken` and `getCurrentUser` actions of the `auth` controller.
 
-### Profile definition
+---
+
+## Profile definition
 
 A `profile` definition is a Javascript object that contains an array of policies, composed by a roleId and restrictions:
 
@@ -182,7 +193,9 @@ With this sample profiles:
   * all collections stored in index `index2`
   * collections `foo` and `bar` stored in index `index1`.
 
-#### Composition rules
+---
+
+## Composition rules
 
 In Kuzzle, permissions follow the [Whitelist](https://en.wikipedia.org/wiki/Whitelist) strategy, which means that **an action must be explicitly allowed** by at least one role of the user profile (including restrictions).
 
@@ -212,8 +225,8 @@ var role = {
         delete: {
           args: {
             document: {
-              index: "$requestObject.index",
-              collection: "$requestObject.collection",
+              index: "$request.input.resource.index",
+              collection: "$request.input.resource.collection",
               action: {
                 get: "$currentId"
               }

@@ -2,6 +2,7 @@
 layout: full.html
 algolia: true
 title: Configuring Kuzzle
+order: 2
 ---
 
 # Configuring Kuzzle
@@ -13,7 +14,7 @@ Kuzzle uses [rc](https://github.com/dominictarr/rc) to **override** its default 
 - via a `.kuzzlerc` file ([example here](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample));
 - via environment variables prefixed with `kuzzle_`.
 
-#### Example 1: configuring Kuzzle via a custom `.kuzzlerc` file
+### Example 1: configuring Kuzzle via a custom `.kuzzlerc` file
 
 You can write your custom config in `$HOME/.kuzzlerc` or [any other valid location](https://github.com/dominictarr/rc/blob/master/README.md#standards):
 
@@ -22,7 +23,7 @@ You can write your custom config in `$HOME/.kuzzlerc` or [any other valid locati
   "services": {
     "db": {
       "host": "<ES_HOST>",
-      "port": <ES_PORT>
+      "port": "<ES_PORT>"
     },
     "proxyBroker": {
       "host": "<PROXY_HOST>"
@@ -31,7 +32,7 @@ You can write your custom config in `$HOME/.kuzzlerc` or [any other valid locati
 }
 ```
 
-#### Example 2: configuring Kuzzle via Environment Variables
+### Example 2: configuring Kuzzle via Environment Variables
 
 The name of the environment variables must mimic the structure of the configuration object to override:
 

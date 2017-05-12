@@ -2,14 +2,18 @@
 layout: full.html
 algolia: true
 title: Installing Kuzzle
+order: 0
 ---
 
 # Installing Kuzzle
+
+---
 
 ## Docker
 
 Before launching Kuzzle, ensure that your system matches the following pre-requisites:
 
+- **64-bit environment**
 - **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
 - **Docker-compose v1.8+**, see [instructions here](https://docs.docker.com/compose/install/)
 
@@ -18,14 +22,14 @@ Get the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file,
 In this case, you need to increase the maximum virtual memory allowed by typing
 
 ```bash
-$ sudo sysctl -w vm.max_map_count=262144
-$ wget http://kuzzle.io/docker-compose.yml
-$ docker-compose up
+sudo sysctl -w vm.max_map_count=262144
+wget http://kuzzle.io/docker-compose.yml
+docker-compose up
 ```
 
-To persist this changes add this line to your /etc/sysctl.conf
-```
-vm.max_map_count=262144
+To persist this changes add this line to your `/etc/sysctl.conf`
+```bash
+echo "vm.max_map_count=262144" >> /etc/sysctl.conf
 ```
 
 <aside class="notice">
@@ -34,33 +38,42 @@ The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="http
 
 Your terminal will show the log messages of Kuzzle's components starting. After only a few seconds, you should see the following ready message appear:
 
-```
-kuzzle_1         | [✔] Kuzzle server ready
+```bash
+# kuzzle_1         | [✔] Kuzzle server ready
 ```
 
 Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512">http://localhost:7512</a> or via cURL on the command line:
 
 ```bash
-$ curl "http://localhost:7512/?pretty"
+curl "http://localhost:7512/?pretty"
 ```
 
 Kuzzle will respond you with a list of the existing routes.
 
 
-#### Useful commands list
+### Useful commands list
 
-* Updating docker images used by Kuzzle:  
-`docker-compose -f <docker-compose-file.yml> pull`
-* Showing Kuzzle core or Kuzzle proxy logs:  
-`docker exec -ti <docker core or proxy container name> pm2 logs`
-* Restarting Kuzzle core or Kuzzle proxy:  
-`docker exec -ti <docker core or proxy container name> pm2 restart all`
-* Stopping Kuzzle core or Kuzzle proxy:  
-`docker exec -ti <docker core or proxy container name> pm2 stop all`
-* Starting Kuzzle core or Kuzzle proxy:  
-`docker exec -ti <docker core or proxy container name> pm2 start all`
-* Accessing Kuzzle CLI:  
-`docker exec -ti <docker core container name> bin/kuzzle -h`
+```bash
+# Updating docker images used by Kuzzle:  
+docker-compose -f "<docker-compose-file.yml>" pull
+
+# Showing Kuzzle core or Kuzzle proxy logs:  
+docker exec -ti "<docker core or proxy container name>" pm2 logs
+
+# Restarting Kuzzle core or Kuzzle proxy:  
+docker exec -ti "<docker core or proxy container name>" pm2 restart all
+
+# Stopping Kuzzle core or Kuzzle proxy:  
+docker exec -ti "<docker core or proxy container name>" pm2 stop all
+
+# Starting Kuzzle core or Kuzzle proxy:  
+docker exec -ti "<docker core or proxy container name>" pm2 start all
+
+# Accessing Kuzzle CLI:
+docker exec -ti "<docker core container name>" bin/kuzzle -h
+```
+
+---
 
 ## Manually
 
@@ -74,7 +87,7 @@ We will run the Kuzzle stack using [pm2](http://pm2.keymetrics.io/), from the cu
 
 ### Supported operating systems
 
-The following operating systems are actively supported:
+The following operating systems are actively supported (64-bit versions only):
 
 * Ubuntu: 14.04 and 16.04
 * Debian: 7 and 8
@@ -92,47 +105,74 @@ The following operating systems are actively supported:
  The last three prerequisites can be fulfilled on Debian-based systems by installing packages : `build-essential`, `gdb` and `python`.
 </aside>
 
-### Step 1 - Retrieve Kuzzle components source code
+---
 
-1. Create the Kuzzle root directory:
+## Step 1 - Retrieve Kuzzle components source code
+
+### 1.1. Create the Kuzzle root directory
 
 ```bash
-$ mkdir -p ~/kuzzle
-$ cd ~/kuzzle
+mkdir -p "~/kuzzle"
+cd "~/kuzzle"
 ```
 
-2. Create a directory for Kuzzle Proxy and install it:
+### 1.2. Create a directory for Kuzzle Proxy and install it
 
 ```bash
-$ cd ~/kuzzle
-$ git clone https://github.com/kuzzleio/kuzzle-proxy.git
-$ cd kuzzle-proxy
-$ npm install
+cd "~/kuzzle"
+git clone https://github.com/kuzzleio/kuzzle-proxy.git
+cd "kuzzle-proxy"
+npm install
+
+# init submodules to install defaults proxy plugins
+git submodule init
+git submodule update
+
+# install dependencies for all enabled plugins
+for PLUGIN in ./plugins/enabled/*; do
+  if [ -d "${PLUGIN}" ]; then
+    ( cd "${PLUGIN}" && npm install )
+  fi
+done
 ```
 
-3. Create a directory for Kuzzle Core and install it:
+### 1.3. Create a directory for Kuzzle Core and install it
 
 ```bash
-$ cd ~/kuzzle
-$ git clone https://github.com/kuzzleio/kuzzle.git
-$ cd kuzzle
-$ npm install
+cd ~/kuzzle
+git clone https://github.com/kuzzleio/kuzzle.git
+cd kuzzle
+npm install
+
+# init submodules to install defaults kuzzle plugins
+git submodule init
+git submodule update
+
+# install dependencies for all enabled plugins
+for PLUGIN in ./plugins/enabled/*; do
+  if [ -d "${PLUGIN}" ]; then
+    ( cd "${PLUGIN}" && npm install )
+  fi
+done
 ```
 
-4. Create a directory for Kuzzle Back Office and [install it](#running-kuzzle-backoffice).
+### 1.4. Create a directory for Kuzzle Back Office and [install it](#running-kuzzle-backoffice).
 
-### Step 2 - pm2
+---
 
-1. Install pm2:
+
+## Step 2 - pm2
+
+### 2.1. Install pm2
 
 ```bash
-$ sudo npm install -g pm2
+sudo npm install -g pm2
 ```
 
-2. Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file):
+### 2.2. Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file)
 
 ```bash
-$ echo "apps:
+echo "apps:
    - name: kuzzle-proxy
      cwd: ${KUZZLE_PROXY_INSTALL_DIR}
      script: ${KUZZLE_PROXY_INSTALL_DIR}/index.js
@@ -145,37 +185,41 @@ $ echo "apps:
   " > ~/kuzzle/pm2.conf.yml
 ```
 
-3. Run Kuzzle via pm2 and show the logs:
+### 2.3. Run Kuzzle via pm2 and show the logs:
 
 ```bash
-$ pm2 start ~/kuzzle/pm2.conf.yml
-$ pm2 logs
+pm2 start ~/kuzzle/pm2.conf.yml
+pm2 logs
 ```
 
 After only a few seconds, you will see the following ready message appear:
 
-```
-kuzzle_1         | [✔] Kuzzle server ready
+```bash
+# kuzzle_1         | [✔] Kuzzle server ready
 ```
 
 The Kuzzle Back-office can be reached on http://localhost:3000.  
-Kuzzle HTTP API can be reached on http://localhost:7512/
+Kuzzle HTTP API can be reached on http://localhost:7512/  
 Socket IO and Websocket channels can be reached over the HTTP server, on port 7512.
 
 #### Change external services hosts or ports
 
 If you are running some of the service(s) externally, you can configure their host and port using some environment variables and/or a `.kuzzlerc` file.
 
-Please refer to [Kuzzle configuration section](#configuration) for more information.
+Please refer to the [Kuzzle configuration section](#configuring-kuzzle) for more information.
 
 #### Useful commands list
 
+```bash
+# howing Kuzzle logs:
+pm2 logs
 
-* Showing Kuzzle logs:  
-`pm2 logs`
-* Starting, restarting or stopping Kuzzle core :  
-`pm2 <start|stop|restart> KuzzleServer`
-* Starting, restarting or stopping Kuzzle core :  
-`pm2 <start|stop|restart> KuzzleProxy`
-* Accessing Kuzzle CLI:  
-`~/kuzzle/bin/kuzzle -h`
+# Starting, restarting or stopping Kuzzle core :
+pm2 "<start|stop|restart>" KuzzleServer
+
+# Starting, restarting or stopping Kuzzle core :  
+pm2 "<start|stop|restart>" KuzzleProxy
+
+# Accessing Kuzzle CLI
+~/kuzzle/bin/kuzzle -h
+```

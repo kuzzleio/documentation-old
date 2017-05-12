@@ -1,11 +1,13 @@
 [
-    "/{{ path }}",
-    "/api-reference",
-    "/plugin-reference/",
-    "/real-time-filters/",
-    "/elasticsearch-cookbook/",
+    "/guide/advanced/api-reference",
+    "/guide/advanced/plugin-reference/",
+    "/guide/advanced/real-time-filters/",
+    "/guide/advanced/elasticsearch-cookbook/",
     "/validation-reference/",
+    "/real-time-filters/",
+    "/api-reference",
     "/plugin-reference",
     "/api-reference/",
-    "/real-time-filters"
+    "/real-time-filters",
+    "https://github.com/kuzzleio/kuzzle/blob/master/lib/services/internalEngine.js"
 ]

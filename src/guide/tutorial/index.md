@@ -12,7 +12,7 @@ We have made a tutorial to present the kuzzle beta version.
 We are providing an application called "klack" which is a "slack" like application,
 you will implement online features with kuzzle.
 
-#### You will learn
+## You will learn
 
 - How to connect your application to Kuzzle
 - How to send and receive volatile messages
@@ -30,7 +30,7 @@ you will implement online features with kuzzle.
 This tutorial use <strong>ES2015 (ES6) javascript</strong> syntax with <a href="https://vuejs.org/">vue.js</a> framework.
 </aside>
 
-#### Start the tutorial
+## Start the tutorial
 
 The tutorial is hosted on [github](https://github.com/kuzzleio/kuzzle-challenge-klack)
 

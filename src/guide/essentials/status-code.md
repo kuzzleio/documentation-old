@@ -2,6 +2,7 @@
 layout: full.html
 algolia: true
 title: Request and Response format
+order: 8
 ---
 
 # Request and Response format
@@ -37,6 +38,8 @@ Let's take a look at the attributes of this object.
 * The `id` attribute bears a unique, auto-generated value that identifies the transaction.
 * The `timestamp` attribute stores the creation date (in seconds after the Epoch time).
 
+---
+
 ## Input
 
 The `input` field contains all the parameters that express the request from the client. It has the following structure:
@@ -60,6 +63,8 @@ RequestInput {
 }
 ```
 
+---
+
 ## Context
 
 The `context` attribute contains information about the state of the connection at the moment the request is sent. It has the following structure:
@@ -72,6 +77,8 @@ RequestContext {
     user            // {User}       Represents the current User associated to the transaction
 }
 ```
+
+---
 
 ## Status codes
 
@@ -101,9 +108,13 @@ It is used to inform the client about the real status of his request (if an erro
 * ``500``: Kuzzle encountered an unexpected error (standard code for internal error).
 * ``503``: An external service is unavailable
 
+---
+
 ## Error objects format
 
 When an error occurred, the `error` attribute contains [KuzzleError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorskuzzleerror) object, which inherits from the primitive Javascript `Error` type.
+
+---
 
 ## Life-cycle
 
@@ -118,5 +129,5 @@ Here is how it works.
   - The raw response of the controller is set to the `result` field.
   - If an error occurs, Kuzzle updates the `error` field via the `setError` method.
   - The `status` field is update consequently with a HTTP-compliant numeric code.
-  - Kuzzle fills the `response` field with an object compliant with the [Kuzzle Response API standard](/api-reference/?websocket#kuzzle-response)
+  - Kuzzle fills the `response` field with an object compliant with the [Kuzzle Response API standard](../api-reference/?websocket#kuzzle-response)
 * Kuzzle sends the response back to the client.
