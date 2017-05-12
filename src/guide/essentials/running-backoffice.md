@@ -1,10 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: Running Kuzzle Backoffice
+title: Installing Kuzzle Backoffice
+order: 1
 ---
 
-# Running Kuzzle Backoffice
+# Installing Kuzzle Backoffice
 
 The Kuzzle Backoffice is a handy **web application** that helps you administrate Kuzzle. You can use it to **manage your data**, subscribe to **realtime notifications** and manage **security** rules.
 

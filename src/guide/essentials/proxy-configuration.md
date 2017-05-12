@@ -2,6 +2,7 @@
 layout: full.html
 algolia: true
 title: Configuring Kuzzle proxy
+order: 3
 ---
 
 # Configuring Kuzzle proxy
@@ -13,19 +14,23 @@ Kuzzle proxy uses [rc](https://github.com/dominictarr/rc) to **override** its de
 - via a `.proxyrc` file ([example here](https://github.com/kuzzleio/kuzzle-proxy/blob/master/.proxyrc.sample));
 - via environment variables prefixed with `proxy_`.
 
+---
+
 ## Logs
 
 Kuzzle proxy uses two loggers: one is dedicated to output `access` logs, the second one is in charge of outputing `errors`.
 
-### Default configuration
+---
+
+## Default configuration
 
 By default, on a fresh installation, Kuzzle proxy outputs both access and error logs to the console.  
 The default format for access logs mimics [Apache combined log format](https://httpd.apache.org/docs/current/logs.html#combined).
 
 For protocols other than http, the verb is arbitrary set to _DO_ and the url is computed based on the request `controller`, `action` and `index`, `collection` and `_id` if provided:
 
-```
-::ffff:172.23.0.1 - - [24/Apr/2017:14:02:19 +0000] "DO /server/now WEBSOCKET" 200 193 - -
+```bash
+# ::ffff:172.23.0.1 - - [24/Apr/2017:14:02:19 +0000] "DO /server/now WEBSOCKET" 200 193 - -
 ```
 
 ### Custom logs configuration
@@ -45,7 +50,7 @@ Kuzzle proxy supports the following transports:
 * [elasticsearch](https://github.com/winstonjs/winston/blob/master/docs/transports.md#elasticsearch-transport)
 * [syslog](https://github.com/winstonjs/winston-syslog)
 
-#### Miscelaneous options
+### Miscelaneous options
 
 In addition to standard Winston options, Kuzzle proxy access logs accept two additional parameters:
 
@@ -57,7 +62,9 @@ In addition to standard Winston options, Kuzzle proxy access logs accept two add
 
 ### Example - store logs to files
 
-_.proxyrc_
+```json
+cat .proxyrc
+```
 
 ```json
 {

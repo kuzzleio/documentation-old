@@ -8,9 +8,11 @@ icon: fa-map
 
 # Introduction
 
-<aside class="warning">
-This documentation is exposing the low-level API to Kuzzle.  
-If you are a Javascript or Android developer, you may first like to start by having a look at the <a href="http://kuzzle.io/documentation/sdk-reference">Kuzzle SDK</a>.
-</aside>
+Kuzzle is a ready-to-use, **on-premises backend** that enables you to manage your persistent data and be notified in real-time on whatever happens to it. It also provides you with a flexible and powerful user-management system.
 
-Welcome to the Kuzzle API Documentation!
+Kuzzle enables you to build modern web applications and complex IoT networks in no time.
+
+* **Persisted data**: store your data and perform advanced searches on it.
+* **Real-time notifications**: subscribe to fine-grained subsets of data.
+* **User Management**: login, logout and security rules are no more a burden.
+* **Extensible**: fit Kuzzle to your needs by leveraging the plugin system.

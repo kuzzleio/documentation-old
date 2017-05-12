@@ -155,7 +155,7 @@ const build = (dev = false) => (done) => {
     .use(links())
     .use(ancestry({
       match: '**/*.md',
-      sortBy: 'order'
+      sortBy: ['order', 'title']
     }))
     .use(sass({
       sourceMap: true,
