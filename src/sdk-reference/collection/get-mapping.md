@@ -5,7 +5,7 @@ algolia: true
 title: getMapping
 ---
 
-# getMapping
+## getMapping
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -59,22 +59,27 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves the current mapping of this collection.
+Retrieves the current mapping of this collection as a [CollectionMapping](/sdk-reference/collection-mapping/) object.
 
-## getMapping([options], callback)
+---
+
+### getMapping([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
+---
 
-### Available options:
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-## Callback response
+---
 
-Resolves to a `CollectionMapping` object.
+### Callback response
+
+Resolves to a [CollectionMapping](/sdk-reference/collection-mapping/) object.

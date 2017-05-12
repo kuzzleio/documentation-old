@@ -53,6 +53,8 @@ try {
 
 Creates a new `Document` object with the last version of this document stored in Kuzzle.
 
+---
+
 ### refresh([options], callback)
 
 | Arguments | Type | Description |
@@ -60,13 +62,15 @@ Creates a new `Document` object with the last version of this document stored in
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback |
 
+---
 
-Available options:
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+---
 
 ### Callback response
 

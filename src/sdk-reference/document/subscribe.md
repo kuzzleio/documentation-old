@@ -59,17 +59,26 @@ Room room = document.subscribe(new ResponseListener<NotificationResponse>() {
 Listens to changes occuring on this document.
 Throws an error if this document has not yet been created in Kuzzle.
 
+---
+
 ### subscribe([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``options`` | object | Subscription configuration. Passed to the Room constructor. |
+| ``options`` | object | Subscription configuration |
 | ``callback`` | function | Callback that will be called each time a change has been detected on this document |
 
+---
+
+### Options
+
+Options are directly passed to the [Room](/sdk-reference/room/) object constructor.
+
+---
 
 ### Return value
 
 Returns an object exposing the following method:  
-  ```onDone(callback)```
+  `onDone(callback)`
 
 The `callback` argument is called when the subscription ends, either successfully or with an error.

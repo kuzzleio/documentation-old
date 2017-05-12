@@ -53,6 +53,8 @@ try {
 
 Deletes this document in Kuzzle.
 
+---
+
 ### delete([options], [callback])
 
 | Arguments | Type | Description |
@@ -60,7 +62,9 @@ Deletes this document in Kuzzle.
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -68,6 +72,8 @@ Available options:
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
+---
+
 ### Callback response
 
-Resolves to the deleted document ID
+Resolves to a string containing the deleted document ID

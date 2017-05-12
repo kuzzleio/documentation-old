@@ -5,7 +5,7 @@ algolia: true
 title: truncate
 ---
 
-# truncate
+## truncate
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -80,23 +80,31 @@ Truncate the data collection, removing all stored documents but keeping all asso
 
 This method is a lot faster than removing all documents using a query.
 
-## truncate([options], [callback])
+---
+
+### truncate([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-## Return value
+---
+
+### Return value
 
 Returns the `Collection` object to allow chaining.
 
-## Callback response
+---
+
+### Callback response
 
 Resolves to a `JSON object` containing the raw Kuzzle response.

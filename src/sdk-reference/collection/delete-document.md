@@ -5,7 +5,7 @@ algolia: true
 title: deleteDocument
 ---
 
-# deleteDocument
+## deleteDocument
 
 ```js
 // Deleting one document using callbacks (NodeJS or Web Browser)
@@ -120,19 +120,29 @@ There is a small delay between documents creation and their existence in our sea
 
 Delete either a stored document, or all stored documents matching search filters.
 
-## deleteDocument(documentId, [options], [callback])
+---
 
-## deleteDocument(filters, [options], [callback])
+### deleteDocument(documentId, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``documentId`` | string | Unique document identifier |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Optional callback |
+
+---
+
+### deleteDocument(filters, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
 | ``filters`` | JSON object | Filters in [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) format |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
+---
 
-### Available options:
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -140,11 +150,14 @@ Delete either a stored document, or all stored documents matching search filters
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
+---
 
-## Return value
+### Return value
 
 Returns the `Collection` object to allow chaining.
 
-## Callback response
+---
+
+### Callback response
 
 Resolves to an `array` containing the deleted document IDs.
