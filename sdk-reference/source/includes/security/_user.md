@@ -563,19 +563,17 @@ $user->setCredentials([
 ```
 
 <aside class="note">
-  Updating user credentials will have no impact until the <code>create</code> method is called
+  Updating user credentials will have no impact until the <code>create</code> method is called.<br />
+  The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 </aside>
 
 Sets the credentials associated to a user
 
-### setProfiles(profileIds)
-
-### setProfiles(profiles)
+### setCredentials(credentials)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``profileIds`` | array of strings | List of profile IDs |
-| ``profiles`` | array of Profile objects | An array of instantiated Profile objects |
+| ``credentials`` | object | An object containing an attribute for each strategy you want to create for the user. |
 
 ### Return value
 
