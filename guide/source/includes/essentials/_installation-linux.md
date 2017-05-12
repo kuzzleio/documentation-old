@@ -110,7 +110,9 @@ git submodule update
 
 # install dependencies for all enabled plugins
 for PLUGIN in ./plugins/enabled/*; do
-  ( cd "${PLUGIN}" && npm install )
+  if [ -d "${PLUGIN}" ]; then
+    ( cd "${PLUGIN}" && npm install )
+  fi
 done
 ```
 
@@ -128,7 +130,9 @@ git submodule update
 
 # install dependencies for all enabled plugins
 for PLUGIN in ./plugins/enabled/*; do
-  ( cd "${PLUGIN}" && npm install )
+  if [ -d "${PLUGIN}" ]; then
+    ( cd "${PLUGIN}" && npm install )
+  fi
 done
 ```
 
