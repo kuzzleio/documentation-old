@@ -31,7 +31,7 @@ Here is the list of shared objects contained in the provided ``context``:
 
 ### `execute`
 
-Sends a request to [Kuzzle API](/api-reference).
+Sends a request to [Kuzzle API](../api-reference).
 
 #### Arguments
 
@@ -94,7 +94,7 @@ Forward a request to Kuzzle.
 #### Callback
 
 The callback is invoked once the request has been processed by Kuzzle.  
-The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response](/api-reference/#kuzzle-response).
+The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response](../api-reference/#kuzzle-response).
 
 ### `router.removeConnection`
 
@@ -118,7 +118,7 @@ not modified.
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`collections`|`Object`| An object that contains the collection mappings. See the [guide](/guide#document-mapping) for more explanation about Elasticsearch mapping. |
+|`collections`|`Object`| An object that contains the collection mappings. See the [guide](../guide#document-mapping) for more explanation about Elasticsearch mapping. |
 
 #### Returns
 
@@ -602,7 +602,7 @@ Searches documents that match the provided `query` in the collection.
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`query`|`object`| The [query](/elasticsearch-cookbook/#basic-queries) sent to Elastisearch. |
+|`query`|`object`| The [query](../elasticsearch-cookbook/#basic-queries) sent to Elastisearch. |
 |`from`|`integer`| Provides the offset of the returned documents. |
 |`size`|`integer`| Provides the count of the returned documents. |
 
@@ -662,7 +662,7 @@ someCollectionRepository.update({
 
 ### `Request`
 
-This constructor is used to transform an [API call](/api-reference/?others#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](/api-reference/?others#kuzzle-response) to be forwarded to the requesting client.
+This constructor is used to transform an [API call](../api-reference/?others#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](../api-reference/?others#kuzzle-response) to be forwarded to the requesting client.
 
 Network protocol specific headers can be added to the response. If the protocol can handle them,
 these headers will be used to configure the response sent to the client.    
@@ -731,7 +731,7 @@ Writable
 
 Any undefined attribute from the list above will be set to null.
 
-Please refer to our [API Reference](/api-reference/?others) for a complete list of controllers-actions and their purposes.
+Please refer to our [API Reference](../api-reference/?others) for a complete list of controllers-actions and their purposes.
 
 Getters
 
@@ -740,7 +740,7 @@ Getters
 | `context` | `RequestContext` | [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) object | Request connection context |
 | `error` | `KuzzleError` | `null` | Request error, if any |
 | `input` | `RequestInput` | [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object | Request's parameters |
-| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](/api-reference/?others#kuzzle-response) |
+| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](../api-reference/?others#kuzzle-response) |
 | `result` | *(varies)* | `null` | Request result, if any |
 
 

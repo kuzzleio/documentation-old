@@ -61,7 +61,7 @@ module.exports = MyPlugin;
 
 Plugins declaring hooks can also be executed in separate threads. This is handy when they perform heavy computations that may corrupt the performances of the Kuzzle Core.
 
-To achieve this, Kuzzle must specify a `threads` property in the [custom configuration](/guide/#configuring-kuzzle) of the Plugin.
+To achieve this, Kuzzle must specify a `threads` property in the [custom configuration](../guide/#configuring-kuzzle) of the Plugin.
 
 ```json
 {
@@ -88,7 +88,7 @@ Pipes are supplied with these events data, they are able to intercept the reques
 Kuzzle waits for their results before continuing the process.
 
 Pipes are a step in the process of handling client requests, thus Kuzzle enforces a timeout on them, rejecting the request altogether if a synchronous listener fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError](#gt-error-gatewaytimeouterror) error to the client.  
-The timeout value can be configured in [Kuzzle configuration file](/guide/#configuring-kuzzle).
+The timeout value can be configured in [Kuzzle configuration file](../guide/#configuring-kuzzle).
 
 Pipes are declared in the `pipes` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
 Each pipes must also be exported.
@@ -138,7 +138,7 @@ module.exports = MyPlugin;
 
 ## Adding a controller route
 
-Kuzzle API is divided into "controllers", each one of them exposing "actions" to execute (see [API reference](/api-reference/#common-attributes)).
+Kuzzle API is divided into "controllers", each one of them exposing "actions" to execute (see [API reference](../api-reference/#common-attributes)).
 
 Plugins enable to add a set of new controllers to the Kuzzle public API, each with their own list of available actions.
 
@@ -658,7 +658,7 @@ Kuzzle Proxy expects Protocol Plugins to expose the following methods:
 
 The connection `id` Kuzzle sends to Plugins is the one declared by Protocol Plugins using `context.accessors.router.newConnection`.
 
-*For more information about channels, see our [API Documentation](/api-reference/#subscribe)*
+*For more information about channels, see our [API Documentation](../api-reference/#subscribe)*
 
 ### Implementation example
 

@@ -10,7 +10,7 @@ Before launching Kuzzle, ensure that your system matches the following pre-requi
 - **Docker-compose v1.8+**, see [intructions here](https://docs.docker.com/compose/install/)
 
 <aside class="notice">
-<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manual-install">manual installation guide</a>.
+<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manually">manual installation guide</a>.
 </aside>
 
 Thanks to Docker-compose, running Kuzzle is easy. Just grab the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file, copy it into a directory and start Kuzzle:
@@ -70,7 +70,7 @@ You can also <a href="#installing-kuzzle-manually-on-linux">install Kuzzle manua
 
 ## SDK play time
 
-It's time to play with the [Kuzzle SDK](/sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
+It's time to play with the [Kuzzle SDK](../sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
 
 Before proceeding, ensure that your system matches the following requisites:
 
@@ -79,7 +79,7 @@ Before proceeding, ensure that your system matches the following requisites:
 
 ### Create your first "Hello World" document
 
-Create your playground directory and install the [Javascript SDK](/sdk-reference) from the command line using npm:
+Create your playground directory and install the [Javascript SDK](../sdk-reference) from the command line using npm:
 
 ```bash
 $ mkdir kuzzle-playground
@@ -123,7 +123,7 @@ You have persisted your first document in Kuzzle. If you are running the Backoff
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
 
-_You can find more resources about Kuzzle SDK in the [SDK Documentation](/sdk-reference)._
+_You can find more resources about Kuzzle SDK in the [SDK Documentation](../sdk-reference)._
 
 ### Subscribe to data changes (pub/sub)
 

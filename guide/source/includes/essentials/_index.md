@@ -17,7 +17,7 @@ Please refer to the [dedicated section](#real-time-notifications) for more detai
 
 #### SDK
 
-Kuzzle ships with a set of open-source [SDK](/sdk-reference) for a variety of languages:
+Kuzzle ships with a set of open-source [SDK](../sdk-reference) for a variety of languages:
 
 - [Javascript](https://github.com/kuzzleio/sdk-javascript) (NodeJS & Browsers)
 - [Android](https://github.com/kuzzleio/sdk-android)
@@ -34,7 +34,7 @@ For the time being, Kuzzle supports the following protocols:
 - Socket.io
 - MQTT (via plugin)
 
-You can directly interact with Kuzzle using the [Kuzzle API reference](/api-reference).
+You can directly interact with Kuzzle using the [Kuzzle API reference](../api-reference).
 
 #### Authentication
 

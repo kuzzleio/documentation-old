@@ -11,7 +11,7 @@ To determine the Plugin name, Kuzzle looks for the `name` field in the `package.
 
 ### Custom Plugin configuration
 
-When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context](/plugin-reference/#the-plugin-context) and the plugin's custom configuration.
+When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context](#the-plugin-context) and the plugin's custom configuration.
 
 Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file](#configuring-kuzzle).
 

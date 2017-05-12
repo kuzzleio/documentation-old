@@ -166,7 +166,7 @@ Location: http://<kuzzle>/_login/GitHub?code=OAUTH2_CODE
 
 #### How to provide your own strategy
 
-Any strategy supported by PassportJS can be implemented in Kuzzle with a dedicated plugin. Please refer to the [Plugins Reference](/plugin-reference/#authentication-plugin)).
+Any strategy supported by PassportJS can be implemented in Kuzzle with a dedicated plugin. Please refer to the [Plugins Reference](../plugin-reference/#authentication-plugin)).
 
 ### Advanced Roles Definitions
 
@@ -401,4 +401,4 @@ args.myDocuments = [
 
 The content of `action.search` is directly passed to Elasticsearch.
 
-Please refer to [our Elasticsearch Cookbook](/elasticsearch-cookbook/) for additional information on how to build your query.
+Please refer to [our Elasticsearch Cookbook](../elasticsearch-cookbook/) for additional information on how to build your query.

@@ -380,7 +380,7 @@ Validates and stores a role in Kuzzle's persistent data storage.
 The body content needs to match Kuzzle's role definition.
 
 To get more detailed information about the expected role definition or Kuzzle's user management model,
-please refer to [Kuzzle's permissions documentation](/guide/#permissions).
+please refer to [Kuzzle's permissions documentation](../guide/#permissions).
 
 
 ## createProfile
@@ -568,7 +568,7 @@ Validates and stores a role in Kuzzle's persistent data storage.
 The body content needs to match Kuzzle's role definition.
 
 To get more detailed information about the expected role definition or Kuzzle's user management model,
-please refer to [Kuzzle's permissions documentation](/guide/#permissions).
+please refer to [Kuzzle's permissions documentation](../guide/#permissions).
 
 
 ## createUser
@@ -2614,7 +2614,7 @@ To get some more detailed information on the expected role definition, please re
 [Kuzzle's role reference definition documentation](https://github.com/kuzzleio/kuzzle/blob/beta/docs/security/roles-reference.md).
 
 To get some more detailed information about Kuzzle's user management model,
-please refer to [Kuzzle's security documentation](/guide/#permissions).
+please refer to [Kuzzle's security documentation](../guide/#permissions).
 
 
 ## updateRoleMapping

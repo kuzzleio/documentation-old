@@ -1532,7 +1532,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters](/real-time-filters) |
+| ``filters`` | JSON Object | [Filters](../real-time-filters) |
 | ``options`` | object | (Optional) Subscription configuration. Passed to the Room constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 

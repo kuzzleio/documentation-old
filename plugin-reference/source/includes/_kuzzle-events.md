@@ -4,7 +4,7 @@ Every time Kuzzle receives a request coming from a client, it routes it towards 
 
 ## [Plugins events]
 
-[Plugins](/plugin-reference/#adding-a-controller-route) may add new controllers and actions to Kuzzle's API. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
+[Plugins](#adding-a-controller-route) may add new controllers and actions to Kuzzle's API. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -23,7 +23,7 @@ When an API request invokes this new API route, Kuzzle will automatically trigge
 
 ## auth
 
-Events triggered when a request is treated in the [`auth` controller](/api-reference/#auth-controller)
+Events triggered when a request is treated in the [`auth` controller](../api-reference/#auth-controller)
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -33,7 +33,7 @@ Events triggered when a request is treated in the [`auth` controller](/api-refer
 
 ## bulk
 
-Events triggered when a request is treated in the [`bulk` controller](/api-reference/#bulk-controller)
+Events triggered when a request is treated in the [`bulk` controller](../api-reference/#bulk-controller)
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -54,7 +54,7 @@ Events triggered when a database reset is asked to the command-line interface.
 
 ## collection
 
-Events triggered when a request is treated in the [`collection` controller](/api-reference/#collection-controller).
+Events triggered when a request is treated in the [`collection` controller](../api-reference/#collection-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -84,7 +84,7 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 
 ## document
 
-Events triggered when a request is treated in the [`document` controller](/api-reference/#document-controller).
+Events triggered when a request is treated in the [`document` controller](../api-reference/#document-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -99,7 +99,7 @@ Events triggered when a request is treated in the [`document` controller](/api-r
 
 ## index
 
-Events triggered when a request is treated in the [`index` controller](/api-reference/#index-controller).
+Events triggered when a request is treated in the [`index` controller](../api-reference/#index-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -114,30 +114,16 @@ Events triggered by the Kuzzle internal message broker, used to transmit data be
 
 | Event | Description | Payload |
 |-------|-------------|---------|
-| `internalBroker:connected`     | Triggered when the internal broker is connected    | Type: String.<br> Server address (`ws://` / `ws+unix://`) |
-| `internalBroker:error`         | Triggered when an error occured in internal broker | Type: Object.<br> `{host, port, message, retry}` |
-| `internalBroker:reregistering` | Triggered when the internal broker is reregistered | Type: String.<br> room name |
-| `internalBroker:socketClosed`  | Triggered when the socket is closed                | Type: Number <br> code |
-
-## log
-
-Events triggered by Kuzzle to log messages or events. These events are **read-only** and only hooks can be plugged on these.
-
-Each log event has an associated log level and, depending on the minimum log level in the Kuzzle configuration file, some of these events may never be triggered.
-
-| Event | Description | Payload |
-|-------|-------------|---------|
-| `log:error` | Log level 0 | Type: String |
-| `log:warn` | Log level 1 | Type: String |
-| `log:info` | Log level 2 | Type: String |
-| `log:verbose` | Log level 3 | Type: String |
-| `log:debug` | Log level 4 | Type: String |
-| `log:silly` | Log level 5 | Type: String |
+| `internalBroker:connected`     | Triggered when the internal broker is connected    | Type: String.<br> `'Connected to Kuzzle server'`     |
+| `internalBroker:error`         | Triggered when an error occured in internal broker | Type: Object.<br> {host, port, message, retry}       |
+| `internalBroker:reregistering` | Triggered when the internal broker is reregistered | Type: String.<br> `'Re-registering room: ' + room`   |
+| `internalBroker:socketClosed`  | Triggered when the socket is closed                | Type: String                                         |
+| `internalBroker:started`       | Triggered when the internal broker is started      | Type: String.<br> `'Internal broker server started'` |
 
 
 ## ms (memoryStorage)
 
-Events triggered when a request is sent to the [`memoryStorage` controller](/#memorystorage-controller).
+Events triggered when a request is sent to the [`memoryStorage` controller](#memorystorage-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -175,7 +161,7 @@ Events triggered when interacting with `proxy`.
 
 ## realtime
 
-Events triggered when a request is sent to the [`realtime` controller](/api-reference/#realtime-controller).
+Events triggered when a request is sent to the [`realtime` controller](../api-reference/#realtime-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -206,7 +192,7 @@ Events triggered on subscription rooms activity.
 
 ## security
 
-Events triggered when a request is sent to the [`security` controller](/api-reference/#security-controller).
+Events triggered when a request is sent to the [`security` controller](../api-reference/#security-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -217,7 +203,7 @@ Events triggered when a request is sent to the [`security` controller](/api-refe
 
 ## server
 
-Events triggered on server special events or when a request is sent to the [`server` controller](/api-reference/#server-controller).
+Events triggered on server special events or when a request is sent to the [`server` controller](../api-reference/#server-controller).
 
 | Event | Description | Payload |
 |-------|-------------|---------|

@@ -152,7 +152,7 @@ Kuzzle is able to handle two different types of input:
 
 #### Writing persistent data
 
-This subsection describes the process for **persistent** data, with an example using the "_create_" action (see also [API Documentation](/api-reference/#create48)).
+This subsection describes the process for **persistent** data, with an example using the "_create_" action (see also [API Documentation](../api-reference/#create)).
 
 ![persistence_overview](./images/request-scenarios/persistence/overview.png)
 
@@ -192,7 +192,7 @@ Detailed workflow:
 }
 ```
 
-* The Funnel validates the Request and triggers the Plugins Manager with a `document:create` event. The Plugins Manager calls all pipes and hooks configured by the active plugins (see the [Plugin Reference](/plugin-reference/)).
+* The Funnel validates the Request and triggers the Plugins Manager with a `document:create` event. The Plugins Manager calls all pipes and hooks configured by the active plugins (see the [Plugin Reference](../plugin-reference/)).
 * The Funnel forwards the Request to the Document Controller.
 * The Document Controller sends the request to the Storage Engine service.
 The Storage Engine sends the request to the database.
@@ -212,7 +212,7 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 
 ![pubsub_scenario_details1](./images/request-scenarios/pubsub/details1.png)
 
-* The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation](/api-reference/#subscribe)). For instance, to be notified about all contents posted to the collection `users`, containing a field `hobby` equals to `computer`:
+* The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation](../api-reference/#subscribe)). For instance, to be notified about all contents posted to the collection `users`, containing a field `hobby` equals to `computer`:
 
 ```json
 {
@@ -229,7 +229,7 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 }
 ```
 
-See the [Real-time Filters Reference](/real-time-filters/) for more details.
+See the [Real-time Filters Reference](../real-time-filters/) for more details.
 
 The client then listens to the `<requestId>` event on the socket.
 Kuzzle will get back to him with a corresponding Room ID and a Room Channel using this event.
@@ -291,7 +291,7 @@ The following diagram shows how Kuzzle handles a new message and how subscribed 
 ![pubsub_scenario_details2](./images/request-scenarios/pubsub/details2.png)
 
 * A new content is published to the Notifier component. The `_publish_` method can be triggered:
-  * either directly by the Document Controller for non persistent data (using the [publish](/api-reference/#publish) action).
+  * either directly by the Document Controller for non persistent data (using the [publish](../api-reference/#publish) action).
   * or by the Plugins Manager when a 'document:create' event is triggered, to notify users in real-time before the data are sent to the storage Engine.
 * The Notifier calls the DSL component to test registered filters that match the content, and get related rooms.
 * The Notifier uses the Notification Cache engine to store the mapping content/rooms into cache.
