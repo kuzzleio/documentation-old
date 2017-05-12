@@ -1,0 +1,11 @@
+[
+    "/{{ path }}",
+    "/api-reference",
+    "/plugin-reference/",
+    "/real-time-filters/",
+    "/elasticsearch-cookbook/",
+    "/validation-reference/",
+    "/plugin-reference",
+    "/api-reference/",
+    "/real-time-filters"
+]
