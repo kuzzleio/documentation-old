@@ -164,7 +164,7 @@ Socket IO and Websocket channels can be reached over the HTTP server, on port 75
 
 If you are running some of the service(s) externally, you can configure their host and port using some environment variables and/or a `.kuzzlerc` file.
 
-Please refer to [Kuzzle configuration section](#configuration) for more information.
+Please refer to the [Kuzzle configuration section](#configuring-kuzzle) for more information.
 
 ##### Useful commands list
 
