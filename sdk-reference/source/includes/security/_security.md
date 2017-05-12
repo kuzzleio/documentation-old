@@ -167,7 +167,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Role` object.
+Resolves to a [Role](#role) object.
 
 ## createProfile
 
@@ -282,7 +282,7 @@ That means that a profile that was just been created will not be returned by <co
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique profile identifier |
-| ``content`` | JSON Object | A plain JSON object representing the profile |
+| ``content`` | JSON Object | A plain JSON object representing the profile and credentials |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | Callback handling the response |
 
@@ -295,22 +295,27 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Profile` object.
+Resolves to a [Profile](#profile) object.
 
 
 ## createUser
 
 ```js
 var userContent = {
-  // A "profile" field is required to bind a user to an existing profile
-  profileIds: ['admin'],
-
-  // The "local" authentication strategy requires a password
-  password: 'secretPassword',
-
-  // You can also set custom fields to your user
-  firstname: 'John',
-  lastname: 'Doe'
+  content: {
+    // A "profile" field is required to bind a user to an existing profile
+    profileIds: ['admin'],
+    firstname: 'John',
+    lastname: 'Doe'
+  },
+  credentials: {
+    local: {
+      // The "local" authentication strategy requires a password
+      password: 'secretPassword',
+      // You can also set custom fields to your user
+      lastLoggedIn: 1494411803
+    }
+  }
 };
 
 // You can chose to replace the given user if already exists
@@ -336,14 +341,21 @@ kuzzle
 ```
 
 ```java
-JSONObject newUser = new JSONObject()
+JSONObject content = new JSONObject()
   // A "profile" field is required to bind a user to an existing profile
-  .put("profileIds", new JSONArray().put("admin"))
-  // The "local" authentication strategy requires a password
-  .put("password", "secret password")
+  .put("profileIds", new JSONArray().put("admin")
   // You can also set custom fields to your user
   .put("firstname", "John")
-  .put("lastname", "Doe");
+  .put("lastname", "Doe"))
+JSONObject newUser = new JSONObject().put("content", content);
+
+JSONObject credentials = new JSONObject()
+  .put("local", new JSONObject()
+  // The "local" authentication strategy requires a password
+  .put("password", "secret password")
+  .put("lastLoggedIn", 1494411803);
+
+newUser.put("credentials", credentials);
 
 Options opts = new Options().setReplaceIfExist(true);
 
@@ -368,19 +380,29 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 $userDefinition = [
-  'profileIds' => ['myProfile'],
-  'password' => 'secret',
-  'firstname' => 'John',
-  'lastname' => 'Doe'
-];
+    'content' => [
+      // A "profile" field is required to bind a user to an existing profile
+      'profileIds' => ['admin'],
+      // You can also set custom fields to your user
+      'firstname' => 'John',
+      'lastname' => 'Doe'
+    ],
+    'credentials' => [
+      'local' => [
+        // The "local" authentication strategy requires a password
+        'password' => 'secretPassword',
+        'lastLoggedIn' => 1494411803
+      ]
+    ]
+  ];
 
 $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 try {
-  $user = $security->createUser($userId, $userDefinition);
+  $user = $security->createUser($kuid, $userDefinition);
 
   // $user instanceof User
 }
@@ -415,18 +437,21 @@ Available options:
 
 ### Callback response
 
-Resolves to a `User` object.
+Resolves to a [User](#user) object.
 
 ## createRestrictedUser
 
 ```js
 var userContent = {
-  // The "local" authentication strategy requires a password
-  password: 'secretPassword',
-
-  // You can also set custom fields to your user
-  firstname: 'John',
-  lastname: 'Doe'
+  content: {
+  },
+  credentials: {
+    local: {
+      // The "local" authentication strategy requires a password
+      password: 'secretPassword',
+      lastLoggedIn: 1494411803
+    }
+  }
 };
 
 
@@ -447,18 +472,23 @@ kuzzle
 ```
 
 ```java
-JSONObject newUser = new JSONObject()
+JSONObject content = new JSONObject();
+
+JSONObject newUser = new JSONObject().put("content", content);
+
+JSONObject credentials = new JSONObject()
+  .put("local", new JSONObject()
   // The "local" authentication strategy requires a password
   .put("password", "secret password")
-  // You can also set custom fields to your user
-  .put("firstname", "John")
-  .put("lastname", "Doe");
+  .put("lastLoggedIn", 1494411803));
+
+newUser.put("credentials", credentials);
 
 Options opts = new Options().setReplaceIfExist(true);
 
 kuzzle
   .security
-  .createRestrictedUser("myNewUser", newUser, opts, new ResponseListener<User>() {
+  .createUser("myNewUser", newUser, opts, new ResponseListener<User>() {
     @Override
     public void onSuccess(User user) {
 
@@ -477,18 +507,24 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
-$userDefinition => [
-  'password' => 'secret',
-  'firstname' => 'John',
-  'lastname' => 'Doe'
-];
+$kuid = 'myUser';
+$userDefinition = [
+    'content' => [
+    ],
+    'credentials' => [
+      'local' => [
+        // The "local" authentication strategy requires a password
+        'password' => 'secretPassword',
+        'lastLoggedIn' => 1494411803
+      ]
+    ]
+  ];
 
 $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 try {
-  $user = $security->createRestrictedUser($userId, $userDefinition);
+  $user = $security->createRestrictedUser($kuid, $userDefinition);
 
   // $user instanceof User
 }
@@ -497,7 +533,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new restricted user in Kuzzle.
+Create a new restricted user in Kuzzle.  
 This function allows anonymous users for instance to create a "restricted" user with predefined rights.
 
 <aside class="notice">
@@ -525,7 +561,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `User` object.
+Resolves to a [User](#user) object.
 
 
 ## deleteProfile
@@ -580,7 +616,13 @@ catch (ErrorException $e) {
 }
 ```
 
-Delete profile.
+> Callback response
+
+```json
+"deleted profile identifier"
+```
+
+Delete the provided profile.
 
 <aside class="notice">
 There is a small delay between profile deletion and their deletion in our search layer, usually a couple of seconds.
@@ -662,7 +704,13 @@ catch (ErrorException $e) {
 }
 ```
 
-Delete role.
+> Callback response
+
+```json
+"deleted role identifier"
+```
+
+Delete the provided role.
 
 <aside class="notice">
 There is a small delay between role deletion and their deletion in our search layer, usually a couple of seconds.
@@ -732,19 +780,25 @@ kuzzle
 
 use \Kuzzle\Kuzzle;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $kuzzle->security()->deleteUser($userId);
+  $kuzzle->security()->deleteUser($kuid);
 }
 catch (ErrorException $e) {
 
 }
 ```
 
-Delete user.
+> Callback response
+
+```json
+"deleted user identifier"
+```
+
+Delete the provided user.
 
 <aside class="notice">
 There is a small delay between user deletion and their deletion in our search layer, usually a couple of seconds.
@@ -848,7 +902,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Profile` object.
+Resolves to a [Profile](#profile) object.
 
 ## fetchRole
 
@@ -924,7 +978,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `Role` object.
+Resolves to a [Role](#role) object.
 
 ## fetchUser
 
@@ -967,12 +1021,12 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $user = $kuzzle->security()->fetchUser($userId);
+  $user = $kuzzle->security()->fetchUser($kuid);
 
   // $user instanceof User
 }
@@ -999,7 +1053,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a `User` object.
+Resolves to a [User](#user) object.
 
 
 ## getUserRights
@@ -1043,12 +1097,12 @@ kuzzle
 
 use \Kuzzle\Kuzzle;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $rights = $kuzzle->security()->getUserRights($userId);
+  $rights = $kuzzle->security()->getUserRights($kuid);
 
 }
 catch (ErrorException $e) {
@@ -1097,7 +1151,8 @@ Resolves to a `JSON` object.
 ```js
 kuzzle.security.getMyRights((err, rights) => {
     if (!err) {
-        kuzzle.security.isActionAllowed(rights, 'read', 'get', 'index1', 'collection1');
+        // returns either "allowed", "denied" or "conditional"
+        var allowed = kuzzle.security.isActionAllowed(rights, 'read', 'get', 'index1', 'collection1');
     }
 });
 ```
@@ -1106,7 +1161,9 @@ kuzzle.security.getMyRights((err, rights) => {
 kuzzle.security.getMyRights(new ResponseListener<JSONArray>() {
     @Override
     public void onSuccess(JSONArray rights) {
-        Rights rights = kuzzle.security.isActionAllowed(rights, "read", "get", "index1", "collection1");
+        // Policies is an enum with the following properties:
+        // allowed, denied, conditional
+        Policies authorization = kuzzle.security.isActionAllowed(rights, "read", "get", "index1", "collection1");
     }
 
     @Override
@@ -1144,10 +1201,12 @@ catch (ErrorException $e) {
 }
 ```
 
-Tells whether an action is allowed, denied or conditional based on the rights provided as the first argument.
+Tells whether an action is allowed, denied or conditional based on the rights provided as the first argument:
+
 - `allowed` is returned when an action is authorized without condition
 - `conditional` is returned when the authorization depends on a closure
 - `denied` is returned when the action is forbidden
+
 An action is defined as a couple of action and controller (mandatory), plus an index and a collection(optional).
 
 <aside class="notice">
@@ -1234,7 +1293,7 @@ $profile = $security->profile($profileId, $profileDefinition);
 // $profile instanceof Profile
 ```
 
-Instantiate a new Profile object.
+Instantiate a new [Profile](#profile) object.
 
 ### profile(id, content)
 
@@ -1245,7 +1304,7 @@ Instantiate a new Profile object.
 
 ### Return value
 
-Returns the `Profile` object.
+Returns the new [Profile](#profile) object.
 
 
 ## role
@@ -1303,7 +1362,7 @@ $role = $security->role($roleId, $roleDefinition);
 // $role instanceof Role
 ```
 
-Instantiate a new `Role` object.
+Instantiate a new [Role](#role) object.
 
 ### role(id, content)
 
@@ -1314,7 +1373,7 @@ Instantiate a new `Role` object.
 
 ### Return value
 
-Returns the `Role` object.
+Returns the new [Role](#role) object.
 
 
 ## searchProfiles
@@ -1332,7 +1391,11 @@ var filters = {
 kuzzle
   .security
   .searchProfiles(filters, function(error, result) {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<Profile object>, <Profile object>, ...]
+    // }
   });
 
 // Using promises (NodeJS)
@@ -1340,7 +1403,11 @@ kuzzle
   .security
   .searchProfilesPromise(filters)
   .then((result) => {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<Profile object>, <Profile object>, ...]
+    // }
   });
 ```
 
@@ -1400,7 +1467,6 @@ try {
   $result = $security->searchProfiles($filters, $options);
 
   // $result instanceof ProfilesSearchResult
-
   foreach($result->getProfiles() as $profile) {
     // $profile instanceof Profile
   }
@@ -1416,7 +1482,7 @@ catch (ErrorException $e) {
 {
   "total": 124,
   "documents": [
-    // array of Profile
+    // array of Profile objects
   ]
 }
 ```
@@ -1447,7 +1513,7 @@ Available filters:
 
 ### Callback response
 
-Resolves to a JSON Object
+Resolves to a JSON Object containing the number of found profiles and an array of [Profile](#profile) objects.
 
 
 ## searchUsers
@@ -1477,7 +1543,11 @@ var filter = {
 kuzzle
   .security
   .searchUsers(filters, function(error, result) {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<User object>, <User object>, ...]
+    // }
   });
 
 // Using promises (NodeJS)
@@ -1485,7 +1555,11 @@ kuzzle
   .security
   .searchUsersPromise(filters)
   .then((result) => {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<User object>, <User object>, ...]
+    // }
   });
 ```
 
@@ -1603,7 +1677,7 @@ Available options:
 
 ### Callback response
 
-Resolves to a JSON Object
+Resolves to a JSON Object containing the total number of found users, and an array of [User](#user) objects.
 
 
 ## searchRoles
@@ -1621,7 +1695,11 @@ var filters = {
 kuzzle
   .security
   .searchRoles(filters, function(error, result) {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<Role object>, <Role object>, ...]
+    // }
   });
 
 // Using promises (NodeJS)
@@ -1629,7 +1707,11 @@ kuzzle
   .security
   .searchRolesPromise(filters)
   .then((result) => {
-    // result is a JSON Object
+    // result is a JSON Object with the following properties:
+    // {
+    //   total: <number of found profiles>,
+    //   documents: [<Role object>, <Role object>, ...]
+    // }
   });
 ```
 
@@ -1729,7 +1811,7 @@ Available filters:
 
 ### Callback response
 
-Resolves to a JSON Object
+Resolves to a JSON Object containing the total number of found roles and an array of [Role](#role) objects.
 
 ## updateProfile
 
@@ -1744,7 +1826,7 @@ var newContent = {
 kuzzle
   .security
   .updateProfile("profile ID", newContent, function (err, updatedProfile) {
-
+    // "updatedProfile" is an instance of a Profile object
   });
 
 // Using promises (NodeJS)
@@ -1752,7 +1834,7 @@ kuzzle
   .security
   .updateProfilePromise("profile ID", newContent)
   .then(updatedProfile => {
-
+    // "updatedProfile" is an instance of a Profile object
   });
 ```
 
@@ -1848,7 +1930,7 @@ Returns the `Security` object to allow chaining.
 
 ### Callback response
 
-Resolves to an updated `Profile` object
+Resolves to an updated [Profile](#profile) object
 
 ## updateRole
 
@@ -1867,7 +1949,7 @@ var roleDefinition = {
 kuzzle
   .security
   .updateRole("role ID", roleDefinition, function (err, updatedRole) {
-
+    // "updatedRole" is an instance of a Role object
   });
 
 // Using promises (NodeJS)
@@ -1875,7 +1957,7 @@ kuzzle
   .security
   .updateRolePromise("profile ID", roleDefinition)
   .then(updatedRole => {
-
+    // "updatedRole" is an instance of a Role object
   });
 ```
 
@@ -1958,7 +2040,7 @@ Returns the `Security` object to allow chaining.
 
 ### Callback response
 
-Resolves to an updated `Role` object
+Resolves to an updated [Role](#role) object
 
 
 ## updateUser
@@ -1974,7 +2056,7 @@ var newContent = {
 kuzzle
   .security
   .updateUser("User ID", newContent, function (err, updatedUser) {
-
+    // "updatedUser" is an instance of a User object
   });
 
 // Using promises (NodeJS)
@@ -1982,7 +2064,7 @@ kuzzle
   .security
   .updateUserPromise("User ID", newContent)
   .then(updatedUser => {
-
+    // "updatedUser" is an instance of a User object
   });
 ```
 
@@ -2012,7 +2094,7 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 $userDefinition = [
   'firstname' => 'My Name Is',
   'lastname' => 'Jonas'
@@ -2022,7 +2104,7 @@ $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 try {
-  $user = $security->updateUser($userId, $userDefinition);
+  $user = $security->updateUser($kuid, $userDefinition);
 
   // $user instanceof User
 }
@@ -2030,7 +2112,6 @@ catch (ErrorException $e) {
 
 }
 ```
-
 
 #### updateUser(id, content, [options], [callback])
 
@@ -2055,7 +2136,7 @@ Returns the `Security` object to allow chaining.
 
 ### Callback response
 
-Resolves to an updated `User` object
+Resolves to an updated [User](#user) object
 
 ## user
 
@@ -2085,7 +2166,7 @@ JSONObject userContent = new JSONObject()
     .put("firstname", "John")
     .put("lastname", "Doe");
 
-User user = kuzzle.security.user("userId", userContent);  
+User user = kuzzle.security.user("<kuid>", userContent);  
 ```
 
 ```php
@@ -2094,7 +2175,7 @@ User user = kuzzle.security.user("userId", userContent);
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 $userDefinition = [
   // A "profileIds" field is required to bind a user to an existing profile
   'profileIds' => ['myProfile'],
@@ -2107,11 +2188,11 @@ $userDefinition = [
 $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
-$user = $security->user($userId, $userDefinition);
+$user = $security->user($kuid, $userDefinition);
 // $user instanceof User
 ```
 
-Instantiates a new User object.
+Instantiates a new [User](#user) object.
 
 ### user(id, content)
 
@@ -2122,4 +2203,4 @@ Instantiates a new User object.
 
 ### Return value
 
-Returns the `User` object.
+Returns the new [User](#user) object.

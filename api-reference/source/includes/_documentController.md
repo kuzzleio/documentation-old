@@ -5,8 +5,8 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_count`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_count`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -23,7 +23,7 @@
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -44,7 +44,7 @@
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -70,8 +70,8 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]` or `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]` or `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -84,7 +84,7 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -102,7 +102,7 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -135,8 +135,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -149,7 +149,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -168,7 +168,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -200,12 +200,12 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -223,7 +223,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -252,8 +252,8 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_query`<br/>
->**Method:** `DELETE`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_query`  
+>**Method:** `DELETE`  
 >**Body:**
 
 <section class="http"></section>
@@ -270,7 +270,7 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -290,7 +290,7 @@ with the value `wait_for` in order to wait for the document deletion (and its un
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -317,12 +317,12 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -339,7 +339,7 @@ Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasti
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -376,8 +376,8 @@ Only documents in the persistent data storage layer can be retrieved.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_replace[?refresh=wait_for]`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_replace[?refresh=wait_for]`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -390,7 +390,7 @@ Only documents in the persistent data storage layer can be retrieved.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -408,7 +408,7 @@ Only documents in the persistent data storage layer can be retrieved.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -441,12 +441,12 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**URL:** `http://kuzzle:7512/_scroll/<scrollId>[?scroll=<time to live>]`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -462,7 +462,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -509,8 +509,8 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>]`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>]`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -529,7 +529,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -557,7 +557,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -609,8 +609,8 @@ Optional arguments:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreate[?refresh=wait_for]`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreate[?refresh=wait_for]`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -639,7 +639,7 @@ Optional arguments:
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -672,7 +672,7 @@ Optional arguments:
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -753,8 +753,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreateOrReplace[?refresh=wait_for]`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreateOrReplace[?refresh=wait_for]`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -783,7 +783,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -816,7 +816,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -895,8 +895,8 @@ Returns a [partial error](#partialerror) (with status 206) if one or more docume
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mDelete[?refresh=wait_for]`<br/>
->**Method:** `DELETE`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mDelete[?refresh=wait_for]`  
+>**Method:** `DELETE`  
 >**Body:**
 
 <section class="http"></section>
@@ -909,7 +909,7 @@ Returns a [partial error](#partialerror) (with status 206) if one or more docume
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -925,7 +925,7 @@ Returns a [partial error](#partialerror) (with status 206) if one or more docume
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -957,8 +957,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mGet`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mGet`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -971,7 +971,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -987,7 +987,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1055,8 +1055,8 @@ Returns a [partial error](#partialerror) (with status 206) if one or more docume
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mReplace[?refresh=wait_for]`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mReplace[?refresh=wait_for]`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -1085,7 +1085,7 @@ Returns a [partial error](#partialerror) (with status 206) if one or more docume
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1118,7 +1118,7 @@ Returns a [partial error](#partialerror) (with status 206) if one or more docume
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1200,8 +1200,8 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mUpdate[?refresh=wait_for][&retryOnConflict=<retries>]`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mUpdate[?refresh=wait_for][&retryOnConflict=<retries>]`  
+>**Method:** `PUT`  
 >**Body:**  
 
 <section class="http"></section>
@@ -1230,7 +1230,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1262,7 +1262,7 @@ with the value `wait_for` in order to wait for the document indexation (indexed 
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1325,8 +1325,8 @@ You may set the `retryOnConflict` optional argument with a positive integer, ask
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for][&retryOnConflict=<retries>]`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for][&retryOnConflict=<retries>]`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -1341,7 +1341,7 @@ You may set the `retryOnConflict` optional argument with a positive integer, ask
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1366,7 +1366,7 @@ You may set the `retryOnConflict` optional argument with a positive integer, ask
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -1398,8 +1398,8 @@ You may set the `retryOnConflict` optional argument with a positive integer, ask
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_validate`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -1412,7 +1412,7 @@ You may set the `retryOnConflict` optional argument with a positive integer, ask
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -1429,7 +1429,7 @@ You may set the `retryOnConflict` optional argument with a positive integer, ask
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {

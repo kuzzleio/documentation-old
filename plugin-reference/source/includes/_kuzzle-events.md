@@ -82,16 +82,6 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 | `core:roleRepository:delete` | Triggered when a role is deleted | {_id} |
 
 
-## index
-
-Events triggered when a request is treated in the [`index` controller](../api-reference/#index-controller).
-
-| Event | Description | Payload |
-|-------|-------------|---------|
-| `index:after<Action>`  | All actions in `index` controller trigger an event after executing  | Type: Request |
-| `index:before<Action>` | All actions in `index` controller trigger an event before executing | Type: Request |
-
-
 ## document
 
 Events triggered when a request is treated in the [`document` controller](../api-reference/#document-controller).
@@ -106,6 +96,15 @@ Events triggered when a request is treated in the [`document` controller](../api
 | Event | Description | Payload |
 |-------|-------------|---------|
 | `http:options` | Triggered whenever a HTTP OPTIONS methods is handled | Type: Request |
+
+## index
+
+Events triggered when a request is treated in the [`index` controller](../api-reference/#index-controller).
+
+| Event | Description | Payload |
+|-------|-------------|---------|
+| `index:after<Action>`  | All actions in `index` controller trigger an event after executing  | Type: Request |
+| `index:before<Action>` | All actions in `index` controller trigger an event before executing | Type: Request |
 
 ## internalBroker
 

@@ -123,123 +123,23 @@ If the `connect` option is set to `manual`, the callback will be called after th
 * the ``offlineQueueLoader`` must be set with a function, taking no argument, and returning an array of objects containing a `query` member with a Kuzzle query to be replayed, and an optional `cb` member with the corresponding callback to invoke with the query result
 * updates to ``host``, ``port``, ``autoReconnect``, ``reconnectionDelay`` and ``sslConnection`` properties will only take effect on next ``connect`` call
 
-## Offline mode
-
-Working with an unstable network connection implies to handle what an application should be doing while being offline.  
-Our goal is to provide our users with the right tools to handle such situations.
-
-
-**There are two ways to handle a network disconnection**
-
-* Stop all further communication with Kuzzle and invalidate the current instance and all its children. The application will have to manually instantiate a new Kuzzle object once the network has recovered. To do so, simply pass the ``autoReconnect`` option to ``false`` when starting a new Kuzzle instance.
-* Reconnect automatically to Kuzzle when possible, and enter *offline mode*. This is the default behavior.
-
-Offline mode simply refers to the time between a ``disconnected`` and a ``reconnected`` event.
-
-**Handling subscriptions**
-
-During offline mode, all subscriptions are kept indefinitely, with no maximum subscriptions retained.
-
-By default, upon reconnection, all subscription are renewed. This behavior can be changed by setting the ``autoResubscribe`` to ``false``. In that case, each subscription must be renewed manually using the ``Room.renew`` method.
-
-**Queuing requests while offline**
-
-Requests can be queued while being offline, to be replayed once the network connection has been reestablished.  
-By default, there is no request queuing.
-
-You can:
-
-* Queue all requests automatically when going offline by setting the ``autoQueue`` option to ``true``
-* Start and stop queuing manually, by using the ``startQueuing`` and ``stopQueuing`` methods
-
-The queue itself can be configured using the ``queueTTL`` and ``queueMaxSize`` options.
-
-**Filter requests to be queued**
-
-After request queuing is activated, by default, all requests are queued.
-
-You can decide to filter some of these requests with the ``queueFilter`` property. This property must be set with a function taking the request to be queued as an argument, and it must return a boolean telling the Kuzzle SDK if the request can be queued or not.
-
-Additionally, almost all methods accept a ``queuable`` option. If set to ``false``, the request will be discarded if the SDK is disconnected, and it will be played immediately with no queuing otherwise. This option bypasses the ``queueFilter`` property.
-
-
-**Handling network reconnection**
-
-Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``replayQueue`` method. Or you can let the SDK replay it automatically upon reconnection, by setting the ``autoReplay`` option to ``true``.  
-
-Requests are sent to Kuzzle with the ``replayInterval`` delay between each one of them.
-
-Requests submitted while replaying the queue are delayed until the queue is empty, to ensure all requests are played in the right order.
-
-<aside class="warning">
-Setting <code>autoReplay</code> to <code>true</code> when using user authentication should generally be avoided.<br/>
-When leaving offline-mode, the JWT Token validity is verified. If it has expired, the token will be removed and a <code>jwtTokenExpired</code> event will be fired.<br/>
-If <code>autoReplay</code> is set, then all pending requests will be automatically played as an anonymous user.
-</aside>
-
-
-**Taking control of the offline queue**
-
-You can be notified about what's going on about the offline queue, with the `offlineQueuePush` and the `offlineQueuePop` events.  
-
-The `offlineQueuePush` event is fired whenever a request is queued. It provides to its listeners an object containing a `query` property, describing the queued request, and an optional `cb` property containing the corresponding callback, if any.
-
-The `offlineQueuePop` event is fired whenever a request has been removed from the queue, either because the queue limits have been reached, or because the request has been replayed. It provides the removed request to its listeners.
-
-The `offlineQueueLoader` property allows loading requests to the queue, **before any previously queued request**. It is invoked every time the SDK starts dequeuing requests.  
-This property must be set with a function returning an array of objects with the following accessible properties: a `query` property, containing the request to be replayed, and an optional `cb` property pointing to the callback to invoke after the completion of the request.
-
-Finally, if the provided methods don't give you enough control over the offline queue, you can access and edit the queue directly with the ``offlineQueue`` property.
-
-
-
-**Automatic offline-mode**
-
-You can set the ``offlineMode`` option to ``auto``. This configures the offline mode behavior with the following options:
-
-* ``autoReconnect`` = ``true``
-* ``autoQueue`` = ``true``
-* ``autoReplay`` = ``true``
-* ``autoResubscribe`` = ``true``
-
-
-## Event Handling
-
-The Kuzzle object listens to global events fired by Kuzzle. To subscribe or unsubscribe on these events, simply plug a callback function to the event you want to act upon, using the functions ``addListener`` and ``removeListener``.
-
-Here is the list of these special events:
-
-| Event Name | Callback arguments | Description |
-|------------|-------------|-------------|
-| ``connected`` | _(none)_ | Fired when the SDK has successfully connected to Kuzzle |
-| `discarded` | `error` (object) | Fired when Kuzzle reject a request (e.g. request can't be parsed, request too large, ...) |
-| ``disconnected`` | _(none)_ |  Fired when the current session has been unexpectedly disconnected |
-| ``error`` | `error` (object) | Fired when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
-| ``jwtTokenExpired`` | _(none)_ |  Fired when Kuzzle rejected a request because the authentication token expired |
-| ``loginAttempt`` | `{ "success": <boolean>, "error": "<error message>" }` |  Fired when a login attempt completes, either with a success or a failure result |
-| ``offlineQueuePop`` | `query` (object) | Fired whenever a request is removed from the offline queue. |
-| ``offlineQueuePush`` | `{ "query": <object>, "cb": <function> }` | Fired whenever a request is added to the offline queue |
-| ``queryError`` | `error` (object), `query` (object) | Fired whenever Kuzzle responds with an error |
-| ``reconnected`` | _(none)_ |  Fired when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
-
-
-**Note:** listeners are called in the order of their insertion.
-
 ## addListener
 
 ```js
-  var listenerId = kuzzle.addListener('connected', function () {
+  var callback = function () {
     // Actions to perform when receiving a 'connected' global event
-  });
+  };
+  kuzzle.addListener('connected', callback);
 ```
 
 ```java
-String listenerId = kuzzle.addListener(Event.connected, new EventListener() {
+EventListener eventListener = new EventListener() {
   @Override
-  public void trigger() {
-    // Actions to perform when receiving a 'connected' global event
+  public void trigger(Object... args) {
+    // Actions to perform when receiving a 'subscribed' global event
   }
-});
+};
+kuzzle.addListener(Event.connected, eventListener);
 ```
 
 ```php
@@ -255,10 +155,6 @@ Adds a listener to a Kuzzle global event. When an event is fired, listeners are 
 
 See the [event handling](docs.kuzzle.io/sdk-reference/#event-handling) section for a full events list.
 
-<aside class="notice">
-The ID returned by this function is required if you want to remove this listener later.
-</aside>
-
 ### addListener(event, listener)
 
 | Arguments | Type | Description |
@@ -268,7 +164,7 @@ The ID returned by this function is required if you want to remove this listener
 
 ### Return value
 
-Returns a `string` containing an unique listener ID.
+Returns the `Kuzzle` object to allow chaining.
 
 ## checkToken
 
@@ -400,7 +296,7 @@ The ``index`` argument takes precedence over the default index.
 
 ### Return value
 
-Returns a `Collection` object.
+Returns a [Collection](#collection) object.
 
 ## connect
 
@@ -1558,7 +1454,7 @@ The `Kuzzle` object will unset the property `jwtToken` if the user is successful
 
 ## memoryStorage (property)
 
-A `MemoryStorage` singleton.
+A [MemoryStorage](#memorystorage) singleton.
 
 ## now
 
@@ -1863,11 +1759,11 @@ Returns the `Kuzzle` object to allow chaining.
 ## removeListener
 
 ```js
-kuzzle.removeListener('disconnected', listenerId);
+kuzzle.removeListener('disconnected', callback);
 ```
 
 ```java
-kuzzle.removeListener(Event.disconnected, "listenerId");
+kuzzle.removeListener(Event.disconnected, eventListener);
 ```
 
 ```php
@@ -1876,17 +1772,17 @@ use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
 
-$kuzzle->removeListener('jwtTokenExpired', $listenerId);
+$kuzzle->removeListener('jwtTokenExpired', $callback);
 ```
 
 Removes a listener from an event.
 
-### removeListener(event, listenerID)
+### removeListener(event, callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
-| ``listenerID`` | string | The ID returned by ``addListener`` |
+| ``callback`` | function/object | the callback |
 
 #### Return value
 
@@ -1916,7 +1812,7 @@ Returns the `Kuzzle` object to allow chaining.
 
 ## security (property)
 
-A `Security` singleton.
+A [Security](#security) singleton.
 
 ## setAutoRefresh
 
@@ -2319,4 +2215,4 @@ Retrieves current user object.
 
 ### Callback response
 
-An instantiated `User` object.
+An instantiated [User](#user) object.

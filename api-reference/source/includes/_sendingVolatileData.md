@@ -17,7 +17,7 @@ the forwarded volatile data are those provided in the **subscription** request.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -74,7 +74,7 @@ the forwarded volatile data are those provided in the **subscription** request.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 

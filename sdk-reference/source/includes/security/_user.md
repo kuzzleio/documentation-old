@@ -47,7 +47,7 @@ User user = new User(kuzzle.security, "user ID", userContent);
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\User;
 
-$userId = 'myUser';
+$kuid = 'myUser';
 $userDefinition = [
   // A "profileIds" field is required to bind a user to an existing profile
   'profileIds' => ['myProfile'],
@@ -61,10 +61,10 @@ $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 // Using the Security factory
-$user = $security->user($userId, $userDefinition);
+$user = $security->user($kuid, $userDefinition);
 
 // Or directly with the constructor:
-$user = new User($security, $userId, $userDefinition);
+$user = new User($security, $kuid, $userDefinition);
 ```
 
 Instantiates a new User object.

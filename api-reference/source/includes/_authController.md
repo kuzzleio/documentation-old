@@ -5,8 +5,8 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_checkToken`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/_checkToken`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -19,7 +19,7 @@
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -33,7 +33,7 @@
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -61,54 +61,170 @@ Checks a JWT Token validity.
 This API route does not require to be logged in.
 
 
-## getCurrentUser
+## createMyCredentials
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_me`<br/>
->**Method:** `GET`<br/>
->**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/_me/_create`  
+>**Method:** `POST`  
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
+>**Body**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "credentialField": "someValue",
+  ...
+}
+
+// example with a "local" authentication
+
+{
+  "username": "MyUser",
+  "password": "MyPassword"
+}
+```
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
 ```litcoffee
 {
   "controller": "auth",
-  "action": "getCurrentUser"
+  "action": "createMyCredentials",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>",
+  "body": {
+    "credentialField": "someValue",
+    ...
+  }
+}
+
+// example with a "local" authentication
+
+{
+  "controller": "auth",
+  "action": "createMyCredentials",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>",
+  "body": {
+    "username": "MyUser",
+    "password": "MyPassword"
+  }
 }
 ```
 
->Response
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "createMyCredentials",
+  "controller": "auth",
+  "result": {
+    "username": "MyUser"
+  }
+}
+```
+
+Create credentials of the specified `<strategy>` for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+
+
+## deleteMyCredentials
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/_me`  
+>**Method:** `DELETE`  
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "auth",
+  "action": "deleteMyCredentials",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>"
+}
+```
+
+>**Response**
+
+```litcoffee
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "deleteMyCredentials",
+  "controller": "auth",
+  "result": {
+    "acknowledged": true
+  }
+}
+```
+
+Delete credentials of the specified `<strategy>` for the current user. If the credentials that generated the current JWT are removed, the user will remain logged in until he logs out or his session expires, but won't be able to log in with these credentials afterward.
+
+
+## getCurrentUser
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/users/_me`  
+>**Method:** `GET`  
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "auth",
+  "action": "getCurrentUser",
+  "jwt": "<encrypted_jwt_token>"
+}
+```
+
+>**Response**
 
 ```litcoffee
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "index": "<index>",
-  "collection": "<collection>",
   "controller": "auth",
   "action": "getCurrentUser",
   "requestId": "<unique request identifier>",
-  "jwt": "<encrypted_jwt_token>",
   "result": {
-    "_id":"<userId>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "_source": {
       "name": {
         "first": "Steve",
         "last": "Wozniak"
-        },
-        ...                         // The user object content
-        "profile": {
-          "_id":"<profileId>",
-          "roles": [
-            ...                     // Users roles definitions
-          ]
-        }
-    }
+      },
+      ...                             // The user object content
+      "profile": {
+        "_id":"<profileId>",
+        "roles": [
+          ...                         // Users roles definitions
+        ]
+      }
+    },
+    "strategies": ["available", "strategies"]
   }
 }
 ```
@@ -116,34 +232,76 @@ This API route does not require to be logged in.
 Gets the user object identified by the `JSON Web Token` provided in the query or the `Authorization` header.
 
 
-## getMyRights
+## getMyCredentials
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/users/_me/_rights`<br/>
->**Method:** `GET`<br/>
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/_me`  
+>**Method:** `GET`  
 >**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
-<section class="websocket"></section>
+<section class="others"></section>
 
 ```litcoffee
 {
   "controller": "auth",
-  "action": "getMyRights"
+  "action": "getMyCredentials",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>"
 }
 ```
 
->Response
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "getMyCredentials",
+  "controller": "auth",
+  "result": {
+    "username": "MyUser"
+  }
+}
+```
+
+Get credential information of the specified `<strategy>` for the current user. Provided information completely depend of the strategy. The result can be an empty object.
+
+
+## getMyRights
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/users/_me/_rights`  
+>**Method:** `GET`  
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "auth",
+  "action": "getMyRights",
+  "jwt": "<encrypted_jwt_token>"
+}
+```
+
+>**Response**
 
 ```litcoffee
 {
   "status": 200,                      // Assuming everything went well
   "error": null,                      // Assuming everything went well
-  "jwt": "<encrypted_jwt_token>",
   "result": {
     // An array of objects containing the user rights
     "hits": [
@@ -160,15 +318,54 @@ Gets the user object identified by the `JSON Web Token` provided in the query or
     ],
 }
 ```
+
 Gets the rights of the user identified by the `JSON Web Token` provided in the query or the `Authorization` header.
+
+
+## credentialsExist
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/_me/_exists`  
+>**Method:** `GET`  
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "auth",
+  "action": "credentialsExist",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>"
+}
+```
+
+>**Response**
+
+```litcoffee
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "credentialsExist",
+  "controller": "auth",
+  "result": true
+}
+```
+
+Check the existence of the specified `<strategy>`'s credentials for the current user.
 
 
 ## login
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_login`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/_login`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -195,7 +392,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -224,7 +421,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -235,7 +432,7 @@ Gets the rights of the user identified by the `JSON Web Token` provided in the q
   "requestId": "<unique request identifier>",
   "volatile": {},
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "jwt": "<JWT encrypted token>"
   }
 }
@@ -252,18 +449,17 @@ and let you authenticate with a login and password.
 The **_login** action returns an encrypted JWT token, that must then be sent within the [requests headers](#authorization-header).
 
 
-
 ## logout
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_logout`<br/>
->**Method:** `GET`<br/>
+>**URL:** `http://kuzzle:7512/_logout`  
+>**Method:** `GET`  
 >**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -279,13 +475,162 @@ Revokes the token validity & unsubscribe from registered rooms.
 
 The **_logout** action doesn't take strategy.
 
+
+## updateMyCredentials
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/_me/_update`  
+>**Method:** `PUT`  
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
+>**Body**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "credentialField": "someValue",
+  ...
+}
+
+// example with a "local" authentication
+
+{
+  "password": "MyPassword"
+}
+```
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "auth",
+  "action": "updateMyCredentials",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>",
+  "body": {
+    "credentialField": "someValue",
+    ...
+  }
+}
+
+// example with a "local" authentication
+
+{
+  "controller": "auth",
+  "action": "updateMyCredentials",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>",
+  "body": {
+    "password": "MyPassword"
+  }
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "updateMyCredentials",
+  "controller": "auth",
+  "result": {
+    "username": "MyUser"
+  }
+}
+```
+
+Create credentials of the specified `<strategy>` for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+
+
+## validateMyCredentials
+
+<section class="http"></section>
+
+>**URL:** `http://kuzzle:7512/credentials/<strategy>/_me/_validate`  
+>**Method:** `POST`  
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
+>**Body**
+
+<section class="http"></section>
+
+```litcoffee
+{
+  "credentialField": "someValue",
+  ...
+}
+
+// example with a "local" authentication
+
+{
+  "username": "MyUser",
+  "password": "MyPassword"
+}
+```
+
+<section class="others"></section>
+
+>**Query**
+
+<section class="others"></section>
+
+```litcoffee
+{
+  "controller": "auth",
+  "action": "validateMyCredentials",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>",
+  "body": {
+    "credentialField": "someValue",
+    ...
+  }
+}
+
+// example with a "local" authentication
+
+{
+  "controller": "auth",
+  "action": "validateMyCredentials",
+  "strategy": "<strategy>",
+  "jwt": "<encrypted_jwt_token>",
+  "body": {
+    "username": "MyUser",
+    "password": "MyPassword"
+  }
+}
+```
+
+>**Response**
+
+```litcoffee
+// example with a "local" authentication
+
+{
+  "status": 200,                      // Assuming everything went well
+  "error": null,                      // Assuming everything went well
+  "action": "validateMyCredentials",
+  "controller": "auth",
+  "result": true
+}
+```
+
+Validate credentials of the specified `<strategy>` for the current user. `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+
+
 ## updateSelf
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_updateSelf`<br/>
->**Method:** `PUT`<br/>
->**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`<br/>
+>**URL:** `http://kuzzle:7512/_updateSelf`  
+>**Method:** `PUT`  
+>**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
 >**Body**
 
 <section class="http"></section>
@@ -300,7 +645,7 @@ The **_logout** action doesn't take strategy.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -317,7 +662,7 @@ The **_logout** action doesn't take strategy.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -328,7 +673,7 @@ The **_logout** action doesn't take strategy.
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<userId>",
+    "_id": "<kuid>",                  // The kuzzle user identifier
     "_source": {
       "foo": "bar",
       "name": "Walter Smith",

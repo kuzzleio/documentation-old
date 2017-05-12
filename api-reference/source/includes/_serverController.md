@@ -4,12 +4,12 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_adminExists`<br/>
+>**URL:** `http://kuzzle:7512/_adminExists`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -20,7 +20,7 @@
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -43,12 +43,12 @@ Checks if an administrator account has been created, and return a boolean as a r
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getAllStats`<br/>
+>**URL:** `http://kuzzle:7512/_getAllStats`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -59,7 +59,7 @@ Checks if an administrator account has been created, and return a boolean as a r
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -113,12 +113,12 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getConfig`<br/>
+>**URL:** `http://kuzzle:7512/_getConfig`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -129,7 +129,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -247,12 +247,12 @@ This route should be opened only to administrators, as it might export sensitive
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getLastStats`<br/>
+>**URL:** `http://kuzzle:7512/_getLastStats`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -263,7 +263,7 @@ This route should be opened only to administrators, as it might export sensitive
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -311,12 +311,12 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`<br/>
+>**URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`  
 >**Method:** `POST`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -331,7 +331,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -385,12 +385,12 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_serverInfo`<br/>
+>**URL:** `http://kuzzle:7512/_serverInfo`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -401,7 +401,7 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
 }
 ```
 
-> Response
+>**Response**
 
 ```litcoffee
 {
@@ -416,85 +416,75 @@ Statistics are returned as a JSON-object with each key being the snapshot's time
           "routes": {
             "controller1": {
               "action1": {
-                "method": "get",
-                "name": "action1",
-                "route": "..."
+                "controller": "controller1",
+                "action": "action1",
+                "http": {
+                  "verb": "GET",
+                  "url": "/action1/url"
+                }
               },
               "action2": {
-                "method": "post",
-                "name": "action2",
-                "route": "..."
+                "controller": "controller1",
+                "action": "action2",
+                "http": {
+                  "verb": "POST",
+                  "url": "/action2/url"
+                }
               },
               {
-                "etc...": "etc ..."
+                "...": "..."
               }
             },
-            "controller2": {
-              "action1": {
-                "method": "get",
-                "name": "action1",
-                "route": "..."
-              },
-              "action2": {
-                "method": "post",
-                "name": "action2",
-                "route": "..."
+            "pluginName/controller": {
+              "action": {
+                "controller": "pluginName/controller",
+                "action": "action",
+                "http": {
+                  "verb": "GET",
+                  "url": "/action/url"
+                }
               },
               {
-                "etc...": "etc ..."
+                "...": " ..."
               }
             },
             {
-              "etc...": "etc ..."
+              "...": "..."
             }
           },
-          "version": "1.0"
+          "version": "<API version>"
         },
-        "memoryUsed": 82747392,
-        "nodeVersion": "v4.4.3",
+        "memoryUsed": 12345,
+        "nodeVersion": "v6.9.5",
         "plugins": {},
         "system": {
           "cpus": [
             {
-              "model": "Intel(R) Core(TM) i5-4670 CPU @ 3.40GHz",
-              "speed": 2700,
-              "times": {
-                "idle": 19767912700,
-                "irq": 73805400,
-                "nice": 66474700,
-                "sys": 588744200,
-                "user": 1733754000
-              }
+              "cpu1": "informations"
             },
             {
-              "etc...": "etc ..."
+              "...": "..."
             }
           ],
           "memory": {
-            "free": 1157988352,
-            "total": 16768524288
+            "free": 123456,
+            "total": 1234567
           }
         },
-        "uptime": "349.923s",
-        "version": "1.0.0-RC4"
+        "uptime": "<uptime, in seconds>",
+        "version": "<kuzzle version>"
       },
       "services": {
         "internalCache": {
-          "memoryPeak": "1.06M",
-          "memoryUsed": "978.63K",
-          "mode": "standalone",
-          "type": "redis",
-          "version": "3.0.7"
+          "kuzzle memory cache": "informations",
+          "...": "..."
         },
         "memoryStorage": {
-          "memoryPeak": "1.06M",
-          "memoryUsed": "1014.62K",
-          "mode": "standalone",
-          "type": "redis",
-          "version": "3.0.7"
+          "API memory storage": "informations",
+          "...": "..."
         },
         {
-          "etc...": "etc ..."
+          "...": "..."
         }
       }
     }
@@ -509,7 +499,7 @@ Retrieves information about Kuzzle, its plugins and active services.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_now`<br/>
+>**URL:** `http://kuzzle:7512/_now`  
 >**Method:** `GET`
 
 <section class="others"></section>
@@ -521,7 +511,7 @@ Retrieves information about Kuzzle, its plugins and active services.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {

@@ -5,12 +5,12 @@
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<data>/<collection>`<br/>
+>**URL:** `http://kuzzle:7512/<data>/<collection>`  
 >**Method:** `PUT`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -23,7 +23,7 @@
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -49,12 +49,12 @@ This method does nothing if the collection already exists.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_specifications`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_specifications`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 ```litcoffee
@@ -66,7 +66,7 @@ This method does nothing if the collection already exists.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -90,12 +90,12 @@ It responds 200 even there where no validation specification manually set before
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_exists`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_exists`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -108,7 +108,7 @@ It responds 200 even there where no validation specification manually set before
 }
 ```
 
-> Response
+>**Response**
 
 ```litcoffee
 {
@@ -130,12 +130,12 @@ Checks if a collection exists in Kuzzle database storage layer.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mapping`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mapping`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -148,7 +148,7 @@ Checks if a collection exists in Kuzzle database storage layer.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -185,12 +185,12 @@ Gets the mapping of the given `collection`.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_specifications`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_specifications`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -203,7 +203,7 @@ Gets the mapping of the given `collection`.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -254,12 +254,12 @@ index and collection if some specifications has been defined first.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/_list(/<all|stored|realtime>)[?from=0][&size=42]`<br/>
+>**URL:** `http://kuzzle:7512/<index>/_list(/<all|stored|realtime>)[?from=0][&size=42]`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -275,7 +275,7 @@ index and collection if some specifications has been defined first.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -325,12 +325,12 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/validations/_scroll/<scrollId>[?scroll=<time to live>]`<br/>
+>**URL:** `http://kuzzle:7512/validations/_scroll/<scrollId>[?scroll=<time to live>]`  
 >**Method:** `GET`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -346,7 +346,7 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -420,8 +420,8 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/validations/_search[?from=0][&size=10][&scroll=<time to live>]`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/validations/_search[?from=0][&size=10][&scroll=<time to live>]`  
+>**Method:** `POST`  
 >**Body**
 
 <section class="http"></section>
@@ -437,7 +437,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -459,7 +459,7 @@ The optional `scroll` argument allows to refresh the cursor duration, with a new
 ```
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -526,12 +526,12 @@ Optional arguments:
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_truncate`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_truncate`  
 >**Method:** `DELETE`
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -544,7 +544,7 @@ Optional arguments:
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -569,8 +569,8 @@ It is also faster than deleting all documents from a collection using a query.
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/<index>/<collection>/_mapping`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/<index>/<collection>/_mapping`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -598,7 +598,7 @@ It is also faster than deleting all documents from a collection using a query.
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -630,7 +630,7 @@ It is also faster than deleting all documents from a collection using a query.
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -660,8 +660,8 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_specifications`<br/>
->**Method:** `PUT`<br/>
+>**URL:** `http://kuzzle:7512/_specifications`  
+>**Method:** `PUT`  
 >**Body:**
 
 <section class="http"></section>
@@ -681,7 +681,7 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -705,7 +705,7 @@ To solve this matter, Kuzzle's API offers a way to create data mapping and to ex
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
@@ -765,8 +765,8 @@ When the validation specification is not well formatted, a detailed error messag
 
 <section class="http"></section>
 
->**URL:** `http://kuzzle:7512/_validateSpecifications`<br/>
->**Method:** `POST`<br/>
+>**URL:** `http://kuzzle:7512/_validateSpecifications`  
+>**Method:** `POST`  
 >**Body:**
 
 <section class="http"></section>
@@ -786,7 +786,7 @@ When the validation specification is not well formatted, a detailed error messag
 
 <section class="others"></section>
 
->Query
+>**Query**
 
 <section class="others"></section>
 
@@ -810,7 +810,7 @@ When the validation specification is not well formatted, a detailed error messag
 }
 ```
 
->Response
+>**Response**
 
 ```litcoffee
 {
