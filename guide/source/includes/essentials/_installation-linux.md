@@ -101,6 +101,8 @@ $ cd ~/kuzzle
 $ cd ~/kuzzle
 $ git clone https://github.com/kuzzleio/kuzzle-proxy.git
 $ cd kuzzle-proxy
+$ git submodule init
+$ git submodule update
 $ npm install
 ```
 
@@ -110,6 +112,8 @@ $ npm install
 $ cd ~/kuzzle
 $ git clone https://github.com/kuzzleio/kuzzle.git
 $ cd kuzzle
+$ git submodule init
+$ git submodule update
 $ npm install
 ```
 
