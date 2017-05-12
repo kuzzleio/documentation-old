@@ -206,8 +206,8 @@ var role = {
         delete: {
           args: {
             document: {
-              index: "$requestObject.index",
-              collection: "$requestObject.collection",
+              index: "$request.input.resource.index",
+              collection: "$request.input.resource.collection",
               action: {
                 get: "$currentId"
               }
