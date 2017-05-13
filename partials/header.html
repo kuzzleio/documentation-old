@@ -32,7 +32,15 @@
   <div class="developer-nav open">
     <ul>
       {{#each ancestry.root.ancestry.children}}
-        <li><a href="/{{ path }}"><span>{{ title }}</span></a></li>
+      {{#if (startwith ../path path)}}
+        <li class="active">
+          <a href="/{{ path }}"><span>{{ title }}</span></a>
+        </li>
+      {{else}}
+        <li>
+          <a href="/{{ path }}"><span>{{ title }}</span></a>
+        </li>
+      {{/if}}
       {{/each}}
     </ul>
   </div>

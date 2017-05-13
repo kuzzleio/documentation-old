@@ -12,7 +12,19 @@
   <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script>
-    $(document).ready(() => {
+    $(document).ready(function() {
+      var $toc = $('.toc')
+      var $content = $('.content')
+      var compute = function() {
+        $toc.css('left', $content.get('0').offsetLeft + $content.get('0').offsetWidth + 280 + 15 +'px')
+      }
+
+      // fixes toc next to content
+      // 280 is the width of left nav / 15 is the margin with content
+      $(window).on('resize', compute)
+      compute()
+
+
       $('.language-tab-selector a').on('click', function(e) {
         e.preventDefault();
         e.stopPropagation();

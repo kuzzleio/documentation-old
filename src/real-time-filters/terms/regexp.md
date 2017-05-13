@@ -32,7 +32,7 @@ Or, if you don't wish to add any modifier flags:
 }
 ```
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -45,7 +45,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the first document:
+## The following filter validates the first document:
 
 ```javascript
 regexp: {

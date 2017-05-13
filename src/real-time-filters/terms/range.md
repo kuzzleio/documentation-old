@@ -10,15 +10,15 @@ Filters documents with fields having number attributes within a certain range.
 
 The range filter accepts the following parameters:
 
-```gte``` Greater-than or equal to
+`gte` Greater-than or equal to
 
-```gt``` Greater-than
+`gt` Greater-than
 
-```lte``` Less-than or equal to
+`lte` Less-than or equal to
 
-```lt``` Less-than
+`lt` Less-than
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -44,7 +44,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the last two documents:
+## The following filter validates the last two documents:
 
 ```javascript
 range: {
