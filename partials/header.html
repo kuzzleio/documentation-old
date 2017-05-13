@@ -42,6 +42,12 @@
         </li>
       {{/if}}
       {{/each}}
+      <li class="search">
+        <form novalidate>
+          <input name="search" type="search" placeholder="search everywhere" oninput="var length = ((this.value.length + 1) * 6); this.style.width = (length > 155) ? length + 'px' : '155px';"/>
+          <button></button>
+        </form>
+      </li>
     </ul>
   </div>
 </header>
