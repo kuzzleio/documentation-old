@@ -11,7 +11,7 @@ Filter documents having their location field within a [distance](#geospatial-fil
 By default, when it is not specified, the distance unit is expressed in meters.  
 Note that distance values are strings (including `from` and `to` attributes for `geoDistanceRange`)
 
-All formats supported by the [node-units](https://github.com/brettlangdon/node-units) library can be used:
+### All formats supported by the [node-units](https://github.com/brettlangdon/node-units) library can be used:
 
 Units   | Notations
 --------|----------
@@ -21,7 +21,7 @@ inches  | inch, in
 yards   | yard, yd
 miles   | mile, mi
 
-All these notations are equivalent:
+### All these notations are equivalent:
 
 ```
 1000
@@ -38,7 +38,7 @@ All these notations are equivalent:
 
 ![Illustration of geoDistance](/assets/images/geolocation/geoDistance.png)
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -59,7 +59,7 @@ Given the following documents:
 }
 ```
 
-The following filter will match the second document only:
+## The following filter will match the second document only:
 
 ```javascript
 geoDistance: {

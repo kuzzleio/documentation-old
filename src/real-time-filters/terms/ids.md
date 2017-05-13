@@ -8,7 +8,7 @@ title: ids
 
 This filter returns only documents having their unique document ID listed in the provided list.
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -28,7 +28,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates first document:
+## The following filter validates first document:
 
 ```javascript
 ids: {

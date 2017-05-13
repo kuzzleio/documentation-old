@@ -124,10 +124,10 @@ handlebars.registerHelper({
         return v1 || v2
     },
     startwith: function (str, substr) {
-        return str.startwith(substr)
+        return str.startsWith(substr)
     },
     endswith: function (str, substr) {
-        return str.endswith(substr)
+        return str.endsWith(substr)
     }
 })
 
@@ -180,7 +180,10 @@ const build = (dev = false) => (done) => {
     .use(languageTab())
     .use(layouts({
       engine: 'handlebars',
-      partials: 'partials'
+      partials: 'partials',
+      exposeConsolidate (r) {
+        r.handlebars = handlebars
+      }
     }))
     .use(inlineSVG())
     .use(clickImage())
