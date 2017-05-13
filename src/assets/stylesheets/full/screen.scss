@@ -6,17 +6,6 @@
 @import '../default';
 
 
-header {
-  .developer-nav {
-    > ul {
-      float: right;
-    }
-    > .search {
-      float: left;
-    }
-  }
-}
-
 .content {
   #disqus_thread {
     margin: 25px 55px

@@ -191,7 +191,7 @@ const build = (dev = false) => (done) => {
   if (dev) {
     metalsmith
       .use(debug())
-      .use(livereload({ debug: true }))
+      .use(livereload({ debug: true, delay: 500 }))
   }
   else {
     metalsmith
@@ -345,7 +345,7 @@ if (process.argv.indexOf('--dev') > -1) {
   }).listen(port)
 
   if (watchEnabled) {
-    watch(__dirname + '/{src,layouts,partials}/**/*', { ignoreInitial: false }, build(true))
+    watch(__dirname + '/{src,layouts,partials}/**/*', { ignoreInitial: false, queue: false }, build(true))
   }
   else {
     build(false)((error) => {

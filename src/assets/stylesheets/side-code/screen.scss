@@ -6,18 +6,6 @@
 @import '../default';
 
 
-
-header {
-  .developer-nav {
-    > ul {
-      float: right;
-    }
-    > .search {
-      float: left;
-    }
-  }
-}
-
 .content {
   max-width: 95%;
   margin: 0 auto;
@@ -59,7 +47,7 @@ header {
     > pre {
       margin: 0 0 30px 30px;
     }
-    
+
     > .language-tab-selector,
     > blockquote {
       margin: 0 0 0 30px;
