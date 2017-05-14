@@ -1,9 +1,9 @@
 <div class="nav-sibling bottom">
   <div class="nav-left">
     <p>
-      <a href="#">report an issue</a>
+      <a href="https://github.com/{{ gh_repo }}/issues/new?labels={{ ancestry.parent.path }}&title=Issue%20related%20to%20'{{ src }}'">report an issue</a>
       |
-      <a href="https://github.com/kuzzleio/documentation/edit/master/src/{{ src }}">edit on github <i class="icon icon-github icon-small" style="color: #afafaf; font-size: 12px; vertical-align: text-bottom; margin-left: 6px;"></i></a>
+      <a href="https://github.com/{{ gh_repo }}/edit/{{ gh_branch }}/src/{{ src }}">edit on github<i class="icon icon-github icon-small" style="color: #afafaf; font-size: 12px; vertical-align: text-bottom; margin-left: 6px;"></i></a>
     </p>
   </div>
   <div class="nav-right">
