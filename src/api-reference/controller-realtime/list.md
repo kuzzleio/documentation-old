@@ -14,7 +14,7 @@ title: list
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/_listSubscriptions`  
-**URL:** `GET`
+**Method:** `GET`
 </p>
 </blockquote>
 

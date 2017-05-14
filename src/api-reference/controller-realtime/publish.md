@@ -14,7 +14,7 @@ title: publish
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/<index>/<collection>/_publish`  
-**URL:** `POST`  
+**Method:** `POST`  
 **Body:**
 </p>
 </blockquote>
