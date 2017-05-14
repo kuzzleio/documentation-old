@@ -409,6 +409,10 @@ html, body {
       text-decoration: none;
       font-weight: 600;
     }
+
+    + ul {
+      margin-top: 25px
+    }
   }
 
 
@@ -553,12 +557,18 @@ html, body {
   }
 
   > code,
+  h1 code,
+  h2 code,
+  h3 code,
+  h4 code,
+  h5 code,
+  h6 code,
   li code,
   p code,
   table code,
   aside code,
   blockquote code {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.1);
     padding: 3px 5px;
     border-radius: 3px;
     @extend %break-words;
@@ -727,12 +737,9 @@ html, body {
 
   blockquote {
     &>p {
-      background-color: $code-annotation-bg;
-      //border-radius: 5px;
+      background-color: #bae8f5;
       padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      color: #002835 !important;
     }
   }
 
@@ -820,8 +827,7 @@ html, body {
   .panel-title {
     color: #111;
     text-decoration: none !important;
-    font-family: "Gobold";
-    text-transform: uppercase;
+    font-family: "Ubuntu";
     font-weight: 700;
     font-size: 20px;
   }

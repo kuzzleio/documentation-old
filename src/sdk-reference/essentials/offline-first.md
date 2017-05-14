@@ -1,6 +1,5 @@
 ---
 layout: full.html
-language-tab: false
 algolia: true
 title: Offline first
 ---
