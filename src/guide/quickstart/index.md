@@ -189,7 +189,9 @@ You just leveraged Kuzzle's pub/sub mechanism.
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
 
-#### Where do we go from here?
+---
+
+## Where do we go from here?
 
 Now that you are started and operational with Kuzzle, you can fully leverage its power by:
 
