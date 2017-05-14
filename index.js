@@ -135,10 +135,9 @@ handlebars.registerHelper({
 const build = (dev = false) => (done) => {
   let metalsmith = Metalsmith(__dirname)
     .metadata({
-      title: "My Static Site & Blog",
-      description: "It's about saying »Hello« to the World.",
-      generator: "Metalsmith",
-      url: "http://www.metalsmith.io/"
+      site_title: "My Static Site & Blog",
+      gh_repo: "kuzzleio/documentation",
+      gh_branch: "rcx-refactor-doc"
     })
     .source('./src')
     .destination('./build') // does not work with 'dist' folder ...
