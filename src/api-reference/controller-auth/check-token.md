@@ -44,8 +44,8 @@ title: checkToken
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "controller": "auth",
   "action": "checkToken",
   "requestId": "<unique request identifier>",

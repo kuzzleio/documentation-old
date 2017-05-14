@@ -39,8 +39,8 @@ title: scrollSpecifications
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "action": "scrollSpecifications",
   "controller": "collection",
   "requestId": "<unique request identifier>",

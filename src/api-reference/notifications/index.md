@@ -54,7 +54,7 @@ You can receive the following types of notifications:
         with "room = channelName"
      */
     if (response.room === "mySubscription") {
-      // we now have a channel to listen to
+ // we now have a channel to listen to
       channel = response.result.channel;
     }
 
@@ -73,7 +73,7 @@ You can receive the following types of notifications:
         "scope": "in",
         "requestId": "<unique request identifier>",
         "result": {
-          ...                      // the published document
+          ...    // the published document
         }
       }
       */
@@ -130,7 +130,7 @@ You can receive the following types of notifications:
         "scope": "in",
         "requestId": "<unique request identifier>",
         "result": {
-          ...                      // the published document
+          ...    // the published document
         }
       }
       */

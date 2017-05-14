@@ -62,14 +62,14 @@ title: login
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "controller": "auth",
   "action": "login",
   "requestId": "<unique request identifier>",
   "volatile": {},
   "result": {
-    "_id": "<kuid>",                  // The kuzzle user identifier
+    "_id": "<kuid>",// The kuzzle user identifier
     "jwt": "<JWT encrypted token>"
   }
 }

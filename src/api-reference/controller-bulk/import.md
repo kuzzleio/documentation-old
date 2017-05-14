@@ -63,12 +63,12 @@ title: import
 }
 ```
 
->**Response**
+Response**
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "index": "<index>",
   "collection": "<collection>",
   "controller": "bulk",
@@ -161,12 +161,12 @@ In case a subset of the queries sent within the request fail, the client will re
 }
 ```
 
->**Response**
+Response**
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "controller": "bulk",
   "action": "import",
   "requestId": "<unique request identifier>",

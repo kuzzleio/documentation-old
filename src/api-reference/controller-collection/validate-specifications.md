@@ -25,7 +25,7 @@ title: validateSpecifications
     "mycollection": {
       "strict": "<true|false>",
       "fields": {
-        // ... specification for each field
+   // ... specification for each field
       }
     }
   }
@@ -61,8 +61,8 @@ title: validateSpecifications
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "index": "<index>",
   "collection": "<collection>",
   "action": "updateMapping",
@@ -72,7 +72,7 @@ title: validateSpecifications
   "result": {
     "valid": "<true|false>",
     "details": [ // it some errors have been found
-      // each spotted errors
+ // each spotted errors
     ],
     "description": "<string>" // global description if validation fails
   }

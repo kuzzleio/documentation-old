@@ -9,13 +9,13 @@ order: 1
 
 ```javascript
 {
-  "status": 200,                        // Assuming everything went well
-  "error": null,                        // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "index": "<index>",
   "collection": "<collection>",
   "controller": "document",
   "action": "create",
-  "state": "pending",                   // Indicates that the document will be created
+  "state": "pending", // Indicates that the document will be created
   "volatile": {},
   "result": {}
 }

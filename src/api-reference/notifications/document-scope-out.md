@@ -9,19 +9,19 @@ order: 6
 
 ```javascript
 {
-  "status": 200,                        // Assuming everything went well
-  "error": null,                        // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "index": "<index>",
   "collection": "<collection>",
   "controller": "document",
   "action": "update",
-  "state": "done",                     // The document has been fully updated
-  "scope": "out",                      // The document left your room scope
+  "state": "done",   // The document has been fully updated
+  "scope": "out", // The document left your room scope
   "volatile": {
     // volatile embedded in the request
   },
   "requestId": "<unique request identifier>",
-  "result": {                          // The updated document
+  "result": {// The updated document
     "_id": "<documentId>",
     ...
   }

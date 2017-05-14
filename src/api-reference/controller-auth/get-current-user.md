@@ -36,23 +36,23 @@ title: getCurrentUser
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "controller": "auth",
   "action": "getCurrentUser",
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<kuid>",                  // The kuzzle user identifier
+    "_id": "<kuid>",// The kuzzle user identifier
     "_source": {
       "name": {
         "first": "Steve",
         "last": "Wozniak"
       },
-      ...                             // The user object content
+      ...   // The user object content
       "profile": {
         "_id":"<profileId>",
         "roles": [
-          ...                         // Users roles definitions
+          ...  // Users roles definitions
         ]
       }
     },

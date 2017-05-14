@@ -37,8 +37,8 @@ title: getSpecifications
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "action": "getSpecifications",
   "controller": "collection",
   "collection": "<collection>",
@@ -61,11 +61,11 @@ title: getSpecifications
 }
 ```
 
->**Error response**
+Error response**
 
 ```javascript
 {
-  "status": 404,                      // No validation specification has been set for this index/collection
+  "status": 404, // No validation specification has been set for this index/collection
   "error": {
     "_source": {
       "body": {}

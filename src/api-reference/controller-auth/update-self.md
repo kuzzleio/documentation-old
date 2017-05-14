@@ -22,7 +22,7 @@ title: updateSelf
 
 ```js
 {
-    "foo": "bar",                    // Some properties to update
+    "foo": "bar",  // Some properties to update
     "name": "Walter Smith",
     ...
 }
@@ -50,14 +50,14 @@ title: updateSelf
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "action": "updateSelf",
   "controller": "auth",
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "_id": "<kuid>",                  // The kuzzle user identifier
+    "_id": "<kuid>",// The kuzzle user identifier
     "_source": {
       "foo": "bar",
       "name": "Walter Smith",

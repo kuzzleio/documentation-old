@@ -24,7 +24,7 @@ title: updateSpecifications
     "mycollection": {
       "strict": <true|false>,
       "fields": {
-        // ... specification for each field
+   // ... specification for each field
       }
     }
   }
@@ -59,8 +59,8 @@ title: updateSpecifications
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "index": "<index>",
   "collection": "<collection>",
   "action": "updateSpecifications",
@@ -70,7 +70,7 @@ title: updateSpecifications
       "mycollection": {
         "strict": "<true|false>",
         "fields": {
-          // ... specification for each field
+// ... specification for each field
         }
       }
     }
@@ -78,7 +78,7 @@ title: updateSpecifications
 }
 
 {
-  "status": 400,                      // There was an error on specification
+  "status": 400, // There was an error on specification
   "action": "updateSpecifications",
   "controller": "collections",
   "error": {
@@ -96,7 +96,7 @@ title: updateSpecifications
         "strict": "<true|false>",
         "fields": {
           "myField": {
-             // ... specification with an error
+// ... specification with an error
           }
         }
       }
