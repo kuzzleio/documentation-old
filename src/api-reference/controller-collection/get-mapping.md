@@ -37,8 +37,8 @@ title: getMapping
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "index": "<index>",
   "collection": "<collection>",
   "controller": "collection",
@@ -46,10 +46,8 @@ title: getMapping
   "requestId": "<unique request identifier>",
   "result": {
     "<index>": {
-      "mappings": {
+      "mappings": { // Data mapping using ElasticSearch mapping syntax
         "<collection>": {
-
-          // Data mapping using ElasticSearch mapping syntax
           "properties": {
             "field1": {type: "field type", "...options..." },
             "field2": {type: "field type", "...options..." },

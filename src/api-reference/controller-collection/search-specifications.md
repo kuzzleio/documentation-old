@@ -46,7 +46,7 @@ title: searchSpecifications
       "Some": "filters"
     }
   },
-  
+
   "from": 0,
   "size": 42,
   "scroll": "<time to live>"
@@ -57,8 +57,8 @@ title: searchSpecifications
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200, // Assuming everything went well
+  "error": null, // Assuming everything went well
   "controller": "collection",
   "action": "searchSpecifications",
   "volatile": {},
