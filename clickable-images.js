@@ -14,7 +14,7 @@ module.exports = options => {
         let $ = cheerio.load(files[file].contents.toString())
         let images = $('.content img').each((index, image) => {
           let src = $(image).attr('src')
-          $(image).replaceWith(`<a class="image" href="${src}"><img src="${src}" /></a>`)
+          $(image).wrap(`<a class="image" href="${src}"></a>`)
         })
 
         files[file].contents = new Buffer($.html())

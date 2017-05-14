@@ -15,15 +15,63 @@
     $(document).ready(function() {
       var $toc = $('.toc')
       var $content = $('.content')
-      var compute = function() {
+
+      //----------------------------
+      // fixes toc next to content
+      var debounceComputeSize = false
+      var computeSize = function() {
+        // 280 is the width of left nav / 15 is the margin with content
         $toc.css('left', $content.get('0').offsetLeft + $content.get('0').offsetWidth + 280 + 15 +'px')
+        // 30 is the margin with bottom window
+        $toc.css('max-height', window.innerHeight - $toc.get('0').offsetTop - 30  + 'px')
       }
 
-      // fixes toc next to content
-      // 280 is the width of left nav / 15 is the margin with content
-      $(window).on('resize', compute)
-      compute()
+      $(window).on('resize', function() {
+        clearTimeout(debounceComputeSize)
+        debounceComputeSize = setTimeout(computeSize, 20)
+      })
+      computeSize()
+      //----------------------------
 
+      //---------------------------------------------------------------------
+      // toogle 'active' class on toc link when headings pass window offset
+      var headings = {}
+      var debounceActiveItem = false
+      var computeActiveItem = function() {
+        var lastPassedItem
+
+        for (let key in headings) {
+          headings[key].$link.removeClass('active')
+
+          if (headings[key].offset <= window.pageYOffset + 70) {
+            lastPassedItem = headings[key]
+          }
+        }
+
+        if (lastPassedItem) {
+          lastPassedItem.$link.addClass('active')
+        }
+      }
+
+      $('a[href]', $toc).each(function(index, element) {
+        var id = element.href.slice(element.href.indexOf('#'))
+        var $ref = $(id).parent()
+
+        if ($ref.length > 0) {
+          headings[id] = {
+            $ref: $ref,
+            $link: $(element),
+            offset: $ref.get('0').offsetTop
+          }
+        }
+      })
+
+      $(window).on('scroll', function() {
+        clearTimeout(debounceActiveItem)
+        debounceActiveItem = setTimeout(computeActiveItem, 10)
+      })
+      computeActiveItem()
+      //---------------------------------------------------------------------
 
       $('.language-tab-selector a').on('click', function(e) {
         e.preventDefault();
@@ -87,7 +135,9 @@
       <ul>
         {{#each toc}}
         <li class="toc-item toc-level-{{level}}">
-            <a href="#{{ id }}" title="{{ title }}">{{ title }}</a>
+            <a href="#{{ id }}" title="{{ title }}">
+              {{ title }}
+            </a>
         </li>
         {{/each}}
       </ul>

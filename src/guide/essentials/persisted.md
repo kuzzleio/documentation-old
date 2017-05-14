@@ -427,7 +427,10 @@ you should almost always define mappings when creating collections, preferably b
 
 The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
 
-### Where do we go from here?
+---
+
+## Where do we go from here?
+
 
 * Refer to the [Elasticsearch cookbook](../elasticsearch-cookbook) to get more details on how querying works in Kuzzle.
 * Keep track of the changes on your documents via the [Realtime Notifications](/guide/essentials/real-time).

@@ -109,14 +109,14 @@ The following operating systems are actively supported (64-bit versions only):
 
 ## Step 1 - Retrieve Kuzzle components source code
 
-### 1.1. Create the Kuzzle root directory
+### Create the Kuzzle root directory
 
 ```bash
 mkdir -p "~/kuzzle"
 cd "~/kuzzle"
 ```
 
-### 1.2. Create a directory for Kuzzle Proxy and install it
+### Create a directory for Kuzzle Proxy and install it
 
 ```bash
 cd "~/kuzzle"
@@ -136,7 +136,7 @@ for PLUGIN in ./plugins/enabled/*; do
 done
 ```
 
-### 1.3. Create a directory for Kuzzle Core and install it
+### Create a directory for Kuzzle Core and install it
 
 ```bash
 cd ~/kuzzle
@@ -156,20 +156,20 @@ for PLUGIN in ./plugins/enabled/*; do
 done
 ```
 
-### 1.4. Create a directory for Kuzzle Back Office and [install it](/guide/essentials/installation-backoffice).
+### Create a directory for Kuzzle Back Office and [install it](/guide/essentials/installation-backoffice).
 
 ---
 
 
 ## Step 2 - pm2
 
-### 2.1. Install pm2
+### Install pm2
 
 ```bash
 sudo npm install -g pm2
 ```
 
-### 2.2. Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file)
+### Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file)
 
 ```bash
 echo "apps:
@@ -185,7 +185,7 @@ echo "apps:
   " > ~/kuzzle/pm2.conf.yml
 ```
 
-### 2.3. Run Kuzzle via pm2 and show the logs:
+### Run Kuzzle via pm2 and show the logs:
 
 ```bash
 pm2 start ~/kuzzle/pm2.conf.yml

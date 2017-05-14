@@ -26,7 +26,21 @@ module.exports = function metatoc(options) {
       $(selector).each((index, element) => {
         // extract id, title and heading level
         let id = $(element).attr("id")
-        let title = $(element).text()
+        let title = ''
+        for (var i = 0; i < element.childNodes.length; ++i) {
+          if (element.childNodes[i].type === 'text' && element.childNodes[i].data) {
+            title += element.childNodes[i].data;
+          }
+          else if (element.childNodes[i].name === 'a') {
+            title += element.childNodes[i].childNodes[0].data
+          }
+        }
+
+        if (title.length === 0) {
+          title = $(element).text()
+        }
+
+
         let level = $(element).prop("nodeName").substring(1)
         let html = $(element).html()
 
