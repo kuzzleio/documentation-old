@@ -26,6 +26,8 @@
       <div class="categories">
       <div class="panels">
         {{#each ancestry.members}}
+
+        {{#if (or show-subheader (ne @key 0))}}
           <div class="panel">
             <a href="/{{ path }}">
               <div class="panel-title"><i class="fa {{ icon }}"></i> {{ title }}</div>
@@ -34,6 +36,7 @@
               </div>
             </a>
           </div>
+        {{/if}}
         {{/each}}
 
       </div>

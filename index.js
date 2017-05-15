@@ -99,36 +99,49 @@ const algoliaFileParser = (file, data) => {
  * Usefull handlebars helpers
  */
 handlebars.registerHelper({
-    eq: function (v1, v2) {
-        return v1 === v2
-    },
-    ne: function (v1, v2) {
-        return v1 !== v2
-    },
-    lt: function (v1, v2) {
-        return v1 < v2
-    },
-    gt: function (v1, v2) {
-        return v1 > v2
-    },
-    lte: function (v1, v2) {
-        return v1 <= v2
-    },
-    gte: function (v1, v2) {
-        return v1 >= v2
-    },
-    and: function (v1, v2) {
-        return v1 && v2
-    },
-    or: function (v1, v2) {
-        return v1 || v2
-    },
-    startwith: function (str, substr) {
-        return str.startsWith(substr)
-    },
-    endswith: function (str, substr) {
-        return str.endsWith(substr)
-    }
+  not: function(v) {
+    return !v;
+  },
+  eq: function (v1, v2) {
+    return v1 === v2
+  },
+  ne: function (v1, v2) {
+    return v1 !== v2
+  },
+  lt: function (v1, v2) {
+    return v1 < v2
+  },
+  gt: function (v1, v2) {
+    return v1 > v2
+  },
+  lte: function (v1, v2) {
+    return v1 <= v2
+  },
+  gte: function (v1, v2) {
+    return v1 >= v2
+  },
+  and: function (v1, v2) {
+    return v1 && v2
+  },
+  or: function (v1, v2) {
+    return v1 || v2
+  },
+  startwith: function (str, substr) {
+    return str.startsWith(substr)
+  },
+  endswith: function (str, substr) {
+    return str.endsWith(substr)
+  },
+  firstDefinedOf: function (...args) {
+    return args.find(a => a);
+  },
+  dump: function (foo) {
+    if (this.path.startsWith('sdk-reference/document')) {
+    console.dir(foo);
+    console.log('=======================================================================');
+  }
+    return '';
+  }
 })
 
 // Build site with metalsmith.
@@ -206,9 +219,9 @@ const build = (dev = false) => (done) => {
   if (process.argv.indexOf('--gzip') > -1) {
     metalsmith
       .use(optipng({
-    		pattern: '**/*.png',
-    		options: ['-o7']
-    	}))
+        pattern: '**/*.png',
+        options: ['-o7']
+      }))
       .use(compress())
   }
 
@@ -243,7 +256,7 @@ if (process.argv.indexOf('--dev') > -1) {
 
   require('http').createServer((req, res) => {
     // let header = req.headers['accept-encoding']
-  	// let acceptsGzip = Boolean(header && /gzip/i.test(header))
+    // let acceptsGzip = Boolean(header && /gzip/i.test(header))
     // let file = '/build' + req.url
     // let gziped = false
     //

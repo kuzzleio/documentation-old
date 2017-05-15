@@ -6,6 +6,8 @@ language-tab:
   php: PHP
 algolia: true
 title: Document
+show-subheader: true
+subheader-title: Constructor
 order: 4
 ---
 
