@@ -30,6 +30,8 @@ The default format for access logs mimics [Apache combined log format](https://h
 For protocols other than http, the verb is arbitrary set to _DO_ and the url is computed based on the request `controller`, `action` and `index`, `collection` and `_id` if provided:
 
 ```bash
+#!/bin/bash
+
 # ::ffff:172.23.0.1 - - [24/Apr/2017:14:02:19 +0000] "DO /server/now WEBSOCKET" 200 193 - -
 ```
 

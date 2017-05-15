@@ -72,6 +72,8 @@ If you are running Kuzzle in a Docker container, you will need to enter the cont
 Go to the Kuzzle installation directory and type:
 
 ```bash
+#!/bin/bash
+
 cd "plugins/available"
 git clone https://github.com/kuzzleio/kuzzle-plugin-helloworld.git
 

@@ -5,17 +5,7 @@ title: Authentication
 order: 1
 ---
 
-# The Kuzzle User Identifier
-
-The kuzzle user identifier is a string that identifies a kuzzle user uniquely. It is used internally to link the user stored in Kuzzle with its credentials within the different authentication strategies.
-
-When a user is created, this identifier can either be set by the request, or generated directly by Kuzzle.
-
-When an authentication strategy stores its credentials in its own storage (internal or external) with its own storage nomenclature they have to store a reference to this value. This way it can retrieve the Kuzzle user identifier when the user credentials are provided during a log in request.
-
----
-
-## Authentication
+# Authentication
 
 Kuzzle uses [PassportJS](http://PassportJS.org/) to enable authentication through a large amount of providers, for example:
 
@@ -32,6 +22,16 @@ Kuzzle uses the following internal components during the authentication process:
 * The Passport Wrapper, which acts as an interface between Kuzzle controllers and the Passport library,
 * The User and Token [Repositories](https://GitHub.com/kuzzleio/kuzzle/tree/master/lib/api/core/models/repositories), to retrieve users' data.
 * The Authentication strategy, implemented within a dedicated plugin.
+
+---
+
+## The Kuzzle User Identifier
+
+The kuzzle user identifier is a string that identifies a kuzzle user uniquely. It is used internally to link the user stored in Kuzzle with its credentials within the different authentication strategies.
+
+When a user is created, this identifier can either be set by the request, or generated directly by Kuzzle.
+
+When an authentication strategy stores its credentials in its own storage (internal or external) with its own storage nomenclature they have to store a reference to this value. This way it can retrieve the Kuzzle user identifier when the user credentials are provided during a log in request.
 
 ---
 

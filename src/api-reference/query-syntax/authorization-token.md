@@ -10,6 +10,8 @@ order: 2
 ## HTTP
 
 ```bash
+#!/bin/bash
+
 curl -H "Authorization: Bearer <encrypted_jwt_token>" "http://localhost:7512/..."
 ```
 

@@ -27,6 +27,8 @@ Before launching Kuzzle, ensure that your system matches the following pre-requi
 Thanks to Docker-compose, running Kuzzle is easy. Just grab the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file, copy it into a directory and start Kuzzle:
 
 ```bash
+#!/bin/bash
+
 sudo sysctl -w vm.max_map_count=262144
 wget http://kuzzle.io/docker-compose.yml
 
@@ -40,12 +42,16 @@ The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="http
 Your terminal will show the log messages of Kuzzle's components starting. After only a few seconds, you should see the following ready message appear:
 
 ```bash
+#!/bin/bash
+
 # kuzzle_1         | [✔] Kuzzle server ready
 ```
 
 Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512?pretty=true">http://localhost:7512?pretty=true</a> or via cURL on the command line:
 
 ```bash
+#!/bin/bash
+
 curl "http://localhost:7512/?pretty=true"
 ```
 
@@ -97,6 +103,8 @@ Before proceeding, ensure that your system matches the following requisites:
 Create your playground directory and install the [Javascript SDK](/sdk-reference) from the command line using npm:
 
 ```bash
+#!/bin/bash
+
 mkdir "kuzzle-playground"
 cd "kuzzle-playground"
 npm install kuzzle-sdk
@@ -127,6 +135,8 @@ collection.createDocument(document)
 Run your file in NodeJS
 
 ```bash
+#!/bin/bash
+
 node create.js
 ```
 
@@ -174,7 +184,9 @@ collection.subscribe(filter, function(error, result) {
 Run your file in NodeJS
 
 ```bash
-$ node subscribe.js
+#!/bin/bash
+
+node subscribe.js
 ```
 
 And let it wait for documents entering the scope of the filter.

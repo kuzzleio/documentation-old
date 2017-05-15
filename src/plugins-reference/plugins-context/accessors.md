@@ -1,11 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: Accessors
+title: acessors
 order: 1
 ---
 
-# Accessors
+# accessors
 
 <aside class="notice">
 <a href="#executing-listeners-in-separate-threads">Plugins executed on separate threads</a> don't have access to accessors.
