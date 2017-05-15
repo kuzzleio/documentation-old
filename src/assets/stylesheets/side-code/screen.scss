@@ -46,6 +46,29 @@
 
     > pre {
       margin: 0 0 30px 30px;
+      .clipboard {
+        background: rgba(255, 255, 255, 0.07);
+        font-size: 11px;
+        opacity: 0;
+        color: #fff;
+
+        i {
+          color: #bbb;
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+
+          i {
+            color: #fff;
+          }
+        }
+      }
+      &:hover {
+        .clipboard {
+          opacity: 1;
+        }
+      }
     }
 
     > .language-tab-selector,

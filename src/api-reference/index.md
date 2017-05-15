@@ -6,7 +6,7 @@ description: Learn low-level Kuzzle API
 icon: fa-code
 ---
 
-# Introduction
+# API Reference
 
 <aside class="warning">
 This documentation is exposing the low-level API to Kuzzle.  

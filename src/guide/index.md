@@ -6,7 +6,7 @@ description: Learn how to use Kuzzle
 icon: fa-map
 ---
 
-# Introduction
+# Guide
 
 Kuzzle is a ready-to-use, **on-premises backend** that enables you to manage your persistent data and be notified in real-time on whatever happens to it. It also provides you with a flexible and powerful user-management system.
 

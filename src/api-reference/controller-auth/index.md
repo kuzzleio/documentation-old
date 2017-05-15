@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: auth
-separator: Controllers
+separator: Controllers reference
 order: 6
 ---
 
