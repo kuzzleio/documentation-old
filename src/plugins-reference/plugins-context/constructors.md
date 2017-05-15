@@ -1,11 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: Constructors
+title: constructors
 order: 2
 ---
 
-# Constructors
+# constructors
 
 ---
 

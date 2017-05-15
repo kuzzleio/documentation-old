@@ -22,6 +22,8 @@ Get the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file,
 In this case, you need to increase the maximum virtual memory allowed by typing
 
 ```bash
+#!/bin/bash
+
 sudo sysctl -w vm.max_map_count=262144
 wget http://kuzzle.io/docker-compose.yml
 docker-compose up
@@ -29,6 +31,8 @@ docker-compose up
 
 To persist this changes add this line to your `/etc/sysctl.conf`
 ```bash
+#!/bin/bash
+
 echo "vm.max_map_count=262144" >> /etc/sysctl.conf
 ```
 
@@ -39,12 +43,16 @@ The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="http
 Your terminal will show the log messages of Kuzzle's components starting. After only a few seconds, you should see the following ready message appear:
 
 ```bash
+#!/bin/bash
+
 # kuzzle_1         | [✔] Kuzzle server ready
 ```
 
 Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512">http://localhost:7512</a> or via cURL on the command line:
 
 ```bash
+#!/bin/bash
+
 curl "http://localhost:7512/?pretty"
 ```
 
@@ -54,6 +62,8 @@ Kuzzle will respond you with a list of the existing routes.
 ### Useful commands list
 
 ```bash
+#!/bin/bash
+
 # Updating docker images used by Kuzzle:  
 docker-compose -f "<docker-compose-file.yml>" pull
 
@@ -112,6 +122,8 @@ The following operating systems are actively supported (64-bit versions only):
 ### Create the Kuzzle root directory
 
 ```bash
+#!/bin/bash
+
 mkdir -p "~/kuzzle"
 cd "~/kuzzle"
 ```
@@ -119,6 +131,8 @@ cd "~/kuzzle"
 ### Create a directory for Kuzzle Proxy and install it
 
 ```bash
+#!/bin/bash
+
 cd "~/kuzzle"
 git clone https://github.com/kuzzleio/kuzzle-proxy.git
 cd "kuzzle-proxy"
@@ -139,6 +153,8 @@ done
 ### Create a directory for Kuzzle Core and install it
 
 ```bash
+#!/bin/bash
+
 cd ~/kuzzle
 git clone https://github.com/kuzzleio/kuzzle.git
 cd kuzzle
@@ -166,12 +182,16 @@ done
 ### Install pm2
 
 ```bash
+#!/bin/bash
+
 sudo npm install -g pm2
 ```
 
 ### Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file)
 
 ```bash
+#!/bin/bash
+
 echo "apps:
    - name: kuzzle-proxy
      cwd: ${KUZZLE_PROXY_INSTALL_DIR}
@@ -188,6 +208,8 @@ echo "apps:
 ### Run Kuzzle via pm2 and show the logs:
 
 ```bash
+#!/bin/bash
+
 pm2 start ~/kuzzle/pm2.conf.yml
 pm2 logs
 ```
@@ -195,6 +217,8 @@ pm2 logs
 After only a few seconds, you will see the following ready message appear:
 
 ```bash
+#!/bin/bash
+
 # kuzzle_1         | [✔] Kuzzle server ready
 ```
 
@@ -211,6 +235,8 @@ Please refer to the [Kuzzle configuration section](/guide/essentials/configurati
 #### Useful commands list
 
 ```bash
+#!/bin/bash
+
 # howing Kuzzle logs:
 pm2 logs
 

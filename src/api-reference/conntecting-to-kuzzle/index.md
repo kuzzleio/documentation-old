@@ -27,6 +27,8 @@ With this you will get detailed information about available HTTP API routes.
 ### Examples
 
 ```bash
+#!/bin/bash
+
 curl "http://localhost:7512/"
 ```
 
@@ -76,6 +78,8 @@ forth to Kuzzle, and notifications/responses from Kuzzle back to your applicatio
 
 
 ```bash
+#!/bin/bash
+
 # shell 1
 node_modules/.bin/mqtt subscribe -v -h rabbit -t Kuzzle
 

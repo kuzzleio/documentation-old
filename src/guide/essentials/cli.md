@@ -20,6 +20,8 @@ If you are running Kuzzle in a Docker container, you will have to <a href="https
 </aside>
 
 ```bash
+#!/bin/bash
+
 ./bin/kuzzle
 
 #   Usage: kuzzle [options] [command]
@@ -47,6 +49,8 @@ If you are running Kuzzle in a Docker container, you will have to <a href="https
 ## createFirstAdmin
 
 ```bash
+#!/bin/bash
+
 ./bin/kuzzle createFirstAdmin
 ```
 
@@ -61,6 +65,8 @@ The `createFirstAdmin` command lets you define an administrator user and set you
 ## clearCache
 
 ```bash
+#!/bin/bash
+
 ./bin/kuzzle clearCache
 ```
 
@@ -71,6 +77,8 @@ Kuzzle relies on the Redis service to store frequently accessed internal data. I
 ## dump
 
 ```bash
+#!/bin/bash
+
 ./bin/kuzzle dump
 
 # [ℹ] Creating dump file...
@@ -97,6 +105,8 @@ The generated directory can be used to feed a crash report to the support team i
 ## reset
 
 ```bash
+#!/bin/bash
+
 ./bin/kuzzle reset --help
 
 #    Usage: reset [options]
@@ -120,6 +130,8 @@ Only Kuzzle internal data are cleaned up: this command has no impact over plugin
 ## shutdown
 
 ```bash
+#!/bin/bash
+
 ./bin/kuzzle shutdown
 
 # [ℹ] Shutting down...
@@ -133,6 +145,8 @@ The `shutdown` command allows to stop a Kuzzle Core instance after remaining req
 ## start
 
 ```bash
+#!/bin/bash
+
 ./bin/kuzzle start --help
 
 #    Usage: start [options]
