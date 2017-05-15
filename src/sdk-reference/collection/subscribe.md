@@ -93,9 +93,7 @@ kuzzle
 
 Subscribes to this data collection with a set of filters.
 
-<aside class="notice">
-To subscribe to the entire data collection, simply provide an empty filter.
-</aside>
+The provided callback will be called everytime a [notification](/sdk-reference/essentials/notifications) is received from Kuzzle.
 
 ---
 
