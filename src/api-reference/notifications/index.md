@@ -3,6 +3,7 @@ layout: full.html
 algolia: true
 title: Notifications
 description: understand Kuzzle real-time notifications mechanisms
+show-subheader: true
 order: 5
 ---
 

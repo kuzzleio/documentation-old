@@ -4,6 +4,8 @@ algolia: true
 title: The plugin context
 description: plugin initialization context attribute reference
 order: 4
+show-subheader: true
+subheader-title: Introductions
 ---
 
 # The plugin context

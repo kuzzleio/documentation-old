@@ -4,9 +4,11 @@ algolia: true
 title: Kuzzle in depth
 description: understand how to extend kuzzle
 order: 4
+show-subheader: true
+subheader-title: Architecture
 ---
 
-# Kuzzle in depth
+# Architecture
 
 In this section we'll take a deeper look at the Kuzzle Core internals.
 

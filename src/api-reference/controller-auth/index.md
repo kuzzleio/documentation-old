@@ -5,5 +5,3 @@ title: auth
 separator: Controllers reference
 order: 6
 ---
-
-# auth controller

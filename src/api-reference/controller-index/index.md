@@ -4,5 +4,3 @@ algolia: true
 title: index
 order: 10
 ---
-
-# index controller

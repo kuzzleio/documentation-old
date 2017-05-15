@@ -4,6 +4,8 @@ algolia: true
 title: Plugins features
 description: understand Kuzzle plugins mechanisms
 order: 2
+show-subheader: true
+subheader-title: Introduction
 ---
 
 
