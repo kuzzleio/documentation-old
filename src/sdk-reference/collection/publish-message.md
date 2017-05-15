@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: publishMessage
 ---
 
-# publishMessage
+## publishMessage
 
 ```js
 kuzzle
@@ -43,30 +46,46 @@ catch (ErrorException $e) {
 }
 ```
 
-Publish a realtime message
+Publish a real-time message.
 
-## publishMessage(Document, [options], [callback])
+---
 
-## publishMessage(content, [options], [callback])
+
+### publishMessage(Document, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``Document`` | object | Document object |
+| ``Document`` | object | [Document](/sdk-reference/document/) object |
+| ``options`` | JSON Object | Optional parameters |
+| ``callback`` | function | Optional callback |
+
+---
+
+### publishMessage(content, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
 | ``content`` | JSON Object | Content of the document to publish |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
-## Return value
+---
+
+### Return value
 
 Returns the `Collection` object to allow chaining.
 
-## Callback response
+---
+
+### Callback response
 
 Resolves to a raw Kuzzle response in JSON format.

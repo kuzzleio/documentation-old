@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: updateDocument
 ---
 
-# updateDocument
+## updateDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -66,10 +69,12 @@ catch (ErrorException $e) {
 }
 ```
 
-Update parts of a document, by replacing some fields or adding new ones.
+Update parts of a document, by replacing some fields or adding new ones.  
 Note that you cannot remove fields this way: missing fields will simply be left unchanged.
 
-## updateDocument(documentId, content, [options], [callback])
+---
+
+### updateDocument(documentId, content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -78,7 +83,9 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -87,10 +94,14 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 | `retryOnConflict` | int | Number of retries to attempt before rejecting this update because of a cluster sync conflict | `0` |
 
-## Return value
+---
+
+### Return value
 
 Returns the `Collection` object to allow chaining.
 
-## Callback response
+---
 
-Resolves to an up-to-date `Document` object.
+### Callback response
+
+Resolves to an up-to-date [Document](/sdk-reference/document/) object.

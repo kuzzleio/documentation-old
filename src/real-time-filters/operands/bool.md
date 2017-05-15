@@ -10,14 +10,14 @@ A filter matching documents matching boolean combinations of other queries.
 
 This operand accepts the following attributes:
 
-* `must`: all listed conditions must be true
-* `must_not`: all listed conditions must be false
-* `should`: one of the listed condition must be true
-* `should_not`: one of the listed condition must be false
+* `must` all listed conditions must be `true`
+* `must_not` all listed conditions must be `false`
+* `should` one of the listed condition must be `true`
+* `should_not` one of the listed condition must be `false`
 
 Each one of these attributes are an array of filter objects.
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -43,7 +43,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the second document:
+## The following filter validates the second document:
 
 ```javascript
 {

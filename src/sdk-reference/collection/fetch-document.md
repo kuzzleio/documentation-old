@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: fetchDocument
 ---
 
-# fetchDocument
+## fetchDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -61,9 +64,11 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves a single stored document using its unique document ID.
+Retrieves a single stored document using its unique document ID, and returns it as a [Document](/sdk-reference/document/) object.
 
-## fetchDocument(documentId, [options], callback)
+---
+
+### fetchDocument(documentId, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -71,14 +76,16 @@ Retrieves a single stored document using its unique document ID.
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
+---
 
-### Available options:
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+---
 
-## Callback response
+### Callback response
 
-Resolves to a `Document` object.
+Resolves to a [Document](/sdk-reference/document/) object.

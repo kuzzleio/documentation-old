@@ -70,7 +70,8 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
 }
 ```
 
-Take some time to examine the content of a [Kuzzle Response](#request-and-response-format). You may notice that it contains useful information like the name of the controller and action that correspond to the HTTP route we hit with our request, or the complete KuzzleDocument object we just created.
+
+Take some time to examine the content of a [Kuzzle Response](/guide/essentials/status-code). You may notice that it contains useful information like the name of the controller and action that correspond to the HTTP route we hit with our request, or the complete KuzzleDocument object we just created.
 
 One more thing you may notice is that `myindex` and `mycollection` are created on-the-fly along with the document. Let's verify it by [**getting the list of collections**](../api-reference/?http#list) stored in `myindex` by sending a `GET` request to `http://localhost:7512/myindex/_list`.
 
@@ -97,7 +98,7 @@ One more thing you may notice is that `myindex` and `mycollection` are created o
 }
 ```
 
-Take a look at the `result` field in the Response from Kuzzle. It contains an array of `collections`, each one defined by a `name` and a `type`. `mycollection` is of type `stored` (which stands for persistent). This is made to distinguish persisted collection from the `realtime` (or volatile) collections, used to identify [real-time documents](#real-time-notifications).
+Take a look at the `result` field in the Response from Kuzzle. It contains an array of `collections`, each one defined by a `name` and a `type`. `mycollection` is of type `stored` (which stands for persistent). This is made to distinguish persisted collection from the `realtime` (or volatile) collections, used to identify [real-time documents](/guide/essentials/real-time).
 
 Let's [**modify to our brand new document**](../api-reference/?http#update) by sending a `PUT` request to `http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0/_update` with the body set to:
 
@@ -426,7 +427,10 @@ you should almost always define mappings when creating collections, preferably b
 
 The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
 
-### Where do we go from here?
+---
+
+## Where do we go from here?
+
 
 * Refer to the [Elasticsearch cookbook](../elasticsearch-cookbook) to get more details on how querying works in Kuzzle.
-* Keep track of the changes on your documents via the [Realtime Notifications](#real-time-notifications).
+* Keep track of the changes on your documents via the [Realtime Notifications](/guide/essentials/real-time).

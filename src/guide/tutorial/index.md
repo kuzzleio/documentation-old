@@ -2,6 +2,7 @@
 layout: full.html
 algolia: true
 title: Tutorial
+description: learn kuzzle in a real case
 order: 3
 ---
 

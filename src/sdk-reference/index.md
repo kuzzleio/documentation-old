@@ -6,4 +6,4 @@ description: The multi-language reference for all the Kuzzle SDK.
 icon: fa-briefcase
 ---
 
-# sdk reference
+# SDK Reference

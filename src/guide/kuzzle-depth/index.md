@@ -2,6 +2,7 @@
 layout: full.html
 algolia: true
 title: Kuzzle in depth
+description: understand how to extend kuzzle
 order: 4
 ---
 

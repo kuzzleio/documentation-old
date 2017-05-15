@@ -1,6 +1,9 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: refresh
 ---
@@ -53,6 +56,8 @@ try {
 
 Creates a new `Document` object with the last version of this document stored in Kuzzle.
 
+---
+
 ### refresh([options], callback)
 
 | Arguments | Type | Description |
@@ -60,13 +65,15 @@ Creates a new `Document` object with the last version of this document stored in
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback |
 
+---
 
-Available options:
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+---
 
 ### Callback response
 

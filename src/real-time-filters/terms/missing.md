@@ -8,7 +8,7 @@ title: missing
 
 A filter matching documents with a missing field.
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -26,7 +26,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the second document:
+## The following filter validates the second document:
 
 ```javascript
 {

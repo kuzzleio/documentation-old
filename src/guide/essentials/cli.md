@@ -121,6 +121,7 @@ Only Kuzzle internal data are cleaned up: this command has no impact over plugin
 
 ```bash
 ./bin/kuzzle shutdown
+
 # [ℹ] Shutting down...
 # [✔] Done!
 ```

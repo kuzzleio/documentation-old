@@ -1,21 +1,33 @@
 <div class="nav-sibling bottom">
   <div class="nav-left">
     <p>
-      <a href="#">report an issue</a>
+      <a href="https://github.com/{{ gh_repo }}/issues/new?labels={{ ancestry.parent.path }}&title=Feedback%20about%20page%20'{{ src }}'">send feedback about this content</a>
       |
-      <a href="https://github.com/stafyniaksacha/poc-metalsmith/edit/master/src/{{ src }}">edit on github<i class="icon icon-github icon-small" style="color: #afafaf; font-size: 12px; vertical-align: text-bottom; margin-left: 6px;"></i></a>
+      <a href="https://github.com/{{ gh_repo }}/edit/{{ gh_branch }}/src/{{ src }}">edit on github<i class="icon icon-github icon-small" style="color: #afafaf; font-size: 12px; vertical-align: text-bottom; margin-left: 6px;"></i></a>
     </p>
   </div>
   <div class="nav-right">
     <p>
       {{#if ancestry.prevMember}}
       <a href="/{{ ancestry.prevMember.path }}">« {{ ancestry.prevMember.title }}</a>
+      {{else}}
+        {{#if ancestry.prevSibling}}
+        <a href="/{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
+        {{/if}}
       {{/if}}
-      {{#if (and ancestry.prevMember ancestry.nextMember)}}
+      {{#if (and (or ancestry.prevMember ancestry.prevSibling) (or ancestry.nextMember (or ancestry.nextSibling ancestry.firstMember.ancestry.nextSibling)))}}
        |
       {{/if}}
       {{#if ancestry.nextMember}}
       <a href="/{{ ancestry.nextMember.path }}">{{ ancestry.nextMember.title }} »</a>
+      {{else}}
+        {{#if ancestry.nextSibling}}
+        <a href="/{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>
+        {{else}}
+          {{#if ancestry.firstMember.ancestry.nextSibling}}
+          <a href="/{{ ancestry.firstMember.ancestry.nextSibling.path }}">{{ ancestry.firstMember.ancestry.nextSibling.title }} »</a>
+          {{/if}}
+        {{/if}}
       {{/if}}
     </p>
   </div>

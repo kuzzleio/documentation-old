@@ -13,7 +13,7 @@ A bounding box is a 2D box that can be defined using:
 1. 2 points coordinates tuples, defining the top left and bottom right corners of the box
 2. 4 values defining the 4 box sides: ```top``` and ```bottom``` are latitudes, and ```left``` and ```right``` are longitudes
 
-All of these representations are defining the same bounding box:
+### All of these representations are defining the same bounding box:
 
 ```javascript
 {
@@ -74,7 +74,7 @@ As a string, the coordinates format is "lat, lon"
 }
 ```
 
-Here is the [geoHash](https://en.wikipedia.org/wiki/Geohash) representation
+### Here is the [geoHash](https://en.wikipedia.org/wiki/Geohash) representation
 
 ```javascript
 {
@@ -92,7 +92,7 @@ Here is the [geoHash](https://en.wikipedia.org/wiki/Geohash) representation
 
 ![Illustration of geoBoundingBox](/assets/images/geolocation/geoBoundingBox.png)
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -113,7 +113,7 @@ Given the following documents:
 }
 ```
 
-The following filter will match the second document only:
+## The following filter will match the second document only:
 
 ```javascript
 geoBoundingBox: {

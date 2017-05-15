@@ -1,6 +1,9 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: set
 ---
@@ -44,12 +47,16 @@ $dataMapping->set($field, $mapping);
 
 Adds or updates a field mapping.
 
+---
+
 ### set(field, mapping)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``field`` | string | Name of the field from which the mapping is to be added or updated |
 | ``mapping`` | JSON Object | Mapping for this field, following the [Elasticsearch Mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html)
+
+---
 
 ### Return value
 

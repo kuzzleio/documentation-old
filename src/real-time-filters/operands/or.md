@@ -8,7 +8,7 @@ title: or
 
 The `or` filter takes an array containing filter objects, combining them using OR operands.
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -31,7 +31,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the first two documents:
+## The following filter validates the first two documents:
 
 ```javascript
 {

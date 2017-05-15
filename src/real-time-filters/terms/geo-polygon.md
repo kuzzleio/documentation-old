@@ -13,7 +13,7 @@ The last point do not have to be the same as the first one, but the points must 
 
 For each polygon points, all the possible point notations are valid (see above).
 
-Example of a valid polygon representation:
+### Example of a valid polygon representation:
 
 ```javascript
 {
@@ -28,7 +28,7 @@ Example of a valid polygon representation:
 
 ![Illustration of geoPolygon](/assets/images/geolocation/geoPolygon.png)
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -49,7 +49,7 @@ Given the following documents:
 }
 ```
 
-The following filter will match the second document only:
+## The following filter will match the second document only:
 
 ```javascript
 geoPolygon: {

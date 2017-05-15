@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: setHeaders
 ---
 
-# setHeaders
+## setHeaders
 
 ```js
 kuzzle
@@ -48,7 +51,9 @@ $dataCollection->setHeaders($headers, true);
 
 This is a helper function returning itself, allowing to easily set headers while chaining calls.
 
-## setHeaders(content, [replace])
+---
+
+### setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -57,6 +62,8 @@ This is a helper function returning itself, allowing to easily set headers while
 
 **Note:** by default, the ``replace`` argument is set to ``false``
 
-## Return value
+---
+
+### Return value
 
 Returns the `Collection` object to allow chaining.

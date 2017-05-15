@@ -8,7 +8,7 @@ title: in
 
 This filter allows testing a string field against multiple possibilities.
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -25,7 +25,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the first two documents:
+## The following filter validates the first two documents:
 
 ```javascript
 in: {

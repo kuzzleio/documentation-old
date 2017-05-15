@@ -2,6 +2,7 @@
 layout: full.html
 algolia: true
 title: Request Life-Cycle
+order: 0
 ---
 
 # Request Life-Cycle
@@ -29,7 +30,7 @@ The following diagram shows how the Request flows between the client application
 
 The formatted Request `input` looks like the following:
 
-```json
+```javascript
 {
   "controller": "read",
   "action": "get",
@@ -47,7 +48,7 @@ The formatted Request `input` looks like the following:
 
 The content returned by Elasticsearch looks like the following:
 
-```json
+```javascript
 {
   "_index": "mainindex",
   "_type": "users",
@@ -83,7 +84,7 @@ The following diagram shows how the Request flows between the client application
 
 * The client application opens a Websocket connection to Kuzzle Proxy and emits a "read" event containing the request. For instance, to retrieve the document `739c26bc-7a09-469a-803d-623c4045b0cb` in the collection `users`:
 
-```json
+```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
   "action": "get",
@@ -106,7 +107,7 @@ The client then listens to the `<requestId>` event on the socket, like the follo
 
 The formatted Request `input` looks like the following:
 
-```json
+```javascript
 {
   "controller": "read",
   "action": "get",
@@ -124,7 +125,7 @@ The formatted Request `input` looks like the following:
 
 The content returned by Elasticsearch looks like the following:
 
-```json
+```javascript
 {
   "_index": "mainindex",
   "_type": "users",
@@ -173,7 +174,7 @@ Detailed workflow:
 * A client sends new content to Kuzzle, either via an HTTP request, through a Websocket connection or using a custom plugin protocol.
 * The router handles the Request and forwards the message to the Funnel.
 
-```json
+```javascript
 {
   "status": 102,
   "id": "...", // ... The connection id
@@ -224,7 +225,7 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 
 * The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation](../api-reference/#subscribe)). For instance, to be notified about all contents posted to the collection `users`, containing a field `hobby` equals to `computer`:
 
-```json
+```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
   "index": "mainindex",
@@ -254,7 +255,7 @@ Sample Javascript code, using Websocket:
 
 * The Router interprets the input request and transfer the subscription message to the Funnel.
 
-```json
+```javascript
 {
   "index": "mainindex",
   "collection": "users",
@@ -275,7 +276,7 @@ Sample Javascript code, using Websocket:
 
 Sample response content:
 
-```json
+```javascript
 {
   "status": 200,
   "error": null,

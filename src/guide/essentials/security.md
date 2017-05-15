@@ -15,7 +15,7 @@ Kuzzle provides a full set of functionalities to finely define the permissions f
 
 When installing Kuzzle for the very first time, no default user is created and the Anonymous user is allowed to perform any action on the data. The only restriction is on the internal data storage used by Kuzzle to store its configuration.
 
-Once a first admin user is created, either via the [Kuzzle Back Office](#create-an-admin-account) or the [CLI](#createfirstadmin), the Anonymous permissions are dropped.
+Once a first admin user is created, either via the [Kuzzle Back Office](/guide/essentials/running-backoffice/#create-an-admin-account ) or the [CLI](/guide/essentials/cli/#createfirstadmin), the Anonymous permissions are dropped.
 
 You can then use the Back Office to administrate your user rights.
 
@@ -240,4 +240,4 @@ var role = {
 };
 ```
 
-See more details at [Core documentation section](#permission-closures)
+See more details at [Core documentation section](/guide/kuzzle-depth/roles-definitions)

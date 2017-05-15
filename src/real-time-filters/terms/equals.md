@@ -8,7 +8,7 @@ title: equals
 
 The `equals` filter matches documents or messages attributes using string equality.
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -21,7 +21,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the first document:
+## The following filter validates the first document:
 
 ```javascript
 equals: {

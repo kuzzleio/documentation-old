@@ -7,6 +7,7 @@ let server;
 
 const defaults = {
   debug: false,
+  delay: 0,
   script: `<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>`
 };
 
@@ -24,7 +25,7 @@ module.exports = function (options) {
 
   if (!server) {
     debug('Starting livereload server.');
-    server = livereload.createServer({ debug: options.debug });
+    server = livereload.createServer({ debug: options.debug, delay: options.delay });
   }
 
   return function (files, metalsmith, done) {

@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: fetchAllDocuments
 ---
 
-# fetchAllDocuments
+## fetchAllDocuments
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -82,7 +85,9 @@ catch (ErrorException $e) {
 
 Retrieves all documents stored in this data collection.
 
-## fetchAllDocuments([options], callback)
+---
+
+### fetchAllDocuments([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -90,7 +95,9 @@ Retrieves all documents stored in this data collection.
 | ``callback`` | function | Callback handling the response |
 
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -98,9 +105,11 @@ Retrieves all documents stored in this data collection.
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``size`` | integer | Lower bounds for paginated results. | ``10`` |
 
-## Callback response
+---
+
+### Callback response
 
 Resolves to an object containing:
 
 - the total number of retrieved documents
-- a `array` of `Document` objects
+- a `array` of [Document](/sdk-reference/document/) objects
