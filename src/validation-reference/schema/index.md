@@ -2,6 +2,7 @@
 layout: full.html
 algolia: true
 title: Schema Structure
+description: understand Kuzzle validation mechanisms
 order: 0
 ---
 
