@@ -163,6 +163,8 @@ You can receive the following types of notifications:
 ### MQTT
 
 ```bash
+#!/bin/bash
+
 # shell 1 - getting direct responses from kuzzle
 node_modules/.bin/mqtt subscribe -v -h rabbit -t mqtt.myId
 

@@ -40,7 +40,9 @@ The name of the environment variables must mimic the structure of the configurat
 * the `__` correspond to the levels of nesting in the configuration object (e.g. `kuzzle_services__proxyBroker__host` corresponds to `services.proxyBroker.host`).
 
 ```bash
-$ kuzzle_services__proxyBroker__host=<PROXY_HOST> node bin/kuzzle start
+#!/bin/bash
+
+kuzzle_services__proxyBroker__host="<PROXY_HOST>" node bin/kuzzle start
 ```
 
 Environment variables are particularly handy to set your custom configuration **through a Docker container**. It is very easy to pass environment variables via the `environment` section of a `docker-compose.yml` file. Take a look at how we pass environment variables to Kuzzle in our default docker-compose file:

@@ -190,7 +190,7 @@ const build = (dev = false) => (done) => {
   if (dev) {
     metalsmith
       .use(debug())
-      .use(livereload({ debug: true, delay: 500 }))
+      .use(livereload({ debug: false, delay: 500 }))
   }
   else {
     metalsmith
