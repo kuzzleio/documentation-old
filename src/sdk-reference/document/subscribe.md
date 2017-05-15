@@ -62,6 +62,8 @@ Room room = document.subscribe(new ResponseListener<NotificationResponse>() {
 Listens to changes occuring on this document.
 Throws an error if this document has not yet been created in Kuzzle.
 
+The provided callback will be called everytime a [notification](/sdk-reference/essentials/notifications) is received from Kuzzle.
+
 ---
 
 ## subscribe([options], callback)
