@@ -68,7 +68,7 @@ Once a field mapping has been set, it cannot be removed without reconstructing t
 
 ---
 
-### CollectionMapping(Collection, [mapping])
+## CollectionMapping(Collection, [mapping])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

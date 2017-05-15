@@ -8,7 +8,7 @@ algolia: true
 title: delete
 ---
 
-## delete
+# delete
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -58,7 +58,7 @@ Deletes this document in Kuzzle.
 
 ---
 
-### delete([options], [callback])
+## delete([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -67,7 +67,7 @@ Deletes this document in Kuzzle.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -77,6 +77,6 @@ Deletes this document in Kuzzle.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to a string containing the deleted document ID

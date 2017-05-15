@@ -8,7 +8,7 @@ algolia: true
 title: fetchDocument
 ---
 
-## fetchDocument
+# fetchDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -68,7 +68,7 @@ Retrieves a single stored document using its unique document ID, and returns it 
 
 ---
 
-### fetchDocument(documentId, [options], callback)
+## fetchDocument(documentId, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -78,7 +78,7 @@ Retrieves a single stored document using its unique document ID, and returns it 
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -86,6 +86,6 @@ Retrieves a single stored document using its unique document ID, and returns it 
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to a [Document](/sdk-reference/document/) object.

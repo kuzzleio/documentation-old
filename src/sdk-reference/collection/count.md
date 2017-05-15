@@ -8,7 +8,7 @@ algolia: true
 title: count
 ---
 
-## count
+# count
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -74,7 +74,7 @@ Returns the number of documents matching the provided set of filters.
 
 ---
 
-### count(filters, [options], callback)
+## count(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -84,7 +84,7 @@ Returns the number of documents matching the provided set of filters.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -92,6 +92,6 @@ Returns the number of documents matching the provided set of filters.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to the matched documents count as a ``integer``.

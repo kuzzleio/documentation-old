@@ -8,7 +8,7 @@ algolia: true
 title: apply
 ---
 
-## apply
+# apply
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -53,7 +53,7 @@ Applies the new mapping to the data collection.
 
 ---
 
-### apply([options], [callback])
+## apply([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -62,7 +62,7 @@ Applies the new mapping to the data collection.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -70,12 +70,12 @@ Applies the new mapping to the data collection.
 
 ---
 
-### Return value
+## Return value
 
 Returns this `CollectionMapping` object to allow chaining.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to this updated `CollectionMapping` object.

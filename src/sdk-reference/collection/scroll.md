@@ -8,7 +8,7 @@ algolia: true
 title: scroll
 ---
 
-## scroll
+# scroll
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -93,7 +93,7 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 
 ---
 
-### scroll(scrollId, [options], callback)
+## scroll(scrollId, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -103,7 +103,7 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -116,6 +116,6 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to an instantiated [SearchResult](/sdk-reference/search-result) object.
