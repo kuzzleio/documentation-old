@@ -6,7 +6,7 @@ description: Kuzzle Realtime DSL Reference
 icon: fa-commenting-o
 ---
 
-# Introduction
+# Real-time filters
 
 This documentation section details the filtering syntax of **subscriptions**.  
 This is different from document searches, which are performed using [Elasticsearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html)
