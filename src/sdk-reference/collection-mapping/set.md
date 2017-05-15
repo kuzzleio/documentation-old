@@ -8,7 +8,7 @@ algolia: true
 title: set
 ---
 
-## set
+# set
 
 ```js
 dataMapping.set('field', {type: 'string', index: 'analyzed', null_value: ''});
@@ -49,7 +49,7 @@ Adds or updates a field mapping.
 
 ---
 
-### set(field, mapping)
+## set(field, mapping)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -58,6 +58,6 @@ Adds or updates a field mapping.
 
 ---
 
-### Return value
+## Return value
 
 Returns this `CollectionMapping` object to allow chaining.

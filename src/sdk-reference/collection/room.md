@@ -8,7 +8,7 @@ algolia: true
 title: room
 ---
 
-## room
+# room
 
 ```js
 let room = kuzzle
@@ -54,18 +54,18 @@ Creates a new [Room](/sdk-reference/room/) object, using its constructor.
 
 ---
 
-### room([options])
+## room([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | object | Subscription configuration |
 
-### Options
+## Options
 
 Provided options are passed directly to the [Room](/sdk-reference/room/) object constructor.
 
 ---
 
-### Return value
+## Return value
 
 Returns the newly created [Room](/sdk-reference/room/) object.

@@ -8,7 +8,7 @@ algolia: true
 title: setHeaders
 ---
 
-## setHeaders
+# setHeaders
 
 ```js
 kuzzle
@@ -53,7 +53,7 @@ This is a helper function returning itself, allowing to easily set headers while
 
 ---
 
-### setHeaders(content, [replace])
+## setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -64,6 +64,6 @@ This is a helper function returning itself, allowing to easily set headers while
 
 ---
 
-### Return value
+## Return value
 
 Returns the `Collection` object to allow chaining.

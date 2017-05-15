@@ -4,13 +4,13 @@ algolia: true
 title: Events
 ---
 
-## Events
+# Events
 
 The [Kuzzle object](/sdk-reference/kuzzle/) exposes a set of events triggered on some cases. To subscribe or unsubscribe on these events, simply plug a callback function to the event you want to listen, using the functions [addListener](/sdk-reference/kuzzle/add-listener) and [removeListener](/sdk-reference/kuzzle/remove-listener).
 
 ---
 
-### Exposed events
+## Exposed events
 
 | Event Name | Callback arguments | Description |
 |------------|-------------|-------------|

@@ -8,7 +8,7 @@ algolia: true
 title: createDocument
 ---
 
-## createDocument
+# createDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -82,7 +82,7 @@ Create a new document in Kuzzle and resolves to a [Document](/sdk-reference/docu
 
 ---
 
-### createDocument(Document, [options], [callback])
+## createDocument(Document, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -92,7 +92,7 @@ Create a new document in Kuzzle and resolves to a [Document](/sdk-reference/docu
 
 ---
 
-### createDocument([id], content, [options], [callback])
+## createDocument([id], content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -103,7 +103,7 @@ Create a new document in Kuzzle and resolves to a [Document](/sdk-reference/docu
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -114,12 +114,12 @@ Create a new document in Kuzzle and resolves to a [Document](/sdk-reference/docu
 
 ---
 
-### Return value
+## Return value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to a [Document](/sdk-reference/document/) object containing the newly created document.

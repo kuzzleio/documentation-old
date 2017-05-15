@@ -8,7 +8,7 @@ algolia: true
 title: refresh
 ---
 
-## refresh
+# refresh
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -58,7 +58,7 @@ Creates a new `Document` object with the last version of this document stored in
 
 ---
 
-### refresh([options], callback)
+## refresh([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -67,7 +67,7 @@ Creates a new `Document` object with the last version of this document stored in
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -75,6 +75,6 @@ Creates a new `Document` object with the last version of this document stored in
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to a new `Document` object containing the last document version.

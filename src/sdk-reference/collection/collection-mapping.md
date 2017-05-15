@@ -8,7 +8,7 @@ algolia: true
 title: collectionMapping
 ---
 
-## collectionMapping
+# collectionMapping
 
 ```js
 let dataMapping = kuzzle
@@ -67,7 +67,7 @@ Creates a new [CollectionMapping](/sdk-reference/collection-mapping/) object, us
 
 ---
 
-### collectionMapping([mapping])
+## collectionMapping([mapping])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -75,6 +75,6 @@ Creates a new [CollectionMapping](/sdk-reference/collection-mapping/) object, us
 
 ---
 
-### Return value
+## Return value
 
 Returns the newly created [CollectionMapping](/sdk-reference/collection-mapping/) object.

@@ -8,7 +8,7 @@ algolia: true
 title: document
 ---
 
-## document
+# document
 
 ```js
 let document = kuzzle
@@ -54,7 +54,7 @@ Creates a new [Document](/sdk-reference/document/) object, using its constructor
 
 ---
 
-### document([id], [content])
+## document([id], [content])
 
 | Arguments | Type | Description |
 |-----------|------|-------------|
@@ -63,6 +63,6 @@ Creates a new [Document](/sdk-reference/document/) object, using its constructor
 
 ---
 
-### Return value
+## Return value
 
 Returns the newly created [Document](/sdk-reference/document) object.

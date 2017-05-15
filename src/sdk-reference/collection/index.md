@@ -37,7 +37,7 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 
 ---
 
-### Collection(kuzzle, collection, index)
+## Collection(kuzzle, collection, index)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

@@ -8,7 +8,7 @@ algolia: true
 title: publish
 ---
 
-## publish
+# publish
 
 ```js
 document.publish();
@@ -40,7 +40,7 @@ Publishes the content of this document as a real-time message.
 
 ---
 
-### publish([options])
+## publish([options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -48,7 +48,7 @@ Publishes the content of this document as a real-time message.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -57,6 +57,6 @@ Publishes the content of this document as a real-time message.
 
 ---
 
-### Return value
+## Return value
 
 Returns this `Document` object to allow chaining.
