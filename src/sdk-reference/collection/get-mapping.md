@@ -8,7 +8,7 @@ algolia: true
 title: getMapping
 ---
 
-## getMapping
+# getMapping
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -66,7 +66,7 @@ Retrieves the current mapping of this collection as a [CollectionMapping](/sdk-r
 
 ---
 
-### getMapping([options], callback)
+## getMapping([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -75,7 +75,7 @@ Retrieves the current mapping of this collection as a [CollectionMapping](/sdk-r
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -83,6 +83,6 @@ Retrieves the current mapping of this collection as a [CollectionMapping](/sdk-r
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to a [CollectionMapping](/sdk-reference/collection-mapping/) object.

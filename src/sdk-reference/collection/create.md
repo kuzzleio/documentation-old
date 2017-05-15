@@ -8,7 +8,7 @@ algolia: true
 title: create
 ---
 
-## create
+# create
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -84,7 +84,7 @@ Create a new empty data collection, with no associated mapping.
 
 ---
 
-### create([options], [callback])
+## create([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -93,7 +93,7 @@ Create a new empty data collection, with no associated mapping.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -101,12 +101,12 @@ Create a new empty data collection, with no associated mapping.
 
 ---
 
-### Return value
+## Return value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to a `JSON object` containing the raw Kuzzle response.

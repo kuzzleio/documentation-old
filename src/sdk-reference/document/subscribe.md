@@ -8,7 +8,7 @@ algolia: true
 title: subscribe
 ---
 
-## subscribe
+# subscribe
 
 ```js
 document
@@ -64,7 +64,7 @@ Throws an error if this document has not yet been created in Kuzzle.
 
 ---
 
-### subscribe([options], callback)
+## subscribe([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -73,13 +73,13 @@ Throws an error if this document has not yet been created in Kuzzle.
 
 ---
 
-### Options
+## Options
 
 Options are directly passed to the [Room](/sdk-reference/room/) object constructor.
 
 ---
 
-### Return value
+## Return value
 
 Returns an object exposing the following method:  
   `onDone(callback)`

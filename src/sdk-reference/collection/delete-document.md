@@ -8,7 +8,7 @@ algolia: true
 title: deleteDocument
 ---
 
-## deleteDocument
+# deleteDocument
 
 ```js
 // Deleting one document using callbacks (NodeJS or Web Browser)
@@ -125,7 +125,7 @@ Delete either a stored document, or all stored documents matching search filters
 
 ---
 
-### deleteDocument(documentId, [options], [callback])
+## deleteDocument(documentId, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -135,7 +135,7 @@ Delete either a stored document, or all stored documents matching search filters
 
 ---
 
-### deleteDocument(filters, [options], [callback])
+## deleteDocument(filters, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -145,7 +145,7 @@ Delete either a stored document, or all stored documents matching search filters
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -155,12 +155,12 @@ Delete either a stored document, or all stored documents matching search filters
 
 ---
 
-### Return value
+## Return value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to an `array` containing the deleted document IDs.

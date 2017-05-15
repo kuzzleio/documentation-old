@@ -8,7 +8,7 @@ algolia: true
 title: publishMessage
 ---
 
-## publishMessage
+# publishMessage
 
 ```js
 kuzzle
@@ -51,7 +51,7 @@ Publish a real-time message.
 ---
 
 
-### publishMessage(Document, [options], [callback])
+## publishMessage(Document, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -61,7 +61,7 @@ Publish a real-time message.
 
 ---
 
-### publishMessage(content, [options], [callback])
+## publishMessage(content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -71,7 +71,7 @@ Publish a real-time message.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -80,12 +80,12 @@ Publish a real-time message.
 
 ---
 
-### Return value
+## Return value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to a raw Kuzzle response in JSON format.

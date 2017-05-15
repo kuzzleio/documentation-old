@@ -8,7 +8,7 @@ algolia: true
 title: fetchAllDocuments
 ---
 
-## fetchAllDocuments
+# fetchAllDocuments
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -87,7 +87,7 @@ Retrieves all documents stored in this data collection.
 
 ---
 
-### fetchAllDocuments([options], callback)
+## fetchAllDocuments([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -97,7 +97,7 @@ Retrieves all documents stored in this data collection.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -107,7 +107,7 @@ Retrieves all documents stored in this data collection.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to an object containing:
 

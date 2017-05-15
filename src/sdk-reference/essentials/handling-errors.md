@@ -8,7 +8,7 @@ algolia: true
 title: Handling errors
 ---
 
-## Handling errors
+# Handling errors
 
 ```js
 // Any API request method behave the same way

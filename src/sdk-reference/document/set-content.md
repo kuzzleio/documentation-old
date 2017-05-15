@@ -8,7 +8,7 @@ algolia: true
 title: setContent
 ---
 
-## setContent
+# setContent
 
 ```js
 document.setContent({newContent: 'someValue'}, true);
@@ -46,7 +46,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ---
 
-### setContent(data, [replace])
+## setContent(data, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -57,6 +57,6 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ---
 
-### Return value
+## Return value
 
 Returns this `Document` object to allow chaining.
