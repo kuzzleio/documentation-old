@@ -395,6 +395,40 @@ html, body {
     &>h1, &>h2, &>div {
       //clear:both;
     }
+
+    pre {
+      .clipboard {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        padding: 6px 8px;
+        background: rgba(0, 0, 0, 0.07);
+        border: 0;
+        font-family: Ubuntu,Arial,monospace;
+        font-size: 11px;
+        opacity: 0;
+        outline: none;
+        transition: opacity 0.3s;
+        color: #111;
+
+        i {
+          color: #666;
+        }
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.15);
+
+          i {
+            color: #111;
+          }
+        }
+      }
+      &:hover {
+        .clipboard {
+          opacity: 1;
+        }
+      }
+    }
   }
 
   h1 {
@@ -408,6 +442,10 @@ html, body {
       color: #3498db;
       text-decoration: none;
       font-weight: 600;
+    }
+
+    + ul {
+      margin-top: 25px
     }
   }
 
@@ -434,6 +472,10 @@ html, body {
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     // background-image: linear-gradient(to bottom, rgba(#fff, 0.6), rgba(#fff, 0));
+  }
+
+  hr + h2 {
+    margin-top: 10px
   }
 
   // h2s right after h1s should bump right up
@@ -469,6 +511,7 @@ html, body {
     margin: 2em 0;
     background: #f0f0f0;
     height: 13px;
+    clear: both;
   }
   .heading {
     clear: left;
@@ -548,13 +591,19 @@ html, body {
   }
 
   > code,
+  h1 code,
+  h2 code,
+  h3 code,
+  h4 code,
+  h5 code,
+  h6 code,
   li code,
   p code,
   table code,
   aside code,
   blockquote code {
-    background-color: rgba(0,0,0,0.05);
-    padding: 3px;
+    background-color: rgba(0,0,0,0.1);
+    padding: 3px 5px;
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
@@ -590,11 +639,11 @@ html, body {
       color: $dark;
     }
 
-    &.notice {
-      a {
-        color: #383838;
-      }
-    }
+    // &.notice {
+    //   a {
+    //     color: #383838;
+    //   }
+    // }
   }
 
   aside:before {
@@ -661,6 +710,54 @@ html, body {
     aside.notice a[href^="http"]::after {
       background-image: linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%3E%3Cpath%20fill%3D%22%23fff%22%20stroke%3D%22%23000%22%20d%3D%22M1.5%204.518h5.982V10.5H1.5z%22%2F%3E%3Cpath%20d%3D%22M5.765%201H11v5.39L9.427%207.937l-1.31-1.31L5.393%209.35l-2.69-2.688%202.81-2.808L4.2%202.544z%22%20fill%3D%22%23000%22%2F%3E%3Cpath%20d%3D%22M9.995%202.004l.022%204.885L8.2%205.07%205.32%207.95%204.09%206.723l2.882-2.88-1.85-1.852z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E);
     }
+
+
+      .language-tab {
+        display: none;
+
+        &.language-meta-tab,
+        &.language-tab-active {
+          display: block;
+        }
+      }
+
+      .language-tab-selector {
+        background-color: $dark;
+        font-weight: bold;
+        margin: 10px 0 -10px 0;
+        position: relative;
+        z-index: 50;
+        border-bottom: 4px solid $medium;
+        width: 50%;
+        float: right;
+        clear: right;
+
+        a {
+          display: block;
+          float:left;
+          color: $lang-select-text;
+          text-decoration: none;
+          padding: 0 10px;
+          line-height: 30px;
+          outline: 0;
+
+          &:active, &:focus {
+            background-color: $lang-select-pressed-bg;
+            color: $lang-select-pressed-text;
+          }
+
+          &.language-tab-active {
+            background-color: $medium;
+            color: $dark;
+          }
+        }
+
+        &:after {
+          content: '';
+          clear: both;
+          display: block;
+        }
+      }
   }
 
   .hljs {
@@ -722,12 +819,9 @@ html, body {
 
   blockquote {
     &>p {
-      background-color: $code-annotation-bg;
-      //border-radius: 5px;
+      background-color: #bae8f5;
       padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      color: #002835 !important;
     }
   }
 
@@ -768,7 +862,7 @@ html, body {
 
     > .anchor {
       position:absolute;
-      top:-220px;
+      top:-190px;
     }
   }
 
@@ -815,8 +909,7 @@ html, body {
   .panel-title {
     color: #111;
     text-decoration: none !important;
-    font-family: "Gobold";
-    text-transform: uppercase;
+    font-family: "Ubuntu";
     font-weight: 700;
     font-size: 20px;
   }
@@ -842,52 +935,6 @@ html, body {
   }
 
 
-  .language-tab {
-    display: none;
-
-    &.language-meta-tab,
-    &.language-tab-active {
-      display: block;
-    }
-  }
-
-  .language-tab-selector {
-    background-color: $dark;
-    font-weight: bold;
-    margin: 10px 0 -10px 0;
-    position: relative;
-    z-index: 50;
-    border-bottom: 4px solid $medium;
-    width: 50%;
-    float: right;
-    clear: right;
-
-    a {
-      display: block;
-      float:left;
-      color: $lang-select-text;
-      text-decoration: none;
-      padding: 0 10px;
-      line-height: 30px;
-      outline: 0;
-
-      &:active, &:focus {
-        background-color: $lang-select-pressed-bg;
-        color: $lang-select-pressed-text;
-      }
-
-      &.language-tab-active {
-        background-color: $medium;
-        color: $dark;
-      }
-    }
-
-    &:after {
-      content: '';
-      clear: both;
-      display: block;
-    }
-  }
 }
 
 // RESPONSIVE DESIGN
@@ -1090,31 +1137,91 @@ header nav li.active span {
 }
 
 .developer-nav {
-  text-align: right;
-  padding-right: 100px;
+  text-align: center;
   font-size: 14px;
   display: none;
   border-top: solid 1px #004B52;
-  background: #ffffff;
+  background: #fff;
   height: 41px;
-}
-.developer-nav li.active span {
-  border-bottom: solid 3px $dark;
-  padding-bottom: 4px;
-}
-.developer-nav li:not(.active) a:hover span {
-  border-bottom: solid 3px $dark;
-  padding-bottom: 4px;
-}
-.developer-nav.open {
-  display: block;
-}
-.developer-nav li {
-  display: inline-block;
-  padding: 0 10px;
-}
-.developer-nav li a {
-  color: $dark;
+
+  &.open {
+    display: block;
+  }
+
+  > ul {
+    max-width: 1170px;
+    margin: 0 auto;
+    text-align: right;
+  }
+
+  li {
+    display: inline-block;
+    padding: 0 10px;
+
+    &.active span {
+      border-bottom: solid 3px $dark;
+      padding-bottom: 4px;
+    }
+
+    a {
+      color: $dark;
+    }
+
+    &.search {
+      padding: 1px;
+
+      button {
+        color: #d0d0d0;
+        font-size: 13px;
+        display: inline-block;
+        border: 1px solid #d0d0d0;
+        line-height: 1.3;
+        border-radius: 0 9px 9px 0;
+        border-left: 0;
+        padding: 3px 6px 4px 1px;
+        margin: 0 0 0 -3px;
+        background: #fff;
+        outline: none;
+
+        &:after {
+          display: inline-block;
+          font: normal normal normal 13px/1 FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          content: "\f002"
+        }
+
+        &:focus, &:hover {
+          &:after {
+            color: #002835;
+          }
+        }
+      }
+      input[type=search] {
+        outline: none;
+        border-radius: 9px 0 0 9px;
+        width: 155px;
+        border: 1px solid #d0d0d0;
+        border-right: 0;
+        letter-spacing: 0.2px;
+        line-height: 1.5;
+        padding: 2px 2px 2px 10px;
+        font-size: 13px;
+        display: inline-block;
+        margin: 0;
+      }
+    }
+
+    &:focus, &:hover {
+      input[type=search], button {
+        border-color: #bbb;
+      }
+    }
+  }
+  li:not(.active) a:hover span {
+    border-bottom: solid 3px $dark;
+    padding-bottom: 4px;
+  }
 }
 
 

@@ -8,7 +8,7 @@ title: and
 
 The `and` filter takes an array of filter objects, combining them with AND operands.
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -25,7 +25,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the first document:
+## The following filter validates the first document:
 
 ```javascript
 {

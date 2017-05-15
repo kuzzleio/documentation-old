@@ -32,8 +32,22 @@
   <div class="developer-nav open">
     <ul>
       {{#each ancestry.root.ancestry.children}}
-        <li><a href="/{{ path }}"><span>{{ title }}</span></a></li>
+      {{#if (startwith ../path path)}}
+        <li class="active">
+          <a href="/{{ path }}"><span>{{ title }}</span></a>
+        </li>
+      {{else}}
+        <li>
+          <a href="/{{ path }}"><span>{{ title }}</span></a>
+        </li>
+      {{/if}}
       {{/each}}
+      <li class="search">
+        <form novalidate>
+          <input name="search" type="search" placeholder="search everywhere" oninput="var length = ((this.value.length + 1) * 6); this.style.width = (length > 155) ? length + 'px' : '155px';"/>
+          <button></button>
+        </form>
+      </li>
     </ul>
   </div>
 </header>

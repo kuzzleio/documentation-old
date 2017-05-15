@@ -10,7 +10,7 @@ Filter documents having their location field within a [distance](#geodistance) r
 
 ![Illustration of geoDistanceRange](/assets/images/geolocation/geoDistanceRange.png)
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -31,7 +31,7 @@ Given the following documents:
 }
 ```
 
-The following filter will match the second document only:
+## The following filter will match the second document only:
 
 ```javascript
 geoDistanceRange: {

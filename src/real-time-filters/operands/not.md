@@ -8,7 +8,7 @@ title: not
 
 The `not` filter reverts a filter result.
 
-Given the following documents:
+## Given the following documents:
 
 ```javascript
 {
@@ -25,7 +25,7 @@ Given the following documents:
 }
 ```
 
-The following filter validates the first document:
+## The following filter validates the first document:
 
 ```javascript
 {

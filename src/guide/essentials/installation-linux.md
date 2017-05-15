@@ -80,7 +80,7 @@ docker exec -ti "<docker core container name>" bin/kuzzle -h
 In this section we will cover the manual installation on Linux systems, since this is the environment all the components of the Kuzzle stack work natively in.
 
 <aside class="notice">
-  By default, Kuzzle expects all the components to be running on localhost. You can use the <a href="#configuring-kuzzle">configuration parameters</a> to change this behavior.
+  By default, Kuzzle expects all the components to be running on localhost. You can use the <a href="/guide/essentials/configuration">configuration parameters</a> to change this behavior.
 </aside>
 
 We will run the Kuzzle stack using [pm2](http://pm2.keymetrics.io/), from the current user home directory.
@@ -109,14 +109,14 @@ The following operating systems are actively supported (64-bit versions only):
 
 ## Step 1 - Retrieve Kuzzle components source code
 
-### 1.1. Create the Kuzzle root directory
+### Create the Kuzzle root directory
 
 ```bash
 mkdir -p "~/kuzzle"
 cd "~/kuzzle"
 ```
 
-### 1.2. Create a directory for Kuzzle Proxy and install it
+### Create a directory for Kuzzle Proxy and install it
 
 ```bash
 cd "~/kuzzle"
@@ -136,7 +136,7 @@ for PLUGIN in ./plugins/enabled/*; do
 done
 ```
 
-### 1.3. Create a directory for Kuzzle Core and install it
+### Create a directory for Kuzzle Core and install it
 
 ```bash
 cd ~/kuzzle
@@ -156,20 +156,20 @@ for PLUGIN in ./plugins/enabled/*; do
 done
 ```
 
-### 1.4. Create a directory for Kuzzle Back Office and [install it](#running-kuzzle-backoffice).
+### Create a directory for Kuzzle Back Office and [install it](/guide/essentials/installation-backoffice).
 
 ---
 
 
 ## Step 2 - pm2
 
-### 2.1. Install pm2
+### Install pm2
 
 ```bash
 sudo npm install -g pm2
 ```
 
-### 2.2. Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file)
+### Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file)
 
 ```bash
 echo "apps:
@@ -185,7 +185,7 @@ echo "apps:
   " > ~/kuzzle/pm2.conf.yml
 ```
 
-### 2.3. Run Kuzzle via pm2 and show the logs:
+### Run Kuzzle via pm2 and show the logs:
 
 ```bash
 pm2 start ~/kuzzle/pm2.conf.yml
@@ -206,7 +206,7 @@ Socket IO and Websocket channels can be reached over the HTTP server, on port 75
 
 If you are running some of the service(s) externally, you can configure their host and port using some environment variables and/or a `.kuzzlerc` file.
 
-Please refer to the [Kuzzle configuration section](#configuring-kuzzle) for more information.
+Please refer to the [Kuzzle configuration section](/guide/essentials/configuration) for more information.
 
 #### Useful commands list
 

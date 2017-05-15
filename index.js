@@ -124,10 +124,10 @@ handlebars.registerHelper({
         return v1 || v2
     },
     startwith: function (str, substr) {
-        return str.startwith(substr)
+        return str.startsWith(substr)
     },
     endswith: function (str, substr) {
-        return str.endswith(substr)
+        return str.endsWith(substr)
     }
 })
 
@@ -135,10 +135,9 @@ handlebars.registerHelper({
 const build = (dev = false) => (done) => {
   let metalsmith = Metalsmith(__dirname)
     .metadata({
-      title: "My Static Site & Blog",
-      description: "It's about saying »Hello« to the World.",
-      generator: "Metalsmith",
-      url: "http://www.metalsmith.io/"
+      site_title: "My Static Site & Blog",
+      gh_repo: "kuzzleio/documentation",
+      gh_branch: "rcx-refactor-doc"
     })
     .source('./src')
     .destination('./build') // does not work with 'dist' folder ...
@@ -180,7 +179,10 @@ const build = (dev = false) => (done) => {
     .use(languageTab())
     .use(layouts({
       engine: 'handlebars',
-      partials: 'partials'
+      partials: 'partials',
+      exposeConsolidate (r) {
+        r.handlebars = handlebars
+      }
     }))
     .use(inlineSVG())
     .use(clickImage())
@@ -188,7 +190,7 @@ const build = (dev = false) => (done) => {
   if (dev) {
     metalsmith
       .use(debug())
-      .use(livereload({ debug: true }))
+      .use(livereload({ debug: true, delay: 500 }))
   }
   else {
     metalsmith
@@ -342,7 +344,7 @@ if (process.argv.indexOf('--dev') > -1) {
   }).listen(port)
 
   if (watchEnabled) {
-    watch(__dirname + '/{src,layouts,partials}/**/*', { ignoreInitial: false }, build(true))
+    watch(__dirname + '/{src,layouts,partials}/**/*', { ignoreInitial: false, queue: false }, build(true))
   }
   else {
     build(false)((error) => {

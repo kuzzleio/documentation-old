@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: createDocument
 ---
 
-# createDocument
+## createDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -75,21 +78,32 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new document in Kuzzle.
+Create a new document in Kuzzle and resolves to a [Document](/sdk-reference/document/) object.
 
-## createDocument(Document, [options], [callback])
+---
 
-## createDocument([id], content, [options], [callback])
+### createDocument(Document, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``Document`` | object | Document object |
+| ``Document`` | object | [Document](/sdk-reference/document/) object |
+| ``options`` | JSON object | Optional parameters |
+| ``callback`` | function | Optional callback |
+
+---
+
+### createDocument([id], content, [options], [callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
 | ``id`` | string | Optional document identifier |
 | ``content`` | JSON object | Content of the document to create |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -98,10 +112,14 @@ Create a new document in Kuzzle.
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 | ``ifExist`` | string | If the same document already exists: resolves to an error if sets to ``error``. Replaces the existing document if set to ``replace`` | ``false`` |
 
-## Return value
+---
+
+### Return value
 
 Returns the `Collection` object to allow chaining.
 
-## Callback response
+---
 
-Resolves to a `Document` object containing the newly created document.
+### Callback response
+
+Resolves to a [Document](/sdk-reference/document/) object containing the newly created document.

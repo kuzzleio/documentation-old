@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: document
 ---
 
-# document
+## document
 
 ```js
 let document = kuzzle
@@ -47,15 +50,19 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates a new `Document` object, using its constructor.
+Creates a new [Document](/sdk-reference/document/) object, using its constructor.
 
-## document([id], [content])
+---
+
+### document([id], [content])
 
 | Arguments | Type | Description |
 |-----------|------|-------------|
 | ``id`` | string | Optional document unique ID |
 | ``content`` | JSON object | Optional document content |
 
-## Return value
+---
 
-Returns the newly created `Document` object.
+### Return value
+
+Returns the newly created [Document](/sdk-reference/document) object.

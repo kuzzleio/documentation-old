@@ -1,6 +1,9 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: apply
 ---
@@ -48,6 +51,8 @@ $dataMapping->apply();
 
 Applies the new mapping to the data collection.
 
+---
+
 ### apply([options], [callback])
 
 | Arguments | Type | Description |
@@ -55,15 +60,21 @@ Applies the new mapping to the data collection.
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
-Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 
+---
+
 ### Return value
 
 Returns this `CollectionMapping` object to allow chaining.
+
+---
 
 ### Callback response
 

@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: collectionMapping
 ---
 
-# collectionMapping
+## collectionMapping
 
 ```js
 let dataMapping = kuzzle
@@ -60,14 +63,18 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates a new `CollectionMapping` object, using its constructor.
+Creates a new [CollectionMapping](/sdk-reference/collection-mapping/) object, using its constructor.
 
-## collectionMapping([mapping])
+---
+
+### collectionMapping([mapping])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``mapping`` | JSON Object | Optional mapping |
 
-## Return value
+---
 
-Returns the newly created `CollectionMapping` object.
+### Return value
+
+Returns the newly created [CollectionMapping](/sdk-reference/collection-mapping/) object.

@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: scroll
 ---
 
-# scroll
+## scroll
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -81,19 +84,16 @@ catch (ErrorException $e) {
 }
 ```
 
-> Callback response:
-
-Resolves to an instantiated [SearchResult](#searchresult) object.
-
 <aside class="notice">
   There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
 </aside>
 
-Returns the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.
+Returns a [SearchResult](/sdk-reference/search-result/) object containing the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.  
 A scroll session is always initiated by a `search` action by using the `scroll` argument; more information below.
 
+---
 
-## scroll(scrollId, [options], callback)
+### scroll(scrollId, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -101,8 +101,9 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
+---
 
-### Available options:
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -110,10 +111,11 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 | ``scroll`` | string | Re-initializes the scroll session timeout to its value. If not defined, the scroll timeout is defaulted to a Kuzzle configuration | ``undefined`` |
 
 <aside class="notice">
-  To get more information about scroll sessions, please refer to the <a href="/api-reference/#search">API reference documentation</a>.
+  To get more information about scroll sessions, please refer to the <a href="/api-reference/collection/search">API reference documentation</a>.
 </aside>
 
-## Callback response
+---
 
+### Callback response
 
-Resolves to an instantiated [SearchResult](#searchresult) object.
+Resolves to an instantiated [SearchResult](/sdk-reference/search-result) object.

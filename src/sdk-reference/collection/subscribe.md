@@ -1,11 +1,14 @@
 ---
 layout: side-code.html
-language-tab: true
+language-tab:
+  js: Javascript
+  java: Android
+  php: PHP
 algolia: true
 title: subscribe
 ---
 
-# subscribe
+## subscribe
 
 ```js
 kuzzle
@@ -94,7 +97,9 @@ Subscribes to this data collection with a set of filters.
 To subscribe to the entire data collection, simply provide an empty filter.
 </aside>
 
-## subscribe(filters, [options], callback)
+---
+
+### subscribe(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -102,7 +107,9 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | ``options`` | object | (Optional) Subscription configuration. Passed to the Room constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 
-### Available options:
+---
+
+### Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -113,13 +120,13 @@ To subscribe to the entire data collection, simply provide an empty filter.
 | ``users`` | string | Filter notifications fired upon a user entering the room (user: ``in``), leaving the room (user: ``out``), or both (user: ``all``). Setting this variable to ``none`` prevents receiving these notifications | ``none`` |
 
 The `options` object is directly passed to the Room constructor.
-See the [Room object](#room) documentation for more information about these options and notifications.
+See the [Room object](/sdk-reference/room/) documentation for more information about these options and notifications.
 
-## Return value
+---
+
+### Return value
 
 Returns an object exposing the following method:  
-```
-onDone(callback)
-```
+  `onDone(callback)`
 
 The `callback` argument is called when the subscription ends, either successfully or with an error.

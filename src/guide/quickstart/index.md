@@ -65,26 +65,27 @@ Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us
 </aside>
 
 #### Where do we go from here?
+
 Now that Kuzzle is running on your computer, you can dive into playing with it by:
 
-* <a href="#running-kuzzle-backoffice">installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;
+* <a href="/guide/essentials/installation-backoffice">installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;
 * installing one of the available <a href="/sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
  * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="#sdk-play-time">SDK play time</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
  * <a href="https://github.com/kuzzleio/sdk-ios">iOS</a>,
  * <a href="https://github.com/kuzzleio/sdk-android">Android</a>;
 * exploring the <a href="/api-reference/">Kuzzle API reference</a>;
-* <a href="#manual-install">setting-up a Kuzzle Server without Docker</a>.
+* <a href="/guide/essentials/installation-linux/#manually">setting-up a Kuzzle Server without Docker</a>.
 
 <aside class="notice">
-You can also <a href="#installing-kuzzle-manually-on-linux">install Kuzzle manually</a>.
+You can also <a href="/guide/essentials/installation-linux">install Kuzzle manually</a>.
 </aside>
 
 ---
 
 ## SDK play time
 
-It's time to play with the [Kuzzle SDK](../sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
+It's time to play with the [Kuzzle SDK](/sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
 
 Before proceeding, ensure that your system matches the following requisites:
 
@@ -93,7 +94,7 @@ Before proceeding, ensure that your system matches the following requisites:
 
 ### Create your first "Hello World" document
 
-Create your playground directory and install the [Javascript SDK](../sdk-reference) from the command line using npm:
+Create your playground directory and install the [Javascript SDK](/sdk-reference) from the command line using npm:
 
 ```bash
 mkdir "kuzzle-playground"
@@ -137,7 +138,7 @@ You have persisted your first document in Kuzzle. If you are running the Backoff
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
 
-_You can find more resources about Kuzzle SDK in the [SDK Documentation](../sdk-reference)._
+_You can find more resources about Kuzzle SDK in the [SDK Documentation](/sdk-reference)._
 
 ### Subscribe to data changes (pub/sub)
 
@@ -178,7 +179,7 @@ $ node subscribe.js
 
 And let it wait for documents entering the scope of the filter.
 
-Now, get back to the previous terminal window and execute once more the `create.js` script. Take a look at the output of the `subscribe.js` script. You will see that, each time a document with a `message` field is persisted in Kuzzle, a [notification](#realtime-notifications) is shown as standard output.
+Now, get back to the previous terminal window and execute once more the `create.js` script. Take a look at the output of the `subscribe.js` script. You will see that, each time a document with a `message` field is persisted in Kuzzle, a [notification](/guide/essentials/real-time) is shown as standard output.
 
 <aside class="success">
 You just leveraged Kuzzle's pub/sub mechanism.
@@ -188,7 +189,10 @@ You just leveraged Kuzzle's pub/sub mechanism.
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
 
-#### Where do we go from here?
+---
+
+## Where do we go from here?
+
 Now that you are started and operational with Kuzzle, you can fully leverage its power by:
 
 * <a href="/sdk-reference">taking a look at the SDK reference</a>;

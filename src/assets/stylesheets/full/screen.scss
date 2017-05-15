@@ -6,18 +6,9 @@
 @import '../default';
 
 
-header {
-  .developer-nav {
-    > ul {
-      float: right;
-    }
-    > .search {
-      float: left;
-    }
-  }
-}
-
 .content {
+  margin: 0 0 0 100px;
+
   #disqus_thread {
     margin: 25px 55px
   }
@@ -75,9 +66,27 @@ header {
     .toc {
       position: fixed;
       padding: 2px 4px 9px;
-      left: 1590px;
+      left: 1355px;
       top: 166px;
+      overflow: auto;
       border-left: solid 6px #dedede;
+
+      .toc-level-2 {
+        a {
+          &:before {
+            padding-left: 2px;
+            content: "›";
+          }
+        }
+      }
+      .toc-level-6,
+      .toc-level-5,
+      .toc-level-4,
+      .toc-level-3 {
+        a {
+          padding-left: 20px
+        }
+      }
 
       ul {
         margin: 0;
@@ -102,10 +111,18 @@ header {
             color: #333;
             text-decoration: none;
             font-size: 12px;
+            transition: color 0.2s;
 
             &:hover {
-            color: #002835;
+              color: #002835;
               text-decoration: underline;
+            }
+
+            &.active {
+              color: #3498e4;
+              &:before {
+                color: #3498e4;
+              }
             }
           }
         }
