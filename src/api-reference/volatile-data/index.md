@@ -4,6 +4,8 @@ algolia: true
 title: Sending volatile data
 description: broadcast extra volatile data to subscribers
 order: 4
+show-subheader: true
+subheader-title: Introduction
 ---
 
 # Sending volatile data

@@ -3,6 +3,8 @@ layout: full.html
 algolia: true
 title: Query syntax
 description: learn how to send raw queries to kuzzle
+show-subheader: true
+subheader-title: Introduction
 order: 2
 ---
 

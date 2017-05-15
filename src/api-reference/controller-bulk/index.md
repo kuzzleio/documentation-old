@@ -2,6 +2,8 @@
 layout: full.html
 algolia: true
 title: bulk
+show-subheader: true
+subheader-title: Introduction
 order: 7
 ---
 
