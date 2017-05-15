@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: category-members.html
 algolia: true
 title: Filter terms
 description: filter your queries with terms

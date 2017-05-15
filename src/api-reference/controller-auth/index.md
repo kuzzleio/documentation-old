@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: category-members.html
 algolia: true
 title: auth
 separator: Controllers reference
