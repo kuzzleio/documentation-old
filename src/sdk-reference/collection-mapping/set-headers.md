@@ -8,7 +8,7 @@ algolia: true
 title: setHeaders
 ---
 
-## setHeaders
+# setHeaders
 
 ```js
 dataMapping.setHeaders({someContent: 'someValue'}, true);
@@ -41,7 +41,7 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ---
 
-### setHeaders(content, [replace])
+## setHeaders(content, [replace])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -52,6 +52,6 @@ This is a helper function returning itself, allowing to easily chain calls.
 
 ---
 
-### Return value
+## Return value
 
 Returns this `CollectionMapping` object to allow chaining.

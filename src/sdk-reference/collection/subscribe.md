@@ -8,7 +8,7 @@ algolia: true
 title: subscribe
 ---
 
-## subscribe
+# subscribe
 
 ```js
 kuzzle
@@ -99,7 +99,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 
 ---
 
-### subscribe(filters, [options], callback)
+## subscribe(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -109,7 +109,7 @@ To subscribe to the entire data collection, simply provide an empty filter.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -124,7 +124,7 @@ See the [Room object](/sdk-reference/room/) documentation for more information a
 
 ---
 
-### Return value
+## Return value
 
 Returns an object exposing the following method:  
   `onDone(callback)`

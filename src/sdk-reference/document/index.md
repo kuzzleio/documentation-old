@@ -69,7 +69,7 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Do
 
 ---
 
-### Document(Collection, [documentId], [content])
+## Document(Collection, [documentId], [content])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

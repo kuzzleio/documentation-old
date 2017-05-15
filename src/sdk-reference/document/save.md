@@ -8,7 +8,7 @@ algolia: true
 title: save
 ---
 
-## save
+# save
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -61,7 +61,7 @@ Otherwise, this method will replace the latest version of this document in Kuzzl
 
 ---
 
-### save([options], [callback])
+## save([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -70,7 +70,7 @@ Otherwise, this method will replace the latest version of this document in Kuzzl
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -80,12 +80,12 @@ Otherwise, this method will replace the latest version of this document in Kuzzl
 
 ---
 
-### Return value
+## Return value
 
 Returns this `Document` object to allow chaining.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to this `Document` object once the document has been saved.

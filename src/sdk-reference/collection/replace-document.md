@@ -8,7 +8,7 @@ algolia: true
 title: replaceDocument
 ---
 
-## replaceDocument
+# replaceDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -73,7 +73,7 @@ Replace an existing document and returns the updated version of it as a [Documen
 
 ---
 
-### replaceDocument(documentId, content, [options], [callback])
+## replaceDocument(documentId, content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -84,7 +84,7 @@ Replace an existing document and returns the updated version of it as a [Documen
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -94,12 +94,12 @@ Replace an existing document and returns the updated version of it as a [Documen
 
 ---
 
-### Return value
+## Return value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to an updated [Document](/sdk-reference/document/) object.

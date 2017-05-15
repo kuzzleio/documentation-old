@@ -8,7 +8,7 @@ algolia: true
 title: updateDocument
 ---
 
-## updateDocument
+# updateDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
@@ -74,7 +74,7 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 
 ---
 
-### updateDocument(documentId, content, [options], [callback])
+## updateDocument(documentId, content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -85,7 +85,7 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -96,12 +96,12 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 
 ---
 
-### Return value
+## Return value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to an up-to-date [Document](/sdk-reference/document/) object.

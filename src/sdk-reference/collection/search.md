@@ -8,7 +8,7 @@ algolia: true
 title: search
 ---
 
-## search
+# search
 
 ```js
 let filter = {
@@ -196,7 +196,7 @@ Executes a search on the data collection.
 
 ---
 
-### search(filters, [options], callback)
+## search(filters, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -206,7 +206,7 @@ Executes a search on the data collection.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -221,6 +221,6 @@ Executes a search on the data collection.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to an instantiated [SearchResult](/sdk-reference/search-result) object.

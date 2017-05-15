@@ -8,7 +8,7 @@ algolia: true
 title: refresh
 ---
 
-## refresh
+# refresh
 
 ```js
 // Using callbacks (NodeJS & Web Browser)
@@ -53,7 +53,7 @@ Instantiates a new CollectionMapping object with an up-to-date content.
 
 ---
 
-### refresh([options], callback)
+## refresh([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -62,7 +62,7 @@ Instantiates a new CollectionMapping object with an up-to-date content.
 
 ---
 
-### Options
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
@@ -70,6 +70,6 @@ Instantiates a new CollectionMapping object with an up-to-date content.
 
 ---
 
-### Callback response
+## Callback response
 
 Resolves to this updated `CollectionMapping` object.
