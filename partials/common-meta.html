@@ -25,3 +25,19 @@
 
 <link rel="stylesheet" href="/assets/font-awesome/scss/font-awesome.css">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
+
+
+<title>
+  {{#if ancestry.parent}}
+    {{ title }}
+    {{#if (and ancestry.firstMember (ne title ancestry.firstMember.title))}}
+    - {{ ancestry.firstMember.title }}
+    {{/if}}
+    {{#if (and (ne ancestry.parent ancestry.root) (ne title ancestry.parent.title))}}
+    - {{ ancestry.parent.title }}
+    {{/if}}
+     -
+   {{/if}}
+
+   {{ site_title}}
+ </title>
