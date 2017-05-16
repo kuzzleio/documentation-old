@@ -1152,76 +1152,152 @@ header nav li.active span {
     max-width: 1170px;
     margin: 0 auto;
     text-align: right;
-  }
 
-  li {
-    display: inline-block;
-    padding: 0 10px;
+    li {
+      display: inline-block;
+      padding: 0 10px;
 
-    &.active span {
+      &.active span {
+        border-bottom: solid 3px $dark;
+        padding-bottom: 4px;
+      }
+
+      a {
+        color: $dark;
+      }
+
+      &.search {
+        padding: 1px;
+
+        button {
+          color: #d0d0d0;
+          font-size: 13px;
+          display: inline-block;
+          border: 1px solid #d0d0d0;
+          line-height: 1.3;
+          border-radius: 0 9px 9px 0;
+          border-left: 0;
+          padding: 3px 6px 4px 1px;
+          margin: 0 0 0 -3px;
+          background: #fff;
+          outline: none;
+
+          &:after {
+            display: inline-block;
+            font: normal normal normal 13px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            content: "\f002"
+          }
+
+          &:focus, &:hover {
+            &:after {
+              color: #002835;
+            }
+          }
+        }
+        input[type=search] {
+          outline: none;
+          border-radius: 9px 0 0 9px;
+          width: 155px;
+          border: 1px solid #d0d0d0;
+          border-right: 0;
+          letter-spacing: 0.2px;
+          line-height: 1.5;
+          padding: 2px 2px 2px 10px;
+          font-size: 13px;
+          display: inline-block;
+          margin: 0;
+        }
+      }
+
+      &:focus, &:hover {
+        input[type=search], button {
+          border-color: #bbb;
+        }
+      }
+    }
+    li:not(.active) a:hover span {
       border-bottom: solid 3px $dark;
       padding-bottom: 4px;
     }
+  }
 
-    a {
-      color: $dark;
+  .search-results {
+    max-width: 1170px;
+    margin: 0 auto;
+    position: relative;
+
+    display: none;
+
+    &.display {
+      display: block;
     }
 
-    &.search {
-      padding: 1px;
+    ul {
+      background: #FFF;
+      margin-top: 5px;
+      max-width: 450px;
+      text-align: right;
+      position: absolute;
+      right: 0;
+      padding: 5px;
+      border: solid 1px #f0f0f0;
 
-      button {
-        color: #d0d0d0;
-        font-size: 13px;
-        display: inline-block;
-        border: 1px solid #d0d0d0;
-        line-height: 1.3;
-        border-radius: 0 9px 9px 0;
-        border-left: 0;
-        padding: 3px 6px 4px 1px;
-        margin: 0 0 0 -3px;
-        background: #fff;
-        outline: none;
+      li {
+        padding: 0;
+        list-style: none;
+        border-bottom: #999 1px dashed;
 
-        &:after {
-          display: inline-block;
-          font: normal normal normal 13px/1 FontAwesome;
-          font-size: inherit;
-          text-rendering: auto;
-          content: "\f002"
+        &:last-of-type {
+          border-bottom: 0;
         }
 
-        &:focus, &:hover {
-          &:after {
-            color: #002835;
+        a {
+          display: block;
+          background: #FFF;
+          padding: 5px;
+
+          &:hover {
+            background: #F0F0F0;
+          }
+        }
+
+        p {
+          em {
+            background: #bae8f5;
+            font-style: normal;
+          }
+
+          &.page {
+            line-height: 1.5;
+
+            span {
+              &.title {
+                font-size: 15px;
+                padding: 3px 5px;
+              }
+              &.firstMember,
+              &.parent {
+                font-size: 11px;
+                padding: 4px 6px;
+                color: #666;
+                background: #eee;
+              }
+            }
+          }
+          &.preview {
+            font-size: 11px;
+            line-height: 1.3;
+            color: #999;
+            padding: 2px 5px;
           }
         }
       }
-      input[type=search] {
-        outline: none;
-        border-radius: 9px 0 0 9px;
-        width: 155px;
-        border: 1px solid #d0d0d0;
-        border-right: 0;
-        letter-spacing: 0.2px;
-        line-height: 1.5;
-        padding: 2px 2px 2px 10px;
-        font-size: 13px;
-        display: inline-block;
-        margin: 0;
-      }
     }
+  }
 
-    &:focus, &:hover {
-      input[type=search], button {
-        border-color: #bbb;
-      }
-    }
-  }
-  li:not(.active) a:hover span {
-    border-bottom: solid 3px $dark;
-    padding-bottom: 4px;
-  }
+
 }
 
 

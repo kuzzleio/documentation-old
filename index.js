@@ -74,6 +74,7 @@ const algoliaFileParser = (file, data) => {
     path: data.path,
     content: content.text(),
     parent: (data.ancestry.parent ? data.ancestry.parent.title : ''),
+    firstMember: (data.ancestry.firstMember ? data.ancestry.firstMember.title : ''),
     toc: data.toc
   })
   //
