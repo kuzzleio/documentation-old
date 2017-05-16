@@ -157,7 +157,7 @@ Executes a search on users according to a filter
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters](../real-time-filters/) |
+| ``filters`` | JSON Object | [Filters](/real-time-filters) |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 

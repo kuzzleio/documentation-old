@@ -65,7 +65,7 @@ title: scroll
 }
 ```
 
-This method moves forward a result set cursor created by a [`search` query](#search) with the `scroll` argument provided.
+This method moves forward a result set cursor created by a [`search` query](/api-documentation/controller-document/search/) with the `scroll` argument provided.
 
 The response may contain a *different* cursor identifier, pointing to the next page of results.
 

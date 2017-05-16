@@ -58,6 +58,6 @@ title: zrevrangebylex
 }
 ```
 
-Identical to [zrangebylex](#zrangebylex) except that the sorted set is traversed in descending order.
+Identical to [zrangebylex](/api-documentation/controller-memory-storage/zrangebylex) except that the sorted set is traversed in descending order.
 
 [[_Redis documentation_]](https://redis.io/commands/zrevrangebylex)

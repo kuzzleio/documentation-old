@@ -146,7 +146,7 @@ title: mCreate
 
 Creates new documents in the persistent data storage.
 
-Returns a [partial error](#partialerror) (with status 206) if one or more documents creation fails.
+Returns a [partial error](/api-documentation/errors/#partialerror) (with status 206) if one or more documents creation fails.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).

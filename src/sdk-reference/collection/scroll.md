@@ -111,7 +111,7 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 | ``scroll`` | string | Re-initializes the scroll session timeout to its value. If not defined, the scroll timeout is defaulted to a Kuzzle configuration | ``undefined`` |
 
 <aside class="notice">
-  To get more information about scroll sessions, please refer to the <a href="/api-reference/collection/search">API reference documentation</a>.
+  To get more information about scroll sessions, please refer to the <a href="/api-documentation/controller-document/search">API reference documentation</a>.
 </aside>
 
 ---

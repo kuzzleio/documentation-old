@@ -6,7 +6,7 @@ title: geoDistanceRange
 
 # geoDistanceRange
 
-Filter documents having their location field within a [distance](#geodistance) range from a given point of origin
+Filter documents having their location field within a distance range from a given point of origin.
 
 ![Illustration of geoDistanceRange](/assets/images/geolocation/geoDistanceRange.png)
 

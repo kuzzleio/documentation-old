@@ -6,7 +6,7 @@ title: geoDistance
 
 # geoDistance
 
-Filter documents having their location field within a [distance](#geospatial-filters) radius of a provided point of origin.
+Filter documents having their location field within a distance radius of a provided point of origin.
 
 By default, when it is not specified, the distance unit is expressed in meters.  
 Note that distance values are strings (including `from` and `to` attributes for `geoDistanceRange`)

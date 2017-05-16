@@ -83,8 +83,6 @@ The body content needs to match Kuzzle's role definition.
 Unlike a regular document update, this method will replace the whole role definition by the body content.<br>
 In other words, you always need to provide the complete role definition in the body.
 </aside>
-To get some more detailed information on the expected role definition, please refer to
-[Kuzzle's role reference definition documentation](https://github.com/kuzzleio/kuzzle/blob/beta/docs/security/roles-reference.md).
 
 To get some more detailed information about Kuzzle's user management model,
-please refer to [Kuzzle's security documentation](../guide/#permissions).
+please refer to [Kuzzle's security documentation](/guide/essentials/security/#permissions).

@@ -51,4 +51,4 @@ title: deleteUser
 }
 ```
 
-Given a `user id`, deletes the corresponding [`<kuid>`](../guide/#the-kuzzle-user-identifier) from Kuzzle's database layer.
+Given a `user id`, deletes the corresponding [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) from Kuzzle's database layer.
