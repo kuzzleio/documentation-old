@@ -5,10 +5,10 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: MemoryStorage
+title: Room
 show-subheader: true
 subheader-title: Constructor
-order: 6
+order: 2
 ---
 
 # Constructors

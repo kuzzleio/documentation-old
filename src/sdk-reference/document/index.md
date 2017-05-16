@@ -8,7 +8,7 @@ algolia: true
 title: Document
 show-subheader: true
 subheader-title: Constructor
-order: 4
+order: 2
 ---
 
 # Document
