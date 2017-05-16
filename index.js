@@ -62,10 +62,11 @@ const algoliaFileParser = (file, data) => {
   let content = $('.main-content')
 
   // remove useless content
-  $('pre', content).remove()
+  $('.hljs', content).remove()
   $('blockquote', content).remove()
   $('.language-tab-selector', content).remove()
   $('table', content).remove()
+  $('h1, h2, h3, h4, h5, h6', content).remove()
 
   objects.push({
     objectID: data.path,
@@ -212,31 +213,28 @@ const build = (watch = false) => (done) => {
       .use(debug())
       .use(livereload({ debug: false, delay: 500 }))
   }
-  else {
-    metalsmith
-    .use(inlineSVG())
-    .use(optipng({
-      pattern: '**/*.png',
-      options: ['-o7']
-    }))
-    .use(linkcheck({
-      verbose: true,
-      timeout: 5,
-      checkFile: '.linkcheck/.links_checked.json',
-      ignoreFile: '.linkcheck/links_ignore.json',
-      failFile: '.linkcheck/links_failed.json'
-    }))
-    .use(htmlMin())
-    .use(sitemap({
-      hostname: 'http://docs.kuzzle.io',
-      modifiedProperty: 'stats.mtime',
-      omitIndex: true
-    }))
-  }
 
   if (process.argv.indexOf('--gzip') > -1) {
     metalsmith
+      .use(inlineSVG())
+      .use(optipng({
+        pattern: '**/*.png',
+        options: ['-o7']
+      }))
+      .use(linkcheck({
+        verbose: true,
+        timeout: 5,
+        checkFile: '.linkcheck/.links_checked.json',
+        ignoreFile: '.linkcheck/links_ignore.json',
+        failFile: '.linkcheck/links_failed.json'
+      }))
+      .use(htmlMin())
       .use(compress())
+      .use(sitemap({
+        hostname: 'http://docs.kuzzle.io',
+        modifiedProperty: 'stats.mtime',
+        omitIndex: true
+      }))
   }
 
   if (algoliaPrivateKey) {
