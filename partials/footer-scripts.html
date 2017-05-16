@@ -1,0 +1,85 @@
+<script type="text/javascript">
+  (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-67035328-1', 'auto');
+  ga('send', 'pageview');
+
+
+
+
+
+
+
+
+
+  (function() {
+    console.log('Initialize autocomplete menu')
+    var client = algoliasearch("4RFBRWISJR", "6febf1ebe906bd82bce58d5a20ac6c1b");
+    var index = client.initIndex('kuzzle-documentation');
+    var template = $('#search-results-template').html();
+    var $searchResults = $('.search-results');
+    var $searchResultsContainer = $('ul', $searchResults);
+
+    $('.search input[type=search]').on('input', function(event) {
+      var $el = $(this);
+      var searchResultsContent = '';
+
+      console.log(this.value)
+      if (this.value === '') {
+        searchResultsContainer.empty();
+        $searchResults.removeClass('display')
+      }
+
+      index.search(this.value, function(err, res) {
+        if (res.hits.length > 0) {
+          $searchResults.addClass('display')
+        }
+
+        for (var key in res.hits) {
+          console.log(res.hits[key]);
+          var content = template
+
+          content = content.replace(/__link__/g, '/' + res.hits[key].path)
+          content = content.replace(/__parent__/g, res.hits[key].parent || '')
+          content = content.replace(/__firstMember__/g, res.hits[key].firstMember || '')
+          content = content.replace(/__title__/g, res.hits[key]._highlightResult.title.value)
+          content = content.replace(/__preview__/g, res.hits[key]._snippetResult.content.value)
+
+          searchResultsContent += content
+        }
+
+        $searchResultsContainer.html(searchResultsContent);
+      });
+    })
+
+    index.search('setnx', function(err, content) {
+      console.log(content.hits);
+    });
+  })()
+  //initialize autocomplete on search input (ID selector must match)
+  // autocomplete('.search input[type=search]',
+  // { hint: false }, {
+  //     source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+  //     //value to be displayed in input control after user's suggestion selection
+  //     displayKey: 'title',
+  //     //hash of templates used when rendering dataset
+  //     templates: {
+  //         //'suggestion' templating function used to render a single suggestion
+  //         suggestion: function(suggestion) {
+  //           return '<span>' +
+  //             suggestion._highlightResult.title.value + '</span><span>' +
+  //             suggestion._highlightResult.content.value + '</span>';
+  //         }
+  //     }
+  // });
+</script>
