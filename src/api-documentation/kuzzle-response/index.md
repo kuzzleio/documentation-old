@@ -16,7 +16,7 @@ A `response` is a JSON object as shown in the sample pane.
 
 _NB: For more details about status code and error object, see status-codes.md_
 
-## exemple
+## Example
 
 ```javascript
 {

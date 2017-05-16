@@ -117,7 +117,7 @@ title: createFirstAdmin
 
 Creates the first admin `user` in Kuzzle's database layer. Does nothing if an admin user already exists.
 
-If an `_id` is provided in the query and if the user [`<kuid>`](../guide/#the-kuzzle-user-identifier) already exists,
+If an `_id` is provided in the query and if the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) already exists,
 it will be replaced and its `profileIds` will be set to `["admin"]`. If not provided, the `_id` will be auto-generated.
 
 If the optional field `reset` is set to `true` (`1` with http),

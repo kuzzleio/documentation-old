@@ -78,9 +78,9 @@ title: login
 Authenticates a user with a defined **passportjs** authentication strategy.
 See [passportjs.org](http://www.passportjs.org/) for more details about authentication strategies.
 
-Strategies are implemented as [plugins](https://github.com/kuzzleio/kuzzle/blob/master/docs/plugins.md).
+Strategies are implemented as [plugins](/plugins-reference/plugins-features/adding-authentication-strategy).
 The default "local" strategy is enabled by default
 (see [kuzzle-plugin-auth-passport-local](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local)),
 and let you authenticate with a login and password.
 
-The **_login** action returns an encrypted JWT token, that must then be sent within the [requests headers](#authorization-header).
+The **_login** action returns an encrypted JSON Web Token, that must then be sent within the [requests headers](/api-documentation/query-syntax/authorization-token/).

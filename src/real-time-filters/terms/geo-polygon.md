@@ -6,9 +6,9 @@ title: geoPolygon
 
 # geoPolygon
 
-Filter documents having their location field located inside a given [polygon](#geospatial-filters).
+Filter documents having their location field located inside a given polygon.
 
-Unlike the GeoJSON representation, a polygon, here, must contain at least 3 [points](#point).  
+Unlike the GeoJSON representation, a polygon, here, must contain at least 3 geopoints.  
 The last point do not have to be the same as the first one, but the points must be sorted in the right order. The polygon is automatically closed.
 
 For each polygon points, all the possible point notations are valid (see above).
