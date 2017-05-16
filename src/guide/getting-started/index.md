@@ -21,7 +21,7 @@ Before launching Kuzzle, ensure that your system matches the following pre-requi
 - **Docker-compose v1.8+**, see [intructions here](https://docs.docker.com/compose/install/)
 
 <aside class="notice">
-<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="#manually">manual installation guide</a>.
+<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="/guide/essentials/installing-kuzzle/#manually">manual installation guide</a>.
 </aside>
 
 Thanks to Docker-compose, running Kuzzle is easy. Just grab the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file, copy it into a directory and start Kuzzle:
@@ -74,17 +74,17 @@ Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us
 
 Now that Kuzzle is running on your computer, you can dive into playing with it by:
 
-* <a href="/guide/essentials/installation-backoffice">installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;
+* <a href="/guide/essentials/installing-backoffice">installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;
 * installing one of the available <a href="/sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
- * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="#sdk-play-time">SDK play time</a> section below),
+ * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="/guide/getting-started/#sdk-play-time">SDK play time</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
  * <a href="https://github.com/kuzzleio/sdk-ios">iOS</a>,
  * <a href="https://github.com/kuzzleio/sdk-android">Android</a>;
-* exploring the <a href="/api-reference/">Kuzzle API reference</a>;
-* <a href="/guide/essentials/installation-linux/#manually">setting-up a Kuzzle Server without Docker</a>.
+* exploring the <a href="/api-documentation">Kuzzle API Documentation</a>;
+* <a href="/guide/essentials/installing-kuzzle/#manually">setting-up a Kuzzle Server without Docker</a>.
 
 <aside class="notice">
-You can also <a href="/guide/essentials/installation-linux">install Kuzzle manually</a>.
+You can also <a href="/guide/essentials/installing-kuzzle/#manually">install Kuzzle manually</a>.
 </aside>
 
 ---

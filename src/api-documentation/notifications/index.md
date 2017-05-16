@@ -9,7 +9,7 @@ order: 5
 
 # Notifications
 
-[Subscribing to some documents in Kuzzle](#on) allows to be notified back each time a document matches your criteria.
+[Subscribing to some documents in Kuzzle](/api-documentation/controller-realtime/subscribe) allows to be notified back each time a document matches your criteria.
 The subscription action (realtime/subscribe) returns a channel identifier which you can then listen to receive the
 notifications.
 

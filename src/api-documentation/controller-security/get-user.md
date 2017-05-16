@@ -55,4 +55,4 @@ title: getUser
 ```
 
 
-Given a user [`<kuid>`](../guide/#the-kuzzle-user-identifier), gets the matching user from Kuzzle's dabatase layer.
+Given a user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid), gets the matching user from Kuzzle's dabatase layer.

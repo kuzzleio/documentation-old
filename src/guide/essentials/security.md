@@ -26,12 +26,12 @@ You can then use the Back Office to administrate your user rights.
 The first step to secure your data is to be able to identify your users.
 Kuzzle ships by default with a local login/password strategy.
 
-If the "local" strategy (i.e. storing the users' credentials in the local database) doesn't fit your needs, you can use the [Oauth authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), or develop your own (see [Core documentation](#authentication-process) for more details).
+If the "local" strategy (i.e. storing the users' credentials in the local database) doesn't fit your needs, you can use the [Oauth authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), or develop your own (see [Plugin documentation](/plugins-reference/plugins-features/adding-authentication-strategy) for more details).
 
-If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests](../api-reference/#authorization-header).
+If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests](/api-documentation/query-syntax/authorization-token/#authorization-token).
 
 <aside class="notice">
-More information on the login process <a href="/api-reference/#login">here</a>.
+More information on the login process <a href="/api-documentation/controller-auth/login">here</a>.
 </aside>
 
 ---
@@ -53,7 +53,7 @@ A `profile` is associated to a set of `roles`. Each `role` defines a set of perm
 
 In the simple example above, the *editor* profile is a superset of the *contributor* one, which, in turn, extends the *default* profile.
 
-`roles` and `profiles` can be edited in [Kuzzle Back Office](https://github.com/kuzzleio/kuzzle-bo).
+`roles` and `profiles` can be edited in [Kuzzle Back Office](/guide/essentials/installing-backoffice).
 
 ---
 
@@ -84,7 +84,7 @@ When `controller` is declared within a Plugin, its name must be prefixed with th
 The `action permission` value can be set either to:
 
 - a boolean. When set to `true`, the user is allowed to perform the action.
-- an object that describes a function (more about it in the [action permissions functions section](#actions-permissions-functions)).
+- an object describing a dynamic right definition (more about it in the [advanced roles definition documentation](/guide/kuzzle-depth/roles-definitions)).
 
 You can find a **comprehensive summary of all the available controllers** and actions by sending a `GET` request to the root endpoint of the Kuzzle API via the HTTP protocol:
 

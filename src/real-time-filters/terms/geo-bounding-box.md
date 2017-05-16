@@ -6,7 +6,7 @@ title: geoBoundingBox
 
 # geoBoundingBox
 
-Filter documents having their location field within a [bounding box](#geospatial-filters).
+Filter documents having their location field within a bounding box.
 
 A bounding box is a 2D box that can be defined using:
 

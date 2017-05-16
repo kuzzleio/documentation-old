@@ -172,7 +172,7 @@ for PLUGIN in ./plugins/enabled/*; do
 done
 ```
 
-### Create a directory for Kuzzle Back Office and [install it](/guide/essentials/installation-backoffice).
+### Create a directory for Kuzzle Back Office and [install it](/guide/essentials/installing-backoffice).
 
 ---
 

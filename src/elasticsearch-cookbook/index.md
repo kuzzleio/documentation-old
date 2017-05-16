@@ -20,4 +20,4 @@ This score is influenced by each part of the query but the most sophisticated fe
 in its ability to tokenize words in a text field and ponderate it according to the frequency of
 these words in the corpus.  
 
-You can find more information about scoring in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/scoring-theory.html).
+You can find more information about scoring in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/guide/2.x/scoring-theory.html).

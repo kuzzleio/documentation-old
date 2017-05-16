@@ -1,12 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: Adding a new authentication strategy
+title: Adding an authentication strategy
 order: 4
 ---
 
-
-# Adding a new authentication strategy
+# Adding an authentication strategy
 
 Kuzzle handles users security and authentication. The supported authentication strategies can be extended by Plugins.
 
@@ -53,10 +52,10 @@ Here is the generic signature of the `verify` function you have to implement:
 
 `verify(request, ...)`
 
-* `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [the `Request` documentation](#request))
+* `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [the `Request` documentation](/plugins-reference/plugins-context/constructors/#request))
 * `...`: varies, depending on the used strategy
 
-The function **must** return a `Promise` that resolves to either the user [`<kuid>`](../guide/#the-kuzzle-user-identifier) if the user is authenticated, or an object containing a message string attribute giving the reason why it can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is *not* an error).
+The function **must** return a `Promise` that resolves to either the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) if the user is authenticated, or an object containing a message string attribute giving the reason why it can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is *not* an error).
 
 ---
 
@@ -68,8 +67,8 @@ Here is the generic signature of the `exists` function you have to implement:
 
 `exists (request, kuid)`
 
-* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
-* `kuid` is the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
+* `request` is the request made to Kuzzle (see [the `Request` documentation](/plugins-reference/plugins-context/constructors/#request)).
+* `kuid` is the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
 
 The function **must** return a `Promise` that resolves to a boolean depending on the user ability to authenticate with a strategy.
 
@@ -83,14 +82,14 @@ Here is the generic signature of the `create` function you have to implement:
 
 `create (request, credentials, kuid)`
 
-* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `request` is the request made to Kuzzle (see [the `Request` documentation](/plugins-reference/plugins-context/constructors/#request)).
 * `credentials` is the content of the credentials to create, that have already been passed to your `validate` function.
-* `kuid` is the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
+* `kuid` is the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
 <aside class="warning">
-  The credentials have to be persisted, either by using the <a href="#repository">Repository constructor</a>, or any external service.
+  The credentials have to be persisted, either by using the <a href="/plugins-reference/plugins-context/constructors/#repository">Repository constructor</a>, or any external service.
 </aside>
 
 ---
@@ -103,14 +102,14 @@ Here is the generic signature of the `update` function you have to implement:
 
 `update (request, credentials, kuid)`
 
-* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `request` is the request made to Kuzzle (see [the `Request` documentation](/plugins-reference/plugins-context/constructors/#request)).
 * `credentials` is the content of the credentials to create, that have already been passed to your `validate` function.
-* `kuid` is the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
+* `kuid` is the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
 <aside class="warning">
-  The credentials have to be persisted, either by using the <a href="#repository">Repository constructor</a>, or any external service.
+  The credentials have to be persisted, either by using the <a href="/plugins-reference/plugins-context/constructors/#repository">Repository constructor</a>, or any external service.
 </aside>
 
 ---
@@ -123,8 +122,8 @@ Here is the generic signature of the `delete` function you have to implement:
 
 `delete (request, kuid)`
 
-* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
-* `kuid` is the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
+* `request` is the request made to Kuzzle (see [the `Request` documentation](/plugins-reference/plugins-context/constructors/#request)).
+* `kuid` is the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
 
 The function **must** return a `Promise` that resolves to any value if deletion succeeds.
 
@@ -138,8 +137,8 @@ Here is the generic signature of the `getInfo` function you have to implement:
 
 `getInfo (request, kuid)`
 
-* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
-* `kuid` is the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
+* `request` is the request made to Kuzzle (see [the `Request` documentation](/plugins-reference/plugins-context/constructors/#request)).
+* `kuid` is the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
@@ -157,7 +156,7 @@ Here is the generic signature of the `getInfo` function you have to implement:
 
 `getInfo (request, id)`
 
-* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `request` is the request made to Kuzzle (see [the `Request` documentation](/plugins-reference/plugins-context/constructors/#request)).
 * `id` is the user's storage identifier in the strategy.
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
@@ -194,9 +193,9 @@ Here is the generic signature of the `validate` function you have to implement:
 
 `validate (request, credentials, kuid, isUpdate)`
 
-* `request` is the request made to Kuzzle (see [the `Request` documentation](#request)).
+* `request` is the request made to Kuzzle (see [the `Request` documentation](/plugins-reference/plugins-context/constructors/#request)).
 * `credentials` is the content of the credentials to create or update.
-* `kuid` is the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
+* `kuid` is the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
 * `isUpdate` is true if `validate` is called during an update.
 
 The function **must** return a `Promise` that resolves to true or rejects with an error explaining the reason.

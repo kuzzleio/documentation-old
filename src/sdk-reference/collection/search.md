@@ -216,7 +216,7 @@ Executes a search on the data collection.
 | ``size`` | number | Provide the maximum number of results of the request (used to paginate results) | ``10`` |
 
 <aside class="notice">
-  To get more information about scroll sessions, please refer to the <a href="/api-reference/collection/search">API reference documentation</a>.
+  To get more information about scroll sessions, please refer to the <a href="/api-documentation/controller-document/search">API reference documentation</a>.
 </aside>
 
 ---

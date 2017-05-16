@@ -17,7 +17,7 @@ By "reading", we mean any action involving getting content from the persistent l
 
 ### HTTP Request
 
-The schema below shows the [Architecture overview](#kuzzle-in-depth) showed above and highlights the components involved in reading actions:
+The schema below shows the [Architecture overview](/guide/kuzzle-depth) showed above and highlights the components involved in reading actions:
 
 ![read_scenario_http_overview](/assets/images/request-scenarios/read-http/overview.png)
 
@@ -74,7 +74,7 @@ The content returned by Elasticsearch looks like the following:
 
 ### Websocket connection
 
-The schema below shows the [Architecture overview](#kuzzle-in-depth) showed above and highlights the components involved in reading actions:
+The schema below shows the [Architecture overview](/guide/kuzzle-depth) showed above and highlights the components involved in reading actions:
 
 ![read_scenario_websocket_overview](/assets/images/request-scenarios/read-websocket/overview.png)
 
@@ -163,7 +163,7 @@ Kuzzle is able to handle two different types of input:
 
 ### Writing persistent data
 
-This subsection describes the process for **persistent** data, with an example using the "_create_" action (see also [API Documentation](../api-reference/#create)).
+This subsection describes the process for **persistent** data, with an example using the "_create_" action (see also [API Documentation](/api-documentation/controller-document/create)).
 
 ![persistence_overview](/assets/images/request-scenarios/persistence/overview.png)
 
@@ -203,7 +203,7 @@ Detailed workflow:
 }
 ```
 
-* The Funnel validates the Request and triggers the Plugins Manager with a `document:create` event. The Plugins Manager calls all pipes and hooks configured by the active plugins (see the [Plugin Reference](../plugin-reference/)).
+* The Funnel validates the Request and triggers the Plugins Manager with a `document:create` event. The Plugins Manager calls all pipes and hooks configured by the active plugins (see the [Plugin Reference](/plugins-reference)).
 * The Funnel forwards the Request to the Document Controller.
 * The Document Controller sends the request to the Storage Engine service.
 The Storage Engine sends the request to the database.
@@ -214,7 +214,7 @@ The Storage Engine sends the request to the database.
 
 This subsection describes the life-cycle of **non persistent** data notifications as well as real-time notifications, implementing the [Publish/Subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
 
-Remember the [Architecture overview](#kuzzle-in-depth) and focus on the components involved by pub/sub actions:
+Remember the [Architecture overview](/guide/kuzzle-depth) and focus on the components involved by pub/sub actions:
 ![pubsub_overview](/assets/images/request-scenarios/pubsub/overview.png)
 
 #### 1st step: subscription
@@ -223,7 +223,7 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 
 ![pubsub_scenario_details1](/assets/images/request-scenarios/pubsub/details1.png)
 
-* The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation](../api-reference/#subscribe)). For instance, to be notified about all contents posted to the collection `users`, containing a field `hobby` equals to `computer`:
+* The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation](/api-documentation/controller-realtime/subscribe)). For instance, to be notified about all contents posted to the collection `users`, containing a field `hobby` equals to `computer`:
 
 ```javascript
 {
@@ -240,7 +240,7 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 }
 ```
 
-See the [Real-time Filters Reference](../real-time-filters/) for more details.
+See the [Real-time Filters Reference](/real-time-filters/) for more details.
 
 The client then listens to the `<requestId>` event on the socket.
 Kuzzle will get back to him with a corresponding Room ID and a Room Channel using this event.
@@ -302,7 +302,7 @@ The following diagram shows how Kuzzle handles a new message and how subscribed 
 ![pubsub_scenario_details2](/assets/images/request-scenarios/pubsub/details2.png)
 
 * A new content is published to the Notifier component. The `_publish_` method can be triggered:
-  * either directly by the Document Controller for non persistent data (using the [publish](../api-reference/#publish) action).
+  * either directly by the Document Controller for non persistent data (using the [publish](/api-documentation/controller-realtime/publish) action).
   * or by the Plugins Manager when a 'document:create' event is triggered, to notify users in real-time before the data are sent to the storage Engine.
 * The Notifier calls the DSL component to test registered filters that match the content, and get related rooms.
 * The Notifier uses the Notification Cache engine to store the mapping content/rooms into cache.
@@ -314,8 +314,7 @@ The following diagram shows how Kuzzle handles a new message and how subscribed 
 
 ![pubsub_scenario_details2](/assets/images/request-scenarios/pubsub/details3.png)
 
-* The Notifier component is notified about a new action by the Document Controller (see [write scenario](#writing-persistent-data)).
-* The Notifier calls the Notification Cache to get the rooms related to the content.
-* The Notifier calls the HotelClerk to get the channels related to the rooms.
-* The Notifier broadcasts the message to each related channel to the Websocket and MQ plugins.
-* Finally, the plugins send the message to the clients who subscribed to it.
+* The Notifier component is notified about a new action by the Document Controller
+* The Notifier calls the Notification Cache to get the rooms related to the content
+* The Notifier calls the HotelClerk to get the channels related to the rooms
+* The Notifier asks the proxy to broadcast the notification to all users having subscribed to the retrieved channels, on all registered network protocols

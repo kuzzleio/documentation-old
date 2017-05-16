@@ -61,7 +61,7 @@ title: sscan
 }
 ```
 
-Identical to [scan](#scan) but iterates members contained in a set of unique values.
+Identical to [scan](/api-documentation/controller-memory-storage/scan) but iterates members contained in a set of unique values.
 
 
 [[_Redis documentation_]](https://redis.io/commands/sscan)

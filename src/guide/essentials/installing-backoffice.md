@@ -12,7 +12,7 @@ The Kuzzle Backoffice is a handy **web application** that helps you administrate
 You can use the <a href="http://kuzzle-backoffice.netlify.com/">publicly hosted Kuzzle Backoffice</a>.
 If you want to host the Kuzzle Backoffice on your own server, you can download the source code [here](https://github.com/kuzzleio/kuzzle-backoffice/releases).
 
-In both cases, you'll be able to <a href="#select-the-kuzzle-server-to-connect-to">select the Kuzzle server</a> you want to manage once the Backoffice starts up.
+In both cases, you'll be able to <a href="/guide/essentials/installing-backoffice/#select-the-kuzzle-server-to-connect-to">select the Kuzzle server</a> you want to manage once the Backoffice starts up.
 
 <aside class="notice">
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a>

@@ -54,7 +54,7 @@ Given an index, the `refresh` action forces a [`refresh`](https://www.elastic.co
 
 | Argument | Type | Description
 |----------|------|-------------
-| `index` | string | _Optional_. The index to refresh. If not set, defaults to [kuzzle.defaultIndex](#properties).
+| `index` | string | _Optional_. The index to refresh. If not set, defaults to [kuzzle.defaultIndex](/sdk-reference/kuzzle/#properties).
 | `options` | JSON object | Optional parameters
 | `callback` | function | _Optional_. Callback handling the response.
 
