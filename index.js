@@ -19,7 +19,9 @@ const hljs        = require('metalsmith-metallic')
 const inlineSVG   = require('metalsmith-inline-svg')
 const compress    = require('metalsmith-gzip')
 const optipng     = require('metalsmith-optipng')
-const logguer     = require('./logger')
+const sitemap     = require('metalsmith-sitemap')
+const htmlMin     = require('metalsmith-html-minifier')
+const logger      = require('./logger')
 const metatoc     = require('./metatoc')
 const languageTab = require('./language-tab')
 const algolia     = require('./algolia')
@@ -149,10 +151,10 @@ handlebars.registerHelper({
 })
 
 // Build site with metalsmith.
-const build = (dev = false) => (done) => {
+const build = (watch = false) => (done) => {
   let metalsmith = Metalsmith(__dirname)
     .metadata({
-      site_title: "My Static Site & Blog",
+      site_title: "Kuzzle documentation",
       gh_repo: "kuzzleio/documentation",
       gh_branch: "rcx-refactor-doc"
     })
@@ -161,9 +163,9 @@ const build = (dev = false) => (done) => {
     .clean(true)
     .use(saveSrc())
 
-  console.log('== Building site in ' + (dev ? 'dev' : 'prod') + ' mode ==');
+  console.log('== Building site in ' + (watch ? 'watch-dev' : 'prod') + ' mode ==');
 
-  if (dev) {
+  if (watch) {
     metalsmith.use(changed())
   }
 
@@ -202,14 +204,20 @@ const build = (dev = false) => (done) => {
       }
     }))
     .use(clickImage())
+    .use(logger())
 
-  if (dev) {
+  if (watch) {
     metalsmith
       .use(debug())
       .use(livereload({ debug: false, delay: 500 }))
   }
   else {
     metalsmith
+    .use(inlineSVG())
+    .use(optipng({
+      pattern: '**/*.png',
+      options: ['-o7']
+    }))
     .use(linkcheck({
       verbose: true,
       timeout: 5,
@@ -217,15 +225,16 @@ const build = (dev = false) => (done) => {
       ignoreFile: '.linkcheck/links_ignore.json',
       failFile: '.linkcheck/links_failed.json'
     }))
+    .use(htmlMin())
+    .use(sitemap({
+      hostname: 'http://docs.kuzzle.io',
+      modifiedProperty: 'stats.mtime',
+      omitIndex: true
+    }))
   }
 
   if (process.argv.indexOf('--gzip') > -1) {
     metalsmith
-      .use(inlineSVG())
-      .use(optipng({
-        pattern: '**/*.png',
-        options: ['-o7']
-      }))
       .use(compress())
   }
 
