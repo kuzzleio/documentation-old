@@ -11,8 +11,8 @@ title: append
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_append/<key>`
-**Method:** `POST`
+**URL:** `http://kuzzle:7512/ms/_append/<key>`  
+**Method:** `POST`  
 **Body:**
 </p>
 </blockquote>
