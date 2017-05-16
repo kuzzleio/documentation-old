@@ -142,6 +142,13 @@ handlebars.registerHelper({
   firstDefinedOf: function (...args) {
     return args.find(a => a);
   },
+  dateToISO: function(d) {
+    if (d instanceof Date) {
+      return d.toISOString();
+    }
+
+    return d
+  },
   dump: function (foo) {
     if (this.path.startsWith('sdk-reference/document')) {
     console.dir(foo);
@@ -156,6 +163,7 @@ const build = (watch = false) => (done) => {
   let metalsmith = Metalsmith(__dirname)
     .metadata({
       site_title: "Kuzzle documentation",
+      site_url: "http://docs.kuzzle.io/",
       gh_repo: "kuzzleio/documentation",
       gh_branch: "rcx-refactor-doc"
     })
