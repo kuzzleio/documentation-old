@@ -62,6 +62,8 @@ module.exports = function(options) {
                 case 'string':
                 case 'boolean':
                 case 'number':
+                  data[key] = files[file][key]
+                  break
                 case 'object':
                   if (files[file][key] instanceof Buffer) {
                     data[key] = files[file][key].toString()
@@ -74,6 +76,7 @@ module.exports = function(options) {
                 case 'symbol':
                 default:
                   // don't care
+                  console.log(`discarding key ${key}:`, typeof files[file][key])
                   break;
               }
             }
