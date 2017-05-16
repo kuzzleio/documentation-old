@@ -12,6 +12,7 @@ module.exports = function metatoc(options) {
     for (let file in files) {
       let data = files[file]
       let cacheIds = {}
+      let lastLevel2
 
       // load contents with cheerio to parse html nodes
       let $ = cheerio.load(data.contents.toString())
@@ -41,7 +42,7 @@ module.exports = function metatoc(options) {
         // }
 
 
-        let level = $(element).prop("nodeName").substring(1)
+        let level = parseInt($(element).prop("nodeName").substring(1))
         let html = $(element).html()
 
         // make id unique
@@ -50,6 +51,10 @@ module.exports = function metatoc(options) {
         }
 
         id = id.replace(/[-]+$/, '').replace(/^[-]+/, '')
+
+        if (level === 2) {
+          lastLevel2 = id
+        }
 
         if (id === "constructor") {
           if (cacheIds["__constructor__"] !== undefined) {
@@ -64,14 +69,14 @@ module.exports = function metatoc(options) {
           cacheIds[id] += 1
 
           // duplicate id, add index to make it unique
-          id = id + '-' + cacheIds[id].toString()
+          id = lastLevel2 + '-' + id
         }
 
         cacheIds[id] = 0
 
         // place anchor in child element to allow customisation with css
         $(element).removeAttr('id')
-        $(element).html(`<a class="anchor" id="${id}"></a>${html}`)
+        $(element).html(`<a class="anchor" name="${id}"></a>${html}`)
 
         // store toc in file metadata
         files[file].toc.push({
