@@ -5,7 +5,11 @@ module.exports = options => {
   // Return a function that will be executed on files
   return (files, metalsmith, done) => {
     setImmediate(done)
-    console.log("==============================", options)
+    // console.log("==============================", options)
+    // for (let file in files) {
+    //   console.log(files[file].stat, files[file].stats.mtime)
+    //   process.exit(1)
+    // }
 
     // const paths = Object.keys(files)
     //
