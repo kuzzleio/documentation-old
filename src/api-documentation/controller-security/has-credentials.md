@@ -47,4 +47,4 @@ title: hasCredentials
 }
 ```
 
-Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier).
+Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).

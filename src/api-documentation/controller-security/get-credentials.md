@@ -52,4 +52,4 @@ title: getCredentials
 }
 ```
 
-Get credential information of the specified `<strategy>` for the user [`<kuid>`](../guide/#the-kuzzle-user-identifier). Provided information completely depend of the strategy. The result can be an empty object.
+Get credential information of the specified `<strategy>` for the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid). Provided information completely depend of the strategy. The result can be an empty object.

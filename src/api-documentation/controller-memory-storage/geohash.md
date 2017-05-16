@@ -49,6 +49,6 @@ title: geohash
 }
 ```
 
-Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provided key's members (see [geoadd](#geoadd)).  
+Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provided key's members (see [geoadd](/api-documentation/controller-memory-storage/geoadd/)).  
 
 [[_Redis documentation_]](https://redis.io/commands/geohash)

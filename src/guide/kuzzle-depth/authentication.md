@@ -13,7 +13,7 @@ Kuzzle uses [PassportJS](http://PassportJS.org/) to enable authentication throug
 - OAuth2 providers like GitHub or google (using [Oauth plugin](https://GitHub.com/kuzzleio/kuzzle-plugin-auth-passport-oauth))
 - SAML providers
 
-Remember the [Architecture overview](#core-architecture) and focus on the components involved by reading actions:
+Remember the [Architecture overview](/guide/kuzzle-depth) and focus on the components involved by reading actions:
 ![read_scenario_http_overview](/assets/images/request-scenarios/auth/overview.png)
 
 Kuzzle uses the following internal components during the authentication process:
@@ -181,6 +181,6 @@ Location: http://<kuzzle>/_login/GitHub?code=OAUTH2_CODE
 
 ## How to provide your own strategy
 
-Any strategy supported by PassportJS can be implemented in Kuzzle with a dedicated plugin. Please refer to the [Plugins Reference](../plugin-reference/#authentication-plugin)).
+Any strategy supported by PassportJS can be implemented in Kuzzle with a dedicated plugin. Please refer to the [Plugins Reference](/plugins-reference/plugins-features/adding-authentication-strategy)).
 
 ---

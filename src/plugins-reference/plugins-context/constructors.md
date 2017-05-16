@@ -22,7 +22,7 @@ You can find an example of a type creation in the
 ## `Dsl`
 
 The DSL constructor provided in the plugin context gives access to
-[Kuzzle real-time filtering capabilities](#filtering-syntax).
+[Kuzzle real-time filtering capabilities](/real-time-filters).
 It allows managing filters, and testing data to get a list of matching filters.
 
 Each plugin can instantiate its own sandboxed DSL instance:
@@ -75,7 +75,7 @@ Registers a filter to the DSL.
 |------|------|----------------------------------|
 |`index`|`string`| Data index name |
 |`collection`|`string`| Data collection name |
-|`filters`|`object`| Filters in [Kuzzle DSL](#filtering-syntax) format |
+|`filters`|`object`| Filters in [Kuzzle DSL](/real-time-filters) format |
 
 **Returns**
 
@@ -124,7 +124,7 @@ Tests the provided filters without storing them in the system, to check whether 
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`filters`|`object`| Filters in [Kuzzle DSL](#filtering-syntax) format |
+|`filters`|`object`| Filters in [Kuzzle DSL](/real-time-filters) format |
 
 **Returns**
 
@@ -136,8 +136,8 @@ A resolved promise if the provided filters are valid, or a rejected one with the
 
 The Repository constructor provided in the plugin context gives access to methods
 that allow the plugin to interact with its plugin storage. The plugin storage is a dedicated
-index in Elasticsearch where the plugin can [create collections](#storage-createcollection).
-To do so the plugin should first [bootstrap](#storage-bootstrap) the index.
+index in Elasticsearch where the plugin can [create collections](/plugins-reference/plugins-context/accessors/#storage-createcollection).
+To do so the plugin should first [bootstrap](/plugins-reference/plugins-context/accessors/#storage-bootstrap) the index.
 
 Once done, the plugin can instantiate repositories to interact with the different collections it created.
 
@@ -234,7 +234,7 @@ If a raw `options` object is provided, it may contain:
 
 **Returns**
 
-Returns a `promise` that resolves to an object respresentation of Elasticsearch request result (see [create usage](#create)).
+Returns a `promise` that resolves to an object representation of Elasticsearch request result (see [create usage](/plugins-reference/plugins-context/constructors/#create)).
 
 **Usage**
 
@@ -351,7 +351,7 @@ If a raw `options` object is provided, it may contain:
 
 **Returns**
 
-Returns a `promise` that resolves to an object respresentation of Elasticsearch request result (see [create usage](#create)).
+Returns a `promise` that resolves to an object respresentation of Elasticsearch request result (see [create usage](/plugins-reference/plugins-context/constructors/#create)).
 
 **Usage**
 
@@ -376,7 +376,7 @@ Searches documents that match the provided `query` in the collection.
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`query`|`object`| The [query](../elasticsearch-cookbook/#basic-queries) sent to Elastisearch. |
+|`query`|`object`| The [query](/elasticsearch-cookbook/basic-queries) sent to Elastisearch. |
 |`from`|`integer`| Provides the offset of the returned documents. |
 |`size`|`integer`| Provides the count of the returned documents. |
 
@@ -438,7 +438,7 @@ someCollectionRepository.update({
 
 ## `Request`
 
-This constructor is used to transform an [API call](../api-reference/?others#common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](../api-reference/?others#kuzzle-response) to be forwarded to the requesting client.
+This constructor is used to transform an [API call](/api-documentation/query-syntax/common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response](/api-documentation/kuzzle-response) to be forwarded to the requesting client.
 
 Network protocol specific headers can be added to the response. If the protocol can handle them,
 these headers will be used to configure the response sent to the client.    
@@ -453,7 +453,7 @@ For more information about this object, please check [our detailed documentation
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`request`|`Request`| `Request` object used to derive a new object instance |
-|`data`|`object`| JSON object following the same standard than for non-HTTP [API calls](http://docs.kuzzle.io/api-reference/#query-syntax)<br>See the  [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) constructor for more information |
+|`data`|`object`| JSON object following the same standard than for non-HTTP [API calls](/api-documentation/query-syntax)<br>See the  [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) constructor for more information |
 | `options` | `object` | Optional initialization parameters |
 
 If a raw `options` object is provided, it may contain:
@@ -507,7 +507,7 @@ Writable
 
 Any undefined attribute from the list above will be set to null.
 
-Please refer to our [API Reference](../api-reference/?others) for a complete list of controllers-actions and their purposes.
+Please refer to our [API Documentation](/api-documentation) for a complete list of controllers-actions and their purposes.
 
 Getters
 
@@ -516,7 +516,7 @@ Getters
 | `context` | `RequestContext` | [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) object | Request connection context |
 | `error` | `KuzzleError` | `null` | Request error, if any |
 | `input` | `RequestInput` | [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object | Request's parameters |
-| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](../api-reference/?others#kuzzle-response) |
+| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response](/api-documentation/kuzzle-response) |
 | `result` | *(varies)* | `null` | Request result, if any |
 
 

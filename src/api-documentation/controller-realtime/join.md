@@ -69,4 +69,4 @@ title: join
 
 Joins a previously created subscription.
 
-The `roomId` parameter is returned by Kuzzle when [subscribing](#subscribe) to some documents.
+The `roomId` parameter is returned by Kuzzle when [subscribing](/api-documentation/controller-realtime/subscribe/) to some documents.

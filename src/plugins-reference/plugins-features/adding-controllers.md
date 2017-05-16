@@ -7,7 +7,7 @@ order: 3
 
 # Adding a controller route
 
-Kuzzle API is divided into "controllers", each one of them exposing "actions" to execute (see [API reference](../api-reference/#common-attributes)).
+Kuzzle API is divided into "controllers", each one of them exposing "actions" to execute (see [API reference](/api-documentation/query-syntax/common-attributes)).
 
 Plugins enable to add a set of new controllers to the Kuzzle public API, each with their own list of available actions.
 
@@ -151,7 +151,7 @@ module.exports = MyController;
 
 ## How Plugins receive action arguments
 
-All action functions receive a [Request](#gt-constructor-request) object as main argument. Kuzzle will fill it with arguments provided by clients invoking the added controller:
+All action functions receive a [Request](/plugins-reference/plugins-context/constructors/#request) object as main argument. Kuzzle will fill it with arguments provided by clients invoking the added controller:
 
 * HTTP:
   * dynamic arguments provided in the URL, headers and query string arguments are stored in `request.input.args`

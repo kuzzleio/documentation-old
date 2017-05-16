@@ -4,12 +4,10 @@ algolia: true
 language-tab:
   js: HTTP
   json: Other protocols
-title: geoadd
+title: geodist
 ---
 
-
 # geodist
-
 
 
 <blockquote class="js">
@@ -53,7 +51,7 @@ title: geoadd
 }
 ```
 
-Returns the distance between two geospatial members of a key (see [geoadd](#geoadd)).  
+Returns the distance between two geospatial members of a key (see [geoadd](/api-documentation/controller-memory-storage/geoadd/)).  
 The returned distance is expressed in meters by default.
 
 [[_Redis documentation_]](https://redis.io/commands/geodist)

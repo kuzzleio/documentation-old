@@ -72,5 +72,5 @@ Updates the current User object in Kuzzle's database layer.
 <aside class="notice">
   User must be connected in order to perform this action.
   The current user can not update its profile using this action.
-  <a href="#updateuser">Security / updateUser</a> must be used instead.
+  <a href="/api-documentation/controller-security/update-user">Security / updateUser</a> must be used instead.
 </aside>
