@@ -25,7 +25,7 @@ Kuzzle uses the following internal components during the authentication process:
 
 ---
 
-## The Kuzzle User Identifier
+## The Kuzzle User Identifier (kuid)
 
 The kuzzle user identifier is a string that identifies a kuzzle user uniquely. It is used internally to link the user stored in Kuzzle with its credentials within the different authentication strategies.
 

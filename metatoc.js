@@ -51,12 +51,20 @@ module.exports = function metatoc(options) {
 
         id = id.replace(/[-]+$/, '').replace(/^[-]+/, '')
 
-        if (cacheIds[id] !== undefined) {
+        if (id === "constructor") {
+          if (cacheIds["__constructor__"] !== undefined) {
+            cacheIds["__constructor__"] += 1
+
+            // duplicate id, add index to make it unique
+            id = id + '-' + cacheIds[id].toString()
+          }
+        }
+        else if (cacheIds[id] !== undefined) {
           // increment index for this id
           cacheIds[id] += 1
 
           // duplicate id, add index to make it unique
-          id = id + '-' + cacheIds[id]
+          id = id + '-' + cacheIds[id].toString()
         }
 
         cacheIds[id] = 0
