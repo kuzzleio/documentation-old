@@ -15,7 +15,7 @@ const links       = require('metalsmith-relative-links')
 const hbtmd       = require('metalsmith-hbt-md')
 const sass        = require('metalsmith-sass')
 const linkcheck   = require('metalsmith-linkcheck')
-const metalic     = require('metalsmith-metallic')
+const hljs        = require('metalsmith-metallic')
 const inlineSVG   = require('metalsmith-inline-svg')
 const compress    = require('metalsmith-gzip')
 const optipng     = require('metalsmith-optipng')
@@ -51,6 +51,7 @@ if (process.argv.indexOf('--algolia-private-key') > -1) {
   algoliaPrivateKey = process.argv[process.argv.indexOf('--algolia-private-key') + 1]
 }
 
+// let algoliaFileParser = false
 const algoliaFileParser = (file, data) => {
   let objects = []
   let $ = cheerio.load(data.contents.toString(), {
@@ -67,30 +68,33 @@ const algoliaFileParser = (file, data) => {
   objects.push({
     objectID: data.path,
     title: data.title,
+    description: data.description ? data.description : '',
     path: data.path,
-    //content: content.text(),
-    parent: (data.ancestry.parent ? data.ancestry.parent.title : '')
+    content: content.text(),
+    parent: (data.ancestry.parent ? data.ancestry.parent.title : ''),
+    toc: data.toc
   })
-
-  for (let subpage of data.toc) {
-    if (data.toc.level === 1) {
-      continue
-    }
-
-    // get anchor wich is inside headers
-    let element = $(`#${subpage.id}`, content).parents('h1, h2, h3, h4, h5, h6')
-    let siblings = element.nextUntil('h1, h2, h3, h4, h5, h6')
-
-    objects.push({
-      objectID: subpage.path,
-      title: data.title,
-      subtitle: subpage.title,
-      path: data.path,
-      subpath: subpage.path,
-      content: siblings.text(),
-      parent: (data.ancestry.parent ? data.ancestry.parent.title : '')
-    })
-  }
+  //
+  // for (let subpage of data.toc) {
+  //   console.log(subpage)
+  //   if (subpage.level === 1) {
+  //     continue
+  //   }
+  //
+  //   // get anchor wich is inside headers
+  //   let element = $(`#${subpage.id}`, content).parents('h1, h2, h3, h4, h5, h6')
+  //   let siblings = element.nextUntil('h1, h2, h3, h4, h5, h6')
+  //
+  //   objects.push({
+  //     objectID: subpage.path,
+  //     title: data.title,
+  //     subtitle: subpage.title,
+  //     path: data.path,
+  //     subpath: subpage.path,
+  //     content: siblings.text(),
+  //     parent: (data.ancestry.parent ? data.ancestry.parent.title : '')
+  //   })
+  // }
 
   return objects
 }
@@ -179,7 +183,7 @@ const build = (dev = false) => (done) => {
         rebase: true
       }
     }))
-    .use(metalic())
+    .use(hljs())
     .use(hbtmd(handlebars, {
         pattern: '**/*.md'
     }))
@@ -197,7 +201,6 @@ const build = (dev = false) => (done) => {
         r.handlebars = handlebars
       }
     }))
-    .use(inlineSVG())
     .use(clickImage())
 
   if (dev) {
@@ -218,6 +221,7 @@ const build = (dev = false) => (done) => {
 
   if (process.argv.indexOf('--gzip') > -1) {
     metalsmith
+      .use(inlineSVG())
       .use(optipng({
         pattern: '**/*.png',
         options: ['-o7']
