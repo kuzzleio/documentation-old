@@ -11,75 +11,123 @@
       m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+  var tetetete = ga;
+
   ga('create', 'UA-67035328-1', 'auto');
   ga('send', 'pageview');
 
 
 
 
+  (function() {
+    var $wrapper = $('.tocify-wrapper');
+    var $selectedItem = $('.tocify-level-2.tocify-focus');
 
+    if ($selectedItem.length === 0) {
+      $selectedItem = $('.tocify-focus');
+    }
+
+    if ($selectedItem.get(0).offsetTop + 150 > $wrapper.height()) {
+    $wrapper.scrollTop($selectedItem.get(0).offsetTop - $wrapper.height() / 2)
+    }
+  })();
 
 
 
 
   (function() {
-    console.log('Initialize autocomplete menu')
     var client = algoliasearch("4RFBRWISJR", "6febf1ebe906bd82bce58d5a20ac6c1b");
     var index = client.initIndex('kuzzle-documentation');
     var template = $('#search-results-template').html();
     var $searchResults = $('.search-results');
     var $searchResultsContainer = $('ul', $searchResults);
+    var watchClose = false;
+    var lastHits = 0;
+
+    $(window).on('click', function() {
+      if (watchClose) {
+        $searchResults.removeClass('display');
+        watchClose = false;
+      }
+    });
+
+    $('.search input[type=search]').on('click', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+      event.stopPropagation();
+    });
+
+    $('.search input[type=search]').on('focus', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+      event.stopPropagation();
+    });
+
+    $('.search input[type=search]').on('blur', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+      event.stopPropagation();
+    });
 
     $('.search input[type=search]').on('input', function(event) {
-      var $el = $(this);
+      var $input = $(this);
       var searchResultsContent = '';
 
-      console.log(this.value)
       if (this.value === '') {
-        searchResultsContainer.empty();
-        $searchResults.removeClass('display')
+        $searchResultsContainer.empty();
+        $searchResults.removeClass('display');
+        watchClose = false;
+        return
       }
 
       index.search(this.value, function(err, res) {
-        if (res.hits.length > 0) {
-          $searchResults.addClass('display')
+        if (err) {
+          console.error(err);
+          return;
         }
+
+        lastHits = res.hits.length;
+
+        if (lastHits === 0) {
+          $searchResultsContainer.empty();
+          $searchResults.removeClass('display');
+          return
+        }
+
+        $searchResults.addClass('display');
+        watchClose = true;
 
         for (var key in res.hits) {
-          console.log(res.hits[key]);
-          var content = template
+          var content = template;
 
-          content = content.replace(/__link__/g, '/' + res.hits[key].path)
-          content = content.replace(/__parent__/g, res.hits[key].parent || '')
-          content = content.replace(/__firstMember__/g, res.hits[key].firstMember || '')
-          content = content.replace(/__title__/g, res.hits[key]._highlightResult.title.value)
-          content = content.replace(/__preview__/g, res.hits[key]._snippetResult.content.value)
+          content = content.replace(/__link__/g, '/' + res.hits[key].path);
+          content = content.replace(/__parent__/g, res.hits[key].parent || '');
+          content = content.replace(/__firstMember__/g, res.hits[key].firstMember || '');
+          content = content.replace(/__title__/g, res.hits[key]._highlightResult.title.value);
+          content = content.replace(/__preview__/g, res.hits[key]._snippetResult.content.value);
 
-          searchResultsContent += content
+          searchResultsContent += content;
         }
 
+        searchResultsContent += '<li><img src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" style="margin: 8px 8px 0 0;"></li>';
+
         $searchResultsContainer.html(searchResultsContent);
+
+        $('a', $searchResultsContainer).on('click', function(event) {
+          ga('send', 'event', {
+            eventCategory: 'documentation-search',
+            eventAction: this.href,
+            eventLabel: $('.search input[type=search]').val(),
+            transport: 'beacon'
+          });
+        });
       });
     })
-
-    index.search('setnx', function(err, content) {
-      console.log(content.hits);
-    });
-  })()
-  //initialize autocomplete on search input (ID selector must match)
-  // autocomplete('.search input[type=search]',
-  // { hint: false }, {
-  //     source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
-  //     //value to be displayed in input control after user's suggestion selection
-  //     displayKey: 'title',
-  //     //hash of templates used when rendering dataset
-  //     templates: {
-  //         //'suggestion' templating function used to render a single suggestion
-  //         suggestion: function(suggestion) {
-  //           return '<span>' +
-  //             suggestion._highlightResult.title.value + '</span><span>' +
-  //             suggestion._highlightResult.content.value + '</span>';
-  //         }
-  //     }
-  // });
+  })();
 </script>

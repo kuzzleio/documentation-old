@@ -18,7 +18,7 @@ module.exports = function(options) {
   return function(files, metalsmith, done) {
     let clearIndex
 
-    debug(`indexing ${files} files`)
+    debug(`indexing ${files.lentgh} files`)
 
     if (options.clearIndex === true) {
       clearIndex = new Bluebird((resolve) => {
