@@ -8,7 +8,7 @@ algolia: true
 title: CollectionMapping
 show-subheader: true
 subheader-title: Constructor
-order: 3
+order: 2
 ---
 
 # CollectionMapping

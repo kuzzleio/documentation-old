@@ -8,7 +8,7 @@ algolia: true
 title: MemoryStorage
 show-subheader: true
 subheader-title: Constructor
-order: 5
+order: 2
 ---
 
 # Constructor
