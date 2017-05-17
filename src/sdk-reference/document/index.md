@@ -6,6 +6,7 @@ language-tab:
   php: PHP
 algolia: true
 title: Document
+description: Class for documents handling
 show-subheader: true
 subheader-title: Constructor
 ---

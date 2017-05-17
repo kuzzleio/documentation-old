@@ -6,6 +6,7 @@ language-tab:
   php: PHP
 algolia: true
 title: User
+description: Permission users manipulation
 show-subheader: true
 subheader-title: Constructor
 ---

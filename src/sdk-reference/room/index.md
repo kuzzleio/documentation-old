@@ -6,6 +6,7 @@ language-tab:
   php: PHP
 algolia: true
 title: Room
+description: Real-time subscription management class
 show-subheader: true
 subheader-title: Constructor
 ---

@@ -6,6 +6,7 @@ language-tab:
   php: PHP
 algolia: true
 title: CollectionMapping
+description: Methods manipulating data collection structures
 show-subheader: true
 subheader-title: Constructor
 ---
