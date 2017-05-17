@@ -32,7 +32,7 @@ Kuzzle ships with a set of open-source [SDK](/sdk-reference) for a variety of la
 - [PHP](https://github.com/kuzzleio/sdk-php)
 - C (planned)
 
-#### Supported protocols
+## Supported protocols
 
 Kuzzle supports a variety of communication protocols.  
 For the time being, Kuzzle supports the following protocols:
@@ -44,13 +44,13 @@ For the time being, Kuzzle supports the following protocols:
 
 You can directly interact with Kuzzle using the [Kuzzle API reference](/api-documentation).
 
-### Authentication
+## Authentication
 
 Kuzzle supports a variety of authentication strategies via [PassportJS](http://passportjs.org/). Local and OAuth-based authentication is natively supported, but you can also add your own custom strategy.
 
 Please refer to the [dedicated section](/guide/essentials/security) for more details.
 
-#### Plugins
+## Plugins
 
 Kuzzle is extensible in many ways. Plugins enable you to
 
