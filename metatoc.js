@@ -76,7 +76,7 @@ module.exports = function metatoc(options) {
 
         // place anchor in child element to allow customisation with css
         $(element).removeAttr('id')
-        $(element).html(`<a class="anchor" name="${id}"></a>${html}`)
+        $(element).html(`<a class="anchor" id="${id}"></a>${html}`)
 
         // store toc in file metadata
         files[file].toc.push({
