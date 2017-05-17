@@ -1,4 +1,10 @@
 <script type="text/javascript">
+  // helper
+  var store = {
+    get: function(key) {},
+    set: function(key, value) {}
+  };
+
   (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
       i[r] = i[r] || function() {
@@ -11,16 +17,13 @@
       m.parentNode.insertBefore(a, m)
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  var tetetete = ga;
-
   ga('create', 'UA-67035328-1', 'auto');
   ga('send', 'pageview');
 
 
-
-
-  (function() {
+  (function leftNavUX() {
     var $wrapper = $('.tocify-wrapper');
+
     if ($wrapper.length !== 0) {
       var $selectedItem = $('.tocify-level-2.tocify-focus', $wrapper);
 
@@ -28,24 +31,171 @@
         $selectedItem = $('.tocify-focus', $wrapper);
       }
 
-      if ($selectedItem.get(0).offsetTop + 150 > $wrapper.height()) {
-        $wrapper.scrollTop($selectedItem.get(0).offsetTop - $wrapper.height() / 2)
+      if ($selectedItem.get(0).offsetTop + 120 > $wrapper.height()) {
+        $wrapper.scrollTop(Math.ceil($selectedItem.get(0).offsetTop - $wrapper.height() / 2));
       }
     }
   })();
 
 
+  (function tocUX() {
+    var $toc = $('.toc');
+    var $content = $('.content');
+
+    //----------------------------
+    // fixes toc next to content
+    if ($toc.length > 0) {
+      var debounceComputeSize = false;
+      var computeSize = function() {
+        // 280 is the width of left nav / 15 is the margin with content
+        $toc.css('left', $content.get('0').offsetLeft + $content.get('0').offsetWidth + 280 + 15 +'px');
+        // 30 is the margin with bottom window
+        $toc.css('max-height', window.innerHeight - $toc.get('0').offsetTop - 30  + 'px');
+      }
+
+      $(window).on('resize', function() {
+        clearTimeout(debounceComputeSize);
+        debounceComputeSize = setTimeout(computeSize, 20);
+      })
+      computeSize();
+    }
+    //----------------------------
+
+    //---------------------------------------------------------------------
+    // toogle 'active' class on toc link when headings pass window offset
+    if ($toc.length > 0) {
+      var headings = {};
+      var debounceActiveItem = false;
+      var computeActiveItem = function() {
+        var lastPassedItem;
+
+        for (let key in headings) {
+          headings[key].$link.removeClass('active');
+
+          if (headings[key].offset <= window.pageYOffset + 70) {
+            lastPassedItem = headings[key];
+          }
+        }
+
+        if (lastPassedItem) {
+          lastPassedItem.$link.addClass('active');
+        }
+      }
+
+      $('a[href]', $toc).each(function(index, element) {
+        var id = element.href.slice(element.href.indexOf('#'));
+        var $ref = $(id).parent();
+
+        if ($ref.length > 0) {
+          headings[id] = {
+            $ref: $ref,
+            $link: $(element),
+            offset: $ref.get('0').offsetTop
+          }
+        }
+      });
+
+      $(window).on('scroll', function() {
+        clearTimeout(debounceActiveItem);
+        debounceActiveItem = setTimeout(computeActiveItem, 10);
+      })
+      computeActiveItem();
+    }
+    //---------------------------------------------------------------------
+  })();
 
 
-  (function() {
-    var client = algoliasearch("4RFBRWISJR", "6febf1ebe906bd82bce58d5a20ac6c1b");
+  //---------------------------------------------------------------------
+  // copy code to clipboard button
+  (function codeClipboard() {
+    $hljs = $('.hljs');
+
+    if ($hljs.length > 0) {
+      var debounceClipboard = false;
+      var clipboardSnippets;
+
+      function fallbackMessage(action) {
+          var actionMsg = '';
+          var actionKey = (action === 'cut' ? 'X' : 'C');
+          if (/iPhone|iPad/i.test(navigator.userAgent)) {
+              actionMsg = 'No support :(';
+          } else if (/Mac/i.test(navigator.userAgent)) {
+              actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
+          } else {
+              actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
+          }
+          return actionMsg;
+      }
+
+      $hljs.each(function(index, element) {
+        $(element).before('<button class="clipboard" title="copy code to clipboard" data-clipboard-snippet><i class="fa fa-clipboard" aria-hidden="true"></i></button>');
+      })
+
+      clipboardSnippets = new Clipboard('[data-clipboard-snippet]', {
+          target: function(trigger) {
+              return trigger.nextElementSibling;
+          }
+      });
+
+      clipboardSnippets.on('success', function(e) {
+          e.clearSelection();
+          $(e.trigger).text('Copied!')
+
+          clearTimeout(debounceClipboard);
+          debounceClipboard = setTimeout(function() {
+            $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+          }, 1200);
+      });
+      clipboardSnippets.on('error', function(e) {
+        e.clearSelection();
+        $(e.trigger).text(fallbackMessage(e.action));
+
+        clearTimeout(debounceClipboard);
+        debounceClipboard = setTimeout(function() {
+          $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        }, 2400);
+      });
+    }
+  })();
+  //---------------------------------------------------------------------
+
+
+  //---------------------------------------------------------------------
+  // language tab selector
+  (function languageTabSelector() {
+    $languageTabSelector = $('.language-tab-selector a');
+
+    if ($languageTabSelector.length > 0) {
+      $languageTabSelector.on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var language = $(this).data('languageName');
+
+        $('.language-tab-active').removeClass('language-tab-active');
+        $('.language-tab-selector a[data-language-name="' + language + '"]').addClass('language-tab-active');
+        $('.language-tab[data-language="' + language + '"]').addClass('language-tab-active');
+      });
+    }
+  })();
+  //---------------------------------------------------------------------
+
+
+  (function instantSearchUI() {
+    var client = algoliasearch("{{ algolia_projectId }}", "{{ algolia_publicKey }}");
     var index = client.initIndex('kuzzle-documentation');
     var template = $('#search-results-template').html();
+    var $searchInput = $('.search input[type=search]');
     var $searchResults = $('.search-results');
     var $searchResultsContainer = $('ul', $searchResults);
     var watchClose = false;
     var lastHits = 0;
 
+    // focus search input on content loaded
+    $searchInput.focus();
+
+
+    // search results open/close handlers
     $(window).on('click', function() {
       if (watchClose) {
         $searchResults.removeClass('display');
@@ -53,7 +203,7 @@
       }
     });
 
-    $('.search input[type=search]').on('click', function(event) {
+    $searchInput.on('click', function(event) {
       if (lastHits > 0) {
         $searchResults.addClass('display');
         watchClose = true;
@@ -61,7 +211,7 @@
       event.stopPropagation();
     });
 
-    $('.search input[type=search]').on('focus', function(event) {
+    $searchInput.on('focus', function(event) {
       if (lastHits > 0) {
         $searchResults.addClass('display');
         watchClose = true;
@@ -69,23 +219,28 @@
       event.stopPropagation();
     });
 
-    $('.search input[type=search]').on('blur', function(event) {
+    $searchInput.on('blur', function(event) {
       if (lastHits > 0) {
         $searchResults.addClass('display');
         watchClose = true;
       }
       event.stopPropagation();
     });
+    // end - search results open/close handlers
 
-    $('.search input[type=search]').on('input', function(event) {
+
+    // main input listener
+    $searchInput.on('input', function(event) {
       var $input = $(this);
       var searchResultsContent = '';
 
+      // clear search result on empty input
       if (this.value === '') {
         $searchResultsContainer.empty();
         $searchResults.removeClass('display');
         watchClose = false;
-        return
+
+        return;
       }
 
       index.search(this.value, function(err, res) {
@@ -99,25 +254,30 @@
         if (lastHits === 0) {
           $searchResultsContainer.empty();
           $searchResults.removeClass('display');
-          return
+          return;
         }
 
         $searchResults.addClass('display');
         watchClose = true;
 
+        // make search result item from
         for (var key in res.hits) {
           var content = template;
 
-          var elements = res.hits[key]._snippetResult.content.value.split('<em>')
-          var preview = ''
+          // here we secure manualy all xml tags wich may can be retrieved by results, but we keep <em> tags for highlighting
+          var elements = res.hits[key]._snippetResult.content.value.split('<em>');
+          var preview = '';
 
           for (var k in elements) {
-            elements[k] = elements[k].replace(/</g, '&lt;')
-            elements[k] = elements[k].replace(/>/g, '&gt;')
+            elements[k] = elements[k].replace(/</g, '&lt;');
+            elements[k] = elements[k].replace(/>/g, '&gt;');
           }
-          preview = elements.join('<em>')
-          preview = preview.replace(/&lt;\/em&gt;/g, '</em>')
 
+          // restore <em></em> tags
+          preview = elements.join('<em>');
+          preview = preview.replace(/&lt;\/em&gt;/g, '</em>');
+
+          // replace variables in template
           content = content.replace(/__link__/g, '/' + res.hits[key].path);
           content = content.replace(/__parent__/g, res.hits[key].parent || '');
           content = content.replace(/__firstMember__/g, res.hits[key].firstMember || '');
@@ -127,19 +287,23 @@
           searchResultsContent += content;
         }
 
+        // add algolia copyright
         searchResultsContent += '<li><img src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" style="margin: 8px 8px 0 0;"></li>';
 
+        // magic jQuery
         $searchResultsContainer.html(searchResultsContent);
 
+        // send ga event on search result hit
         $('a', $searchResultsContainer).on('click', function(event) {
           ga('send', 'event', {
             eventCategory: 'documentation-search',
             eventAction: this.href,
-            eventLabel: $('.search input[type=search]').val(),
+            eventLabel: $searchInput.val(),
             transport: 'beacon'
           });
         });
       });
-    })
+    });
+
   })();
 </script>
