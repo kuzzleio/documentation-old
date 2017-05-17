@@ -11,7 +11,7 @@ show-subheader: true
 subheader-title: Constructor
 ---
 
-# Constructors
+# Constructor
 
 ```js
 /*
