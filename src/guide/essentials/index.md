@@ -5,9 +5,10 @@ title: Essentials
 description: learn mechanisms of kuzzle
 order: 100
 show-subheader: true
+subheader-title: Introduction
 ---
 
-# Essentials
+# Introduction
 
 ## Persistent data
 
