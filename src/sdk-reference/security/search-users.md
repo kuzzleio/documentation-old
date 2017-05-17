@@ -5,7 +5,7 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: search-users.md
+title: searchUsers
 ---
 
 # searchUsers
