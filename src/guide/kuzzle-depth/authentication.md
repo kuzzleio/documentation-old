@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Authentication
-order: 1
+order: 100
 ---
 
 # Authentication

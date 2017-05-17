@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Listening synchronously
-order: 2
+order: 200
 ---
 
 # Listening synchronously

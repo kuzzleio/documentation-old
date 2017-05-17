@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Adding an authentication strategy
-order: 4
+order: 400
 ---
 
 # Adding an authentication strategy

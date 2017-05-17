@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Adding a controller route
-order: 3
+order: 300
 ---
 
 # Adding a controller route

@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: A document is about to be deleted
-order: 4
+order: 400
 ---
 
 # A document is about to be deleted

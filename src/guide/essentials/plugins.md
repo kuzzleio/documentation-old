@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: The Plugin System
-order: 10
+order: 1000
 ---
 
 # The Plugin System

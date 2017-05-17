@@ -2,5 +2,5 @@
 layout: category-members.html
 algolia: true
 title: index
-order: 10
+order: 1000
 ---

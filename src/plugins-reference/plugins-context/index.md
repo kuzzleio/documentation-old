@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: The plugin context
 description: plugin initialization context attribute reference
-order: 4
+order: 400
 show-subheader: true
 subheader-title: Introductions
 ---

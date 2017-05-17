@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: A document has been deleted
-order: 5
+order: 500
 ---
 
 # A document has been deleted

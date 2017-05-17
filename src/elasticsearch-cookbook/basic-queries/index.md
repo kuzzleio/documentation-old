@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Basic queries
 description: learn how to search data with elasticsearch
-order: 4
+order: 400
 ---
 
 # Basic queries

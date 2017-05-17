@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Command Line Interface
-order: 9
+order: 900
 ---
 # Command Line Interface
 

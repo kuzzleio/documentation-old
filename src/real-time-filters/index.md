@@ -1,7 +1,7 @@
 ---
 layout: category-childrens.html
 title: Real-time filters
-order: 3
+order: 300
 description: Kuzzle Realtime DSL Reference
 icon: fa-commenting-o
 ---

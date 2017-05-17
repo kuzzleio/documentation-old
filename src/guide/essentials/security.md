@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Security
-order: 7
+order: 700
 ---
 
 # Security

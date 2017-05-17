@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Data insertion
 description: learn how to index data with elasticsearch
-order: 2
+order: 200
 ---
 
 # Data insertion

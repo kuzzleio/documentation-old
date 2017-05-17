@@ -1,7 +1,7 @@
 ---
 layout: category-childrens.html
 title: Elasticsearch Cookbook
-order: 7
+order: 700
 description: Learn how to query persistent data in Kuzzle
 icon: fa-book
 ---

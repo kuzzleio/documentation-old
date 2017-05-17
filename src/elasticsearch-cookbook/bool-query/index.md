@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: The bool (Boolean) query
 description: learn how to combine filters with elasticsearch
-order: 5
+order: 500
 ---
 
 # The `bool` (Boolean) query

@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Listening asynchronously
-order: 1
+order: 100
 ---
 
 # Listening asynchronously

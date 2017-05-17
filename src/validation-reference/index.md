@@ -1,7 +1,7 @@
 ---
 layout: category-childrens.html
 title: Data Validation
-order: 4
+order: 400
 description: The reference for the data-validation engine in Kuzzle.
 icon: fa-check
 ---

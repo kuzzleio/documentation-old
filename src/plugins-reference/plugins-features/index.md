@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Plugins features
 description: understand Kuzzle plugins mechanisms
-order: 2
+order: 200
 show-subheader: true
 subheader-title: Introduction
 ---

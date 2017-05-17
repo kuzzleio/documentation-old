@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: errors
-order: 3
+order: 300
 ---
 
 # errors

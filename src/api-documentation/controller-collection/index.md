@@ -2,5 +2,5 @@
 layout: category-members.html
 algolia: true
 title: collection
-order: 8
+order: 800
 ---

@@ -2,5 +2,5 @@
 layout: category-members.html
 algolia: true
 title: document
-order: 9
+order: 900
 ---

@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Sending volatile data
 description: broadcast extra volatile data to subscribers
-order: 4
+order: 400
 show-subheader: true
 subheader-title: Introduction
 ---
