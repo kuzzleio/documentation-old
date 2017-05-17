@@ -6,9 +6,9 @@ language-tab:
   php: PHP
 algolia: true
 title: Security
+description: Rights administration methods
 show-subheader: true
 subheader-title: Constructor
-order: 200
 ---
 
 # Constructor

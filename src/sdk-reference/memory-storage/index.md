@@ -6,9 +6,9 @@ language-tab:
   php: PHP
 algolia: true
 title: MemoryStorage
+description: Memory cache storage methods
 show-subheader: true
 subheader-title: Constructor
-order: 200
 ---
 
 # Constructor
