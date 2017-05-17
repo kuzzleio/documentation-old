@@ -8,7 +8,6 @@ algolia: true
 title: Role
 show-subheader: true
 subheader-title: Constructor
-order: 200
 ---
 
 # Constructors
