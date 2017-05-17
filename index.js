@@ -78,29 +78,8 @@ const algoliaFileParser = (file, data) => {
     firstMember: (data.ancestry.firstMember ? data.ancestry.firstMember.title : ''),
     toc: data.toc
   })
-  //
-  // for (let subpage of data.toc) {
-  //   console.log(subpage)
-  //   if (subpage.level === 1) {
-  //     continue
-  //   }
-  //
-  //   // get anchor wich is inside headers
-  //   let element = $(`#${subpage.id}`, content).parents('h1, h2, h3, h4, h5, h6')
-  //   let siblings = element.nextUntil('h1, h2, h3, h4, h5, h6')
-  //
-  //   objects.push({
-  //     objectID: subpage.path,
-  //     title: data.title,
-  //     subtitle: subpage.title,
-  //     path: data.path,
-  //     subpath: subpage.path,
-  //     content: siblings.text(),
-  //     parent: (data.ancestry.parent ? data.ancestry.parent.title : '')
-  //   })
-  // }
 
-  return objects
+  return objects;
 }
 
 /**
@@ -108,7 +87,7 @@ const algoliaFileParser = (file, data) => {
  */
 handlebars.registerHelper({
   not: function(v) {
-    return !v;
+    return !v
   },
   eq: function (v1, v2) {
     return v1 === v2
@@ -141,21 +120,14 @@ handlebars.registerHelper({
     return str.endsWith(substr)
   },
   firstDefinedOf: function (...args) {
-    return args.find(a => a);
+    return args.find(a => a)
   },
   dateToISO: function(d) {
     if (d instanceof Date) {
-      return d.toISOString();
+      return d.toISOString()
     }
 
     return d
-  },
-  dump: function (foo) {
-    if (this.path.startsWith('sdk-reference/document')) {
-    console.dir(foo);
-    console.log('=======================================================================');
-  }
-    return '';
   }
 })
 
@@ -174,6 +146,15 @@ const build = (watch = false) => (done) => {
     .destination('./build') // does not work with 'dist' folder ...
     .clean(true)
     .use(saveSrc())
+    .use((files, metalsmith, done) => {
+      setImmediate(done);
+
+      Object.keys(files).forEach(path => {
+        if (path.endsWith('.md') && files[path].order === undefined) {
+          files[path].order = Number.MAX_SAFE_INTEGER
+        }
+      })
+    })
 
   console.log('== Building site in ' + (watch ? 'watch-dev' : 'prod') + ' mode ==');
 

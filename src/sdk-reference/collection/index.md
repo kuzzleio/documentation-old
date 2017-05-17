@@ -6,9 +6,9 @@ language-tab:
   php: PHP
 algolia: true
 title: Collection
+description: Data collection methods
 show-subheader: true
 subheader-title: Constructor
-order: 200
 ---
 
 # Collection

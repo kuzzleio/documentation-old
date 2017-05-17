@@ -6,9 +6,9 @@ language-tab:
   php: PHP
 algolia: true
 title: Role
+description: Permission roles manipulation
 show-subheader: true
 subheader-title: Constructor
-order: 200
 ---
 
 # Constructors
