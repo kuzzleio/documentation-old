@@ -46,6 +46,7 @@ if (process.argv.indexOf('--watch') > -1) {
 }
 
 const algoliaProjectID = '4RFBRWISJR'
+const algoliaPublicKey = '6febf1ebe906bd82bce58d5a20ac6c1b'
 const algoliaIndex = 'kuzzle-documentation'
 
 let algoliaPrivateKey
@@ -165,7 +166,9 @@ const build = (watch = false) => (done) => {
       site_title: "Kuzzle documentation",
       site_url: "http://docs.kuzzle.io/",
       gh_repo: "kuzzleio/documentation",
-      gh_branch: "rcx-refactor-doc"
+      gh_branch: "rcx-refactor-doc",
+      algolia_projectId: algoliaProjectID,
+      algolia_publicKey: algoliaPublicKey
     })
     .source('./src')
     .destination('./build') // does not work with 'dist' folder ...
