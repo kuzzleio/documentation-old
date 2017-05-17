@@ -17,7 +17,7 @@ The validation schema must follow the following structure to be valid:
       "strict": true,
       "fields": {
         "fieldName": {
-            "mandatory": true,
+        "mandatory": true,
           "type": "string",
           "defaultValue": "a default value",
           "multivalued": {
