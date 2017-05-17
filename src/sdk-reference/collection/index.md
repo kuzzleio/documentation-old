@@ -8,7 +8,6 @@ algolia: true
 title: Collection
 show-subheader: true
 subheader-title: Constructor
-order: 200
 ---
 
 # Collection
