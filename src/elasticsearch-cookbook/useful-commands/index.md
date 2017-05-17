@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Useful commands
 description: learn time-saving elasticsearch commands
-order: 3
+order: 300
 ---
 
 # Useful commands

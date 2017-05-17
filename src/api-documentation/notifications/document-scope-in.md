@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: An updated document entered your listening scope
-order: 3
+order: 300
 ---
 
 # An updated document entered your listening scope

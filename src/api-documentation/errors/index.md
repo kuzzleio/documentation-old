@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Errors
 description: understand Kuzzle errors mechanisms
-order: 5
+order: 500
 ---
 
 # Errors

@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Installing Kuzzle Backoffice
-order: 1
+order: 100
 ---
 
 # Installing Kuzzle Backoffice

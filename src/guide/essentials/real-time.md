@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Real-time notifications
-order: 6
+order: 600
 ---
 
 # Real-time notifications

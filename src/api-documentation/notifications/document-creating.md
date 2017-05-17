@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: A document is about to be created
-order: 1
+order: 100
 ---
 
 # A document is about to be created

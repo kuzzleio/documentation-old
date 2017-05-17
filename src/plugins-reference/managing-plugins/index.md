@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Managing Plugins
 description: learn how to enable and configure plugins
-order: 3
+order: 300
 ---
 
 # Managing Plugins

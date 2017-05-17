@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Kuzzle response
 description: understand Kuzzle response mechanisms
-order: 3
+order: 300
 ---
 
 # Kuzzle response

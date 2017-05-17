@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Kuzzle events list
 description: list of events that plugins can register hooks and pipes
-order: 5
+order: 500
 ---
 
 # Kuzzle events list

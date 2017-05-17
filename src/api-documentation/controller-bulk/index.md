@@ -4,7 +4,7 @@ algolia: true
 title: bulk
 show-subheader: true
 subheader-title: Introduction
-order: 7
+order: 700
 ---
 
 # bulk controller

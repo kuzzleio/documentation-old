@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Plugins creation prerequisites
 description: requirements to develop your plugin
-order: 1
+order: 100
 ---
 
 # Plugins creation prerequisites

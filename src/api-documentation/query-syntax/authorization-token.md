@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Authorization token
-order: 2
+order: 200
 ---
 
 # Authorization token

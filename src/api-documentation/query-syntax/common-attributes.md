@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Common attributes
-order: 1
+order: 100
 ---
 
 # Common attributes

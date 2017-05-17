@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Installation
 description: learn how to install elasticsearch from scratch
-order: 1
+order: 100
 ---
 
 # Installation

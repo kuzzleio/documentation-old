@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Updating a document
-order: 1
+order: 100
 ---
 
 # Updating a document

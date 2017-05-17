@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Configuring Kuzzle
-order: 2
+order: 200
 ---
 
 # Configuring Kuzzle

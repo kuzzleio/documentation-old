@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Connecting to Kuzzle
 description: through HTTP, WebSocket or Protocol plugins
-order: 1
+order: 100
 ---
 
 

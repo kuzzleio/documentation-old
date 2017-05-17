@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Subscribe to a room
-order: 2
+order: 200
 ---
 
 # Subscribe to a room

@@ -3,7 +3,7 @@ layout: full.html
 algolia: true
 title: Validators
 description: learn how to create complex validators
-order: 2
+order: 200
 ---
 
 # Validators

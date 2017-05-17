@@ -1,7 +1,7 @@
 ---
 layout: category-childrens.html
 title: API Documentation
-order: 5
+order: 500
 description: Learn low-level Kuzzle API
 icon: fa-code
 ---

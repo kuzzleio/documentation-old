@@ -2,5 +2,5 @@
 layout: category-members.html
 algolia: true
 title: memoryStorage
-order: 11
+order: 1100
 ---

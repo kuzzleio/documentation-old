@@ -8,7 +8,7 @@ algolia: true
 title: Kuzzle
 show-subheader: true
 subheader-title: Constructor
-order: 1
+order: 100
 ---
 
 # Constructor

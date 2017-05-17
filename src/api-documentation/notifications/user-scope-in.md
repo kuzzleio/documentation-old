@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: A user subscribed to this room
-order: 7
+order: 700
 ---
 
 # A user subscribed to this room

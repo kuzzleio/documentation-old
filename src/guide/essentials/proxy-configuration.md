@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Configuring Kuzzle proxy
-order: 3
+order: 300
 ---
 
 # Configuring Kuzzle proxy

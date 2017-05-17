@@ -2,5 +2,5 @@
 layout: category-members.html
 algolia: true
 title: server
-order: 12
+order: 1200
 ---
