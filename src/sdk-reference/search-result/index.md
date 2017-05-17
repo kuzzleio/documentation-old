@@ -6,6 +6,7 @@ language-tab:
   php: PHP
 algolia: true
 title: SearchResult
+description: Search result navigation class
 show-subheader: true
 subheader-title: Constructor
 ---
