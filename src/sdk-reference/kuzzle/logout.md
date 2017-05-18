@@ -10,10 +10,6 @@ title: logout
 
 # logout
 
-<aside class="notice">
-This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
-</aside>
-
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle.logout(function (err, res) {
@@ -57,6 +53,10 @@ catch (ErrorException $e) {
 ```
 
 Logs the user out.
+
+<aside class="notice">
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+</aside>
 
 ---
 

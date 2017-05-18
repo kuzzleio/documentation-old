@@ -10,10 +10,6 @@ title: login
 
 # login
 
-<aside class="notice">
-This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
-</aside>
-
 ```js
 // Expiration time is expressed as a string following the
 // time conversion library: https://www.npmjs.com/package/ms
@@ -82,6 +78,10 @@ If the request succeeds but there is no token, then it means that the chosen str
 
 If the login attempt fails, the `loginAttempt` event is fired with the following response:  
 `{ success: false, error: 'error message' }`
+
+<aside class="notice">
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+</aside>
 
 ---
 

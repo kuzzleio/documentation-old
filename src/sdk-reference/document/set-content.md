@@ -37,12 +37,12 @@ $documentContent = [
 $document->setContent($documentContent);
 ```
 
+Replaces the current content with new data.  
+This is a helper function returning itself, allowing to easily chain calls.
+
 <aside class="notice">
 Changes made by this function won't be applied until the <code>save</code> method is called
 </aside>
-
-Replaces the current content with new data.  
-This is a helper function returning itself, allowing to easily chain calls.
 
 ---
 

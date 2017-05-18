@@ -108,8 +108,6 @@ This function allows anonymous users for instance to create a "restricted" user 
 <aside class="notice">
 There is a small delay between user creation and their creation in our search layer, usually a couple of seconds.
 That means that a user that was just been created will not be returned by <code>searchUsers</code> function.
-<br/>
-
 </aside>
 
 ---

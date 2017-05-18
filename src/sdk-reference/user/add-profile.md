@@ -58,12 +58,12 @@ $user->addProfile($profile);
 $user->addProfile('myProfile');
 ```
 
+
+Replaces the profile associated to the user
+
 <aside class="note">
 Updating an user will have no impact until the <a href="/sdk-reference/user/create"><code>create</code></a> or <a href="/sdk-reference/user/replace"><code>replace</code></a> method is called
 </aside>
-
-
-Replaces the profile associated to the user
 
 ---
 

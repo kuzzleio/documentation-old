@@ -10,10 +10,6 @@ title: setPolicies
 
 # setPolicies
 
-<aside class="note">
-Updating a profile will have no impact until the <code>save</code> method is called
-</aside>
-
 ```js
 policy = { "roleId": "roleId" };
 
@@ -56,3 +52,7 @@ Replaces the roles policies associated to the profile.
 ## Return value
 
 Returns the `Profile` object.
+
+<aside class="note">
+Updating a profile will have no impact until the <code>save</code> method is called
+</aside>

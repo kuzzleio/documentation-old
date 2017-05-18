@@ -10,10 +10,6 @@ title: setContent
 
 # setContent
 
-<aside class="note">
-Updating a profile will have no impact until the <code>save</code> method is called
-</aside>
-
 ```js
 var profile = kuzzle.security.fetchProfile('myprofile');
 var profileDefinition = {
@@ -74,6 +70,10 @@ $profile->setContent($profileDefinition);
 ```
 
 Replaces the content of the `Profile` object.
+
+<aside class="note">
+Updating a profile will have no impact until the <code>save</code> method is called
+</aside>
 
 ---
 

@@ -49,18 +49,22 @@ kuzzle
 
 ```java
 JSONObject content = new JSONObject()
-  // A "profile" field is required to bind a user to an existing profile
-  .put("profileIds", new JSONArray().put("admin")
+  // A "profile" field is required to bind a user to existing profiles
+  .put("profileIds", new JSONArray()
+    .put("admin")
+  )
   // You can also set custom fields to your user
   .put("firstname", "John")
-  .put("lastname", "Doe"))
+  .put("lastname", "Doe");
+
 JSONObject newUser = new JSONObject().put("content", content);
 
 JSONObject credentials = new JSONObject()
   .put("local", new JSONObject()
-  // The "local" authentication strategy requires a password
-  .put("password", "secret password")
-  .put("lastLoggedIn", 1494411803);
+    // The "local" authentication strategy requires a password
+    .put("password", "secret password")
+    .put("lastLoggedIn", 1494411803)
+  );
 
 newUser.put("credentials", credentials);
 

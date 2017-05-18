@@ -68,9 +68,11 @@ catch (ErrorException $e) {
 12
 ```
 
-<aside class="notice">There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function</aside>
+Returns the number of documents matching the provided set of filters.+
 
-Returns the number of documents matching the provided set of filters.
+<aside class="notice">
+There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
+</aside>
 
 ---
 
