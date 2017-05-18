@@ -43,9 +43,11 @@ $mapping = [
 $dataMapping->set($field, $mapping);
 ```
 
-<aside class="notice">Changes made by this function won't be applied until you call the <code>apply</code> method</aside>
-
 Adds or updates a field mapping.
+
+<aside class="notice">
+Changes made by this function won't be applied until you call the <code>apply</code> method
+</aside>
 
 ---
 

@@ -187,12 +187,11 @@ catch (ErrorException $e) {
 }
 ```
 
+Executes a search on the data collection.
 
 <aside class="notice">
   There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
 </aside>
-
-Executes a search on the data collection.
 
 ---
 

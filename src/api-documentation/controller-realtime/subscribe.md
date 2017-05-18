@@ -78,13 +78,6 @@ title: subscribe
 ```
 
 
-
-<aside class="right notice js">
-  If an empty body is provided, the subscription is performed on the whole collection.
-</aside>
-
-
-
 <blockquote class="js">
 <p>
 **Response**
@@ -226,6 +219,10 @@ In Kuzzle, you don't exactly subscribe to a room or to a topic but, instead, you
 What it means is that, along with your subscription query, you also give to Kuzzle a set of document or message filters.
 Of course, you may also subscribe to a ``data collection`` with no other matching criteria,
 and you'll effectively listen to a "topic".
+
+<aside class="notice">
+  If an empty body is provided, the subscription is performed on the whole collection.
+</aside>
 
 Once you have subscribed to a room, depending on your filters, you may receive the following notifications:
 

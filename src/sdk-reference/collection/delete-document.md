@@ -117,11 +117,11 @@ catch (ErrorException $e) {
 [ "AVCoeBkimsySTKTfa8AX" ]
 ```
 
+Delete either a stored document, or all stored documents matching search filters.
+
 <aside class="notice">
 There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be deleted by the filtered version of this function
 </aside>
-
-Delete either a stored document, or all stored documents matching search filters.
 
 ---
 

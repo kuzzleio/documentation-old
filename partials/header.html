@@ -30,7 +30,13 @@
     </nav>
   </div>
   <div class="developer-nav open">
-    <ul>
+    <ul class="search">
+      <li>
+        <input name="search" type="search" placeholder="search" oninput="var length = ((this.value.length + 1) * 6); length = (length > 450) ? 450 : length; this.style.width = (length > 155) ? length + 'px' : '155px';"/>
+        <!-- <input name="search" type="search" placeholder="search"></input> -->
+      </li>
+    </ul>
+    <ul class="nav">
       {{#each ancestry.root.ancestry.children}}
       {{#if (startwith ../path path)}}
         <li class="active">
@@ -42,10 +48,6 @@
         </li>
       {{/if}}
       {{/each}}
-      <li class="search">
-        <!-- <input name="search" type="search" placeholder="search everywhere" oninput="var length = ((this.value.length + 1) * 6); this.style.width = (length > 155) ? length + 'px' : '155px';"/> -->
-        <input name="search" type="search" placeholder="search"></input>
-      </li>
     </ul>
 
     <div class="search-results"><ul></ul></div>
@@ -54,9 +56,9 @@
       <li>
         <a href="__link__">
           <p class="page">
-            <span class="parent">__parent__</span>
-            <span class="firstMember">__firstMember__</span>
             <span class="title">__title__</span>
+            <span class="firstMember">__firstMember__</span>
+            <span class="parent">__parent__</span>
           </p>
           <p class="preview">__preview__</p>
         </a>

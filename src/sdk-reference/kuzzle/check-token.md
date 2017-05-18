@@ -70,13 +70,13 @@ $result = [
 
 Checks the validity of a JSON Web Token.
 
----
-
-## checkToken(token, callback)
-
 <aside class="notice">
 This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
 </aside>
+
+---
+
+## checkToken(token, callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

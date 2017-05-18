@@ -84,6 +84,9 @@ catch (ErrorException $e) {
 }
 ```
 
+Returns a [SearchResult](/sdk-reference/search-result/) object containing the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.  
+A scroll session is always initiated by a `search` action by using the `scroll` argument; more information below.
+
 <aside class="notice">
   There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
 </aside>
@@ -91,9 +94,6 @@ catch (ErrorException $e) {
 <aside class="notice">
   To get more information about scroll sessions, please refer to the <a href="/api-documentation/controller-document/search">API reference documentation</a>.
 </aside>
-
-Returns a [SearchResult](/sdk-reference/search-result/) object containing the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.  
-A scroll session is always initiated by a `search` action by using the `scroll` argument; more information below.
 
 ---
 
