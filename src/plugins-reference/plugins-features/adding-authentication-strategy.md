@@ -391,7 +391,7 @@ class AuthenticationPlugin {
       return Promise.resolve(kuid);
     }
 
-    return Promise.resolve({message: 'Login failed - You should not pass ! Reason ...'});
+    return Promise.resolve({message: 'Login failed - You shall not pass! Reason: ...'});
   }
 }
 ```
