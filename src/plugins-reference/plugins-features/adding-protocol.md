@@ -7,7 +7,11 @@ order: 500
 
 # Adding a network protocol
 
-Kuzzle core only supports HTTP, Websocket and Socket.io communications natively. All other supported protocols are implemented by plugins, installed on the Kuzzle Proxy.  
+Kuzzle core only supports HTTP, Websocket and Socket.io communications natively.
+
+<aside class="notice">
+All other supported protocols are implemented by plugins, installed on the [Kuzzle Proxy](https://github.com/kuzzleio/kuzzle-proxy).
+</aside>
 
 ---
 
@@ -39,10 +43,10 @@ The connection `id` Kuzzle sends to Plugins is the one declared by Protocol Plug
 
 ---
 
-## Implementation example
+## TL;DR plugin skeleton
 
 ```javascript
-function MyPlugin () {
+function ProtocolPlugin () {
   this.pluginContext = null;
 
   // Example on how to maintain client contexts
@@ -140,5 +144,5 @@ function MyPlugin () {
 };
 
 // Exports the plugin objects, allowing Kuzzle to instantiate it
-module.exports = MyPlugin;
+module.exports = ProtocolPlugin;
 ```

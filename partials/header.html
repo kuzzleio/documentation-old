@@ -32,7 +32,7 @@
   <div class="developer-nav open">
     <ul class="search">
       <li>
-        <input name="search" type="search" placeholder="search" oninput="var length = ((this.value.length + 1) * 6); length = (length > 450) ? 450 : length; this.style.width = (length > 155) ? length + 'px' : '155px';"/>
+        <input name="search" type="search" placeholder="search" tabindex="1" />
         <!-- <input name="search" type="search" placeholder="search"></input> -->
       </li>
     </ul>
@@ -54,7 +54,7 @@
 
     <script type="text/plain" id="search-results-template">
       <li>
-        <a href="__link__">
+        <a href="__link__" tabindex="__tabindex__">
           <p class="page">
             <span class="title">__title__</span>
             <span class="firstMember">__firstMember__</span>
