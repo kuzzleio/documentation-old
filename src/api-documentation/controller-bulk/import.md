@@ -67,8 +67,8 @@ title: import
 
 ```javascript
 {
-  "status": 200, // Assuming everything went well
-  "error": null, // Assuming everything went well
+  "status": 200,
+  "error": null,
   "index": "<index>",
   "collection": "<collection>",
   "controller": "bulk",
@@ -165,8 +165,8 @@ Response**
 
 ```javascript
 {
-  "status": 200, // Assuming everything went well
-  "error": null, // Assuming everything went well
+  "status": 200,
+  "error": null,
   "controller": "bulk",
   "action": "import",
   "requestId": "<unique request identifier>",

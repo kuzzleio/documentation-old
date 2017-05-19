@@ -240,7 +240,7 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 }
 ```
 
-See the [Real-time Filters Reference](/real-time-filters/) for more details.
+See the [Kuzzle DSL Reference](/kuzzle-dsl/) for more details.
 
 The client then listens to the `<requestId>` event on the socket.
 Kuzzle will get back to him with a corresponding Room ID and a Room Channel using this event.

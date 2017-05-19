@@ -115,15 +115,15 @@ The Notification bears some useful information about what just happened:
 
 We won't analyze the other attributes for the moment. Take a look at the [Notifications section of the API Reference](/api-documentation/notifications) for a comprehensive list of the available notification events.
 
-This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Real-time Filtering DSL](/real-time-filters/) coming up in the following section.
+This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Kuzzle DSL Reference](/kuzzle-dsl/).
 
 ---
 
 ### Subscription with filters
 
-Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions](/real-time-filters/). It is heavily inspired in the Elasticsearch DSL and enables you to perform fine-grained selections on the documents you want to subscribe to.
+Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions](/kuzzle-dsl/). It is heavily inspired in the Elasticsearch DSL and enables you to perform fine-grained selections on the documents you want to subscribe to.
 
-In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp](/real-time-filters/#regexp) filter.
+In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp](/kuzzle-dsl/#regexp) filter.
 
 
 ```javascript
@@ -141,7 +141,7 @@ kuzzle
     })
 ```
 
-This way, Tom will be notified about urgent TO-DO items. Take a look at the [Filtering DSL Refernce](/real-time-filters/) for a comprehensive list of the available filters.
+This way, Tom will be notified about urgent TO-DO items. Take a look at the [Filtering DSL Refernce](/kuzzle-dsl/) for a comprehensive list of the available filters.
 
 There are a few things that deserve to be noticed here:
 

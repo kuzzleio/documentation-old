@@ -36,8 +36,8 @@ title: getAutoRefresh
 
 ```javascript
 {
-  "status": 200, // Assuming everything went well
-  "error": null,  // Assuming everything went well
+  "status": 200,
+  "error": null, 
   "requestId": "<unique request identifier>",
   "index": "<index>",
   "controller": "index",

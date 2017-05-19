@@ -38,8 +38,8 @@ title: getRole
 
 ```javascript
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200,                     
+  "error": null,                     
   "result": {
     "_id": "<roleId>",                // The role id
     "_source": {

@@ -93,7 +93,7 @@ In the example above, we specified that the value of the field `price` (of docum
 ## Complex validation via the DSL
 
 When the validation fields are not enough for your need, or you want conditional validation,
-you can switch gears and create a complex validation specification via the [filtering DSL](/real-time-filters)
+you can switch gears and create a complex validation specification via the [filtering DSL](/kuzzle-dsl)
 (the same DSL used to create real-time subscriptions).
 The idea is pretty simple: you specify a filter that documents must match in order to be valid.
 
@@ -148,6 +148,6 @@ The idea is pretty simple: you specify a filter that documents must match in ord
 ```
 
 In the example above, we specified that at least one of the fields `price` or `vatPrice` must exist (because if the product has no price, we can't sell it).
-We leveraged the `exists` term with the `or` operand, that you can look-up in the [Real-time filters Reference](/real-time-filters/terms/exists).
+We leveraged the `exists` term with the `or` operand, that you can look-up in the [Kuzzle DSL Reference](/kuzzle-dsl/terms/exists).
 
 You can take a look at the [Kuzzle Data Validation Reference](/validation-reference) for deeper insight.

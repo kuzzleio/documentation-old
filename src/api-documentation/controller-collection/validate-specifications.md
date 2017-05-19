@@ -61,8 +61,8 @@ title: validateSpecifications
 
 ```javascript
 {
-  "status": 200, // Assuming everything went well
-  "error": null, // Assuming everything went well
+  "status": 200,
+  "error": null,
   "index": "<index>",
   "collection": "<collection>",
   "action": "updateMapping",

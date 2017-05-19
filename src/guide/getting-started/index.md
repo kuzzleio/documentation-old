@@ -208,5 +208,5 @@ Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with
 Now that you are started and operational with Kuzzle, you can fully leverage its power by:
 
 * <a href="/sdk-reference">taking a look at the SDK reference</a>;
-* <a href="/real-time-filters">mastering the Kuzzle real-time filtering syntax</a> to create incredibly fine-grained and blazing-fast subscriptions;
+* <a href="/kuzzle-dsl">mastering the Kuzzle DSL syntax</a> to create incredibly fine-grained and blazing-fast subscriptions;
 * <a href="/guide/#security">learning how to manage users and set-up fine-grained permission rights</a>.

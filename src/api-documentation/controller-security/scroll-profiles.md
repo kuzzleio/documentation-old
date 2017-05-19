@@ -40,8 +40,8 @@ title: scrollProfiles
 
 ```javascript
 {
-  "status": 200, // Assuming everything went well
-  "error": null, // Assuming everything went well
+  "status": 200,
+  "error": null,
   "action": "scrollProfiles",
   "controller": "security",
   "requestId": "<unique request identifier>",

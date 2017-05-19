@@ -38,8 +38,8 @@ title: getUserRights
 
 ```javascript
 {
-  "status": 200, // Assuming everything went well
-  "error": null, // Assuming everything went well
+  "status": 200,
+  "error": null,
   "result": {
     // An array of objects containing the user rights
     "hits": [
