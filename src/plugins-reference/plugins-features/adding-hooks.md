@@ -14,10 +14,38 @@ Hooks are supplied with these events data. They cannot change the provided data,
 Hooks are declared in the `hooks` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
 Each hook must also be exported.
 
-## Example
+---
+
+## Executing hooks in separate threads
+
+Plugins declaring hooks can also be executed in separate threads. This is handy when they perform heavy computations that may corrupt the performances of the Kuzzle Core.
+
+To achieve this, Kuzzle must specify a `threads` property in the [custom configuration](/guide/essentials/configuration) of the Plugin.
+
+```json
+{
+  "plugins": {
+    "kuzzle-plugin-blabla": {
+      "threads": 1
+    }
+  }
+}
+```
+
+If this number of threads is greater than 0, Kuzzle will launch the plugin on as many separate threads.  
+If there are more than 1 thread for that plugin, each time a listened event is fired, Kuzzle will pick one thread to notify using round-robin.
+
+<aside class="notice">
+As the Plugin is isolated in separated processes, the <a href="/plugins-reference/plugins-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
+</aside>
+
+
+---
+
+## TL;DR plugin skeleton
 
 ```javascript
-function MyPlugin () {
+function HookPlugin () {
   /*
     This exposed "hooks" property tells Kuzzle that it needs to
     attach the plugin function "myFunction" to the Kuzzle event
@@ -49,30 +77,5 @@ function MyPlugin () {
 }
 
 // Exports the plugin objects, allowing Kuzzle to instantiate it
-module.exports = MyPlugin;
+module.exports = HookPlugin;
 ```
-
----
-
-## Executing hooks in separate threads
-
-Plugins declaring hooks can also be executed in separate threads. This is handy when they perform heavy computations that may corrupt the performances of the Kuzzle Core.
-
-To achieve this, Kuzzle must specify a `threads` property in the [custom configuration](/guide/essentials/configuration) of the Plugin.
-
-```json
-{
-  "plugins": {
-    "kuzzle-plugin-blabla": {
-      "threads": 1
-    }
-  }
-}
-```
-
-If this number of threads is greater than 0, Kuzzle will launch the plugin on as many separate threads.  
-If there are more than 1 thread for that plugin, each time a listened event is fired, Kuzzle will pick one thread to notify using round-robin.
-
-<aside class="notice">
-As the Plugin is isolated in separated processes, the <a href="/plugins-reference/plugins-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
-</aside>

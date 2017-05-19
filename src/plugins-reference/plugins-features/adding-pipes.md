@@ -25,12 +25,14 @@ Pipes take a callback as their last parameter, which **must** be called at the e
 * `error`: set this value to a `KuzzleError` object to make Kuzzle abort the request, and return that error to the client. Otherwise, set it to `null`
 * `object`: the resulting data, given back to Kuzzle for processing
 
-## Example
+---
+
+## TL;DR plugin skeleton
 
 The following plugin example adds a `createdAt` attribute to all newly created documents:
 
 ```javascript
-function MyPlugin () {
+function PipePlugin () {
   /*
     This exposed "pipes" property tells Kuzzle that it needs to
     attach the plugin function "addCreatedAt" to the Kuzzle event
@@ -60,5 +62,5 @@ function MyPlugin () {
 }
 
 // Exports the plugin objects, allowing Kuzzle to instantiate it
-module.exports = MyPlugin;
+module.exports = PipePlugin;
 ```

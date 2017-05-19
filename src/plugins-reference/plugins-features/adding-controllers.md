@@ -42,10 +42,29 @@ To create a new controller, the Plugin must expose to Kuzzle the following objec
 - A `routes` objects, describing how the new controller(s) should be exposed to the HTTP protocol. Only GET and POST verbs are accepted.
 - Controller's actions functions. These methods take a `Request` object as an argument, and must return a `Promise` resolving with the action's result, or rejecting with a KuzzleError object.
 
-### Controller plugin implementation example
+
+---
+
+## How Plugins receive action arguments
+
+All action functions receive a [Request](/plugins-reference/plugins-context/constructors/#request) object as main argument. Kuzzle will fill it with arguments provided by clients invoking the added controller:
+
+* HTTP:
+  * dynamic arguments provided in the URL, headers and query string arguments are stored in `request.input.args`
+  * content body is made available in `request.input.body`
+  * if the URL contains an `index`, a `collection` or a `_id` argument, it will be stored in `request.input.resource`
+
+* Other protocols:
+  * if the provided JSON object contains a `body` object, then its content will be stored in `request.input.body`
+  * the following fields at the root of the provided JSON objects are available in `request.input.resource`: `index`, `collection`, `_id`
+  * any unrecognized property at the root of the provided JSON object will be stored in the `request.input.args` part of the `Request` object
+
+---
+
+## TL;DR plugin skeleton
 
 ```javascript
-function MyPlugin () {
+function ControllerPlugin () {
   /*
     This exposed "controllers" property tells Kuzzle that it needs to extend
     its API with new controllers and actions.
@@ -144,21 +163,5 @@ function MyPlugin () {
 }
 
 // Exports the plugin objects, allowing Kuzzle to instantiate it
-module.exports = MyController;
+module.exports = ControllerPlugin;
 ```
-
----
-
-## How Plugins receive action arguments
-
-All action functions receive a [Request](/plugins-reference/plugins-context/constructors/#request) object as main argument. Kuzzle will fill it with arguments provided by clients invoking the added controller:
-
-* HTTP:
-  * dynamic arguments provided in the URL, headers and query string arguments are stored in `request.input.args`
-  * content body is made available in `request.input.body`
-  * if the URL contains an `index`, a `collection` or a `_id` argument, it will be stored in `request.input.resource`
-
-* Other protocols:
-  * if the provided JSON object contains a `body` object, then its content will be stored in `request.input.body`
-  * the following fields at the root of the provided JSON objects are available in `request.input.resource`: `index`, `collection`, `_id`
-  * any unrecognized property at the root of the provided JSON object will be stored in the `request.input.args` part of the `Request` object

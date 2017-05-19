@@ -207,7 +207,7 @@ The function **must** return a `Promise` that resolves to true or rejects with a
 ---
 
 
-## TL;DR skeleton plugin
+## TL;DR plugin skeleton
 
 Here is a skeleton of authentication plugin
 
@@ -394,4 +394,7 @@ class AuthenticationPlugin {
     return Promise.resolve({message: 'Login failed - You shall not pass! Reason: ...'});
   }
 }
+
+// Exports the plugin objects, allowing Kuzzle to instantiate it
+module.exports = AuthenticationPlugin;
 ```

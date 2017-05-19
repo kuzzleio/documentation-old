@@ -269,18 +269,78 @@
 
 
   (function instantSearchUI() {
+    var KEY_UP = 38;
+    var KEY_DOWN = 40;
     var client = algoliasearch("{{ algolia_projectId }}", "{{ algolia_publicKey }}");
     var index = client.initIndex('kuzzle-documentation');
     var template = $('#search-results-template').html();
     var $searchInput = $('.search input[type=search]');
     var $searchResults = $('.search-results');
     var $searchResultsContainer = $('ul', $searchResults);
+    var selectedIndex = -1
     var watchClose = false;
     var lastHits = 0;
 
     // focus search input on content loaded
     $searchInput.focus();
 
+
+    $(window).on('keydown', function (event) {
+      if (watchClose) {
+        var $results = $('a', $searchResultsContainer);
+        var $focusResult = $('a:hover, a:focus', $searchResultsContainer);
+
+        console.log('pre selectedIndex', selectedIndex, $results.length, $focusResult.length);
+
+
+        if ($focusResult.length > 0) {
+          $results.each(function(index, element) {
+            console.log('key:', index, $results[index], $focusResult.get(0));
+
+            if ($results[index] === $focusResult.get(0)) {
+              selectedIndex = index;
+            }
+          })
+        }
+
+        console.log('post selectedIndex:', selectedIndex, $results.length, $focusResult.length);
+
+        switch (event.keyCode) {
+          case KEY_UP:
+            console.log('KEY_UP', $results, $focusResult);
+            event.stopPropagation();
+            if (selectedIndex === 0) {
+              selectedIndex = -1;
+            }
+
+            if (selectedIndex === -1) {
+              $searchInput.focus();
+              selectedIndex = $results.length - 1;
+            }
+            else {
+              selectedIndex -= 1;
+              $results.get(selectedIndex).focus();
+            }
+            //$('li:not(:last-child).selected').removeClass('selected').next().addClass('selected');
+
+            return false;
+          case KEY_DOWN:
+            console.log('KEY_DOWN', $results, $focusResult)
+            event.stopPropagation();
+            console.log('selectedIndex', selectedIndex, $results.length -1)
+            if (selectedIndex >= $results.length -1) {
+              $searchInput.focus();
+              selectedIndex = -1;
+            }
+            else {
+              selectedIndex += 1;
+              $results.get(selectedIndex).focus();
+            }
+            //$('li:not(:first-child).selected').removeClass('selected').prev().addClass('selected');
+            return false;
+        }
+      }
+    });
 
     // search results open/close handlers
     $(window).on('click', function() {
@@ -303,7 +363,8 @@
         $searchResults.addClass('display');
         watchClose = true;
       }
-      event.stopPropagation();
+
+      selectedIndex = -1;
     });
 
     $searchInput.on('blur', function(event) {
@@ -311,7 +372,6 @@
         $searchResults.addClass('display');
         watchClose = true;
       }
-      event.stopPropagation();
     });
     // end - search results open/close handlers
 
@@ -320,6 +380,14 @@
     $searchInput.on('input', function(event) {
       var $input = $(this);
       var searchResultsContent = '';
+      var length = (this.value.length + 1) * 6;
+
+      selectedIndex = -1;
+
+      // resize input length to fit value
+      length = (length > 450) ? 450 : length;
+      this.style.width = (length > 220) ? length + 'px' : '220px';
+
 
       // clear search result on empty input
       if (this.value === '') {
@@ -365,6 +433,7 @@
           preview = preview.replace(/&lt;\/em&gt;/g, '</em>');
 
           // replace variables in template
+          content = content.replace(/__tabindex__/g, key + 2);
           content = content.replace(/__link__/g, '/' + res.hits[key].path);
           content = content.replace(/__parent__/g, res.hits[key].parent || '');
           content = content.replace(/__firstMember__/g, res.hits[key].firstMember || '');
@@ -375,7 +444,7 @@
         }
 
         // add algolia copyright
-        searchResultsContent += '<li><img src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" style="margin: 8px 8px 0 0;"></li>';
+        searchResultsContent += '<li style="text-align: right"><img src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" style="margin: 8px 8px 0 0;"></li>';
 
         // magic jQuery
         $searchResultsContainer.html(searchResultsContent);
