@@ -10,11 +10,15 @@ order: 0
 
 The validation schema must follow the following structure to be valid:
 
-```json
+```js
 {
   "myIndex": {
     "myCollection": {
+      // If true, the document will be rejected if it attemps to
+      // define new fields that have not been defined in the schema.
       "strict": true,
+
+      // All documents will be rejected if they did not match theses fields validators
       "fields": {
         "fieldName": {
           "mandatory": true,
@@ -43,6 +47,8 @@ The validation schema must follow the following structure to be valid:
           "..."
         }
       },
+
+      // Define custom conditional fields validators to reject document if they meet filters
       "validators": [
           "..."
       ]
@@ -53,4 +59,4 @@ The validation schema must follow the following structure to be valid:
 }
 ```
 
-Please refer below for a detailed overview of the available validations.
+Learn how to [create simple field validators](/validation-reference/fields/fields/) and [complex validators](/validation-reference/validators/)
