@@ -1,5 +1,10 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
+<script src="/assets/javascript/lib/jquery.barrating.js"></script>
+
 <script type="text/javascript">
-  // helper
+  // store helper
   var store = function store(key, value) {
     var lsSupport = false;
 
@@ -80,6 +85,7 @@
     }
   };
 
+  // google analytics
   (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
       i[r] = i[r] || function() {
@@ -94,6 +100,79 @@
 
   ga('create', 'UA-67035328-1', 'auto');
   ga('send', 'pageview');
+
+  (function scrollToHash() {
+    if (window.location.hash != '') {
+      var anchor = $(location.hash).get(0);
+      if (anchor) {
+        anchor.scrollIntoView();
+      }
+    }
+  })();
+
+
+  (function rateDocumentation() {
+    var $rateDocumentation = $('#rate-documentation');
+    var pagePath = '{{ path }}'.replace(/\//g, '-');
+    var categoryRating = parseInt(store('rate-documentation-' + pagePath));
+
+    $rateDocumentation.barrating({
+      theme: 'fontawesome-stars',
+      initialRatting: 0,
+      allowEmpty: true,
+      onSelect: function(value, text, event) {
+        if (typeof(event) !== 'undefined') {
+          // rating was selected by a user
+          ga('send', 'event', {
+            eventCategory: 'documentation-rate',
+            eventAction: '/{{ path }}',
+            eventLabel: event.target.dataset.ratingText,
+            transport: 'beacon'
+          });
+
+          window.setTimeout(function() {
+            $('.br-current-rating').css('transition', 'opacity 0.15s');
+            $('.br-current-rating').css('opacity', '0');
+
+            window.setTimeout(function() {
+              $('.br-current-rating').css('transition', 'opacity 0.9s');
+              $('.br-current-rating').text("thank's for feedback !");
+              $('.br-current-rating').css('opacity', '1');
+            }, 140);
+          }, 1);
+
+          window.setTimeout(function() {
+            $('.br-current-rating').css('opacity', '0');
+
+            window.setTimeout(function() {
+              $('.br-current-rating').css('transition', 'opacity 0.2s');
+              if (event.target.dataset.ratingText === 'Excellent documentation') {
+                $('.br-current-rating').text(event.target.dataset.ratingText + ' \\o/');
+              }
+              else {
+                $('.br-current-rating').text(event.target.dataset.ratingText);
+              }
+              $('.br-current-rating').css('opacity', '1');
+            }, 1000);
+          }, 2500);
+
+          store('rate-documentation-' + pagePath, event.target.dataset.ratingValue);
+          $rateDocumentation.barrating('readonly', true);
+        }
+        else {
+          // rating was selected programmatically
+          // by calling `set` method
+        }
+      }
+    });
+
+    $('.br-current-rating').addClass('visible');
+
+    if (!isNaN(categoryRating)) {
+      $rateDocumentation.barrating('set', categoryRating);
+      $rateDocumentation.barrating('readonly', true);
+    }
+  })();
 
 
   (function leftNavUX() {
@@ -239,7 +318,7 @@
   // language tab selector
   (function languageTabSelector() {
     var $languageTabSelector = $('.language-tab-selector a');
-    var pageCategory = '{{ ancestry.parent.path }}'.replace(/\//g, '-')
+    var pageCategory = '{{ ancestry.parent.path }}'.replace(/\//g, '-');
     var selectedLanguage = store('selected-language' + pageCategory);
 
     if (selectedLanguage) {
@@ -277,7 +356,8 @@
     var $searchInput = $('.search input[type=search]');
     var $searchResults = $('.search-results');
     var $searchResultsContainer = $('ul', $searchResults);
-    var selectedIndex = -1
+    var watchResultsDebounce = false;
+    var selectedIndex = -1;
     var watchClose = false;
     var lastHits = 0;
 
@@ -347,6 +427,10 @@
       if (watchClose) {
         $searchResults.removeClass('display');
         watchClose = false;
+
+        if (watchResultsDebounce) {
+          window.clearTimeout(watchResultsDebounce);
+        }
       }
     });
 
@@ -405,12 +489,25 @@
         }
 
         lastHits = res.hits.length;
+        if (watchResultsDebounce) {
+          window.clearTimeout(watchResultsDebounce);
+        }
 
         if (lastHits === 0) {
           $searchResultsContainer.empty();
           $searchResults.removeClass('display');
           return;
         }
+
+        // send ga event when user has search results but does nothing
+        watchResultsDebounce = window.setTimeout(function() {
+          ga('send', 'event', {
+            eventCategory: 'documentation-search',
+            eventAction: (lastHits > 0) ? '<watch_results>' : '<no_results>',
+            eventLabel: $searchInput.val(),
+            transport: 'beacon'
+          });
+        }, 4000);
 
         $searchResults.addClass('display');
         watchClose = true;
