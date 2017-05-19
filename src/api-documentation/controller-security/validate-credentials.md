@@ -71,8 +71,8 @@ title: validateCredentials
 // example with a "local" authentication
 
 {
-  "status": 200,                      // Assuming everything went well
-  "error": null,                      // Assuming everything went well
+  "status": 200,                     
+  "error": null,                     
   "action": "validateCredentials",
   "controller": "security",
   "_id": "<kuid>",

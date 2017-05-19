@@ -237,7 +237,7 @@ You can also subscribe multiple times to the same room, with different configura
 Kuzzle will provide you with a channel for each of these subscriptions,
 allowing different part of your application to concentrate on what it needs to process.
 
-The matching criteria you pass on to Kuzzle are based upon [Kuzzle DSL](/real-time-filters)
+The matching criteria you pass on to Kuzzle are based upon [Kuzzle DSL](/kuzzle-dsl)
 
 How subscription works:
 

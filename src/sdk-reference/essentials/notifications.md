@@ -7,7 +7,7 @@ title: Notifications
 # Notifications
 
 With Kuzzle, you don't exactly [subscribe](/sdk-reference/collection/subscribe) to a room or a topic but, instead, you subscribe to documents.  
-What it means is that, to subscribe, you provide to Kuzzle a set of matching filters, using Kuzzle's [real-time DSL](/real-time-filters). Every time something matches your filters, Kuzzle will send a push notification about it.
+What it means is that, to subscribe, you provide to Kuzzle a set of matching filters, using Kuzzle's [real-time DSL](/kuzzle-dsl). Every time something matches your filters, Kuzzle will send a push notification about it.
 
 You may also provide an empty set of filters, which will tell Kuzzle that you want to listen to any change occuring on a data collection, emulating the behavior of a traditional topic.
 

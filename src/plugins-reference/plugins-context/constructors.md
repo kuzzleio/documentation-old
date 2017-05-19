@@ -21,8 +21,7 @@ You can find an example of a type creation in the
 
 ## `Dsl`
 
-The DSL constructor provided in the plugin context gives access to
-[Kuzzle real-time filtering capabilities](/real-time-filters).
+The DSL constructor provided in the plugin context gives access to [Kuzzle DSL capabilities](/kuzzle-dsl).  
 It allows managing filters, and testing data to get a list of matching filters.
 
 Each plugin can instantiate its own sandboxed DSL instance:
@@ -75,7 +74,7 @@ Registers a filter to the DSL.
 |------|------|----------------------------------|
 |`index`|`string`| Data index name |
 |`collection`|`string`| Data collection name |
-|`filters`|`object`| Filters in [Kuzzle DSL](/real-time-filters) format |
+|`filters`|`object`| Filters in [Kuzzle DSL](/kuzzle-dsl) format |
 
 **Returns**
 
@@ -124,7 +123,7 @@ Tests the provided filters without storing them in the system, to check whether 
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`filters`|`object`| Filters in [Kuzzle DSL](/real-time-filters) format |
+|`filters`|`object`| Filters in [Kuzzle DSL](/kuzzle-dsl) format |
 
 **Returns**
 

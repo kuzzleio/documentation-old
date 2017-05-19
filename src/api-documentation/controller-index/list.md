@@ -35,8 +35,8 @@ title: list
 
 ```javascript
 {
-  "status": 200, // Assuming everything went well
-  "error": null, // Assuming everything went well
+  "status": 200,
+  "error": null,
   "controller": "index",
   "action": "list",
   "requestId": "<unique request identifier>",
