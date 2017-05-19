@@ -207,18 +207,6 @@ html, body {
 
   padding-bottom: 1px; // prevent margin overflow
 
-  // The dark box is what gives the code samples their dark background.
-  // It sits essentially under the actual content block, which has a
-  // transparent background.
-  // I know, it's hackish, but it's the simplist way to make the left
-  // half of the content always this background color.
-  .dark-box {
-    background-color: $examples-bg;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
 
   .lang-selector {
     position: fixed;
@@ -288,6 +276,75 @@ html, body {
     clear:both;
     margin-bottom: 30px;
     border-bottom: solid 5px #f0f0f0;
+
+    a {
+      .icon-github {
+        color: #afafaf;
+        font-size: 12px;
+        vertical-align:
+        text-bottom; margin-left: 6px;
+      }
+      &:hover {
+        .icon-github {
+          // hack to remove text-decoration on icon
+          text-decoration: underline;
+          text-decoration-color: #fff;
+        }
+      }
+    }
+
+    .br-theme-fontawesome-stars {
+      display: inline-block;
+      margin: 0px 5px;
+
+      .br-widget {
+        white-space: nowrap;
+
+        a {
+          font: normal normal normal 20px/1 FontAwesome;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          margin-right: 2px;
+          text-decoration: none !important;
+          font-size: 13px;
+          padding: 0px;
+        }
+
+        a:after {
+          content: '\f006';
+          color: #d2d2d2;
+        }
+
+        a.br-active:after {
+          content: '\f005';
+          color: #EDB867;
+        }
+
+        a.br-selected:after {
+          content: '\f005';
+          color: #EDB867;
+        }
+
+        .br-current-rating {
+          display: inline-block;
+          color: #afafaf;
+          margin-left: 5px;
+          opacity: 0;
+          transition: opacity 0.2s;
+
+          &.visible {
+            opacity: 1;
+          }
+        }
+      }
+
+      .br-readonly {
+        a {
+          cursor: default;
+        }
+      }
+
+    }
 
     &.bottom {
       margin-top: 30px;
@@ -907,10 +964,6 @@ html, body {
 }
 
 @media (max-width: $phone-width) {
-  .dark-box {
-    display: none;
-  }
-
   %left-col {
     margin-right: 0;
   }

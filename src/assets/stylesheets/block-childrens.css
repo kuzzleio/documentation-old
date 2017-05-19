@@ -462,13 +462,6 @@ body {
     min-height: 100%;
     padding-bottom: 1px
 }
-.page-wrapper .dark-box {
-    background-color: #393939;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0
-}
 .page-wrapper .lang-selector {
     position: fixed;
     z-index: 50;
@@ -757,9 +750,6 @@ body {
     }
 }
 @media (max-width: 650px) {
-    .dark-box {
-        display: none
-    }
     .page-wrapper .lang-selector {
         display: none
     }
@@ -1256,9 +1246,6 @@ header nav ul li a.github .icon:after {
 .container .page-wrapper .lang-selector {
     border-bottom: 4px solid #002835;
     margin-top: 20px
-}
-.container .page-wrapper .dark-box {
-    background-color: #EEE
 }
 .container .lang-selector a.active {
     background: #bae8f5;
