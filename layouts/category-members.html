@@ -12,7 +12,7 @@
 
 <div class="container">
   <div class="page-wrapper">
-    <div class="content" style="padding: 0">
+    <div class="content">
       {{> nav-siblings }}
 
       <div class="categories">
@@ -20,7 +20,7 @@
           {{#each ancestry.members}}
 
           {{#if (or show-subheader (ne @key 0))}}
-            <div class="panel" style="width:25%">
+            <div class="panel">
               <a href="/{{ path }}">
                 <div class="panel-title"><i class="fa {{ icon }}"></i> {{ title }}</div>
                 <div class="panel-content">

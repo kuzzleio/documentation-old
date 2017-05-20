@@ -4,6 +4,8 @@
       <a href="http://kuzzle.io/">&nbsp;</a>
     </div>
 
+    <a class="mobile-nav-burger" href="javascript:;"></a>
+
     <nav>
       <ul>
         <li>
@@ -11,6 +13,33 @@
         </li>
         <li>
           <a href="/" class="nav-item developers active">Documentation</a>
+          <ul class="mobile-nav">
+            {{#each ancestry.root.ancestry.children}}
+            {{#if (startwith ../path path)}}
+              <li class="active">
+                <a href="/{{ path }}"><span>{{ title }}</span></a>
+
+                <ul class="sub-nav">
+                  {{#each ancestry.children}}
+                  {{#if (startwith ../../path path)}}
+                  <li class="active">
+                    <a href="/{{ path }}"><span>{{ title }}</span></a>
+                  </li>
+                  {{else}}
+                  <li>
+                    <a href="/{{ path }}"><span>{{ title }}</span></a>
+                  </li>
+                  {{/if}}
+                  {{/each}}
+                </ul>
+              </li>
+            {{else}}
+              <li>
+                <a href="/{{ path }}"><span>{{ title }}</span></a>
+              </li>
+            {{/if}}
+            {{/each}}
+          </ul>
         </li>
         <li>
           <a href="http://kuzzle.io/demos-tutorials/" class="nav-item ">Demos</a>
