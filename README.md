@@ -28,9 +28,9 @@
 
 `node index.js --dev --watch`
 
-> bind a webserver on 8080 with livereload, open a browser and turn on debug messages
+> bind a webserver on 80 with livereload, open a browser and turn on debug messages
 
-`DEBUG=* node index.js --dev --watch --open`
+`sudo DEBUG=* node index.js --dev --watch --open --port 80`
 
 # How-to
 
