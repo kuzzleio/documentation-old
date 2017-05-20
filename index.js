@@ -205,6 +205,17 @@ const build = (watch = false) => (done) => {
       .use(livereload({ debug: false, delay: 500 }))
   }
 
+  if (algoliaPrivateKey) {
+    metalsmith
+      .use(algolia({
+        clearIndex: true,
+        projectId: algoliaProjectID,
+        privateKey: algoliaPrivateKey,
+        index: algoliaIndex,
+        fileParser: algoliaFileParser
+      }))
+  }
+
   if (process.argv.indexOf('--gzip') > -1) {
     metalsmith
       .use(inlineSVG())
@@ -225,17 +236,6 @@ const build = (watch = false) => (done) => {
         hostname: 'http://docs.kuzzle.io',
         modifiedProperty: 'stats.mtime',
         omitIndex: true
-      }))
-  }
-
-  if (algoliaPrivateKey) {
-    metalsmith
-      .use(algolia({
-        clearIndex: true,
-        projectId: algoliaProjectID,
-        privateKey: algoliaPrivateKey,
-        index: algoliaIndex,
-        fileParser: algoliaFileParser
       }))
   }
 
