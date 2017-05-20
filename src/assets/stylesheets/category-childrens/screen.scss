@@ -24,9 +24,14 @@
 .content {
   position: relative;
   z-index: 30;
-  padding: 40px 0;
   max-width: none;
   margin: 50px 70px;
+
+  // position: relative;
+  // z-index: 30;
+  // padding-bottom: 40px;
+  // max-width: none;
+  // background-color: none;
 
 
   .main-content {
@@ -78,6 +83,68 @@
         color: #555;
         padding: 10px 5px;
       }
+    }
+  }
+}
+
+
+// responsive transitions
+.content {
+  transition: all 0.2s;
+
+  .panels {
+    .panel {
+      transition: all 0.2s;
+    }
+  }
+}
+
+//default: x-large
+
+
+//large desktop
+@media (max-width: 1500px) {
+  .container {
+    .page-wrapper {
+      padding: 10px 0 55px;
+    }
+  }
+}
+
+
+
+//medium desktop
+@media (max-width: 1295px) {
+  .content {
+    margin: 25px 35px;
+
+    .main-content {
+      >aside {
+        margin: 25px;
+      }
+    }
+
+    .panels {
+      .panel {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+@media (max-width: $tablet-width) {
+  .content {
+    padding: 0;
+    margin: 0;
+
+    .panels {
+      display: block;
+    }
+
+    .main-content {
+      float: none;
+      width: auto;
     }
   }
 }

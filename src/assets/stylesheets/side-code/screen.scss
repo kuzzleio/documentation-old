@@ -170,3 +170,66 @@
     }
   }
 }
+
+
+
+
+
+
+
+
+
+// responsive transitions
+.content {
+  .main-content {
+    pre,
+    aside,
+    .language-tab {
+      transition: all 0.2s;
+    }
+  }
+}
+
+//default: x-large
+
+
+//large desktop
+@media (max-width: 1500px) {
+  .container {
+    .page-wrapper {
+      padding: 10px 0 55px 0;
+    }
+  }
+}
+
+
+
+//medium desktop
+@media (max-width: 1295px) {
+  .content {
+    width: 100%;
+    max-width: none;
+
+    .main-content {
+      >pre,
+      >aside,
+      >div,
+      >blockquote,
+      >.language-tab-selector,
+      >.language-tab {
+        width: auto;
+        float: none;
+        margin: 0 25px;
+      }
+
+      >.language-tab-selector {
+        margin-top: 35px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: $tablet-width) {
+
+}

@@ -1,9 +1,35 @@
+<div class="mobile-breadcrumb">
+  <p>
+  <a href="/">{{ site_title}}</a>
+
+  {{#if ancestry.parent}}
+    {{#if (and (ne ancestry.parent ancestry.root) (ne title ancestry.parent.title))}}
+    » <a href="/{{ ancestry.parent.path }}">{{ ancestry.parent.title }}</a>
+    {{/if}}
+    {{#if (and ancestry.firstMember (ne title ancestry.firstMember.title))}}
+    » <a href="/{{ ancestry.firstMember.path }}">{{ ancestry.firstMember.title }}</a>
+    {{/if}}
+
+    » {{ title }}
+   {{/if}}
+   </p>
+</div>
+
 <div class="nav-sibling">
   <div class="nav-left">
     <p>
-      <a href="https://github.com/{{ gh_repo }}/issues/new?labels={{ ancestry.parent.path }}&title=Feedback%20about%20page%20'{{ src }}'">send feedback about this content</a>
-      |
-      <a href="https://github.com/{{ gh_repo }}/edit/{{ gh_branch }}/src/{{ src }}">edit on github<i class="icon icon-github icon-small" style="color: #afafaf; font-size: 12px; vertical-align: text-bottom; margin-left: 6px;"></i></a>
+      <a href="https://github.com/{{ gh_repo }}/edit/{{ gh_branch }}/src/{{ src }}">edit on github<i class="icon icon-github icon-small"></i></a>
+      <span class="separator">|</span>
+      <a href="https://github.com/{{ gh_repo }}/issues/new?labels={{ ancestry.parent.path }}&title=Feedback%20about%20page%20'{{ src }}'">send feedback about this content<i class="icon icon-github icon-small"></i></a>
+      <span class="separator">|</span>
+      <select class="rate-documentation">
+        <option value=""></option>
+        <option value="1">Unusable documentation</option>
+        <option value="2">Poor documentation</option>
+        <option value="3">OK documentation</option>
+        <option value="4">Good documentation</option>
+        <option value="5">Excellent documentation</option>
+      </select>
     </p>
   </div>
   <div class="nav-right">
@@ -12,7 +38,7 @@
       <a href="/{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
       {{/if}}
       {{#if (and ancestry.prevSibling ancestry.nextSibling)}}
-       |
+      <span class="separator">|</span>
       {{/if}}
       {{#if ancestry.nextSibling}}
       <a href="/{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>

@@ -85,6 +85,11 @@
     }
   };
 
+
+
+
+
+
   // google analytics
   (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
@@ -111,8 +116,24 @@
   })();
 
 
+
+
+  (function mobileNavBuger() {
+    var $body = $('body');
+
+    $('.mobile-nav-burger').on('click', function() {
+      $body.toggleClass('nav-burger-open');
+    });
+  })();
+
+
+
+
+
+
+
   (function rateDocumentation() {
-    var $rateDocumentation = $('#rate-documentation');
+    var $rateDocumentation = $('.rate-documentation');
     var pagePath = '{{ path }}'.replace(/\//g, '-');
     var categoryRating = parseInt(store('rate-documentation-' + pagePath));
 
@@ -123,6 +144,10 @@
       onSelect: function(value, text, event) {
         if (typeof(event) !== 'undefined') {
           // rating was selected by a user
+          store('rate-documentation-' + pagePath, event.target.dataset.ratingValue);
+          $rateDocumentation.barrating('set', event.target.dataset.ratingValue);
+          // $rateDocumentation.barrating('readonly', true); // wired on mobile
+
           ga('send', 'event', {
             eventCategory: 'documentation-rate',
             eventAction: '/{{ path }}',
@@ -155,9 +180,6 @@
               $('.br-current-rating').css('opacity', '1');
             }, 1000);
           }, 2500);
-
-          store('rate-documentation-' + pagePath, event.target.dataset.ratingValue);
-          $rateDocumentation.barrating('readonly', true);
         }
         else {
           // rating was selected programmatically
@@ -173,6 +195,15 @@
       $rateDocumentation.barrating('readonly', true);
     }
   })();
+
+
+
+
+
+
+
+
+
 
 
   (function leftNavUX() {
@@ -192,6 +223,13 @@
   })();
 
 
+
+
+
+
+
+
+
   (function tocUX() {
     var $toc = $('.toc');
     var $content = $('.content');
@@ -209,7 +247,7 @@
 
       $(window).on('resize', function() {
         clearTimeout(debounceComputeSize);
-        debounceComputeSize = setTimeout(computeSize, 20);
+        debounceComputeSize = setTimeout(computeSize, 13);
       })
       computeSize();
     }
@@ -257,6 +295,21 @@
     }
     //---------------------------------------------------------------------
   })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   //---------------------------------------------------------------------
@@ -314,6 +367,12 @@
   //---------------------------------------------------------------------
 
 
+
+
+
+
+
+
   //---------------------------------------------------------------------
   // language tab selector
   (function languageTabSelector() {
@@ -330,7 +389,7 @@
     }
 
     if ($languageTabSelector.length > 0) {
-      $languageTabSelector.on('click', function(e) {
+      $languageTabSelector.on('click touch', function(e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -345,6 +404,13 @@
     }
   })();
   //---------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
   (function instantSearchUI() {
@@ -370,9 +436,6 @@
         var $results = $('a', $searchResultsContainer);
         var $focusResult = $('a:hover, a:focus', $searchResultsContainer);
 
-        console.log('pre selectedIndex', selectedIndex, $results.length, $focusResult.length);
-
-
         if ($focusResult.length > 0) {
           $results.each(function(index, element) {
             console.log('key:', index, $results[index], $focusResult.get(0));
@@ -387,7 +450,6 @@
 
         switch (event.keyCode) {
           case KEY_UP:
-            console.log('KEY_UP', $results, $focusResult);
             event.stopPropagation();
             if (selectedIndex === 0) {
               selectedIndex = -1;
@@ -405,9 +467,7 @@
 
             return false;
           case KEY_DOWN:
-            console.log('KEY_DOWN', $results, $focusResult)
             event.stopPropagation();
-            console.log('selectedIndex', selectedIndex, $results.length -1)
             if (selectedIndex >= $results.length -1) {
               $searchInput.focus();
               selectedIndex = -1;
@@ -423,7 +483,8 @@
     });
 
     // search results open/close handlers
-    $(window).on('click', function() {
+    $(window).on('click touch', function() {
+      console.log('?')
       if (watchClose) {
         $searchResults.removeClass('display');
         watchClose = false;
@@ -434,7 +495,7 @@
       }
     });
 
-    $searchInput.on('click', function(event) {
+    $searchInput.on('click touch', function(event) {
       if (lastHits > 0) {
         $searchResults.addClass('display');
         watchClose = true;
@@ -464,13 +525,13 @@
     $searchInput.on('input', function(event) {
       var $input = $(this);
       var searchResultsContent = '';
-      var length = (this.value.length + 1) * 6;
+      // var length = (this.value.length + 1) * 6;
 
       selectedIndex = -1;
 
-      // resize input length to fit value
-      length = (length > 450) ? 450 : length;
-      this.style.width = (length > 220) ? length + 'px' : '220px';
+      // // resize input length to fit value
+      // length = (length > 450) ? 450 : length;
+      // this.style.width = (length > 220) ? length + 'px' : '220px';
 
 
       // clear search result on empty input
@@ -547,7 +608,7 @@
         $searchResultsContainer.html(searchResultsContent);
 
         // send ga event on search result hit
-        $('a', $searchResultsContainer).on('click', function(event) {
+        $('a', $searchResultsContainer).on('click touch', function(event) {
           ga('send', 'event', {
             eventCategory: 'documentation-search',
             eventAction: this.href,

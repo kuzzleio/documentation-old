@@ -45,3 +45,50 @@
     }
   }
 }
+
+// responsive transitions
+.content {
+  .panels {
+    .panel {
+      transition: all 0.2s;
+    }
+  }
+}
+
+//default: x-large
+
+
+//large desktop
+@media (max-width: 1500px) {
+
+}
+
+
+
+//medium desktop
+@media (max-width: 1295px) {
+  .content {
+    .panels {
+      .panel {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+@media (max-width: $tablet-width) {
+  .content {
+    padding: 10px 0;
+    margin: 10px 0px;
+
+    .panels {
+      display: block;
+    }
+
+    .main-content {
+      float: none;
+      width: auto;
+    }
+  }
+}
