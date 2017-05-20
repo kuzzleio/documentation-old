@@ -222,7 +222,7 @@ Nothing. Can throw a `PluginImplementationError` if the validation type has not 
 
 ```js
 /**
- * @typedef {{
+ * @typedef \{{
  *   validate: Function,
  *   validateFieldSpecification: Function,
  *   typeName: string,
