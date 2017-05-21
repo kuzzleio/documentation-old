@@ -1,5 +1,5 @@
 <div class="mobile-breadcrumb">
-  <p>
+  <p style="float:left">
   <a href="{{ site_url }}{{ site_base_path }}">{{ site_title}}</a>
 
   {{#if ancestry.parent}}
@@ -12,6 +12,17 @@
 
     » {{ title }}
    {{/if}}
+   </p>
+   <p style="float:right" class="version-selector">
+     <select onchange="window.location = this.value">
+       {{#each versions_config}}
+         {{#if (eq ../site_base_path version_path)}}
+           <option selected>{{version_label}}</option>
+         {{else}}
+           <option value="{{version_path}}{{ ../path }}">{{version_label}}</option>
+         {{/if}}
+       {{/each}}
+     </select>
    </p>
 </div>
 
@@ -33,8 +44,18 @@
     </p>
   </div>
   <div class="nav-right">
-    <p>
-      {{#if ancestry.prevSibling}}
+    <p class="version-selector">
+      <span>current version:</span>
+      <select onchange="window.location = this.value">
+        {{#each versions_config}}
+          {{#if (eq ../site_base_path version_path)}}
+            <option selected>{{version_label}}</option>
+          {{else}}
+            <option value="{{version_path}}{{ ../path }}">{{version_label}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+      <!-- {{#if ancestry.prevSibling}}
       <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
       {{/if}}
       {{#if (and ancestry.prevSibling ancestry.nextSibling)}}
@@ -42,7 +63,7 @@
       {{/if}}
       {{#if ancestry.nextSibling}}
       <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>
-      {{/if}}
+      {{/if}} -->
     </p>
   </div>
   <div style="clear:both"></div>

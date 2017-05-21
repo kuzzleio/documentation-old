@@ -380,9 +380,14 @@ html, body {
       float:right;
     }
 
-    .nav-left,
+    .nav-left {
+      width: 70%;
+      overflow: visible;
+      white-space: nowrap;
+    }
+
     .nav-right {
-      width: 50%;
+      width: 30%;
       overflow: visible;
       white-space: nowrap;
     }
@@ -1655,6 +1660,15 @@ header {
   }
 }
 
+.large-only,
+.medium-only,
+.mobile-only {
+  transition: all 0.2s;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
 
 
 
@@ -1669,8 +1683,12 @@ header {
 
 
 
+
 //large desktop
 @media (max-width: 1500px) {
+  .large-only {
+    max-height: 500px;
+  }
   .container {
     .page-wrapper {
       padding: 10px 0 55px 0;
@@ -1687,6 +1705,9 @@ header {
 
 //medium desktop
 @media (max-width: 1295px) {
+  .medium-only {
+    max-height: 500px;
+  }
   header {
     .wrapper {
       white-space: nowrap;
@@ -1768,8 +1789,8 @@ header {
     }
 
     .nav-sibling {
-      max-height: 0;
-      padding: 0;
+      // max-height: 0;
+      // padding: 0;
 
       &.bottom {
         max-height: 500px;
@@ -1810,7 +1831,9 @@ header {
 
 
 @media (max-width: $tablet-width) {
-
+  .mobile-only {
+    max-height: 500px;
+  }
   body {
     .mobile-nav {
       li {
@@ -2077,6 +2100,9 @@ header {
     }
 
     .nav-sibling {
+      max-height: 0;
+      padding: 0;
+
       .separator {
         display: block;
         height: 0;

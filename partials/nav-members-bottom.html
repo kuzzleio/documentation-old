@@ -16,16 +16,19 @@
     </p>
   </div>
   <div class="nav-right">
+    <p class="medium-only">
+      {{#if ancestry.prevSibling}}
+      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
+      {{/if}}
+      {{#if (and ancestry.prevSibling ancestry.nextSibling)}}
+      |
+      {{/if}}
+      {{#if ancestry.nextSibling}}
+      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>
+      {{/if}}
+    </p>
     <p>
-      {{#if (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader))}}
-      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevMember.path }}">« {{firstDefinedOf ancestry.prevMember.subheader-title ancestry.prevMember.title }}</a>
-      {{/if}}
-      {{#if (and (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader)) ancestry.nextMember)}}
-      <span class="separator">|</span>
-      {{/if}}
-      {{#if ancestry.nextMember}}
-      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextMember.path }}">{{ ancestry.nextMember.title }} »</a>
-      {{/if}}
+      <a href="#">back to top &uarr;</a>
     </p>
   </div>
   <div style="clear:both"></div>
