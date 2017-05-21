@@ -639,6 +639,11 @@ html, body {
       //background-color: $aside-warning-bg;
       background-color: #E08E79;
       color: #F9EAEB;
+
+      p, li, dt, dd {
+        color: #F9EAEB !important;
+      }
+
       a {
         color: #fefefe;
       }
