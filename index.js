@@ -51,7 +51,7 @@ let options = {
   },
   algolia: {
     projectId: '4RFBRWISJR',
-    index: 'kuzzle-documentation',
+    index: '',
     publicKey: '6febf1ebe906bd82bce58d5a20ac6c1b',
     privateKey: undefined,
     fnFileParser: undefined
@@ -105,6 +105,7 @@ for (let config of versionsConfig) {
 
     options.github.repository = config.version_gh_repo
     options.github.branch = config.version_gh_branch
+    options.algolia.index = config.algolia_index
   }
 }
 
@@ -196,6 +197,7 @@ const build = done => {
       gh_branch: options.github.branch,
       algolia_projectId: options.algolia.projectId,
       algolia_publicKey: options.algolia.publicKey,
+      algolia_index: options.algolia.index,
       versions_config: versionsConfig
     })
     .source('./src')
