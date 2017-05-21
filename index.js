@@ -43,6 +43,7 @@ let options = {
   },
   build: {
     compress: false,
+    checkLinks: false,
     host: '',
     path: '/'
   },
@@ -69,6 +70,10 @@ if (process.argv.indexOf('--port') > -1) {
 
 if (process.argv.indexOf('--watch') > -1) {
   options.dev.watch = true
+}
+
+if (process.argv.indexOf('--ckeck-links') > -1) {
+  options.build.checkLinks = true
 }
 
 if (process.argv.indexOf('--build-compress') > -1) {
@@ -262,21 +267,27 @@ const build = done => {
       }))
   }
 
-  if (options.build.compress) {
-    console.log(`= build compress enabled (may take a while) =`);
+  if (options.build.checkLinks) {
+    console.log(`= checking dead links enabled =`);
 
     metalsmith
-      .use(inlineSVG())
-      .use(optipng({
-        pattern: '**/*.png',
-        options: ['-o7']
-      }))
       .use(linkcheck({
         verbose: true,
         timeout: 5,
         checkFile: '.linkcheck/.links_checked.json',
         ignoreFile: '.linkcheck/links_ignore.json',
         failFile: '.linkcheck/links_failed.json'
+      }))
+  }
+
+  if (options.build.compress) {
+    console.log(`= build compression enabled (may take a while) =`);
+
+    metalsmith
+      .use(inlineSVG())
+      .use(optipng({
+        pattern: '**/*.png',
+        options: ['-o7']
       }))
       .use(htmlMin())
       .use(compress())
@@ -287,10 +298,10 @@ const build = done => {
       }))
   }
 
-  console.log(`==== Building site in "${options.build.path}" ====`);
+  console.log(`==== building site in "${options.build.path}" ====`);
 
   metalsmith.build((error, files) => {
-    console.log('==== Build finished ====');
+    console.log('==== build finished ====');
 
       if (error) {
         console.error(error)
