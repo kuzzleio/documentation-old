@@ -219,8 +219,28 @@ Version configuration are set in `versions.config.json` file
 ## Configure version auto-deployment
 
 Once version have been configured on `versions.config.file`, enable auto deployment
-by editing `.travis.yml` file to add your branch configured
-in `version_gh_repo` to `.branches.only` entry
+adding your branch configured in `version_gh_repo` to `.branches.only` entry in `.travis.yml` file
+
+## Exemple
+
+```json
+[
+  {
+    "version_label": "1.0.0-rc9 (latest)",
+    "version_path": "/",
+    "algolia_index": "kuzzle-documentation",
+    "version_gh_repo": "kuzzleio/documentation",
+    "version_gh_branch": "master"
+  },
+  {
+    "version_label": "1.0.0-rc10 (next)",
+    "version_path": "/v/edge/",
+    "algolia_index": "kuzzle-documentation",
+    "version_gh_repo": "kuzzleio/documentation",
+    "version_gh_branch": "rc.x"
+  }
+]
+```
 
 ---
 
