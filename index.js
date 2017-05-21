@@ -20,12 +20,12 @@ const compress    = require('metalsmith-gzip')
 const optipng     = require('metalsmith-optipng')
 const sitemap     = require('metalsmith-sitemap')
 const htmlMin     = require('metalsmith-html-minifier')
-const logger      = require('./logger')
-const metatoc     = require('./metatoc')
-const languageTab = require('./language-tab')
-const algolia     = require('./algolia')
-const clickImage  = require('./clickable-images')
-const saveSrc     = require('./save-src')
+const logger      = require('./metalsmith-plugins/logger')
+const metatoc     = require('./metalsmith-plugins/metatoc')
+const languageTab = require('./metalsmith-plugins/language-tab')
+const algolia     = require('./metalsmith-plugins/algolia')
+const clickImage  = require('./metalsmith-plugins/clickable-images')
+const saveSrc     = require('./metalsmith-plugins/save-src')
 
 const nodeStatic = require('node-static')
 const watch = require('glob-watcher')
@@ -33,6 +33,8 @@ const open = require('open')
 const fs = require('fs')
 const path = require('path')
 const mime = require('mime-types')
+
+const versionsConfig = require('./versions.config.json')
 
 let options = {
   dev: {
@@ -53,6 +55,10 @@ let options = {
     publicKey: '6febf1ebe906bd82bce58d5a20ac6c1b',
     privateKey: undefined,
     fnFileParser: undefined
+  },
+  github: {
+    repository: '',
+    branch: ''
   }
 }
 
@@ -90,6 +96,16 @@ if (process.argv.indexOf('--build-host') > -1) {
 
 if (process.argv.indexOf('--algolia-private-key') > -1) {
   options.algolia.privateKey = process.argv[process.argv.indexOf('--algolia-private-key') + 1]
+}
+
+
+for (let config of versionsConfig) {
+  if (config.version_path === options.build.path) {
+    console.log(`= predefined version ${config.version_label} =`);
+
+    options.github.repository = config.version_gh_repo
+    options.github.branch = config.version_gh_branch
+  }
 }
 
 
@@ -176,10 +192,11 @@ const build = done => {
       site_title: "Kuzzle documentation",
       site_url: options.build.host,
       site_base_path: options.build.path,
-      gh_repo: "kuzzleio/documentation",
-      gh_branch: "rcx-refactor-doc",
+      gh_repo: options.github.repository,
+      gh_branch: options.github.branch,
       algolia_projectId: options.algolia.projectId,
-      algolia_publicKey: options.algolia.publicKey
+      algolia_publicKey: options.algolia.publicKey,
+      versions_config: versionsConfig
     })
     .source('./src')
     .destination('./build' + options.build.path) // does not work with 'dist' folder ...
@@ -195,7 +212,7 @@ const build = done => {
       })
     })
 
-  console.log(`==== Processing sources files ====`);
+  console.log(`==== processing sources files ====`);
 
   if (options.dev.watch) {
     console.log(`= watch enabled =`);
