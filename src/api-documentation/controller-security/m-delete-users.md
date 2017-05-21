@@ -61,4 +61,4 @@ title: mDeleteUsers
 }
 ```
 
-Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).

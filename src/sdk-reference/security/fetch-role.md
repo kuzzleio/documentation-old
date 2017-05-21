@@ -88,4 +88,4 @@ Retrieves a single stored role using its unique ID.
 
 ## Callback response
 
-Resolves to a [Role]({{ site_url }}{{{ site_base_path }}}sdk-reference/role) object.
+Resolves to a [Role]({{ site_base_path }}sdk-reference/role) object.

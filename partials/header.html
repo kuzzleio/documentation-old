@@ -12,22 +12,22 @@
           <a href="http://kuzzle.io/kuzzle-entreprise" class="nav-item">product</a>
         </li>
         <li>
-          <a href="{{ site_url }}{{{ site_base_path }}}" class="nav-item developers active">Documentation</a>
+          <a href="{{ site_url }}{{ site_base_path }}" class="nav-item developers active">Documentation</a>
           <ul class="mobile-nav">
             {{#each ancestry.root.ancestry.children}}
             {{#if (startwith ../path path)}}
               <li class="active">
-                <a href="{{ ../site_url }}{{{ ../site_base_path }}}{{ path }}"><span>{{ title }}</span></a>
+                <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
 
                 <ul class="sub-nav">
                   {{#each ancestry.children}}
                   {{#if (startwith ../../path path)}}
                   <li class="active">
-                    <a href="{{ ../../site_url }}{{{ ../../site_base_path }}}{{ path }}"><span>{{ title }}</span></a>
+                    <a href="{{ ../../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
                   </li>
                   {{else}}
                   <li>
-                    <a href="{{ ../../site_url }}{{{ ../../site_base_path }}}{{ path }}"><span>{{ title }}</span></a>
+                    <a href="{{ ../../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
                   </li>
                   {{/if}}
                   {{/each}}
@@ -35,7 +35,7 @@
               </li>
             {{else}}
               <li>
-                <a href="{{ ../../site_url }}{{{ ../../site_base_path }}}{{ path }}"><span>{{ title }}</span></a>
+                <a href="{{ ../../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
               </li>
             {{/if}}
             {{/each}}
@@ -69,11 +69,11 @@
       {{#each ancestry.root.ancestry.children}}
       {{#if (startwith ../path path)}}
         <li class="active">
-          <a href="{{ ../site_url }}{{{ ../site_base_path }}}{{ path }}"><span>{{ title }}</span></a>
+          <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
         </li>
       {{else}}
         <li>
-          <a href="{{ ../site_url }}{{{ ../site_base_path }}}{{ path }}"><span>{{ title }}</span></a>
+          <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
         </li>
       {{/if}}
       {{/each}}

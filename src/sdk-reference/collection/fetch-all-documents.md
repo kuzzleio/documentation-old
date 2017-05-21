@@ -112,4 +112,4 @@ Retrieves all documents stored in this data collection.
 Resolves to an object containing:
 
 - the total number of retrieved documents
-- a `array` of [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) objects
+- a `array` of [Document]({{ site_base_path }}sdk-reference/document/) objects

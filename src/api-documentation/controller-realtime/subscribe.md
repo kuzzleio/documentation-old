@@ -237,15 +237,15 @@ You can also subscribe multiple times to the same room, with different configura
 Kuzzle will provide you with a channel for each of these subscriptions,
 allowing different part of your application to concentrate on what it needs to process.
 
-The matching criteria you pass on to Kuzzle are based upon [Kuzzle DSL]({{ site_url }}{{{ site_base_path }}}kuzzle-dsl)
+The matching criteria you pass on to Kuzzle are based upon [Kuzzle DSL]({{ site_base_path }}kuzzle-dsl)
 
 How subscription works:
 
 * => You send a subscription query to Kuzzle
 * <= Kuzzle responds to you with a ``roomId`` and a `channel`
 
-When using `websocket` or `socket.io` protocol, the client will start receiving [notifications]({{ site_url }}{{{ site_base_path }}}api-documentation/notifications) right away.  
+When using `websocket` or `socket.io` protocol, the client will start receiving [notifications]({{ site_base_path }}api-documentation/notifications) right away.  
 When using other protocols, such as `MQTT`, the client may have to perform these two extra steps:
 
 * => You listen to the ``channel`` provided in the response
-* <= Kuzzle forwards the corresponding [notifications]({{ site_url }}{{{ site_base_path }}}api-documentation/notifications/) on that channel
+* <= Kuzzle forwards the corresponding [notifications]({{ site_base_path }}api-documentation/notifications/) on that channel

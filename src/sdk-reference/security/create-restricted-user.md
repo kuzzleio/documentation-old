@@ -133,4 +133,4 @@ That means that a user that was just been created will not be returned by <code>
 
 ## Callback response
 
-Resolves to a [User]({{ site_url }}{{{ site_base_path }}}sdk-reference/user) object.
+Resolves to a [User]({{ site_base_path }}sdk-reference/user) object.

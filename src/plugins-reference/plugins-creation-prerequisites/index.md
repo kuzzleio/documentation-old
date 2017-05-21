@@ -23,9 +23,9 @@ To determine the Plugin name, Kuzzle looks for the `name` field in the `package.
 
 ## Custom Plugin configuration
 
-When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-context) and the plugin's custom configuration.
+When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context]({{ site_base_path }}plugins-reference/plugins-context) and the plugin's custom configuration.
 
-Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file]({{ site_url }}{{{ site_base_path }}}guide/essentials/configuration).
+Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration).
 
 ```json
 {
@@ -76,4 +76,4 @@ Expected arguments:
 Where:
 
 * ``config`` (JSON Object): JSON object containing the custom plugin configuration
-* ``context`` (JSON Object): the [plugin context]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-context)
+* ``context`` (JSON Object): the [plugin context]({{ site_base_path }}plugins-reference/plugins-context)

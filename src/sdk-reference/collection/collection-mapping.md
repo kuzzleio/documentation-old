@@ -63,7 +63,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates a new [CollectionMapping]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection-mapping/) object, using its constructor.
+Creates a new [CollectionMapping]({{ site_base_path }}sdk-reference/collection-mapping/) object, using its constructor.
 
 ---
 
@@ -77,4 +77,4 @@ Creates a new [CollectionMapping]({{ site_url }}{{{ site_base_path }}}sdk-refere
 
 ## Return value
 
-Returns the newly created [CollectionMapping]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection-mapping/) object.
+Returns the newly created [CollectionMapping]({{ site_base_path }}sdk-reference/collection-mapping/) object.

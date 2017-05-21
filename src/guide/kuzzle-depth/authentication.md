@@ -13,8 +13,8 @@ Kuzzle uses [PassportJS](http://PassportJS.org/) to enable authentication throug
 - OAuth2 providers like GitHub or google (using [Oauth plugin](https://GitHub.com/kuzzleio/kuzzle-plugin-auth-passport-oauth))
 - SAML providers
 
-Remember the [Architecture overview]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth) and focus on the components involved by reading actions:
-![read_scenario_http_overview]({{ site_url }}{{{ site_base_path }}}assets/images/request-scenarios/auth/overview.png)
+Remember the [Architecture overview]({{ site_base_path }}guide/kuzzle-depth) and focus on the components involved by reading actions:
+![read_scenario_http_overview]({{ site_base_path }}assets/images/request-scenarios/auth/overview.png)
 
 Kuzzle uses the following internal components during the authentication process:
 
@@ -39,7 +39,7 @@ When an authentication strategy stores its credentials in its own storage (inter
 
 The "Local" strategy (implemented by the [Passport Local Plugin](https://GitHub.com/kuzzleio/kuzzle-plugin-auth-passport-local)) authenticates a user via a username/password pair (locally stored).
 
-![auth_scenario_details_local]({{ site_url }}{{{ site_base_path }}}assets/images/request-scenarios/auth/details-local.png)
+![auth_scenario_details_local]({{ site_base_path }}assets/images/request-scenarios/auth/details-local.png)
 
 * The user calls the `login` action of the Auth Controller:
 
@@ -88,7 +88,7 @@ The "Oauth" strategy, implemented by the [Passport Oauth Plugin](https://GitHub.
 
 For more details about OAuth2 protocol, see [here](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2#grant-type-authorization-code).
 
-![auth_scenario_details_oauth2]({{ site_url }}{{{ site_base_path }}}assets/images/request-scenarios/auth/details-oauth2.png)
+![auth_scenario_details_oauth2]({{ site_base_path }}assets/images/request-scenarios/auth/details-oauth2.png)
 
 The authentication flow is a 2-step flow:
 
@@ -181,6 +181,6 @@ Location: http://<kuzzle>/_login/GitHub?code=OAUTH2_CODE
 
 ## How to provide your own strategy
 
-Any strategy supported by PassportJS can be implemented in Kuzzle with a dedicated plugin. Please refer to the [Plugins Reference]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-features/adding-authentication-strategy)).
+Any strategy supported by PassportJS can be implemented in Kuzzle with a dedicated plugin. Please refer to the [Plugins Reference]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy)).
 
 ---

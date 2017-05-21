@@ -50,7 +50,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates a new [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object, using its constructor.
+Creates a new [Document]({{ site_base_path }}sdk-reference/document/) object, using its constructor.
 
 ---
 
@@ -65,4 +65,4 @@ Creates a new [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/docum
 
 ## Return value
 
-Returns the newly created [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document) object.
+Returns the newly created [Document]({{ site_base_path }}sdk-reference/document) object.

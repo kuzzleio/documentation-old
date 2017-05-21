@@ -46,7 +46,7 @@ $security = new Security($kuzzle);
 
 The Security component lets you handle users permissions in Kuzzle.
 
-Please refer to our [Kuzzle permissions guide]({{ site_url }}{{{ site_base_path }}}guide/essentials/security/#permissions) for more information.
+Please refer to our [Kuzzle permissions guide]({{ site_base_path }}guide/essentials/security/#permissions) for more information.
 
 ---
 
@@ -54,4 +54,4 @@ Please refer to our [Kuzzle permissions guide]({{ site_url }}{{{ site_base_path 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| `Kuzzle` | object | An instantiated [Kuzzle]({{ site_url }}{{{ site_base_path }}}sdk-reference/kuzzle) object |
+| `Kuzzle` | object | An instantiated [Kuzzle]({{ site_base_path }}sdk-reference/kuzzle) object |

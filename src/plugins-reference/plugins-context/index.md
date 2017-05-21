@@ -31,4 +31,4 @@ Here is the list of shared objects contained in the provided ``context``:
 | `context.errors.<ErrorConstructor>` |Kuzzle error constructors, built dynamically from available Kuzzle error objects at runtime |
 | `context.log.<level>(message)` | Provides methods to log messages depending on their priority level |
 
-**Note:** `context.accessors` are not available to [worker plugins]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-features/adding-hooks/#executing-hooks-in-separate-threads), as they are run in their own process(es), without access to Kuzzle instances.
+**Note:** `context.accessors` are not available to [worker plugins]({{ site_base_path }}plugins-reference/plugins-features/adding-hooks/#executing-hooks-in-separate-threads), as they are run in their own process(es), without access to Kuzzle instances.

@@ -78,7 +78,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new document in Kuzzle and resolves to a [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object.
+Create a new document in Kuzzle and resolves to a [Document]({{ site_base_path }}sdk-reference/document/) object.
 
 ---
 
@@ -86,7 +86,7 @@ Create a new document in Kuzzle and resolves to a [Document]({{ site_url }}{{{ s
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``Document`` | object | [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object |
+| ``Document`` | object | [Document]({{ site_base_path }}sdk-reference/document/) object |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
@@ -122,4 +122,4 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback response
 
-Resolves to a [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object containing the newly created document.
+Resolves to a [Document]({{ site_base_path }}sdk-reference/document/) object containing the newly created document.

@@ -87,7 +87,7 @@ Replaces the profiles associated to the user
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``profiles`` | array of Profile objects | An array of instantiated [Profile]({{ site_url }}{{{ site_base_path }}}sdk-reference/profile) objects |
+| ``profiles`` | array of Profile objects | An array of instantiated [Profile]({{ site_base_path }}sdk-reference/profile) objects |
 
 ---
 

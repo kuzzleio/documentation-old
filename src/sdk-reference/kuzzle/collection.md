@@ -42,7 +42,7 @@ $kuzzle = new Kuzzle('localhost', [
 $dataCollection = $kuzzle->collection('collection', 'index');
 ```
 
-Instantiates a new [Collection]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection) object.
+Instantiates a new [Collection]({{ site_base_path }}sdk-reference/collection) object.
 
 ---
 
@@ -61,4 +61,4 @@ The ``index`` argument takes precedence over the default index.
 
 ## Return value
 
-Returns a [Collection]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection) object.
+Returns a [Collection]({{ site_base_path }}sdk-reference/collection) object.

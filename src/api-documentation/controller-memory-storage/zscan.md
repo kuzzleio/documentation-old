@@ -63,7 +63,7 @@ title: zscan
 }
 ```
 
-Identical to [scan]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-memory-storage/scan) but iterates the elements stored in a sorted set.
+Identical to [scan]({{ site_base_path }}api-documentation/controller-memory-storage/scan) but iterates the elements stored in a sorted set.
 
 
 [[_Redis documentation_]](https://redis.io/commands/zscan)

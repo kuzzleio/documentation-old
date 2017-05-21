@@ -53,4 +53,4 @@ It is internally based on Redis, and most of its functions are exposed by Kuzzle
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| `Kuzzle` | object | An instantiated [Kuzzle]({{ site_url }}{{{ site_base_path }}}sdk-reference/kuzzle) object |
+| `Kuzzle` | object | An instantiated [Kuzzle]({{ site_base_path }}sdk-reference/kuzzle) object |

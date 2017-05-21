@@ -10,4 +10,4 @@ title: security
 
 # security
 
-A [Security]({{ site_url }}{{{ site_base_path }}}sdk-reference/security) singleton.
+A [Security]({{ site_base_path }}sdk-reference/security) singleton.

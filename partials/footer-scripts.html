@@ -1,7 +1,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
-<script src="{{ site_url }}{{{ site_base_path }}}assets/javascript/lib/jquery.barrating.js"></script>
+<script src="{{ site_base_path }}assets/javascript/lib/jquery.barrating.js"></script>
 
 <script type="text/javascript">
   // store helper
@@ -150,7 +150,7 @@
 
           ga('send', 'event', {
             eventCategory: 'documentation-rate',
-            eventAction: '{{ site_url }}{{{ site_base_path }}}{{ path }}',
+            eventAction: '{{ site_url }}{{ site_base_path }}{{ path }}',
             eventLabel: event.target.dataset.ratingText,
             transport: 'beacon'
           });
@@ -592,7 +592,7 @@
 
           // replace variables in template
           content = content.replace(/__tabindex__/g, key + 2);
-          content = content.replace(/__link__/g, '{{ site_url }}{{{ site_base_path }}}' + res.hits[key].path);
+          content = content.replace(/__link__/g, '{{ site_url }}{{ site_base_path }}' + res.hits[key].path);
           content = content.replace(/__parent__/g, res.hits[key].parent || '');
           content = content.replace(/__firstMember__/g, res.hits[key].firstMember || '');
           content = content.replace(/__title__/g, res.hits[key]._highlightResult.title.value);

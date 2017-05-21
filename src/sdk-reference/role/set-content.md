@@ -64,7 +64,7 @@ $role->setContent($roleDefinition);
 Replaces the content of the `Role` object.
 
 <aside class="note">
-Updating a role content will have no impact until the <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/role/save">save</a> method is called
+Updating a role content will have no impact until the <a href="{{ site_base_path }}sdk-reference/role/save">save</a> method is called
 </aside>
 
 ---

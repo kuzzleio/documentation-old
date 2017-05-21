@@ -7,13 +7,13 @@ order: 200
 
 # Listening synchronously
 
-Plugins enable you to add synchronous listener functions to a set of [events]({{ site_url }}{{{ site_base_path }}}plugins-reference/kuzzle-events-list). We'll call these synchronous listener functions **pipes** from now on.
+Plugins enable you to add synchronous listener functions to a set of [events]({{ site_base_path }}plugins-reference/kuzzle-events-list). We'll call these synchronous listener functions **pipes** from now on.
 
 Pipes are supplied with these events data, they are able to intercept the request, modify the data and interrupt its life-cycle.
 Kuzzle waits for their results before continuing the process.
 
-Pipes are a step in the process of handling client requests, thus Kuzzle enforces a timeout on them, rejecting the request altogether if a synchronous listener fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-context/errors/#gatewaytimeouterror) error to the client.  
-The timeout value can be configured in [Kuzzle configuration file]({{ site_url }}{{{ site_base_path }}}guide/essentials/configuration).
+Pipes are a step in the process of handling client requests, thus Kuzzle enforces a timeout on them, rejecting the request altogether if a synchronous listener fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError]({{ site_base_path }}plugins-reference/plugins-context/errors/#gatewaytimeouterror) error to the client.  
+The timeout value can be configured in [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration).
 
 Pipes are declared in the `pipes` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
 Each pipes must also be exported.

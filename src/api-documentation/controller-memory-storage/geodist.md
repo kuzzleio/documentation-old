@@ -51,7 +51,7 @@ title: geodist
 }
 ```
 
-Returns the distance between two geospatial members of a key (see [geoadd]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-memory-storage/geoadd/)).  
+Returns the distance between two geospatial members of a key (see [geoadd]({{ site_base_path }}api-documentation/controller-memory-storage/geoadd/)).  
 The returned distance is expressed in meters by default.
 
 [[_Redis documentation_]](https://redis.io/commands/geodist)

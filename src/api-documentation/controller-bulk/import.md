@@ -103,7 +103,7 @@ title: import
 You can use the `bulk import` to save a list of documents in one specific `collection` in a specified `index`.  
 In such case, the `collection` in which the documents need to be inserted needs to be specified in the query.
 
-In case a subset of the queries sent within the request fail, the client will receive a <a href="{{ site_url }}{{{ site_base_path }}}api-documentation/errors/#partialerror">PartialError</a> object.
+In case a subset of the queries sent within the request fail, the client will receive a <a href="{{ site_base_path }}api-documentation/errors/#partialerror">PartialError</a> object.
 
 <div style="clear: both"></div>
 

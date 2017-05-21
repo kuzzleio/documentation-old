@@ -90,4 +90,4 @@ Validates and stores a role in Kuzzle's persistent data storage.
 The body content needs to match Kuzzle's role definition.
 
 To get more detailed information about the expected role definition or Kuzzle's user management model,
-please refer to [Kuzzle's permissions documentation]({{ site_url }}{{{ site_base_path }}}guide/essentials/security/#permissions).
+please refer to [Kuzzle's permissions documentation]({{ site_base_path }}guide/essentials/security/#permissions).

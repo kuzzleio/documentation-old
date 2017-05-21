@@ -133,4 +133,4 @@ Returns the `Security` object to allow chaining.
 
 ## Callback response
 
-Resolves to an updated [Profile]({{ site_url }}{{{ site_base_path }}}sdk-reference/profile) object
+Resolves to an updated [Profile]({{ site_base_path }}sdk-reference/profile) object
