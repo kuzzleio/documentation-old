@@ -1,20 +1,22 @@
 # Table of Contents
 
-- [Install](#install)
-- [How-to](#how-to)
-  - [File organization](#file-organization)
-    - [Documentation sections](#documentation-sections)
-    - [Documentation subsections](#documentation-subsections)
-    - [Documentation articles](#documentation-articles)
+- [Usage](#usage)
+- [File organization](#file-organization)
+  - [Documentation sections](#documentation-sections)
+  - [Documentation subsections](#documentation-subsections)
+  - [Documentation articles](#documentation-articles)
 - [File headers](#file-headers)
   - [layout](#layout)
   - [order](#order)
   - [show-subheader](#show-subheader)
   - [subheader-title](#subheader-title)
 - [Sorting the documentation](#sorting-the-documentation)
+- [Configure versions](#configure-versions)
+  - [Version configuration reference](#version-configuration-reference)
+  - [Configure version auto-deployment](#configure-version-auto-deployment)
 - [See also](#see-also)
 
-# Install
+# Usage
 
 > install dependencies
 
@@ -41,9 +43,9 @@
 
 `sudo DEBUG=* node index.js --dev --watch --open-browser --port 80 --ckeck-links`
 
-# How-to
+---
 
-## File organization
+# File organization
 
 Here is an overview of the files structure:
 
@@ -55,7 +57,7 @@ Here is an overview of the files structure:
 
 Though there is no real limit to the directories depth, to keep the documentation homogeneous and readable, no additional subdirectories should be added.
 
-### Documentation sections
+## Documentation sections
 
 Sections are listed as subdirectories in `src/`.  
 For instance: `src/guide/`.
@@ -74,7 +76,7 @@ icon: <font-awesome icon name>
 
 For more information about headers, see the [file headers](#file-headers) documentation.
 
-### Documentation subsections
+## Documentation subsections
 
 Subsections are directories listed under a [section directory](#documentation-sections).   
 For instance: `src/guide/essentials/`
@@ -109,7 +111,7 @@ subheader-title: <(optional, default: title header value)>
 
 For more information about headers, see the [file headers](#file-headers) documentation.
 
-### Documentation articles
+## Documentation articles
 
 Articles are markdown files stored under a [subsection directory](#documentation-subsections).  
 For instance: `src/guide/essentials/installing-kuzzle.md`
@@ -127,25 +129,7 @@ order: <(optional, integer)>
 
 For more information about headers, see the [file headers](#file-headers) documentation.
 
-## Configure versions
-
-Version configuration are set in `versions.config.json` file
-
-### Version configuration reference
-
-| JSON Key | Value | Usage |
-| --- | --- | --- |
-| `version_label` | `string` | Label displayed in version selector |
-| `version_path` | `string` | Base path used to generate links _(should start and end with a slash `/`)_ |
-| `algolia_index` | `string` | Used to distinguish algolia search index |
-| `version_gh_repo` | `string` | Linked git repository _(used by file edition)_  |
-| `version_gh_branch` | `string` | Linked git branch _(used by file edition and travis deploiement)_  |
-
-### Configure version auto-deployment
-
-Once version have been configured on `versions.config.file`, enable auto deployment
-by editing `.travis.yml` file to add your branch configured
-in `version_gh_repo` to `.branches.only` entry
+---
 
 # File headers
 
@@ -195,6 +179,8 @@ This header makes the content of `index.md` appear like any other article, using
 
 If [show-subheader](#show-subheader) is set to `true`, then this value is used as the article name in the navigation bar.
 
+---
+
 # Sorting the documentation
 
 Inside each category (section, subsection, article), all files are automatically sorted.  
@@ -212,6 +198,31 @@ The SDK reference contain subsections, each one with a `index.md` file:
 * `/sdk-reference/essentials/index.md` has an order set to `0`
 * `/sdk-reference/kuzzle/index.md` has an order set to `100`
 * all other subsections are without an `order` header: they are listed after `essentials` and `kuzzle` subsections, but sorted using their title header value
+
+
+---
+
+# Configure versions
+
+Version configuration are set in `versions.config.json` file
+
+## Version configuration reference
+
+| JSON Key | Value | Usage |
+| --- | --- | --- |
+| `version_label` | `string` | Label displayed in version selector |
+| `version_path` | `string` | Base path used to generate links _(should start and end with a slash `/`)_ |
+| `algolia_index` | `string` | Used to distinguish algolia search index |
+| `version_gh_repo` | `string` | Linked git repository _(used by file edition)_  |
+| `version_gh_branch` | `string` | Linked git branch _(used by file edition and travis deploiement)_  |
+
+## Configure version auto-deployment
+
+Once version have been configured on `versions.config.file`, enable auto deployment
+by editing `.travis.yml` file to add your branch configured
+in `version_gh_repo` to `.branches.only` entry
+
+---
 
 # See also
 
