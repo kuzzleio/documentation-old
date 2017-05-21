@@ -1,12 +1,23 @@
 sudo: false
-language: ruby
-rvm:
-- 2.0.0
-cache: bundler
+language: node_js
+node_js:
+  - "6"
+
+addons:
+  apt:
+    packages:
+    - jq
+
+install:
+- npm install
+
 script:
-- bash ./common/bin/travis.sh
+- bash ./bin/travis-script.sh
+
 after_success:
-- bash ./common/bin/travis.after_success.sh
-env:
-  global:
-    secure: nVfVveTLnQ+PwmZoPKQ3ygDzS2S96iuvwGY2+GpgspCiRCN+w2PgCFfruPzPFjCjt4Fsi4pbdDS6gtMmE5eP/uRp7lgS+nNl9jxJ7BsJlwX3K0YxHJmMj4d8r8vsukpB1wT8zOWz5wLNrE1wcZCHbrnhRB85Tq9oh3tPOBwPlj2fYYcqnyiHj6ymfX0Ew/Fggre/KvXgyJgTe0PrJgQVp1BxhT+Scssm6GBuZwdOfD7S4wFqNueXf6Z+IVb4nKVC38GuGDictlSHc7JDXou5ePgg4PpCcUswY/k1tqO0CKKLqSU4JSYIPNw3CJEWTJQKI87n6Dr1JFKa8bkYjkW5kxtBAo1FYX5g0Ru3+cXkcWv12WB0fds0wBGYjF81LOb6P6e0YBFGVTPOjNwls4hwz3VKwrq8DbZpFd6hReZQS0LfB9WT/tqeKyVJNvD1awsxIbn9I5QEP99kcJHlKTTUNFJTIndP++sy6O3/g8HTJwJ+6L3yQU0VLjyr3KM0iPUkByxxERipTuc6AdLL3uMb2iafhM99MQrRw38axjkjOKIPqOVv16q7siOl+C7yxT+TFh29raDyIJ+uvEdEHLzEpOdctKY9j1MOY22W/QzIXl8qIgzFnc/Cr625h6NMgo3WOO4vjscq5GrusaUiUfj7oE1AIYpjfEA7K3XubcO0JNk=
+- bash ./bin/travis-after-success.sh
+
+branches:
+  only:
+  - master
+  - rc.x
