@@ -3,10 +3,10 @@
 set -e
 
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-  HOST="https://stafyniaksacha.github.io"
-  HOST_PATH="./build/documentation"
+  HOST="http://docs.kuzzle.io"
+  HOST_PATH="./build"
 
-  git config --global user.email "sacha.st@live.fr"
+  git config --global user.email "support@kuzzle.io"
   git config --global user.name "Travis CI"
 
   git clone -b gh-pages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} "/tmp/gh-pages"
