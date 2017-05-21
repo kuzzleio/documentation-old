@@ -20,15 +20,24 @@
 
 `npm install`
 
-> build the documentation in production mode and index content into algolia
+> index documentation content to algolia
 
-`node index.js --build-host http://docs.kuzzle.io --build-path /v/edge --build-compress --algolia-private-key <key>`
+`node index.js --algolia-private-key <key>`
+
+> index documentation content to algolia matching version configured in versions.config.json
+
+`node index.js --build-path /v/edge --algolia-private-key <key>`
+
+> build the documentation in production mode matching version configured in versions.config.json
+
+`node index.js --build-host http://docs.kuzzle.io --build-path /v/edge --build-compress`
 
 > bind a webserver on 8080 with livereload and watch enabled
 
-`node index.js --dev --watch`
+`node index.js --dev --watch`  
+`npm run dev`
 
-> bind a webserver on 80 with livereload, open a browser and turn on debug messages and check dead links
+> bind a webserver on 80 with livereload, open a browser, turn on debug messages and check dead links
 
 `sudo DEBUG=* node index.js --dev --watch --open-browser --port 80 --ckeck-links`
 
@@ -118,9 +127,36 @@ order: <(optional, integer)>
 
 For more information about headers, see the [file headers](#file-headers) documentation.
 
+## Configure versions
+
+Version configuration are set in `versions.config.json` file
+
+### Version configuration reference
+
+| JSON Key | Value | Usage |
+| --- | --- | --- |
+| `version_label` | `string` | Label displayed in version selector |
+| `version_path` | `string` | Base path used to generate links _(should start and end with a slash `/`)_ |
+| `algolia_index` | `string` | Used to distinguish algolia search index |
+| `version_gh_repo` | `string` | Linked git repository _(used by file edition)_  |
+| `version_gh_branch` | `string` | Linked git branch _(used by file edition and travis deploiement)_  |
+
+### Configure version auto-deployment
+
+Once version have been configured on `versions.config.file`, enable auto deployment
+by editing `.travis.yml` file to add your branch configured
+in `version_gh_repo` to `.branches.only` entry
+
 # File headers
 
 Here is a rundown of the possible header values that can be configured in markdown files:
+
+## disqus
+
+**Type:** bolean  
+**Default:** `true`
+
+Enable disqus comment plugin on page.
 
 ## layout
 
@@ -145,7 +181,7 @@ For more information, see [how the documentation is sorted](#sorting-the-documen
 **Type:** boolean  
 **Default:** `false`
 
-To be used only on subsection `index.md` files.
+> To be used only on subsection `index.md` files.
 
 By default, we configured this documentation to **hide** the content of `index.md` files in subsections (see [documentation subsections](#documentation-subsections)).
 

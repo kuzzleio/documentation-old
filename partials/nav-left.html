@@ -43,13 +43,6 @@
     <ul class="toc-footer">
       <!-- community links here ! -->
 
-      {{#each versions_config}}
-        {{#if (eq ../site_base_path version_path)}}
-          <li><span style="color:#717171">{{version_label}}</span></li>
-        {{else}}
-          <li><a href="{{version_path}}{{ path }}">{{version_label}}</a></li>
-        {{/if}}
-      {{/each}}
     </ul>
   </div>
 </div>

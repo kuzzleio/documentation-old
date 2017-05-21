@@ -1,5 +1,5 @@
 <div class="mobile-breadcrumb">
-  <p>
+  <p style="float:left">
   <a href="{{ site_url }}{{ site_base_path }}">{{ site_title}}</a>
 
   {{#if ancestry.parent}}
@@ -12,6 +12,17 @@
 
     » {{ title }}
    {{/if}}
+   </p>
+   <p style="float:right" class="version-selector">
+     <select onchange="window.location = this.value">
+       {{#each versions_config}}
+         {{#if (eq ../site_base_path version_path)}}
+           <option selected>{{version_label}}</option>
+         {{else}}
+           <option value="{{version_path}}{{ ../path }}">{{version_label}}</option>
+         {{/if}}
+       {{/each}}
+     </select>
    </p>
 </div>
 
@@ -33,8 +44,18 @@
     </p>
   </div>
   <div class="nav-right">
-    <p>
-      {{#if (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader))}}
+    <p class="version-selector">
+      <span>current version:</span>
+      <select onchange="window.location = this.value">
+        {{#each versions_config}}
+          {{#if (eq ../site_base_path version_path)}}
+            <option selected>{{version_label}}</option>
+          {{else}}
+            <option value="{{version_path}}{{ ../path }}">{{version_label}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+      <!-- {{#if (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader))}}
       <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevMember.path }}">« {{firstDefinedOf ancestry.prevMember.subheader-title ancestry.prevMember.title }}</a>
       {{/if}}
       {{#if (and (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader)) ancestry.nextMember)}}
@@ -42,7 +63,7 @@
       {{/if}}
       {{#if ancestry.nextMember}}
       <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextMember.path }}">{{ ancestry.nextMember.title }} »</a>
-      {{/if}}
+      {{/if}} -->
     </p>
   </div>
   <div style="clear:both"></div>

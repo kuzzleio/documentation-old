@@ -1,3 +1,4 @@
+{{#unless (eq disqus false)}}
 <hr />
 <div id="disqus_thread"></div>
 
@@ -13,7 +14,9 @@
   (function() {
     var d = document, s = d.createElement('script');
     s.src = 'https://kuzzle-documentation.disqus.com/embed.js';
+    s.async = 'async';
     s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
   })();
 </script>
+{{/unless}}

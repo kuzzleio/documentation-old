@@ -21,3 +21,4 @@ branches:
   only:
   - master
   - rc.x
+  - rcx-refactor-doc

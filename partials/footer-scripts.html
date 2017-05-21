@@ -417,7 +417,7 @@
     var KEY_UP = 38;
     var KEY_DOWN = 40;
     var client = algoliasearch("{{ algolia_projectId }}", "{{ algolia_publicKey }}");
-    var index = client.initIndex('{{ algolia_index }}');
+    var index = client.initIndex('kuzzle-documentation');
     var template = $('#search-results-template').html();
     var $searchInput = $('.search input[type=search]');
     var $searchResults = $('.search-results');
