@@ -1053,6 +1053,7 @@ header {
   z-index: 100;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 9px;
   width: 100%;
+  z-index: 10;
 }
 header .wrapper {
   display: block;
@@ -1635,6 +1636,8 @@ header {
   }
 }
 .container {
+  z-index: 5;
+  
   .page-wrapper {
     transition: all 0.2s;
   }
