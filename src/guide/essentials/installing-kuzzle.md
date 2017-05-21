@@ -90,7 +90,7 @@ docker exec -ti "<docker core container name>" bin/kuzzle -h
 In this section we will cover the manual installation on Linux systems, since this is the environment all the components of the Kuzzle stack work natively in.
 
 <aside class="notice">
-  By default, Kuzzle expects all the components to be running on localhost. You can use the <a href="/guide/essentials/configuration">configuration parameters</a> to change this behavior.
+  By default, Kuzzle expects all the components to be running on localhost. You can use the <a href="{{ site_url }}{{{ site_base_path }}}guide/essentials/configuration">configuration parameters</a> to change this behavior.
 </aside>
 
 We will run the Kuzzle stack using [pm2](http://pm2.keymetrics.io/), from the current user home directory.
@@ -172,7 +172,7 @@ for PLUGIN in ./plugins/enabled/*; do
 done
 ```
 
-### Create a directory for Kuzzle Back Office and [install it](/guide/essentials/installing-backoffice).
+### Create a directory for Kuzzle Back Office and [install it]({{ site_url }}{{{ site_base_path }}}guide/essentials/installing-backoffice).
 
 ---
 
@@ -230,7 +230,7 @@ Socket IO and Websocket channels can be reached over the HTTP server, on port 75
 
 If you are running some of the service(s) externally, you can configure their host and port using some environment variables and/or a `.kuzzlerc` file.
 
-Please refer to the [Kuzzle configuration section](/guide/essentials/configuration) for more information.
+Please refer to the [Kuzzle configuration section]({{ site_url }}{{{ site_base_path }}}guide/essentials/configuration) for more information.
 
 #### Useful commands list
 

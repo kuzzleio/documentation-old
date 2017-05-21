@@ -76,7 +76,7 @@ $user = $security->user($kuid, $userDefinition);
 $user = new User($security, $kuid, $userDefinition);
 ```
 
-Instantiates a new User object, an object representation of an user, which is associated to a [Profile](/sdk-reference/profile) object
+Instantiates a new User object, an object representation of an user, which is associated to a [Profile]({{ site_url }}{{{ site_base_path }}}sdk-reference/profile) object
 
 
 ---

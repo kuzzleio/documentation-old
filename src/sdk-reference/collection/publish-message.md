@@ -55,7 +55,7 @@ Publish a real-time message.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``Document`` | object | [Document](/sdk-reference/document/) object |
+| ``Document`` | object | [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 

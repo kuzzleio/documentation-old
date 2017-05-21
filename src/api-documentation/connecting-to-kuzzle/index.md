@@ -12,7 +12,7 @@ order: 100
 The connection to Kuzzle depends on the protocol to be used.
 
 HTTP, WebSocket and SocketIO protocols are shipped in Kuzzle's core.
-Other protocols can be added with [Protocol Plugins](/plugins-reference).
+Other protocols can be added with [Protocol Plugins]({{ site_url }}{{{ site_base_path }}}plugins-reference).
 
 ---
 
@@ -21,7 +21,7 @@ Other protocols can be added with [Protocol Plugins](/plugins-reference).
 By default, Kuzzle exposes itself on the 7512 port. Assuming the Kuzzle server runs locally,
 it can be reached on `http://localhost:7512/`.
 
-The default response is the [ServerInfo](/api-documentation/controller-server/info) controller.
+The default response is the [ServerInfo]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-server/info) controller.
 With this you will get detailed information about available HTTP API routes.
 
 ### Examples

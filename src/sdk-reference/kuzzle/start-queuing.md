@@ -24,7 +24,7 @@ kuzzle.startQueuing();
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Starts the requests queuing. Works only during offline mode, and if the [autoQueue](/sdk-reference/kuzzle/#properties) option is set to `false`.
+Starts the requests queuing. Works only during offline mode, and if the [autoQueue]({{ site_url }}{{{ site_base_path }}}sdk-reference/kuzzle/#properties) option is set to `false`.
 
 ---
 

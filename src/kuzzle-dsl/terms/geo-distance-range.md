@@ -8,7 +8,7 @@ title: geoDistanceRange
 
 Filter documents having their location field within a distance range from a given point of origin.
 
-![Illustration of geoDistanceRange](/assets/images/geolocation/geoDistanceRange.png)
+![Illustration of geoDistanceRange]({{ site_url }}{{{ site_base_path }}}assets/images/geolocation/geoDistanceRange.png)
 
 ## Given the following documents:
 

@@ -9,7 +9,7 @@ order: 800
 
 All transactions in Kuzzle are represented by a [Request](https://github.com/kuzzleio/kuzzle-common-objects#request) object. The object is created by the client to send a request to Kuzzle and returned by Kuzzle containing the response.
 
-The state of this object evolves along with the [lifecycle of the transaction](/guide/essentials/request-and-response-format/#life-cycle).
+The state of this object evolves along with the [lifecycle of the transaction]({{ site_url }}{{{ site_base_path }}}guide/essentials/request-and-response-format/#life-cycle).
 
 The `Request` object is [sealed](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/seal), which means you cannot add or delete fields once the object is initialized.
 
@@ -129,5 +129,5 @@ Here is how it works.
   - The raw response of the controller is set to the `result` field.
   - If an error occurs, Kuzzle updates the `error` field via the `setError` method.
   - The `status` field is update consequently with a HTTP-compliant numeric code.
-  - Kuzzle fills the `response` field with an object compliant with the [Kuzzle Response API standard](/api-documentation/kuzzle-response)
+  - Kuzzle fills the `response` field with an object compliant with the [Kuzzle Response API standard]({{ site_url }}{{{ site_base_path }}}api-documentation/kuzzle-response)
 * Kuzzle sends the response back to the client.

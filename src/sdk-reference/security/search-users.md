@@ -157,7 +157,7 @@ Executes a search on users according to a filter
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters](/kuzzle-dsl) |
+| ``filters`` | JSON Object | [Filters]({{ site_url }}{{{ site_base_path }}}kuzzle-dsl) |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -175,4 +175,4 @@ Executes a search on users according to a filter
 
 ## Callback response
 
-Resolves to a JSON Object containing the total number of found users, and an array of [User](/sdk-reference/user) objects.
+Resolves to a JSON Object containing the total number of found users, and an array of [User]({{ site_url }}{{{ site_base_path }}}sdk-reference/user) objects.

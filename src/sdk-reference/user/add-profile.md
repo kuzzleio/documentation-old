@@ -62,7 +62,7 @@ $user->addProfile('myProfile');
 Replaces the profile associated to the user
 
 <aside class="note">
-Updating an user will have no impact until the <a href="/sdk-reference/user/create"><code>create</code></a> or <a href="/sdk-reference/user/replace"><code>replace</code></a> method is called
+Updating an user will have no impact until the <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/user/create"><code>create</code></a> or <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/user/replace"><code>replace</code></a> method is called
 </aside>
 
 ---
@@ -79,7 +79,7 @@ Updating an user will have no impact until the <a href="/sdk-reference/user/crea
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``profile`` | Profile | An instantiated [Profile](/sdk-reference/profile) object |
+| ``profile`` | Profile | An instantiated [Profile]({{ site_url }}{{{ site_base_path }}}sdk-reference/profile) object |
 
 ---
 

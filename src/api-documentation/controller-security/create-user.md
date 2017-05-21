@@ -124,7 +124,7 @@ title: createUser
 
 Creates a new `user` in Kuzzle's database layer.
 
-If an `_id` is provided in the query and if a user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) already exists, an error is returned.
+If an `_id` is provided in the query and if a user [`<kuid>`]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) already exists, an error is returned.
 If not provided, the `_id` will be auto-generated.
 
 Provided profile ids are used to set the permissions of the user.

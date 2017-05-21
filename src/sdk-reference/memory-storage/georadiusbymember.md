@@ -78,7 +78,7 @@ catch (ErrorException $e) {
 ]
 ```
 
-Returns the members (added with [geoadd](/sdk-reference/memory-storage/geoadd)) of a given key inside the provided geospatial radius, centered around one of a key's member.
+Returns the members (added with [geoadd]({{ site_url }}{{{ site_base_path }}}sdk-reference/memory-storage/geoadd)) of a given key inside the provided geospatial radius, centered around one of a key's member.
 
 
 [[_Redis documentation_]](https://redis.io/commands/georadiusbymember)

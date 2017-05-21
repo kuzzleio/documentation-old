@@ -69,7 +69,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Replace an existing document and returns the updated version of it as a [Document](/sdk-reference/document/) object.
+Replace an existing document and returns the updated version of it as a [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object.
 
 ---
 
@@ -102,4 +102,4 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback response
 
-Resolves to an updated [Document](/sdk-reference/document/) object.
+Resolves to an updated [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object.

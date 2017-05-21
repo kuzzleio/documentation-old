@@ -67,4 +67,4 @@ Retrieves informations about the currently logged user.
 
 ## Callback response
 
-An instantiated [User](/sdk-reference/user) object.
+An instantiated [User]({{ site_url }}{{{ site_base_path }}}sdk-reference/user) object.

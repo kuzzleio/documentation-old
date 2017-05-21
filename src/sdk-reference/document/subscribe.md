@@ -62,7 +62,7 @@ Room room = document.subscribe(new ResponseListener<NotificationResponse>() {
 Listens to changes occuring on this document.
 Throws an error if this document has not yet been created in Kuzzle.
 
-The provided callback will be called everytime a [notification](/sdk-reference/essentials/notifications) is received from Kuzzle.
+The provided callback will be called everytime a [notification]({{ site_url }}{{{ site_base_path }}}sdk-reference/essentials/notifications) is received from Kuzzle.
 
 ---
 
@@ -77,7 +77,7 @@ The provided callback will be called everytime a [notification](/sdk-reference/e
 
 ## Options
 
-Options are directly passed to the [Room](/sdk-reference/room/) object constructor.
+Options are directly passed to the [Room]({{ site_url }}{{{ site_base_path }}}sdk-reference/room/) object constructor.
 
 ---
 

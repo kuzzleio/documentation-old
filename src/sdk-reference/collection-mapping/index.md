@@ -72,7 +72,7 @@ Once a field mapping has been set, it cannot be removed without reconstructing t
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| `Collection` | [Collection](/sdk-reference/collection/) | An instantiated Collection object |
+| `Collection` | [Collection]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection/) | An instantiated Collection object |
 | ``mapping`` | JSON Object | Optional mapping |
 
 ---
@@ -84,4 +84,4 @@ Once a field mapping has been set, it cannot be removed without reconstructing t
 | ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
 | ``mapping`` | object | Easy-to-understand list of mappings per field | get/set |
 
-**Note:** the ``headers`` property is inherited from the provided [Collection](/sdk-reference/collection/) object and can be overrided
+**Note:** the ``headers`` property is inherited from the provided [Collection]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection/) object and can be overrided

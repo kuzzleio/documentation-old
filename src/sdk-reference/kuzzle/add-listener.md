@@ -38,7 +38,7 @@ $kuzzle->addListener('jwtTokenExpired', function() {
 
 Adds a listener to a Kuzzle global event. When an event is fired, listeners are called in the order of their insertion.
 
-See the [event handling](/sdk-reference/essentials/events) section for a full events list.
+See the [event handling]({{ site_url }}{{{ site_base_path }}}sdk-reference/essentials/events) section for a full events list.
 
 ---
 

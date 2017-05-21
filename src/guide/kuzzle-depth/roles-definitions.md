@@ -7,7 +7,7 @@ order: 200
 
 # Advanced Roles Definitions
 
-In the [User Guide](/guide/essentials/security/#permissions), we have seen how to assign basic roles to profiles and profiles to users. Here, we are going to learn how to set complex and dynamic permissions.
+In the [User Guide]({{ site_url }}{{{ site_base_path }}}guide/essentials/security/#permissions), we have seen how to assign basic roles to profiles and profiles to users. Here, we are going to learn how to set complex and dynamic permissions.
 
 The privileges for a certain action (restricted to a given set of indexes and collections) must be expressed as a boolean value. So far, we hard-coded this value within the permissions configuration. In some cases, this will not fit your needs. In a collaborative TO-DO list application, for example, a user should not be allowed to update other user's items. This need is addressed by what we call Permission Closures.
 
@@ -44,8 +44,8 @@ let role = {
 
 Where:
 
-- `test` is the body of [the permission function](/guide/kuzzle-depth/roles-definitions/#the-permission-function)
-- `args` is the parameter given to [the fetch definition function](/guide/kuzzle-depth/roles-definitions/#the-fetch-definition)
+- `test` is the body of [the permission function]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/roles-definitions/#the-permission-function)
+- `args` is the parameter given to [the fetch definition function]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/roles-definitions/#the-fetch-definition)
 
 ---
 
@@ -76,13 +76,13 @@ The [Request](https://github.com/kuzzleio/kuzzle-common-objects#request) object 
 
 ### $currentUserId
 
-The `$currentUserId` variable contains the current user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid). It is an alias for `request.context.token.userId`.
+The `$currentUserId` variable contains the current user [`<kuid>`]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid). It is an alias for `request.context.token.userId`.
 
 ### args
 
 The main purpose of the "closures" behavior is to define a role policy based on the current state of the persistence layer. This means that we need to fetch documents from the storage engine in order to use them within the permission function.
 
-The `args` object contains these documents, as a result of the evaluation of the [fetch definition](/guide/kuzzle-depth/roles-definitions/#the-fetch-definition).
+The `args` object contains these documents, as a result of the evaluation of the [fetch definition]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/roles-definitions/#the-fetch-definition).
 Each `args` item will look like:
 
 ```javascript
@@ -124,7 +124,7 @@ The `args` element is the place where we define our Fetch Definitions and has th
 }
 ```
 
-You can define one or more variables inside the args element and, for each of them, the action to use to populate them. Each variable will then be available in [your permission function](/guide/kuzzle-depth/roles-definitions/#the-permission-function) as `args.<variable>`.
+You can define one or more variables inside the args element and, for each of them, the action to use to populate them. Each variable will then be available in [your permission function]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/roles-definitions/#the-permission-function) as `args.<variable>`.
 
 ### Embedded variables
 
@@ -210,7 +210,7 @@ args.myDocuments = [
 
 #### `search`
 
-The `search` action type performs a search on the persistence layer and returns the resulting documents. It behave exactly like a normal [document search](/guide/essentials/persisted/#document-search).
+The `search` action type performs a search on the persistence layer and returns the resulting documents. It behave exactly like a normal [document search]({{ site_url }}{{{ site_base_path }}}guide/essentials/persisted/#document-search).
 
 Example:
 
@@ -246,4 +246,4 @@ args.myDocuments = [
 
 The content of `action.search` is directly passed to Elasticsearch.
 
-Please refer to [our Elasticsearch Cookbook](/elasticsearch-cookbook/) for additional information on how to build your query.
+Please refer to [our Elasticsearch Cookbook]({{ site_url }}{{{ site_base_path }}}elasticsearch-cookbook/) for additional information on how to build your query.

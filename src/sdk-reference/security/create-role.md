@@ -132,4 +132,4 @@ That means that a role that was just been created will not be returned by <code>
 
 ## Callback response
 
-Resolves to a [Role](/sdk-reference/role) object.
+Resolves to a [Role]({{ site_url }}{{{ site_base_path }}}sdk-reference/role) object.

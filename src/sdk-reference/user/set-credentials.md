@@ -45,7 +45,7 @@ $user->setCredentials([
 ```
 
 <aside class="note">
-  Updating user credentials will have no impact until the <a href="/sdk-reference/user/create"><code>create</code></a> method is called.<br />
+  Updating user credentials will have no impact until the <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/user/create"><code>create</code></a> method is called.<br />
   The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
 </aside>
 

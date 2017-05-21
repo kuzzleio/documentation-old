@@ -58,7 +58,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create the user in kuzzle. Credentials can be created during the process by using [setCredentials](/sdk-reference/user/set-credentials) beforehand.
+Create the user in kuzzle. Credentials can be created during the process by using [setCredentials]({{ site_url }}{{{ site_base_path }}}sdk-reference/user/set-credentials) beforehand.
 
 ---
 

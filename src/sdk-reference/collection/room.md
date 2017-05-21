@@ -50,7 +50,7 @@ Room room = kuzzle.collection("collection", "index")
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Creates a new [Room](/sdk-reference/room/) object, using its constructor.
+Creates a new [Room]({{ site_url }}{{{ site_base_path }}}sdk-reference/room/) object, using its constructor.
 
 ---
 
@@ -62,10 +62,10 @@ Creates a new [Room](/sdk-reference/room/) object, using its constructor.
 
 ## Options
 
-Provided options are passed directly to the [Room](/sdk-reference/room/) object constructor.
+Provided options are passed directly to the [Room]({{ site_url }}{{{ site_base_path }}}sdk-reference/room/) object constructor.
 
 ---
 
 ## Return value
 
-Returns the newly created [Room](/sdk-reference/room/) object.
+Returns the newly created [Room]({{ site_url }}{{{ site_base_path }}}sdk-reference/room/) object.

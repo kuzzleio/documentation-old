@@ -85,4 +85,4 @@ In other words, you always need to provide the complete role definition in the b
 </aside>
 
 To get some more detailed information about Kuzzle's user management model,
-please refer to [Kuzzle's security documentation](/guide/essentials/security/#permissions).
+please refer to [Kuzzle's security documentation]({{ site_url }}{{{ site_base_path }}}guide/essentials/security/#permissions).

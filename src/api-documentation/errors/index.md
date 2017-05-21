@@ -106,7 +106,7 @@ The detail of each failure can be retrieved using the `errors` property of the e
 
 **status**: 500
 
-A `PluginImplementationError` is thrown if Kuzzle encountered a severe unknown error issued by a [plugin](/plugins-reference).
+A `PluginImplementationError` is thrown if Kuzzle encountered a severe unknown error issued by a [plugin]({{ site_url }}{{{ site_base_path }}}plugins-reference).
 
 ---
 
@@ -132,7 +132,7 @@ A `ServiceUnavailableError` can be sent by Kuzzle proxy if no Kuzzle instance is
 
 **status**: 413
 
-A `SizeLimitError` is thrown by Kuzzle if the request size exceeds the limits defined in the [proxy configuration](/guide/essentials/proxy-configuration).
+A `SizeLimitError` is thrown by Kuzzle if the request size exceeds the limits defined in the [proxy configuration]({{ site_url }}{{{ site_base_path }}}guide/essentials/proxy-configuration).
 
 ---
 

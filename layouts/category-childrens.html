@@ -4,7 +4,7 @@
 <head>
   {{> common-meta }}
 
-  <link href="/assets/stylesheets/category-childrens/screen.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="{{ site_url }}{{{ site_base_path }}}assets/stylesheets/category-childrens/screen.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 
 <body class="index">
@@ -34,9 +34,9 @@
 
           <div class="panel">
             {{#if show-subheader}}
-            <a href="/{{ path }}">
+            <a href="{{ ../site_url }}{{{ ../site_base_path }}}{{ path }}">
             {{else}}
-            <a href="/{{firstDefinedOf ancestry.nextMember.path path }}">
+            <a href="{{ ../site_url }}{{{ ../site_base_path }}}{{firstDefinedOf ancestry.nextMember.path path }}">
             {{/if}}
               <div class="panel-title"><i class="fa {{ icon }}"></i> {{ title }}</div>
               <div class="panel-content">
@@ -46,7 +46,7 @@
           </div>
          {{/each}}
       </div>
-      
+
       {{> nav-siblings-bottom }}
   </div>
 </div>

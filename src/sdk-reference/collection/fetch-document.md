@@ -64,7 +64,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves a single stored document using its unique document ID, and returns it as a [Document](/sdk-reference/document/) object.
+Retrieves a single stored document using its unique document ID, and returns it as a [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object.
 
 ---
 
@@ -88,4 +88,4 @@ Retrieves a single stored document using its unique document ID, and returns it 
 
 ## Callback response
 
-Resolves to a [Document](/sdk-reference/document/) object.
+Resolves to a [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object.

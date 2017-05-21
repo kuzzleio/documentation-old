@@ -17,20 +17,20 @@ All other supported protocols are implemented by plugins, installed on the [Kuzz
 
 ## How it works
 
-Requests sent by clients can be forwarded to Kuzzle using the [`router` accessor](/plugins-reference/plugins-context/accessors/#router-newconnection)  
+Requests sent by clients can be forwarded to Kuzzle using the [`router` accessor]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-context/accessors/#router-newconnection)  
 To access these methods, simply call `context.accessors.router.<router method>`:
 
 | Router method | Arguments    | Returns | Description              |
 |-----------------|--------------|---------|--------------------------|
 | `newConnection` | `protocol name` (string) <br/>`connection ID` (string) | A promise resolving to a `RequestContext` object | Declares a new connection to Kuzzle. |
-| `execute` | `request` ([Request](/plugins-reference/plugins-context/constructors/#request) object)<br/>`callback` (a callback resolved with Kuzzle's response) |  | Executes a client request. |
+| `execute` | `request` ([Request]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-context/constructors/#request) object)<br/>`callback` (a callback resolved with Kuzzle's response) |  | Executes a client request. |
 | `removeConnection` | `RequestContext` (obtained with `newConnection`) | | Asks Kuzzle to remove the corresponding connection and all its subscriptions |
 
 Kuzzle Proxy expects Protocol Plugins to expose the following methods:
 
 | Method | Arguments | Description                 |
 |------|----------------|-----------------------------|
-| `init` | `pluginConfiguration, context` | [Plugin initialization function](/plugins-reference/plugins-creation-prerequisites/#plugin-init-function) |
+| `init` | `pluginConfiguration, context` | [Plugin initialization function]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-creation-prerequisites/#plugin-init-function) |
 | `joinChannel` | `{channel, id}`| Tells Protocol Plugins that the connection `id` subscribed to the channel `channel` |
 | `leaveChannel` | `{channel, id}` | Tells Protocol Plugins that the connection `id` left the channel `channel` |
 | `notify` | `{channels, id, payload}` | Asks Protocol Plugins to emit a data `payload` (JSON Object) to the connection `id` (string), on the channels  `channels` (array of strings)|
@@ -39,7 +39,7 @@ Kuzzle Proxy expects Protocol Plugins to expose the following methods:
 
 The connection `id` Kuzzle sends to Plugins is the one declared by Protocol Plugins using `context.accessors.router.newConnection`.
 
-*For more information about channels, see our [API Documentation](/api-documentation/controller-realtime/subscribe)*
+*For more information about channels, see our [API Documentation]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-realtime/subscribe)*
 
 ---
 

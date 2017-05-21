@@ -65,7 +65,7 @@ title: scrollUsers
 }
 ```
 
-This method moves forward a result set cursor created by a [`searchUsers` query](/api-documentation/controller-security/search-users) with the `scroll` argument provided.
+This method moves forward a result set cursor created by a [`searchUsers` query]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-security/search-users) with the `scroll` argument provided.
 
 The response may contain a *different* cursor identifier, pointing to the next page of results.
 

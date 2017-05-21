@@ -77,7 +77,7 @@ catch (ErrorException $e) {
 }
 ```
 
-This object is the result of a [search](/sdk-reference/collection/search) or a [scroll](/sdk-reference/collection/scroll) request, allowing to manipulate the result and do subsequent requests.
+This object is the result of a [search]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection/search) or a [scroll]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection/scroll) request, allowing to manipulate the result and do subsequent requests.
 
 ---
 
@@ -85,13 +85,13 @@ This object is the result of a [search](/sdk-reference/collection/search) or a [
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``collection`` | Collection | An instantiated [Collection](/sdk-reference/collection) object |
+| ``collection`` | Collection | An instantiated [Collection]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection) object |
 | ``total`` | integer | The total number of results of the search/scroll request |
-| ``documents`` | Document[] | An array of instantiated [Document](/sdk-reference/document) objects |
+| ``documents`` | Document[] | An array of instantiated [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document) objects |
 | ``aggregations`` | object | The result of an aggregation produced by a search request |
 | ``options`` | object | The arguments of the search/scroll request |
 | ``filters`` | object | The filters of the search request |
-| ``previous`` | SearchRequest | The previous SearchResult produced by a previous search/scroll request (see [fetchNext](/sdk-reference/search-result/fetch-next)) |
+| ``previous`` | SearchRequest | The previous SearchResult produced by a previous search/scroll request (see [fetchNext]({{ site_url }}{{{ site_base_path }}}sdk-reference/search-result/fetch-next)) |
 
 **Note:** this constructor is meant to be called internally when retrieving results from a search or a scroll request.
 

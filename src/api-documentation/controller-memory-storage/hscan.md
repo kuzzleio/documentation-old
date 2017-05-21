@@ -62,7 +62,7 @@ title: hmset
 }
 ```
 
-Identical to [scan](/api-documentation/controller-memory-storage/scan), except that `hscan` iterates the fields contained in a hash.
+Identical to [scan]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-memory-storage/scan), except that `hscan` iterates the fields contained in a hash.
 
 
 [[_Redis documentation_]](https://redis.io/commands/hscan)

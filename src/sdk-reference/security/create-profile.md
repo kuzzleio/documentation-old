@@ -140,4 +140,4 @@ That means that a profile that was just been created will not be returned by <co
 
 ## Callback response
 
-Resolves to a [Profile](/sdk-reference/profile) object.
+Resolves to a [Profile]({{ site_url }}{{{ site_base_path }}}sdk-reference/profile) object.

@@ -49,4 +49,4 @@ title: deleteCredentials
 }
 ```
 
-Delete credentials of the specified `<strategy>` for the user [`<kuid>`](/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) .
+Delete credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) .

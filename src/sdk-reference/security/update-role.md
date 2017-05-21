@@ -124,4 +124,4 @@ Returns the `Security` object to allow chaining.
 
 ## Callback response
 
-Resolves to an updated [Role](/sdk-reference/role) object
+Resolves to an updated [Role]({{ site_url }}{{{ site_base_path }}}sdk-reference/role) object

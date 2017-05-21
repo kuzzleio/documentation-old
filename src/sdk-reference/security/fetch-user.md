@@ -87,4 +87,4 @@ Retrieves a single stored user using its unique ID.
 
 ## Callback response
 
-Resolves to a [User](/sdk-reference/user) object.
+Resolves to a [User]({{ site_url }}{{{ site_base_path }}}sdk-reference/user) object.

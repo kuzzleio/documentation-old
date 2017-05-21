@@ -67,7 +67,7 @@ title: mDelete
 
 Deletes documents in the persistent data storage.
 
-Returns a [partial error](/api-documentation/errors/#partialerror) (with status 206) if one or more document can not be deleted.
+Returns a [partial error]({{ site_url }}{{{ site_base_path }}}api-documentation/errors/#partialerror) (with status 206) if one or more document can not be deleted.
 
 Elastisearch 5.x and above only: The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).

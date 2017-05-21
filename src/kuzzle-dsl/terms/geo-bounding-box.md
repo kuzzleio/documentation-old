@@ -90,7 +90,7 @@ As a string, the coordinates format is "lat, lon"
 }
 ```
 
-![Illustration of geoBoundingBox](/assets/images/geolocation/geoBoundingBox.png)
+![Illustration of geoBoundingBox]({{ site_url }}{{{ site_base_path }}}assets/images/geolocation/geoBoundingBox.png)
 
 ## Given the following documents:
 
