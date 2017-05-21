@@ -28,9 +28,9 @@
 
 `node index.js --dev --watch`
 
-> bind a webserver on 80 with livereload, open a browser and turn on debug messages
+> bind a webserver on 80 with livereload, open a browser and turn on debug messages and check dead links
 
-`sudo DEBUG=* node index.js --dev --watch --open-browser --port 80 `
+`sudo DEBUG=* node index.js --dev --watch --open-browser --port 80 --ckeck-links`
 
 # How-to
 
