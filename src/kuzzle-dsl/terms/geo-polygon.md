@@ -26,7 +26,7 @@ For each polygon points, all the possible point notations are valid (see above).
 }
 ```
 
-![Illustration of geoPolygon](/assets/images/geolocation/geoPolygon.png)
+![Illustration of geoPolygon]({{ site_url }}{{{ site_base_path }}}assets/images/geolocation/geoPolygon.png)
 
 ## Given the following documents:
 

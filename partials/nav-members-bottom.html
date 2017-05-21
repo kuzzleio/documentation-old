@@ -18,13 +18,13 @@
   <div class="nav-right">
     <p>
       {{#if (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader))}}
-      <a href="/{{ ancestry.prevMember.path }}">« {{firstDefinedOf ancestry.prevMember.subheader-title ancestry.prevMember.title }}</a>
+      <a href="{{ site_url }}{{{ site_base_path }}}{{ ancestry.prevMember.path }}">« {{firstDefinedOf ancestry.prevMember.subheader-title ancestry.prevMember.title }}</a>
       {{/if}}
       {{#if (and (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader)) ancestry.nextMember)}}
       <span class="separator">|</span>
       {{/if}}
       {{#if ancestry.nextMember}}
-      <a href="/{{ ancestry.nextMember.path }}">{{ ancestry.nextMember.title }} »</a>
+      <a href="{{ site_url }}{{{ site_base_path }}}{{ ancestry.nextMember.path }}">{{ ancestry.nextMember.title }} »</a>
       {{/if}}
     </p>
   </div>

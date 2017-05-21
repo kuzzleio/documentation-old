@@ -88,6 +88,6 @@ Unsubscribes first if this `Room` object was already listening to events.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters](/kuzzle-dsl) |
-| ``notificationCallback`` | function | Function called each time a [notification](/sdk-reference/essentials/notifications) is received |
+| ``filters`` | JSON Object | [Filters]({{ site_url }}{{{ site_base_path }}}kuzzle-dsl) |
+| ``notificationCallback`` | function | Function called each time a [notification]({{ site_url }}{{{ site_base_path }}}sdk-reference/essentials/notifications) is received |
 | ``subscriptionCallback`` | function | Function called with the subscription result |

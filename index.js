@@ -9,7 +9,6 @@ const collect     = require('metalsmith-auto-collections')
 const debug       = require('metalsmith-debug')
 const changed     = require('metalsmith-changed')
 const livereload  = require('metalsmith-livereload')
-const cleanCSS    = require('metalsmith-clean-css')
 const ancestry    = require('metalsmith-ancestry')
 const links       = require('metalsmith-relative-links')
 const hbtmd       = require('metalsmith-hbt-md')
@@ -35,27 +34,61 @@ const fs = require('fs')
 const path = require('path')
 const mime = require('mime-types')
 
-let port = 8080
+let options = {
+  dev: {
+    enabled: false,
+    port: 8080,
+    openBrowser: false,
+    watch: false
+  },
+  build: {
+    compress: false,
+    host: '',
+    path: '/'
+  },
+  algolia: {
+    projectId: '4RFBRWISJR',
+    index: 'kuzzle-documentation',
+    publicKey: '6febf1ebe906bd82bce58d5a20ac6c1b',
+    privateKey: undefined,
+    fnFileParser: undefined
+  }
+}
+
+if (process.argv.indexOf('--dev') > -1) {
+  options.dev.enabled = true
+}
+
+if (process.argv.indexOf('--open-browser') > -1) {
+  options.dev.openBrowser = true
+}
+
 if (process.argv.indexOf('--port') > -1) {
-  port = parseInt(process.argv[process.argv.indexOf('--port') + 1])
+  options.dev.port = parseInt(process.argv[process.argv.indexOf('--port') + 1])
 }
 
-let watchEnabled = false
 if (process.argv.indexOf('--watch') > -1) {
-  watchEnabled = true
+  options.dev.watch = true
 }
 
-const algoliaProjectID = '4RFBRWISJR'
-const algoliaPublicKey = '6febf1ebe906bd82bce58d5a20ac6c1b'
-const algoliaIndex = 'kuzzle-documentation'
+if (process.argv.indexOf('--build-compress') > -1) {
+  options.build.compress = true
+}
 
-let algoliaPrivateKey
+if (process.argv.indexOf('--build-path') > -1) {
+  options.build.path = process.argv[process.argv.indexOf('--build-path') + 1]
+}
+
+if (process.argv.indexOf('--build-host') > -1) {
+  options.build.host = process.argv[process.argv.indexOf('--build-host') + 1]
+}
+
 if (process.argv.indexOf('--algolia-private-key') > -1) {
-  algoliaPrivateKey = process.argv[process.argv.indexOf('--algolia-private-key') + 1]
+  options.algolia.privateKey = process.argv[process.argv.indexOf('--algolia-private-key') + 1]
 }
 
-// let algoliaFileParser = false
-const algoliaFileParser = (file, data) => {
+
+options.algolia.fnFileParser = (file, data) => {
   let objects = []
   let $ = cheerio.load(data.contents.toString(), {
     normalizeWhitespace: true
@@ -132,18 +165,19 @@ handlebars.registerHelper({
 })
 
 // Build site with metalsmith.
-const build = (watch = false) => (done) => {
+const build = done => {
   let metalsmith = Metalsmith(__dirname)
     .metadata({
       site_title: "Kuzzle documentation",
-      site_url: "http://docs.kuzzle.io/",
+      site_url: options.build.host,
+      site_base_path: options.build.path,
       gh_repo: "kuzzleio/documentation",
       gh_branch: "rcx-refactor-doc",
-      algolia_projectId: algoliaProjectID,
-      algolia_publicKey: algoliaPublicKey
+      algolia_projectId: options.algolia.projectId,
+      algolia_publicKey: options.algolia.publicKey
     })
     .source('./src')
-    .destination('./build') // does not work with 'dist' folder ...
+    .destination('./build' + options.build.path) // does not work with 'dist' folder ...
     .clean(true)
     .use(saveSrc())
     .use((files, metalsmith, done) => {
@@ -156,9 +190,11 @@ const build = (watch = false) => (done) => {
       })
     })
 
-  console.log('== Building site in ' + (watch ? 'watch-dev' : 'prod') + ' mode ==');
+  console.log(`==== Processing sources files ====`);
 
-  if (watch) {
+  if (options.dev.watch) {
+    console.log(`= watch enabled =`);
+
     metalsmith.use(changed())
   }
 
@@ -168,24 +204,30 @@ const build = (watch = false) => (done) => {
       match: '**/*.md',
       sortBy: ['order', 'title']
     }))
-    .use(sass({
-      sourceMap: true,
-      sourceMapContents: true
-    }))
-    .use(cleanCSS({
-      files: 'assets/stylesheets/**/*.css',
-      cleanCSS: {
-        rebase: true
-      }
-    }))
+
+  if (options.dev.enabled) {
+    console.log(`= generating map sass files =`);
+
+    metalsmith
+      .use(sass({
+        sourceMap: true,
+        sourceMapContents: true
+      }))
+  }
+  else {
+    metalsmith
+      .use(sass({
+        sourceMap: false,
+        sourceMapContents: false
+      }))
+  }
+
+  metalsmith
     .use(hljs())
     .use(hbtmd(handlebars, {
         pattern: '**/*.md'
     }))
     .use(markdown())
-    // .use(collect({
-    //   pattern: ['**/*.md']
-    // }))
     .use(permalinks())
     .use(metatoc())
     .use(languageTab())
@@ -199,24 +241,30 @@ const build = (watch = false) => (done) => {
     .use(clickImage())
     .use(logger())
 
-  if (watch) {
+  if (options.dev.watch) {
+    console.log(`= livereload enabled =`);
+
     metalsmith
       .use(debug())
       .use(livereload({ debug: false, delay: 500 }))
   }
 
-  if (algoliaPrivateKey) {
+  if (options.algolia.privateKey) {
+    console.log(`= algolia indexing enabled =`);
+
     metalsmith
       .use(algolia({
         clearIndex: true,
-        projectId: algoliaProjectID,
-        privateKey: algoliaPrivateKey,
-        index: algoliaIndex,
-        fileParser: algoliaFileParser
+        projectId: options.algolia.projectId,
+        privateKey: options.algolia.privateKey,
+        index: options.algolia.index,
+        fileParser: options.algolia.fnFileParser
       }))
   }
 
-  if (process.argv.indexOf('--gzip') > -1) {
+  if (options.build.compress) {
+    console.log(`= build compress enabled (may take a while) =`);
+
     metalsmith
       .use(inlineSVG())
       .use(optipng({
@@ -233,18 +281,21 @@ const build = (watch = false) => (done) => {
       .use(htmlMin())
       .use(compress())
       .use(sitemap({
-        hostname: 'http://docs.kuzzle.io',
+        hostname: options.build.host,
         modifiedProperty: 'stats.mtime',
         omitIndex: true
       }))
   }
+
+  console.log(`==== Building site in "${options.build.path}" ====`);
 
   metalsmith.build((error, files) => {
     console.log('==== Build finished ====');
 
       if (error) {
         console.error(error)
-        if (!dev) {
+
+        if (!options.dev.enabled) {
           return done(error)
         }
       }
@@ -252,7 +303,7 @@ const build = (watch = false) => (done) => {
     })
 }
 
-if (process.argv.indexOf('--dev') > -1) {
+if (options.dev.enabled) {
   // run dev server (build & serv ./build directory on 8080 port & watch => rebuild on change)
   var serve = new nodeStatic.Server(__dirname + '/build')
   let cache = {}
@@ -357,25 +408,25 @@ if (process.argv.indexOf('--dev') > -1) {
 
     req.addListener('end', () => serve.serve(req, res))
     req.resume()
-  }).listen(port)
+  }).listen(options.dev.port)
 
-  if (watchEnabled) {
-    watch(__dirname + '/{src,layouts,partials}/**/*', { ignoreInitial: false, queue: false }, build(true))
+  if (options.dev.watch) {
+    watch(__dirname + '/{src,layouts,partials}/**/*', { ignoreInitial: false, queue: false }, build)
   }
   else {
-    build(false)((error) => {
+    build(error => {
       if (error) {
         console.error(error)
       }
     })
   }
 
-  if (process.argv.indexOf('--open') > -1) {
-    open('http://localhost:' + port)
+  if (options.dev.openBrowser) {
+    open('http://localhost:' + options.dev.port)
   }
 } else {
   // only build static site
-  build()((error) => {
+  build(error => {
     if (error) {
       console.error(error)
       return process.exit(1)

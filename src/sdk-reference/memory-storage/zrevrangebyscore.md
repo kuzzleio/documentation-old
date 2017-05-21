@@ -62,7 +62,7 @@ catch (ErrorException $e) {
 ]
 ```
 
-Identical to [zrangebyscore](/sdk-reference/memory-storage/zrangebyscore) except that the sorted set is traversed in descending order.
+Identical to [zrangebyscore]({{ site_url }}{{{ site_base_path }}}sdk-reference/memory-storage/zrangebyscore) except that the sorted set is traversed in descending order.
 
 [[_Redis documentation_]](https://redis.io/commands/zrevrangebyscore)
 

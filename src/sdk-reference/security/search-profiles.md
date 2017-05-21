@@ -151,4 +151,4 @@ Available options:
 
 ## Callback response
 
-Resolves to a JSON Object containing the number of found profiles and an array of [Profile](/sdk-reference/profile) objects.
+Resolves to a JSON Object containing the number of found profiles and an array of [Profile]({{ site_url }}{{{ site_base_path }}}sdk-reference/profile) objects.

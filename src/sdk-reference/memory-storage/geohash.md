@@ -59,7 +59,7 @@ catch (ErrorException $e) {
 ["sqc8b49rny0", "sqdtr74hyu0"]
 ```
 
-Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provided key's members (see [geoadd](/sdk-reference/memory-storage/geoadd)).  
+Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provided key's members (see [geoadd]({{ site_url }}{{{ site_base_path }}}sdk-reference/memory-storage/geoadd)).  
 
 [[_Redis documentation_]](https://redis.io/commands/geohash)
 

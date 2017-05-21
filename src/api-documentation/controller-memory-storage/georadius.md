@@ -59,7 +59,7 @@ title: georadius
 }
 ```
 
-Returns the members (added with [geoadd](/api-documentation/controller-memory-storage/geoadd/)) of a given key inside the provided geospatial radius.
+Returns the members (added with [geoadd]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-memory-storage/geoadd/)) of a given key inside the provided geospatial radius.
 
 The `options` parameter accepts the following options: `withcoord`, `withdist`, `count <count>`, `asc` and `desc`.  
 The provided count value for the `count` option must be passed as a separate option.  

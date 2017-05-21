@@ -62,7 +62,7 @@ $user = $security->user($kuid, $userDefinition);
 // $user instanceof User
 ```
 
-Instantiates a new [User](/sdk-reference/user) object.
+Instantiates a new [User]({{ site_url }}{{{ site_base_path }}}sdk-reference/user) object.
 
 ---
 
@@ -77,4 +77,4 @@ Instantiates a new [User](/sdk-reference/user) object.
 
 ## Return value
 
-Returns the new [User](/sdk-reference/user) object.
+Returns the new [User]({{ site_url }}{{{ site_base_path }}}sdk-reference/user) object.

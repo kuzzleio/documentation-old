@@ -104,4 +104,4 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback response
 
-Resolves to an up-to-date [Document](/sdk-reference/document/) object.
+Resolves to an up-to-date [Document]({{ site_url }}{{{ site_base_path }}}sdk-reference/document/) object.

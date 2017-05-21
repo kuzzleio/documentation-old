@@ -62,7 +62,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves the current mapping of this collection as a [CollectionMapping](/sdk-reference/collection-mapping/) object.
+Retrieves the current mapping of this collection as a [CollectionMapping]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection-mapping/) object.
 
 ---
 
@@ -85,4 +85,4 @@ Retrieves the current mapping of this collection as a [CollectionMapping](/sdk-r
 
 ## Callback response
 
-Resolves to a [CollectionMapping](/sdk-reference/collection-mapping/) object.
+Resolves to a [CollectionMapping]({{ site_url }}{{{ site_base_path }}}sdk-reference/collection-mapping/) object.

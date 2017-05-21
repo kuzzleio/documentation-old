@@ -93,7 +93,7 @@ kuzzle
 
 Subscribes to this data collection with a set of filters.
 
-The provided callback will be called everytime a [notification](/sdk-reference/essentials/notifications) is received from Kuzzle.
+The provided callback will be called everytime a [notification]({{ site_url }}{{{ site_base_path }}}sdk-reference/essentials/notifications) is received from Kuzzle.
 
 ---
 
@@ -101,7 +101,7 @@ The provided callback will be called everytime a [notification](/sdk-reference/e
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters](/kuzzle-dsl) |
+| ``filters`` | JSON Object | [Filters]({{ site_url }}{{{ site_base_path }}}kuzzle-dsl) |
 | ``options`` | object | (Optional) Subscription configuration. Passed to the Room constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 
@@ -118,7 +118,7 @@ The provided callback will be called everytime a [notification](/sdk-reference/e
 | ``users`` | string | Filter notifications fired upon a user entering the room (user: ``in``), leaving the room (user: ``out``), or both (user: ``all``). Setting this variable to ``none`` prevents receiving these notifications | ``none`` |
 
 The `options` object is directly passed to the Room constructor.
-See the [Room object](/sdk-reference/room/) documentation for more information about these options and notifications.
+See the [Room object]({{ site_url }}{{{ site_base_path }}}sdk-reference/room/) documentation for more information about these options and notifications.
 
 ---
 

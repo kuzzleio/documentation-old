@@ -82,7 +82,7 @@ $profile = $security->profile($profileId, $profileDefinition);
 $profile = new Profile($security, $profileId, $profileDefinition);
 ```
 
-Instantiates a new `Profile` object, representing a [profile](/guide/essentials/security/#users-profiles-and-roles), which is a set of one or many [Role](/sdk-reference/role) objects.
+Instantiates a new `Profile` object, representing a [profile]({{ site_url }}{{{ site_base_path }}}guide/essentials/security/#users-profiles-and-roles), which is a set of one or many [Role]({{ site_url }}{{{ site_base_path }}}sdk-reference/role) objects.
 
 ---
 
@@ -90,7 +90,7 @@ Instantiates a new `Profile` object, representing a [profile](/guide/essentials/
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``Security`` | Security | An instantiated [Security](/sdk-reference/security) object |
+| ``Security`` | Security | An instantiated [Security]({{ site_url }}{{{ site_base_path }}}sdk-reference/security) object |
 | ``id`` | string | Unique profile identifier |
 | ``content`` | JSON Object | Profile content |
 

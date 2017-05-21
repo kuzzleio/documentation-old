@@ -14,7 +14,7 @@ Every time Kuzzle receives a request coming from a client, it routes it towards 
 
 ## [Plugins events]
 
-[Plugins](/plugins-reference/plugins-features/adding-controllers) may add new controllers and actions to Kuzzle's API. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
+[Plugins]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-features/adding-controllers) may add new controllers and actions to Kuzzle's API. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -34,7 +34,7 @@ When an API request invokes this new API route, Kuzzle will automatically trigge
 
 ## auth
 
-Events triggered when a request is treated in the [`auth` controller](/api-documentation/controller-auth)
+Events triggered when a request is treated in the [`auth` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-auth)
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -45,7 +45,7 @@ Events triggered when a request is treated in the [`auth` controller](/api-docum
 
 ## bulk
 
-Events triggered when a request is treated in the [`bulk` controller](/api-documentation/controller-bulk)
+Events triggered when a request is treated in the [`bulk` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-bulk)
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -68,7 +68,7 @@ Events triggered when a database reset is asked to the command-line interface.
 
 ## collection
 
-Events triggered when a request is treated in the [`collection` controller](/api-documentation/controller-collection).
+Events triggered when a request is treated in the [`collection` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-collection).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -100,7 +100,7 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 
 ## document
 
-Events triggered when a request is treated in the [`document` controller](/api-documentation/controller-document).
+Events triggered when a request is treated in the [`document` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-document).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -119,7 +119,7 @@ Events triggered when a request is treated in the [`document` controller](/api-d
 
 ## index
 
-Events triggered when a request is treated in the [`index` controller](/api-documentation/controller-index).
+Events triggered when a request is treated in the [`index` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-index).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -146,7 +146,7 @@ Events triggered by the Kuzzle internal message broker, used to transmit data be
 
 ## ms (memoryStorage)
 
-Events triggered when a request is sent to the [`memoryStorage` controller](/api-documentation/controller-memory-storage).
+Events triggered when a request is sent to the [`memoryStorage` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-memory-storage).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -187,7 +187,7 @@ Events triggered when interacting with `proxy`.
 
 ## realtime
 
-Events triggered when a request is sent to the [`realtime` controller](/api-documentation/controller-realtime).
+Events triggered when a request is sent to the [`realtime` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-realtime).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -222,7 +222,7 @@ Events triggered on subscription rooms activity.
 
 ## security
 
-Events triggered when a request is sent to the [`security` controller](/api-documentation/controller-security).
+Events triggered when a request is sent to the [`security` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-security).
 
 | Event | Description | Payload |
 |-------|-------------|---------|
@@ -234,7 +234,7 @@ Events triggered when a request is sent to the [`security` controller](/api-docu
 
 ## server
 
-Events triggered on server special events or when a request is sent to the [`server` controller](/api-documentation/controller-server).
+Events triggered on server special events or when a request is sent to the [`server` controller]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-server).
 
 | Event | Description | Payload |
 |-------|-------------|---------|

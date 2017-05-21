@@ -37,7 +37,7 @@ profile.addPolicy("some role id");
 Adds a role to the profile.
 
 <aside class="note">
-Updating a profile will have no impact until the <a href="/sdk-reference/profile/save">save</a> method is called
+Updating a profile will have no impact until the <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/profile/save">save</a> method is called
 </aside>
 
 ---

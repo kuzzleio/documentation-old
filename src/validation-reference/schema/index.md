@@ -59,4 +59,4 @@ The validation schema must follow the following structure to be valid:
 }
 ```
 
-Learn how to [create simple field validators](/validation-reference/fields/fields/) and [complex validators](/validation-reference/validators/)
+Learn how to [create simple field validators]({{ site_url }}{{{ site_base_path }}}validation-reference/fields/fields/) and [complex validators]({{ site_url }}{{{ site_base_path }}}validation-reference/validators/)

@@ -84,7 +84,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Returns a [SearchResult](/sdk-reference/search-result/) object containing the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.  
+Returns a [SearchResult]({{ site_url }}{{{ site_base_path }}}sdk-reference/search-result/) object containing the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.  
 A scroll session is always initiated by a `search` action by using the `scroll` argument; more information below.
 
 <aside class="notice">
@@ -92,7 +92,7 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 </aside>
 
 <aside class="notice">
-  To get more information about scroll sessions, please refer to the <a href="/api-documentation/controller-document/search">API reference documentation</a>.
+  To get more information about scroll sessions, please refer to the <a href="{{ site_url }}{{{ site_base_path }}}api-documentation/controller-document/search">API reference documentation</a>.
 </aside>
 
 ---
@@ -119,4 +119,4 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 
 ## Callback response
 
-Resolves to an instantiated [SearchResult](/sdk-reference/search-result) object.
+Resolves to an instantiated [SearchResult]({{ site_url }}{{{ site_base_path }}}sdk-reference/search-result) object.

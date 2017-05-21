@@ -36,7 +36,7 @@ miles   | mile, mi
 0.6213727366498067 miles
 ```
 
-![Illustration of geoDistance](/assets/images/geolocation/geoDistance.png)
+![Illustration of geoDistance]({{ site_url }}{{{ site_base_path }}}assets/images/geolocation/geoDistance.png)
 
 ## Given the following documents:
 

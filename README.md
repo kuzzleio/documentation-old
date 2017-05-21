@@ -20,9 +20,9 @@
 
 `npm install`
 
-> builds the documentation in production mode and index content into algolia
+> build the documentation in production mode and index content into algolia
 
-`node index.js --gzip  --algolia-private-key <key>`
+`node index.js --build-host http://docs.kuzzle.io --build-path /v/edge --build-compress --algolia-private-key <key>`
 
 > bind a webserver on 8080 with livereload and watch enabled
 
@@ -30,7 +30,7 @@
 
 > bind a webserver on 80 with livereload, open a browser and turn on debug messages
 
-`sudo DEBUG=* node index.js --dev --watch --open --port 80 `
+`sudo DEBUG=* node index.js --dev --watch --open-browser --port 80 `
 
 # How-to
 
