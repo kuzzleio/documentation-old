@@ -436,7 +436,11 @@ if (options.dev.enabled) {
     //   res.end('404 =(')
     // }
 
-    req.addListener('end', () => serve.serve(req, res))
+    req.addListener('end', () => serve.serve(req, res, (e, r) => {
+      if (e && (e.status === 404) && fs.existsSync(__dirname + '/build' + options.build.path + '404.html')) {
+        serve.serveFile(options.build.path + '404.html', 404, {}, req, res)
+      }
+    }))
     req.resume()
   }).listen(options.dev.port)
 
