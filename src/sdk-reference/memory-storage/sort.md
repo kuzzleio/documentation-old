@@ -66,7 +66,7 @@ Sorts and returns elements contained in a list, a set of unique values or a sort
 By default, sorting is numeric and elements are compared by their value interpreted as double precision floating point number.
 
 <aside class="left notice">
-While Kuzzle API supports the "store" option for this command, SDK methods do not, as it changes drastically the result format. To sort and store in the same process, use the <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/kuzzle/query">query method</a>
+While Kuzzle API supports the "store" option for this command, SDK methods do not, as it changes drastically the result format. To sort and store in the same process, use the <a href="{{ site_base_path }}sdk-reference/kuzzle/query">query method</a>
 </aside>
 
 [[_Redis documentation_]](https://redis.io/commands/sort)

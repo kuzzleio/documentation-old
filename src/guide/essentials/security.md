@@ -15,7 +15,7 @@ Kuzzle provides a full set of functionalities to finely define the permissions f
 
 When installing Kuzzle for the very first time, no default user is created and the Anonymous user is allowed to perform any action on the data. The only restriction is on the internal data storage used by Kuzzle to store its configuration.
 
-Once a first admin user is created, either via the [Kuzzle Back Office]({{ site_url }}{{{ site_base_path }}}guide/essentials/running-backoffice/#create-an-admin-account ) or the [CLI]({{ site_url }}{{{ site_base_path }}}guide/essentials/cli/#createfirstadmin), the Anonymous permissions are dropped.
+Once a first admin user is created, either via the [Kuzzle Back Office]({{ site_base_path }}guide/essentials/running-backoffice/#create-an-admin-account ) or the [CLI]({{ site_base_path }}guide/essentials/cli/#createfirstadmin), the Anonymous permissions are dropped.
 
 You can then use the Back Office to administrate your user rights.
 
@@ -26,12 +26,12 @@ You can then use the Back Office to administrate your user rights.
 The first step to secure your data is to be able to identify your users.
 Kuzzle ships by default with a local login/password strategy.
 
-If the "local" strategy (i.e. storing the users' credentials in the local database) doesn't fit your needs, you can use the [Oauth authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), or develop your own (see [Plugin documentation]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-features/adding-authentication-strategy) for more details).
+If the "local" strategy (i.e. storing the users' credentials in the local database) doesn't fit your needs, you can use the [Oauth authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), or develop your own (see [Plugin documentation]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) for more details).
 
-If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests]({{ site_url }}{{{ site_base_path }}}api-documentation/query-syntax/authorization-token/#authorization-token).
+If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests]({{ site_base_path }}api-documentation/query-syntax/authorization-token/#authorization-token).
 
 <aside class="notice">
-More information on the login process <a href="{{ site_url }}{{{ site_base_path }}}api-documentation/controller-auth/login">here</a>.
+More information on the login process <a href="{{ site_base_path }}api-documentation/controller-auth/login">here</a>.
 </aside>
 
 ---
@@ -49,11 +49,11 @@ Because some sets of permissions can be shared between several `profiles`, Kuzzl
 
 A `profile` is associated to a set of `roles`. Each `role` defines a set of permissions.
 
-![Users, profiles and roles]({{ site_url }}{{{ site_base_path }}}assets/images/permissions/profiles-roles.png)
+![Users, profiles and roles]({{ site_base_path }}assets/images/permissions/profiles-roles.png)
 
 In the simple example above, the *editor* profile is a superset of the *contributor* one, which, in turn, extends the *default* profile.
 
-`roles` and `profiles` can be edited in [Kuzzle Back Office]({{ site_url }}{{{ site_base_path }}}guide/essentials/installing-backoffice).
+`roles` and `profiles` can be edited in [Kuzzle Back Office]({{ site_base_path }}guide/essentials/installing-backoffice).
 
 ---
 
@@ -84,7 +84,7 @@ When `controller` is declared within a Plugin, its name must be prefixed with th
 The `action permission` value can be set either to:
 
 - a boolean. When set to `true`, the user is allowed to perform the action.
-- an object describing a dynamic right definition (more about it in the [advanced roles definition documentation]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/roles-definitions)).
+- an object describing a dynamic right definition (more about it in the [advanced roles definition documentation]({{ site_base_path }}guide/kuzzle-depth/roles-definitions)).
 
 You can find a **comprehensive summary of all the available controllers** and actions by sending a `GET` request to the root endpoint of the Kuzzle API via the HTTP protocol:
 
@@ -242,4 +242,4 @@ var role = {
 };
 ```
 
-See more details at [Core documentation section]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/roles-definitions)
+See more details at [Core documentation section]({{ site_base_path }}guide/kuzzle-depth/roles-definitions)

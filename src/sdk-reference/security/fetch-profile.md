@@ -88,4 +88,4 @@ Retrieves a single stored profile using its unique ID.
 
 ## Callback response
 
-Resolves to a [Profile]({{ site_url }}{{{ site_base_path }}}sdk-reference/profile) object.
+Resolves to a [Profile]({{ site_base_path }}sdk-reference/profile) object.

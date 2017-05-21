@@ -46,7 +46,7 @@ $user->setContent($userContent);
 ```
 
 <aside class="note">
-Updating an user will have no impact until the <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/user/create"><code>create</code></a> or <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/user/replace"><code>replace</code></a> method is called
+Updating an user will have no impact until the <a href="{{ site_base_path }}sdk-reference/user/create"><code>create</code></a> or <a href="{{ site_base_path }}sdk-reference/user/replace"><code>replace</code></a> method is called
 </aside>
 
 Replaces the content of User

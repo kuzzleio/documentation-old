@@ -58,7 +58,7 @@ catch (ErrorException $e) {
 166274.1516
 ```
 
-Returns the distance between two geospatial members of a key (see [geoadd]({{ site_url }}{{{ site_base_path }}}sdk-reference/memory-storage/geoadd)).  
+Returns the distance between two geospatial members of a key (see [geoadd]({{ site_base_path }}sdk-reference/memory-storage/geoadd)).  
 The returned distance is expressed in meters by default.
 
 [[_Redis documentation_]](https://redis.io/commands/geodist)

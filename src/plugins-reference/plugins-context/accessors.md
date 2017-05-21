@@ -8,20 +8,20 @@ order: 100
 # accessors
 
 <aside class="notice">
-<a href="{{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-features/adding-hooks/#executing-hooks-in-separate-threads">Plugins executed on separate threads</a> don't have access to accessors.
+<a href="{{ site_base_path }}plugins-reference/plugins-features/adding-hooks/#executing-hooks-in-separate-threads">Plugins executed on separate threads</a> don't have access to accessors.
 </aside>
 
 ---
 
 ## `execute`
 
-Sends a request to [Kuzzle API]({{ site_url }}{{{ site_base_path }}}api-documentation).
+Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
 
 ### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-| `request` | `Request` | A [`Request`]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-context/constructors/#request) to execute  |
+| `request` | `Request` | A [`Request`]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) to execute  |
 | `callback(error, request)` | `Function` | Function executed with the request's result |
 
 **Note:** when `callback` is invoked, the `request` argument is ALWAYS filled, even when there is an error.
@@ -82,7 +82,7 @@ Forward a request to Kuzzle.
 ### Callback
 
 The callback is invoked once the request has been processed by Kuzzle.  
-The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response]({{ site_url }}{{{ site_base_path }}}api-documentation/kuzzle-response).
+The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response).
 
 ---
 
@@ -110,7 +110,7 @@ not modified.
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`collections`|`Object`| An object that contains the collection mappings. See the [guide]({{ site_url }}{{{ site_base_path }}}guide/essentials/persisted/#document-mapping) for more explanation about Elasticsearch mapping. |
+|`collections`|`Object`| An object that contains the collection mappings. See the [guide]({{ site_base_path }}guide/essentials/persisted/#document-mapping) for more explanation about Elasticsearch mapping. |
 
 ### Returns
 
@@ -142,7 +142,7 @@ context.accessors.storage.bootstrap({
 ## `storage.createCollection`
 
 Allows to create a collection with its mapping. Can be called at each plugin initialization if the mapping is not
- modified. Consider using [`storage.bootstrap`]({{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-context/accessors/#storage-bootstrap) if your collections are not dynamic.
+ modified. Consider using [`storage.bootstrap`]({{ site_base_path }}plugins-reference/plugins-context/accessors/#storage-bootstrap) if your collections are not dynamic.
 
 ### Arguments
 

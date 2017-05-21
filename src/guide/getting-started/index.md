@@ -21,7 +21,7 @@ Before launching Kuzzle, ensure that your system matches the following pre-requi
 - **Docker-compose v1.8+**, see [intructions here](https://docs.docker.com/compose/install/)
 
 <aside class="notice">
-<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="{{ site_url }}{{{ site_base_path }}}guide/essentials/installing-kuzzle/#manually">manual installation guide</a>.
+<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">manual installation guide</a>.
 </aside>
 
 Thanks to Docker-compose, running Kuzzle is easy. Just grab the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file, copy it into a directory and start Kuzzle:
@@ -74,24 +74,24 @@ Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us
 
 Now that Kuzzle is running on your computer, you can dive into playing with it by:
 
-* <a href="{{ site_url }}{{{ site_base_path }}}guide/essentials/installing-backoffice">installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;
-* installing one of the available <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
- * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_url }}{{{ site_base_path }}}guide/getting-started/#sdk-play-time">SDK play time</a> section below),
+* <a href="{{ site_base_path }}guide/essentials/installing-backoffice">installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;
+* installing one of the available <a href="{{ site_base_path }}sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
+ * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_base_path }}guide/getting-started/#sdk-play-time">SDK play time</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
  * <a href="https://github.com/kuzzleio/sdk-ios">iOS</a>,
  * <a href="https://github.com/kuzzleio/sdk-android">Android</a>;
-* exploring the <a href="{{ site_url }}{{{ site_base_path }}}api-documentation">Kuzzle API Documentation</a>;
-* <a href="{{ site_url }}{{{ site_base_path }}}guide/essentials/installing-kuzzle/#manually">setting-up a Kuzzle Server without Docker</a>.
+* exploring the <a href="{{ site_base_path }}api-documentation">Kuzzle API Documentation</a>;
+* <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">setting-up a Kuzzle Server without Docker</a>.
 
 <aside class="notice">
-You can also <a href="{{ site_url }}{{{ site_base_path }}}guide/essentials/installing-kuzzle/#manually">install Kuzzle manually</a>.
+You can also <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">install Kuzzle manually</a>.
 </aside>
 
 ---
 
 ## SDK play time
 
-It's time to play with the [Kuzzle SDK]({{ site_url }}{{{ site_base_path }}}sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
+It's time to play with the [Kuzzle SDK]({{ site_base_path }}sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
 
 Before proceeding, ensure that your system matches the following requisites:
 
@@ -100,7 +100,7 @@ Before proceeding, ensure that your system matches the following requisites:
 
 ### Create your first "Hello World" document
 
-Create your playground directory and install the [Javascript SDK]({{ site_url }}{{{ site_base_path }}}sdk-reference) from the command line using npm:
+Create your playground directory and install the [Javascript SDK]({{ site_base_path }}sdk-reference) from the command line using npm:
 
 ```bash
 #!/bin/bash
@@ -148,11 +148,11 @@ You have persisted your first document in Kuzzle. If you are running the Backoff
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
 
-_You can find more resources about Kuzzle SDK in the [SDK Documentation]({{ site_url }}{{{ site_base_path }}}sdk-reference)._
+_You can find more resources about Kuzzle SDK in the [SDK Documentation]({{ site_base_path }}sdk-reference)._
 
 ### Subscribe to data changes (pub/sub)
 
-Kuzzle provides pub/sub features that allow you to be notified in real-time on the state of your data (check the <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference/#room">Room Class Documentation</a> for a deep-dive on notifications).
+Kuzzle provides pub/sub features that allow you to be notified in real-time on the state of your data (check the <a href="{{ site_base_path }}sdk-reference/#room">Room Class Documentation</a> for a deep-dive on notifications).
 
 Let's get started. Open a new termnial in the playground directory you created before and create the `subscribe.js` file containing the following code:
 
@@ -191,7 +191,7 @@ node subscribe.js
 
 And let it wait for documents entering the scope of the filter.
 
-Now, get back to the previous terminal window and execute once more the `create.js` script. Take a look at the output of the `subscribe.js` script. You will see that, each time a document with a `message` field is persisted in Kuzzle, a [notification]({{ site_url }}{{{ site_base_path }}}guide/essentials/real-time) is shown as standard output.
+Now, get back to the previous terminal window and execute once more the `create.js` script. Take a look at the output of the `subscribe.js` script. You will see that, each time a document with a `message` field is persisted in Kuzzle, a [notification]({{ site_base_path }}guide/essentials/real-time) is shown as standard output.
 
 <aside class="success">
 You just leveraged Kuzzle's pub/sub mechanism.
@@ -207,6 +207,6 @@ Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with
 
 Now that you are started and operational with Kuzzle, you can fully leverage its power by:
 
-* <a href="{{ site_url }}{{{ site_base_path }}}sdk-reference">taking a look at the SDK reference</a>;
-* <a href="{{ site_url }}{{{ site_base_path }}}kuzzle-dsl">mastering the Kuzzle DSL syntax</a> to create incredibly fine-grained and blazing-fast subscriptions;
-* <a href="{{ site_url }}{{{ site_base_path }}}guide/#security">learning how to manage users and set-up fine-grained permission rights</a>.
+* <a href="{{ site_base_path }}sdk-reference">taking a look at the SDK reference</a>;
+* <a href="{{ site_base_path }}kuzzle-dsl">mastering the Kuzzle DSL syntax</a> to create incredibly fine-grained and blazing-fast subscriptions;
+* <a href="{{ site_base_path }}guide/#security">learning how to manage users and set-up fine-grained permission rights</a>.

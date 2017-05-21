@@ -83,4 +83,4 @@ title: validateCredentials
 }
 ```
 
-Validate credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid). `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Validate credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid). `result` is true if provided credentials are valid; an error is triggered otherwise. This route does not actually create or modify the user credentials. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.

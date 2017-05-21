@@ -12,18 +12,18 @@ subheader-title: Architecture
 
 In this section we'll take a deeper look at the Kuzzle Core internals.
 
-![archi_core]({{ site_url }}{{{ site_base_path }}}assets/images/core-architecture.png)
+![archi_core]({{ site_base_path }}assets/images/core-architecture.png)
 
 ## Components
 
 The above schema shows the main architecture in Kuzzle, which is composed of the following entities.
 
-* **Kuzzle Proxy**: handles the communication between the client and Kuzzle (see [Connecting to kuzzle]({{ site_url }}{{{ site_base_path }}}api-documentation/connecting-to-kuzzle/)), and forwards the input message to the Router.
+* **Kuzzle Proxy**: handles the communication between the client and Kuzzle (see [Connecting to kuzzle]({{ site_base_path }}api-documentation/connecting-to-kuzzle/)), and forwards the input message to the Router.
 * **Router**: exposes the API routes, normalizes the Request and sends them to the Funnel.
 * **Funnel**: analyses the Request and forwards it to the appropriate Controller.
-* **Controllers**: handle and respond to client requests (see [API reference]({{ site_url }}{{{ site_base_path }}}api-documentation))
+* **Controllers**: handle and respond to client requests (see [API reference]({{ site_base_path }}api-documentation))
 * **Internal Components**: Any component internally accessed by controllers.
-* **Service Components**: Any component used to interact with external services (see [below]({{ site_url }}{{{ site_base_path }}}guide/kuzzle-depth/#services)).
+* **Service Components**: Any component used to interact with external services (see [below]({{ site_base_path }}guide/kuzzle-depth/#services)).
 
 ## Services
 

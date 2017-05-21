@@ -6,7 +6,7 @@ title: Events
 
 # Events
 
-The [Kuzzle object]({{ site_url }}{{{ site_base_path }}}sdk-reference/kuzzle/) exposes a set of events triggered on some cases. To subscribe or unsubscribe on these events, simply plug a callback function to the event you want to listen, using the functions [addListener]({{ site_url }}{{{ site_base_path }}}sdk-reference/kuzzle/add-listener) and [removeListener]({{ site_url }}{{{ site_base_path }}}sdk-reference/kuzzle/remove-listener).
+The [Kuzzle object]({{ site_base_path }}sdk-reference/kuzzle/) exposes a set of events triggered on some cases. To subscribe or unsubscribe on these events, simply plug a callback function to the event you want to listen, using the functions [addListener]({{ site_base_path }}sdk-reference/kuzzle/add-listener) and [removeListener]({{ site_base_path }}sdk-reference/kuzzle/remove-listener).
 
 ---
 

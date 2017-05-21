@@ -5,7 +5,7 @@
   var disqus_developer = 1;
 
   var disqus_config = function () {
-    this.page.url = 'http://docs.kuzzle.io/{{ path }}';
+    this.page.url = '{{ site_url }}{{ site_base_path }}{{ path }}';
     this.page.title = '{{ title }}';
     this.page.identifier = '{{ path }}';
   };

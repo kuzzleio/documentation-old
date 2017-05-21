@@ -55,6 +55,6 @@ title: geopos
 }
 ```
 
-Returns the positions (longitude, latitude) of the provided key's members (see [geoadd]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-memory-storage/geoadd/)).  
+Returns the positions (longitude, latitude) of the provided key's members (see [geoadd]({{ site_base_path }}api-documentation/controller-memory-storage/geoadd/)).  
 
 [[_Redis documentation_]](https://redis.io/commands/geopos)

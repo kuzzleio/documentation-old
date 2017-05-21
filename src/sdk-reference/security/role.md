@@ -63,7 +63,7 @@ $role = $security->role($roleId, $roleDefinition);
 // $role instanceof Role
 ```
 
-Instantiate a new [Role]({{ site_url }}{{{ site_base_path }}}sdk-reference/role) object.
+Instantiate a new [Role]({{ site_base_path }}sdk-reference/role) object.
 
 ---
 
@@ -78,4 +78,4 @@ Instantiate a new [Role]({{ site_url }}{{{ site_base_path }}}sdk-reference/role)
 
 ## Return value
 
-Returns the new [Role]({{ site_url }}{{{ site_base_path }}}sdk-reference/role) object.
+Returns the new [Role]({{ site_base_path }}sdk-reference/role) object.

@@ -75,7 +75,7 @@ title: scrollProfiles
 }
 ```
 
-This method moves forward a result set cursor created by a [`searchProfiles` query]({{ site_url }}{{{ site_base_path }}}api-documentation/controller-security/search-profiles) with the `scroll` argument provided.
+This method moves forward a result set cursor created by a [`searchProfiles` query]({{ site_base_path }}api-documentation/controller-security/search-profiles) with the `scroll` argument provided.
 
 The response may contain a *different* cursor identifier, pointing to the next page of results.
 

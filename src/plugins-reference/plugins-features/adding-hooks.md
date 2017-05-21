@@ -7,7 +7,7 @@ order: 100
 
 # Listening asynchronously
 
-Plugins enable you to add asynchronous listener functions to a set of [events]({{ site_url }}{{{ site_base_path }}}plugins-reference/kuzzle-events-list). We'll call these asynchronous listener functions **hooks** from now on.
+Plugins enable you to add asynchronous listener functions to a set of [events]({{ site_base_path }}plugins-reference/kuzzle-events-list). We'll call these asynchronous listener functions **hooks** from now on.
 
 Hooks are supplied with these events data. They cannot change the provided data, and Kuzzle does not wait for them to process the data either.
 
@@ -20,7 +20,7 @@ Each hook must also be exported.
 
 Plugins declaring hooks can also be executed in separate threads. This is handy when they perform heavy computations that may corrupt the performances of the Kuzzle Core.
 
-To achieve this, Kuzzle must specify a `threads` property in the [custom configuration]({{ site_url }}{{{ site_base_path }}}guide/essentials/configuration) of the Plugin.
+To achieve this, Kuzzle must specify a `threads` property in the [custom configuration]({{ site_base_path }}guide/essentials/configuration) of the Plugin.
 
 ```json
 {
@@ -36,7 +36,7 @@ If this number of threads is greater than 0, Kuzzle will launch the plugin on as
 If there are more than 1 thread for that plugin, each time a listened event is fired, Kuzzle will pick one thread to notify using round-robin.
 
 <aside class="notice">
-As the Plugin is isolated in separated processes, the <a href="{{ site_url }}{{{ site_base_path }}}plugins-reference/plugins-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
+As the Plugin is isolated in separated processes, the <a href="{{ site_base_path }}plugins-reference/plugins-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
 </aside>
 
 

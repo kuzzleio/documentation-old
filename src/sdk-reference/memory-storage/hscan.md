@@ -66,7 +66,7 @@ catch (ErrorException $e) {
 ]
 ```
 
-Identical to [scan]({{ site_url }}{{{ site_base_path }}}sdk-reference/memory-storage/scan), except that `hscan` iterates the fields contained in a hash.  
+Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), except that `hscan` iterates the fields contained in a hash.  
 
 [[_Redis documentation_]](https://redis.io/commands/hscan)
 
