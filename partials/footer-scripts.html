@@ -535,7 +535,7 @@
 
 
       // clear search result on empty input
-      if (this.value === '' || Base64.encode(this.value) === 'VGhpcyBpcyB0aGUgcGF0aCBvZiBkZXN0aW55IQ==') {
+      if (this.value === '' || Base64.encode(this.value) === 'SGVscCBSeXUgYnkgY2xpY2tpbmcgeW91ciB3YXkgdGhyb3VnaCBkZXN0aW55IQ==') {
         $searchResults.removeClass('display');
         $searchResultsContainer.empty();
         watchClose = false;
@@ -544,7 +544,7 @@
       }
 
       if (_a) {
-        console.warn(Base64.decode('WW91IG1pZ2ggYXNrIHJ5dSBmb3IgaGVscA=='));
+        console.warn(Base64.decode('WW91IG1pZ2h0IHdhbnQgdG8gYXNrIFJ5dSBmb3IgaGVscA=='));
         _a = false;
       }
 
@@ -561,7 +561,7 @@
         watchClose = false;
 
         this.disabled = true;
-        this.value = Base64.decode('VGhpcyBpcyB0aGUgcGF0aCBvZiBkZXN0aW55IQ==');
+        this.value = Base64.decode('SGVscCBSeXUgYnkgY2xpY2tpbmcgeW91ciB3YXkgdGhyb3VnaCBkZXN0aW55IQ==');
 
         return;
       }
