@@ -132,9 +132,9 @@
           $full.css('cursor', 'pointer');
           $full.on('click', function(event) {
             var $destroyingItem = $('.last-destroy');
-            var firstSelectors = '.panel:not(.destroyed), h1:not(.destroyed), h2:not(.destroyed), h3:not(.destroyed), .main-content>p:not(.destroyed), .main-content>aside:not(.destroyed), .main-content>ul:not(.destroyed), pre:not(.destroyed)';
+            var firstSelectors = '.panel:not(.destroyed), hr:not(.destroyed), h1:not(.destroyed), h2:not(.destroyed), h3:not(.destroyed), .main-content>p:not(.destroyed), .main-content>aside:not(.destroyed), .main-content>ul:not(.destroyed), pre:not(.destroyed)';
             var secondSelectors = '.nav-siblings>div:not(.destroyed), header ul:not(.destroyed), header #logo:not(.destroyed)';
-            var lastSelectors = '.main-content:not(.destroyed), .nav-siblings:not(.destroyed), header:not(.destroyed)';
+            var lastSelectors = '.nav-left:not(.destroyed), .main-content:not(.destroyed), .nav-siblings:not(.destroyed), header:not(.destroyed)';
 
             $body = $(document.body);
 
