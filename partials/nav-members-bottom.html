@@ -1,0 +1,35 @@
+<div class="nav-sibling bottom">
+  <div class="nav-left">
+    <p>
+      <a href="https://github.com/{{ gh_repo }}/edit/{{ gh_branch }}/src/{{ src }}">edit on github<i class="icon icon-github icon-small"></i></a>
+      <span class="separator">|</span>
+      <a href="https://github.com/{{ gh_repo }}/issues/new?labels={{ ancestry.parent.path }}&title=Feedback%20about%20page%20'{{ src }}'">send feedback about this content<i class="icon icon-github icon-small"></i></a>
+      <span class="separator">|</span>
+      <select class="rate-documentation">
+        <option value=""></option>
+        <option value="1">Unusable documentation</option>
+        <option value="2">Poor documentation</option>
+        <option value="3">OK documentation</option>
+        <option value="4">Good documentation</option>
+        <option value="5">Excellent documentation</option>
+      </select>
+    </p>
+  </div>
+  <div class="nav-right">
+    <p class="medium-only">
+      {{#if ancestry.prevSibling}}
+      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
+      {{/if}}
+      {{#if (and ancestry.prevSibling ancestry.nextSibling)}}
+      |
+      {{/if}}
+      {{#if ancestry.nextSibling}}
+      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>
+      {{/if}}
+    </p>
+    <p>
+      <a href="#">back to top &uarr;</a>
+    </p>
+  </div>
+  <div style="clear:both"></div>
+</div>

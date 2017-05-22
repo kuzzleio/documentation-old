@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html>
+<head>
+  {{> common-meta }}
+
+  <link href="{{ site_base_path }}assets/stylesheets/block-childrens/screen.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body class="index">
+{{> header }}
+
+<div class="container">
+  <div class="page-wrapper">
+    <div class="content">
+
+      <div class="panels">
+        {{#each ancestry.children}}
+          <div class="panel">
+            <a href="{{ ../site_base_path }}{{ path }}">
+              <div class="panel-title"><i class="fa {{ icon }}"></i> {{ title }}</div>
+              <div class="panel-content">
+                <span>{{ description }}</span>
+              </div>
+            </a>
+          </div>
+        {{/each}}
+      </div>
+  </div>
+</div>
+
+
+{{> footer-scripts }}
+</body>
+</html>
