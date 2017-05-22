@@ -63,6 +63,12 @@
   $body.prepend($full);
   $body.css('overflow', 'hidden');
 
+  ga('send', 'event', {
+    eventCategory: 'documentation-search',
+    eventAction: '<ryu_found>',
+    transport: 'beacon'
+  });
+
   window.setTimeout(function() {
     $container.css('transition', 'all 2s ease');
     $img1.css('margin-right', '0');
