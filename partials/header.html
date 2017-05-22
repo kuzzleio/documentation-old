@@ -1,0 +1,97 @@
+<header>
+  <div class="wrapper">
+    <div id="logo">
+      <a href="http://kuzzle.io/">&nbsp;</a>
+    </div>
+
+    <a class="mobile-nav-burger" href="javascript:;"></a>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="http://kuzzle.io/kuzzle-entreprise" class="nav-item">product</a>
+        </li>
+        <li>
+          <a href="{{ site_url }}{{ site_base_path }}" class="nav-item developers active">Documentation</a>
+          <ul class="mobile-nav">
+            {{#each ancestry.root.ancestry.children}}
+            {{#if (startwith ../path path)}}
+              <li class="active">
+                <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
+
+                <ul class="sub-nav">
+                  {{#each ancestry.children}}
+                  {{#if (startwith ../../path path)}}
+                  <li class="active">
+                    <a href="{{ ../../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
+                  </li>
+                  {{else}}
+                  <li>
+                    <a href="{{ ../../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
+                  </li>
+                  {{/if}}
+                  {{/each}}
+                </ul>
+              </li>
+            {{else}}
+              <li>
+                <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
+              </li>
+            {{/if}}
+            {{/each}}
+          </ul>
+        </li>
+        <li>
+          <a href="http://kuzzle.io/demos-tutorials/" class="nav-item ">Demos</a>
+        </li>
+        <li>
+          <a href="http://kuzzle.io/blog/" class="nav-item ">Blog</a>
+        </li>
+        <li>
+          <a href="http://kuzzle.io/contact/" class="nav-item ">Contact</a>
+        </li>
+        <li>
+          <a href="https://github.com/kuzzleio/kuzzle" target="_blank" class="nav-item github">
+            <i class="icon icon-github icon-small"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="developer-nav open">
+    <ul class="search">
+      <li>
+        <input name="search" type="search" placeholder="search" tabindex="1" />
+        <!-- <input name="search" type="search" placeholder="search"></input> -->
+      </li>
+    </ul>
+    <ul class="nav">
+      {{#each ancestry.root.ancestry.children}}
+      {{#if (startwith ../path path)}}
+        <li class="active">
+          <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
+        </li>
+      {{else}}
+        <li>
+          <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
+        </li>
+      {{/if}}
+      {{/each}}
+    </ul>
+
+    <div class="search-results"><ul></ul></div>
+
+    <script type="text/plain" id="search-results-template">
+      <li>
+        <a href="__link__" tabindex="__tabindex__">
+          <p class="page">
+            <span class="title">__title__</span>
+            <span class="firstMember">__firstMember__</span>
+            <span class="parent">__parent__</span>
+          </p>
+          <p class="preview">__preview__</p>
+        </a>
+      </li>
+    </script>
+  </div>
+</header>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  {{> common-meta }}
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-light.min.css">
+
+  <link href="{{ site_base_path }}assets/stylesheets/full/screen.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body class="index">
+{{> header }}
+
+<div class="container">
+  {{> nav-left }}
+
+  <div class="page-wrapper">
+    <div class="toc">
+      <ul>
+        {{#each toc}}
+        <li class="toc-item toc-level-{{level}}">
+            <a href="#{{ id }}" title="{{ title }}">
+              {{ title }}
+            </a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="content">
+
+      {{> nav-members }}
+
+      <div class="toc-inline">
+        <ul>
+          {{#each toc}}
+          <li class="toc-item toc-level-{{level}}">
+              <a href="#{{ id }}" title="{{ title }}">
+                {{ title }}
+              </a>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <div class="main-content">
+        {{{ contents }}}
+        <div style="clear: both"></div>
+      </div>
+
+      {{> disqus }}
+
+      {{> nav-members-bottom }}
+    </div>
+  </div>
+</div>
+
+
+{{> footer-scripts }}
+</body>
+</html>
