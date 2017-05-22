@@ -544,10 +544,6 @@
 
       if (Base64.encode(this.value.toLowerCase()) === 'cnl1IGhlbHAgbWU=') {
         var d = document
-        var s = d.createElement('script');
-        s.src = '//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/jquery.gsap.min.js';
-        s.async = 'async';
-        (d.head || d.body).appendChild(s);
 
         s = d.createElement('script');
         s.src = '{{ site_base_path }}' + Base64.decode('YXNzZXRzL2phdmFzY3JpcHQvbGliL2pxdWVyeS5zb21ldGhpbmcuanM=');
