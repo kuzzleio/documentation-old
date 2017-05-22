@@ -51,11 +51,12 @@
     'vertical-align: middle; ' +
     'display: inline-block; ' +
     'transition: all 5s; ' +
+    'transform: scaleX(-1); ' +
     'margin-right: 1500px; ' +
   '" height="221px" src="http://www.fightersgeneration.com/characters3/ryu-big-intro-gif.gif" />');
 
-  $text1.appendTo($container);
-  $img1.appendTo($container);
+  $container.append($text1);
+  $container.append($img1);
   $container.appendTo($full);
   $body.prepend($full);
   $body.css('overflow', 'hidden');
@@ -85,14 +86,16 @@
       'text-shadow: 1px 1px 1px black; ' +
       'line-height: 50px; ' +
       'white-space: nowrap; ' +
-      'transition: all 5s; ' +
+      'transition: margin-left 5s, opacity 1s; ' +
       'margin-left: 1500px; ' +
     '">Whatever you find warthwhile in life,<br />is worth fighting for!</p>');
 
     var $img2 = $('<img style="' +
       'vertical-align: middle; ' +
+      'transition: all 1s; ' +
       'display: inline-block; ' +
     '" src="http://www.fightersgeneration.com/characters3/ryu-bigintrogif-2.gif" height="221px" />');
+
 
     $container.css('transform', 'scale(1, 0)');
     $container.css('opacity', '0');
@@ -101,8 +104,8 @@
       $container.css('transition', 'all 0s');
 
       $container.html('');
-      $text2.appendTo($container);
-      $img2.appendTo($container);
+      $container.append($text2);
+      $container.append($img2);
       // $container.css('right', '0px');
       // $container.css('left', '2000px');
       // $container.css('opacity', '0');
@@ -131,7 +134,7 @@
           $full.on('click', function(event) {
             var $destroyingItem = $('.last-destroy');
             var firstSelectors = '.panel:not(.destroyed), h1:not(.destroyed), h2:not(.destroyed), h3:not(.destroyed), .main-content>p:not(.destroyed), .main-content>aside:not(.destroyed), .main-content>ul:not(.destroyed), pre:not(.destroyed)';
-            var secondSelectors = '.nav-siblings a:not(.destroyed), .nav-siblings select:not(.destroyed), .nav-siblings input:not(.destroyed), header ul:not(.destroyed)';
+            var secondSelectors = '.nav-siblings>div:not(.destroyed), header ul:not(.destroyed), header #logo:not(.destroyed)';
             var lastSelectors = '.main-content:not(.destroyed), .nav-siblings:not(.destroyed), header:not(.destroyed)';
 
             $body = $(document.body);
@@ -151,6 +154,24 @@
                 $item = $('.container:not(.destroyed)', $body);
               }
 
+              if ($item.length === 0) {
+                $full.off('click');
+
+                $text2.css('opacity', '0');
+                $img2.css('opacity', '0');
+
+                window.setTimeout(function() {
+                  $img1.css('transform', 'scale(1)');
+
+                  window.setTimeout(function() {
+                    $img2.replaceWith($img1);
+                    $text2.text('Documentation K.O.');
+                    $img2.css('opacity', '1');
+                    $text2.css('opacity', '1');
+                  }, 1000);
+                }, 1000);
+              }
+
               lastDestroyedSize = 1;
 
               $destroyingItem = $($item.get(Math.floor(Math.random() * $item.length)));
@@ -162,9 +183,9 @@
             $destroyingItem.css('overflow', 'hidden');
             $destroyingItem.css('transform', 'scale(' + lastDestroyedSize + ', ' + lastDestroyedSize + ')');
 
-            lastDestroyedSize = lastDestroyedSize - 0.20;
+            lastDestroyedSize = lastDestroyedSize - 0.25;
 
-            if (lastDestroyedSize <= 0.2) {
+            if (lastDestroyedSize <= 0.25) {
               $destroyingItem.css('transform-origin', 'center center');
               $destroyingItem.css('transform', 'scale(0, 0)');
               $destroyingItem.css('max-height', '0');
