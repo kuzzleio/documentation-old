@@ -17,9 +17,9 @@ The [Kuzzle object]({{ site_base_path }}sdk-reference/kuzzle/) exposes a set of 
 | ``connected`` | _(none)_ | Triggered when the SDK has successfully connected to Kuzzle |
 | `discarded` | `error` (object) | Triggered when Kuzzle rejects a request (e.g. request can't be parsed, request too large, ...) |
 | ``disconnected`` | _(none)_ |  Triggered when the current session has been unexpectedly disconnected |
-| ``error`` | `error` (object) | Triggered when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``jwtTokenExpired`` | _(none)_ |  Triggered when Kuzzle rejected a request because the authentication token expired |
 | ``loginAttempt`` | `{ "success": <boolean>, "error": "<error message>" }` |  Triggered when a login attempt completes, either with a success or a failure result |
+| ``networkError`` | `error` (object) | Triggered when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``offlineQueuePop`` | `query` (object) | Triggered whenever a request is removed from the offline queue. |
 | ``offlineQueuePush`` | `{ "query": <object>, "cb": <function> }` | Triggered whenever a request is added to the offline queue |
 | ``queryError`` | `error` (object), `query` (object) | Triggered whenever Kuzzle responds with an error |
