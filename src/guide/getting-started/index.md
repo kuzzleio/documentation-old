@@ -12,42 +12,27 @@ In this tutorial you will learn in a few steps how to **launch** Kuzzle and how 
 
 ---
 
-## Running Kuzzle
+## Running Kuzzle automagically
 
-Before launching Kuzzle, ensure that your system matches the following pre-requisites:
+In this section, we'll learn how to launch Kuzzle the quick way, i.e. via the installation script.
 
-- **64-bit environment**
-- **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
-- **Docker-compose v1.8+**, see [intructions here](https://docs.docker.com/compose/install/)
-
-<aside class="notice">
-<b>Docker and Docker-compose are not mandatory</b>. Kuzzle can run outside a Docker container. This tutorial uses Docker as it simplifies a lot the startup process. If you wish to run Kuzzle without Docker, jump to the <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">manual installation guide</a>.
-</aside>
-
-Thanks to Docker-compose, running Kuzzle is easy. Just grab the standard [docker-compose.yml](http://kuzzle.io/docker-compose.yml) file, copy it into a directory and start Kuzzle:
+Grab a console and launch the following command
 
 ```bash
 #!/bin/bash
 
-sudo sysctl -w vm.max_map_count=262144
-wget http://kuzzle.io/docker-compose.yml
-
-docker-compose up
+sudo bash -c "$(curl -s https://raw.githubusercontent.com/kuzzleio/kuzzle-build/master/setup.sh)"
 ```
 
-<aside class="notice">
-The "sysctl" command is needed by Elasticsearch v5.x. More details <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.x/vm-max-map-count.html">here</a>.
-</aside>
+This command downloads and executes the installation script with root privileges. The script checks the system for a set of pre-requisites. If necessary, it installs Docker and Docker-compose, then runs Kuzzle.
 
-Your terminal will show the log messages of Kuzzle's components starting. After only a few seconds, you should see the following ready message appear:
+Once the installation process is complete, the script will greet you with the following message
 
 ```bash
-#!/bin/bash
-
-# kuzzle_1         | [✔] Kuzzle server ready
+# [✔] Kuzzle is running!
 ```
 
-Your Kuzzle server is now ready to be used. For instance, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512?pretty=true">http://localhost:7512?pretty=true</a> or via cURL on the command line:
+Your Kuzzle server is now ready to be used. To check it, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512?pretty=true">http://localhost:7512?pretty=true</a> or via cURL on the command line:
 
 ```bash
 #!/bin/bash
@@ -67,7 +52,11 @@ Kuzzle is up and running. It will accept requests at <code>localhost:7512</code>
 </aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.
+Having trouble? 
+<ul>
+  <li><a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.</li>
+  <li>Check out the <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">alternative installation methods.</a></li>
+</ul>
 </aside>
 
 #### Where do we go from here?

@@ -7,6 +7,12 @@ order: 0
 
 # Installing Kuzzle
 
+In this section, we'll see how to install Kuzzle via Docker and Docker-compose and manually.
+
+<aside class="notice">
+The easiest way to run Kuzzle is by using the <a href="{{ site_base_path }}guide/getting-started/#running-kuzzle-automagically">installation script</a> .
+</aside>
+
 ---
 
 ## Docker
