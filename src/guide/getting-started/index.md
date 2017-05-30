@@ -24,6 +24,10 @@ Grab a console and launch the following command
 sudo bash -c "$(curl -s https://raw.githubusercontent.com/kuzzleio/kuzzle-build/master/setup.sh)"
 ```
 
+<aside class="notice">
+Running a script with <code>sudo</code> is not the only way to install Kuzzle (but is indeed the easiest). To avoid using <code>sudo</code>, you may want to check the <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">alternative installation methods</a>.
+</aside>
+
 This command downloads and executes the installation script with root privileges. The script checks the system for a set of pre-requisites. If necessary, it installs Docker and Docker-compose, then runs Kuzzle.
 
 Once the installation process is complete, the script will greet you with the following message
