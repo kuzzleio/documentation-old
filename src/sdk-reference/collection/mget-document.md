@@ -101,12 +101,6 @@ Get multiple documents according to the provided document IDs.
 
 ---
 
-## Return value
-
-Returns the `Collection` object to allow chaining.
-
----
-
 ## Callback response
 
 Resolves to a `JSON object` containing the raw Kuzzle response.
