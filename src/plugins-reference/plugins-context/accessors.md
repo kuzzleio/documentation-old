@@ -13,11 +13,13 @@ order: 100
 
 ---
 
-## `execute`
+## Core accessors
+
+### `execute`
 
 Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
 
-### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -28,7 +30,7 @@ Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
 This argument is the provided request, with its `result` and/or `error` parts filled.
 To obtain the standardized Kuzzle response from it, simply use the getter `request.response`.
 
-### Usage
+#### Usage
 
 ```js
 let
@@ -51,72 +53,23 @@ context.accessors.execute(request, (error, request) => {
 
 ---
 
-## `router.newConnection`
-
-Declares a new connection for a given protocol.  
-
-### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`protocolName`|`string`|Protocol name, used for Kuzzle internal statistics |
-|`connectionUniqueId`|`string`|Unique ID identifying the user connection|
-
-### Returns
-
-A `promise` resolving to a `RequestContext` object. This object is needed for other router methods.
-
----
-
-## `router.execute`
-
-Forward a request to Kuzzle.
-
-### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`request`|`Request`| An user request wrapped as a `Request` instance|
-|`callback`|`function`| Callback called with the request corresponding results |
-
-### Callback
-
-The callback is invoked once the request has been processed by Kuzzle.  
-The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response).
-
----
-
-## `router.removeConnection`
-
-Removes a connection from the connection pool maintained by Kuzzle.  
-Not calling this method after a connection is dropped will result in a memory-leak.
-
-### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`context`|`RequestContext`| Object identifying the connection context. Obtained by calling `newConnection()`|
-
-
----
-
-## `storage.bootstrap`
+### `storage.bootstrap`
 
 Allows to initialize the plugin storage index in Elasticsearch. When called, it will create the Elastisearch index
 and the `collections` provided in argument. Can be called at each plugin initialized as long as the mapping is
 not modified.
 
-### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`collections`|`Object`| An object that contains the collection mappings. See the [guide]({{ site_base_path }}guide/essentials/persisted/#document-mapping) for more explanation about Elasticsearch mapping. |
 
-### Returns
+#### Returns
 
 Returns a `promise` that resolves to a `boolean` that indicates if the index and the collections already existed or not.
 
-### Usage
+#### Usage
 
 ```js
 context.accessors.storage.bootstrap({
@@ -139,23 +92,23 @@ context.accessors.storage.bootstrap({
 
 ---
 
-## `storage.createCollection`
+### `storage.createCollection`
 
 Allows to create a collection with its mapping. Can be called at each plugin initialization if the mapping is not
  modified. Consider using [`storage.bootstrap`]({{ site_base_path }}plugins-reference/plugins-context/accessors/#storage-bootstrap) if your collections are not dynamic.
 
-### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`collection`|`string`| The collection name |
 |`collectionMapping`|`object`| The collection mapping |
 
-### Returns
+#### Returns
 
 Returns a `promise` that resolves to the object `{ acknowledged: true }`.
 
-### Usage
+#### Usage
 
 ```js
 context.accessors.storage.createCollection('someCollection', {
@@ -171,18 +124,18 @@ context.accessors.storage.createCollection('someCollection', {
 
 ---
 
-## `validation.validate`
+### `validation.validate`
 
 Validates a document wrapped in a `Request` object.
 
-### Arguments
+#### Arguments
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`request`|`Request`| A document wrapped as a `Request` object |
 |`verbose`|`boolean`| Defines the behavior of the validation |
 
-### Returns
+#### Returns
 
 If `verbose` is set to `false`:
 
@@ -206,7 +159,7 @@ Where:
 
 ---
 
-## `validation.addType`
+### `validation.addType`
 
 ### Arguments
 
@@ -214,11 +167,11 @@ Where:
 |------|------|----------------------------------|
 |`validationType`|`object`| An object instance of a validation type |
 
-### Returns
+#### Returns
 
 Nothing. Can throw a `PluginImplementationError` if the validation type has not the expected form.
 
-### validationType form
+#### validationType form
 
 ```js
 /**
@@ -234,3 +187,48 @@ Nothing. Can throw a `PluginImplementationError` if the validation type has not 
 ```
 
 See constructor `BaseValidationType` for more details.
+
+---
+
+## Proxy accessors
+
+### `router.newConnection`
+
+Declares a new connection for a given protocol.  
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`connection`|`object`| User connection instantiated by the [ClientConnection]({{ site_base_path }}plugins-reference/plugins-context/constructors/#clientconnection) constructor |
+
+---
+
+### `router.execute`
+
+Forward a request to Kuzzle.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`data`|`object`| Request data, with following format: `{payload, connectionId, protocol, headers}` |
+|`callback`|`function`| Callback called with the request corresponding results |
+
+#### Callback
+
+The callback is invoked once the request has been processed by Kuzzle.  
+The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response).
+
+---
+
+### `router.removeConnection`
+
+Removes a connection from the connection pool maintained by Kuzzle.  
+Not calling this method after a connection is dropped will result in a memory-leak.
+
+#### Arguments
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`connectionId`|`string`| Identifier of the User connection to remove|
