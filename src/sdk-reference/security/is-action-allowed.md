@@ -20,9 +20,9 @@ kuzzle.security.getMyRights((err, rights) => {
 ```
 
 ```java
-kuzzle.security.getMyRights(new ResponseListener<JSONArray>() {
+kuzzle.security.getMyRights(new ResponseListener<JSONObject[]>() {
     @Override
-    public void onSuccess(JSONArray rights) {
+    public void onSuccess(JSONObject[] rights) {
         // Policies is an enum with the following properties:
         // allowed, denied, conditional
         Policies authorization = kuzzle.security.isActionAllowed(rights, "read", "get", "index1", "collection1");

@@ -24,9 +24,9 @@ kuzzle.memoryStorage.georadiusbymemberPromise('key', 'Palermo', 200, 'km')
 ```
 
 ```java
-kuzzle.memoryStorage.georadiusbymember("key", "Palermo", 200, "km", new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.georadiusbymember("key", "Palermo", 200, "km", new ResponseListener<JSONObject[]>() {
   @Override
-  public void onSuccess(JSONArray points) {
+  public void onSuccess(JSONObject[] points) {
     // callback called once the action has completed
   }
 

@@ -24,9 +24,9 @@ kuzzle.memoryStorage.zrangebyscorePromise('key', 2, 3)
 ```
 
 ```java
-kuzzle.memoryStorage.zrangebyscore("key", 2, 3, new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.zrangebyscore("key", 2, 3, new ResponseListener<JSONObject[]>() {
   @Override
-  public void onSuccess(JSONArray members) {
+  public void onSuccess(JSONObject[] members) {
     // callback called once the action has completed
   }
 

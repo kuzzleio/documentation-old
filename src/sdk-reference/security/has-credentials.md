@@ -12,22 +12,21 @@ title: hasCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.hasCredentials('local', 'kuid', function (err, res) {
-  console.log(res);     // true or false
+kuzzle.hasCredentials('local', 'kuid', function (error, result) {
 });
 
 // Using promises (node.js)
 kuzzle
-  .hasCredentials('local', 'kuid')
-  .then(res => {
-    console.log(res);   // true or false
+  .hasCredentialsPromise('local', 'kuid')
+  .then(result => {
+    console.log(result);   // true or false
   });
 ```
 
 ```java
-kuzzle.hasCredentials("local", "kuid", new ResponseListener<JSONObject>() {
+kuzzle.hasCredentials("local", "kuid", new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(JSONObject result) {
+  public void onSuccess(Boolean result) {
     // result var contains either true or false
   }
 
@@ -48,7 +47,7 @@ $result = $kuzzle->hasCredentials('local', 'kuid');
 // $result = true or false
 ```
 
-Update credentials of the specified <strategy> for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to update credentials for.
+Checks if a user has credentials associated with the provided strategy.
 
 ---
 
@@ -73,4 +72,5 @@ Update credentials of the specified <strategy> for the current user. The credent
 
 ## Callback response
 
-The response is either true or false.
+Resolves to a boolean value.
+

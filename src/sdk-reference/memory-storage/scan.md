@@ -24,9 +24,9 @@ kuzzle.memoryStorage.scanPromise(0)
 ```
 
 ```java
-kuzzle.memoryStorage.scan(0, new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.scan(0, new ResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONArray page) {
+  public void onSuccess(JSONObject page) {
     // callback called once the action has completed
   }
 
@@ -55,14 +55,14 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-[
-  18,
-  [
+{
+  "cursor": 18,
+  "values": [
     "key1",
     "key2",
     "..."
   ]
-]
+}
 ```
 
 Iterates incrementally the set of keys in the database using a cursor.
@@ -98,7 +98,7 @@ The scan terminates when the next position cursor returned by the server is `0`.
 
 ## Callback response
 
-Resolves to a JSON array containing 2 entries:
+Resolves to a JSON object containing 2 entries:
 
 * the cursor position for the next page of results (a next position of `0` indicates the end of the scan)
-* a list of keys
+* a list of fetched keys

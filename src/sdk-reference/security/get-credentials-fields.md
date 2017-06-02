@@ -12,23 +12,20 @@ title: getCredentialFields
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.getCredentialFields('local', function (err, res) {
-  console.log(res);     // ['username', 'kuid']
+kuzzle.getCredentialFields('local', function (error, fields) {
 });
 
 // Using promises (node.js)
 kuzzle
-  .getCredentialFields('local')
-  .then(res => {
-    console.log(res);   // ['username', 'kuid']
+  .getCredentialFieldsPromise('local')
+  .then(fields => {
   });
 ```
 
 ```java
-kuzzle.getCredentialFields("local", new ResponseListener<JSONArray>() {
+kuzzle.getCredentialFields("local", new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray result) {
-    // result var contains the credentials
+  public void onSuccess(String[] fields) {
   }
 
   @Override
@@ -43,9 +40,17 @@ kuzzle.getCredentialFields("local", new ResponseListener<JSONArray>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->getCredentialFields('local');
+$fields = $kuzzle->getCredentialFields('local');
 
-// $result = [username, kuid]
+```
+
+> Callback response:
+
+```json
+[
+  "kuid",
+  "username"
+]
 ```
 
 Get credential information of the specified <strategy> for the current user. 

@@ -14,16 +14,16 @@ title: getUserRights
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .getUserRights('id', function(error, result) {
-    // result is a JSON object
+  .getUserRights('kuid', function(error, rights) {
+
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
-  .getUserRightsPromise('id')
-  .then((result) => {
-    // result is a JSON object
+  .getUserRightsPromise('kuid')
+  .then(rights => {
+
   });
 ```
 
@@ -31,9 +31,9 @@ kuzzle
 
 kuzzle
   .security
-  .getUserRights("id", new ResponseListener<JSONObject>() {
+  .getUserRights("kuid", new ResponseListener<JSONObject[]>() {
     @Override
-    public void onSuccess(JSONObject rights) {
+    public void onSuccess(JSONObject[] rights) {
 
     }
 
@@ -64,15 +64,21 @@ catch (ErrorException $e) {
 
 > Callback response example
 
-```js
+```json
 [
   {
-    controller: 'my-controller', action: 'my-action', index: '*', collection: '*',
-    value: 'allowed'
+    "controller": "my-controller", 
+    "action": "my-action", 
+    "index": "*", 
+    "collection": "*",
+    "value": "allowed"
   },
   {
-    controller: 'another-controller', action: '*', index: 'my-index', collection: '*',
-    value: 'conditional'
+    "controller": "another-controller", 
+    "action": "*", 
+    "index": "my-index", 
+    "collection": "*",
+    "value": "conditional"
   }
 ]
 ```
@@ -85,7 +91,7 @@ Gets the rights of the currently logged user.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``id`` | String | Id of the user |
+| ``kuid`` | String | [Kuzzle User Unique Identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -101,4 +107,5 @@ Gets the rights of the currently logged user.
 
 ### Callback response
 
-Resolves to a `JSON` object.
+Resolves to an array of JSON objects.
+

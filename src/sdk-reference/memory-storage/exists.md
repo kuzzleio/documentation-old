@@ -24,7 +24,8 @@ kuzzle.memoryStorage.existsPromise(['key1', 'key2', '...'])
 ```
 
 ```java
-JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+String[] keys = {"key1", "key2", "..."};
+
 kuzzle.memoryStorage.exists(keys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {

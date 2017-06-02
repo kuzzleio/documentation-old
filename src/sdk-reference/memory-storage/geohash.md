@@ -24,10 +24,11 @@ kuzzle.memoryStorage.geohashPromise('key', ['Palermo', 'Catania'])
 ```
 
 ```java
-JSONArray members = new JSONArray().put("Palermo").put("Catania");
-kuzzle.memoryStorage.geohash("key", members, new ResponseListener<JSONArray>() {
+String[] members = {"Palermo", "Catania"};
+
+kuzzle.memoryStorage.geohash("key", members, new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray hashes) {
+  public void onSuccess(String[] hashes) {
     // callback called once the action has completed
   }
 

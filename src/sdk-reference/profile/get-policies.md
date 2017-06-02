@@ -17,8 +17,7 @@ for (policy of profile.getPolicies()) {
 ```
 
 ```java
-for(JSONArray policy : profile.getPolicies()) {
-  // policy is a JSON object
+for(JSONObject policy : profile.getPolicies()) {
 }
 ```
 

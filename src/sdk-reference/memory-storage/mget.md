@@ -24,11 +24,11 @@ kuzzle.memoryStorage.mgetPromise(['key1', 'key2', '...'])
 ```
 
 ```java
-JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+String[] keys = new String[]{"key1", "key2", "..."};
 
-kuzzle.memoryStorage.mget(keys, new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.mget(keys, new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray values) {
+  public void onSuccess(String[] values) {
     // callback called once the action has completed
   }
 

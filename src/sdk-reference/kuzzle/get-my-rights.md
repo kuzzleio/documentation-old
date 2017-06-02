@@ -14,16 +14,16 @@ title: getMyRights
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .getMyRights(function(error, result) {
-    // result is a JSON object
+  .getMyRights(function(error, rights) {
+    // result is an array of JSON objects
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
   .getMyRightsPromise()
-  .then((result) => {
-    // result is a JSON object
+  .then((rights) => {
+    // result is an array of JSON objects
   });
 ```
 
@@ -31,15 +31,13 @@ kuzzle
 
 kuzzle
   .security
-  .getMyRights(new ResponseListener<JSONObject>() {
+  .getMyRights(new ResponseListener<JSONObject[]>() {
     @Override
-    public void onSuccess(JSONObject rights) {
-        // result is a JSON object
+    public void onSuccess(JSONObject[] rights) {
     }
 
     @Override
     public void onError(JSONObject error) {
-        // Handle error
     }
   });
 ```
@@ -49,9 +47,9 @@ kuzzle
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->security()->getMyRights();
+$rights = $kuzzle->security()->getMyRights();
 
-// $result is an array
+// $rights is an array of associative arrays
 ```
 
 > Callback response example:
@@ -92,4 +90,4 @@ Gets the rights of the current user
 
 ## Callback response
 
-Resolves to a `JSON` object.
+Resolves to an array of `JSON` objects.

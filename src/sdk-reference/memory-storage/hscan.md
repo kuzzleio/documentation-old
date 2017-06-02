@@ -24,10 +24,9 @@ kuzzle.memoryStorage.hscanPromise('key', 0)
 ```
 
 ```java
-kuzzle.memoryStorage.hscan("key", 0, new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.hscan("key", 0, new ResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONArray page) {
-    // callback called once the action has completed
+  public void onSuccess(JSONObject page) {
   }
 
   @Override
@@ -55,13 +54,13 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-[
-  18,
-  [
+{
+  "cursor": 18,
+  "values": [
     "field1",
-    "field1's value",
-    "field2",
-    "field2's value"
+    "field1 value",
+    "field2", 
+    "field2 value"
   ]
 ]
 ```
@@ -95,7 +94,7 @@ Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), exce
 
 ## Callback response
 
-Resolves to a JSON array containing 2 entries:
+Resolves to an object containing 2 entries:
 
 * the cursor position for the next page of results (a next position of `0` indicates the end of the scan)
-* a list of, alternatively, field names and their associated value
+* an array of, alternatively, field names and values
