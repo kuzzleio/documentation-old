@@ -161,7 +161,7 @@ In case a subset of the queries sent within the request fail, the client will re
 }
 ```
 
-Response**
+>**Response**
 
 ```javascript
 {
