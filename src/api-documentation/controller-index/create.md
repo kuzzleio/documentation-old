@@ -43,7 +43,8 @@ title: create
   "controller": "index",
   "requestId": "<unique request identifier>",
   "result": {
-    "acknowledged": true
+    "acknowledged": true,
+    "shards_acknowledged": true
   }
 }
 ```
