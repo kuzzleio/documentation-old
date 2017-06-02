@@ -33,7 +33,7 @@ title: getStrategies
 >**Response**
 
 ```javascript
-// example with a "local" authentication
+// example with a "local" and "facebook" strategy
 
 {
   "status": 200,
