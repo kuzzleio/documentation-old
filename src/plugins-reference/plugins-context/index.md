@@ -17,10 +17,11 @@ Each plugin receives its own plugin context instance.
 
 Here is the list of shared objects contained in the provided ``context``:
 
+* Core:
+
 | Attribute path | Purpose                      |
 |----------------|------------------------------|
 | `context.accessors.execute` | Access to Kuzzle API |
-| `context.accessors.router` | Access to Kuzzle protocol communication system. Allow **protocol** plugins to interface themselves with Kuzzle. |
 | `context.accessors.storage` | Initiate and configure to the plugin storage. This storage can only be accessed by the plugin and can be used to persist plugin datas. |
 | `context.accessors.validation` | Access to validation mechanisms, useful to validate documents and add field types. |
 | `context.config` | Contains the entire Kuzzle instance configuration (most of it coming from Kuzzle configuration file) |
@@ -28,6 +29,15 @@ Here is the list of shared objects contained in the provided ``context``:
 | `context.constructors.Repository` | Constructor allowing plugins to instantiate their Repositories allowing them to interact with their plugin storage |
 | `context.constructors.Request` | Constructor for standardized requests sent to Kuzzle |
 | `context.constructors.BaseValidationType` | Constructor for the Validation Type base constructor |
+| `context.errors.<ErrorConstructor>` |Kuzzle error constructors, built dynamically from available Kuzzle error objects at runtime |
+| `context.log.<level>(message)` | Provides methods to log messages depending on their priority level |
+
+* Proxy:
+
+| Attribute path | Purpose                      |
+|----------------|------------------------------|
+| `context.accessors.router` | Access to Kuzzle protocol communication system. Allow **protocol** plugins to interface themselves with Kuzzle. |
+| `context.constructors.ClientConnection` | Constructor for the Proxy client connection |
 | `context.errors.<ErrorConstructor>` |Kuzzle error constructors, built dynamically from available Kuzzle error objects at runtime |
 | `context.log.<level>(message)` | Provides methods to log messages depending on their priority level |
 

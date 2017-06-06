@@ -9,7 +9,9 @@ order: 200
 
 ---
 
-## `BaseValidationType`
+## Core constructors
+
+### `BaseValidationType`
 
 The `BaseValidationType` constructor provides a base to create your own validation types.
 It provides a common structure for all validation types developped in Kuzzle.
@@ -19,7 +21,7 @@ You can find an example of a type creation in the
 
 ---
 
-## `Dsl`
+### `Dsl`
 
 The DSL constructor provided in the plugin context gives access to [Kuzzle DSL capabilities]({{ site_base_path }}kuzzle-dsl).  
 It allows managing filters, and testing data to get a list of matching filters.
@@ -32,7 +34,7 @@ var dsl = new context.constructors.Dsl();
 
 The DSL exposes the following methods:
 
-### `exists`
+#### `exists`
 
 Returns a boolean indicating if filters exist for an index-collection pair
 
@@ -48,7 +50,7 @@ Returns a boolean indicating if filters exist for an index-collection pair
 
 Returns `true` if at least one filter exists on the provided index-collection pair, returns `false` otherwise
 
-### `getFilterIds`
+#### `getFilterIds`
 
 Retrieves filter IDs registered on an index-collection pair
 
@@ -64,7 +66,7 @@ Retrieves filter IDs registered on an index-collection pair
 
 An `array` of `filterId` corresponding to filters registered on an index-collection pair.
 
-### `register`
+#### `register`
 
 Registers a filter to the DSL.
 
@@ -83,7 +85,7 @@ A `promise` resolving to an object containing the following attributes:
 * `id`: the filter unique identifier
 * `diff`: `false` if the filter already existed in the engine. Otherwise, contains an object with the canonical version of the provided filters
 
-### `remove`
+#### `remove`
 
 Removes all references to a given filter from the DSL
 
@@ -97,7 +99,7 @@ Removes all references to a given filter from the DSL
 
 A `promise` resolved once the filter has been completely removed from the DSL
 
-### `test`
+#### `test`
 
 Test data against filters registered in the DSL, returning matching filter IDs, if any.
 
@@ -115,7 +117,7 @@ Test data against filters registered in the DSL, returning matching filter IDs, 
 
 An array of `filterId` matching the provided data (and/or documentId, if any).
 
-### `validate`
+#### `validate`
 
 Tests the provided filters without storing them in the system, to check whether they are well-formed or not.
 
@@ -131,7 +133,7 @@ A resolved promise if the provided filters are valid, or a rejected one with the
 
 ---
 
-## `Repository`
+### `Repository`
 
 The Repository constructor provided in the plugin context gives access to methods
 that allow the plugin to interact with its plugin storage. The plugin storage is a dedicated
@@ -163,7 +165,7 @@ var someCollectionRepository = new context.constructors.Repository('someCollecti
 
 The Repository exposes the following methods:
 
-### `create`
+#### `create`
 
 Creates a document in the plugin storage.
 
@@ -214,7 +216,7 @@ someCollectionRepository.create({
   The document provided as argument should be a plain object representing the document you want to store.
 </aside>
 
-### `createOrReplace`
+#### `createOrReplace`
 
 Creates or replaces a document in the plugin storage.
 
@@ -250,7 +252,7 @@ someCollectionRepository.createOrReplace({
   The document provided as argument should be a plain object representing the document you want to store.
 </aside>
 
-### `delete`
+#### `delete`
 
 Deletes a document from the plugin storage.
 
@@ -291,7 +293,7 @@ someCollectionRepository.delete('someDocumentId')
  */
 ```
 
-### `get`
+#### `get`
 
 Retrieves a document from the plugin storage.
 
@@ -311,7 +313,7 @@ Returns a `promise` that resolves to an `Object` or an `ObjectConstructor` if pr
 someCollectionRepository.get('someDocumentId', 'someCollection');
 ```
 
-### `mGet`
+#### `mGet`
 
 Retrieves multiple documents from the plugin storage.
 
@@ -331,7 +333,7 @@ Returns a `promise` that resolves to an array of `Object` or `ObjectConstructor`
 someCollectionRepository.mGet(['someDocumentId', 'anotherDocument']);
 ```
 
-### `replace`
+#### `replace`
 
 Replaces a document in the plugin storage.
 
@@ -367,7 +369,7 @@ someCollectionRepository.replace({
   The document provided as argument should be a plain object representing the document you want to store.
 </aside>
 
-### `search`
+#### `search`
 
 Searches documents that match the provided `query` in the collection.
 
@@ -394,7 +396,7 @@ someCollectionRepository.search({
 }, 0, 10);
 ```
 
-### `update`
+#### `update`
 
 Updates a document in the plugin storage. You can provide a partial document to add or update one or more fields.
 
@@ -435,7 +437,7 @@ someCollectionRepository.update({
 
 ---
 
-## `Request`
+### `Request`
 
 This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response) to be forwarded to the requesting client.
 
@@ -519,7 +521,7 @@ Getters
 | `result` | *(varies)* | `null` | Request result, if any |
 
 
-### `response.getHeader`
+#### `response.getHeader`
 
 Returns the value registered for the response header `name`
 
@@ -529,11 +531,11 @@ Returns the value registered for the response header `name`
 |------|------|----------------------------------|
 | `name` | `string` | Header name |
 
-### `response.removeHeader`
+#### `response.removeHeader`
 
 Removes header `name` from the response headers.
 
-### `setHeader`
+#### `setHeader`
 
 Adds a header `name` with value `value` to the response headers.
 
@@ -551,7 +553,7 @@ As Kuzzle implements HTTP natively, this behavior changes for some HTTP specific
 to comply with the norm. For instance `set-cookie` values are amended in an array, and other headers like `user-agent` or `host` can store only 1 value.
 
 
-### `serialize`
+#### `serialize`
 
 Serializes the `Request` object into a pair of POJOs that can be sent across the network, and then used to rebuild another equivalent `Request` object.
 
@@ -561,7 +563,7 @@ let foo = request.serialize();
 let bar = new context.constructors.Request(request, foo.data, foo.options);
 ```
 
-### `setError`
+#### `setError`
 
 Adds an error to the request, and sets the request's status to the error one.
 
@@ -575,7 +577,7 @@ If a `KuzzleError` is provided, the request's status attribute is set to the err
 
 Otherwise, the provided error is encapsulated into a [InternalError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorsinternalerror) object, and the request's status is set to 500.
 
-### `setResult`
+#### `setResult`
 
 Sets the request's result.
 
@@ -593,3 +595,20 @@ The `options` argument may contain the following properties:
 | `status` | `integer` | HTTP status code | `200` |
 | `headers` | `object` | Protocol specific headers | `null` |
 | `raw` | `boolean` | Asks Kuzzle to send the provided result directly,instead of encapsulating it in a Kuzzle JSON response | `false` |
+
+---
+
+## Proxy constructors
+
+### `ClientConnection`
+
+The `ClientConnection` constructor is used to create the connection instance that the protocol plugin must provide when a new client is connecting.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `protocol` | `string` | The protocol used |
+| `ips` |`array` | The list of forwarded ips (equivalent to "X-Forwarded-For" http header + the final ip, i.e. client, proxy1, proxy2, etc.) |
+| `headers` | `object` | (optional) Protocol specific input headers |
+
