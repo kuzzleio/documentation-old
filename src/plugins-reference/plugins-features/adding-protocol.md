@@ -20,24 +20,23 @@ All other supported protocols are implemented by plugins, installed on the [Kuzz
 Requests sent by clients can be forwarded to Kuzzle using the [`router` accessor]({{ site_base_path }}plugins-reference/plugins-context/accessors/#router-newconnection)  
 To access these methods, simply call `context.accessors.router.<router method>`:
 
-| Router method | Arguments    | Returns | Description              |
+| Router method | Arguments    | Description              |
 |-----------------|--------------|---------|--------------------------|
-| `newConnection` | `protocol name` (string) <br/>`connection ID` (string) | A promise resolving to a `RequestContext` object | Declares a new connection to Kuzzle. |
-| `execute` | `request` ([Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object)<br/>`callback` (a callback resolved with Kuzzle's response) |  | Executes a client request. |
-| `removeConnection` | `RequestContext` (obtained with `newConnection`) | | Asks Kuzzle to remove the corresponding connection and all its subscriptions |
+| `newConnection` | `connection` ([ClientConnection]({{ site_base_path }}plugins-reference/plugins-context/constructors/#clientconnection) object) | Declares a new connection to Kuzzle. |
+| `execute` | `{payload, connectionId, protocol, headers}`<br/>`callback` (a callback resolved with Kuzzle's response) | Executes a client request. |
+| `removeConnection` | `connectionId` | Asks Kuzzle to remove the corresponding connection and all its subscriptions |
 
 Kuzzle Proxy expects Protocol Plugins to expose the following methods:
 
 | Method | Arguments | Description                 |
 |------|----------------|-----------------------------|
-| `init` | `pluginConfiguration, context` | [Plugin initialization function]({{ site_base_path }}plugins-reference/plugins-creation-prerequisites/#plugin-init-function) |
-| `joinChannel` | `{channel, id}`| Tells Protocol Plugins that the connection `id` subscribed to the channel `channel` |
-| `leaveChannel` | `{channel, id}` | Tells Protocol Plugins that the connection `id` left the channel `channel` |
-| `notify` | `{channels, id, payload}` | Asks Protocol Plugins to emit a data `payload` (JSON Object) to the connection `id` (string), on the channels  `channels` (array of strings)|
+| `init` | `proxy` | [Plugin initialization function]({{ site_base_path }}plugins-reference/plugins-creation-prerequisites/#plugin-init-function) |
+| `joinChannel` | `{channel, connectionId}`| Tells Protocol Plugins that the connection `connectionId` subscribed to the channel `channel` |
+| `leaveChannel` | `{channel, connectionId}` | Tells Protocol Plugins that the connection `connectionId` left the channel `channel` |
+| `notify` | `{channels, connectionId, payload}` | Asks Protocol Plugins to emit a data `payload` (JSON Object) to the connection `connectionId` (string), on the channels  `channels` (array of strings)|
 | `broadcast` | `{channels, payload}` | Asks Protocol Plugins to emit a data `payload` (JSON Object) to clients connected to the channels list `channels` (array of strings) |
-| `disconnect` | `id` | Asks protocol plugins to force-close the connection `id` |
+| `disconnect` | `connectionId` | Asks protocol plugins to force-close the connection `connectionId` |
 
-The connection `id` Kuzzle sends to Plugins is the one declared by Protocol Plugins using `context.accessors.router.newConnection`.
 
 *For more information about channels, see our [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)*
 
@@ -47,18 +46,19 @@ The connection `id` Kuzzle sends to Plugins is the one declared by Protocol Plug
 
 ```javascript
 function ProtocolPlugin () {
-  this.pluginContext = null;
+  this.context = null;
 
-  // Example on how to maintain client contexts
+  // Example on how to maintain client connections
   this.clients = {};
+  this.connections = {};
 
   /*
    Required plugin initialization function
    (see the "Plugin prerequisites" section)
   */
-  this.init = function (customConfig, context) {
+  this.init = function (config, context) {
     // plugin initialization
-    this.pluginContext = context;
+    this.context = context;
   };
 
   /*
@@ -70,27 +70,39 @@ function ProtocolPlugin () {
    */
   this.handleClient = function () {
     // when a client connects
-    this.on('onClientConnect', function (connectionId) {
-      this.pluginContext.accessors.router.newConnection("protocol name", connectionId)
-        .then(context => {
-          this.clients[connectionId] = context;
-        });
+    this.on('onClientConnect', function (client) {
+
+      const connection = new context.constructor.ClientConnection('myProtocol', [client.connection.stream.remoteAddress], {some: 'header'});
+
+      this.context.accessors.router.newConnection(connection);
+      this.clients[connection.id] = client;
+      this.connections[client.id] = connection;
     });
 
     // when a client sends a request
-    this.on('onClientRequest', function (connectionId, data) {
+    this.on('onClientRequest', function (client, data) {
       // Instantiates a Request object to be passed to Kuzzle
-      let request = new Request(data, this.clients[connectionId]);
+      const
+        connection = this.connections[client.id],
+        request = {
+          payload: data,
+          connectionId: connection.id,
+          protocol: 'myProtocol',
+          headers: {some: 'headers'}
+        };
 
-      this.pluginContext.accessors.router.execute(request, response => {
+      this.context.accessors.router.execute(request, response => {
         // forward the response to the client
       });
     });
 
     // whenever a client is disconnected
-    this.on('onClientDisconnect', function (connectionId) {
-      this.pluginContext.accessors.router.removeConnection(this.clients[connectionId]);
-      delete this.clients[connectionId];
+    this.on('onClientDisconnect', function (client) {
+      const connection = this.connections[client.id];
+
+      this.context.accessors.router.removeConnection(connection.id);
+      delete this.clients[connection.id];
+      delete this.connections[client.id];
     });
   };
 
@@ -138,8 +150,9 @@ function ProtocolPlugin () {
   /*
     Invoked by Kuzzle when it needs to force-close a client connection
    */
-  this.disconnect = function (id) {
-    // close the connection opened by the connection "id"
+  this.disconnect = function (connectionId) {
+    const client = this.clients[connectionId];
+    // close the client connection
   };
 };
 

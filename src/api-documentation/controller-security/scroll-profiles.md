@@ -30,9 +30,7 @@ title: scrollProfiles
   "controller": "security",
   "action": "scrollProfiles",
   "scrollId": "<scrollId>",
-
   "scroll": "<time to live>"
-  }
 }
 ```
 

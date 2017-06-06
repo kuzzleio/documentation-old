@@ -70,5 +70,5 @@ title: createOrReplace
 
 Creates a new document in the persistent data storage, or replaces it if it already exists.
 
-Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).

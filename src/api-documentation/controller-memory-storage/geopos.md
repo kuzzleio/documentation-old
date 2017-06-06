@@ -10,14 +10,12 @@ title: geopos
 # geopos
 
 
-
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/ms/_geopos/<key>?members=member1,member2,...`  
 **Method:** `GET`
 </p>
 </blockquote>
-
 
 <blockquote class="json">
 <p>
@@ -26,7 +24,7 @@ title: geopos
 </blockquote>
 
 
-```javascript
+```json
 {
   "controller": "ms",
   "action": "geopos",

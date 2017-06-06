@@ -57,5 +57,5 @@ Given a `documentId`, deletes the corresponding document from Kuzzle's database.
 
 Only documents in the persistent data storage layer can be deleted.
 
-Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document deletion (and its unavailability in `search`).

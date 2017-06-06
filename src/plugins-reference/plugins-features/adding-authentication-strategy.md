@@ -55,7 +55,7 @@ Here is the generic signature of the `verify` function you have to implement:
 * `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request))
 * `...`: varies, depending on the used strategy
 
-The function **must** return a `Promise` that resolves to either the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) if the user is authenticated, or an object containing a message string attribute giving the reason why it can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is *not* an error).
+The function **must** return a `Promise` that resolves to an object that can contain two attributes: `kuid` and `message`. If the user is authenticated, the `kuid` attribute must contain the [kuid]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) of the user, else the `kuid` should be null and the `message` attribute must contain a string giving the reason the user can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is *not* an error).
 
 ---
 

@@ -12,7 +12,7 @@ title: create
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<data>/<collection>`  
+**URL:** `http://kuzzle:7512/<index>/<collection>`  
 **Method:** `PUT`
 </p>
 </blockquote>
