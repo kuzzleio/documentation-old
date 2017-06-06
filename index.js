@@ -219,6 +219,7 @@ const build = done => {
   if (options.dev.watch) {
     console.log(`= watch enabled =`);
 
+    metalsmith.clean(false)
     metalsmith.use(changed())
   }
 
