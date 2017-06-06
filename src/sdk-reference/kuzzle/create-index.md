@@ -13,14 +13,16 @@ title: createIndex
 ```js
 // Using callbacks (node.js or browser)
 kuzzle.createIndex('myIndex', function (err, res) {
-  console.log(res);     // {acknowledge: true}
+  // callback called once the create operation has completed
+  // => the result is a JSON object containing the raw Kuzzle response
 });
 
 // Using promises (node.js)
 kuzzle
   .createIndexPromise('myIndex')
   .then(res => {
-    console.log(res);   // {acknowledge: true}
+    // promise resolved once the create operation has completed
+    // => the result is a JSON object containing the raw Kuzzle response
   });
 ```
 
@@ -45,11 +47,18 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 $result = $kuzzle->createIndex('myIndex');
 
-// $result = [acknowledge => true]
 ```
 
 Create a new empty data index, with no associated mapping.
 
+> Callback response:
+
+```json
+{
+  "acknowledged": true,
+  "shards_acknowledged": true
+}
+```
 ---
 
 ## createIndex([index], [options], callback)
