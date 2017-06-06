@@ -61,7 +61,7 @@ title: getSpecifications
 }
 ```
 
-Error response**
+>**Error response**
 
 ```javascript
 {
