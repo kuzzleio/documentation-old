@@ -15,15 +15,15 @@ title: getMyRights
 kuzzle
   .security
   .getMyRights(function(error, rights) {
-    // result is an array of JSON objects
+    // result is an array of objects
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
   .getMyRightsPromise()
-  .then((rights) => {
-    // result is an array of JSON objects
+  .then(rights => {
+    // result is an array of objects
   });
 ```
 
@@ -52,9 +52,9 @@ $rights = $kuzzle->security()->getMyRights();
 // $rights is an array of associative arrays
 ```
 
-> Callback response example:
+> Callback response
 
-```js
+```json
 [
   {
     controller: 'my-controller', action: 'my-action', index: '*', collection: '*',
@@ -90,4 +90,4 @@ Gets the rights of the current user
 
 ## Callback response
 
-Resolves to an array of `JSON` objects.
+Resolves to an array of rights.
