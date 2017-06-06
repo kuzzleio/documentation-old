@@ -30,9 +30,7 @@ title: scrollUsers
   "controller": "security",
   "action": "scrollUsers",
   "scrollId": "<scrollId>",
-
   "scroll": "<time to live>"
-  }
 }
 ```
 
