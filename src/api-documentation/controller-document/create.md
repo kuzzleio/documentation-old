@@ -70,5 +70,5 @@ Creates a new document in the persistent data storage.
 
 Returns an error if the document already exists.
 
-Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).

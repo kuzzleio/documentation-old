@@ -73,7 +73,7 @@ title: update
 
 Only documents in the persistent data storage layer can be updated.
 
-Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
 
 Conflicts may occur if the same document gets updated multiple times within a short time on a database cluster. When this happens, Kuzzle answers with an error that clients have to handle.  

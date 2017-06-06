@@ -69,5 +69,5 @@ title: replace
 Replaces an existing document in the persistent data storage.
 Only documents in the persistent data storage layer can be replaced.
 
-Elastisearch 5.x and above only: The optional parameter `refresh` can be used
+The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
