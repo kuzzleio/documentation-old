@@ -21,7 +21,7 @@ title: zinterstore
 </blockquote>
 
 
-```javascript
+```js
 {
   "keys": ["key1", "key2", "..."],
 
