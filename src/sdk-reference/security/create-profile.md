@@ -120,7 +120,7 @@ That means that a profile that was just been created will not be returned by <co
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique profile identifier |
-| ``policies`` | array of JSON objects | An array of policies to associate to the new profile |
+| ``policies`` | array of JSON objects | List of policies to apply to this profile |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | Callback handling the response |
 

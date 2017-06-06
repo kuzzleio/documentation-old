@@ -11,51 +11,50 @@ title: updateProfile
 # updateProfile
 
 ```js
-var newContent = {
-  policies: [
-    {roleId: 'myrole'},
-    {roleId: 'default', restrictedTo: [{index: 'index1'}, {index: 'index2', collections: ['foo', 'bar'] } ] }
-  ]
-};
+var policies = [
+  {roleId: 'myrole'},
+  {
+    roleId: 'default', 
+    restrictedTo: [
+      {index: 'index1'}, 
+      {index: 'index2', collections: ['foo', 'bar'] } 
+    ] 
+  }
+];
+
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .updateProfile("profile ID", newContent, function (err, updatedProfile) {
-    // "updatedProfile" is an instance of a Profile object
+  .updateProfile("profile ID", policies, function (err, updatedProfile) {
+    
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
-  .updateProfilePromise("profile ID", newContent)
+  .updateProfilePromise("profile ID", policies)
   .then(updatedProfile => {
-    // "updatedProfile" is an instance of a Profile object
+    
   });
 ```
 
 ```java
-JSONObject policy1 = new JSONObject()
-  .put("roleId", "myrole");
-
-JSONObject policy2 = new JSONObject()
-  .put("roleId", "default")
-  .put("restrictedTo", new JSONArray()
-    .put(new JSONObject().put("index", "index1"))
-    .put(new JSONObject()
-      .put("index", "index2")
-      .put("collections",new JSONArray().put("foo").put("bar"))
+JSONObject[] policies = new JSONObject[]{
+  new JSONObject().put("roleId", "myrole"),
+  new JSONObject()
+    .put("roleId", "default")
+    .put("restrictedTo", new JSONArray()
+      .put(new JSONObject().put("index", "index1"))
+      .put(new JSONObject()
+        .put("index", "index2")
+        .put("collections", new JSONArray().put("foo").put("bar"))
+      )
     )
-  );
-
-JSONObject newContent = new JSONObject()
-  .put("policies", new JSONArray()
-    .put(policy1)
-    .put(policy2)
-  );
+};
 
 kuzzle
   .security
-  .updateProfile("profile ID", newContent, new ResponseListener<Profile>() {
+  .updateProfile("profile ID", policies, new ResponseListener<Profile>() {
     @Override
     public void onSuccess(Profile profile) {
 
@@ -75,16 +74,14 @@ use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\Profile;
 
 $profileId = 'myProfile';
-$profileDefinition = [
-  'policies' => [
-    [
-      'roleId' => 'myRole'
-    ],
-    [
-      'roleId' => 'anonymous',
-      'restrictedTo' => [
-        ['index' => 'my-second-index', 'collection' => ['my-collection']]
-      ]
+$policies = [
+  [
+    'roleId' => 'myRole'
+  ],
+  [
+    'roleId' => 'anonymous',
+    'restrictedTo' => [
+      ['index' => 'my-second-index', 'collection' => ['my-collection']]
     ]
   ]
 ];
@@ -93,7 +90,7 @@ $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 try {
-  $profile = $security->updateProfile($profileId, $profileDefinition);
+  $profile = $security->updateProfile($profileId, $policies);
 
   // $profile instanceof Profile
 }
@@ -111,7 +108,7 @@ Performs a partial update on an existing profile.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique role identifier |
-| ``content`` | JSON Object | A plain JSON object representing the profile |
+| ``policies`` | array of objects| List of policies to apply to this profile |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | (Optional) Callback handling the response |
 
