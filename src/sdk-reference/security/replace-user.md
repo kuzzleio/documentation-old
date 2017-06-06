@@ -5,10 +5,10 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: updateUser
+title: replaceUser
 ---
 
-# updateUser
+# replaceUser
 
 ```js
 var newContent = {
@@ -20,16 +20,8 @@ var newContent = {
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .updateUser("User ID", newContent, function (err, updatedUser) {
-    // "updatedUser" is an instance of a User object
-  });
-
-// Using promises (NodeJS)
-kuzzle
-  .security
-  .updateUserPromise("User ID", newContent)
-  .then(updatedUser => {
-    // "updatedUser" is an instance of a User object
+  .replaceUser("User ID", newContent, function (err, replacedUser) {
+    // "replacedUser" is an instance of a User object
   });
 ```
 
@@ -40,7 +32,7 @@ JSONObject newContent = new JSONObject()
 
 kuzzle
   .security
-  .updateUser("User ID", newContent, new ResponseListener<User>() {
+  .replaceUser("User ID", newContent, new ResponseListener<User>() {
     @Override
     public void onSuccess(User user) {
 
@@ -69,7 +61,7 @@ $kuzzle = new Kuzzle('localhost');
 $security = $kuzzle->security();
 
 try {
-  $user = $security->updateUser($kuid, $userDefinition);
+  $user = $security->replaceUser($kuid, $userDefinition);
 
   // $user instanceof User
 }
@@ -78,11 +70,11 @@ catch (ErrorException $e) {
 }
 ```
 
-Performs a partial update on an existing user.
+Replaces an existing user.
 
 ---
 
-## updateUser(id, content, [options], [callback])
+## replaceUser(id, content, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -109,4 +101,4 @@ Returns the `Security` object to allow chaining.
 
 ## Callback response
 
-Resolves to an updated [User]({{ site_base_path }}sdk-reference/user) object
+Resolves to an [User]({{ site_base_path }}sdk-reference/user) object
