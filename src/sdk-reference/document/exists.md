@@ -53,12 +53,12 @@ Checks if the document exists in Kuzzle.
 
 ---
 
-## exists([options], [callback])
+## exists([options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | Optional callback |
+| ``callback`` | function | Callback handling the response |
 
 ---
 

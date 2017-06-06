@@ -57,13 +57,13 @@ Scrolls on stored profiles using the provided scroll ID.
 
 ---
 
-## scrollProfiles(scrollId, [options], [callback])
+## scrollProfiles(scrollId, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``scrollId`` | string | Scroll identifier retrieved from a search query |
 | ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | (Optional) Callback handling the response |
+| ``callback`` | function | Callback handling the response |
 
 ---
 
@@ -72,12 +72,6 @@ Scrolls on stored profiles using the provided scroll ID.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-
----
-
-## Return value
-
-Returns the `Security` object to allow chaining.
 
 ---
 

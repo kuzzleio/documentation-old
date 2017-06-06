@@ -43,10 +43,7 @@ Document secondDocument = new Document(collection, "doc2");
 secondDocument.setContent("title", "foo");
 secondDocument.setContent("content", "bar");
 
-JSONArray documents = new JSONArray();
-documents
-    .put(firstDocument)
-    .put(secondDocument);
+Document[] documents = new Document[]{firstDocument, secondDocument};
 
 kuzzle
   .collection("collection", "index")
@@ -68,20 +65,13 @@ kuzzle
 <?php
 
 use \Kuzzle\Kuzzle;
+use \Kuzzle\Document;
 
 $kuzzle = new Kuzzle('localhost');
 $dataCollection = $kuzzle->collection('collection', 'index');
 
-$firstDocument = [
-  '_id' => 'doc1',
-  'title' => 'foo',
-  'content' => 'bar'
-];
-$secondDocument = [
-  '_id' => 'doc2',
-  'title' => 'foo',
-  'content' => 'bar'
-];
+$firstDocument = new Document($dataCollection, 'doc1', ['title' => 'foo', 'content' => 'bar']);
+$secondDocument = new Document($dataCollection, 'doc2', ['title' => 'foo', 'content' => 'bar']);
 
 try {
   $result = $dataCollection->mUpdateDocument([$firstDocument, $secondDocument]);
@@ -103,7 +93,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Update the provided documents.
+Update the provided [Documents]({{ site_base_path }}sdk-reference/document/).
 
 ---
 
@@ -111,7 +101,7 @@ Update the provided documents.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``documents`` | JSON Object | Contains content of the documents to update (can be Document objects or serialized Documents) |
+| ``documents`` | Document[] | Array of [Documents]({{ site_base_path }}sdk-reference/document/) to update |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 

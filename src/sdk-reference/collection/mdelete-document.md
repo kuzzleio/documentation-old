@@ -30,10 +30,7 @@ kuzzle
 ```
 
 ```java
-JSONArray documentIds = new JSONArray();
-documentIds
-    .put("doc1")
-    .put("doc2");
+String[] documentIds = new String[]{"doc1", "doc2"};
 
 kuzzle
   .collection("collection", "index")
@@ -73,17 +70,17 @@ catch (ErrorException $e) {
 ["doc1", "doc2"]
 ```
 
-Delete multiple documents according to the provided document IDs.
+Delete multiple [Documents]({{ site_base_path }}sdk-reference/document/) according to the provided IDs.
 
 ---
 
-## mDeleteDocument(documentIds, [options], [callback])
+## mDeleteDocument(documentIds, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``documentIds`` | JSON Object | Contains the document IDs of documents to delete |
+| ``documentIds`` | String[] | Array of IDs of documents to delete |
 | ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | Optional callback |
+| ``callback`` | function | Callback handling the response |
 
 ---
 
@@ -92,12 +89,6 @@ Delete multiple documents according to the provided document IDs.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-
----
-
-## Return value
-
-Returns the `Collection` object to allow chaining.
 
 ---
 
