@@ -66,4 +66,4 @@ title: updateUser
 }
 ```
 
-Given a [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid), updates the matching User object in Kuzzle's database layer.
+Given a [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid), updates the matching User object in Kuzzle's database layer.

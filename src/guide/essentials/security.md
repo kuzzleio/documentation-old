@@ -1,11 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: Security
+title: Security configuration
 order: 700
 ---
 
-# Security
+# Security configuration
 
 Kuzzle provides a full set of functionalities to finely define the permissions for your data.
 
@@ -13,26 +13,11 @@ Kuzzle provides a full set of functionalities to finely define the permissions f
 
 ## Fresh installation default rights.
 
-When installing Kuzzle for the very first time, no default user is created and the Anonymous user is allowed to perform any action on the data. The only restriction is on the internal data storage used by Kuzzle to store its configuration.
+When installing Kuzzle for the very first time, no default user is created and anonymous users (i.e. unauthenticated users) have administrator privileges.
 
-Once a first admin user is created, either via the [Kuzzle Back Office]({{ site_base_path }}guide/essentials/running-backoffice/#create-an-admin-account ) or the [CLI]({{ site_base_path }}guide/essentials/cli/#createfirstadmin), the Anonymous permissions are dropped.
+The first action to perform to secure your Kuzzle server is to create an administrator account, either via the [Kuzzle Back Office]({{ site_base_path }}guide/essentials/running-backoffice/#create-an-admin-account ) or the [CLI]({{ site_base_path }}guide/essentials/cli/#createfirstadmin).  
 
-You can then use the Back Office to administrate your user rights.
-
----
-
-## Authentication
-
-The first step to secure your data is to be able to identify your users.
-Kuzzle ships by default with a local login/password strategy.
-
-If the "local" strategy (i.e. storing the users' credentials in the local database) doesn't fit your needs, you can use the [Oauth authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), or develop your own (see [Plugin documentation]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) for more details).
-
-If the authentication request identifies an existing user, Kuzzle generates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) that must be [appended to all the subsequent requests]({{ site_base_path }}api-documentation/query-syntax/authorization-token/#authorization-token).
-
-<aside class="notice">
-More information on the login process <a href="{{ site_base_path }}api-documentation/controller-auth/login">here</a>.
-</aside>
+Doing so, you are given the possibility to drop almost all rights for anonymous users, securing your installation. You can then use the Back-Office (or the Kuzzle API) to create new users and to administrate their rights.
 
 ---
 

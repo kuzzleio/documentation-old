@@ -38,8 +38,8 @@ title: hasCredentials
 
 ```javascript
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "action": "hasCredentials",
   "controller": "security",
   "_id": "<kuid>",
@@ -47,4 +47,4 @@ title: hasCredentials
 }
 ```
 
-Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).
