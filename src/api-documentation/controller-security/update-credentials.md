@@ -69,8 +69,8 @@ title: updateCredentials
 // example with a "local" authentication
 
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "action": "updateCredentials",
   "controller": "security",
   "_id": "<kuid>",
@@ -81,4 +81,4 @@ title: updateCredentials
 }
 ```
 
-Updates credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Updates credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.

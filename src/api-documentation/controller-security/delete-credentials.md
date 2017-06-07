@@ -38,8 +38,8 @@ title: deleteCredentials
 
 ```javascript
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "action": "deleteCredentials",
   "controller": "security",
   "_id": "<kuid>",
@@ -49,4 +49,4 @@ title: deleteCredentials
 }
 ```
 
-Delete credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) .
+Delete credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).

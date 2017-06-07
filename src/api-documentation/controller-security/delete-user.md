@@ -38,8 +38,8 @@ title: deleteUser
 
 ```javascript
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "result": {
     "_id": "<kuid>",                  // The kuzzle user identifier
   }
@@ -51,4 +51,4 @@ title: deleteUser
 }
 ```
 
-Given a `user id`, deletes the corresponding [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) from Kuzzle's database layer.
+Given a `user id`, deletes the corresponding [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) from Kuzzle's database layer.

@@ -12,23 +12,23 @@ title: getMyCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.getMyCredentials('local', function (err, res) {
-  console.log(res);     // {username: 'foo', kuid: '<kuid>'}
+kuzzle.getMyCredentials('local', function (error, credentials) {
+
 });
 
 // Using promises (node.js)
 kuzzle
-  .getMyCredentials('local')
-  .then(res => {
-    console.log(res);   // {username: 'foo', kuid: '<kuid>'}
+  .getMyCredentialsPromise('local')
+  .then(credentials => {
+
   });
 ```
 
 ```java
 kuzzle.getMyCredentials("local", new ResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONObject result) {
-    // result var contains the credentials
+  public void onSuccess(JSONObject credentials) {
+
   }
 
   @Override
@@ -43,12 +43,19 @@ kuzzle.getMyCredentials("local", new ResponseListener<JSONObject>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->getMyCredentials('local');
-
-// $result = [username => 'foo', kuid => '<kuid>']
+$credentials = $kuzzle->getMyCredentials('local');
 ```
 
-Get credential information of the specified <strategy> for the current user. 
+> Callback response
+
+```json
+{
+  "username": "foo", 
+  "kuid": "<Kuzzle Unique User Identifier>"
+}
+```
+
+Get [credential information]({{ site_base_path }}guide/essentials/user-authentication/#credentials) for the current user.
 
 ---
 
@@ -72,4 +79,4 @@ Get credential information of the specified <strategy> for the current user.
 
 ## Callback response
 
-The response is a an object reflecting the credentials.
+The response is an object reflecting the credentials for the provided authentication strategy.
