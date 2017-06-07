@@ -12,12 +12,13 @@ title: getAllCredentialFields
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.getAllCredentialFields(function (err, res) {
+kuzzle.security.getAllCredentialFields(function (err, res) {
   console.log(res);     // { local: ['username', 'kuid']}
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .getAllCredentialFields()
   .then(res => {
     console.log(res);   // { local: ['username', 'kuid']}
@@ -25,7 +26,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getAllCredentialFields(new ResponseListener<JSONObject>() {
+kuzzle.security.getAllCredentialFields(new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject result) {
     // result var contains the credentials per strategy
@@ -43,7 +44,7 @@ kuzzle.getAllCredentialFields(new ResponseListener<JSONObject>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->getAllCredentialFields();
+$result = $kuzzle->security->getAllCredentialFields();
 
 // $result = [local => [username, kuid]]
 ```

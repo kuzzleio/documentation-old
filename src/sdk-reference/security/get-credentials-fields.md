@@ -12,12 +12,13 @@ title: getCredentialFields
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.getCredentialFields('local', function (err, res) {
+kuzzle.security.getCredentialFields('local', function (err, res) {
   console.log(res);     // ['username', 'kuid']
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .getCredentialFields('local')
   .then(res => {
     console.log(res);   // ['username', 'kuid']
@@ -25,7 +26,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getCredentialFields("local", new ResponseListener<JSONArray>() {
+kuzzle.security.getCredentialFields("local", new ResponseListener<JSONArray>() {
   @Override
   public void onSuccess(JSONArray result) {
     // result var contains the credentials
@@ -43,7 +44,7 @@ kuzzle.getCredentialFields("local", new ResponseListener<JSONArray>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->getCredentialFields('local');
+$result = $kuzzle->security->getCredentialFields('local');
 
 // $result = [username, kuid]
 ```

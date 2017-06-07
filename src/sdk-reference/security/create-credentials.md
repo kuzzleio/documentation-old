@@ -12,12 +12,13 @@ title: createCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.createCredentials('local', 'kuid', {'username': 'foo'}, function (err, res) {
+kuzzle.security.createCredentials('local', 'kuid', {'username': 'foo'}, function (err, res) {
   console.log(res);     // {username: 'bar', kuid: '<kuid>'}
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .createCredentials('local', 'kuid', {'username': 'foo'})
   .then(res => {
     console.log(res);   // {username: 'foo', kuid: '<kuid>'}
@@ -27,7 +28,7 @@ kuzzle
 ```java
 JSONObject credentials = new JSONObject().put("username", "bar");
 
-kuzzle.createCredentials("local", "kuid", credentials, new ResponseListener<JSONObject>() {
+kuzzle.security.createCredentials("local", "kuid", credentials, new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject result) {
     // result var contains the new credentials and the kuid of the user
@@ -45,7 +46,7 @@ kuzzle.createCredentials("local", "kuid", credentials, new ResponseListener<JSON
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->createCredentials('local', 'kuid', ['username' => 'foo']);
+$result = $kuzzle->security->createCredentials('local', 'kuid', ['username' => 'foo']);
 
 // $result = [username => 'foo', kuid => '<kuid>']
 ```

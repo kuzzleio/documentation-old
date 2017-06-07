@@ -12,12 +12,13 @@ title: getCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.getCredentials('local', 'kuid', function (err, res) {
+kuzzle.security.getCredentials('local', 'kuid', function (err, res) {
   console.log(res);     // {username: 'foo', kuid: '<kuid>'}
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .getCredentials('local', 'kuid')
   .then(res => {
     console.log(res);   // {username: 'foo', kuid: '<kuid>'}
@@ -25,7 +26,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getCredentials("local", "kuid", new ResponseListener<JSONObject>() {
+kuzzle.security.getCredentials("local", "kuid", new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject result) {
     // result var contains the credentials
@@ -43,7 +44,7 @@ kuzzle.getCredentials("local", "kuid", new ResponseListener<JSONObject>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->getCredentials('local', 'kuid');
+$result = $kuzzle->security->getCredentials('local', 'kuid');
 
 // $result = [username => 'foo', kuid => '<kuid>']
 ```

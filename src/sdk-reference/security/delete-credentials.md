@@ -12,12 +12,13 @@ title: deleteCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.deleteCredentials('local', 'kuid', function (err, res) {
+kuzzle.security.deleteCredentials('local', 'kuid', function (err, res) {
   console.log(res);     // {acknowledged: true}
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .deleteCredentials('local', 'kuid')
   .then(res => {
     console.log(res);   // {acknowledged: true}
@@ -25,7 +26,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.deleteCredentials("local", "kuid", new ResponseListener<JSONObject>() {
+kuzzle.security.deleteCredentials("local", "kuid", new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject result) {
     // result var contains the query status
@@ -43,7 +44,7 @@ kuzzle.deleteCredentials("local", "kuid", new ResponseListener<JSONObject>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->deleteCredentials('local', 'kuid');
+$result = $kuzzle->security->deleteCredentials('local', 'kuid');
 
 // $result = [acknowledged => true]
 ```
