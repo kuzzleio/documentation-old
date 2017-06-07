@@ -120,3 +120,7 @@ A scroll session is always initiated by a `search` action by using the `scroll` 
 ## Callback response
 
 Resolves to an instantiated [SearchResult]({{ site_base_path }}sdk-reference/search-result) object.
+
+---
+
+
