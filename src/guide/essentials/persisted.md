@@ -227,8 +227,6 @@ Say we want to [**find**]({{ site_base_path }}api-documentation/controller-docum
 }
 ```
 
-<aside class="notice">NB: Depending on the volume of documents, you may want considering having a look at [a safer and more robust way to process all documents from a collection]({{ site_base_path }}sdk-reference/search-result/fetch-next/#how-to-process-all-documents-from-a-collection).</aside>
-
 Looks neat. Say that now we only want to **query** the documents containing the word `Hey` in the `message` field. We can achieve this by adding the following query to our body:
 
 ```json

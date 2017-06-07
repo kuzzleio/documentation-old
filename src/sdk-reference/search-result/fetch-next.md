@@ -96,6 +96,12 @@ kuzzle
 ```
 
 ```java
+import io.kuzzle.sdk.core.Kuzzle;
+import io.kuzzle.sdk.core.Options;
+
+
+Kuzzle kuzzle = new Kuzzle("localhost");
+
 JSONObject filter = new JSONObject();
 
 Options options = new Options();

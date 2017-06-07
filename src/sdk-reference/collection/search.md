@@ -75,6 +75,11 @@ kuzzle
 ```
 
 ```java
+import io.kuzzle.sdk.core.Kuzzle;
+import io.kuzzle.sdk.core.Options; 
+
+Kuzzle kuzzle = new Kuzzle("localhost");
+
 JSONObject body = new JSONObject()
   .put("query", new JSONObject()
     .put("bool", new JSONObject()
@@ -133,9 +138,9 @@ JSONObject body = new JSONObject()
     )
   );
 
-JSONObject options = new JSONObject()
-  .put("from", 0),
-  .put("size", 20);
+Options options = new Options();
+options.setFrom((long) 0);
+options.setSize((long) 20);
 
 kuzzle
   .collection("collection", "index")
@@ -236,6 +241,18 @@ Executes a search on the data collection.
   There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
 </aside>
 
+## Processing large data sets
+
+When processing a large number of documents (i.e. more than 1000), using `search` requests only are not the best option.
+
+Pagination of results can be done by using the from and size but the cost becomes prohibitive when the deep pagination is reached. In fact, Elasticsearch, the database Kuzzle is relying on, prevents to go beyond than 10000 results by default.
+
+Instead, the recommended way to process a large number of documents is to use [`Collection.scroll`]({{ site_base_path }}sdk-reference/collection/scroll/) or, easier, [`SearchResult.fetchNext`]({{ site_base_path }}sdk-reference/search-result/fetch-next).
+
+See [`SearchResult.fetchNext`]({{ site_base_path }}sdk-reference/search-result/fetch-next/#how-to-process-all-documents-from-a-collection) for an example of how to process all documents from a collection.
+
+
+
 ---
 
 ## search(body, [options], callback)
@@ -265,4 +282,4 @@ Executes a search on the data collection.
 
 ## Callback response
 
-Resolves to an instantiated [SearchResult]({{ site_base_path }}sdk-reference/search-result) object.
+Resolves to an instance of [SearchResult]({{ site_base_path }}sdk-reference/search-result).
