@@ -259,7 +259,7 @@ See [`SearchResult.fetchNext`]({{ site_base_path }}sdk-reference/search-result/f
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``body`` | JSON object | Search request body, using [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search-request-body.html) format |
+| ``body`` | JSON object | Search request body, using [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/search-request-body.html) format. <br>If given an empty object, matches all documents in the collection |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
