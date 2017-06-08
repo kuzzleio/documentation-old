@@ -12,13 +12,14 @@ title: updateCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.updateCredentials('local', 'kuid', {'username': 'foo'}, function (err, res) {
+kuzzle.security.updateCredentials('local', 'kuid', {'username': 'foo'}, function (error, updatedCredentials) {
 
 });
 
 // Using promises (node.js)
 kuzzle
-  .updateCredentialsPromife('local', 'kuid', {'username': 'foo'})
+  .security
+  .updateCredentialsPromise('local', 'kuid', {'username': 'foo'})
   .then(updatedCredentials => {
 
   });
@@ -27,7 +28,7 @@ kuzzle
 ```java
 JSONObject credentials = new JSONObject().put("username", "foo");
 
-kuzzle.updateCredentials("local", "kuid", credentials, new ResponseListener<JSONObject>() {
+kuzzle.security.updateCredentials("local", "kuid", credentials, new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject updatedCredentials) {
   }
@@ -44,7 +45,7 @@ kuzzle.updateCredentials("local", "kuid", credentials, new ResponseListener<JSON
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$updatedCredentials = $kuzzle->updateCredentials('local', 'kuid', ['username' => 'foo']);
+$updatedCredentials = $kuzzle->security->updateCredentials('local', 'kuid', ['username' => 'foo']);
 
 ```
 

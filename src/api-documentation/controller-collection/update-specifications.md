@@ -24,7 +24,7 @@ title: updateSpecifications
     "mycollection": {
       "strict": <true|false>,
       "fields": {
-   // ... specification for each field
+        // ... specification for each field
       }
     }
   }

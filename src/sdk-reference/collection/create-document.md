@@ -109,7 +109,7 @@ Create a new document in Kuzzle and resolves to a [Document]({{ site_base_path }
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the peristence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 | ``ifExist`` | string | If the same document already exists: resolves to an error if sets to ``error``. Replaces the existing document if set to ``replace`` | ``false`` |
 
 ---

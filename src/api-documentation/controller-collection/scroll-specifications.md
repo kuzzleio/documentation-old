@@ -29,9 +29,7 @@ title: scrollSpecifications
   "controller": "collections",
   "action": "scrollSpecifications",
   "scrollId": "<scrollId>",
-
   "scroll": "<time to live>"
-  }
 }
 ```
 

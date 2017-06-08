@@ -29,9 +29,7 @@ title: scroll
   "controller": "document",
   "action": "scroll",
   "scrollId": "<scrollId>",
-
   "scroll": "<time to live>"
-  }
 }
 ```
 

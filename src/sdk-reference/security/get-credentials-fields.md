@@ -12,20 +12,24 @@ title: getCredentialFields
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.getCredentialFields('local', function (error, fields) {
+kuzzle.security.getCredentialFields('local', function (error, fields) {
+
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .getCredentialFieldsPromise('local')
   .then(fields => {
+
   });
 ```
 
 ```java
-kuzzle.getCredentialFields("local", new ResponseListener<String[]>() {
+kuzzle.security.getCredentialFields("local", new ResponseListener<String[]>() {
   @Override
   public void onSuccess(String[] fields) {
+
   }
 
   @Override
@@ -40,7 +44,7 @@ kuzzle.getCredentialFields("local", new ResponseListener<String[]>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$fields = $kuzzle->getCredentialFields('local');
+$fields = $kuzzle->security->getCredentialFields('local');
 
 ```
 

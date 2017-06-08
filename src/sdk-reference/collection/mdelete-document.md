@@ -5,37 +5,39 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: truncate
+title: mDeleteDocument
 ---
 
-# truncate
+# mDeleteDocument
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .collection('collection', 'index')
-  .truncate(function (error, result) {
-    // callback called once the truncate operation has completed
+  .mDeleteDocument(['doc1', 'doc2'], function (error, result) {
+    // callback called once the mDelete operation has completed
     // => the result is a JSON object containing the raw Kuzzle response
   });
 
 // Using promises (NodeJS only)
 kuzzle
  .collection('collection', 'index')
- .truncatePromise()
+ .mDeleteDocument()
  .then(result => {
-   // promise resolved once the truncate operation has completed
+   // promise resolved once the mDelete operation has completed
    // => the result is a JSON object containing the raw Kuzzle response
  });
 ```
 
 ```java
+String[] documentIds = new String[]{"doc1", "doc2"};
+
 kuzzle
   .collection("collection", "index")
-  .truncate(new ResponseListener<JSONObject>() {
+  .mDeleteDocument(documentIds, new ResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject object) {
-      // callback called once the truncate operation has completed
+      // callback called once the mDelete operation has completed
       // => the result is a JSON object containing the raw Kuzzle response
     }
 
@@ -55,7 +57,7 @@ $kuzzle = new Kuzzle('localhost');
 $dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
-  $dataCollection->truncate();
+  $result = $dataCollection->mDeleteDocument(['doc1', 'doc2']);
 }
 catch (ErrorException $e) {
 
@@ -65,32 +67,20 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-{
-  "status": 200,
-  "error": null,
-  "requestId": "8fdc0efb-6fc7-427d-a3a1-fd8cf5eabc20",
-  "controller": "admin",
-  "action": "truncateCollection",
-  "collection": "name of the truncated collection",
-  "index": "name of the index containing the truncated collection",
-  "volatile": {},
-  "state": "done",
-  "result": { "acknowledged": true }
-}
+["doc1", "doc2"]
 ```
 
-Truncate the data collection, removing all stored documents but keeping all associated mappings.
-
-This method is a lot faster than removing all documents using a query.
+Delete multiple [Documents]({{ site_base_path }}sdk-reference/document/) according to the provided IDs.
 
 ---
 
-## truncate([options], [callback])
+## mDeleteDocument(documentIds, [options], callback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``documentIds`` | String[] | Array of IDs of documents to delete |
 | ``options`` | JSON Object | Optional parameters |
-| ``callback`` | function | Optional callback |
+| ``callback`` | function | Callback handling the response |
 
 ---
 
@@ -99,16 +89,10 @@ This method is a lot faster than removing all documents using a query.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
-
----
-
-## Return value
-
-Returns the `Collection` object to allow chaining.
 
 ---
 
 ## Callback response
 
 Resolves to a `JSON object` containing the raw Kuzzle response.
+Can return a 206 partial error in case some documents could not be deleted.

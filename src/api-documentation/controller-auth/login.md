@@ -20,16 +20,7 @@ title: login
 
 ```js
 {
-  // authentication strategy identifier (optional : kuzzle will use the "local" strategy if not set)
-  "strategy": "<passportjs_strategy>",
-
-  // JWT expiration delay (optional - kuzzle will use server default value if not set)
-  //   - if this option is a raw number (not enclosed between quotes), then
-  //     it represents the expiration delay in milliseconds
-  //   - if this option is a string, then its content is parsed by the "ms" library
-  //     For instance: "6d" (6 days), "10h" (10 hours), ...
-  //     (see https://www.npmjs.com/package/ms for the complete list of accepted
-  //      formats)
+  "strategy": "<authentication strategy name>",
   "expiresIn": "<expiresIn>",
 
   // set of parameters depending of the chosen strategy. Example for "local" strategy:
@@ -50,7 +41,7 @@ title: login
   "action": "login",
 
   "body": {
-    "strategy": "<passportjs_strategy>",
+    "strategy": "<authentication strategy name>",
     "expiresIn": "<expiresIn>",
     "username": "<username>",
     "password": "<password>"
@@ -75,12 +66,35 @@ title: login
 }
 ```
 
-Authenticates a user with a defined **passportjs** authentication strategy.
-See [passportjs.org](http://www.passportjs.org/) for more details about authentication strategies.
+Authenticates a user.
 
-Strategies are implemented as [plugins]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy).
-The default "local" strategy is enabled by default
-(see [kuzzle-plugin-auth-passport-local](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local)),
-and let you authenticate with a login and password.
+
+## Arguments
+
+#### `strategy` (required)
+
+**Type:** string
+
+The name of the authentication [strategy name]({{ site_base_path }}guide/essentials/security/#authentication) used to log the user in.
+
+#### `expiresIn` (optional)
+
+**Type:** string or integer  
+**Default:** depends on [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration/)
+
+* if a raw number is provided (not enclosed between quotes), then the expiration delay is in milliseconds
+* if this value is a string, then its content is parsed by the [ms](https://www.npmjs.com/package/ms) library
+
+Examples: `"6d"`, `"10h"`, `86400000`
+
+#### Other arguments
+
+Depending on the chosen authentication `strategy`, additional [credential arguments]({{ site_base_path}}guide/kuzzle-depth/authentication/#authentication) may be required.  
+The API call example in this page provides the necessary arguments for the [`local` authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local).
+
+Check the appropriate [authentication plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/) documentation to get the list of additional arguments to provide.
+
+## Result
 
 The **_login** action returns an encrypted JSON Web Token, that must then be sent within the [requests headers]({{ site_base_path }}api-documentation/query-syntax/authorization-token/).
+

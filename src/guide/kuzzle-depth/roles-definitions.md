@@ -76,7 +76,7 @@ The [Request](https://github.com/kuzzleio/kuzzle-common-objects#request) object 
 
 ### $currentUserId
 
-The `$currentUserId` variable contains the current user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid). It is an alias for `request.context.token.userId`.
+The `$currentUserId` variable contains the current user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid). It is an alias for `request.context.token.userId`.
 
 ### args
 

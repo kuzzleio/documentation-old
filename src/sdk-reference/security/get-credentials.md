@@ -12,12 +12,13 @@ title: getCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.getCredentials('local', 'kuid', function (error, credentials) {
+kuzzle.security.getCredentials('local', 'kuid', function (error, credentials) {
 
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .getCredentialsPromise('local', 'kuid')
   .then(credentials => {
 
@@ -25,7 +26,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getCredentials("local", "kuid", new ResponseListener<JSONObject>() {
+kuzzle.security.getCredentials("local", "kuid", new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject credentials) {
 
@@ -43,7 +44,7 @@ kuzzle.getCredentials("local", "kuid", new ResponseListener<JSONObject>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$credentials = $kuzzle->getCredentials('local', 'kuid');
+$credentials = $kuzzle->security->getCredentials('local', 'kuid');
 ```
 
 > Callback response

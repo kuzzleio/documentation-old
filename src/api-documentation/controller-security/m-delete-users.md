@@ -48,8 +48,8 @@ title: mDeleteUsers
 
 ```javascript
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "action": "mDeleteUsers",
   "controller": "security",
   "requestId": "<unique request identifier>",
@@ -61,4 +61,4 @@ title: mDeleteUsers
 }
 ```
 
-Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).

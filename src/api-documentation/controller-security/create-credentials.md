@@ -56,7 +56,7 @@ title: createCredentials
   "controller": "security",
   "action": "createCredentials",
   "strategy": "<strategy>",
-  "_id": "<kuid>",             
+  "_id": "<kuid>",
   "body": {
     "username": "MyUser",
     "password": "MyPassword"
@@ -70,8 +70,8 @@ title: createCredentials
 // example with a "local" authentication
 
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "action": "createCredentials",
   "controller": "security",
   "_id": "<kuid>",
@@ -82,4 +82,4 @@ title: createCredentials
 }
 ```
 
-Create credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Create credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.

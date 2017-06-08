@@ -12,12 +12,13 @@ title: getAllCredentialFields
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.getAllCredentialFields(function (error, strategies) {
+kuzzle.security.getAllCredentialFields(function (error, strategies) {
   
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .getAllCredentialFieldsPromise()
   .then(strategies => {
 
@@ -25,7 +26,7 @@ kuzzle
 ```
 
 ```java
-kuzzle.getAllCredentialFields(new ResponseListener<JSONObject>() {
+kuzzle.security.getAllCredentialFields(new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject strategies) {
 
@@ -43,7 +44,7 @@ kuzzle.getAllCredentialFields(new ResponseListener<JSONObject>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$strategies = $kuzzle->getAllCredentialFields();
+$strategies = $kuzzle->security->getAllCredentialFields();
 ```
 
 > Callback response:

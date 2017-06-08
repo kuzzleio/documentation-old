@@ -29,7 +29,10 @@ kuzzle = new Kuzzle('localhost', function (err, res) {
 ```
 
 ```java
-KuzzleOptions options = new KuzzleOptions();
+import io.kuzzle.sdk.core.Kuzzle;
+import io.kuzzle.sdk.core.Options;
+
+Options options = new Options();
 
 options.setDefaultIndex("some index")
   .setAutoReconnect(true),

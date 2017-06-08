@@ -12,12 +12,13 @@ title: validateCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.validateCredentials('local', 'kuid', {'username': 'foo'}, function (error, result) {
+kuzzle.security.validateCredentials('local', 'kuid', {'username': 'foo'}, function (error, result) {
 
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .validateCredentialsPromise('local', 'kuid', {'username': 'foo'})
   .then(result => {
 
@@ -27,7 +28,7 @@ kuzzle
 ```java
 JSONObject credentials = new JSONObject().put("username", "bar");
 
-kuzzle.validateCredentials("local", "kuid", credentials, new ResponseListener<Boolean>() {
+kuzzle.security.validateCredentials("local", "kuid", credentials, new ResponseListener<Boolean>() {
   @Override
   public void onSuccess(Boolean result) {
 
@@ -45,8 +46,7 @@ kuzzle.validateCredentials("local", "kuid", credentials, new ResponseListener<Bo
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->validateCredentials('local', 'kuid', ['username' => 'foo']);
-
+$result = $kuzzle->security->validateCredentials('local', 'kuid', ['username' => 'foo']);
 ```
 
 >> Callback response

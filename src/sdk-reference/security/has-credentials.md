@@ -12,22 +12,24 @@ title: hasCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.hasCredentials('local', 'kuid', function (error, result) {
+kuzzle.security.hasCredentials('local', 'kuid', function (error, result) {
+
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .hasCredentialsPromise('local', 'kuid')
   .then(result => {
-    console.log(result);   // true or false
+
   });
 ```
 
 ```java
-kuzzle.hasCredentials("local", "kuid", new ResponseListener<Boolean>() {
+kuzzle.security.hasCredentials("local", "kuid", new ResponseListener<Boolean>() {
   @Override
   public void onSuccess(Boolean result) {
-    // result var contains either true or false
+
   }
 
   @Override
@@ -42,9 +44,9 @@ kuzzle.hasCredentials("local", "kuid", new ResponseListener<Boolean>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->hasCredentials('local', 'kuid');
+$result = $kuzzle->security->hasCredentials('local', 'kuid');
 
-// $result = true or false
+// $result is a boolean
 ```
 
 Checks if a user has credentials associated with the provided strategy.

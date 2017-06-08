@@ -12,12 +12,13 @@ title: createCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.createCredentials('local', 'kuid', {'username': 'foo'}, function (error, credentials) {
+kuzzle.security.createCredentials('local', 'kuid', {'username': 'foo'}, function (error, credentials) {
 
 });
 
 // Using promises (node.js)
 kuzzle
+  .security
   .createCredentialsPromise('local', 'kuid', {'username': 'foo'})
   .then(credentials => {
 
@@ -27,7 +28,7 @@ kuzzle
 ```java
 JSONObject credentials = new JSONObject().put("username", "bar");
 
-kuzzle.createCredentials("local", "kuid", credentials, new ResponseListener<JSONObject>() {
+kuzzle.security.createCredentials("local", "kuid", credentials, new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject credentials) {
 
@@ -45,7 +46,7 @@ kuzzle.createCredentials("local", "kuid", credentials, new ResponseListener<JSON
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$credentials = $kuzzle->createCredentials('local', 'kuid', ['username' => 'foo']);
+$credentials = $kuzzle->security->createCredentials('local', 'kuid', ['username' => 'foo']);
 
 ```
 
