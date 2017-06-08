@@ -57,12 +57,18 @@ $rights = $kuzzle->security()->getMyRights();
 ```json
 [
   {
-    controller: 'my-controller', action: 'my-action', index: '*', collection: '*',
-    value: 'allowed'
+    "controller": "my-controller",
+    "action": "my-action",
+    "index": "*",
+    "collection": "*",
+    "value": "allowed"
   },
   {
-    controller: 'another-controller', action: '*', index: 'my-index', collection: '*',
-    value: 'conditional'
+    "controller": "another-controller",
+    "action": "*",
+    "index": "my-index",
+    "collection": "*",
+    "value": "conditional"
   }
 ]
 ```
