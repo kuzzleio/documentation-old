@@ -32,33 +32,35 @@ Pipes take a callback as their last parameter, which **must** be called at the e
 The following plugin example adds a `createdAt` attribute to all newly created documents:
 
 ```javascript
-function PipePlugin () {
-  /*
-    This exposed "pipes" property tells Kuzzle that it needs to
-    attach the plugin function "addCreatedAt" to the Kuzzle event
-    "document:beforeCreate"
+class PipePlugin {
+  constructor () {
+    /*
+      This exposed "pipes" property tells Kuzzle that it needs to
+      attach the plugin function "addCreatedAt" to the Kuzzle event
+      "document:beforeCreate"
 
-    The function "addCreatedAt" will be called whenever the event
-    "document:beforeCreate" is fired. Kuzzle will wait for
-    the function's result before continuing the request process
-   */
-  this.pipes = {
-    'document:beforeCreate': 'addCreatedAt'
-  };
+      The function "addCreatedAt" will be called whenever the event
+      "document:beforeCreate" is fired. Kuzzle will wait for
+      the function's result before continuing the request process
+     */
+    this.pipes = {
+      'document:beforeCreate': 'addCreatedAt'
+    };
+  }
 
   /*
     Required plugin initialization function
     (see the "Plugin prerequisites" section)
    */
-  this.init = function (customConfig, context) {
+  init (customConfig, context) {
     // Plugin initialization
-  };
+  }
 
   // Called whenever "document:beforeCreate" is fired
-  this.addCreatedAt = function (request, callback) {
+  addCreatedAt (request, callback) {
     request.input.body.createdAt = Date.now();
     callback(null, request);
-  };
+  }
 }
 
 // Exports the plugin objects, allowing Kuzzle to instantiate it
