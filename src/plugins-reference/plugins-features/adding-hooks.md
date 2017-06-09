@@ -25,15 +25,18 @@ To achieve this, Kuzzle must specify a `threads` property in the [custom configu
 ```json
 {
   "plugins": {
-    "kuzzle-plugin-blabla": {
+    "kuzzle-plugin-worker": {
       "threads": 1
+    },
+    "kuzzle-plugin-listener": {
+      "threads": 0
     }
   }
 }
 ```
 
 If this number of threads is greater than 0, Kuzzle will launch the plugin on as many separate threads.  
-If there are more than 1 thread for that plugin, each time a listened event is fired, Kuzzle will pick one thread to notify using round-robin.
+If there are more than 1 thread for that plugin, each time a listened event is triggered, Kuzzle will pick one thread to notify using round-robin.
 
 <aside class="notice">
 As the Plugin is isolated in separated processes, the <a href="{{ site_base_path }}plugins-reference/plugins-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
@@ -45,35 +48,37 @@ As the Plugin is isolated in separated processes, the <a href="{{ site_base_path
 ## TL;DR plugin skeleton
 
 ```javascript
-function HookPlugin () {
-  /*
-    This exposed "hooks" property tells Kuzzle that it needs to
-    attach the plugin function "myFunction" to the Kuzzle event
-    "eventType:hookName"
+class HookPlugin {
+  constructor () {
+    /*
+      This exposed "hooks" property tells Kuzzle that it needs to
+      attach the plugin function "myFunction" to the Kuzzle event
+      "eventType:hookName"
 
-    The function "myFunction" will be called whenever the event
-    "eventType:hookName" is fired.
-   */
-  this.hooks = {
-    'eventType:hookName': 'myFunction'
-  };
+      The function "myFunction" will be called whenever the event
+      "eventType:hookName" is triggered.
+     */
+    this.hooks = {
+      'eventType:hookName': 'myFunction'
+    };
+  }
 
   /*
    Required plugin initialization function
    (see the "Plugin prerequisites" section)
    */
-  this.init = function (customConfig, context) {
+  init (customConfig, context) {
     // initializes the plugin
-  };
+  }
 
   /*
    The configured function to call whenever the
-   "eventType:hookName" event is fired
+   "eventType:hookName" event is triggered
    */
-  this.myFunction = function (message, event) {
+  myFunction (message, event) {
     console.log(`Event ${event} triggered`);
     console.log(`Message received: ${message}`);
-  };
+  }
 }
 
 // Exports the plugin objects, allowing Kuzzle to instantiate it

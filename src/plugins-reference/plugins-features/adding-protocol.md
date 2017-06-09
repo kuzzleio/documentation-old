@@ -45,21 +45,23 @@ Kuzzle Proxy expects Protocol Plugins to expose the following methods:
 ## TL;DR plugin skeleton
 
 ```javascript
-function ProtocolPlugin () {
-  this.context = null;
+class ProtocolPlugin {
+  constructor () {
+    this.context = null;
 
-  // Example on how to maintain client connections
-  this.clients = {};
-  this.connections = {};
+    // Example on how to maintain client connections
+    this.clients = {};
+    this.connections = {};
+  }
 
   /*
    Required plugin initialization function
    (see the "Plugin prerequisites" section)
   */
-  this.init = function (config, context) {
+  init (config, context) {
     // plugin initialization
     this.context = context;
-  };
+  }
 
   /*
    This function is only an example showing how to interact with
@@ -68,7 +70,7 @@ function ProtocolPlugin () {
    The way a protocol plugins handles clients closely depends on the
    implemented protocol.
    */
-  this.handleClient = function () {
+  handleClient () {
     // when a client connects
     this.on('onClientConnect', function (client) {
 
@@ -104,7 +106,7 @@ function ProtocolPlugin () {
       delete this.clients[connection.id];
       delete this.connections[client.id];
     });
-  };
+  }
 
   /*
    Invoked by Kuzzle when a "data.payload" payload needs to be
@@ -112,11 +114,11 @@ function ProtocolPlugin () {
 
    The payload is a Kuzzle response as a plain-old JSON object
   */
-  this.broadcast = function (data) {
+  broadcast (data) {
     data.channels.forEach(channel => {
       // sends data.payload to the channel
     });
-  };
+  }
 
   /*
    Invoked by Kuzzle when a "data.payload" payload needs to be
@@ -124,37 +126,37 @@ function ProtocolPlugin () {
 
    The payload is a Kuzzle response as a plain-old JSON object
   */
-  this.notify = function (data) {
+  notify (data) {
     data.channels.forEach(channel => {
       // sends "data.payload" to the connection "data.id" and to
       // the channel "channel"
     });
-  };
+  }
 
   /*
     Invoked by Kuzzle when the connection "data.id" joins the
     channel "data.channel"
    */
-  this.joinChannel = function (data) {
+  joinChannel (data) {
      // ...
-  };
+  }
 
   /*
     Invoked by Kuzzle when the connection "data.id" leaves the
     channel "data.channel"
    */
-  this.leaveChannel = function (data) {
+  leaveChannel (data) {
     // ...
-  };
+  }
 
   /*
     Invoked by Kuzzle when it needs to force-close a client connection
    */
-  this.disconnect = function (connectionId) {
+  disconnect (connectionId) {
     const client = this.clients[connectionId];
     // close the client connection
-  };
-};
+  }
+}
 
 // Exports the plugin objects, allowing Kuzzle to instantiate it
 module.exports = ProtocolPlugin;
