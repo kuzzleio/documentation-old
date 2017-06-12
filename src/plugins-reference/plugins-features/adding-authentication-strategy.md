@@ -157,9 +157,9 @@ The function **must** return a `Promise` that resolves to an object that contain
 
 You may implement a `getById` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to get informations about a user's credentials to this strategy searching by the strategy storage identifier (`_id`). For security reasons, only **non sensitive** informations should be returned.
 
-Here is the generic signature of the `getInfo` function you have to implement:
+Here is the generic signature of the `getById` function you have to implement:
 
-`getInfo (request, id, strategy)`
+`getById (request, id, strategy)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request)).
 * `id` is the user's storage identifier in the strategy.
