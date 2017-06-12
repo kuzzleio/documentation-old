@@ -193,7 +193,7 @@ The function **may** return any value as it will be ignored.
 
 ## The validate function
 
-You have to implement a `validate` (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to check if the provided user's credentials to this strategy are well-formed.
+You have to implement a `validate` (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to check if the provided user's credentials to this strategy are well-formed, and ensure that every values you want are unique.
 
 Here is the generic signature of the `validate` function you have to implement:
 
@@ -205,7 +205,7 @@ Here is the generic signature of the `validate` function you have to implement:
 * `strategy` the name of the strategy
 * `isUpdate` is true if `validate` is called during an update.
 
-The function **must** return a `Promise` that resolves to true or rejects with an error explaining the reason.
+The function **must** return a `Promise` that resolves or rejects with an error explaining the reason.
 
 <aside class="warning">
   Validate can be called during an update with partial information. The validation should behave accordingly when isUpdate is true, knowing that mandatory information should already have been stored during a previous create call.

@@ -51,7 +51,7 @@ $result = $kuzzle->security->validateCredentials('local', 'kuid', ['username' =>
 // $result = true or false
 ```
 
-Update credentials of the specified <strategy> for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to update credentials for.
+Validate credentials of the specified <strategy> for the user <kuid>.
 
 ---
 
