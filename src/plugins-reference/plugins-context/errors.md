@@ -24,7 +24,7 @@ This class should only be used to create new Kuzzle error objects.
 Used to notify about badly formed requests.
 
 ```js
-var err = new context.errors.BadRequestError('error message');
+const err = new context.errors.BadRequestError('error message');
 ```
 
 ---
@@ -36,7 +36,7 @@ var err = new context.errors.BadRequestError('error message');
 Used when an external service answers to a request with an error other than a bad request or a service unavailable one.
 
 ```js
-var err = new context.errors.ExternalServiceError('error message');
+const err = new context.errors.ExternalServiceError('error message');
 ```
 
 ---
@@ -48,7 +48,7 @@ var err = new context.errors.ExternalServiceError('error message');
 Used when a user tries to use resources beyond his access rights.
 
 ```js
-var err = new context.errors.ForbiddenError('error message');
+const err = new context.errors.ForbiddenError('error message');
 ```
 
 ---
@@ -60,7 +60,7 @@ var err = new context.errors.ForbiddenError('error message');
 Used when a plugin takes too long to perform a task.
 
 ```js
-var err = new context.errors.GatewayTimeoutError('error message');
+const err = new context.errors.GatewayTimeoutError('error message');
 ```
 
 ---
@@ -72,7 +72,7 @@ var err = new context.errors.GatewayTimeoutError('error message');
 Standard generic error. Used for uncatched exceptions.
 
 ```js
-var err = new context.errors.InternalError('error message');
+const err = new context.errors.InternalError('error message');
 ```
 
 ---
@@ -84,7 +84,7 @@ var err = new context.errors.InternalError('error message');
 Used when asked resources cannot be found.
 
 ```js
-var err = new context.errors.NotFoundError('error message');
+const err = new context.errors.NotFoundError('error message');
 ```
 
 ---
@@ -96,7 +96,7 @@ var err = new context.errors.NotFoundError('error message');
 Used when a provided resource cannot be interpreted.
 
 ```js
-var err = new context.errors.ParseError('error message');
+const err = new context.errors.ParseError('error message');
 ```
 
 ---
@@ -110,7 +110,7 @@ Used when a request only partially succeeded.
 The constructor takes an additional `array` argument containing a list of failed parts.
 
 ```js
-var err = new context.errors.PartialError('error message', [{this: 'failed'}, {andThis: 'failed too'}]);
+const err = new context.errors.PartialError('error message', [{this: 'failed'}, {andThis: 'failed too'}]);
 ```
 
 ---
@@ -122,8 +122,21 @@ var err = new context.errors.PartialError('error message', [{this: 'failed'}, {a
 Used when a plugin fails.
 
 ```js
-var err = new context.errors.PluginImplementationError('error message');
+const err = new context.errors.PluginImplementationError('error message');
 ```
+
+---
+
+## `PreconditionError`
+
+**Status Code:** `412`
+
+Used when a request could not be processed because preconditions weren't met.
+
+```js
+const err = new context.errors.PreconditionError('error message');
+```
+
 
 ---
 
@@ -134,7 +147,7 @@ var err = new context.errors.PluginImplementationError('error message');
 Used when a resource cannot respond because it is temporarily unavailable.
 
 ```js
-var err = new context.errors.ServiceUnavailableError('error message');
+const err = new context.errors.ServiceUnavailableError('error message');
 ```
 
 ---
@@ -146,7 +159,7 @@ var err = new context.errors.ServiceUnavailableError('error message');
 Used to notify about requests exceeding maximum limits.
 
 ```js
-var err = new context.errors.SizeLimitError('error message');
+const err = new context.errors.SizeLimitError('error message');
 ```
 
 ---
@@ -158,5 +171,5 @@ var err = new context.errors.SizeLimitError('error message');
 Used when a user fails a login attempt.
 
 ```js
-var err = new context.errors.UnauthorizedError('error message');
+const err = new context.errors.UnauthorizedError('error message');
 ```
