@@ -65,10 +65,11 @@ You have to implement an `exists` function (its name depends on the configuratio
 
 Here is the generic signature of the `exists` function you have to implement:
 
-`exists (request, kuid)`
+`exists (request, kuid, strategy)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request)).
 * `kuid` is the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+* `strategy` the name of the strategy
 
 The function **must** return a `Promise` that resolves to a boolean depending on the user ability to authenticate with a strategy.
 
@@ -80,11 +81,12 @@ You have to implement an `create` function (its name depends on the configuratio
 
 Here is the generic signature of the `create` function you have to implement:
 
-`create (request, credentials, kuid)`
+`create (request, credentials, kuid, strategy)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request)).
 * `credentials` is the content of the credentials to create, that have already been passed to your `validate` function.
 * `kuid` is the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+* `strategy` the name of the strategy
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
@@ -100,11 +102,12 @@ You have to implement an `update` function (its name depends on the configuratio
 
 Here is the generic signature of the `update` function you have to implement:
 
-`update (request, credentials, kuid)`
+`update (request, credentials, kuid, strategy)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request)).
 * `credentials` is the content of the credentials to create, that have already been passed to your `validate` function.
 * `kuid` is the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+* `strategy` the name of the strategy
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
@@ -120,10 +123,11 @@ You have to implement a `delete` function (its name depends on the configuration
 
 Here is the generic signature of the `delete` function you have to implement:
 
-`delete (request, kuid)`
+`delete (request, kuid, strategy)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request)).
 * `kuid` is the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+* `strategy` the name of the strategy
 
 The function **must** return a `Promise` that resolves to any value if deletion succeeds.
 
@@ -135,10 +139,11 @@ You may implement a `getInfo` function (its name depends on the configuration pr
 
 Here is the generic signature of the `getInfo` function you have to implement:
 
-`getInfo (request, kuid)`
+`getInfo (request, kuid, strategy)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request)).
 * `kuid` is the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+* `strategy` the name of the strategy
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
@@ -152,12 +157,13 @@ The function **must** return a `Promise` that resolves to an object that contain
 
 You may implement a `getById` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to get informations about a user's credentials to this strategy searching by the strategy storage identifier (`_id`). For security reasons, only **non sensitive** informations should be returned.
 
-Here is the generic signature of the `getInfo` function you have to implement:
+Here is the generic signature of the `getById` function you have to implement:
 
-`getInfo (request, id)`
+`getById (request, id, strategy)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request)).
 * `id` is the user's storage identifier in the strategy.
+* `strategy` the name of the strategy
 
 The function **must** return a `Promise` that resolves to an object that contains **non sensitive** information of the object (can be an empty object).
 
@@ -191,11 +197,12 @@ You have to implement a `validate` (its name depends on the configuration provid
 
 Here is the generic signature of the `validate` function you have to implement:
 
-`validate (request, credentials, kuid, isUpdate)`
+`validate (request, credentials, kuid, strategy, isUpdate)`
 
 * `request` is the request made to Kuzzle (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request)).
 * `credentials` is the content of the credentials to create or update.
 * `kuid` is the user [`<kuid>`]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+* `strategy` the name of the strategy
 * `isUpdate` is true if `validate` is called during an update.
 
 The function **must** return a `Promise` that resolves to true or rejects with an error explaining the reason.
