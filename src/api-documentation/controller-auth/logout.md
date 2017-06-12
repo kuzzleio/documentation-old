@@ -31,6 +31,19 @@ title: logout
   "jwt": "<encrypted_jwt_token>"
 }
 ```
+>**Response**
+
+```javascript
+{
+  "status": 200,
+  "error": null,
+  "controller": "auth",
+  "action": "logout",
+  "requestId": "<unique request identifier>",
+  "volatile": {},
+  "result": {}
+}
+```
 
 Revokes the token validity & unsubscribe from registered rooms.
 
