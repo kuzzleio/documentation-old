@@ -18,8 +18,9 @@ In this section we'll take a deeper look at the Kuzzle Core internals.
 
 The above schema shows the main architecture in Kuzzle, which is composed of the following entities.
 
-* **Kuzzle Proxy**: handles the communication between the client and Kuzzle (see [Connecting to kuzzle]({{ site_base_path }}api-documentation/connecting-to-kuzzle/)), and forwards the input message to the Router.
-* **Router**: exposes the API routes, normalizes the Request and sends them to the Funnel.
+* **Kuzzle Proxy**: handles the communication between the client and Kuzzle (see [Connecting to kuzzle]({{ site_base_path }}api-documentation/connecting-to-kuzzle/)), and forwards the input message to Kuzzle.
+* **Entry Points**: handles the incoming message from the Proxy and sends them to the Funnel.
+* **Router**: exposes the API HTTP routes, normalizes the Request and sends them to the Funnel.
 * **Funnel**: analyses the Request and forwards it to the appropriate Controller.
 * **Controllers**: handle and respond to client requests (see [API reference]({{ site_base_path }}api-documentation))
 * **Internal Components**: Any component internally accessed by controllers.
@@ -33,8 +34,6 @@ Kuzzle currently implements the following Services:
 
 * [elasticsearch.js](https://github.com/kuzzleio/kuzzle/blob/master/lib/services/elasticsearch.js): interface to [Elasticsearch](https://www.elastic.co/products/elasticsearch), used for persistent data storage.
 * [redis.js](https://github.com/kuzzleio/kuzzle/blob/master/lib/services/redis.js): interface to the [redis](http://redis.io) cache server.
-* [proxyBroker.js](https://github.com/kuzzleio/kuzzle/blob/master/lib/services/proxyBroker.js): interface with the proxy.
-* [Broker Client and Server](https://github.com/kuzzleio/kuzzle/blob/master/lib/services/broker): implementation of the internal message broker.
 * [internalEngine.js](https://github.com/kuzzleio/kuzzle/blob/master/lib/services/internalEngine/): light interface with the internal index (containing kuzzle's configuration) in Elastic Search.
 
 
