@@ -20,6 +20,7 @@ Every time Kuzzle receives a request coming from a client, it routes it towards 
 |-------|-------------|---------|
 | `<pluginName>/<controller>:after<Action>` | Triggered after the action `action` of the controller `controller` added by the plugin `pluginName` has completed | Type: Request |
 | `<pluginName>/<controller>:before<Action>` | Triggered before the action `action` of the controller `controller` added by the plugin `pluginName` has started | Type: Request |
+| `<pluginName>/<controller>:error<Action>` | When an error occurred during an action in `controller` controller, an event error is triggered | Type: Request |
 
 **Example:**
 
@@ -29,6 +30,10 @@ When an API request invokes this new API route, Kuzzle will automatically trigge
 
 * `foo/fooController:beforeFooAction` (before the request starts)
 * `foo/fooController:afterFooAction` (after the request completes)
+
+And in case of error, will trigger the event:
+
+* `foo/fooController:errorFooAction`
 
 ---
 
@@ -40,6 +45,7 @@ Events triggered when a request is treated in the [`auth` controller]({{ site_ba
 |-------|-------------|---------|
 | `auth:after<Action>`  | All actions in `auth` controller trigger an event after executing  | Type: Request |
 | `auth:before<Action>` | All actions in `auth` controller trigger an event before executing | Type: Request |
+| `auth:error<Action>` | When an error occurred during an action in `auth` controller, an event error is triggered | Type: Request |
 
 ---
 
@@ -51,6 +57,7 @@ Events triggered when a request is treated in the [`bulk` controller]({{ site_ba
 |-------|-------------|---------|
 | `bulk:afterImport`  | The `import` action in `bulk` controller triggers an event after executing  | Type: Request |
 | `bulk:beforeImport` | The `import` action in `bulk` controller triggers an event before executing | Type: Request |
+| `bulk:errorImport` | When an error occurred during the action `import` in `bulk` controller, an event error is triggered | Type: Request |
 
 ---
 
@@ -74,7 +81,7 @@ Events triggered when a request is treated in the [`collection` controller]({{ s
 |-------|-------------|---------|
 | `collection:after<Action>`  | All actions in `collection` controller trigger an event after executing  | Type: Request |
 | `collection:before<Action>` | All actions in `collection` controller trigger an event before executing | Type: Request |
-
+| `collection:error<Action>` | When an error occurred during an action in `collection` controller, an event error is triggered | Type: Request |
 ---
 
 ## core
@@ -106,6 +113,7 @@ Events triggered when a request is treated in the [`document` controller]({{ sit
 |-------|-------------|---------|
 | `document:after<Action>`  | All actions in `document` controller trigger an event after executing  | Type: Request |
 | `document:before<Action>` | All actions in `document` controller trigger an event before executing | Type: Request |
+| `document:error<Action>` | When an error occurred during an action in `document` controller, an event error is triggered | Type: Request |
 
 ---
 
@@ -125,6 +133,7 @@ Events triggered when a request is treated in the [`index` controller]({{ site_b
 |-------|-------------|---------|
 | `index:after<Action>`  | All actions in `index` controller trigger an event after executing  | Type: Request |
 | `index:before<Action>` | All actions in `index` controller trigger an event before executing | Type: Request |
+| `index:error<Action>` | When an error occurred during an action in `index` controller, an event error is triggered | Type: Request |
 
 ---
 
@@ -152,7 +161,7 @@ Events triggered when a request is sent to the [`memoryStorage` controller]({{ s
 |-------|-------------|---------|
 |`ms:after<Action>`  | All actions in `memoryStorage` controller trigger an event after executing  | Type: Request |
 |`ms:before<Action>` | All actions in `memoryStorage` controller trigger an event before executing | Type: Request |
-
+| `ms:error<Action>` | When an error occurred during an action in `ms` controller, an event error is triggered | Type: Request |
 ---
 
 ## prepareDb
@@ -193,7 +202,7 @@ Events triggered when a request is sent to the [`realtime` controller]({{ site_b
 |-------|-------------|---------|
 |`realtime:after<Action>`  | All actions in `realtime` controller trigger an event after executing  | Type: Request |
 |`realtime:before<Action>` | All actions in `realtime` controller trigger an event before executing | Type: Request |
-
+|`realtime:error<Action>` | When an error occurred during an action in `realtime` controller, an event error is triggered | Type: Request |
 ---
 
 ## request (event)
@@ -229,7 +238,7 @@ Events triggered when a request is sent to the [`security` controller]({{ site_b
 | `security:after<Action>`              | All actions in `security` controller trigger an event after executing                 | Type: Request |
 | `security:before<Action>`             | All actions in `security` controller trigger an event before executing                | Type: Request |
 | `security:formatUserForSerialization` | Triggered before serializing a user. Useful to clean a user like attribute `password` | Type: User    |
-
+| `security:error<Action>` | When an error occurred during an action in `security` controller, an event error is triggered | Type: Request |
 ---
 
 ## server
@@ -240,3 +249,5 @@ Events triggered on server special events or when a request is sent to the [`ser
 |-------|-------------|---------|
 | `server:after<Action>`  | All actions in `server` controller trigger an event after executing  | Type: Request                                                         |
 | `server:before<Action>` | All actions in `server` controller trigger an event before executing | Type: Request                                                         |
+| `server:error<Action>` | When an error occurred during an action in `server` controller, an event error is triggered | Type: Request                                                         |
+
