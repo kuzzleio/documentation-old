@@ -31,7 +31,7 @@ kuzzle
 // Deleting one document
 kuzzle
   .collection("collection", "index")
-  .deleteSpecifications("document unique ID", new ResponseListener<JSONObject>() {
+  .deleteSpecifications(new ResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject res) {
 

@@ -11,28 +11,49 @@ title: updateSpecifications
 # updateSpecifications
 
 ```js
+var specifications = {
+  strict: 'true',
+  fields: {
+    foo: {
+      mandatory: true,
+      type: 'string',
+      defaultValue: 'bar'
+    }
+  }
+};
+
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .collection('collection', 'index')
-  .updateSpecifications({specification: 'content'}, function (err, res) {
+  .updateSpecifications(specifications, function (err, res) {
     // result is a JSON object
   });
 
 // Using promises (NodeJS)
 kuzzle
   .collection('collection', 'index')
-  .updateSpecificationsPromise({specification: 'content'})
+  .updateSpecificationsPromise(specifications)
   .then(res => {
     // result is a JSON object
   });
 ```
 
 ```java
-JSONObject specificationContent = new JSONObject().put("specification", "content");
+JSONObject fooField = new JSONObject()
+    .put("mandatory", "true")
+    .put("type", "string")
+    .put("defaultValue", "bar");
+
+JSONObject fields = new JSONObject()
+    .put("foo", fooField);
+
+JSONObject specifications = new JSONObject()
+    .put("strict", "true")
+    .put("fields", fields);
 
 kuzzle
   .collection("collection", "index")
-  .updateSpecifications(specificationContent, new ResponseListener<JSONObject>() {
+  .updateSpecifications(specifications, new ResponseListener<JSONObject>() {
     @Override
     public void onSuccess(JSONObject res) {
       // result is a JSONObject
@@ -50,9 +71,15 @@ kuzzle
 
 use \Kuzzle\Kuzzle;
 
-$documentId = 'foobar';
-$specificationContent = [
-  'specification' => 'content'
+$specifications = [
+    'strict' => true,
+    'fields' => [
+        'foo' => [
+            'mandatory' => true,
+            'type' => 'string',
+            'defaultValue' => 'bar'
+        ]
+    ]
 ];
 
 $kuzzle = new Kuzzle('localhost');
@@ -60,10 +87,29 @@ $dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   // result is an array
-  $res = $dataCollection->updateSpecifications($specificationContent);
+  $res = $dataCollection->updateSpecifications($specifications);
 }
 catch (ErrorException $e) {
 
+}
+```
+
+> Callback response
+
+```json
+{
+  "index": {
+    "collection": {
+      "strict":"true",
+      "fields": {
+        "foo": {
+          "mandatory": "true",
+          "type": "string",
+          "defaultValue": "bar"
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -95,24 +141,3 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 ## Return value
 
 Returns the `Collection` object to allow chaining.
-
----
-
-## Callback response
-
-```json
-{
-  "index": {
-    "collection": {
-      "strict":"true",
-      "fields": {
-        "foo": {
-          "mandatory": "true",
-          "type": "string",
-          "defaultValue": "bar"
-        }
-      }
-    }
-  }
-}
-```

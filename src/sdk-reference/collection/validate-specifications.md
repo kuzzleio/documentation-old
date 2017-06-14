@@ -11,28 +11,49 @@ title: validateSpecifications
 # validateSpecifications
 
 ```js
+var specifications = {
+  strict: 'true',
+  fields: {
+    foo: {
+      mandatory: true,
+      type: 'string',
+      defaultValue: 'bar'
+    }
+  }
+};
+
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .collection('collection', 'index')
-  .validateSpecifications({specification: 'content'}, function (err, isValid) {
+  .validateSpecifications(specifications, function (err, isValid) {
     // isValid is a boolean
   });
 
 // Using promises (NodeJS)
 kuzzle
   .collection('collection', 'index')
-  .validateSpecificationsPromise({specification: 'content'})
+  .validateSpecificationsPromise(specifications)
   .then(isValid => {
     // isValid is a boolean
   });
 ```
 
 ```java
-JSONObject specificationContent = new JSONObject().put("specification", "content");
+JSONObject fooField = new JSONObject()
+    .put("mandatory", "true")
+    .put("type", "string")
+    .put("defaultValue", "bar");
+
+JSONObject fields = new JSONObject()
+    .put("foo", fooField);
+
+JSONObject specifications = new JSONObject()
+    .put("strict", "true")
+    .put("fields", fields);
 
 kuzzle
   .collection("collection", "index")
-  .validateSpecifications(specificationContent, new ResponseListener<Boolean>() {
+  .validateSpecifications(specifications, new ResponseListener<Boolean>() {
     @Override
     public void onSuccess(Boolean isValid) {
       // isValid is a boolean
@@ -50,9 +71,15 @@ kuzzle
 
 use \Kuzzle\Kuzzle;
 
-$documentId = 'foobar';
-$specificationContent = [
-  'specification' => 'content'
+$specifications = [
+    'strict' => true,
+    'fields' => [
+        'foo' => [
+            'mandatory' => true,
+            'type' => 'string',
+            'defaultValue' => 'bar'
+        ]
+    ]
 ];
 
 $kuzzle = new Kuzzle('localhost');
@@ -60,7 +87,7 @@ $dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
   // $isValid is a boolean
-  $isValid = $dataCollection->validateSpecifications($specificationContent);
+  $isValid = $dataCollection->validateSpecifications($specifications);
 }
 catch (ErrorException $e) {
 

@@ -81,6 +81,18 @@ catch (ErrorException $e) {
 }
 ```
 
+> Callback response
+
+```json
+{
+  "hits": [
+    {"first": "specification"},
+    {"second": "specification"}
+  ],
+  "total": 2
+}
+```
+
 Returns a JSON object containing the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.  
 A scroll session is always initiated by a `searchSpecification` action by using the `scroll` argument.
 
@@ -102,19 +114,3 @@ A scroll session is always initiated by a `searchSpecification` action by using 
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``scroll`` | string | Re-initializes the scroll session timeout to its value. If not defined, the scroll timeout is defaulted to a Kuzzle configuration | ``undefined`` |
-
----
-
-## Callback response
-
-```json
-{
-  "hits": [
-    {"first": "specification"},
-    {"second": "specification"}
-  ],
-  "total": 2
-}
-```
-
----
