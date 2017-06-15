@@ -14,7 +14,7 @@ title: deleteSpecifications
 // Deleting specifications using callbacks (NodeJS or Web Browser)
 kuzzle
   .collection('collection', 'index')
-  .deleteSpecifications(function (err, deleted) {
+  .deleteSpecifications(function (err, res) {
     // callback called once the delete action has been completed
   });
 
@@ -22,7 +22,7 @@ kuzzle
 kuzzle
   .collection('collection', 'index')
   .deleteSpecificationsPromise()
-  .then(deleted => {
+  .then(res => {
     // promises resolved once the delete action has been completed
   });
 ```
@@ -31,9 +31,9 @@ kuzzle
 // Deleting one document
 kuzzle
   .collection("collection", "index")
-  .deleteSpecifications(new ResponseListener<Boolean>() {
+  .deleteSpecifications(new ResponseListener<JSONObject>() {
     @Override
-    public void onSuccess(Boolean deleted) {
+    public void onSuccess(JSONObject result) {
 
     }
 
@@ -54,7 +54,7 @@ $dataCollection = $kuzzle->collection('collection', 'index');
 
 // Deleting one document
 try {
-  $deleted = $dataCollection->deleteSpecifications();
+  $result = $dataCollection->deleteSpecifications();
 }
 catch (ErrorException $e) {
 
@@ -64,7 +64,9 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-true
+{
+  "acknowledged": true
+}
 ```
 
 Delete specifications linked to the collection object.
@@ -92,9 +94,3 @@ Delete specifications linked to the collection object.
 ## Return value
 
 Returns the `Collection` object to allow chaining.
-
----
-
-## Callback response
-
-Resolves to a boolean confirming the success of the delete action.
