@@ -24,7 +24,7 @@ kuzzle.memoryStorage.sdiffstorePromise('key', ['key1', 'key2', '...'], 'destinat
 ```
 
 ```java
-JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+String[] keys = new String[]{"key1", "key2", "..."};
 
 kuzzle.memoryStorage.sdiffstore("key", keys, "destination", new ResponseListener<Long>() {
   @Override

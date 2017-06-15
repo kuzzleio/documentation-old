@@ -24,7 +24,8 @@ kuzzle.memoryStorage.bitopPromise('key', 'AND', ['srckey1', 'srckey2', '...'])
 ```
 
 ```java
-JSONArray sourceKeys = new JSONArray().put("srckey1").put("srckey2").put("...");
+String[] sourceKeys = {"srckey1", "srckey2", "..."};
+
 kuzzle.memoryStorage.bitop("key", "AND", sourceKeys, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int length) {

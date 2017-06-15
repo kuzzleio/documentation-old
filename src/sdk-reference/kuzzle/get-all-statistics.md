@@ -31,7 +31,7 @@ kuzzle
 ```java
 kuzzle.getAllStatistics(new ResponseListener<JSONArray>() {
   @Override
-  public void onSuccess(JSONArray object) {
+  public void onSuccess(JSONObject[] frames) {
     // loop through all returned frames
   }
 

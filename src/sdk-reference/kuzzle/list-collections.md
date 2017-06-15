@@ -25,9 +25,9 @@ kuzzle
 ```
 
 ```java
-kuzzle.listCollections("index", new ResponseListener<JSONObject>() {
+kuzzle.listCollections("index", new ResponseListener<JSONObject[]>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(JSONObject[] collections) {
     // ...
   }
 
@@ -95,4 +95,4 @@ If no `index` argument is provided, the `defaultIndex` property is used. If no d
 
 ## Callback response
 
-Resolves to a `JSON object` containing the list of stored and/or realtime collections on the provided index.
+Resolves to an array of JSON objects containing the list of stored and/or realtime collections on the provided index.

@@ -11,12 +11,16 @@ title: createProfile
 # createProfile
 
 ```js
-var profileDefinition = {
-  policies: [
-    {roleId: 'myrole'},
-    {roleId: 'default', restrictedTo: [{index: 'index1'}, {index: 'index2', collections: ['foo', 'bar'] } ] }
-  ]
-};
+var policies = [
+  {roleId: 'myrole'},
+  {
+    roleId: 'default', 
+    restrictedTo: [
+      {index: 'index1'}, 
+      {index: 'index2', collections: ['foo', 'bar'] } 
+    ] 
+  }
+];
 
 // You can chose to replace the given profile if already exists
 var options = {
@@ -26,43 +30,38 @@ var options = {
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .createProfile('myprofile', profileDefinition, options, function(error, response) {
-    // result is a Profile object
+  .createProfile('myprofile', policies, options, function(error, profile) {
+
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
-  .createProfilePromise('myprofile', profileDefinition, options)
-  .then((response) => {
-    // result is a Profile object
+  .createProfilePromise('myprofile', policies, options)
+  .then(profile => {
+
   });
 ```
 
 ```java
-JSONObject role1 = new JSONObject()
-  .put("roleId", "myrole");
-
-JSONObject role2 = new JSONObject()
-  .put("roleId", "default")
-  .put("restrictedTo", new JSONArray()
-    .put(new JSONObject().put("index", "index1"))
-    .put(new JSONObject()
-      .put("index", "index2")
-      .put("collections",new JSONArray().put("foo").put("bar"))
+JSONObject[] policies = new JSONObject[]{
+  new JSONObject().put("roleId", "myrole"),
+  new JSONObject()
+    .put("roleId", "default")
+    .put("restrictedTo", new JSONArray()
+      .put(new JSONObject().put("index", "index1"))
+      .put(new JSONObject()
+        .put("index", "index2")
+        .put("collections",new JSONArray().put("foo").put("bar"))
+      )
     )
-  );
-JSONObject profileDefinition = new JSONObject()
-  .put("policies", new JSONArray()
-    .put(role1)
-    .put(role2)
-  );
+};
 
 Options opts = new Options().setReplaceIfExist(true);
 
 kuzzle
   .security
-  .createProfile("myprofile", profileDefinition, opts, new ResponseListener<Profile>() {
+  .createProfile("myprofile", policies, opts, new ResponseListener<Profile>() {
     @Override
     public void onSuccess(Profile profile) {
 
@@ -82,16 +81,14 @@ use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\Profile;
 
 $profileId = 'myProfile';
-$profileDefinition = [
-  'policies' => [
-    [
-      'roleId' => 'myRole'
-    ],
-    [
-      'roleId' => 'anonymous',
-      'restrictedTo' => [
-        ['index' => 'my-second-index', 'collection' => ['my-collection']]
-      ]
+$policies = [
+  [
+    'roleId' => 'myRole'
+  ],
+  [
+    'roleId' => 'anonymous',
+    'restrictedTo' => [
+      ['index' => 'my-second-index', 'collection' => ['my-collection']]
     ]
   ]
 ];
@@ -123,7 +120,7 @@ That means that a profile that was just been created will not be returned by <co
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique profile identifier |
-| ``content`` | JSON Object | A plain JSON object representing the profile and credentials |
+| ``policies`` | array of JSON objects | List of policies to apply to this profile |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | Callback handling the response |
 

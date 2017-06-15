@@ -24,9 +24,9 @@ kuzzle.memoryStorage.zrangebylexPromise('key', '-', '(g')
 ```
 
 ```java
-kuzzle.memoryStorage.zrangebylex("key", "-", "(g", new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.zrangebylex("key", "-", "(g", new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray members) {
+  public void onSuccess(String[] members) {
     // callback called once the action has completed
   }
 

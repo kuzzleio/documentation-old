@@ -24,11 +24,11 @@ kuzzle.memoryStorage.sdiffPromise('key', ['key1', 'key2', '...'])
 ```
 
 ```java
-JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+String[] keys = new String[]{"key1", "key2", "..."};
 
-kuzzle.memoryStorage.sdiff("key", keys, new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.sdiff("key", keys, new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray diff) {
+  public void onSuccess(String[] diffs) {
     // callback called once the action has completed
   }
 

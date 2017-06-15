@@ -24,9 +24,9 @@ kuzzle.memoryStorage.spopPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.spop("key", new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.spop("key", new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray elements) {
+  public void onSuccess(String[] elements) {
     // callback called once the action has completed
   }
 

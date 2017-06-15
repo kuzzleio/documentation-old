@@ -24,7 +24,8 @@ kuzzle.memoryStorage.hdelPromise('key', ['field1', 'field2'])
 ```
 
 ```java
-JSONArray fields = new JSONArray().put("field1").put("field2");
+String[] fields = {"field1", "field2", "..."};
+
 kuzzle.memoryStorage.hdel("key", fields, new ResponseListener<Long>() {
   @Override
   public void onSuccess(int count) {

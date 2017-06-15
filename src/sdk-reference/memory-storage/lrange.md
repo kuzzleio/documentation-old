@@ -24,9 +24,9 @@ kuzzle.memoryStorage.lrangePromise('key', 0, 1)
 ```
 
 ```java
-kuzzle.memoryStorage.lrange("key", 0, 1, new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.lrange("key", 0, 1, new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray values) {
+  public void onSuccess(String[] values) {
     // callback called once the action has completed
   }
 

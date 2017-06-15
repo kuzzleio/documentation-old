@@ -30,13 +30,13 @@ kuzzle.memoryStorage.zaddPromise('key', elements)
 ```
 
 ```java
-JSONArray elements = new JSONArray()
-  .put(new JSONObject().put("score", 1).put("member", "foo"))
-  .put(new JSONObject().put("score", 2).put("member", "bar"))
-  .put(new JSONObject().put("score", 3).put("member", "baz"));
+JSONObject[] elements = new JSONObject[]{
+  new JSONObject().put("score", 1).put("member", "foo"),
+  new JSONObject().put("score", 2).put("member", "bar"),
+  new JSONObject().put("score", 3).put("member", "baz")
+};
 
 kuzzle.memoryStorage.zadd("key", elements new ResponseListener<Long>() {
-  @Override
   public void onSuccess(int count) {
     // callback called once the action has completed
   }

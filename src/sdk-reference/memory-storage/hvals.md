@@ -24,9 +24,9 @@ kuzzle.memoryStorage.hvalsPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.hvals("key", new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.hvals("key", new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray values) {
+  public void onSuccess(String[] values) {
     // callback called once the action has completed
   }
 

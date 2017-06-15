@@ -24,7 +24,7 @@ kuzzle.memoryStorage.rpushPromise('key', ['foo', 'bar', 'baz'])
 ```
 
 ```java
-JSONArray values = new JSONArray().put("foo").put("bar").put("baz");
+String[] items = new String[]{"foo", "bar", "baz"};
 
 kuzzle.memoryStorage.rpush("key", items, new ResponseListener<Long>() {
   @Override

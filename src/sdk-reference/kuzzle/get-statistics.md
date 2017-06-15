@@ -14,22 +14,20 @@ title: getStatistics
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.getStatistics(function (err, stats) {
-  // ...
+kuzzle.getStatistics(function (err, statistics) {
 });
 
 // Using promises (NodeJS only)
 kuzzle
   .getStatisticsPromise()
-  .then(stats => {
-    // ...
+  .then(statistics => {
   });
 ```
 
 ```java
 kuzzle.getStatistics(new ResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONObject object) {
+  public void onSuccess(JSONObject[] statistics) {
     // ...
   }
 
@@ -45,19 +43,23 @@ kuzzle.getStatistics(new ResponseListener<JSONObject>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->getStatistics();
+$statistics = $kuzzle->getStatistics();
 
-// $result is an array
+// $statistics is an array of statistics
 ```
 
 > Callback response:
 
 ```json
-[{ "connections": { "socketio": 1 },
+[
+  { 
+    "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "mqtt": 37, "socketio": 17 },
     "failedRequests": { "socketio": 1 },
-    "timestamp": "1453110641308" }]
+    "timestamp": "1453110641308" 
+  }
+]
 ```
 
 > When providing a timestamp, retrieves all frames recorded after that timestamp:
@@ -67,23 +69,23 @@ $result = $kuzzle->getStatistics();
 var ts = Date.parse('2015-10-26T12:19:10.213Z');
 
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.getStatistics(ts, function (err, stats) {
-  // ...
+kuzzle.getStatistics(ts, function (error, statistics) {
+
 });
 
 // Using promises (NodeJS only)
 kuzzle
   .getStatisticsPromise(ts)
-  .then(stats => {
-    // ...
+  .then(statistics => {
+
   });
 ```
 
 ```java
 // Date can be either in ISO format or a timestamp (utc, in milliseconds)
-kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new KuzzleResponseListener<JSONArray>() {
+kuzzle.getStatistics("2015-11-15T13:36:45.558Z", new ResponseListener<JSONObject[]>() {
   @Override
-  public void onSuccess(JSONArray results) {
+  public void onSuccess(JSONObject[] statistics) {
     // ...
   }
 
@@ -101,29 +103,37 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 // Date can be either in ISO format or a timestamp (utc, in milliseconds)
 $date = time() * 1000;
-$result = $kuzzle->getStatistics($date);
+$statistics = $kuzzle->getStatistics($date);
 
-// $result is an array
+// $statistics is an array of statistics objects
 ```
 
-> Callback response:
+> Callback response
 
 ```json
-[{ "connections": { "socketio": 1 },
+[
+  { 
+    "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "mqtt": 37, "socketio": 17 },
     "failedRequests": { "socketio": 1 },
-    "timestamp": "1453110641308" },
-  { "connections": { "socketio": 1 },
+    "timestamp": "1453110641308" 
+  },
+  { 
+    "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "socketio": 34 },
     "failedRequests": { "socketio": 3 },
-    "timestamp": "1453110642308" },
-  { "connections": {},
+    "timestamp": "1453110642308" 
+  },
+  { 
+    "connections": {},
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "socketio": 40 },
     "failedRequests": {},
-    "timestamp": "1453110643308" }]
+    "timestamp": "1453110643308" 
+  }
+]
 ```
 
 Kuzzle monitors active connections, and ongoing/completed/failed requests.  

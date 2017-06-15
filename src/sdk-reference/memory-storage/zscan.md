@@ -24,9 +24,9 @@ kuzzle.memoryStorage.zscanPromise('key', 0)
 ```
 
 ```java
-kuzzle.memoryStorage.zscan("key", 0, new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.zscan("key", 0, new ResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONArray page) {
+  public void onSuccess(JSONObject page) {
     // callback called once the action has completed
   }
 
@@ -55,16 +55,16 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-[
-  18,
-  [
+{
+  "cursor": 18,
+  "values": [
     "member1",
     "member1's score",
     "member2",
     "member2's score",
     "..."
   ]
-]
+}
 ```
 
 Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), except that `zscan` iterates the members held by a sorted set.
@@ -100,4 +100,4 @@ Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), exce
 Resolves to a JSON array containing 2 entries:
 
 * the cursor position for the next page of results (a next position of `0` indicates the end of the scan)
-* a list of, alternatively, sorted set members and their scores
+* an array of, alternatively, sorted set members and their associated scores

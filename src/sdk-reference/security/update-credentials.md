@@ -12,26 +12,25 @@ title: updateCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.security.updateCredentials('local', 'kuid', {'username': 'foo'}, function (err, res) {
-  console.log(res);     // {username: 'bar', kuid: '<kuid>'}
+kuzzle.security.updateCredentials('local', 'kuid', {'username': 'foo'}, function (error, updatedCredentials) {
+
 });
 
 // Using promises (node.js)
 kuzzle
   .security
-  .updateCredentials('local', 'kuid', {'username': 'foo'})
-  .then(res => {
-    console.log(res);   // {username: 'foo', kuid: '<kuid>'}
+  .updateCredentialsPromise('local', 'kuid', {'username': 'foo'})
+  .then(updatedCredentials => {
+
   });
 ```
 
 ```java
-JSONObject credentials = new JSONObject().put("username", "bar");
+JSONObject credentials = new JSONObject().put("username", "foo");
 
 kuzzle.security.updateCredentials("local", "kuid", credentials, new ResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONObject result) {
-    // result var contains the updated credentials and the kuid of the user
+  public void onSuccess(JSONObject updatedCredentials) {
   }
 
   @Override
@@ -46,9 +45,17 @@ kuzzle.security.updateCredentials("local", "kuid", credentials, new ResponseList
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->security->updateCredentials('local', 'kuid', ['username' => 'foo']);
+$updatedCredentials = $kuzzle->security->updateCredentials('local', 'kuid', ['username' => 'foo']);
 
-// $result = [username => 'foo', kuid => '<kuid>']
+```
+
+> Callback response
+
+```json
+{
+  "username": "foo",
+  "kuid": "<Kuzzle Unique User Identifier>"
+}
 ```
 
 Update credentials of the specified <strategy> for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to update credentials for.

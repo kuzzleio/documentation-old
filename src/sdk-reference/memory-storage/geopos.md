@@ -24,10 +24,11 @@ kuzzle.memoryStorage.geoposPromise('key', ['Palermo', 'Catania'])
 ```
 
 ```java
-JSONArray members = new JSONArray().put("Palermo").put("Catania");
-kuzzle.memoryStorage.geopos("key", members, new ResponseListener<JSONArray>() {
+String[] members = {"Palermo", "Catania"};
+
+kuzzle.memoryStorage.geopos("key", members, new ResponseListener<Double[][]>() {
   @Override
-  public void onSuccess(JSONArray positions) {
+  public void onSuccess(Double[][] positions) {
     // callback called once the action has completed
   }
 
