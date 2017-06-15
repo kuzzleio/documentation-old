@@ -218,7 +218,7 @@ $kuzzle = new Kuzzle('localhost');
 $dataCollection = $kuzzle->collection('collection', 'index');
 
 try {
-  $searchResult = $dataCollection->search($body, options);
+  $searchResult = $dataCollection->search($body, $options);
 
   // $searchResult instanceof SearchResult
   $searchResult->getTotal();
