@@ -12,24 +12,24 @@ title: getAllCredentialFields
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.security.getAllCredentialFields(function (err, res) {
-  console.log(res);     // { local: ['username', 'kuid']}
+kuzzle.security.getAllCredentialFields(function (error, strategies) {
+  
 });
 
 // Using promises (node.js)
 kuzzle
   .security
-  .getAllCredentialFields()
-  .then(res => {
-    console.log(res);   // { local: ['username', 'kuid']}
+  .getAllCredentialFieldsPromise()
+  .then(strategies => {
+
   });
 ```
 
 ```java
 kuzzle.security.getAllCredentialFields(new ResponseListener<JSONObject>() {
   @Override
-  public void onSuccess(JSONObject result) {
-    // result var contains the credentials per strategy
+  public void onSuccess(JSONObject strategies) {
+
   }
 
   @Override
@@ -44,9 +44,18 @@ kuzzle.security.getAllCredentialFields(new ResponseListener<JSONObject>() {
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->security->getAllCredentialFields();
+$strategies = $kuzzle->security->getAllCredentialFields();
+```
 
-// $result = [local => [username, kuid]]
+> Callback response:
+
+```json
+{
+  "local": [
+    "kuid",
+    "username"
+  ]
+}
 ```
 
 Retrieve a list of accepted fields per authentication strategy.

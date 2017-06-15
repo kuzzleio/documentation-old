@@ -14,16 +14,16 @@ title: getMyRights
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .getMyRights(function(error, result) {
-    // result is a JSON object
+  .getMyRights(function(error, rights) {
+    // result is an array of objects
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
   .getMyRightsPromise()
-  .then((result) => {
-    // result is a JSON object
+  .then(rights => {
+    // result is an array of objects
   });
 ```
 
@@ -31,15 +31,13 @@ kuzzle
 
 kuzzle
   .security
-  .getMyRights(new ResponseListener<JSONObject>() {
+  .getMyRights(new ResponseListener<JSONObject[]>() {
     @Override
-    public void onSuccess(JSONObject rights) {
-        // result is a JSON object
+    public void onSuccess(JSONObject[] rights) {
     }
 
     @Override
     public void onError(JSONObject error) {
-        // Handle error
     }
   });
 ```
@@ -49,22 +47,28 @@ kuzzle
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
-$result = $kuzzle->security()->getMyRights();
+$rights = $kuzzle->security()->getMyRights();
 
-// $result is an array
+// $rights is an array of associative arrays
 ```
 
-> Callback response example:
+> Callback response
 
-```js
+```json
 [
   {
-    controller: 'my-controller', action: 'my-action', index: '*', collection: '*',
-    value: 'allowed'
+    "controller": "my-controller",
+    "action": "my-action",
+    "index": "*",
+    "collection": "*",
+    "value": "allowed"
   },
   {
-    controller: 'another-controller', action: '*', index: 'my-index', collection: '*',
-    value: 'conditional'
+    "controller": "another-controller",
+    "action": "*",
+    "index": "my-index",
+    "collection": "*",
+    "value": "conditional"
   }
 ]
 ```
@@ -92,4 +96,4 @@ Gets the rights of the current user
 
 ## Callback response
 
-Resolves to a `JSON` object.
+Resolves to an array of rights.

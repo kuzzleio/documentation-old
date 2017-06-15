@@ -12,16 +12,16 @@ title: validateCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.security.validateCredentials('local', 'kuid', {'username': 'foo'}, function (err, res) {
-  console.log(res);     // true or false
+kuzzle.security.validateCredentials('local', 'kuid', {'username': 'foo'}, function (error, result) {
+
 });
 
 // Using promises (node.js)
 kuzzle
   .security
-  .validateCredentials('local', 'kuid', {'username': 'foo'})
-  .then(res => {
-    console.log(res);   // true or false
+  .validateCredentialsPromise('local', 'kuid', {'username': 'foo'})
+  .then(result => {
+
   });
 ```
 
@@ -31,7 +31,7 @@ JSONObject credentials = new JSONObject().put("username", "bar");
 kuzzle.security.validateCredentials("local", "kuid", credentials, new ResponseListener<Boolean>() {
   @Override
   public void onSuccess(Boolean result) {
-    // result var contains either true or false
+
   }
 
   @Override
@@ -47,8 +47,12 @@ use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
 $result = $kuzzle->security->validateCredentials('local', 'kuid', ['username' => 'foo']);
+```
 
-// $result = true or false
+>> Callback response
+
+```json
+true
 ```
 
 Validate credentials of the specified <strategy> for the user <kuid>.
@@ -77,4 +81,4 @@ Validate credentials of the specified <strategy> for the user <kuid>.
 
 ## Callback response
 
-The response is either true or false.
+Resolves to a boolean value

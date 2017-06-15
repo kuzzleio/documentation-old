@@ -30,10 +30,11 @@ kuzzle.memoryStorage.msetnxPromise(entries)
 ```
 
 ```java
-JSONArray entries = new JSONArray()
-  .put(new JSONObject().put("key", "key1").put("value", "foo"))
-  .put(new JSONObject().put("key", "key2").put("value", "bar"))
-  .put(new JSONObject().put("key", "...").put("value", "..."));
+JSONObject[] entries = new JSONObject[]{
+  new JSONObject().put("key", "key1").put("value", "foo"),
+  new JSONObject().put("key", "key2").put("value", "bar"),
+  new JSONObject().put("key", "...").put("value", "...")
+};
 
 kuzzle.memoryStorage.msetnx(entries, new ResponseListener<Integer>() {
   @Override

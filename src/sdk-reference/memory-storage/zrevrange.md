@@ -24,9 +24,9 @@ kuzzle.memoryStorage.zrevrangePromise('key', 0, -1)
 ```
 
 ```java
-kuzzle.memoryStorage.zrevrange("key", 0, -1, new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.zrevrange("key", 0, -1, new ResponseListener<JSONObject[]>() {
   @Override
-  public void onSuccess(JSONArray members) {
+  public void onSuccess(JSONObject[] members) {
     // callback called once the action has completed
   }
 

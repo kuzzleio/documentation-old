@@ -24,9 +24,9 @@ kuzzle.memoryStorage.smembersPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.smembers("key", new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.smembers("key", new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray members) {
+  public void onSuccess(String[] members) {
     // callback called once the action has completed
   }
 

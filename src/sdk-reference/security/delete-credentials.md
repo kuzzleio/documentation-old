@@ -12,16 +12,16 @@ title: deleteCredentials
 
 ```js
 // Using callbacks (node.js or browser)
-kuzzle.security.deleteCredentials('local', 'kuid', function (err, res) {
-  console.log(res);     // {acknowledged: true}
+kuzzle.security.deleteCredentials('local', 'kuid', function (error, result) {
+
 });
 
 // Using promises (node.js)
 kuzzle
   .security
-  .deleteCredentials('local', 'kuid')
-  .then(res => {
-    console.log(res);   // {acknowledged: true}
+  .deleteCredentialsPromise('local', 'kuid')
+  .then(result => {
+
   });
 ```
 
@@ -29,7 +29,7 @@ kuzzle
 kuzzle.security.deleteCredentials("local", "kuid", new ResponseListener<JSONObject>() {
   @Override
   public void onSuccess(JSONObject result) {
-    // result var contains the query status
+
   }
 
   @Override
@@ -46,7 +46,14 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 $result = $kuzzle->security->deleteCredentials('local', 'kuid');
 
-// $result = [acknowledged => true]
+```
+
+> Callback response
+
+```json
+{
+  "acknowledged": true
+}
 ```
 
 Delete credentials of the specified <strategy> for the current user. 

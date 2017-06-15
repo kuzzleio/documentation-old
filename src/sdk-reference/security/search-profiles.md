@@ -12,9 +12,9 @@ title: searchProfiles
 
 ```js
 var filters = {
-   // filter can contains an array `roles` with a list of role id
-  policies:  ['myrole', 'admin'],
-  // filter can handler pagination with properties `from` and `size`
+   // filter can contains an array `roles` with a list of role identifiers
+  roles:  ['myrole', 'admin'],
+  // filter can handle pagination with properties `from` and `size`
   from: 0,
   size: 10
 };
@@ -34,7 +34,7 @@ kuzzle
 kuzzle
   .security
   .searchProfilesPromise(filters)
-  .then((result) => {
+  .then(result => {
     // result is a JSON Object with the following properties:
     // {
     //   total: <number of found profiles>,
@@ -46,7 +46,7 @@ kuzzle
 ```java
 JSONObject filters = new JSONObject()
   // filter can contains a "roles" array with a list of role IDs
-  .put("policies", new JSONArray().put("myrole", "admin"))
+  .put("roles", new JSONArray().put("myrole", "admin"))
   // search results can be paginated
   .put("from", 0)
   .put("size", 10);
@@ -81,7 +81,7 @@ use \Kuzzle\Security\Profile;
 use \Kuzzle\Util\ProfilesSearchResult;
 
 $filters = [
-  'policies' => [
+  'roles' => [
       'admin',
       'myrole'
   ]

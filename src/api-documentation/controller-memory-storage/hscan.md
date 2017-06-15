@@ -4,7 +4,7 @@ algolia: true
 language-tab:
   js: HTTP
   json: Other protocols
-title: hmset
+title: hscan
 ---
 
 # hscan

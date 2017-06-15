@@ -24,9 +24,9 @@ kuzzle.memoryStorage.zrevrangebylexPromise('key', '-', '(g')
 ```
 
 ```java
-kuzzle.memoryStorage.zrevrangebylex("key", "-", "(g", new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.zrevrangebylex("key", "-", "(g", new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray members) {
+  public void onSuccess(String[] members) {
     // callback called once the action has completed
   }
 

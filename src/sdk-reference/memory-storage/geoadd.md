@@ -37,17 +37,16 @@ kuzzle.memoryStorage.geoaddPromise('key', points)
 ```
 
 ```java
-JSONArray points = new JSONArray()
-  .put(new JSONObject()
+JSONObject[] points = new JSONObject[]{
+  new JSONObject()
     .put("lon", 13.361389)
     .put("lat", 38.115556)
-    .put("name", "Palermo")
-  )
-  .put(new JSONObject()
+    .put("name", "Palermo"),
+  new JSONObject()
     .put("lon", 15.087269)
     .put("lat", 37.502669)
     .put("name", "Catania")
-  );
+};
 
 kuzzle.memoryStorage.geoadd("key", points, new ResponseListener<Long>() {
   @Override

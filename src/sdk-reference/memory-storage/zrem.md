@@ -24,7 +24,7 @@ kuzzle.memoryStorage.zremPromise('key', ['foo', 'bar', 'baz'])
 ```
 
 ```java
-JSONArray members = new JSONArray().put("foo").put("bar").put("baz");
+String[] members = new String[]{"key1", "key2", "..."};
 
 kuzzle.memoryStorage.zrem("key", members, new ResponseListener<Long>() {
   @Override

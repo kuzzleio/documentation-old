@@ -24,7 +24,7 @@ kuzzle.memoryStorage.pfaddPromise('key', ['foo', 'bar', 'baz'])
 ```
 
 ```java
-JSONArray elements = new JSONArray().put("foo").put("bar").put("baz");
+String[] elements = new String[]{"foo", "bar", "baz"};
 
 kuzzle.memoryStorage.pfadd("key", elements, new ResponseListener<Integer>() {
   @Override

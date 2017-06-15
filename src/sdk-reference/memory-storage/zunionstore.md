@@ -24,7 +24,7 @@ kuzzle.memoryStorage.zunionstorePromise('destination', ['key1', 'key2', '...'])
 ```
 
 ```java
-JSONArray keys = new JSONArray().put("key1").put("key2").put("...");
+String[] keys = new String[]{"key1", "key2", "..."};
 
 kuzzle.memoryStorage.zunionstore("destination", keys, new ResponseListener<Long>() {
   @Override

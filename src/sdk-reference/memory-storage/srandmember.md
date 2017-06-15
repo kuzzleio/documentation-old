@@ -24,9 +24,9 @@ kuzzle.memoryStorage.srandmemberPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.srandmember("key", new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.srandmember("key", new ResponseListener<String[]>() {
   @Override
-  public void onSuccess(JSONArray members) {
+  public void onSuccess(String[] members) {
     // callback called once the action has completed
   }
 

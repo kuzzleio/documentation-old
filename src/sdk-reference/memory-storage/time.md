@@ -24,9 +24,9 @@ kuzzle.memoryStorage.timePromise()
 ```
 
 ```java
-kuzzle.memoryStorage.time(new ResponseListener<JSONArray>() {
+kuzzle.memoryStorage.time(new ResponseListener<Long[]>() {
   @Override
-  public void onSuccess(JSONArray result) {
+  public void onSuccess(Long[] result) {
     // callback called once the action has completed
   }
 
