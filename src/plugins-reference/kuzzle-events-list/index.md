@@ -181,19 +181,6 @@ Events triggered during Kuzzle startup, when the database is prepared for Kuzzle
 
 ---
 
-## proxy
-
-Events triggered when interacting with `proxy`.
-
-| Event | Description | Payload |
-|-------|-------------|---------|
-| `proxy:broadcast`    | Triggered before broadcast. You can't modify the input on this event                      | Type: Object.<br> `{payload, channelsList}`<br> `payload` is the notification content. <br>`channelsList` is an array of channels to broadcast.                                |
-| `proxy:joinChannel`  | Triggered after attaching a user to a room. You can't modify the input on this event      | Type: Object.<br> `{channel, id}`<br> `channel` is the channel name.<br> `id` is the connection id                                                                             |
-| `proxy:leaveChannel` | Triggered before a room is removed for the user. You can't modify the input on this event | Type: Object.<br> `{channel, id}`<br> `channel` is the channel name.<br> `id` is the connection id                                                                             |
-| `proxy:notify`       | Triggered before notifying a connection id                                                | Type: Object.<br> `{payload, channelsList, id}`<br> `payload` is the notification content. <br>`channelsList` is an array of channels to notify.<br> `id` is the connection id |
-
----
-
 ## realtime
 
 Events triggered when a request is sent to the [`realtime` controller]({{ site_base_path }}api-documentation/controller-realtime).
