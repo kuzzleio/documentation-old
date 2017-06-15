@@ -28,16 +28,16 @@ You may subscribe multiple times to the same room, with identical or different s
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
-| `result._source` | JSON object | Content of the document or real-time message that generated the notification | |
+| `document` | [Document]({{ site_base_path}}sdk-reference/document/) | Content of the document or real-time message that generated the notification | |
 | `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
 | `state` | string | Tells if the document is about to be changed, or if the change is effective | `pending`, `done` |
+| `type` | string | Notification type | `document` |
 
 #### Example
 
 ```json
 {
   "status": 200,
-  "error": null,
   "requestId": "bc41ced6-38fc-42b9-8fd5-22ae0774aac2",
   "controller": "name of the controller that generated the notification",
   "action": "name of the action that generated the notification",
@@ -46,10 +46,12 @@ You may subscribe multiple times to the same room, with identical or different s
   "volatile": {},
   "state": "done",
   "scope": "in",
-  "result": {
-    "_source": {
-      "message content": "this is an example"
-    }
+  "type": "document",
+  "document": {
+    "content": {
+      "content": "document content example"
+    },
+    "id": "<document identifier (when applicable)>"
   }
 }
 ```
@@ -62,7 +64,8 @@ You may subscribe multiple times to the same room, with identical or different s
 |--------------------|------|------------------|-----------------|
 | `action` | string | Indicates if the user enters or leaves the subscribed room | `on`, `off` |
 | `volatile` | JSON object | If provided during subscription, contains application specific informations | |
-| `result.count` | integer | Updated number of users subscribing to this room | |
+| `user.count` | integer | Updated number of users subscribing to this room | |
+| `type` | string | Notification type | `user` |
 
 #### Example
 
@@ -79,8 +82,8 @@ You may subscribe multiple times to the same room, with identical or different s
   "volatile": {
     "optional": "user informations"
   },
-  "result": {
-    "roomId": "ID of the room concerned by this notification",
+  "type": "user",
+  "user": {
     "count": 42
   }
 }

@@ -55,7 +55,7 @@ $result = $kuzzle->security->validateCredentials('local', 'kuid', ['username' =>
 true
 ```
 
-Check if the provided credentials format is valid. Does not store anything in the database.
+Validate credentials of the specified <strategy> for the user <kuid>.
 
 ---
 
