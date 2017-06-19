@@ -17,6 +17,18 @@ In Kuzzle, data is organized in the following way:
 
 ---
 
+## Why document identifiers are not part of their content?
+
+Contrary to relational databases, where primary and foreign keys are stored in data tables and used to identify parts and subparts of data, NoSQL databases are key-value repositories.
+
+As Kuzzle has been primarily built to work with document-oriented databases (a subset of NoSQL databases), each stored value is a whole document, meaning that key-value pairs are more like id-document pairs.
+
+This means that document identifiers are not a part of the content they are referencing, but external values used to identify document contents.
+
+This is why Kuzzle API handles `_id` and `_source` arguments separately, as the rest of this guide below will show.
+
+---
+
 ## Document CRUD
 
 Kuzzle ships with a full data [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) API that enables you to operate in many ways on your documents.
