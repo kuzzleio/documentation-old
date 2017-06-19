@@ -10,32 +10,137 @@ order: 500
 # Notifications
 
 [Subscribing to some documents in Kuzzle]({{ site_base_path }}api-documentation/controller-realtime/subscribe) allows to be notified back each time a document matches your criteria.
-The subscription action (realtime/subscribe) returns a channel identifier which you can then listen to receive the
-notifications.
-
-You can receive the following types of notifications:
-
-**Document Notifications:**
-
-* A document has been created
-* A document has been updated and entered your subscription scope
-* A document has been updated and left your subscription scope
-* A document has been deleted
-* A document is about to be created (realtime)
-* A document is about to be deleted (realtime)
-
-**Subscription Notifications:**
-
-* A user subscribed to this room
-* A user left this room
-
-**Server Notifications:**
-
-* Your JWT Token has expired
 
 ---
 
-## exemples
+## Document notifications
+
+These notifications are pushed to matching subscribers when:
+
+* A real-time message is sent
+* A document is about to be created (the creation is not guaranteed)
+* A document has been successfully created
+* A document has been updated and entered your subscription scope
+* A document has been updated and left your subscription scope
+* A document is about to be deleted (the deletion is not guaranteed)
+* A document has been deleted
+
+A document notification contain the following fields:
+
+| Notification field | Type |Description       | Possible values |
+|--------------------|------|------------------|-----------------|
+| `collection` | string | The modified data collection | |
+| `index` | string | The modified data index | |
+| `protocol` | string | The network protocol used to modify the document | |
+| `result._id` | string | The document identifier. Can be null if the document doesn't exist yet, or if the notification is about a real-time message | |
+| `result._source` | object | The message or full document content. Undefined if the notification is about a document deletion |
+| `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
+| `state` | string | Tells if the document is about to be changed, or if the change is effective | `pending`, `done` |
+| `volatile` | object | Request [volatile data]({{ site_base_path }}api-documentation/volatile-data/) | |
+
+
+Document notification example:
+
+```json
+{
+  "error":null,
+  "status":200,
+  "index":"foo",
+  "collection":"bar",
+  "controller":"realtime",
+  "action":"publish",
+  "protocol":"http",
+  "timestamp":1497513122738,
+  "volatile":null,
+  "scope":"in",
+  "state":"done",
+  "result":{
+    "_source":{
+      "some": "document content"
+    },
+    "_id": "<some document identifier>"
+  },
+  "room":"893e183fc7acceb5-7a90af8c8bdaac1b"
+}
+```
+
+---
+
+## Subscription notifications
+
+These notifications are pushed to matching subscribers when:
+
+* A user subscribed to [the same room]({{ site_base_path}}kuzzle-dsl/roomid/)
+* A user left this room
+
+By default, Kuzzle does not send these notifications. You have to provide an appropriate `users` attribute to your [subscription request]({{ site_base_path }}api-documentation/controller-realtime/subscribe/) to be notified about users activity.
+
+
+| Notification field | Type |Description       | Possible values |
+|--------------------|------|------------------|-----------------|
+| `collection` | string | The data collection attached to the room | |
+| `index` | string | The data index attached to the room | |
+| `protocol` | string | The network protocol used to modify the document | |
+| `result.count` | integer | The current number of users in this room | |
+| `roomId` | string | The corresponding [room identifier]({{ site_base_path}}kuzzle-dsl/roomid/) | |
+| `user` | string | Tells if this notification is about an entering user (`in`) or a leaving one (`out`) | `in`, `out`|
+| `volatile` | object | Request [volatile data]({{ site_base_path }}api-documentation/volatile-data/) | |
+
+
+Subscription notification example:
+
+```json
+{
+  "error":null,
+  "status":200,
+  "roomId":"893e183fc7acceb5",
+  "requestId":"015132a1-b01d-424b-b003-36fcbf13c8a9",
+  "index":"<index name>",
+  "collection":"<collection name>",
+  "controller":"realtime",
+  "action":"subscribe",
+  "protocol":"websocket",
+  "timestamp":1497517009931,
+  "volatile": null,
+  "user":"in",
+  "result":{
+    "count": 42
+  },
+}
+```
+
+---
+
+## Server notifications
+
+These notifications are sent to all of a client's subscriptions when their [authentication token]({{ site_base_path }}guide/essentials/user-authentication/#user-authentication-user-authentication) has expired.
+
+| Notification field | Type | Value |
+|--------------------|------|------------------|
+| `controller` | string | `auth` |
+| `action` | string | `jwtTokenExpired`|
+
+
+Server notification example:
+
+```json
+{
+  "error":null,
+  "status":200,
+  "roomId":"893e183fc7acceb5",
+  "index":null,
+  "collection":null,
+  "controller":"auth",
+  "action":"jwtTokenExpired",
+  "protocol":null,
+  "timestamp":1497517385301,
+  "volatile":null,
+}
+```
+
+---
+
+## Code examples
 
 ### Websocket
 
@@ -55,7 +160,7 @@ You can receive the following types of notifications:
         with "room = channelName"
      */
     if (response.room === "mySubscription") {
- // we now have a channel to listen to
+      // we now have a channel to listen to
       channel = response.result.channel;
     }
 
