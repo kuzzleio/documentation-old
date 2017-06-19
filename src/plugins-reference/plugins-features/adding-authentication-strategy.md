@@ -31,13 +31,15 @@ The `strategies` object must contain one attribute per added strategy. This attr
   * authenticateOptions: The options provided to the Passport's [authenticate method](http://passportjs.org/docs/authenticate).
   * fields: The list of fields that can be provided to the plugin.
 * methods:
-  * create: The name of the `create` function in the plugin object.
-  * delete: The name of the `delete` function in the plugin object.
-  * exists: The name of the `exists` function in the plugin object.
+  * afterRegister: The name of the `afterRegister` function in the plugin object.
+  * create: [mandatory] The name of the `create` function in the plugin object.
+  * delete: [mandatory] The name of the `delete` function in the plugin object.
+  * exists: [mandatory] The name of the `exists` function in the plugin object.
+  * getById: The name of the `getById` function in the plugin object.
   * getInfo: The name of the `getInfo` function in the plugin object.
-  * update: The name of the `update` function in the plugin object.
-  * validate: The name of the `validate` function in the plugin object.
-  * verify: The name of the `verify` function in the plugin object.
+  * update: [mandatory] The name of the `update` function in the plugin object.
+  * validate: [mandatory] The name of the `validate` function in the plugin object.
+  * verify: [mandatory] The name of the `verify` function in the plugin object.
 
 
 ---
@@ -208,7 +210,7 @@ Here is the generic signature of the `validate` function you have to implement:
 The function **must** return a `Promise` that resolves or rejects with an error explaining the reason.
 
 <aside class="warning">
-  Validate can be called during an update with partial information. The validation should behave accordingly when isUpdate is true, knowing that mandatory information should already have been stored during a previous create call.
+  Validate can be called during an update with partial information. The validation should behave accordingly when **isUpdate** is **true**, knowing that mandatory information should already have been stored during a previous create call.
 </aside>
 
 ---
@@ -255,19 +257,23 @@ class AuthenticationPlugin {
           fields: ['login', 'password']
         },
         methods: {
-          // The name of the create function
+          // The name of the afterRegister function
+          afterRegister: 'afterRegister',
+          // [mandatory] The name of the create function
           create: 'create',
-          // The name of the delete function
+          // [mandatory] The name of the delete function
           delete: 'delete',
-          // The name of the exists function
+          // [mandatory] The name of the exists function
           exists: 'exists',
+          // The name of the getById function
+          getById: 'getById',
           // The name of the getInfo function
           getInfo: 'getInfo',
-          // The name of the update function
+          // [mandatory] The name of the update function
           update: 'update',
-          // The name of the validate function
+          // [mandatory] The name of the validate function
           validate: 'validate',
-          // The name of the verify function
+          // [mandatory] The name of the verify function
           verify: 'verify'
         }
       }
@@ -387,12 +393,12 @@ class AuthenticationPlugin {
    * or an object with the login failure reason as message attribute
    *
    * @param {KuzzleRequest} request
-   * @param {*[]} args - provided arguments depends on the Passport strategy
+   * @param {*[]} credentials - provided arguments depends on the Passport strategy
    * @returns {Promise<string|{message: string}>}
    */
-  verify (request, ...args) {
+  verify (request, ...credentials) {
     // verify if the user can authentify
-    const kuid = getUserIdFromCredentials(args);
+    const kuid = getUserIdFromCredentials(credentials);
 
     if (kuid) {
       return Promise.resolve(kuid);
