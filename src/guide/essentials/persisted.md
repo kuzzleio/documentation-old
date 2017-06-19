@@ -433,4 +433,4 @@ The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/g
 
 
 * Refer to the [Elasticsearch cookbook]({{ site_base_path }}elasticsearch-cookbook) to get more details on how querying works in Kuzzle.
-* Keep track of the changes on your documents via the [Realtime Notifications]({{ site_base_path }}guide/essentials/real-time).
+* Keep track of the changes on your documents via the [Real-time Notifications]({{ site_base_path }}guide/essentials/real-time).

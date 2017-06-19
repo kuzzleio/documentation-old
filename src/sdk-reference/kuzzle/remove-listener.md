@@ -24,7 +24,7 @@ use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
 
-$kuzzle->removeListener('jwtTokenExpired', $callback);
+$kuzzle->removeListener('queryError', $callback);
 ```
 
 Removes a listener from an event.

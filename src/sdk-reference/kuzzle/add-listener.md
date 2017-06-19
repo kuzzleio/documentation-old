@@ -30,8 +30,8 @@ kuzzle.addListener(Event.connected, eventListener);
 ```php
 <?php
 
-$kuzzle->addListener('jwtTokenExpired', function() {
-  // Actions to perform when receiving a 'jwtTokenExpired' global event
+$kuzzle->addListener('queryError', function() {
+  // Actions to perform when receiving a 'queryError' global event
 });
 
 ```

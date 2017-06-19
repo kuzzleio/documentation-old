@@ -223,14 +223,14 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 
 ![pubsub_scenario_details1]({{ site_base_path }}assets/images/request-scenarios/pubsub/details1.png)
 
-* The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)). For instance, to be notified about all contents posted to the collection `users`, containing a field `hobby` equals to `computer`:
+* The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)). For instance, to be notified about any content posted to the collection `users`, containing a field `hobby` equals to `computer`:
 
 ```javascript
 {
-  "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
   "index": "mainindex",
   "collection": "users",
-  "action": "on",
+  "controller": "realtime",
+  "action": "subscribe",
   "body": {
     "equals": {
       "hobby": "computer"
@@ -282,9 +282,8 @@ Sample response content:
   "error": null,
   "index": "mainindex",
   "collection": "users",
-  "controller": "subscribe",
-  "action": "on",
-  "state": "all",
+  "controller": "realtime",
+  "action": "subscribe",
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
   "result": {
     "roomId": "78c5b0ba-fead-4535-945c-8d64a7927459",

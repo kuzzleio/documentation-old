@@ -7,7 +7,7 @@ order: 600
 
 # Real-time notifications
 
-Besides persisting data and retrieving it via advanced searches, Kuzzle enables you to set up **live subscriptions** to any set of data.
+Besides persisting data and retrieving it via advanced searches, Kuzzle features highly customizable push notifications, by enabling **live subscriptions** to any set of data.
 
 Live subscriptions are great to **keep track of the evolution** of a portion of your data you are interested in.
 
@@ -15,20 +15,20 @@ Live subscriptions are great to **keep track of the evolution** of a portion of 
 
 ## Introduction
 
-Imagine you are developing [a collaborative TO-DO list](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) application. All the TO-DO items are persisted in Kuzzle (in a collection called `todos`) so, once the clients start, they fetch all the items via a simple document search.
+Imagine you are developing [a collaborative TO-DO list](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) application. All the TO-DO items are persisted in Kuzzle (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
 
-But imagine that one of the users (let's call her Ann), adds a new TO-DO item. In order for other users (let's call them Tom and Matt) to display the new item, they need to perform a new document search on the `todos` collection. They will not see the new item until they refresh (or restart) their application.
+But imagine that one of the users (let's call her Ann), adds a new TO-DO item. In order for other users (let's call them Tom and Matt) to display these new item, they need to perform a new document search on the corresponding data collection. They will not see the new items until they refresh (or restart) their application.
 
 This cannot be called a "modern" application: it rather looks like an old-school, refresh-ish, one. Like the early '90s. Today, such a user-experience wouldn't be satisfying at all.
 
-A more interesting user-experience would be that clients display the new TO-DO item _as soon as it is created_. How could we achieve that?
+A more interesting user-experience would be that clients display the new TO-DO item _as soon as it is created_. How can we achieve that?
 
-* By implementing a long-polling mechanism in the clients. Every, say, one second, the clients perform a document search and update their list of TO-DO items. Doesn't look like a great idea (performances would be rather bad, for example).
-* By introducing a **pub/sub** mechanism that enables the backend to _push_ the new item to the clients as soon as it is created (looks awesome, doesn't it?)
+* By implementing a long-polling mechanism in the clients. Every, say, one second, the clients perform a document search and update their list of TO-DO items. Doesn't look like a great idea (performances would be rather bad, for example)
+* By providing push notifications to subscribed clients, allowing them to receive these new items automatically, as soon as they are saved in the system
 
-The second solution is exactly what we are looking for and Kuzzle ships it natively. We can call it **pub/sub**, **real-time notifications** or **live subscriptions** and it is often used to solve use-cases like this one, where things need to be kept _in sync_ between the client and the server.
+The second solution is exactly what we are looking for and Kuzzle ships it natively. We can call it **pub/sub**, **push notifications** or **live subscriptions** and it is often used to solve use-cases like this one, where things need to be kept _in sync_ between clients and the back-end server.
 
-Our collaborative TO-DO list clients would subscribe to the `todos` collection (right after the first document search) in order to be notified _in real-time_ about new TO-DO items. This way, once Ann creates her new item, Tom and Matt see it immediately on their screen.
+Getting back to our example, our collaborative TO-DO list clients only need to subscribe to the TO-DO data collection (right after the first document search), in order to be notified _in real-time_ about new TO-DO items. This way, once Ann creates her new item, Tom and Matt can see it immediately on their screen.
 
 ---
 
@@ -36,7 +36,7 @@ Our collaborative TO-DO list clients would subscribe to the `todos` collection (
 
 Real-time notifications are triggered by the [pub/sub mechanism](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) embedded in Kuzzle and follow the [Observer/Observable pattern](https://en.wikipedia.org/wiki/Observer_pattern), in which Kuzzle is the Observable and the client is the Observer.
 
-They are is possible only when the communication happens in a **persistent-connection**-oriented protocol (like Websockets or MQTT) and therefore not in HTTP.
+They are is possible only when the communication happens in a **persistent-connection**-oriented protocol (like Websockets or MQTT) and therefore not with HTTP.
 
 Clients can subscribe to many types of notifications. Below are some examples:
 
@@ -67,7 +67,7 @@ Once our client has started and initialized with the set of TO-DO items it fetch
 
 ```javascript
 kuzzle
-    .collection('todos')
+    .collection('todos', 'todo-list')
     .subscribe({}, (error, notification) => {
         if (error) {
             throw new Error(error)
@@ -76,11 +76,11 @@ kuzzle
     })
 ```
 
-This code isn't very useful but it shows the capability to react to a notification coming from the server.
+This code isn't very useful at the moment, but it shows the capability to react to a notification coming from the server.
 
 Here, we call the `subscribe` method on the `todos` collection with two arguments:
 
-* The first argument represents the _filters_, and in this case there's none, which means that we are subscribing to _all the documents_ in the collection. Filters enable more fine-grained selection on the data we want to subscribe to and are described in the next example.
+* The first argument represents the _filters_, and in this case there's none, which means that we are subscribing to _all documents changes_ in the collection. Filters enable more fine-grained selection on the data we want to subscribe to and are described in the next example.
 * The second argument is the _callback_, i.e. a function that is called _every time a notification is received_.
 
 Now, imagine this code is executed on Tom's client: when Ann creates the new TO-DO item, Tom receives a notification looking like the following:
@@ -88,20 +88,28 @@ Now, imagine this code is executed on Tom's client: when Ann creates the new TO-
 ```json
 {
   "status": 200,
-  "error": null,
-  "index": "<data index>",
-  "collection": "<data collection>",
+  "type": "document",
+  "index": "todo-list",
+  "collection": "todos",
   "controller": "document",
   "action": "create",
   "state": "done",
   "scope": "in",
   "volatile": {},
-  "requestId": "<unique request identifier>",
+  "requestId": "<request unique identifier>",
   "result": {
-    "_id": "fswdfsrt43e6t2q3rfw",
+    "_id": "<document unique identifier>",
     "_source": {
       "label": "The new item Ann just created!",
       "checked": "false"
+    },
+    "_meta": {
+      "author": "ann",
+      "createdAt": 1497866996975,
+      "updatedAt": null,
+      "updater": null,
+      "active": true,
+      "deletedAt": null
     }
   }
 }
@@ -113,7 +121,7 @@ The Notification bears some useful information about what just happened:
 * the `index` and `collection` attributes show *where* it happened;
 * the `result` shows *the consequence* of what just happened (in this case, the newly created document).
 
-We won't analyze the other attributes for the moment. Take a look at the [Notifications section of the API Reference]({{ site_base_path }}api-documentation/notifications) for a comprehensive list of the available notification events.
+We won't analyze the other attributes for the moment. Take a look at the [Notifications section of the API Reference]({{ site_base_path }}api-documentation/notifications) for a comprehensive list of available notification properties.
 
 This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Kuzzle DSL Reference]({{ site_base_path }}kuzzle-dsl/).
 
@@ -121,27 +129,27 @@ This subscription is very handy and will notify Tom about the events 1, 2 and 3 
 
 ### Subscription with filters
 
-Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions]({{ site_base_path }}kuzzle-dsl/). It is heavily inspired in the Elasticsearch DSL and enables you to perform fine-grained selections on the documents you want to subscribe to.
+Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions]({{ site_base_path }}kuzzle-dsl/). It enables you to perform fine-grained selections on the documents you want to subscribe to.
 
 In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp]({{ site_base_path }}kuzzle-dsl/#regexp) filter.
 
 
 ```javascript
 kuzzle
-    .collection('todos')
-    .subscribe({
-        regexp: {
-          label: '.*URGENT.*'
-        }
-      }, (error, notification) => {
-        if (error) {
-            throw new Error(error)
-        }
-        console.log('Something happened and we should do something URGENTLY.', notification)
-    })
+  .collection('todos', 'todo-list')
+  .subscribe({
+    regexp: {
+      label: 'URGENT'
+    }
+  }, (error, notification) => {
+    if (error) {
+        throw new Error(error)
+    }
+    console.log('Something happened and we should do something URGENTLY.', notification)
+  })
 ```
 
-This way, Tom will be notified about urgent TO-DO items. Take a look at the [Filtering DSL Refernce]({{ site_base_path }}kuzzle-dsl/) for a comprehensive list of the available filters.
+This way, Tom will be notified about urgent TO-DO items. Take a look at the [Filtering DSL Reference]({{ site_base_path }}kuzzle-dsl/) for a comprehensive list of available filters.
 
 There are a few things that deserve to be noticed here:
 
@@ -156,30 +164,30 @@ The last point may seem a little bit inconvenient. What if Tom does not want to 
 
 The `subscribe` method can be called with an extra argument, which is an object containing a set of options to be passed to the subscription Room.
 
-We just introduced a new concept here, the Room. A [Room]({{ site_base_path }}sdk-reference/#room) is a class representing a single subscription and its constructor is called internally by the `subscribe` method. The "options" are passed directly to the [Room Constructor]({{ site_base_path }}sdk-reference/#constructors82).
+We just introduced a new concept here, the Room. A Room is a class representing a single subscription and its constructor is called internally by the `subscribe` method.  
+This object supports a wide range of options that can be passed directly to its [constructor]({{ site_base_path }}sdk-reference/room/), allowing to configure the kind of notifications we want to receive.
 
+For now, let's concentrate on the question asked at the end of the previous chapter: how do we filter the notifications resulting of our own actions?  
 The option we are looking for is `subscribeToSelf`, which is set to `true` by default.
 
 ```javascript
-let room = kuzzle
-    .collection('todos')
-    .subscribe(
-      { // The Filters object
-        regexp: {
-          label: '.*URGENT.*'
-        }
-      },
-      { // The Options object
-        subscribeToSelf: false
-      },
-      (error, notification) => { // The callback
-        if (error) {
-            throw new Error(error)
-        }
-        console.log('Something happened and we should do something URGENTLY.', notification)
-    })
+kuzzle
+  .collection('todos')
+  .subscribe(
+    { // The Filters object
+      regexp: {
+        label: 'URGENT'
+      }
+    },
+    { // The Options object
+      subscribeToSelf: false
+    },
+    (error, notification) => { // The callback
+      if (error) {
+          throw new Error(error)
+      }
+      console.log('Something happened and we should do something URGENTLY.', notification)
+  })
 ```
 
 In the code right above, we added the extra "options" object as the second argument to avoid subscribing Tom to his own events.
-
-You may have noticed that, on the very first line, we stored the return value of the `subscribe` method in a variable. Guess what type is its value? [Room]({{ site_base_path }}sdk-reference/#room).

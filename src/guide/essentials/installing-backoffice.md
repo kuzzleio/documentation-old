@@ -7,7 +7,7 @@ order: 100
 
 # Installing Kuzzle Backoffice
 
-The Kuzzle Backoffice is a handy **web application** that helps you administrate Kuzzle. You can use it to **manage your data**, subscribe to **realtime notifications** and manage **security** rules.
+The Kuzzle Backoffice is a handy **web application** that helps you administrate Kuzzle. You can use it to **manage your data**, subscribe to **real-time notifications** and manage **security** rules.
 
 You can use the <a href="http://kuzzle-backoffice.netlify.com/">publicly hosted Kuzzle Backoffice</a>.
 If you want to host the Kuzzle Backoffice on your own server, you can download the source code [here](https://github.com/kuzzleio/kuzzle-backoffice/releases).

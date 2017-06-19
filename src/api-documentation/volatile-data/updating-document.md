@@ -31,13 +31,12 @@ order: 100
 ```javascript
 {
   "status": 200,
-  "error": null,
   "index": "<index>",
   "collection": "<collection>",
   "controller": "document",
   "action": "update",
   "state": "pending",
-  "scope": "<in|out>",
+  "scope": "unknown",
   "volatile": { // volatile data will only be received by subscribers
     "modifiedBy": "awesome me",
     "reason": "it needed to be modified"
@@ -48,7 +47,7 @@ order: 100
     "_source": {
       "somefield": "now has a new value",
       "someOtherField": "was left unchanged"
-    },
+    }
   }
 }
 ```
