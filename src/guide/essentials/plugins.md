@@ -129,10 +129,16 @@ Once Kuzzle has restarted you can check the server information at `http://localh
             ],
             "routes": [
               {
-                "verb":"get",
-                "url":"/do-something/",
-                "controller":"myNewController",
-                "action":"myNewAction"
+                "verb": "get",
+                "url": "/kuzzle-core-plugin-boilerplate/say-something/:property",
+                "controller": "myNewController",
+                "action": "myNewAction"
+              },
+              {
+                "verb": "post",
+                "url": "/kuzzle-core-plugin-boilerplate/say-something",
+                "controller": "myNewController",
+                "action": "myNewAction"
               }
             ],
             "strategies": [
