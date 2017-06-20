@@ -1,0 +1,3 @@
+[core]
+	gc.pruneexpire now
+	gc.auto 1

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  {{> common-meta }}
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-dark.min.css">
+
+  <link href="{{ site_base_path }}assets/stylesheets/side-code/screen.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body class="index">
+{{> header }}
+
+<div class="container">
+    {{> nav-left }}
+
+    <div class="page-wrapper">
+      <div class="content">
+        {{> nav-members }}
+
+        <div class="main-content">
+          {{{ contents }}}
+          <div style="clear: both"></div>
+        </div>
+
+        {{> disqus }}
+
+        {{> nav-members-bottom }}
+      </div>
+    </div>
+</div>
+
+
+{{> footer-scripts }}
+</body>
+</html>

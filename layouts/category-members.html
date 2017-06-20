@@ -1,0 +1,45 @@
+
+<!doctype html>
+<html>
+<head>
+  {{> common-meta }}
+
+  <link href="{{ site_base_path }}assets/stylesheets/category-childrens/screen.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body class="index">
+{{> header }}
+
+<div class="container">
+  <div class="page-wrapper">
+    <div class="content">
+      {{> nav-siblings }}
+
+      <div class="categories">
+        <div class="panels">
+          {{#each ancestry.members}}
+
+          {{#if (or show-subheader (ne @key 0))}}
+            <div class="panel">
+              <a href="{{ ../site_base_path }}{{ path }}">
+                <div class="panel-title"><i class="fa {{ icon }}"></i> {{ title }}</div>
+                <div class="panel-content">
+                  <span>{{ description }}</span>
+                </div>
+              </a>
+            </div>
+          {{/if}}
+          {{/each}}
+
+        </div>
+      </div>
+
+      {{> nav-siblings-bottom }}
+    </div>
+  </div>
+</div>
+
+
+{{> footer-scripts }}
+</body>
+</html>
