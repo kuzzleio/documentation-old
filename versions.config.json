@@ -1,16 +1,9 @@
 [
   {
-    "version_label": "1.0.0-rc9 (latest)",
+    "version_label": "1.0.0",
     "version_path": "/",
     "algolia_index": "kuzzle-documentation",
     "version_gh_repo": "kuzzleio/documentation",
     "version_gh_branch": "master"
-  },
-  {
-    "version_label": "1.0.0-rc10 (next)",
-    "version_path": "/v/edge/",
-    "algolia_index": "kuzzle-documentation",
-    "version_gh_repo": "kuzzleio/documentation",
-    "version_gh_branch": "rc.x"
   }
 ]
