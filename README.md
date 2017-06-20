@@ -221,7 +221,7 @@ Version configuration are set in `versions.config.json` file
 Once version have been configured on `versions.config.file`, enable auto deployment
 adding your branch configured in `version_gh_repo` to `.branches.only` entry in `.travis.yml` file
 
-## Exemple
+## Example
 
 ```json
 [
