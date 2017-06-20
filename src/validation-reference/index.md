@@ -17,6 +17,6 @@ The API offers several actions to perform on specifications, allowing to get, up
 
 A specification is composed of three properties:
 
-* The [`fields` property]({{ site_base_path }}validation-reference/fields/fields/): this property is intended to describe the document's fields. It includes the definition of their type,  mandatoriness, boundaries, etc. depending on the type of the field.
-* The [`validators` property]({{ site_base_path }}validation-reference/validators/): this property is intended to match the document toward [DSL filters]({{ site_base_path }}kuzzle-dsl/). It allows to build conditionnal filters, acceptance criterias, ... In other terms everything possible with the Kuzzle's DSL Filters.
+* The [`fields` property]({{ site_base_path }}validation-reference/fields/fields/): this property is intended to describe the document's fields. It includes the definition of their type, boundaries, if they're required or not etc. depending on the type of the field.
+* The [`validators` property]({{ site_base_path }}validation-reference/validators/): this property is intended to match the document using [DSL filters]({{ site_base_path }}kuzzle-dsl/). It allows to build conditionnal filters, acceptance criterias, etc.
 * The [`strict` property]({{ site_base_path }}validation-reference/fields/strict/): this property specifies if the field specification is strict. If it is, the addition of unknown fields (i.e. not defined in the `fields` property) is forbidden and will be rejected.
