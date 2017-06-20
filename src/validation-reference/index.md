@@ -13,7 +13,7 @@ You can specify the validation rules in the kuzzle configuration file in `valida
 
 A specification is always attached to the collection of an index.
 
-The API offers several actions to perform on specifications, allowing to get, update, delete or validate them. You can refer to the [API documentation]({{ site_base_path }}api-documentation/controller-collection/create/) for more information.
+The API offers several actions to perform on specifications, allowing to get, update, delete or validate them. You can refer to the [API documentation]({{ site_base_path }}api-documentation/controller-collection/update-specifications/) for more information.
 
 A specification is composed of three properties:
 
