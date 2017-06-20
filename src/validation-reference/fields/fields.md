@@ -4,13 +4,13 @@ algolia: true
 title: fields
 ---
 
-# Fields
+# The `fields` part
 
 The property name defines the path of the field in the document. The root fields will use their name directly. Sub fields contained in objects will use their path with the pattern `objectField/<subField>[/ ...]`.
 
 ---
 
-## Field:type
+## type
 
 **Possible values (Elasticsearch types)**:
 
@@ -38,7 +38,7 @@ The property name defines the path of the field in the document. The root fields
 
 ---
 
-## Field:mandatory
+## mandatory
 
 **Possible values**: `Boolean` true or false
 
@@ -48,7 +48,7 @@ The property name defines the path of the field in the document. The root fields
 
 ---
 
-## Field:defaultValue
+## defaultValue
 
 **Possible values**: Any value that fits the type of the field. If the field is multi-valued, the default value **MUST** be an `array` of values (even if it contains only one value).
 
@@ -58,7 +58,7 @@ The property name defines the path of the field in the document. The root fields
 
 ---
 
-## Field:description
+## description
 
 **Possible values**: Any `string` describing the field, its content and its conditions.
 
@@ -68,9 +68,9 @@ The property name defines the path of the field in the document. The root fields
 
 ---
 
-## Field:multivalued
+## multivalued
 
-### value
+### multivalued.value
 
 **Possible values**: `Boolean` true or false
 
@@ -78,7 +78,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Purpose**: Specifies whether the field must contain an array of values or not. If true, fields[field].multivalued.minCount and fields[field].multivalued.maxCount can be used. **If true, a scalar can not be provided for the field**.
 
-### minCount
+### multivalued.minCount
 
 **Possible values**: A positive `integer`, less or equal to multivalued.maxCount
 
@@ -86,7 +86,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Purpose**: Defines the minimum (**inclusive**) count of items provided in the multi-valued field.
 
-### maxCount
+### multivalued.maxCount
 
 **Possible values**: A positive `integer`, greater or equal to multivalued.minCount
 
@@ -96,11 +96,11 @@ The property name defines the path of the field in the document. The root fields
 
 ---
 
-## Field:typeOptions
+## typeOptions
 
 This configuration is available depending on the types of the field.
 
-### range
+### typeOptions.range
 
 **Associated types**: `integer`, `float`, `string` (date)
 
@@ -113,8 +113,12 @@ This configuration is available depending on the types of the field.
       "min": 10,
       "max": 20
     }
-  },
+  }
+}
+```
 
+```json
+{
   "typeOptions": {
     "range": {
       "min": "2010-01-01",
@@ -139,17 +143,19 @@ This configuration is available depending on the types of the field.
 
 <aside class="warning">Beware when using dates as range values: always make sure that, at some point, your rule won't prevent all documents from entering the system.</aside>
 
-### length
+### typeOptions.length
 
 **Associated type**: `string`
 
 **Possible values**: An `object` with a min and/or a max property, ie:
 
 ```json
-"typeopts": {
-  "length": {
-    "min": 10,
-    "max": 20
+{
+  "typeOptions": {
+    "length": {
+      "min": 10,
+      "max": 20
+    }
   }
 }
 ```
@@ -158,7 +164,7 @@ This configuration is available depending on the types of the field.
 
 **Purpose**: Defines a minimum and/or a maximum (**inclusive**) values for the field.
 
-### notEmpty
+### typeOptions.notEmpty
 
 **Associated type**: `email`, `ip_address`, `url`
 
@@ -168,7 +174,7 @@ This configuration is available depending on the types of the field.
 
 **Purpose**: Specifies whether a field can contain empty strings or not. If set to false, the field must either be empty or fulfill the field requirement (follow an email format by example).
 
-### formats
+### typeOptions.formats
 
 **Associated type**: `date`
 
@@ -269,7 +275,7 @@ Non strict mode is slightly different from the one explained and implemented by 
 Non strict mode has been implemented to fit Elasticsearch date formats but we recommend to use strict mode when possible.
 </aside>
 
-### strict
+### typeOptions.strict
 
 **Associated type**: `object`
 
@@ -279,7 +285,7 @@ Non strict mode has been implemented to fit Elasticsearch date formats but we re
 
 **Purpose**: Specifies whether the field can contain non declared fields. If true, a document that attempts to add a not declared field will be rejected.
 
-### values
+### typeOptions.values
 
 **Associated type**: `enum` (mandatory)
 
@@ -287,7 +293,7 @@ Non strict mode has been implemented to fit Elasticsearch date formats but we re
 
 **Purpose**:Defines all valid values for an enum field. All field values have to match one of the valid values for a multi-valued field.
 
-### shapeTypes
+### typeOptions.shapeTypes
 
 **Associated type**: `geo_shape` (mandatory)
 
