@@ -1,0 +1,711 @@
+<!doctype html><html><head><meta http-equiv=Content-Type content="text/html; charset=utf-8"><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=msapplication-TileColor content=#FFFFFF><meta name=msapplication-TileImage content=http://docs.kuzzle.io/assets/images/favicon/mstile-144x144.png><meta name=msapplication-square70x70logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-70x70.png><meta name=msapplication-square150x150logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-150x150.png><meta name=msapplication-wide310x150logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-310x150.png><meta name=msapplication-square310x310logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-310x310.png><meta name=google-site-verification content=luspUdq52gkUU0FFChQ2xmeXSs5HDafpARQ7fVXVBp4><meta itemprop=name content="Getting started"><meta itemprop=image content=http://docs.kuzzle.io/assets/images/favicon/favicon-196x196.png><meta name=twitter:card value=summary><meta name=twitter:site content=@kuzzleio><meta name=twitter:title content="Getting started"><meta name=twitter:creator content=@kuzzleio><meta name=twitter:image content=http://docs.kuzzle.io/assets/images/favicon/favicon-196x196.png><meta property=og:title content="Getting started"><meta property=og:type content=article><meta property=og:site_name content=""><meta property=og:image content=http://docs.kuzzle.io/assets/images/favicon/favicon-96x96.png><meta property=article:published_time content=2017-06-20T14:47:55.796Z><meta property=article:modified_time content=2017-06-20T14:47:55.796Z><meta property=article:section content=Guide><meta property=article:tag content="Getting started"><meta property=og:description content="learn kuzzle in a few steps"><meta itemprop=description content="learn kuzzle in a few steps"><meta name=twitter:description content="learn kuzzle in a few steps"><meta name=description content="learn kuzzle in a few steps"><link rel=apple-touch-icon-precomposed sizes=57x57 href=/assets/images/favicon/apple-touch-icon-57x57.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/assets/images/favicon/apple-touch-icon-114x114.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/assets/images/favicon/apple-touch-icon-72x72.png><link rel=apple-touch-icon-precomposed sizes=144x144 href=/assets/images/favicon/apple-touch-icon-144x144.png><link rel=apple-touch-icon-precomposed sizes=60x60 href=/assets/images/favicon/apple-touch-icon-60x60.png><link rel=apple-touch-icon-precomposed sizes=120x120 href=/assets/images/favicon/apple-touch-icon-120x120.png><link rel=apple-touch-icon-precomposed sizes=76x76 href=/assets/images/favicon/apple-touch-icon-76x76.png><link rel=apple-touch-icon-precomposed sizes=152x152 href=/assets/images/favicon/apple-touch-icon-152x152.png><link rel=icon type=image/png href=/assets/images/favicon/favicon-196x196.png sizes=196x196><link rel=icon type=image/png href=/assets/images/favicon/favicon-96x96.png sizes=96x96><link rel=icon type=image/png href=/assets/images/favicon/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/assets/images/favicon/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/assets/images/favicon/favicon-128.png sizes=128x128><link rel=stylesheet href=/assets/font-awesome/scss/font-awesome.css><link href="//fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel=stylesheet><title>Getting started - Guide - Kuzzle documentation</title><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-light.min.css><link href=/assets/stylesheets/full/screen.css rel=stylesheet type=text/css media=screen></head><body class=index><header><div class=wrapper><div id=logo><a href=http://kuzzle.io/ >&#xA0;</a></div><a class=mobile-nav-burger href=javascript:;></a><nav><ul><li><a href=http://kuzzle.io/kuzzle-entreprise class=nav-item>product</a></li><li><a href=http://docs.kuzzle.io/ class="nav-item developers active">Documentation</a><ul class=mobile-nav><li class=active><a href=/guide><span>Guide</span></a><ul class=sub-nav><li class=active><a href=/guide/getting-started><span>Getting started</span></a></li><li><a href=/guide/essentials><span>Essentials</span></a></li><li><a href=/guide/tutorial><span>Tutorial</span></a></li><li><a href=/guide/kuzzle-depth><span>Kuzzle in depth</span></a></li></ul></li><li><a href=/sdk-reference><span>SDK Reference</span></a></li><li><a href=/kuzzle-dsl><span>Kuzzle DSL</span></a></li><li><a href=/validation-reference><span>Data Validation</span></a></li><li><a href=/api-documentation><span>API Documentation</span></a></li><li><a href=/plugins-reference><span>Plugins Reference</span></a></li><li><a href=/kuzzle-events><span>Kuzzle events</span></a></li><li><a href=/elasticsearch-cookbook><span>Elasticsearch Cookbook</span></a></li></ul></li><li><a href=http://kuzzle.io/demos-tutorials/ class=nav-item>Demos</a></li><li><a href=http://kuzzle.io/blog/ class=nav-item>Blog</a></li><li><a href=http://kuzzle.io/contact/ class=nav-item>Contact</a></li><li><a href=http://kuzzle.io/install/ class=nav-item>Try it</a></li><li><a href=https://github.com/kuzzleio/kuzzle target=_blank class="nav-item github"><i class="icon icon-github icon-small"></i></a></li></ul></nav></div><div class="developer-nav open"><ul class=search><li><input name=search type=search placeholder=search tabindex=1></li></ul><ul class=nav><li class=active><a href=/guide><span>Guide</span></a></li><li><a href=/sdk-reference><span>SDK Reference</span></a></li><li><a href=/kuzzle-dsl><span>Kuzzle DSL</span></a></li><li><a href=/validation-reference><span>Data Validation</span></a></li><li><a href=/api-documentation><span>API Documentation</span></a></li><li><a href=/plugins-reference><span>Plugins Reference</span></a></li><li><a href=/kuzzle-events><span>Kuzzle events</span></a></li><li><a href=/elasticsearch-cookbook><span>Elasticsearch Cookbook</span></a></li></ul><div class=search-results><ul></ul></div><script type=text/plain id=search-results-template><li>
+        <a href="__link__" tabindex="__tabindex__">
+          <p class="page">
+            <span class="title">__title__</span>
+            <span class="firstMember">__firstMember__</span>
+            <span class="parent">__parent__</span>
+          </p>
+          <p class="preview">__preview__</p>
+        </a>
+      </li></script></div></header><div class=container><div class=tocify-wrapper><ul class=search-results></ul><div class=tocify><ul class=tocify-header><li class="tocify-item tocify-focus tocify-hover"></li></ul><ul class=tocify-header><li class=tocify-item><a style="color: #111; text-decoration: none" href=http://docs.kuzzle.io/guide title="back to Guide home">Guide</a></li><ul class=tocify-subheader><li class="tocify-item tocify-focus"><a style="color: #FFF; text-decoration: none" href=# title="learn kuzzle in a few steps">Getting started</a></li><ul class=tocify-header><ul class=tocify-subheader></ul></ul><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/guide/essentials title="learn mechanisms of kuzzle">Essentials</a></li><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/guide/tutorial title="learn kuzzle in a real case">Tutorial</a></li><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/guide/kuzzle-depth title="understand how to extend kuzzle">Kuzzle in depth</a></li></ul></ul><ul class=toc-footer></ul></div></div><div class=page-wrapper><div class=toc><ul><li class="toc-item toc-level-1"><a href=#getting-started title="Getting started">Getting started</a></li><li class="toc-item toc-level-2"><a href=#running-kuzzle-automagically title="Running Kuzzle automagically">Running Kuzzle automagically</a></li><li class="toc-item toc-level-4"><a href=#where-do-we-go-from-here title="Where do we go from here?">Where do we go from here?</a></li><li class="toc-item toc-level-2"><a href=#sdk-play-time title="SDK play time">SDK play time</a></li><li class="toc-item toc-level-3"><a href=#create-your-first-hello-world-document title="Create your first &quot;Hello World&quot; document">Create your first &quot;Hello World&quot; document</a></li><li class="toc-item toc-level-3"><a href=#subscribe-to-data-changes-pub-sub title="Subscribe to data changes (pub/sub)">Subscribe to data changes (pub/sub)</a></li><li class="toc-item toc-level-2"><a href=#where-do-we-go-from-here-where-do-we-go-from-here title="Where do we go from here?">Where do we go from here?</a></li></ul></div><div class=content><div class=mobile-breadcrumb><p style=float:left><a href=http://docs.kuzzle.io/ >Kuzzle documentation</a> &#xBB; <a href=http://docs.kuzzle.io/guide>Guide</a> &#xBB; Getting started</p><p style=float:right class=version-selector><select onchange="window.location = this.value"><option selected>1.0.0</option></select></p></div><div class=nav-sibling><div class=nav-left><p><a href=https://github.com/kuzzleio/documentation/edit/master/src/guide/getting-started/index.md>edit on github<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span> <a href="https://github.com/kuzzleio/documentation/issues/new?labels=guide&amp;title=Feedback%20about%20page%20&apos;guide/getting-started/index.md&apos;">send feedback about this content<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span><select class=rate-documentation><option value=""></option><option value=1>Unusable documentation</option><option value=2>Poor documentation</option><option value=3>OK documentation</option><option value=4>Good documentation</option><option value=5>Excellent documentation</option></select></p></div><div class=nav-right><p class=version-selector><span>current version:</span><select onchange="window.location = this.value"><option selected>1.0.0</option></select></p></div><div style=clear:both></div></div><div class=toc-inline><ul><li class="toc-item toc-level-1"><a href=#getting-started title="Getting started">Getting started</a></li><li class="toc-item toc-level-2"><a href=#running-kuzzle-automagically title="Running Kuzzle automagically">Running Kuzzle automagically</a></li><li class="toc-item toc-level-4"><a href=#where-do-we-go-from-here title="Where do we go from here?">Where do we go from here?</a></li><li class="toc-item toc-level-2"><a href=#sdk-play-time title="SDK play time">SDK play time</a></li><li class="toc-item toc-level-3"><a href=#create-your-first-hello-world-document title="Create your first &quot;Hello World&quot; document">Create your first &quot;Hello World&quot; document</a></li><li class="toc-item toc-level-3"><a href=#subscribe-to-data-changes-pub-sub title="Subscribe to data changes (pub/sub)">Subscribe to data changes (pub/sub)</a></li><li class="toc-item toc-level-2"><a href=#where-do-we-go-from-here-where-do-we-go-from-here title="Where do we go from here?">Where do we go from here?</a></li></ul></div><div class=main-content><h1><a class=anchor id=getting-started></a>Getting started</h1><p>In this tutorial you will learn in a few steps how to <strong>launch</strong> Kuzzle and how to interact with it by <strong>persisting data</strong> and <strong>being notified</strong> when data is updated.</p><hr><h2><a class=anchor id=running-kuzzle-automagically></a>Running Kuzzle automagically</h2><p>In this section, we&apos;ll learn how to launch Kuzzle the quick way, i.e. via the installation script.</p><p>Grab a console and launch the following command</p><pre><code class="hljs bash"><span class=hljs-meta>#!/bin/bash
+</span>
+sudo bash -c <span class=hljs-string>&quot;<span class=hljs-variable>$(curl -s https://raw.githubusercontent.com/kuzzleio/kuzzle-build/master/setup.sh)</span>&quot;</span></code></pre><aside class=notice>Running a script with <code>sudo</code> is not the only way to install Kuzzle (but is indeed the easiest). To avoid using <code>sudo</code>, you may want to check the <a href=/guide/essentials/installing-kuzzle/ >alternative installation methods</a>.</aside><p>This command downloads and executes the installation script with root privileges. The script checks the system for a set of pre-requisites. If necessary, it installs Docker and Docker-compose, then runs Kuzzle.</p><p>Once the installation process is complete, the script will greet you with the following message</p><pre><code class="hljs bash"><span class=hljs-comment># [&#x2714;] Kuzzle is running!</span></code></pre><p>Your Kuzzle server is now ready to be used. To check it, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512?pretty=true">http://localhost:7512?pretty=true</a> or via cURL on the command line:</p><pre><code class="hljs bash"><span class=hljs-meta>#!/bin/bash
+</span>
+curl <span class=hljs-string>&quot;http://localhost:7512/?pretty=true&quot;</span></code></pre><p>Kuzzle will respond you with a list of the existing routes.</p><aside class=success>Kuzzle is up and running. It will accept requests at <code>localhost:7512</code>:<ul><li>via <strong>standard HTTP requests,</strong></li><li>via a <strong>Websocket</strong> client (like the <a href=https://github.com/kuzzleio/sdk-javascript>Javascript SDK</a>),</li><li>via <strong>Socket.IO</strong> (used as a fallback by the SDK on browsers that do not provide Websocket support).</li></ul></aside><aside class=notice>Having trouble?<ul><li><a href=https://gitter.im/kuzzleio/kuzzle>Get in touch with us on Gitter!</a> We&apos;ll be happy to help.</li><li>Check out the <a href=/guide/essentials/installing-kuzzle/ >alternative installation methods.</a></li></ul></aside><h4><a class=anchor id=where-do-we-go-from-here></a>Where do we go from here?</h4><p>Now that Kuzzle is running on your computer, you can dive into playing with it by:</p><ul><li><a href=/guide/essentials/installing-backoffice>installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;</li><li>installing one of the available <a href=/sdk-reference/ >Kuzzle SDK</a> to power-up one of your projects:<ul><li><a href=https://github.com/kuzzleio/sdk-javascript>Javascript</a> (check the <a href=/guide/getting-started/#sdk-play-time>SDK play time</a> section below),</li><li><a href=https://github.com/kuzzleio/sdk-php>PHP</a>,</li><li><a href=https://github.com/kuzzleio/sdk-ios>iOS</a>,</li><li><a href=https://github.com/kuzzleio/sdk-android>Android</a>;</li></ul></li><li>exploring the <a href=/api-documentation>Kuzzle API Documentation</a>;</li><li><a href=/guide/essentials/installing-kuzzle/#manually>setting-up a Kuzzle Server without Docker</a>.</li></ul><aside class=notice>You can also <a href=/guide/essentials/installing-kuzzle/#manually>install Kuzzle manually</a>.</aside><hr><h2><a class=anchor id=sdk-play-time></a>SDK play time</h2><p>It&apos;s time to play with the <a href=/sdk-reference>Kuzzle SDK</a>. In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.</p><p>Before proceeding, ensure that your system matches the following requisites:</p><ul><li>A fairly recent version of <strong>NodeJS</strong> (i.e. v6+) should be installed on your system (<a href=https://nodejs.org/en/download/ >instructions here</a>),</li><li>A Kuzzle server up and running.</li></ul><h3><a class=anchor id=create-your-first-hello-world-document></a>Create your first &quot;Hello World&quot; document</h3><p>Create your playground directory and install the <a href=/sdk-reference>Javascript SDK</a> from the command line using npm:</p><pre><code class="hljs bash"><span class=hljs-meta>#!/bin/bash
+</span>
+mkdir <span class=hljs-string>&quot;kuzzle-playground&quot;</span>
+<span class=hljs-built_in>cd</span> <span class=hljs-string>&quot;kuzzle-playground&quot;</span>
+npm install kuzzle-sdk</code></pre><p>Save the following JS code in the new <code>create.js</code> file:</p><pre><code class="hljs javascript"><span class=hljs-keyword>var</span> Kuzzle = <span class=hljs-built_in>require</span>(<span class=hljs-string>&apos;kuzzle-sdk&apos;</span>)
+
+<span class=hljs-comment>// connect to the Kuzzle server</span>
+<span class=hljs-keyword>var</span> kuzzle = <span class=hljs-keyword>new</span> Kuzzle(<span class=hljs-string>&apos;localhost&apos;</span>, {
+    <span class=hljs-attr>defaultIndex</span>: <span class=hljs-string>&apos;playground&apos;</span>
+  })
+
+<span class=hljs-comment>// get a reference to the a collection</span>
+<span class=hljs-keyword>var</span> collection = kuzzle.collection(<span class=hljs-string>&apos;mycollection&apos;</span>)
+
+<span class=hljs-comment>// define the document itself</span>
+<span class=hljs-keyword>var</span> <span class=hljs-built_in>document</span> = {
+    <span class=hljs-attr>message</span>: <span class=hljs-string>&apos;Hello, world!&apos;</span>
+}
+
+<span class=hljs-comment>// persist the document into the collection</span>
+collection.createDocument(<span class=hljs-built_in>document</span>)</code></pre><p>Run your file in NodeJS</p><pre><code class="hljs bash"><span class=hljs-meta>#!/bin/bash
+</span>
+node create.js</code></pre><aside class=success>You have persisted your first document in Kuzzle. If you are running the Backoffice, you can use it to check the existence of the newly created document.</aside><aside class=notice>Having trouble? <a href=https://gitter.im/kuzzleio/kuzzle-bo>Get in touch with us on Gitter!</a> We&apos;ll be happy to help.</aside><p><em>You can find more resources about Kuzzle SDK in the <a href=/sdk-reference>SDK Documentation</a>.</em></p><h3><a class=anchor id=subscribe-to-data-changes-pub-sub></a>Subscribe to data changes (pub/sub)</h3><p>Kuzzle provides pub/sub features that allow you to be notified in real-time on the state of your data (check the <a href=/sdk-reference/#room>Room Class Documentation</a> for a deep-dive on notifications).</p><p>Let&apos;s get started. Open a new termnial in the playground directory you created before and create the <code>subscribe.js</code> file containing the following code:</p><pre><code class="hljs javascript"><span class=hljs-keyword>var</span> Kuzzle = <span class=hljs-built_in>require</span>(<span class=hljs-string>&apos;kuzzle-sdk&apos;</span>)
+
+<span class=hljs-comment>// connect to the Kuzzle server</span>
+<span class=hljs-keyword>var</span> kuzzle = <span class=hljs-keyword>new</span> Kuzzle(<span class=hljs-string>&apos;localhost&apos;</span>, {
+    <span class=hljs-attr>defaultIndex</span>: <span class=hljs-string>&apos;playground&apos;</span>
+  })
+
+<span class=hljs-comment>// create a reference to the data collection</span>
+<span class=hljs-keyword>var</span> collection = kuzzle.collection(<span class=hljs-string>&apos;mycollection&apos;</span>)
+
+<span class=hljs-comment>// define a filter</span>
+<span class=hljs-keyword>var</span> filter = {
+    <span class=hljs-attr>exists</span>: {
+        <span class=hljs-attr>field</span>: <span class=hljs-string>&apos;message&apos;</span>
+    }
+}
+
+<span class=hljs-comment>// create a subscription on the collection matching given filters</span>
+collection.subscribe(filter, <span class=hljs-function><span class=hljs-keyword>function</span>(<span class=hljs-params>error, result</span>) </span>{
+    <span class=hljs-comment>// this function is called each time kuzzle notifies us with a document matching our filters</span>
+    <span class=hljs-built_in>console</span>.log(<span class=hljs-string>&apos;message received from kuzzle:&apos;</span>, result)
+})</code></pre><p>Run your file in NodeJS</p><pre><code class="hljs bash"><span class=hljs-meta>#!/bin/bash
+</span>
+node subscribe.js</code></pre><p>And let it wait for documents entering the scope of the filter.</p><p>Now, get back to the previous terminal window and execute once more the <code>create.js</code> script. Take a look at the output of the <code>subscribe.js</code> script. You will see that, each time a document with a <code>message</code> field is persisted in Kuzzle, a <a href=/guide/essentials/real-time>notification</a> is shown as standard output.</p><aside class=success>You just leveraged Kuzzle&apos;s pub/sub mechanism.</aside><aside class=notice>Having trouble? <a href=https://gitter.im/kuzzleio/kuzzle-bo>Get in touch with us on Gitter!</a> We&apos;ll be happy to help.</aside><hr><h2><a class=anchor id=where-do-we-go-from-here-where-do-we-go-from-here></a>Where do we go from here?</h2><p>Now that you are started and operational with Kuzzle, you can fully leverage its power by:</p><ul><li><a href=/sdk-reference>taking a look at the SDK reference</a>;</li><li><a href=/kuzzle-dsl>mastering the Kuzzle DSL syntax</a> to create incredibly fine-grained and blazing-fast subscriptions;</li><li><a href=/guide/#security>learning how to manage users and set-up fine-grained permission rights</a>.</li></ul><div style="clear: both"></div></div><hr><div id=disqus_thread></div><script async>var disqus_developer = 1;
+      
+        var disqus_config = function () {
+          this.page.url = 'http://docs.kuzzle.io/guide/getting-started';
+          this.page.title = 'Getting started';
+          this.page.identifier = 'guide/getting-started';
+        };
+      
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://kuzzle-documentation.disqus.com/embed.js';
+          s.async = 'async';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();</script><div class="nav-sibling bottom"><div class=nav-left><p><a href=https://github.com/kuzzleio/documentation/edit/master/src/guide/getting-started/index.md>edit on github<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span> <a href="https://github.com/kuzzleio/documentation/issues/new?labels=guide&amp;title=Feedback%20about%20page%20&apos;guide/getting-started/index.md&apos;">send feedback about this content<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span><select class=rate-documentation><option value=""></option><option value=1>Unusable documentation</option><option value=2>Poor documentation</option><option value=3>OK documentation</option><option value=4>Good documentation</option><option value=5>Excellent documentation</option></select></p></div><div class=nav-right><p class=medium-only><a href=http://docs.kuzzle.io/guide/essentials>Essentials &#xBB;</a></p><p><a href=#>back to top &#x2191;</a></p></div><div style=clear:both></div></div></div></div></div><script src=//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js></script><script src=//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js></script><script src=/assets/javascript/lib/jquery.barrating.js></script><script type=text/javascript>// store helper
+  var store = function store(key, value) {
+    var lsSupport = false;
+
+    // Check for native support
+    if (localStorage) {
+      lsSupport = true;
+    }
+
+    // If value is detected, set new or modify store
+    if (typeof value !== "undefined" && value !== null) {
+      // Convert object values to JSON
+      if ( typeof value === 'object' ) {
+        value = JSON.stringify(value);
+      }
+      // Set the store
+      if (lsSupport) { // Native support
+        localStorage.setItem(key, value);
+      } else { // Use Cookie
+        createCookie(key, value, 30);
+      }
+    }
+
+    // No value supplied, return value
+    if (typeof value === "undefined") {
+      // Get value
+      if (lsSupport) { // Native support
+        data = localStorage.getItem(key);
+      } else { // Use cookie
+        data = readCookie(key);
+      }
+
+      // Try to parse JSON...
+      try {
+        data = JSON.parse(data);
+      }
+      catch(e) {
+        data = data;
+      }
+
+      return data;
+    }
+
+    // Null specified, remove store
+    if (value === null) {
+      if (lsSupport) { // Native support
+        localStorage.removeItem(key);
+      } else { // Use cookie
+        createCookie(key, '', -1);
+      }
+    }
+
+    /**
+     * Creates new cookie or removes cookie with negative expiration
+     * @param  key       The key or identifier for the store
+     * @param  value     Contents of the store
+     * @param  exp       Expiration - creation defaults to 30 days
+     */
+    function createCookie(key, value, exp) {
+      var date = new Date();
+      date.setTime(date.getTime() + (exp * 24 * 60 * 60 * 1000));
+      var expires = "; expires=" + date.toGMTString();
+      document.cookie = key + "=" + value + expires + "; path=/";
+    }
+
+    /**
+     * Returns contents of cookie
+     * @param  key       The key or identifier for the store
+     */
+    function readCookie(key) {
+      var nameEQ = key + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0, max = ca.length; i < max; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+  };
+
+
+
+
+
+
+  // google analytics
+  (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-67035328-1', 'auto');
+  ga('send', 'pageview');
+
+  (function scrollToHash() {
+    if (window.location.hash != '') {
+      var anchor = $(location.hash).get(0);
+      if (anchor) {
+        anchor.scrollIntoView();
+      }
+    }
+  })();
+
+
+
+
+  (function mobileNavBuger() {
+    var $body = $('body');
+
+    $('.mobile-nav-burger').on('click', function() {
+      $body.toggleClass('nav-burger-open');
+    });
+  })();
+
+
+
+
+
+
+
+  (function rateDocumentation() {
+    var $rateDocumentation = $('.rate-documentation');
+    var pagePath = 'guide/getting-started'.replace(/\//g, '-');
+    var categoryRating = parseInt(store('rate-documentation-' + pagePath));
+
+    $rateDocumentation.barrating({
+      theme: 'fontawesome-stars',
+      initialRatting: 0,
+      allowEmpty: true,
+      onSelect: function(value, text, event) {
+        if (typeof(event) !== 'undefined') {
+          // rating was selected by a user
+          store('rate-documentation-' + pagePath, event.target.dataset.ratingValue);
+          $rateDocumentation.barrating('set', event.target.dataset.ratingValue);
+          // $rateDocumentation.barrating('readonly', true); // wired on mobile
+
+          ga('send', 'event', {
+            eventCategory: 'documentation-rate',
+            eventAction: 'http://docs.kuzzle.io/guide/getting-started',
+            eventLabel: event.target.dataset.ratingText,
+            transport: 'beacon'
+          });
+
+          window.setTimeout(function() {
+            $('.br-current-rating').css('transition', 'opacity 0.15s');
+            $('.br-current-rating').css('opacity', '0');
+
+            window.setTimeout(function() {
+              $('.br-current-rating').css('transition', 'opacity 0.9s');
+              $('.br-current-rating').text("thank's for feedback !");
+              $('.br-current-rating').css('opacity', '1');
+            }, 140);
+          }, 1);
+
+          window.setTimeout(function() {
+            $('.br-current-rating').css('opacity', '0');
+
+            window.setTimeout(function() {
+              $('.br-current-rating').css('transition', 'opacity 0.2s');
+              if (event.target.dataset.ratingText === 'Excellent documentation') {
+                $('.br-current-rating').text(event.target.dataset.ratingText + ' \\o/');
+              }
+              else {
+                $('.br-current-rating').text(event.target.dataset.ratingText);
+              }
+              $('.br-current-rating').css('opacity', '1');
+            }, 1000);
+          }, 2500);
+        }
+        else {
+          // rating was selected programmatically
+          // by calling `set` method
+        }
+      }
+    });
+
+    $('.br-current-rating').addClass('visible');
+
+    if (!isNaN(categoryRating)) {
+      $rateDocumentation.barrating('set', categoryRating);
+      $rateDocumentation.barrating('readonly', true);
+    }
+  })();
+
+
+
+
+
+
+
+
+
+
+
+  (function leftNavUX() {
+    var $wrapper = $('.tocify-wrapper');
+
+    if ($wrapper.length !== 0) {
+      var $selectedItem = $('.tocify-level-2.tocify-focus', $wrapper);
+
+      if ($selectedItem.length === 0) {
+        $selectedItem = $('.tocify-focus', $wrapper);
+      }
+
+      if ($selectedItem.get(0).offsetTop + 120 > $wrapper.height()) {
+        $wrapper.scrollTop(Math.ceil($selectedItem.get(0).offsetTop - $wrapper.height() / 2));
+      }
+    }
+  })();
+
+
+
+
+
+
+
+
+
+  (function tocUX() {
+    var $toc = $('.toc');
+    var $content = $('.content');
+
+    //----------------------------
+    // fixes toc next to content
+    if ($toc.length > 0) {
+      var debounceComputeSize = false;
+      var computeSize = function() {
+        // 280 is the width of left nav / 15 is the margin with content
+        $toc.css('left', $content.get('0').offsetLeft + $content.get('0').offsetWidth + 280 + 15 +'px');
+        // 30 is the margin with bottom window
+        $toc.css('max-height', window.innerHeight - $toc.get('0').offsetTop - 30  + 'px');
+      }
+
+      $(window).on('resize', function() {
+        clearTimeout(debounceComputeSize);
+        debounceComputeSize = setTimeout(computeSize, 13);
+      })
+      computeSize();
+    }
+    //----------------------------
+
+    //---------------------------------------------------------------------
+    // toogle 'active' class on toc link when headings pass window offset
+    if ($toc.length > 0) {
+      var headings = {};
+      var debounceActiveItem = false;
+      var computeActiveItem = function() {
+        var lastPassedItem;
+
+        for (let key in headings) {
+          headings[key].$link.removeClass('active');
+
+          if (headings[key].offset <= window.pageYOffset + 70) {
+            lastPassedItem = headings[key];
+          }
+        }
+
+        if (lastPassedItem) {
+          lastPassedItem.$link.addClass('active');
+        }
+      }
+
+      $('a[href]', $toc).each(function(index, element) {
+        var id = element.href.slice(element.href.indexOf('#'));
+        var $ref = $(id).parent();
+
+        if ($ref.length > 0) {
+          headings[id] = {
+            $ref: $ref,
+            $link: $(element),
+            offset: $ref.get('0').offsetTop
+          }
+        }
+      });
+
+      $(window).on('scroll', function() {
+        clearTimeout(debounceActiveItem);
+        debounceActiveItem = setTimeout(computeActiveItem, 10);
+      })
+      computeActiveItem();
+    }
+    //---------------------------------------------------------------------
+  })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //---------------------------------------------------------------------
+  // copy code to clipboard button
+  (function codeClipboard() {
+    $hljs = $('.hljs');
+
+    if ($hljs.length > 0) {
+      var debounceClipboard = false;
+      var clipboardSnippets;
+
+      function fallbackMessage(action) {
+          var actionMsg = '';
+          var actionKey = (action === 'cut' ? 'X' : 'C');
+          if (/iPhone|iPad/i.test(navigator.userAgent)) {
+              actionMsg = 'No support :(';
+          } else if (/Mac/i.test(navigator.userAgent)) {
+              actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
+          } else {
+              actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
+          }
+          return actionMsg;
+      }
+
+      $hljs.each(function(index, element) {
+        $(element).before('<button class="clipboard" title="copy code to clipboard" data-clipboard-snippet><i class="fa fa-clipboard" aria-hidden="true"></i></button>');
+      })
+
+      clipboardSnippets = new Clipboard('[data-clipboard-snippet]', {
+          target: function(trigger) {
+              return trigger.nextElementSibling;
+          }
+      });
+
+      clipboardSnippets.on('success', function(e) {
+          e.clearSelection();
+          $(e.trigger).text('Copied!')
+
+          clearTimeout(debounceClipboard);
+          debounceClipboard = setTimeout(function() {
+            $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+          }, 1200);
+      });
+      clipboardSnippets.on('error', function(e) {
+        e.clearSelection();
+        $(e.trigger).text(fallbackMessage(e.action));
+
+        clearTimeout(debounceClipboard);
+        debounceClipboard = setTimeout(function() {
+          $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        }, 2400);
+      });
+    }
+  })();
+  //---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+  //---------------------------------------------------------------------
+  // language tab selector
+  (function languageTabSelector() {
+    var $languageTabSelector = $('.language-tab-selector a');
+    var pageCategory = 'guide'.replace(/\//g, '-');
+    var selectedLanguage = store('selected-language' + pageCategory);
+
+    if (selectedLanguage) {
+      if ($('.language-tab[data-language="' + selectedLanguage + '"]').length > 0) {
+        $('.language-tab-active').removeClass('language-tab-active');
+        $('.language-tab-selector a[data-language-name="' + selectedLanguage + '"]').addClass('language-tab-active');
+        $('.language-tab[data-language="' + selectedLanguage + '"]').addClass('language-tab-active');
+      }
+    }
+
+    if ($languageTabSelector.length > 0) {
+      $languageTabSelector.on('click touch', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var language = $(this).data('languageName');
+
+        $('.language-tab-active').removeClass('language-tab-active');
+        $('.language-tab-selector a[data-language-name="' + language + '"]').addClass('language-tab-active');
+        $('.language-tab[data-language="' + language + '"]').addClass('language-tab-active');
+
+        store('selected-language' + pageCategory, language)
+      });
+    }
+  })();
+  //---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+  (function instantSearchUI() {
+    var KEY_UP = 38;
+    var KEY_DOWN = 40;
+    var client = algoliasearch("4RFBRWISJR", "6febf1ebe906bd82bce58d5a20ac6c1b");
+    var index = client.initIndex('kuzzle-documentation');
+    var template = $('#search-results-template').html();
+    var $searchInput = $('.search input[type=search]');
+    var $searchResults = $('.search-results');
+    var $searchResultsContainer = $('ul', $searchResults);
+    var watchResultsDebounce = false;
+    var selectedIndex = -1;
+    var watchClose = false;
+    var lastHits = 0;
+    var _a = true;
+
+    var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/rn/g,"n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
+
+
+    // focus search input on content loaded
+    $searchInput.focus();
+
+
+    $(window).on('keydown', function (event) {
+      if (watchClose) {
+        var $results = $('a', $searchResultsContainer);
+        var $focusResult = $('a:hover, a:focus', $searchResultsContainer);
+
+        if ($focusResult.length > 0) {
+          $results.each(function(index, element) {
+
+            if ($results[index] === $focusResult.get(0)) {
+              selectedIndex = index;
+            }
+          })
+        }
+
+        switch (event.keyCode) {
+          case KEY_UP:
+            event.stopPropagation();
+            if (selectedIndex === 0) {
+              selectedIndex = -1;
+            }
+
+            if (selectedIndex === -1) {
+              $searchInput.focus();
+              selectedIndex = $results.length - 1;
+            }
+            else {
+              selectedIndex -= 1;
+              $results.get(selectedIndex).focus();
+            }
+            //$('li:not(:last-child).selected').removeClass('selected').next().addClass('selected');
+
+            return false;
+          case KEY_DOWN:
+            event.stopPropagation();
+            if (selectedIndex >= $results.length -1) {
+              $searchInput.focus();
+              selectedIndex = -1;
+            }
+            else {
+              selectedIndex += 1;
+              $results.get(selectedIndex).focus();
+            }
+            //$('li:not(:first-child).selected').removeClass('selected').prev().addClass('selected');
+            return false;
+        }
+      }
+    });
+
+    // search results open/close handlers
+    $(window).on('click touch', function() {
+      if (watchClose) {
+        $searchResults.removeClass('display');
+        watchClose = false;
+
+        if (watchResultsDebounce) {
+          window.clearTimeout(watchResultsDebounce);
+        }
+      }
+    });
+
+    $searchInput.on('click touch', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+      event.stopPropagation();
+    });
+
+    $searchInput.on('focus', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+
+      selectedIndex = -1;
+    });
+
+    $searchInput.on('blur', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+    });
+    // end - search results open/close handlers
+
+
+    // main input listener
+    $searchInput.on('input', function(event) {
+      var $input = $(this);
+      var searchResultsContent = '';
+      // var length = (this.value.length + 1) * 6;
+
+      selectedIndex = -1;
+
+      // // resize input length to fit value
+      // length = (length > 450) ? 450 : length;
+      // this.style.width = (length > 220) ? length + 'px' : '220px';
+
+
+      // clear search result on empty input
+      if (this.value === '' || Base64.encode(this.value) === 'SGVscCBSeXUgYnkgY2xpY2tpbmcgeW91ciB3YXkgdGhyb3VnaCBkZXN0aW55IQ==') {
+        $searchResults.removeClass('display');
+        $searchResultsContainer.empty();
+        watchClose = false;
+
+        return;
+      }
+
+      if (_a) {
+        console.warn(Base64.decode('WW91IG1pZ2h0IHdhbnQgdG8gYXNrIFJ5dSBmb3IgaGVscA=='));
+        _a = false;
+      }
+
+      if (Base64.encode(this.value.toLowerCase()) === 'cnl1IGhlbHAgbWU=') {
+        var d = document
+
+        s = d.createElement('script');
+        s.src = '/' + Base64.decode('YXNzZXRzL2phdmFzY3JpcHQvbGliL2pxdWVyeS5zb21ldGhpbmcuanM=');
+        s.async = 'async';
+        (d.head || d.body).appendChild(s);
+
+        $searchResultsContainer.empty();
+        $searchResults.removeClass('display');
+        watchClose = false;
+
+        this.disabled = true;
+        this.value = Base64.decode('SGVscCBSeXUgYnkgY2xpY2tpbmcgeW91ciB3YXkgdGhyb3VnaCBkZXN0aW55IQ==');
+
+        return;
+      }
+
+      index.search(this.value, function(err, res) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        lastHits = res.hits.length;
+        if (watchResultsDebounce) {
+          window.clearTimeout(watchResultsDebounce);
+        }
+
+        if (lastHits === 0) {
+          $searchResultsContainer.empty();
+          $searchResults.removeClass('display');
+          return;
+        }
+
+        // send ga event when user has search results but does nothing
+        watchResultsDebounce = window.setTimeout(function() {
+          ga('send', 'event', {
+            eventCategory: 'documentation-search',
+            eventAction: (lastHits > 0) ? '<watch_results>' : '<no_results>',
+            eventLabel: $searchInput.val(),
+            transport: 'beacon'
+          });
+        }, 4000);
+
+        $searchResults.addClass('display');
+        watchClose = true;
+
+        // make search result item from
+        for (var key in res.hits) {
+          var content = template;
+
+          // here we secure manualy all xml tags wich may can be retrieved by results, but we keep <em> tags for highlighting
+          var elements = res.hits[key]._snippetResult.content.value.split('<em>');
+          var preview = '';
+
+          for (var k in elements) {
+            elements[k] = elements[k].replace(/</g, '&lt;');
+            elements[k] = elements[k].replace(/>/g, '&gt;');
+          }
+
+          // restore <em></em> tags
+          preview = elements.join('<em>');
+          preview = preview.replace(/&lt;\/em&gt;/g, '</em>');
+
+          // replace variables in template
+          content = content.replace(/__tabindex__/g, key + 2);
+          content = content.replace(/__link__/g, 'http://docs.kuzzle.io/' + res.hits[key].path);
+          content = content.replace(/__parent__/g, res.hits[key].parent || '');
+          content = content.replace(/__firstMember__/g, res.hits[key].firstMember || '');
+          content = content.replace(/__title__/g, res.hits[key]._highlightResult.title.value);
+          content = content.replace(/__preview__/g, preview);
+
+          searchResultsContent += content;
+        }
+
+        // add algolia copyright
+        searchResultsContent += '<li style="text-align: right"><img src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" style="margin: 8px 8px 0 0;"></li>';
+
+        // magic jQuery
+        $searchResultsContainer.html(searchResultsContent);
+
+        // send ga event on search result hit
+        $('a', $searchResultsContainer).on('click touch', function(event) {
+          ga('send', 'event', {
+            eventCategory: 'documentation-search',
+            eventAction: this.href,
+            eventLabel: $searchInput.val(),
+            transport: 'beacon'
+          });
+        });
+      });
+    });
+
+  })();</script></body></html>

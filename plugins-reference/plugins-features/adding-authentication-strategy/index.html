@@ -1,0 +1,846 @@
+<!doctype html><html><head><meta http-equiv=Content-Type content="text/html; charset=utf-8"><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=msapplication-TileColor content=#FFFFFF><meta name=msapplication-TileImage content=http://docs.kuzzle.io/assets/images/favicon/mstile-144x144.png><meta name=msapplication-square70x70logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-70x70.png><meta name=msapplication-square150x150logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-150x150.png><meta name=msapplication-wide310x150logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-310x150.png><meta name=msapplication-square310x310logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-310x310.png><meta name=google-site-verification content=luspUdq52gkUU0FFChQ2xmeXSs5HDafpARQ7fVXVBp4><meta itemprop=name content="Adding an authentication strategy"><meta itemprop=image content=http://docs.kuzzle.io/assets/images/favicon/favicon-196x196.png><meta name=twitter:card value=summary><meta name=twitter:site content=@kuzzleio><meta name=twitter:title content="Adding an authentication strategy"><meta name=twitter:creator content=@kuzzleio><meta name=twitter:image content=http://docs.kuzzle.io/assets/images/favicon/favicon-196x196.png><meta property=og:title content="Adding an authentication strategy"><meta property=og:type content=article><meta property=og:site_name content=""><meta property=og:image content=http://docs.kuzzle.io/assets/images/favicon/favicon-96x96.png><meta property=article:published_time content=2017-06-20T14:47:55.800Z><meta property=article:modified_time content=2017-06-20T14:47:55.800Z><meta property=article:section content="Plugins Reference"><meta property=article:tag content="Plugins features"><link rel=apple-touch-icon-precomposed sizes=57x57 href=/assets/images/favicon/apple-touch-icon-57x57.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/assets/images/favicon/apple-touch-icon-114x114.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/assets/images/favicon/apple-touch-icon-72x72.png><link rel=apple-touch-icon-precomposed sizes=144x144 href=/assets/images/favicon/apple-touch-icon-144x144.png><link rel=apple-touch-icon-precomposed sizes=60x60 href=/assets/images/favicon/apple-touch-icon-60x60.png><link rel=apple-touch-icon-precomposed sizes=120x120 href=/assets/images/favicon/apple-touch-icon-120x120.png><link rel=apple-touch-icon-precomposed sizes=76x76 href=/assets/images/favicon/apple-touch-icon-76x76.png><link rel=apple-touch-icon-precomposed sizes=152x152 href=/assets/images/favicon/apple-touch-icon-152x152.png><link rel=icon type=image/png href=/assets/images/favicon/favicon-196x196.png sizes=196x196><link rel=icon type=image/png href=/assets/images/favicon/favicon-96x96.png sizes=96x96><link rel=icon type=image/png href=/assets/images/favicon/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/assets/images/favicon/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/assets/images/favicon/favicon-128.png sizes=128x128><link rel=stylesheet href=/assets/font-awesome/scss/font-awesome.css><link href="//fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel=stylesheet><title>Adding an authentication strategy - Plugins features - Plugins Reference - Kuzzle documentation</title><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-light.min.css><link href=/assets/stylesheets/full/screen.css rel=stylesheet type=text/css media=screen></head><body class=index><header><div class=wrapper><div id=logo><a href=http://kuzzle.io/ >&#xA0;</a></div><a class=mobile-nav-burger href=javascript:;></a><nav><ul><li><a href=http://kuzzle.io/kuzzle-entreprise class=nav-item>product</a></li><li><a href=http://docs.kuzzle.io/ class="nav-item developers active">Documentation</a><ul class=mobile-nav><li><a href=/guide><span>Guide</span></a></li><li><a href=/sdk-reference><span>SDK Reference</span></a></li><li><a href=/kuzzle-dsl><span>Kuzzle DSL</span></a></li><li><a href=/validation-reference><span>Data Validation</span></a></li><li><a href=/api-documentation><span>API Documentation</span></a></li><li class=active><a href=/plugins-reference><span>Plugins Reference</span></a><ul class=sub-nav><li><a href=/plugins-reference/plugins-creation-prerequisites><span>Plugins creation prerequisites</span></a></li><li class=active><a href=/plugins-reference/plugins-features><span>Plugins features</span></a></li><li><a href=/plugins-reference/managing-plugins><span>Managing Plugins</span></a></li><li><a href=/plugins-reference/plugins-context><span>The plugin context</span></a></li></ul></li><li><a href=/kuzzle-events><span>Kuzzle events</span></a></li><li><a href=/elasticsearch-cookbook><span>Elasticsearch Cookbook</span></a></li></ul></li><li><a href=http://kuzzle.io/demos-tutorials/ class=nav-item>Demos</a></li><li><a href=http://kuzzle.io/blog/ class=nav-item>Blog</a></li><li><a href=http://kuzzle.io/contact/ class=nav-item>Contact</a></li><li><a href=http://kuzzle.io/install/ class=nav-item>Try it</a></li><li><a href=https://github.com/kuzzleio/kuzzle target=_blank class="nav-item github"><i class="icon icon-github icon-small"></i></a></li></ul></nav></div><div class="developer-nav open"><ul class=search><li><input name=search type=search placeholder=search tabindex=1></li></ul><ul class=nav><li><a href=/guide><span>Guide</span></a></li><li><a href=/sdk-reference><span>SDK Reference</span></a></li><li><a href=/kuzzle-dsl><span>Kuzzle DSL</span></a></li><li><a href=/validation-reference><span>Data Validation</span></a></li><li><a href=/api-documentation><span>API Documentation</span></a></li><li class=active><a href=/plugins-reference><span>Plugins Reference</span></a></li><li><a href=/kuzzle-events><span>Kuzzle events</span></a></li><li><a href=/elasticsearch-cookbook><span>Elasticsearch Cookbook</span></a></li></ul><div class=search-results><ul></ul></div><script type=text/plain id=search-results-template><li>
+        <a href="__link__" tabindex="__tabindex__">
+          <p class="page">
+            <span class="title">__title__</span>
+            <span class="firstMember">__firstMember__</span>
+            <span class="parent">__parent__</span>
+          </p>
+          <p class="preview">__preview__</p>
+        </a>
+      </li></script></div></header><div class=container><div class=tocify-wrapper><ul class=search-results></ul><div class=tocify><ul class=tocify-header><li class="tocify-item tocify-focus tocify-hover"></li></ul><ul class=tocify-header><li class=tocify-item><a style="color: #111; text-decoration: none" href=http://docs.kuzzle.io/plugins-reference title="back to Plugins Reference home">Plugins Reference</a></li><ul class=tocify-subheader><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-creation-prerequisites title="requirements to develop your plugin">Plugins creation prerequisites</a></li><li class="tocify-item tocify-focus"><a style="color: #FFF; text-decoration: none" href=# title="understand Kuzzle plugins mechanisms">Plugins features</a></li><ul class=tocify-header><ul class=tocify-subheader><li class="tocify-item tocify-level-2"><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-features title="understand Kuzzle plugins mechanisms">&#x203A; Introduction</a></li><li class="tocify-item tocify-level-2"><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-features/adding-hooks title="Listening asynchronously">&#x203A; Listening asynchronously</a></li><li class="tocify-item tocify-level-2"><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-features/adding-pipes title="Listening synchronously">&#x203A; Listening synchronously</a></li><li class="tocify-item tocify-level-2"><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-features/adding-controllers title="Adding a controller route">&#x203A; Adding a controller route</a></li><li class="tocify-item tocify-level-2 tocify-focus"><a style="color: #FFF; text-decoration: none" href=/plugins-reference/plugins-features/adding-authentication-strategy title="Adding an authentication strategy">&#x203A; Adding an authentication strategy</a></li><li class="tocify-item tocify-level-2"><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-features/adding-protocol title="Adding a network protocol">&#x203A; Adding a network protocol</a></li></ul></ul><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/plugins-reference/managing-plugins title="learn how to enable and configure plugins">Managing Plugins</a></li><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-context title="plugin initialization context attribute reference">The plugin context</a></li></ul></ul><ul class=toc-footer></ul></div></div><div class=page-wrapper><div class=toc><ul><li class="toc-item toc-level-1"><a href=#adding-an-authentication-strategy title="Adding an authentication strategy">Adding an authentication strategy</a></li><li class="toc-item toc-level-2"><a href=#choose-or-implement-a-passport-strategy title="Choose or implement a Passport strategy">Choose or implement a Passport strategy</a></li><li class="toc-item toc-level-2"><a href=#expose-authentication-strategies title="Expose authentication strategies">Expose authentication strategies</a></li><li class="toc-item toc-level-2"><a href=#the-verify-function title="The verify function">The verify function</a></li><li class="toc-item toc-level-2"><a href=#the-exists-function title="The exists function">The exists function</a></li><li class="toc-item toc-level-2"><a href=#the-create-function title="The create function">The create function</a></li><li class="toc-item toc-level-2"><a href=#the-update-function title="The update function">The update function</a></li><li class="toc-item toc-level-2"><a href=#the-delete-function title="The delete function">The delete function</a></li><li class="toc-item toc-level-2"><a href=#the-getinfo-function title="The getInfo function">The getInfo function</a></li><li class="toc-item toc-level-2"><a href=#the-getbyid-function title="The getById function">The getById function</a></li><li class="toc-item toc-level-2"><a href=#the-afterregister-function title="The afterRegister function">The afterRegister function</a></li><li class="toc-item toc-level-2"><a href=#the-validate-function title="The validate function">The validate function</a></li><li class="toc-item toc-level-2"><a href=#tl-dr-plugin-skeleton title="TL;DR plugin skeleton">TL;DR plugin skeleton</a></li></ul></div><div class=content><div class=mobile-breadcrumb><p style=float:left><a href=http://docs.kuzzle.io/ >Kuzzle documentation</a> &#xBB; <a href=http://docs.kuzzle.io/plugins-reference>Plugins Reference</a> &#xBB; <a href=http://docs.kuzzle.io/plugins-reference/plugins-features>Plugins features</a> &#xBB; Adding an authentication strategy</p><p style=float:right class=version-selector><select onchange="window.location = this.value"><option selected>1.0.0</option></select></p></div><div class=nav-sibling><div class=nav-left><p><a href=https://github.com/kuzzleio/documentation/edit/master/src/plugins-reference/plugins-features/adding-authentication-strategy.md>edit on github<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span> <a href="https://github.com/kuzzleio/documentation/issues/new?labels=plugins-reference&amp;title=Feedback%20about%20page%20&apos;plugins-reference/plugins-features/adding-authentication-strategy.md&apos;">send feedback about this content<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span><select class=rate-documentation><option value=""></option><option value=1>Unusable documentation</option><option value=2>Poor documentation</option><option value=3>OK documentation</option><option value=4>Good documentation</option><option value=5>Excellent documentation</option></select></p></div><div class=nav-right><p class=version-selector><span>current version:</span><select onchange="window.location = this.value"><option selected>1.0.0</option></select></p></div><div style=clear:both></div></div><div class=toc-inline><ul><li class="toc-item toc-level-1"><a href=#adding-an-authentication-strategy title="Adding an authentication strategy">Adding an authentication strategy</a></li><li class="toc-item toc-level-2"><a href=#choose-or-implement-a-passport-strategy title="Choose or implement a Passport strategy">Choose or implement a Passport strategy</a></li><li class="toc-item toc-level-2"><a href=#expose-authentication-strategies title="Expose authentication strategies">Expose authentication strategies</a></li><li class="toc-item toc-level-2"><a href=#the-verify-function title="The verify function">The verify function</a></li><li class="toc-item toc-level-2"><a href=#the-exists-function title="The exists function">The exists function</a></li><li class="toc-item toc-level-2"><a href=#the-create-function title="The create function">The create function</a></li><li class="toc-item toc-level-2"><a href=#the-update-function title="The update function">The update function</a></li><li class="toc-item toc-level-2"><a href=#the-delete-function title="The delete function">The delete function</a></li><li class="toc-item toc-level-2"><a href=#the-getinfo-function title="The getInfo function">The getInfo function</a></li><li class="toc-item toc-level-2"><a href=#the-getbyid-function title="The getById function">The getById function</a></li><li class="toc-item toc-level-2"><a href=#the-afterregister-function title="The afterRegister function">The afterRegister function</a></li><li class="toc-item toc-level-2"><a href=#the-validate-function title="The validate function">The validate function</a></li><li class="toc-item toc-level-2"><a href=#tl-dr-plugin-skeleton title="TL;DR plugin skeleton">TL;DR plugin skeleton</a></li></ul></div><div class=main-content><h1><a class=anchor id=adding-an-authentication-strategy></a>Adding an authentication strategy</h1><p>Kuzzle handles users security and authentication. The supported authentication strategies can be extended by Plugins.</p><p>Any strategy supported by <a href=http://passportjs.org/ >Passport</a> can be used to extend Kuzzle supported strategies, like we did with our official <a href=https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth>OAUTH2 Authentication plugin</a>.</p><hr><h2><a class=anchor id=choose-or-implement-a-passport-strategy></a>Choose or implement a Passport strategy</h2><p><a href=http://passportjs.org>Passport</a> supports a wide range of authentication strategies. If that is not enough, you can also implement your own strategy for your authentication Plugin.</p><p>In any case, the chosen strategy must be available in the Plugin local directory when Kuzzle installs it, either by adding the strategy in the Plugin&apos;s NPM dependencies, or by including the strategy code directly in the Plugin repository.</p><hr><h2><a class=anchor id=expose-authentication-strategies></a>Expose authentication strategies</h2><p>The <code>strategies</code> object must contain one attribute per added strategy. This attribute must be named after the strategy name and be an object containing:</p><ul><li>config: The configuration part<ul><li>constructor: The constructor of the Passport strategy</li><li>strategyOptions: The options provided to the Passport strategy constructor</li><li>authenticateOptions: The options provided to the Passport&apos;s <a href=http://passportjs.org/docs/authenticate>authenticate method</a>.</li><li>fields: The list of fields that can be provided to the plugin.</li></ul></li><li>methods:<ul><li>create: The name of the <code>create</code> function in the plugin object.</li><li>delete: The name of the <code>delete</code> function in the plugin object.</li><li>exists: The name of the <code>exists</code> function in the plugin object.</li><li>getInfo: The name of the <code>getInfo</code> function in the plugin object.</li><li>update: The name of the <code>update</code> function in the plugin object.</li><li>validate: The name of the <code>validate</code> function in the plugin object.</li><li>verify: The name of the <code>verify</code> function in the plugin object.</li></ul></li></ul><hr><h2><a class=anchor id=the-verify-function></a>The verify function</h2><p>You have to implement a <a href=http://passportjs.org/docs/configure><code>verify</code> function</a> (its name depends on the configuration provided in the <code>strategies</code> attribute), which will be used by Kuzzle to authorize or to deny access to a user.</p><p>The number of arguments taken by this <code>verify</code> function depends on the authentication strategy. For instance, a <code>local password</code> strategy needs the <code>verify</code> callback to be provided with an <code>username</code> and his <code>password</code>.</p><p>Here is the generic signature of the <code>verify</code> function you have to implement:</p><p><code>verify(request, ...)</code></p><ul><li><code>request</code> is the login request made to passport. The object format is <code>{query: {passport: &apos;crendentials&apos;}, original: Request}</code> (see <a href=/plugins-reference/plugins-context/constructors/#request>the <code>Request</code> documentation</a>)</li><li><code>...</code>: varies, depending on the used strategy</li></ul><p>The function <strong>must</strong> return a <code>Promise</code> that resolves to an object that can contain two attributes: <code>kuid</code> and <code>message</code>. If the user is authenticated, the <code>kuid</code> attribute must contain the <a href=/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid>kuid</a> of the user, else the <code>kuid</code> should be null and the <code>message</code> attribute must contain a string giving the reason the user can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is <em>not</em> an error).</p><hr><h2><a class=anchor id=the-exists-function></a>The exists function</h2><p>You have to implement an <code>exists</code> function (its name depends on the configuration provided in the <code>strategies</code> attribute), which will be used by Kuzzle to verify if a user can be authenticated using your strategy.</p><p>Here is the generic signature of the <code>exists</code> function you have to implement:</p><p><code>exists (request, kuid, strategy)</code></p><ul><li><code>request</code> is the request made to Kuzzle (see <a href=/plugins-reference/plugins-context/constructors/#request>the <code>Request</code> documentation</a>).</li><li><code>kuid</code> is the user <a href=/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid><code>&lt;kuid&gt;</code></a>.</li><li><code>strategy</code> the name of the strategy</li></ul><p>The function <strong>must</strong> return a <code>Promise</code> that resolves to a boolean depending on the user ability to authenticate with a strategy.</p><hr><h2><a class=anchor id=the-create-function></a>The create function</h2><p>You have to implement an <code>create</code> function (its name depends on the configuration provided in the <code>strategies</code> attribute), used by Kuzzle to add credentials to a user using this strategy.</p><p>Here is the generic signature of the <code>create</code> function you have to implement:</p><p><code>create (request, credentials, kuid, strategy)</code></p><ul><li><code>request</code> is the request made to Kuzzle (see <a href=/plugins-reference/plugins-context/constructors/#request>the <code>Request</code> documentation</a>).</li><li><code>credentials</code> is the content of the credentials to create, that have already been passed to your <code>validate</code> function.</li><li><code>kuid</code> is the user <a href=/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid><code>&lt;kuid&gt;</code></a>.</li><li><code>strategy</code> the name of the strategy</li></ul><p>The function <strong>must</strong> return a <code>Promise</code> that resolves to an object that contains <strong>non sensitive</strong> information of the object (can be an empty object).</p><aside class=warning>The credentials have to be persisted, either by using the <a href=/plugins-reference/plugins-context/constructors/#repository>Repository constructor</a>, or any external service.</aside><hr><h2><a class=anchor id=the-update-function></a>The update function</h2><p>You have to implement an <code>update</code> function (its name depends on the configuration provided in the <code>strategies</code> attribute), used by Kuzzle to update a user&apos;s credentials to this strategy.</p><p>Here is the generic signature of the <code>update</code> function you have to implement:</p><p><code>update (request, credentials, kuid, strategy)</code></p><ul><li><code>request</code> is the request made to Kuzzle (see <a href=/plugins-reference/plugins-context/constructors/#request>the <code>Request</code> documentation</a>).</li><li><code>credentials</code> is the content of the credentials to create, that have already been passed to your <code>validate</code> function.</li><li><code>kuid</code> is the user <a href=/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid><code>&lt;kuid&gt;</code></a>.</li><li><code>strategy</code> the name of the strategy</li></ul><p>The function <strong>must</strong> return a <code>Promise</code> that resolves to an object that contains <strong>non sensitive</strong> information of the object (can be an empty object).</p><aside class=warning>The credentials have to be persisted, either by using the <a href=/plugins-reference/plugins-context/constructors/#repository>Repository constructor</a>, or any external service.</aside><hr><h2><a class=anchor id=the-delete-function></a>The delete function</h2><p>You have to implement a <code>delete</code> function (its name depends on the configuration provided in the <code>strategies</code> attribute), used by Kuzzle to delete a user&apos;s credentials to this strategy.</p><p>Here is the generic signature of the <code>delete</code> function you have to implement:</p><p><code>delete (request, kuid, strategy)</code></p><ul><li><code>request</code> is the request made to Kuzzle (see <a href=/plugins-reference/plugins-context/constructors/#request>the <code>Request</code> documentation</a>).</li><li><code>kuid</code> is the user <a href=/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid><code>&lt;kuid&gt;</code></a>.</li><li><code>strategy</code> the name of the strategy</li></ul><p>The function <strong>must</strong> return a <code>Promise</code> that resolves to any value if deletion succeeds.</p><hr><h2><a class=anchor id=the-getinfo-function></a>The getInfo function</h2><p>You may implement a <code>getInfo</code> function (its name depends on the configuration provided in the <code>strategies</code> attribute), used by Kuzzle to get informations about a user&apos;s credentials to this strategy. For security reasons, only <strong>non sensitive</strong> informations should be returned.</p><p>Here is the generic signature of the <code>getInfo</code> function you have to implement:</p><p><code>getInfo (request, kuid, strategy)</code></p><ul><li><code>request</code> is the request made to Kuzzle (see <a href=/plugins-reference/plugins-context/constructors/#request>the <code>Request</code> documentation</a>).</li><li><code>kuid</code> is the user <a href=/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid><code>&lt;kuid&gt;</code></a>.</li><li><code>strategy</code> the name of the strategy</li></ul><p>The function <strong>must</strong> return a <code>Promise</code> that resolves to an object that contains <strong>non sensitive</strong> information of the object (can be an empty object).</p><aside class=info>If no getInfo function is provided, an empty object will be returned by controllers that use it.</aside><hr><h2><a class=anchor id=the-getbyid-function></a>The getById function</h2><p>You may implement a <code>getById</code> function (its name depends on the configuration provided in the <code>strategies</code> attribute), used by Kuzzle to get informations about a user&apos;s credentials to this strategy searching by the strategy storage identifier (<code>_id</code>). For security reasons, only <strong>non sensitive</strong> informations should be returned.</p><p>Here is the generic signature of the <code>getById</code> function you have to implement:</p><p><code>getById (request, id, strategy)</code></p><ul><li><code>request</code> is the request made to Kuzzle (see <a href=/plugins-reference/plugins-context/constructors/#request>the <code>Request</code> documentation</a>).</li><li><code>id</code> is the user&apos;s storage identifier in the strategy.</li><li><code>strategy</code> the name of the strategy</li></ul><p>The function <strong>must</strong> return a <code>Promise</code> that resolves to an object that contains <strong>non sensitive</strong> information of the object (can be an empty object).</p><aside class=info>If no getById function is provided, an empty object will be returned by controllers that use it.</aside><hr><h2><a class=anchor id=the-afterregister-function></a>The afterRegister function</h2><p>You may implement a <code>afterRegister</code> function (its name depends on the configuration provided in the <code>strategies</code> attribute), which will be called once the strategy constructor has been build</p><p>Here is the generic signature of the <code>afterRegister</code> function you have to implement:</p><p><code>afterRegister (constructedStrategy)</code></p><ul><li><code>constructedStrategy</code> is the instance of the Passport strategy constructor.</li></ul><p>The function <strong>may</strong> return any value as it will be ignored.</p><aside class=info>If no afterRegister function is provided, Kuzzle won&apos;t try to call it, and register will process as expected.</aside><hr><h2><a class=anchor id=the-validate-function></a>The validate function</h2><p>You have to implement a <code>validate</code> (its name depends on the configuration provided in the <code>strategies</code> attribute), which will be used by Kuzzle to check if the provided user&apos;s credentials to this strategy are well-formed, and ensure that every values you want are unique.</p><p>Here is the generic signature of the <code>validate</code> function you have to implement:</p><p><code>validate (request, credentials, kuid, strategy, isUpdate)</code></p><ul><li><code>request</code> is the request made to Kuzzle (see <a href=/plugins-reference/plugins-context/constructors/#request>the <code>Request</code> documentation</a>).</li><li><code>credentials</code> is the content of the credentials to create or update.</li><li><code>kuid</code> is the user <a href=/guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid><code>&lt;kuid&gt;</code></a>.</li><li><code>strategy</code> the name of the strategy</li><li><code>isUpdate</code> is true if <code>validate</code> is called during an update.</li></ul><p>The function <strong>must</strong> return a <code>Promise</code> that resolves or rejects with an error explaining the reason.</p><aside class=warning>Validate can be called during an update with partial information. The validation should behave accordingly when isUpdate is true, knowing that mandatory information should already have been stored during a previous create call.</aside><hr><h2><a class=anchor id=tl-dr-plugin-skeleton></a>TL;DR plugin skeleton</h2><p>Here is a skeleton of authentication plugin</p><pre><code class="hljs javascript"><span class=hljs-keyword>const</span> StrategyConstructor = <span class=hljs-built_in>require</span>(<span class=hljs-string>&apos;some-passport-strategy&apos;</span>);
+
+<span class=hljs-comment>/**
+ * @class AuthenticationPlugin
+ */</span>
+<span class=hljs-class><span class=hljs-keyword>class</span> <span class=hljs-title>AuthenticationPlugin</span> </span>{
+  <span class=hljs-comment>/**
+   * @constructor
+   */</span>
+  <span class=hljs-keyword>constructor</span>() {}
+
+  <span class=hljs-comment>/**
+   * @param {object} customConfig
+   * @param {KuzzlePluginContext} context
+   * @returns {*}
+   */</span>
+  init (customConfig, context) {
+    <span class=hljs-keyword>this</span>.strategies = {
+      <span class=hljs-comment>// The name of the strategy</span>
+      strategyName: {
+        <span class=hljs-attr>config</span>: {
+          <span class=hljs-comment>// The constructor of the passport strategy you chose</span>
+          <span class=hljs-keyword>constructor</span>: StrategyConstructor,
+
+          // The options provided to the strategy <span class=hljs-keyword>constructor</span> at instanciation
+          strategyOptions: {},
+
+          <span class=hljs-comment>// The options provided to the authenticate function during the authentication process</span>
+          authenticateOptions: {
+            <span class=hljs-attr>scope</span>: []
+          },
+
+          <span class=hljs-comment>// The list of fields that may be provided in the credentials</span>
+          fields: [<span class=hljs-string>&apos;login&apos;</span>, <span class=hljs-string>&apos;password&apos;</span>]
+        },
+        <span class=hljs-attr>methods</span>: {
+          <span class=hljs-comment>// The name of the create function</span>
+          create: <span class=hljs-string>&apos;create&apos;</span>,
+          <span class=hljs-comment>// The name of the delete function</span>
+          <span class=hljs-keyword>delete</span>: <span class=hljs-string>&apos;delete&apos;</span>,
+          <span class=hljs-comment>// The name of the exists function</span>
+          exists: <span class=hljs-string>&apos;exists&apos;</span>,
+          <span class=hljs-comment>// The name of the getInfo function</span>
+          getInfo: <span class=hljs-string>&apos;getInfo&apos;</span>,
+          <span class=hljs-comment>// The name of the update function</span>
+          update: <span class=hljs-string>&apos;update&apos;</span>,
+          <span class=hljs-comment>// The name of the validate function</span>
+          validate: <span class=hljs-string>&apos;validate&apos;</span>,
+          <span class=hljs-comment>// The name of the verify function</span>
+          verify: <span class=hljs-string>&apos;verify&apos;</span>
+        }
+      }
+    };
+  }
+
+  <span class=hljs-comment>/**
+   * Called after the strategy has been built with the constructor
+   *
+   * @param {*} constructedStrategy
+   * @returns {Promise&lt;object&gt;}
+   */</span>
+  afterRegister (constructedStrategy) {
+    <span class=hljs-comment>// do some action</span>
+    <span class=hljs-built_in>Promise</span>.resolve(<span class=hljs-comment>/* any value */</span>);
+  }
+
+  <span class=hljs-comment>/**
+   * Persists the provided credentials in some way
+   * Must keep a link between the persisted credentials
+   * and the kuid
+   *
+   * @param {KuzzleRequest} request
+   * @param {object} credentials
+   * @param {string} kuid
+   * @returns {Promise&lt;object&gt;}
+   */</span>
+  create (request, credentials, kuid) {
+    <span class=hljs-comment>// persist credentials</span>
+    <span class=hljs-built_in>Promise</span>.resolve(<span class=hljs-comment>/* non sensitive credentials info */</span>);
+  }
+
+  <span class=hljs-comment>/**
+   * Removes the user&apos;s stored credentials from
+   * the plugin persistence layer
+   *
+   * @param {KuzzleRequest} request
+   * @param {string} kuid
+   * @returns {Promise&lt;object&gt;}
+   */</span>
+  <span class=hljs-keyword>delete</span> (request, kuid) {
+    <span class=hljs-comment>// remove credentials</span>
+    <span class=hljs-built_in>Promise</span>.resolve(<span class=hljs-comment>/* any value */</span>);
+  }
+
+  <span class=hljs-comment>/**
+   * Checks if user&apos;s credentials exist in the persistence layer
+   *
+   * @param {KuzzleRequest} request
+   * @param {string} kuid
+   * @returns {Promise&lt;boolean&gt;}
+   */</span>
+  exists (request, kuid) {
+    <span class=hljs-comment>// check credentials existence</span>
+    <span class=hljs-built_in>Promise</span>.resolve(<span class=hljs-comment>/* true|false */</span>);
+  }
+
+  <span class=hljs-comment>/**
+   * Retrieves the non sensitive user&apos;s credentials information
+   * from the persistence layer
+   *
+   * @param {KuzzleRequest} request
+   * @param {string} kuid
+   * @returns {Promise&lt;object&gt;}
+   */</span>
+  getInfo (request, kuid) {
+    <span class=hljs-comment>// retrieve credentials</span>
+    <span class=hljs-built_in>Promise</span>.resolve(<span class=hljs-comment>/* non sensitive credentials info */</span>);
+  }
+
+  <span class=hljs-comment>/**
+   * Retrieves the non sensitive user&apos;s credentials information
+   * from the persistence layer using the strategy internal id
+   *
+   * @param {KuzzleRequest} request
+   * @param {string} id
+   * @returns {Promise&lt;object&gt;}
+   */</span>
+  getById (request, id) {
+    <span class=hljs-comment>// retrieve credentials</span>
+    <span class=hljs-built_in>Promise</span>.resolve(<span class=hljs-comment>/* non sensitive credentials info */</span>);
+  }
+
+  <span class=hljs-comment>/**
+   * Updates the user&apos;s credentials information in the
+   * persistence layer
+   *
+   * @param {KuzzleRequest} request
+   * @param {object} credentials
+   * @param {string} kuid
+   * @returns {Promise&lt;object&gt;}
+   */</span>
+  update (request, credentials, kuid) {
+    <span class=hljs-comment>// update credentials</span>
+    <span class=hljs-built_in>Promise</span>.resolve(<span class=hljs-comment>/* non sensitive credentials info */</span>);
+  }
+
+  <span class=hljs-comment>/**
+   * Validates credentials validity conforming to the
+   * authentication strategy rules (mandatory fields,
+   * password length, username uniqueness, ...)
+   *
+   * @param {KuzzleRequest} request
+   * @param {object} credentials
+   * @param {string} kuid
+   * @param {boolean} isUpdate
+   * @returns {Promise&lt;boolean&gt;}
+   */</span>
+  validate (request, credentials, kuid, isUpdate) {
+    <span class=hljs-comment>// validate credentials</span>
+    <span class=hljs-built_in>Promise</span>.resolve(<span class=hljs-comment>/* true|false */</span>);
+  }
+
+  <span class=hljs-comment>/**
+   * Provided to the Passport strategy as verify function
+   * Should return the kuid if the user can authentify
+   * or an object with the login failure reason as message attribute
+   *
+   * @param {KuzzleRequest} request
+   * @param {*[]} args - provided arguments depends on the Passport strategy
+   * @returns {Promise&lt;string|{message: string}&gt;}
+   */</span>
+  verify (request, ...args) {
+    <span class=hljs-comment>// verify if the user can authentify</span>
+    <span class=hljs-keyword>const</span> kuid = getUserIdFromCredentials(args);
+
+    <span class=hljs-keyword>if</span> (kuid) {
+      <span class=hljs-keyword>return</span> <span class=hljs-built_in>Promise</span>.resolve(kuid);
+    }
+
+    <span class=hljs-keyword>return</span> <span class=hljs-built_in>Promise</span>.resolve({<span class=hljs-attr>message</span>: <span class=hljs-string>&apos;Login failed - You shall not pass! Reason: ...&apos;</span>});
+  }
+}
+
+<span class=hljs-comment>// Exports the plugin objects, allowing Kuzzle to instantiate it</span>
+<span class=hljs-built_in>module</span>.exports = AuthenticationPlugin;</code></pre><div style="clear: both"></div></div><hr><div id=disqus_thread></div><script async>var disqus_developer = 1;
+      
+        var disqus_config = function () {
+          this.page.url = 'http://docs.kuzzle.io/plugins-reference/plugins-features/adding-authentication-strategy';
+          this.page.title = 'Adding an authentication strategy';
+          this.page.identifier = 'plugins-reference/plugins-features/adding-authentication-strategy';
+        };
+      
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://kuzzle-documentation.disqus.com/embed.js';
+          s.async = 'async';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();</script><div class="nav-sibling bottom"><div class=nav-left><p><a href=https://github.com/kuzzleio/documentation/edit/master/src/plugins-reference/plugins-features/adding-authentication-strategy.md>edit on github<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span> <a href="https://github.com/kuzzleio/documentation/issues/new?labels=plugins-reference&amp;title=Feedback%20about%20page%20&apos;plugins-reference/plugins-features/adding-authentication-strategy.md&apos;">send feedback about this content<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span><select class=rate-documentation><option value=""></option><option value=1>Unusable documentation</option><option value=2>Poor documentation</option><option value=3>OK documentation</option><option value=4>Good documentation</option><option value=5>Excellent documentation</option></select></p></div><div class=nav-right><p class=medium-only></p><p><a href=#>back to top &#x2191;</a></p></div><div style=clear:both></div></div></div></div></div><script src=//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js></script><script src=//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js></script><script src=/assets/javascript/lib/jquery.barrating.js></script><script type=text/javascript>// store helper
+  var store = function store(key, value) {
+    var lsSupport = false;
+
+    // Check for native support
+    if (localStorage) {
+      lsSupport = true;
+    }
+
+    // If value is detected, set new or modify store
+    if (typeof value !== "undefined" && value !== null) {
+      // Convert object values to JSON
+      if ( typeof value === 'object' ) {
+        value = JSON.stringify(value);
+      }
+      // Set the store
+      if (lsSupport) { // Native support
+        localStorage.setItem(key, value);
+      } else { // Use Cookie
+        createCookie(key, value, 30);
+      }
+    }
+
+    // No value supplied, return value
+    if (typeof value === "undefined") {
+      // Get value
+      if (lsSupport) { // Native support
+        data = localStorage.getItem(key);
+      } else { // Use cookie
+        data = readCookie(key);
+      }
+
+      // Try to parse JSON...
+      try {
+        data = JSON.parse(data);
+      }
+      catch(e) {
+        data = data;
+      }
+
+      return data;
+    }
+
+    // Null specified, remove store
+    if (value === null) {
+      if (lsSupport) { // Native support
+        localStorage.removeItem(key);
+      } else { // Use cookie
+        createCookie(key, '', -1);
+      }
+    }
+
+    /**
+     * Creates new cookie or removes cookie with negative expiration
+     * @param  key       The key or identifier for the store
+     * @param  value     Contents of the store
+     * @param  exp       Expiration - creation defaults to 30 days
+     */
+    function createCookie(key, value, exp) {
+      var date = new Date();
+      date.setTime(date.getTime() + (exp * 24 * 60 * 60 * 1000));
+      var expires = "; expires=" + date.toGMTString();
+      document.cookie = key + "=" + value + expires + "; path=/";
+    }
+
+    /**
+     * Returns contents of cookie
+     * @param  key       The key or identifier for the store
+     */
+    function readCookie(key) {
+      var nameEQ = key + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0, max = ca.length; i < max; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+  };
+
+
+
+
+
+
+  // google analytics
+  (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-67035328-1', 'auto');
+  ga('send', 'pageview');
+
+  (function scrollToHash() {
+    if (window.location.hash != '') {
+      var anchor = $(location.hash).get(0);
+      if (anchor) {
+        anchor.scrollIntoView();
+      }
+    }
+  })();
+
+
+
+
+  (function mobileNavBuger() {
+    var $body = $('body');
+
+    $('.mobile-nav-burger').on('click', function() {
+      $body.toggleClass('nav-burger-open');
+    });
+  })();
+
+
+
+
+
+
+
+  (function rateDocumentation() {
+    var $rateDocumentation = $('.rate-documentation');
+    var pagePath = 'plugins-reference/plugins-features/adding-authentication-strategy'.replace(/\//g, '-');
+    var categoryRating = parseInt(store('rate-documentation-' + pagePath));
+
+    $rateDocumentation.barrating({
+      theme: 'fontawesome-stars',
+      initialRatting: 0,
+      allowEmpty: true,
+      onSelect: function(value, text, event) {
+        if (typeof(event) !== 'undefined') {
+          // rating was selected by a user
+          store('rate-documentation-' + pagePath, event.target.dataset.ratingValue);
+          $rateDocumentation.barrating('set', event.target.dataset.ratingValue);
+          // $rateDocumentation.barrating('readonly', true); // wired on mobile
+
+          ga('send', 'event', {
+            eventCategory: 'documentation-rate',
+            eventAction: 'http://docs.kuzzle.io/plugins-reference/plugins-features/adding-authentication-strategy',
+            eventLabel: event.target.dataset.ratingText,
+            transport: 'beacon'
+          });
+
+          window.setTimeout(function() {
+            $('.br-current-rating').css('transition', 'opacity 0.15s');
+            $('.br-current-rating').css('opacity', '0');
+
+            window.setTimeout(function() {
+              $('.br-current-rating').css('transition', 'opacity 0.9s');
+              $('.br-current-rating').text("thank's for feedback !");
+              $('.br-current-rating').css('opacity', '1');
+            }, 140);
+          }, 1);
+
+          window.setTimeout(function() {
+            $('.br-current-rating').css('opacity', '0');
+
+            window.setTimeout(function() {
+              $('.br-current-rating').css('transition', 'opacity 0.2s');
+              if (event.target.dataset.ratingText === 'Excellent documentation') {
+                $('.br-current-rating').text(event.target.dataset.ratingText + ' \\o/');
+              }
+              else {
+                $('.br-current-rating').text(event.target.dataset.ratingText);
+              }
+              $('.br-current-rating').css('opacity', '1');
+            }, 1000);
+          }, 2500);
+        }
+        else {
+          // rating was selected programmatically
+          // by calling `set` method
+        }
+      }
+    });
+
+    $('.br-current-rating').addClass('visible');
+
+    if (!isNaN(categoryRating)) {
+      $rateDocumentation.barrating('set', categoryRating);
+      $rateDocumentation.barrating('readonly', true);
+    }
+  })();
+
+
+
+
+
+
+
+
+
+
+
+  (function leftNavUX() {
+    var $wrapper = $('.tocify-wrapper');
+
+    if ($wrapper.length !== 0) {
+      var $selectedItem = $('.tocify-level-2.tocify-focus', $wrapper);
+
+      if ($selectedItem.length === 0) {
+        $selectedItem = $('.tocify-focus', $wrapper);
+      }
+
+      if ($selectedItem.get(0).offsetTop + 120 > $wrapper.height()) {
+        $wrapper.scrollTop(Math.ceil($selectedItem.get(0).offsetTop - $wrapper.height() / 2));
+      }
+    }
+  })();
+
+
+
+
+
+
+
+
+
+  (function tocUX() {
+    var $toc = $('.toc');
+    var $content = $('.content');
+
+    //----------------------------
+    // fixes toc next to content
+    if ($toc.length > 0) {
+      var debounceComputeSize = false;
+      var computeSize = function() {
+        // 280 is the width of left nav / 15 is the margin with content
+        $toc.css('left', $content.get('0').offsetLeft + $content.get('0').offsetWidth + 280 + 15 +'px');
+        // 30 is the margin with bottom window
+        $toc.css('max-height', window.innerHeight - $toc.get('0').offsetTop - 30  + 'px');
+      }
+
+      $(window).on('resize', function() {
+        clearTimeout(debounceComputeSize);
+        debounceComputeSize = setTimeout(computeSize, 13);
+      })
+      computeSize();
+    }
+    //----------------------------
+
+    //---------------------------------------------------------------------
+    // toogle 'active' class on toc link when headings pass window offset
+    if ($toc.length > 0) {
+      var headings = {};
+      var debounceActiveItem = false;
+      var computeActiveItem = function() {
+        var lastPassedItem;
+
+        for (let key in headings) {
+          headings[key].$link.removeClass('active');
+
+          if (headings[key].offset <= window.pageYOffset + 70) {
+            lastPassedItem = headings[key];
+          }
+        }
+
+        if (lastPassedItem) {
+          lastPassedItem.$link.addClass('active');
+        }
+      }
+
+      $('a[href]', $toc).each(function(index, element) {
+        var id = element.href.slice(element.href.indexOf('#'));
+        var $ref = $(id).parent();
+
+        if ($ref.length > 0) {
+          headings[id] = {
+            $ref: $ref,
+            $link: $(element),
+            offset: $ref.get('0').offsetTop
+          }
+        }
+      });
+
+      $(window).on('scroll', function() {
+        clearTimeout(debounceActiveItem);
+        debounceActiveItem = setTimeout(computeActiveItem, 10);
+      })
+      computeActiveItem();
+    }
+    //---------------------------------------------------------------------
+  })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //---------------------------------------------------------------------
+  // copy code to clipboard button
+  (function codeClipboard() {
+    $hljs = $('.hljs');
+
+    if ($hljs.length > 0) {
+      var debounceClipboard = false;
+      var clipboardSnippets;
+
+      function fallbackMessage(action) {
+          var actionMsg = '';
+          var actionKey = (action === 'cut' ? 'X' : 'C');
+          if (/iPhone|iPad/i.test(navigator.userAgent)) {
+              actionMsg = 'No support :(';
+          } else if (/Mac/i.test(navigator.userAgent)) {
+              actionMsg = 'Press ⌘-' + actionKey + ' to ' + action;
+          } else {
+              actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
+          }
+          return actionMsg;
+      }
+
+      $hljs.each(function(index, element) {
+        $(element).before('<button class="clipboard" title="copy code to clipboard" data-clipboard-snippet><i class="fa fa-clipboard" aria-hidden="true"></i></button>');
+      })
+
+      clipboardSnippets = new Clipboard('[data-clipboard-snippet]', {
+          target: function(trigger) {
+              return trigger.nextElementSibling;
+          }
+      });
+
+      clipboardSnippets.on('success', function(e) {
+          e.clearSelection();
+          $(e.trigger).text('Copied!')
+
+          clearTimeout(debounceClipboard);
+          debounceClipboard = setTimeout(function() {
+            $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+          }, 1200);
+      });
+      clipboardSnippets.on('error', function(e) {
+        e.clearSelection();
+        $(e.trigger).text(fallbackMessage(e.action));
+
+        clearTimeout(debounceClipboard);
+        debounceClipboard = setTimeout(function() {
+          $(e.trigger).html('<i class="fa fa-clipboard" aria-hidden="true"></i>');
+        }, 2400);
+      });
+    }
+  })();
+  //---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+  //---------------------------------------------------------------------
+  // language tab selector
+  (function languageTabSelector() {
+    var $languageTabSelector = $('.language-tab-selector a');
+    var pageCategory = 'plugins-reference'.replace(/\//g, '-');
+    var selectedLanguage = store('selected-language' + pageCategory);
+
+    if (selectedLanguage) {
+      if ($('.language-tab[data-language="' + selectedLanguage + '"]').length > 0) {
+        $('.language-tab-active').removeClass('language-tab-active');
+        $('.language-tab-selector a[data-language-name="' + selectedLanguage + '"]').addClass('language-tab-active');
+        $('.language-tab[data-language="' + selectedLanguage + '"]').addClass('language-tab-active');
+      }
+    }
+
+    if ($languageTabSelector.length > 0) {
+      $languageTabSelector.on('click touch', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var language = $(this).data('languageName');
+
+        $('.language-tab-active').removeClass('language-tab-active');
+        $('.language-tab-selector a[data-language-name="' + language + '"]').addClass('language-tab-active');
+        $('.language-tab[data-language="' + language + '"]').addClass('language-tab-active');
+
+        store('selected-language' + pageCategory, language)
+      });
+    }
+  })();
+  //---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+  (function instantSearchUI() {
+    var KEY_UP = 38;
+    var KEY_DOWN = 40;
+    var client = algoliasearch("4RFBRWISJR", "6febf1ebe906bd82bce58d5a20ac6c1b");
+    var index = client.initIndex('kuzzle-documentation');
+    var template = $('#search-results-template').html();
+    var $searchInput = $('.search input[type=search]');
+    var $searchResults = $('.search-results');
+    var $searchResultsContainer = $('ul', $searchResults);
+    var watchResultsDebounce = false;
+    var selectedIndex = -1;
+    var watchClose = false;
+    var lastHits = 0;
+    var _a = true;
+
+    var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9+/=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/rn/g,"n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
+
+
+    // focus search input on content loaded
+    $searchInput.focus();
+
+
+    $(window).on('keydown', function (event) {
+      if (watchClose) {
+        var $results = $('a', $searchResultsContainer);
+        var $focusResult = $('a:hover, a:focus', $searchResultsContainer);
+
+        if ($focusResult.length > 0) {
+          $results.each(function(index, element) {
+
+            if ($results[index] === $focusResult.get(0)) {
+              selectedIndex = index;
+            }
+          })
+        }
+
+        switch (event.keyCode) {
+          case KEY_UP:
+            event.stopPropagation();
+            if (selectedIndex === 0) {
+              selectedIndex = -1;
+            }
+
+            if (selectedIndex === -1) {
+              $searchInput.focus();
+              selectedIndex = $results.length - 1;
+            }
+            else {
+              selectedIndex -= 1;
+              $results.get(selectedIndex).focus();
+            }
+            //$('li:not(:last-child).selected').removeClass('selected').next().addClass('selected');
+
+            return false;
+          case KEY_DOWN:
+            event.stopPropagation();
+            if (selectedIndex >= $results.length -1) {
+              $searchInput.focus();
+              selectedIndex = -1;
+            }
+            else {
+              selectedIndex += 1;
+              $results.get(selectedIndex).focus();
+            }
+            //$('li:not(:first-child).selected').removeClass('selected').prev().addClass('selected');
+            return false;
+        }
+      }
+    });
+
+    // search results open/close handlers
+    $(window).on('click touch', function() {
+      if (watchClose) {
+        $searchResults.removeClass('display');
+        watchClose = false;
+
+        if (watchResultsDebounce) {
+          window.clearTimeout(watchResultsDebounce);
+        }
+      }
+    });
+
+    $searchInput.on('click touch', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+      event.stopPropagation();
+    });
+
+    $searchInput.on('focus', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+
+      selectedIndex = -1;
+    });
+
+    $searchInput.on('blur', function(event) {
+      if (lastHits > 0) {
+        $searchResults.addClass('display');
+        watchClose = true;
+      }
+    });
+    // end - search results open/close handlers
+
+
+    // main input listener
+    $searchInput.on('input', function(event) {
+      var $input = $(this);
+      var searchResultsContent = '';
+      // var length = (this.value.length + 1) * 6;
+
+      selectedIndex = -1;
+
+      // // resize input length to fit value
+      // length = (length > 450) ? 450 : length;
+      // this.style.width = (length > 220) ? length + 'px' : '220px';
+
+
+      // clear search result on empty input
+      if (this.value === '' || Base64.encode(this.value) === 'SGVscCBSeXUgYnkgY2xpY2tpbmcgeW91ciB3YXkgdGhyb3VnaCBkZXN0aW55IQ==') {
+        $searchResults.removeClass('display');
+        $searchResultsContainer.empty();
+        watchClose = false;
+
+        return;
+      }
+
+      if (_a) {
+        console.warn(Base64.decode('WW91IG1pZ2h0IHdhbnQgdG8gYXNrIFJ5dSBmb3IgaGVscA=='));
+        _a = false;
+      }
+
+      if (Base64.encode(this.value.toLowerCase()) === 'cnl1IGhlbHAgbWU=') {
+        var d = document
+
+        s = d.createElement('script');
+        s.src = '/' + Base64.decode('YXNzZXRzL2phdmFzY3JpcHQvbGliL2pxdWVyeS5zb21ldGhpbmcuanM=');
+        s.async = 'async';
+        (d.head || d.body).appendChild(s);
+
+        $searchResultsContainer.empty();
+        $searchResults.removeClass('display');
+        watchClose = false;
+
+        this.disabled = true;
+        this.value = Base64.decode('SGVscCBSeXUgYnkgY2xpY2tpbmcgeW91ciB3YXkgdGhyb3VnaCBkZXN0aW55IQ==');
+
+        return;
+      }
+
+      index.search(this.value, function(err, res) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        lastHits = res.hits.length;
+        if (watchResultsDebounce) {
+          window.clearTimeout(watchResultsDebounce);
+        }
+
+        if (lastHits === 0) {
+          $searchResultsContainer.empty();
+          $searchResults.removeClass('display');
+          return;
+        }
+
+        // send ga event when user has search results but does nothing
+        watchResultsDebounce = window.setTimeout(function() {
+          ga('send', 'event', {
+            eventCategory: 'documentation-search',
+            eventAction: (lastHits > 0) ? '<watch_results>' : '<no_results>',
+            eventLabel: $searchInput.val(),
+            transport: 'beacon'
+          });
+        }, 4000);
+
+        $searchResults.addClass('display');
+        watchClose = true;
+
+        // make search result item from
+        for (var key in res.hits) {
+          var content = template;
+
+          // here we secure manualy all xml tags wich may can be retrieved by results, but we keep <em> tags for highlighting
+          var elements = res.hits[key]._snippetResult.content.value.split('<em>');
+          var preview = '';
+
+          for (var k in elements) {
+            elements[k] = elements[k].replace(/</g, '&lt;');
+            elements[k] = elements[k].replace(/>/g, '&gt;');
+          }
+
+          // restore <em></em> tags
+          preview = elements.join('<em>');
+          preview = preview.replace(/&lt;\/em&gt;/g, '</em>');
+
+          // replace variables in template
+          content = content.replace(/__tabindex__/g, key + 2);
+          content = content.replace(/__link__/g, 'http://docs.kuzzle.io/' + res.hits[key].path);
+          content = content.replace(/__parent__/g, res.hits[key].parent || '');
+          content = content.replace(/__firstMember__/g, res.hits[key].firstMember || '');
+          content = content.replace(/__title__/g, res.hits[key]._highlightResult.title.value);
+          content = content.replace(/__preview__/g, preview);
+
+          searchResultsContent += content;
+        }
+
+        // add algolia copyright
+        searchResultsContent += '<li style="text-align: right"><img src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" style="margin: 8px 8px 0 0;"></li>';
+
+        // magic jQuery
+        $searchResultsContainer.html(searchResultsContent);
+
+        // send ga event on search result hit
+        $('a', $searchResultsContainer).on('click touch', function(event) {
+          ga('send', 'event', {
+            eventCategory: 'documentation-search',
+            eventAction: this.href,
+            eventLabel: $searchInput.val(),
+            transport: 'beacon'
+          });
+        });
+      });
+    });
+
+  })();</script></body></html>
