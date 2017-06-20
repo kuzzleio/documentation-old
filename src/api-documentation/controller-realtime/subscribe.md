@@ -131,7 +131,7 @@ title: subscribe
       /*
       {
         "status": 200,
-        "error": null,
+        "type": "document",
         "index": "index",
         "collection":"collection",
         "controller": "realtime",
@@ -140,9 +140,7 @@ title: subscribe
         "scope": "in",
         "requestId": "<unique request identifier>",
         "result":{
-          "roomId":"632682a9eac95cfb95e3a697b29b7739",
-          "requestId":"mySubscription",
-          "timestamp":1449564937142
+          "some real-time": "message"
         }
       }
       */
@@ -185,8 +183,8 @@ title: subscribe
 
       /*
       {
-        "error": null,
         "status": 200,
+        "type": "document",
         "index": "<index>",
         "collection": "<collection>"
         "controller": "realtime",
@@ -194,9 +192,7 @@ title: subscribe
         "state": "done",
         "volatile": {},
         "result": {
-          "roomId": "632682a9eac95cfb95e3a697b29b7739",
-          "requestId": "mySubscription",
-          "timestamp": 1449564937142
+          "some real-time": "message"
         }
       }
       */
@@ -226,8 +222,8 @@ and you'll effectively listen to a "topic".
 
 Once you have subscribed to a room, depending on your filters, you may receive the following notifications:
 
-* whenever a pub/sub message is published matching your criteria (realtime)
-* whenever a matching document is about to be created or deleted (realtime)
+* whenever a pub/sub message is published matching your criteria (real-time)
+* whenever a matching document is about to be created or deleted (real-time)
 * whenever a matching stored document is created, updated or deleted (once the change is effective in the database)
 * whenever a user enters or leaves the room
 

@@ -32,13 +32,6 @@ _NB: For more details about status code and error object, see status-codes.md_
   "controller": "<controller>",
   "action": "<action>",
 
-  // For notification only, completion state of the request.
-  // A pending request will receive a "done" notification once it is processed by Kuzzle.
-  "state": "<done|pending>",
-
-  // For notifications only, indicates if the document is added or removed from the subscription.
-  "scope": "<in|out>",
-
   // Arbitrary data repeated from the initial request (optional).
   "volatile": { foo: "bar" },
 

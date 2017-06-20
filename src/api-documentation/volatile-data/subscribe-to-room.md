@@ -29,19 +29,17 @@ order: 200
 ```javascript
 {
   "status": 200,
-  "error": null,
+  "type": "user",
   "index": "<index>",
   "collection": "<collection>",
   "controller": "realtime",
   "action": "unsubscribe",
   "state": "done",
-  "scope": "out", // notice scope out, which mean that something are leaving our subscription
+  "user": "out", // Tells you that a user left the room
   "volatile": { // volatile data will only be received by subscribers
     "hello": "my name is Bob"
   },
-  "requestId": "<unique request identifier>",
   "result": {
-    "roomId": "<unique Kuzzle room identifier>",
     "count": "<the new user count on that room>"
   }
 }

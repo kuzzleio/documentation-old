@@ -16,9 +16,9 @@ To subscribe, you must provide a callback that will be called each time a new no
 Once you have subscribed, depending on the subscription configuration you provided, you may receive the following push notifications:
 
 * a pub/sub message matches your criteria (real-time)
-* a matching document is about to be created or deleted (real-time)
+* a matching document is about to be created or deleted in real-time (deactivated by default)
 * a matching document is created, updated or deleted (once the change is effective in the database)
-* a user enters or leaves the room
+* a user enters or leaves the room (deactivated by default)
 
 You may subscribe multiple times to the same room, with identical or different subscription parameters, and with different callbacks. This allows dispatching notifications across the right parts of your application, instead of having to maintain an all-purpose notification consumer (but you can do that, too).
 
@@ -71,7 +71,6 @@ You may subscribe multiple times to the same room, with identical or different s
 
 ```json
 {
-  "error": null,
   "status": 200,
   "roomId": "ID of the room concerned by this notification",
   "requestId": "5897cd2f-a8a2-40b2-aa43-b31898172008",
