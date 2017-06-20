@@ -4,7 +4,7 @@ algolia: true
 title: strict
 ---
 
-# strict
+# The `strict` property
 
 **Possible values**: Boolean true or false
 

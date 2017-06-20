@@ -4,7 +4,7 @@ algolia: true
 title: fields
 ---
 
-# The `fields` part
+# The `fields` property
 
 The property name defines the path of the field in the document. The root fields will use their name directly. Sub fields contained in objects will use their path with the pattern `objectField/<subField>[/ ...]`.
 
