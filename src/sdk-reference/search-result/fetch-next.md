@@ -63,12 +63,16 @@ Fetches the next SearchResult, by triggering a new search/scroll request dependi
 If the previous request was a search or a scroll action which provided a `scroll` argument,
 `fetchNext` will use the `scrollId` retrieved from the current result to make a new scroll request.
 
+If the previous request was a search action which provided `size` argument and `sort` filtering,
+`fetchNext` will use Elasticsearch's [`search_after`](https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-search-after.html) mechanism, which can efficiently search through a large volume of document, bypassing internal hard limits<sup>\[1\]</sup>,
+but at the cost of reflecting the latest changes of the index, as opposed to using scroll.
+
 If the previous request was a search action which provided `from` and `size` arguments,
 `fetchNext` will add `size` to `from` and make a new search request.
 
 ---
 
-## How to process all documents from a collection
+## How to process every document of a collection
 
 ```js
 var processDocument = function (document) {
@@ -98,7 +102,6 @@ kuzzle
 ```java
 import io.kuzzle.sdk.core.Kuzzle;
 import io.kuzzle.sdk.core.Options;
-
 
 Kuzzle kuzzle = new Kuzzle("localhost");
 
@@ -174,4 +177,4 @@ The safest way to process all documents in a collection is to retrieve them by b
 
 <aside class="warning">Make sure your first search request includes <code>size</code> and <code>scroll</code> parameters</aside>
 
-<aside class="notice"><sup>\[1\]</sup> Elasticsearch limits the number of documents inside a single page to [10000 by default](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings).</aside>
+<aside class="notice"><sup>\[1\]</sup> Elasticsearch limits the number of documents inside a single page to [10,000 by default](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings).</aside>

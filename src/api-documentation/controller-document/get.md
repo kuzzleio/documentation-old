@@ -58,6 +58,10 @@ title: get
       },
       "hobby": "Segway polo",
       ...
+    },
+    "_meta": {
+      "author": "Bob",
+      ...
     }
   }
 }

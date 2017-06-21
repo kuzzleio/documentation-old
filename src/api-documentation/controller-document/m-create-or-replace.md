@@ -30,7 +30,7 @@ title: mCreateOrReplace
       }
     },
     {
-      "_id": "<anotherDocumentId>" // Mandatory
+      "_id": "<anotherDocumentId>", // Mandatory
       "body": {
         "document": "body",
         ...
@@ -97,15 +97,15 @@ title: mCreateOrReplace
           "total": 2
         },
         "_source": {
-          "_meta": {
-            "active": true,
-            "author": "-1",
-            "createdAt": 1484226104822,
-            "deletedAt": null,
-            "updatedAt": null,
-            "updater": null
-          },
           "document": "body"
+        },
+        "_meta": {
+          "active": true,
+          "author": "-1",
+          "createdAt": 1484226104822,
+          "deletedAt": null,
+          "updatedAt": null,
+          "updater": null
         },
         "_type": "<collection>",
         "_version": 2,
@@ -121,15 +121,15 @@ title: mCreateOrReplace
           "total": 2
         },
         "_source": {
-          "_meta": {
-            "active": true,
-            "author": "-1",
-            "createdAt": 1484226104822,
-            "deletedAt": null,
-            "updatedAt": null,
-            "updater": null
-          },
           "document": "body"
+        },
+        "_meta": {
+          "active": true,
+          "author": "-1",
+          "createdAt": 1484226104822,
+          "deletedAt": null,
+          "updatedAt": null,
+          "updater": null
         },
         "_type": "<collection>",
         "_version": 2,
