@@ -59,75 +59,123 @@ Kuzzle ships with a Protocol Plugin already bundled in its Community Edition, th
 
 ---
 
-## Examples
-
-This example is a simplistic one: we are going to install the **Hello World Plugin**, adding a new API endpoint that simply... greets the client! Not very useful, except for the sake of this example.
-
-To install a Plugin, you just need to make it accessible within the `plugins/enabled` directory (relative to the path of the Kuzzle installation directory). A common practice is to copy the Plugin code in the `plugins/available` directory, and to create a symbolic link in `plugins/enabled` pointing to it. This way, enabling and disabling a plugin is just a matter of creating or deleting a symbolic link.
+## How to install Plugin
 
 <aside class="notice">
 If you are running Kuzzle in a Docker container, you will need to enter the container to access the installation directory.
 </aside>
 
+To install a Plugin, you just need to make it accessible within the `plugins/enabled` directory (relative to the path of the Kuzzle installation directory).  
+A common practice is to copy the Plugin code in the `plugins/available` directory, and to create a symbolic link in `plugins/enabled` pointing to it. This way, enabling and disabling a plugin is just a matter of creating or deleting a symbolic link.
+
+
+We are going to install the [**Core Plugin Boilerplate**](https://github.com/kuzzleio/kuzzle-core-plugin-boilerplate), which demonstrates each feature of a Core Plugin:
+
+- [listen asynchronously]({{ site_base_path }}plugins-reference/plugins-features/adding-hooks), and perform operations that depend on data-related events;
+- [listen synchronously]({{ site_base_path }}plugins-reference/plugins-features/adding-pipes), and approve, modify and/or reject data-related queries;
+- [add a controller route]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) to expose new actions to the API;
+- [add an authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) to Kuzzle.
+
+
 Go to the Kuzzle installation directory and type:
+
 
 ```bash
 #!/bin/bash
 
 cd "plugins/available"
-git clone https://github.com/kuzzleio/kuzzle-plugin-helloworld.git
+git clone https://github.com/kuzzleio/kuzzle-core-plugin-boilerplate.git
 
 cd "../enabled"
-ln -s "../available/kuzzle-plugin-helloworld" .
+ln -s "../available/kuzzle-core-plugin-boilerplate" .
 
+# Restart Kuzzle to reload Plugins
 pm2 restart KuzzleServer
 ```
 
-Once Kuzzle has restarted (that's what the last command is for) you can check the server information at `http://localhost:7512/?pretty=true` for the new `hello` endpoint:
+---
+
+## Check your plugin installation
+
+Once Kuzzle has restarted you can check the server information at `http://localhost:7512/?pretty=true` which contains the new `kuzzle-core-plugin-boilerplate` plugin entry:
 
 ```json
 {
-    ...
-    "result": {
-        "serverInfo": {
-            "kuzzle": {
-                ...
-                "api": {
-                    "routes":
-                    ...
-                    "kuzzle-plugin-helloworld/hello": {
-                      "sayHello": {
-                        "name": "sayHello"
-                      }
-                    }
-                }
-            }
+  "...": "...",
+
+  "result": {
+    "serverInfo": {
+      "kuzzle": {
+
+        "...": "...",
+
+        "plugins": {
+
+          "...": "...",
+
+          "kuzzle-core-plugin-boilerplate": {
+            "name": "kuzzle-core-plugin-boilerplate",
+            "hooks": [
+              "document:beforeCreateOrReplace",
+              "document:beforeReplace",
+              "document:beforeUpdate"
+            ],
+            "pipes": [
+              "document:beforeCreate",
+              "realtime:beforePublish"
+            ],
+            "controllers": [
+              "kuzzle-core-plugin-boilerplate/myNewController"
+            ],
+            "routes": [
+              {
+                "verb": "get",
+                "url": "/kuzzle-core-plugin-boilerplate/say-something/:property",
+                "controller": "myNewController",
+                "action": "myNewAction"
+              },
+              {
+                "verb": "post",
+                "url": "/kuzzle-core-plugin-boilerplate/say-something",
+                "controller": "myNewController",
+                "action": "myNewAction"
+              }
+            ],
+            "strategies": [
+              "dummy"
+            ]
+          }
         }
+      }
     }
-}
-
-```
-
-Which means you can call the `http://localhost:7512/_plugin/kuzzle-plugin-helloworld/hello/` route and get the following response:
-
-```json
-{
-  "requestId": "66265614-e908-4a91-a492-135e40e64aa3",
-  "status": 200,
-  "error": null,
-  "controller": "kuzzle-plugin-helloworld/hello",
-  "action": "sayHello",
-  "collection": null,
-  "index": null,
-  "volatile": null,
-  "result": "Hello world"
+  }
 }
 ```
 
-To get a deeper insight on how Plugins work in Kuzzle, please refer to the [Plugin Reference]({{ site_base_path }}plugins-reference).
+Here you can see what your plugin has registered:
+- `hooks` asynchronous operations that depend on data-related events
+- `pipes` synchronous operations that depend on data-related events
+- `controllers` list of exposed actions to the API
+- `routes` list of exposed actions to the **REST** API
+- `strategies` list of exposed authentication strategies
+
 
 ---
 
 ## Managing Plugins
 
 To learn about how to manage or configure plugins, please check our [Plugin reference documentation]({{ site_base_path }}plugins-reference/managing-plugins).
+
+---
+
+## Going further
+
+To get a deeper insight on how Plugins work in Kuzzle, please refer to the [Plugin Reference]({{ site_base_path }}plugins-reference).
+
+Here is a list of officials Plugins:
+- [**kuzzle-plugin-auth-passport-local**](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local): shipped with Kuzzle installation, authentication plugin
+- [**kuzzle-plugin-logger**](https://github.com/kuzzleio/kuzzle-plugin-logger): shipped with Kuzzle installation, worker plugin
+- [**kuzzle-plugin-auth-passport-oauth**](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth): authentication plugin
+- [**kuzzle-plugin-mqtt**](https://github.com/kuzzleio/kuzzle-plugin-mqtt): protocol plugin
+
+You also can search for `kuzzle-plugin` topic on [github](https://github.com/search?q=topic%3Akuzzle-plugin&type=Repositories)
