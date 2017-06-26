@@ -30,7 +30,7 @@ title: mCreate
       }
     },
     {
-      "_id": "<anotherDocumentId>" // Optional. If not provided, will be generated automatically.
+      "_id": "<anotherDocumentId>", // Optional. If not provided, will be generated automatically.
       "body": {
         "document": "body",
         ...
@@ -96,15 +96,15 @@ title: mCreate
           "total": 2
         },
         "_source": {
-          "_meta": {
-            "active": true,
-            "author": "-1",
-            "createdAt": 1484225532686,
-            "deletedAt": null,
-            "updatedAt": null,
-            "updater": null
-          },
           "document": "body"
+        },
+        "_meta": {
+          "active": true,
+          "author": "-1",
+          "createdAt": 1484225532686,
+          "deletedAt": null,
+          "updatedAt": null,
+          "updater": null
         },
         "_type": "<collection>",
         "_version": 1,
@@ -120,15 +120,15 @@ title: mCreate
           "total": 2
         },
         "_source": {
-          "_meta": {
-            "active": true,
-            "author": "-1",
-            "createdAt": 1484225532686,
-            "deletedAt": null,
-            "updatedAt": null,
-            "updater": null
-          },
           "document": "body"
+        },
+        "_meta": {
+          "active": true,
+          "author": "-1",
+          "createdAt": 1484225532686,
+          "deletedAt": null,
+          "updatedAt": null,
+          "updater": null
         },
         "_type": "<collection>",
         "_version": 1,
