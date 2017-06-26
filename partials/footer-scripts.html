@@ -106,6 +106,15 @@
   ga('create', 'UA-67035328-1', 'auto');
   ga('send', 'pageview');
 
+  {{#if report404ga}}
+    ga('send', 'event', {
+      eventCategory: 'documentation-not-found',
+      eventAction: document.location.href,
+      eventLabel: document.referrer || '',
+      transport: 'beacon'
+    });
+  {{/if}}
+
   (function scrollToHash() {
     if (window.location.hash != '') {
       var anchor = $(location.hash).get(0);
