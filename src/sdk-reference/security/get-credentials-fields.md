@@ -57,7 +57,7 @@ $fields = $kuzzle->security->getCredentialFields('local');
 ]
 ```
 
-Get credential information of the specified <strategy> for the current user. 
+Get credential information of the specified `strategy`.
 
 ---
 
