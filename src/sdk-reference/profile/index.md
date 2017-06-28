@@ -86,13 +86,14 @@ Instantiates a new `Profile` object, representing a [profile]({{ site_base_path 
 
 ---
 
-## Profile(Security, id, content)
+## Profile(Security, id, content, [meta])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``Security`` | Security | An instantiated [Security]({{ site_base_path }}sdk-reference/security) object |
 | ``id`` | string | Unique profile identifier |
 | ``content`` | JSON Object | Profile content |
+| ``meta`` | JSON Object | Profile metadata |
 
 **Note:**  this constructor won't make any call to Kuzzle.
 
@@ -102,8 +103,9 @@ Instantiates a new `Profile` object, representing a [profile]({{ site_base_path 
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| `content` | JSON object | Raw profile content | get |
 | `id` | string | Unique profile identifier | get |
+| `content` | JSON object | Raw profile content | get |
+| `meta` | JSON object | Profile metadata | get |
 
 ---
 
