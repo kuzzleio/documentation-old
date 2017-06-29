@@ -100,7 +100,7 @@ class ControllerPlugin {
       The first route exposes the following GET URL:
         http://<kuzzle server>:<port>/_plugin/<plugin name>/foo/<dynamic value>
 
-      Kuzzle will provide the function 'actionFunction' with a Request object,
+      Kuzzle will call the function 'actionFunction' with a Request object,
       containing the "name" property: request.input.args.name = '<dynamic value>'
 
       The second route exposes the following POST URL:

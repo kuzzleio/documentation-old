@@ -12,7 +12,7 @@ title: login
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_login`  
+**URL:** `http://kuzzle:7512/_login/<strategy>/`  
 **Method:** `POST`  
 **Body:**
 </p>
@@ -20,7 +20,6 @@ title: login
 
 ```js
 {
-  "strategy": "<authentication strategy name>",
   "expiresIn": "<expiresIn>",
 
   // set of parameters depending of the chosen strategy. Example for "local" strategy:
@@ -60,7 +59,7 @@ title: login
   "requestId": "<unique request identifier>",
   "volatile": {},
   "result": {
-    "_id": "<kuid>",// The kuzzle user identifier
+    "_id": "<kuid>", // The kuzzle user identifier
     "jwt": "<JWT encrypted token>"
   }
 }
@@ -97,4 +96,3 @@ Check the appropriate [authentication plugin]({{ site_base_path }}plugins-refere
 ## Result
 
 The **_login** action returns an encrypted JSON Web Token, that must then be sent within the [requests headers]({{ site_base_path }}api-documentation/query-syntax/authorization-token/).
-
