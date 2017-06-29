@@ -93,8 +93,8 @@ Instantiates a new `Role` object, which is a representation of a set of right po
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| `id` | string | Unique profile identifier | get |
 | `content` | JSON object | Raw role content | get |
+| `id` | string | Unique profile identifier | get |
 | `meta` | JSON object | Role metadata | get |
 
 ---

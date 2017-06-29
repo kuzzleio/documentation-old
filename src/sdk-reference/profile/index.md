@@ -103,8 +103,8 @@ Instantiates a new `Profile` object, representing a [profile]({{ site_base_path 
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| `id` | string | Unique profile identifier | get |
 | `content` | JSON object | Raw profile content | get |
+| `id` | string | Unique profile identifier | get |
 | `meta` | JSON object | Profile metadata | get |
 
 ---

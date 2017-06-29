@@ -98,8 +98,8 @@ Instantiates a new User object, an object representation of an user, which is as
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
-| `id` | string | Unique profile identifier | get |
 | `content` | JSON object | Raw user content | get |
+| `id` | string | Unique profile identifier | get |
 | `meta` | JSON object | User metadata | get |
 
 ---
