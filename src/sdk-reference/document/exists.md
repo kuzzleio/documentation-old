@@ -12,15 +12,15 @@ title: exists
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-document.exists(function (error, result) {
+document.exists(function (error, exists) {
   // called once the exists check has been completed
 });
 ```
 
 ```java
-document.exists(new ResponseListener<JSONObject>() {
+document.exists(new ResponseListener<Boolean>() {
     @Override
-    public void onSuccess(JSONObject response) {
+    public void onSuccess(Boolean exists) {
       // called once the exists check has been completed
     }
 
@@ -43,7 +43,7 @@ use \Kuzzle\Document;
  */
 
 try {
-  $result = $document->exists();
+  $exists = $document->exists();
 } catch (ErrorException $e) {
 
 }
@@ -66,7 +66,7 @@ Checks if the document exists in Kuzzle.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Mark this request as (not) queueable | ``true`` |
 
 ---
 

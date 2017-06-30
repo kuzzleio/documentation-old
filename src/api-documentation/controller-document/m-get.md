@@ -62,15 +62,15 @@ title: mGet
         "_id": "<documentId>",
         "_index": "<index>",
         "_source": {
-          "_meta": {
-            "active": true,
-            "author": "-1",
-            "createdAt": 1484226562795,
-            "deletedAt": null,
-            "updatedAt": null,
-            "updater": null
-          },
           "some": "body"
+        },
+        "_meta": {
+          "active": true,
+          "author": "-1",
+          "createdAt": 1484226562795,
+          "deletedAt": null,
+          "updatedAt": null,
+          "updater": null
         },
         "_type": "<collection>",
         "_version": 4,
@@ -80,15 +80,15 @@ title: mGet
         "_id": "<anotherDocumentId>",
         "_index": "<index>",
         "_source": {
-          "_meta": {
-            "active": true,
-            "author": "-1",
-            "createdAt": 1484226562795,
-            "deletedAt": null,
-            "updatedAt": null,
-            "updater": null
-          },
           "some": "body"
+        },
+        "_meta": {
+          "active": true,
+          "author": "-1",
+          "createdAt": 1484226562795,
+          "deletedAt": null,
+          "updatedAt": null,
+          "updater": null
         },
         "_type": "<collection>",
         "_version": 4,

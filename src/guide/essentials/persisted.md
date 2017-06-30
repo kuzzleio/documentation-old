@@ -68,15 +68,15 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
     },
     "created": true,
     "_source": {
-      "message": "Hello, world!",
-      "_meta": {
-        "author": "-1",
-        "createdAt": 1481814465050,
-        "updatedAt": null,
-        "updater": null,
-        "active": true,
-        "deletedAt": null
-      }
+      "message": "Hello, world!"
+    },
+    "_meta": {
+      "author": "-1",
+      "createdAt": 1481814465050,
+      "updatedAt": null,
+      "updater": null,
+      "active": true,
+      "deletedAt": null
     }
   }
 }

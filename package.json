@@ -1,6 +1,6 @@
 {
   "name": "kuzzleio-documentation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Kuzzle Documentation",
   "main": "index.js",
   "scripts": {

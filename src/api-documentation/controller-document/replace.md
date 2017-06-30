@@ -60,6 +60,9 @@ title: replace
     "_source": { // The resulting document
       ...
     },
+    "_meta": {
+      ...
+    },
     "_version": "<number>",// The new version number of this document
     "created": false
   }

@@ -60,6 +60,7 @@ catch (ErrorException $e) {
   {"name": "Catania"}
 ]
 ```
+
 > Callback response, with the "withcoord" option:
 
 ```json
