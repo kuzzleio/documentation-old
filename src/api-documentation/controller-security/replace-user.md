@@ -37,8 +37,8 @@ title: replaceUser
   "action": "replaceUser",
   "_id": "<kuid>",
   "body": {
-    "profileIds": ["<profileId>"],          // Mandatory. The profile ids for the user
-    "name": "John Doe",                     // Additional optional User properties
+    "profileIds": ["<profileId>"],
+    "name": "John Doe",
     ...
   }
 }
