@@ -1,0 +1,5 @@
+# disallow indexation of cutting edge versions
+
+User-agent: *
+Allow: /
+Disallow: /v/*
