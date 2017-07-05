@@ -9,7 +9,7 @@ title: Notifications
 With Kuzzle, you don't exactly [subscribe]({{ site_base_path }}sdk-reference/collection/subscribe) to a room or a topic but, instead, you subscribe to documents.  
 What it means is that, to subscribe, you provide to Kuzzle a set of matching filters, using Kuzzle's [real-time DSL]({{ site_base_path }}kuzzle-dsl). Every time something matches your filters, Kuzzle will send a push notification about it.
 
-You may also provide an empty set of filters, which will tell Kuzzle that you want to listen to any change occuring on a data collection, emulating the behavior of a traditional topic.
+You may also provide an empty set of filters, which will tell Kuzzle that you want to listen to any change occurring on a data collection, emulating the behavior of a traditional topic.
 
 To subscribe, you must provide a callback that will be called each time a new notification is received.
 
@@ -62,9 +62,9 @@ You may subscribe multiple times to the same room, with identical or different s
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
-| `action` | string | Indicates if the user enters or leaves the subscribed room | `on`, `off` |
-| `volatile` | JSON object | If provided during subscription, contains application specific informations | |
-| `user.count` | integer | Updated number of users subscribing to this room | |
+| `user` | string | Indicates if the user enters or leaves the subscribed room | `in`, `out` |
+| `volatile` | JSON object | If provided during subscription, contains application specific information | |
+| `result.count` | integer | Updated number of users subscribing to this room | |
 | `type` | string | Notification type | `user` |
 
 #### Example
@@ -75,14 +75,14 @@ You may subscribe multiple times to the same room, with identical or different s
   "roomId": "ID of the room concerned by this notification",
   "requestId": "5897cd2f-a8a2-40b2-aa43-b31898172008",
   "controller": "subscribe",
-  "action": "on",
+  "user": "in",
   "protocol": "protocol used by the notifying user",
   "timestamp": 1453193069592,
   "volatile": {
-    "optional": "user informations"
+    "optional": "user information"
   },
   "type": "user",
-  "user": {
+  "result": {
     "count": 42
   }
 }
