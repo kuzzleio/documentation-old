@@ -21,7 +21,8 @@ Here is the list of shared objects contained in the provided ``context``:
 
 | Attribute path | Purpose                      |
 |----------------|------------------------------|
-| `context.accessors.execute` | Access to Kuzzle API |
+| `context.accessors.execute` | Access to Kuzzle API. |
+| `context.accessors.trigger` | Trigger a custom event. |
 | `context.accessors.storage` | Initiate and configure to the plugin storage. This storage can only be accessed by the plugin and can be used to persist plugin datas. |
 | `context.accessors.validation` | Access to validation mechanisms, useful to validate documents and add field types. |
 | `context.config` | Contains the entire Kuzzle instance configuration (most of it coming from Kuzzle configuration file) |
