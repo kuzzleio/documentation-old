@@ -12,7 +12,7 @@ title: login
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_login/<strategy>/`  
+**URL:** `http://kuzzle:7512/_login/<strategy>[?expiresIn=<expiresIn>]`  
 **Method:** `POST`  
 **Body:**
 </p>
@@ -20,8 +20,6 @@ title: login
 
 ```js
 {
-  "expiresIn": "<expiresIn>",
-
   // set of parameters depending of the chosen strategy. Example for "local" strategy:
   "username": "<username>",
   "password": "<password>"
@@ -38,10 +36,10 @@ title: login
 {
   "controller": "auth",
   "action": "login",
+  "strategy": "<strategy>",
+  "expiresIn": "<expiresIn>",
 
   "body": {
-    "strategy": "<authentication strategy name>",
-    "expiresIn": "<expiresIn>",
     "username": "<username>",
     "password": "<password>"
   }
