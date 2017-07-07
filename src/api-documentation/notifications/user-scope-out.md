@@ -1,7 +1,7 @@
 ---
 layout: full.html
 algolia: true
-title: A user subscribed to this room
+title: A user left this room
 order: 800
 ---
 
