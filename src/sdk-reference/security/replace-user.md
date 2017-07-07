@@ -12,6 +12,7 @@ title: replaceUser
 
 ```js
 var newContent = {
+  profileIds: ['admin'],
   firstname: 'My Name Is',
   lastname: 'Jonas'
 };
@@ -27,6 +28,9 @@ kuzzle
 
 ```java
 JSONObject newContent = new JSONObject()
+  .put("profileIds", new JSONArray()
+    .put("admin")
+  )
   .put("firstname", "My Name Is")
   .put("lastname", "Jonas");
 
@@ -53,6 +57,7 @@ use \Kuzzle\Security\User;
 
 $kuid = 'myUser';
 $userDefinition = [
+  'profileIds' => ['admin'],
   'firstname' => 'My Name Is',
   'lastname' => 'Jonas'
 ];
@@ -79,7 +84,7 @@ Replaces an existing user.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``id`` | string | Unique user identifier |
-| ``content`` | JSON Object | A plain JSON object representing the user |
+| ``content`` | JSON Object | A plain JSON object representing the user, should contain the mandatory ``profileIds`` field |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | (Optional) Callback handling the response |
 
