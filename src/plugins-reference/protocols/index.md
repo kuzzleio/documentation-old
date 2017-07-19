@@ -56,8 +56,8 @@ Protocols must implement the following methods:
 | `broadcast` | `{channels, payload}` | Asks Protocol Plugins to emit a data `payload` (pojo object) to clients connected to the channels list `channels` (array of strings) |
 | `disconnect` | `connectionId` | Asks protocol plugins to force-close the connection `connectionId` |
 | `init` | `proxy` | [Plugin initialization function](#init) |
-| `joinChannel` | `{channel, connectionId}`| Tells Protocol Plugins that the connection `connectionId` subscribed to the channel `channel` |
-| `leaveChannel` | `{channel, connectionId}` | Tells Protocol Plugins that the connection `connectionId` left the channel `channel` |
+| `joinChannel` | `channel`, `connectionId`| Tells Protocol Plugins that the connection `connectionId` subscribed to the channel `channel` |
+| `leaveChannel` | `channel`, `connectionId` | Tells Protocol Plugins that the connection `connectionId` left the channel `channel` |
 | `notify` | `{channels, connectionId, payload}` | Asks Protocol Plugins to emit a data `payload` (pojo object) to the connection `connectionId` (string), on the channels  `channels` (array of strings)|
 
 ### init
@@ -80,7 +80,7 @@ The [`ClientConnection` constructor](https://github.com/kuzzleio/kuzzle/blob/no-
 `new context.ClientConnection(protocol, ips, headers)`
 
 * `protocol`: {string} the protocol identifier (= `this.protocol`)
-* `ips`: {array of strings} list of forwarded ip addresses (or any client connection information) of the connection. Sorted from client to server (the last ip address is the one that connects to Kuzzle).
+* `ips`: {array of strings} list of forwarded ip addresses (or any client connection information) of the connection. In http, will contain the ip addresses from [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For) header.
 * `headers`: [Optional] {object} A set of key/value pairs that can contain any extra information
 
 ---
@@ -254,18 +254,18 @@ class MyProtocol {
   }
 
   /*
-    Invoked by Kuzzle when the connection "data.id" joins the
-    channel "data.channel"
+    Invoked by Kuzzle when the connection "connectionId" joins the
+    channel "channel"
    */
-  joinChannel (data) {
+  joinChannel (channel, connectionId) {
      // ...
   }
 
   /*
-    Invoked by Kuzzle when the connection "data.id" leaves the
-    channel "data.channel"
+    Invoked by Kuzzle when the connection "connectionId" leaves the
+    channel "channel"
    */
-  leaveChannel (data) {
+  leaveChannel (channel, connectionId) {
     // ...
   }
 
