@@ -7,14 +7,6 @@ order: 100
 
 # accessors
 
-<aside class="notice">
-<a href="{{ site_base_path }}plugins-reference/plugins-features/adding-hooks/#executing-hooks-in-separate-threads">Plugins executed on separate threads</a> don't have access to accessors.
-</aside>
-
----
-
-## Core accessors
-
 ### `execute`
 
 Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
@@ -226,47 +218,4 @@ Nothing. Can throw a `PluginImplementationError` if the validation type has not 
 
 See constructor `BaseValidationType` for more details.
 
----
 
-## Proxy accessors
-
-### `router.newConnection`
-
-Declares a new connection for a given protocol.  
-
-#### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`connection`|`object`| User connection instantiated by the [ClientConnection]({{ site_base_path }}plugins-reference/plugins-context/constructors/#clientconnection) constructor |
-
----
-
-### `router.execute`
-
-Forward a request to Kuzzle.
-
-#### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`data`|`object`| Request data, with following format: `{payload, connectionId, protocol, headers}` |
-|`callback`|`function`| Callback called with the request corresponding results |
-
-#### Callback
-
-The callback is invoked once the request has been processed by Kuzzle.  
-The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response).
-
----
-
-### `router.removeConnection`
-
-Removes a connection from the connection pool maintained by Kuzzle.  
-Not calling this method after a connection is dropped will result in a memory-leak.
-
-#### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`connectionId`|`string`| Identifier of the User connection to remove|

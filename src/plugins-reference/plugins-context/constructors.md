@@ -9,7 +9,7 @@ order: 200
 
 ---
 
-## Core constructors
+## constructors
 
 ### `BaseValidationType`
 
@@ -596,19 +596,4 @@ The `options` argument may contain the following properties:
 | `headers` | `object` | Protocol specific headers | `null` |
 | `raw` | `boolean` | Asks Kuzzle to send the provided result directly,instead of encapsulating it in a Kuzzle JSON response | `false` |
 
----
-
-## Proxy constructors
-
-### `ClientConnection`
-
-The `ClientConnection` constructor is used to create the connection instance that the protocol plugin must provide when a new client is connecting.
-
-**Arguments**
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-| `protocol` | `string` | The protocol used |
-| `ips` |`array` | The list of forwarded ips (equivalent to "X-Forwarded-For" http header + the final ip, i.e. client, proxy1, proxy2, etc.) |
-| `headers` | `object` | (optional) Protocol specific input headers |
 

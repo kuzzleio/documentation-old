@@ -132,7 +132,7 @@ A `ServiceUnavailableError` can be sent by Kuzzle proxy if no Kuzzle instance is
 
 **status**: 413
 
-A `SizeLimitError` is thrown by Kuzzle if the request size exceeds the limits defined in the [proxy configuration]({{ site_base_path }}guide/essentials/proxy-configuration).
+A `SizeLimitError` is thrown by Kuzzle if the request size exceeds the limits defined via [kuzzle configuration]({{ site_base_path }}guide/essentials/configuration).
 
 ---
 

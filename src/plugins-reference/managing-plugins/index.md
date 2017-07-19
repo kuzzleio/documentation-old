@@ -12,7 +12,7 @@ order: 300
 
 ## Installing, removing, enabling and disabling plugins
 
-When starting, Kuzzle (both Core and Proxy) looks for directories in the `plugins/enabled` directory.
+When starting, Kuzzle looks for directories in the `plugins/enabled` directory.
 
 Valid Plugins directories either contain a well-formed NPM module (i.e. they have a `package.json` file in their root directory), or are a simple NodeJS requireables (i.e. they have a valid `index.js` file in their root directory).
 
@@ -26,7 +26,7 @@ Each plugin is a separate and independant entity, and Kuzzle will try to load it
 
 ## Configuring Plugins
 
-When initializing a Plugin, Kuzzle (both Core and Proxy) calls its `init(customConfig, context)` method, passing the [context]({{ site_base_path }}plugins-reference/plugins-context) and the custom configuration.
+When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context]({{ site_base_path }}plugins-reference/plugins-context) and the custom configuration.
 
 Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration).
 
