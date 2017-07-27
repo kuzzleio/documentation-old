@@ -9,9 +9,7 @@ order: 200
 
 ---
 
-## constructors
-
-### `BaseValidationType`
+## `BaseValidationType`
 
 The `BaseValidationType` constructor provides a base to create your own validation types.
 It provides a common structure for all validation types developped in Kuzzle.
@@ -21,7 +19,7 @@ You can find an example of a type creation in the
 
 ---
 
-### `Dsl`
+## `Dsl`
 
 The DSL constructor provided in the plugin context gives access to [Kuzzle DSL capabilities]({{ site_base_path }}kuzzle-dsl).  
 It allows managing filters, and testing data to get a list of matching filters.
@@ -133,12 +131,12 @@ A resolved promise if the provided filters are valid, or a rejected one with the
 
 ---
 
-### `Repository`
+## `Repository`
 
 The Repository constructor provided in the plugin context gives access to methods
 that allow the plugin to interact with its plugin storage. The plugin storage is a dedicated
-index in Elasticsearch where the plugin can [create collections]({{ site_base_path }}plugins-reference/plugins-context/accessors/#storage-createcollection).
-To do so the plugin should first [bootstrap]({{ site_base_path }}plugins-reference/plugins-context/accessors/#storage-bootstrap) the index.
+index in Elasticsearch where the plugin can [create collections]({{ site_base_path }}plugins-reference/plugins-context/accessors/#createcollection).
+To do so the plugin should first [bootstrap]({{ site_base_path }}plugins-reference/plugins-context/accessors/#bootstrap) the index.
 
 Once done, the plugin can instantiate repositories to interact with the different collections it created.
 
@@ -437,7 +435,7 @@ someCollectionRepository.update({
 
 ---
 
-### `Request`
+## `Request`
 
 This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response) to be forwarded to the requesting client.
 
