@@ -131,9 +131,9 @@ context.accessors.storage.createCollection('someCollection', {
 
 This accessor allows to dynamically add or remove [authentication strategies]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy)
 
+In a cluster context, Kuzzle will add/remove strategies on all nodes.
+
 <aside class="warning">
-When dynamically adding or removing an authentication strategy, plugins are responsible of ensuring that all Kuzzle nodes across a cluster also adds or removes that strategy.<br/>
-<br/>
 Plugins should also make sure that, when changing the list of available strategies dynamically, that list will remain the same after a Kuzzle node restarts.
 </aside>
 
