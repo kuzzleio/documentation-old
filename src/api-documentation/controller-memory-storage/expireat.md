@@ -58,7 +58,7 @@ title: expireat
   "collection": null,
   "index": null,
   "volatile": null,
-  "result": "[0|1]" // success status
+  "result": [0|1] // success status
 }
 ```
 
