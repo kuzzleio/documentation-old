@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  361
 algolia: true
 title: Plugins creation prerequisites
 description: requirements to develop your plugin

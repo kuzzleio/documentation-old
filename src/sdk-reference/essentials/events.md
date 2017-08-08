@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  267
 algolia: true
 title: Events
 ---

@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  49
 algolia: true
 title: Query syntax
 description: learn how to send raw queries to kuzzle

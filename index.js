@@ -184,8 +184,16 @@ handlebars.registerHelper({
     }
 
     return d;
+  },
+  wordsToTime: function(words, items) {
+    let i = Number.parseInt(words);
+    if (!Number.isNaN(i)) {
+      return Math.ceil(words / 75);
+    }
+
+    return 0;
   }
-})
+});
 
 // Build site with metalsmith.
 const build = done => {

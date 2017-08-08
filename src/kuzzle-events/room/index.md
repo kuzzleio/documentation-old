@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  81
 algolia: true
 title: room
 description: list of events emitted on subscription rooms activity

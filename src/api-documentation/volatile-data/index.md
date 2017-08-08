@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  91
 algolia: true
 title: Sending volatile data
 description: broadcast extra volatile data to subscribers

@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  2477
 algolia: true
 title: constructors
 order: 200

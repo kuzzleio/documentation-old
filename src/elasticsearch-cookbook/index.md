@@ -1,5 +1,6 @@
 ---
 layout: category-childrens.html
+words:  114
 title: Elasticsearch Cookbook
 order: 800
 description: Learn how to query persistent data in Kuzzle

@@ -1,5 +1,6 @@
 ---
 layout: block-childrens.html
+words:  0
 ---
 
 ---

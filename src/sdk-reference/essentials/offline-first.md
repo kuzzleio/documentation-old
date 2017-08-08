@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  802
 algolia: true
 title: Offline first
 ---

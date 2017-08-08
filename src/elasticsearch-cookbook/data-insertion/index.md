@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  735
 algolia: true
 title: Data insertion
 description: learn how to index data with elasticsearch

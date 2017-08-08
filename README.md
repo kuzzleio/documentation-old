@@ -65,6 +65,7 @@ For instance: `src/guide/`.
 Each section directory must contain an `index.md` file, with the following headers:
 
 ```
+
 ---
 layout: category-childrens.html
 title: <Name used in the section list>
@@ -98,6 +99,7 @@ A subsection has one of the 3 following behaviors:
 Each subsection directory must contain an `index.md` file, with the following headers:
 
 ```
+
 ---
 layout: <full.html or category-members.html>
 algolia: [true|false]
@@ -119,6 +121,7 @@ For instance: `src/guide/essentials/installing-kuzzle.md`
 Each article file must contain a header with the following properties:
 
 ```
+
 ---
 layout: <full.html or side-code.html>
 algolia: [true|false]
@@ -178,6 +181,17 @@ This header makes the content of `index.md` appear like any other article, using
 **Default:** `<undefined>`
 
 If [show-subheader](#show-subheader) is set to `true`, then this value is used as the article name in the navigation bar.
+
+## words
+
+**Type:** integer
+**Default:** `<undefined>`
+
+Must provide the number of words of the page. This value is used to calculate the reading time of the page. To update it, this command could be handy:
+
+```
+awk 'BEGIN { c = 0 } {if (c >= 2) {print $0}} $0 ~ /---/ {c++}' path/to/file | wc -w
+```
 
 ---
 
