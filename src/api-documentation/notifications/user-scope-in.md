@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  53
 algolia: true
 title: A user subscribed to this room
 order: 700

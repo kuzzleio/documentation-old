@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  170
 algolia: true
 title: Tutorial
 description: learn kuzzle in a real case

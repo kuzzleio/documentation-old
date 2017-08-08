@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  121
 algolia: true
 title: auth
 description: list of events emitted by the auth controller

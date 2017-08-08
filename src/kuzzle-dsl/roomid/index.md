@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  85
 algolia: true
 title: Room Identifiers
 description: How room identifiers are generated

@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  239
 algolia: true
 title: Configuring Kuzzle
 order: 200

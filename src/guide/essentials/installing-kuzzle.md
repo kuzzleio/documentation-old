@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  753
 algolia: true
 title: Installing Kuzzle
 order: 0

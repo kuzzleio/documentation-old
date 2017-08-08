@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  39
 algolia: true
 title: A document is about to be created
 order: 100

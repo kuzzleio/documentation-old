@@ -1,5 +1,6 @@
 ---
 layout: category-childrens.html
+words:  48
 title: SDK Reference
 order: 0
 description: The multi-language reference for all published Kuzzle SDK

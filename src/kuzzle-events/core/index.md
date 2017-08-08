@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  224
 algolia: true
 title: core
 description: list of events emitted to synchronize Kuzzle server instances in a cluster

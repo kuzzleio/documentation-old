@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  58
 algolia: true
 title: Plugins features
 description: understand Kuzzle plugins mechanisms

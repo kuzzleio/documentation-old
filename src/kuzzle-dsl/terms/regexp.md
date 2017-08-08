@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  114
 algolia: true
 title: regexp
 ---

@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  52
 algolia: true
 title: A user left this room
 order: 800

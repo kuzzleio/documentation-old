@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  229
 algolia: true
 title: The plugin context
 description: plugin initialization context attribute reference
