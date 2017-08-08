@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  83
 algolia: true
 title: geoDistanceRange
 ---

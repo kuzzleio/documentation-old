@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  97
 algolia: true
 title: log
 order: 400

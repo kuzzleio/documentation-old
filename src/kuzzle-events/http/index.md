@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  30
 algolia: true
 title: http
 description: list of events emitted by the http router

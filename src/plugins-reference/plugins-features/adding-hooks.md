@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  341
 algolia: true
 title: Listening asynchronously
 order: 100

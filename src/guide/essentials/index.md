@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  273
 algolia: true
 title: Essentials
 description: learn mechanisms of kuzzle

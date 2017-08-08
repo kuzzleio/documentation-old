@@ -1,5 +1,6 @@
 ---
 layout: category-childrens.html
+words:  185
 title: Data Validation
 order: 400
 description: The reference for the data-validation engine in Kuzzle.

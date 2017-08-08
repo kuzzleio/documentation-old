@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  182
 algolia: true
 title: Specification structure
 description: understand Kuzzle validation mechanisms

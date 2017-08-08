@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  414
 algolia: true
 title: Configuring Kuzzle proxy
 order: 300

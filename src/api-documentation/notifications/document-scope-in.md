@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  66
 algolia: true
 title: An updated document entered your listening scope
 order: 300

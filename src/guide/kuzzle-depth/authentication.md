@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  947
 algolia: true
 title: Authentication
 order: 100

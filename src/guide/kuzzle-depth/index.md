@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  227
 algolia: true
 title: Kuzzle in depth
 description: understand how to extend kuzzle

@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  88
 algolia: true
 title: index
 description: list of events emitted by the index controller

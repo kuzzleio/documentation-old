@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  99
 algolia: true
 title: range
 ---

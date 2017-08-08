@@ -1,5 +1,6 @@
 ---
 layout: full.html
+words:  358
 algolia: true
 title: Installing Kuzzle Backoffice
 order: 100
