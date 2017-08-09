@@ -1,6 +1,8 @@
 const Metalsmith  = require('metalsmith')
-const handlebars = require('handlebars')
-const cheerio = require('cheerio')
+const handlebars  = require('handlebars')
+const cheerio     = require('cheerio')
+const stripTags   = require('striptags')
+const wordCount   = require('wordcount')
 
 const markdown    = require('metalsmith-markdown')
 const layouts     = require('metalsmith-layouts')
@@ -184,13 +186,8 @@ handlebars.registerHelper({
 
     return d
   },
-  wordsToTime: function(words, items) {
-    let i = Number.parseInt(words);
-    if (!Number.isNaN(i)) {
-      return Math.ceil(words / 75);
-    }
-
-    return 0;
+  wordsToTime: function(context) {
+    return Math.ceil(wordCount(stripTags(context.data.root.contents)) / 75);
   }
 });
 
