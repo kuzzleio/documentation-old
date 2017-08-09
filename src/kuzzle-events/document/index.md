@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  88
+words: 88
 algolia: true
 title: document
 description: list of events emitted by the document controller

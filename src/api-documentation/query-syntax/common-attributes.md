@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  392
+words: 392
 algolia: true
 title: Common attributes
 order: 100

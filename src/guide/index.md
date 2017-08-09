@@ -1,6 +1,6 @@
 ---
 layout: category-childrens.html
-words:  99
+words: 99
 title: Guide
 order: 0
 description: Learn how to use Kuzzle

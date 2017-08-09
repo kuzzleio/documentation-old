@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  99
+words: 99
 algolia: true
 title: range
 ---

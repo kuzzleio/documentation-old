@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  346
+words: 346
 algolia: true
 title: Connecting to Kuzzle
 description: through HTTP, WebSocket or Protocol plugins

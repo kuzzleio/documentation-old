@@ -1,6 +1,6 @@
 ---
 layout: category-childrens.html
-words:  50
+words: 50
 title: Kuzzle DSL
 order: 300
 description: Kuzzle DSL Reference

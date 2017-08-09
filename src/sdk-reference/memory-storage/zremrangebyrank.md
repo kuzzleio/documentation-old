@@ -1,6 +1,6 @@
 ---
 layout: side-code.html
-words:  259
+words: 259
 language-tab:
   js: Javascript
   java: Android

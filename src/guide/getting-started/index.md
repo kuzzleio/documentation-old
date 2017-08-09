@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  942
+words: 942
 algolia: true
 title: Getting started
 description: learn kuzzle in a few steps

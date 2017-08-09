@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  109
+words: 109
 algolia: true
 title: internalBroker
 description: list of events emitted by Kuzzle internal broker

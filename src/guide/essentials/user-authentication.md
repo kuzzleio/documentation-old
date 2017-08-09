@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  534
+words: 534
 algolia: true
 title: User authentication
 order: 750

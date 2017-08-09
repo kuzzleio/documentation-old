@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  353
+words: 353
 algolia: true
 title: errors
 order: 300

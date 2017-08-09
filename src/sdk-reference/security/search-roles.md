@@ -1,6 +1,6 @@
 ---
 layout: side-code.html
-words:  404
+words: 404
 language-tab:
   js: Javascript
   java: Android

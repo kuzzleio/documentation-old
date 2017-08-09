@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  179
+words: 179
 algolia: true
 title: geoPolygon
 ---

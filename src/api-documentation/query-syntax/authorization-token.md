@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  76
+words: 76
 algolia: true
 title: Authorization token
 order: 200

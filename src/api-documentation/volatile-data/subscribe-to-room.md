@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  114
+words: 114
 algolia: true
 title: Subscribe to a room
 order: 200

@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  48
+words: 48
 algolia: true
 title: equals
 ---

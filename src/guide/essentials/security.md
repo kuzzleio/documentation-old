@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  990
+words: 990
 algolia: true
 title: Security configuration
 order: 700

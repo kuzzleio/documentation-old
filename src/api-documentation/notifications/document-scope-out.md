@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  65
+words: 65
 algolia: true
 title: An updated document left your listening scope
 order: 600

@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  39
+words: 39
 algolia: true
 title: A document is about to be deleted
 order: 400

@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  169
+words: 169
 algolia: true
 title: geoDistance
 ---

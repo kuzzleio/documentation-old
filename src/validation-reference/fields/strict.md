@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  36
+words: 36
 algolia: true
 title: strict
 ---

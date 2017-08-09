@@ -344,7 +344,6 @@ const build = done => {
 if (options.dev.enabled) {
   // run dev server (build & serv ./build directory on 8080 port & watch => rebuild on change)
   var serve = new nodeStatic.Server(__dirname + '/build')
-  let cache = {}
 
   require('http').createServer((req, res) => {
     // let header = req.headers['accept-encoding']

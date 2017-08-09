@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  541
+words: 541
 algolia: true
 title: Errors
 description: understand Kuzzle errors mechanisms

@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  489
+words: 489
 algolia: true
 title: Notifications
 ---

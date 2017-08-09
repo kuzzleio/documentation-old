@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  3397
+words: 3397
 algolia: true
 title: The bool (Boolean) query
 description: learn how to combine filters with elasticsearch

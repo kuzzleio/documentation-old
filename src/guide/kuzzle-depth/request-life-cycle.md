@@ -1,6 +1,6 @@
 ---
 layout: full.html
-words:  1398
+words: 1398
 algolia: true
 title: Request Life-Cycle
 order: 0
