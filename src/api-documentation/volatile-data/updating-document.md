@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 124
 algolia: true
 title: Updating a document
 order: 100

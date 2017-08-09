@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 93
 algolia: true
 title: server
 description: list of events emitted by the server controller

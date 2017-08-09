@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 200
 algolia: true
 title: Installation
 description: learn how to install elasticsearch from scratch

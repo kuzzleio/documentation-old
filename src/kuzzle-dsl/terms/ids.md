@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 63
 algolia: true
 title: ids
 ---

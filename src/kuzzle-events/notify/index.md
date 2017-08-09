@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 165
 algolia: true
 title: notify
 description: real-time notifications events

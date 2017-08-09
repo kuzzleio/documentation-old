@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 63
 algolia: true
 title: A document has been deleted
 order: 500

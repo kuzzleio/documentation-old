@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 183
 algolia: true
 title: bool
 ---

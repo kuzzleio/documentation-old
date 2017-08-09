@@ -1,6 +1,5 @@
 ---
 layout: category-childrens.html
-words: 86
 title: Kuzzle events
 order: 700
 description: Learn about Kuzzle Events

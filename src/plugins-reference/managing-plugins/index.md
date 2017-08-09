@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 272
 algolia: true
 title: Managing Plugins
 description: learn how to enable and configure plugins

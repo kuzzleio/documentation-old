@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 977
 algolia: true
 title: Notifications
 description: understand Kuzzle real-time notifications mechanisms

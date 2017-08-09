@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 770
 algolia: true
 title: Adding a controller route
 order: 300

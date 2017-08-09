@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 695
 algolia: true
 title: Request and Response format
 order: 800

@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 110
 algolia: true
 title: security
 description: list of events emitted by the security controller

@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 284
 algolia: true
 title: geoBoundingBox
 ---

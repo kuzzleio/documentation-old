@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 85
 algolia: true
 title: realtime
 description: list of events emitted by the realtime controller

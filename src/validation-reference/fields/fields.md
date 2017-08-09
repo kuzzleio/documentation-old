@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 1058
 algolia: true
 title: fields
 ---

@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 3030
 algolia: true
 title: Basic queries
 description: learn how to search data with elasticsearch

@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 140
 algolia: true
 title: Validators
 description: learn how to create complex validators

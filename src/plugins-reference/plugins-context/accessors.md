@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 662
 algolia: true
 title: accessors
 order: 100

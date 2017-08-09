@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 168
 algolia: true
 title: Kuzzle response
 description: understand Kuzzle response mechanisms

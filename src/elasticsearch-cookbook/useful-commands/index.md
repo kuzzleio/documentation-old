@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 213
 algolia: true
 title: Useful commands
 description: learn time-saving elasticsearch commands

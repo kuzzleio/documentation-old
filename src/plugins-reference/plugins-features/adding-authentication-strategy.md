@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 2193
 algolia: true
 title: Adding an authentication strategy
 order: 400

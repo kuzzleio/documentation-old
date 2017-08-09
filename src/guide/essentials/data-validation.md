@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 680
 algolia: true
 title: Data Validation
 order: 500

@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 567
 algolia: true
 title: Command Line Interface
 order: 900

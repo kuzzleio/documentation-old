@@ -1,6 +1,5 @@
 ---
 layout: category-childrens.html
-words: 47
 title: API Documentation
 order: 500
 description: Learn low-level Kuzzle API

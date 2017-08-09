@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 91
 algolia: true
 title: bulk
 description: list of events emitted by the bulk controller

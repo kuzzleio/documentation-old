@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 109
 algolia: true
 title: request
 description: list of global events emitted on requests execution 

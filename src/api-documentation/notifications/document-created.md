@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 65
 algolia: true
 title: A document has been created
 order: 200

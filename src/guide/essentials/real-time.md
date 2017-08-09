@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 1397
 algolia: true
 title: Real-time notifications
 order: 600

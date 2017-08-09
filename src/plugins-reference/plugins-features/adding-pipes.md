@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 381
 algolia: true
 title: Listening synchronously
 order: 200

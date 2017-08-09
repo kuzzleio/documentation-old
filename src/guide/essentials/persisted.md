@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 1542
 algolia: true
 title: Working with persistent data
 order: 400

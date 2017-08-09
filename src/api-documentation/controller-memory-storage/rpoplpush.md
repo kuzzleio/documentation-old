@@ -1,6 +1,5 @@
 ---
 layout: side-code.html
-words: 91
 algolia: true
 language-tab:
   js: HTTP

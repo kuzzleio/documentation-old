@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 171
 algolia: true
 title: [Plugin events]
 description: list of events emitted by plugins

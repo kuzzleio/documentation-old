@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 1052
 algolia: true
 title: The Plugin System
 order: 1000

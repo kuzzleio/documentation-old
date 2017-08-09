@@ -1,6 +1,5 @@
 ---
 layout: full.html
-words: 101
 algolia: true
 title: bulk
 show-subheader: true
