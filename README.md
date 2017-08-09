@@ -182,18 +182,6 @@ This header makes the content of `index.md` appear like any other article, using
 
 If [show-subheader](#show-subheader) is set to `true`, then this value is used as the article name in the navigation bar.
 
-
-## words
-
-**Type:** integer  
-**Default:** `<undefined>`
-
-Must provide the number of words of the page. This value is used to calculate the reading time of the page. To update t, this command could be handy:
-
-```
-awk 'BEGIN { c = 0 } {if (c >= 2) {print $0}} $0 ~ /---/ {c++}' path/to/file | wc -w
-```
-
 ---
 
 # Sorting the documentation
