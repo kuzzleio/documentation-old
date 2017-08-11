@@ -187,6 +187,7 @@ handlebars.registerHelper({
     return d
   },
   wordsToTime: function(context) {
+    // It seams 75 words per minute is a fair value for technical material
     return Math.ceil(wordCount(stripTags(context.data.root.contents)) / 75);
   }
 });
