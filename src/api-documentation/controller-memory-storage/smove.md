@@ -61,7 +61,7 @@ title: smove
   "collection": null,
   "index": null,
   "volatile": null,
-  "result": "[0|1]"
+  "result": [0|1]
 }
 ```
 

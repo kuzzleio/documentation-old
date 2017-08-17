@@ -59,7 +59,7 @@ title: renamenx
   "collection": null,
   "index": null,
   "volatile": null,
-  "result": "OK"
+  "result": [0|1]
 }
 ```
 
