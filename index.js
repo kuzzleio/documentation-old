@@ -1,6 +1,8 @@
 const Metalsmith  = require('metalsmith')
-const handlebars = require('handlebars')
-const cheerio = require('cheerio')
+const handlebars  = require('handlebars')
+const cheerio     = require('cheerio')
+const stripTags   = require('striptags')
+const wordCount   = require('wordcount')
 
 const markdown    = require('metalsmith-markdown')
 const layouts     = require('metalsmith-layouts')
@@ -183,8 +185,12 @@ handlebars.registerHelper({
     }
 
     return d
+  },
+  wordsToTime: function(context) {
+    // It seams 75 words per minute is a fair value for technical material
+    return Math.ceil(wordCount(stripTags(context.data.root.contents)) / 75);
   }
-})
+});
 
 // Build site with metalsmith.
 const build = done => {
@@ -336,7 +342,6 @@ const build = done => {
 if (options.dev.enabled) {
   // run dev server (build & serv ./build directory on 8080 port & watch => rebuild on change)
   var serve = new nodeStatic.Server(__dirname + '/build')
-  let cache = {}
 
   require('http').createServer((req, res) => {
     // let header = req.headers['accept-encoding']
