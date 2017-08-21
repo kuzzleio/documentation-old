@@ -437,7 +437,7 @@ someCollectionRepository.update({
 
 ## `Request`
 
-This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response) to be forwarded to the requesting client.
+This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response).
 
 Network protocol specific headers can be added to the response. If the protocol can handle them,
 these headers will be used to configure the response sent to the client.    
@@ -447,7 +447,9 @@ their own specific headers manually.
 
 For more information about this object, please check [our detailed documentation](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#request).
 
-**Arguments**
+#### Constructors
+
+**`new Request(<request object>, <data>, [options])`**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -455,7 +457,57 @@ For more information about this object, please check [our detailed documentation
 |`data`|`object`| JSON object following the same standard than for non-HTTP [API calls]({{ site_base_path }}api-documentation/query-syntax)<br>See the  [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) constructor for more information |
 | `options` | `object` | Optional initialization parameters |
 
-If a raw `options` object is provided, it may contain:
+This constructor creates a new `Request` object from the provided one, and then adds the supplied data to complete the new object.  
+
+This constructor is particularly useful when a plugin needs to execute an API request derivated from a user request, as most of the relevant information will be carried over to the new object.
+
+Properties that are automatically copied to the new object:
+
+* All resources properties: `_id`, `collection`, `index`
+* Additional arguments: `request.input.args`
+* JSON Web Token, if any
+
+Example:
+
+```js
+const derivedRequest = new context.constructors.Request(request, {
+  controller: 'document',
+  action: 'create',
+  body: {
+    document: 'content'
+  }
+});
+```
+
+**`new Request(<data>, [options])`**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`data`|`object`| JSON object following the same standard than for non-HTTP [API calls]({{ site_base_path }}api-documentation/query-syntax)<br>See the  [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) constructor for more information |
+| `options` | `object` | Optional initialization parameters |
+
+This constructor allows for creating new `Request` objects without the need to provide a source.
+
+The provided `data` object must contain a lot more information than what's needed by the constructor method described above, so if a `Request` object is available to your method, you should probably use it to instantiate one of those objects.
+
+Example:
+
+```js
+const request = new context.constructors.Request({
+  controller: 'document',
+  action: 'create',
+  index: 'index',
+  collection: 'collection',
+  _id: 'documentId',
+  body: {
+    document: 'content'
+  }
+});
+```
+
+**The "options" parameter**
+
+If a raw `options` object is provided to one of the `Request` constructors (see above), then it may contain the following properties:
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -468,33 +520,12 @@ If a raw `options` object is provided, it may contain:
 | `token` | `object` | Passed to [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) constructor |
 | `user` | `object` | Passed to [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) constructor |
 
-
-Here is an example:
-
-```js
-let derivedRequest = new context.constructors.Request(request, {
-  controller: 'write',
-  action: 'create',
-  index: 'foo',
-  collection: 'bar',
-  _id: 'some document ID',
-  body: {
-    document: 'content'
-  },
-  volatile: {
-    some: 'volatile data'
-  }
-});
-```
-
-**Attributes**
+#### Attributes
 
 Read-only
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-| `origin` | `Request` | `null` | The first request of a requests chain |
-| `previous` | `Request` | `null` | The previous request of a requests chain |
 | `timestamp` | integer | Request creation timestamp |
 
 Writable
