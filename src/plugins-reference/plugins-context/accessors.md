@@ -9,6 +9,8 @@ order: 100
 
 ## `execute`
 
+{{{since "1.0.0"}}}
+
 Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
 
 **Arguments**

@@ -10,6 +10,8 @@ title: getProfile
 
 # getProfile
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

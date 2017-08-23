@@ -9,6 +9,8 @@ title: zincrby
 
 # zincrby
 
+{{{since "1.0.0"}}}
+
 
 
 

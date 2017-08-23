@@ -9,6 +9,8 @@ title: hsetnx
 
 # hsetnx
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

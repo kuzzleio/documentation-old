@@ -9,6 +9,8 @@ title: getLastStats
 
 # getLastStats
 
+{{{since "1.0.0"}}}
+
 
 <blockquote class="js">
 <p>

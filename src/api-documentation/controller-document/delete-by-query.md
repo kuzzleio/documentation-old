@@ -9,6 +9,7 @@ title: deleteByQuery
 
 # deleteByQuery
 
+{{{since "1.0.0"}}}
 
 <blockquote class="js">
 <p>

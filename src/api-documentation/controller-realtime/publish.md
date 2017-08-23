@@ -10,6 +10,8 @@ title: publish
 
 # publish
 
+{{{since "1.0.0"}}}
+
 
 <blockquote class="js">
 <p>

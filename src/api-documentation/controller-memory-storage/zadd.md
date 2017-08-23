@@ -9,6 +9,8 @@ title: zadd
 
 # zadd
 
+{{{since "1.0.0"}}}
+
 
 
 

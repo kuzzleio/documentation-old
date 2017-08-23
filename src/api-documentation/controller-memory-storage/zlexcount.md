@@ -9,6 +9,8 @@ title: zlexcount
 
 # zlexcount
 
+{{{since "1.0.0"}}}
+
 
 
 

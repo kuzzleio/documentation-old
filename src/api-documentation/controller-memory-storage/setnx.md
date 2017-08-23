@@ -9,6 +9,8 @@ title: setnx
 
 # setnx
 
+{{{since "1.0.0"}}}
+
 
 
 

@@ -6,6 +6,8 @@ title: or
 
 # or
 
+{{{since "1.0.0"}}}
+
 The `or` filter takes an array containing filter objects, combining them using OR operands.
 
 ## Given the following documents:

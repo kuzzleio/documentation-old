@@ -9,6 +9,8 @@ title: replaceUser
 
 # replaceUser
 
+{{{since "1.0.0"}}}
+
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/users/<kuid>/_replace`  
