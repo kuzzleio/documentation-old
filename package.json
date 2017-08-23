@@ -21,6 +21,7 @@
     "debug": "^2.6.6",
     "glob-watcher": "^3.2.0",
     "handlebars": "^4.0.8",
+    "match-words": "^1.0.0",
     "metalsmith": "^2.3.0",
     "metalsmith-ancestry": "^1.2.1",
     "metalsmith-auto-collections": "^0.1.1",
