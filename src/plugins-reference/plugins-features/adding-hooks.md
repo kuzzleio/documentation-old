@@ -7,7 +7,7 @@ order: 100
 
 # Listening asynchronously
 
-Plugins enable you to add asynchronous listener functions to a set of [events]({{ site_base_path }}plugins-reference/kuzzle-events-list). We'll call these asynchronous listener functions **hooks** from now on.
+Plugins enable you to add asynchronous listener functions to a set of [events]({{ site_base_path }}kuzzle-events/). We'll call these asynchronous listener functions **hooks** from now on.
 
 Hooks are supplied with these events data. They cannot change the provided data, and Kuzzle does not wait for them to process the data either.
 
