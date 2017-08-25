@@ -114,7 +114,6 @@ In case a subset of the queries sent within the request fail, the client will re
 ## Performing a global bulk import
 
 {{{since "1.0.0"}}}
-{{{since "1.0.0"}}}
 
 <blockquote class="js">
 <p>
