@@ -11,6 +11,8 @@ title: subscribe
 
 # subscribe
 
+{{{since "1.0.0"}}}
+
 
 <blockquote class="json">
 <p>

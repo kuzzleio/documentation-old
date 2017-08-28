@@ -9,6 +9,7 @@ title: mUpdate
 
 # mUpdate
 
+{{{since "1.0.0"}}}
 
 <blockquote class="js">
 <p>

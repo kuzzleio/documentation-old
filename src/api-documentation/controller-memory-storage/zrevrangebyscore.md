@@ -9,6 +9,8 @@ title: zrevrangebyscore
 
 # zrevrangebyscore
 
+{{{since "1.0.0"}}}
+
 
 
 

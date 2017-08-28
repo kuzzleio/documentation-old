@@ -6,6 +6,8 @@ title: exists
 
 # exists
 
+{{{since "1.0.0"}}}
+
 The `exists` filter matches documents containing non-null fields.
 
 ## Given the following documents:

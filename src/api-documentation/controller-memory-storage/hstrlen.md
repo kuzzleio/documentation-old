@@ -9,6 +9,8 @@ title: hstrlen
 
 # hstrlen
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

@@ -9,6 +9,8 @@ title: sismember
 
 # sismember
 
+{{{since "1.0.0"}}}
+
 
 
 

@@ -6,6 +6,8 @@ title: and
 
 # and
 
+{{{since "1.0.0"}}}
+
 The `and` filter takes an array of filter objects, combining them with AND operands.
 
 ## Given the following documents:

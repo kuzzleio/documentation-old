@@ -8,11 +8,68 @@ order: 200
 
 # auth
 
-Events triggered when a request is treated in the [`auth` controller]({{ site_base_path }}api-documentation/controller-auth)
+{{{since "1.0.0"}}}
 
-| Event | Type | Description | Payload |
-|-------|------|-------------|---------|
-| `auth:after<Action>` | Pipe | All actions in `auth` controller trigger an event after executing | Type: Request |
-| `auth:before<Action>` | Pipe | All actions in `auth` controller trigger an event before executing | Type: Request |
-| `auth:error<Action>` | Pipe | When an error occurred during an action in `auth` controller, an event error is triggered | Type: Request |
-| `auth:strategyAuthenticated` | Pipe | Triggered after an authentication success on passport wrapper, and before resolving the user. | Type: Object.<br>{strategy, content}<br>`strategy` is the used strategy's name<br>`content` is the authenticated User object |
+Events triggered when a request is sent to the [`auth` controller]({{ site_base_path }}api-documentation/controller-auth)
+
+---
+
+## `auth:after<Action>`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+All actions in the `auth` controller trigger this event after a successful execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+
+Example: after a successful [logout]({{ site_base_path }}api-documentation/controller-auth/logout/) request, a `auth:afterLogout` event is triggered.
+
+---
+
+## `auth:before<Action>`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+All actions in the `auth` controller trigger this event before execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+
+Example: before performing a [checkToken]({{ site_base_path }}api-documentation/controller-auth/check-token/) request, a `auth:beforeCheckToken` event is triggered.
+
+---
+
+## `auth:error<Action>`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+All actions in the `auth` controller trigger this event after a failed execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+
+Example: after a failed [login]({{ site_base_path }}api-documentation/controller-auth/login/) request, a `auth:errorLogin` event is triggered.
+
+---
+
+## `auth:strategyAuthenticated`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** Object (see below)
+
+This event is triggered immediately after a successful user authentication, but before a token is generated (and before a `auth:afterLogin` event is triggered).
+
+This event's payload is a plain JSON object with the following properties:
+* `strategy`: the [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy) name 
+* `content`: an object with the following properties:
+  * `_id`: the user's [kuid]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid)
+  * `profileIds`: an array of [Profile]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles) names
+
+---

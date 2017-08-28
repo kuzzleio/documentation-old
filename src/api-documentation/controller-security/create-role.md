@@ -10,6 +10,8 @@ title: createRole
 
 # createRole
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

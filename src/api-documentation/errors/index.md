@@ -24,6 +24,8 @@ Clients can detect the error type based on their `status` and decide which actio
 
 ## BadRequestError
 
+{{{since "1.0.0"}}}
+
 **status**: 400
 
 A `BadRequestError` is thrown if Kuzzle was unable to process the action due to a malformed request.
@@ -34,6 +36,8 @@ A `BadRequestError` is thrown if Kuzzle was unable to process the action due to 
 
 ## ExternalServiceError
 
+{{{since "1.0.0"}}}
+
 **status**: 500
 
 An `ExternalServiceError` is thrown if Kuzzle was unable to process the action due to some external service failure (i.e. database).
@@ -42,6 +46,8 @@ An `ExternalServiceError` is thrown if Kuzzle was unable to process the action d
 
 ## ForbiddenError
 
+{{{since "1.0.0"}}}
+
 **status**: 403
 
 A `ForbiddenError` is thrown if the requested action is not authorized for the current authenticated user.
@@ -49,6 +55,8 @@ A `ForbiddenError` is thrown if the requested action is not authorized for the c
 ---
 
 ## GatewayTimeoutError
+
+{{{since "1.0.0"}}}
 
 **status**: 504
 
@@ -63,6 +71,8 @@ Clients shall make some extra checks to verify if the original action was actual
 
 ## InternalError
 
+{{{since "1.0.0"}}}
+
 **status**: 500
 
 An `InternalError` is thrown if Kuzzle encountered a severe unknown error.
@@ -70,6 +80,8 @@ An `InternalError` is thrown if Kuzzle encountered a severe unknown error.
 ---
 
 ## NotFoundError
+
+{{{since "1.0.0"}}}
 
 **status** 404
 
@@ -82,6 +94,8 @@ ParseError: not documented @TODO: remove its current usage by BadRequestError
 ---
 
 ## PartialError
+
+{{{since "1.0.0"}}}
 
 **status**: 206
 
@@ -104,6 +118,8 @@ The detail of each failure can be retrieved using the `errors` property of the e
 
 ## PluginImplementationError
 
+{{{since "1.0.0"}}}
+
 **status**: 500
 
 A `PluginImplementationError` is thrown if Kuzzle encountered a severe unknown error issued by a [plugin]({{ site_base_path }}plugins-reference).
@@ -111,6 +127,8 @@ A `PluginImplementationError` is thrown if Kuzzle encountered a severe unknown e
 ---
 
 ## PreconditionError
+
+{{{since "1.0.0"}}}
 
 **status**: 412
 
@@ -122,6 +140,8 @@ This error can for instance be generated when trying to create a document on a n
 
 ## ServiceUnavailableError
 
+{{{since "1.0.0"}}}
+
 **status**: 503
 
 A `ServiceUnavailableError` can be sent by Kuzzle proxy if no Kuzzle instance is found to process the request.
@@ -130,6 +150,8 @@ A `ServiceUnavailableError` can be sent by Kuzzle proxy if no Kuzzle instance is
 
 ## SizeLimitError
 
+{{{since "1.0.0"}}}
+
 **status**: 413
 
 A `SizeLimitError` is thrown by Kuzzle if the request size exceeds the limits defined via [kuzzle configuration]({{ site_base_path }}guide/essentials/configuration).
@@ -137,6 +159,8 @@ A `SizeLimitError` is thrown by Kuzzle if the request size exceeds the limits de
 ---
 
 ## UnauthorizedError
+
+{{{since "1.0.0"}}}
 
 **status**: 401
 

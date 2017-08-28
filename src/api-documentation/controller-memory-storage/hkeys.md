@@ -9,6 +9,8 @@ title: hkeys
 
 # hkeys
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

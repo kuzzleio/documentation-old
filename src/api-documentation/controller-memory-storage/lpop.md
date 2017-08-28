@@ -9,6 +9,8 @@ title: lpop
 
 # lpop
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

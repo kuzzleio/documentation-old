@@ -9,6 +9,7 @@ title: getCurrentUser
 
 # getCurrentUser
 
+{{{since "1.0.0"}}}
 
 <blockquote class="js">
 <p>

@@ -10,6 +10,8 @@ title: mGetRoles
 
 # mGetRoles
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

@@ -9,6 +9,8 @@ title: decrby
 
 # decrby
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

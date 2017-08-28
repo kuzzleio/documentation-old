@@ -6,6 +6,8 @@ title: range
 
 # range
 
+{{{since "1.0.0"}}}
+
 Filters documents with fields having number attributes within a certain range.
 
 The range filter accepts the following parameters:

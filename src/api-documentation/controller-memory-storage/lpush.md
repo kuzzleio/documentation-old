@@ -9,6 +9,8 @@ title: lpush
 
 # lpush
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

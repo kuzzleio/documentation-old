@@ -10,6 +10,8 @@ title: getCredentialFields
 
 # getCredentialFields
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

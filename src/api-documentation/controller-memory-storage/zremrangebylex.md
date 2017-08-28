@@ -9,6 +9,8 @@ title: zremrangebylex
 
 # zremrangebylex
 
+{{{since "1.0.0"}}}
+
 
 
 

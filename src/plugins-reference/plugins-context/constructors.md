@@ -11,6 +11,8 @@ order: 200
 
 ## `BaseValidationType`
 
+{{{since "1.0.0"}}}
+
 The `BaseValidationType` constructor provides a base to create your own validation types.
 It provides a common structure for all validation types developped in Kuzzle.
 
@@ -21,18 +23,22 @@ You can find an example of a type creation in the
 
 ## `Dsl`
 
+{{{since "1.0.0"}}}
+
 The DSL constructor provided in the plugin context gives access to [Kuzzle DSL capabilities]({{ site_base_path }}kuzzle-dsl).  
 It allows managing filters, and testing data to get a list of matching filters.
 
 Each plugin can instantiate its own sandboxed DSL instance:
 
 ```js
-var dsl = new context.constructors.Dsl();
+const dsl = new context.constructors.Dsl();
 ```
 
 The DSL exposes the following methods:
 
 #### `exists`
+
+{{{since "1.0.0"}}}
 
 Returns a boolean indicating if filters exist for an index-collection pair
 
@@ -50,6 +56,8 @@ Returns `true` if at least one filter exists on the provided index-collection pa
 
 #### `getFilterIds`
 
+{{{since "1.0.0"}}}
+
 Retrieves filter IDs registered on an index-collection pair
 
 
@@ -64,9 +72,39 @@ Retrieves filter IDs registered on an index-collection pair
 
 An `array` of `filterId` corresponding to filters registered on an index-collection pair.
 
+#### `normalize`
+
+{{{since "1.1.0"}}}
+
+Returns a promise resolved if the provided filters are well-formed.  
+The resolved object is a normalized and optimized version of the supplied filters, along with its corresponding Room unique identifier.
+
+This method does not modify the DSL storage. To register the filters, the [store]({{ site_base_path }}plugins-reference/plugins-context/constructors/#store) method must be called afterwards.  
+If you do not need the Room unique identifier prior to store the DSL filters, then consider using [register]({{ site_base_path }}plugins-reference/plugins-context/constructors/#register) instead.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`index`|`string`| Data index name |
+|`collection`|`string`| Data collection name |
+|`filters`|`object`| Filters in [Kuzzle DSL]({{ site_base_path }}kuzzle-dsl) format |
+
+**Returns**
+
+A `promise` resolving to an object containing the following attributes:
+
+* `index`: data index name
+* `collection`: data collection name
+* `normalized`: an object containing the optimized version of the supplied filters
+* `id`: the room unique identifier
+
+
 #### `register`
 
-Registers a filter to the DSL.
+{{{since "1.0.0"}}}
+
+Registers a filter to the DSL. This method is equivalent to executing [normalize]({{ site_base_path }}plugins-reference/plugins-context/constructors/#normalize) + [store]({{ site_base_path }}plugins-reference/plugins-context/constructors/#store).
 
 **Arguments**
 
@@ -85,6 +123,8 @@ A `promise` resolving to an object containing the following attributes:
 
 #### `remove`
 
+{{{since "1.0.0"}}}
+
 Removes all references to a given filter from the DSL
 
 **Arguments**
@@ -97,7 +137,28 @@ Removes all references to a given filter from the DSL
 
 A `promise` resolved once the filter has been completely removed from the DSL
 
+#### `store`
+
+{{{since "1.1.0"}}}
+
+Stores normalized filters (obtained with [normalize]({{ site_base_path }}plugins-reference/plugins-context/constructors/#normalize)) in the DSL storage.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`normalized`|`Object`| Normalized filters |
+
+**Returns**
+
+An `Object` containing the following attributes:
+
+* `id`: the filter unique identifier
+* `diff`: `false` if the filter already existed in the engine. Otherwise, contains an object with the canonical version of the provided filters
+
 #### `test`
+
+{{{since "1.0.0"}}}
 
 Test data against filters registered in the DSL, returning matching filter IDs, if any.
 
@@ -117,6 +178,8 @@ An array of `filterId` matching the provided data (and/or documentId, if any).
 
 #### `validate`
 
+{{{since "1.0.0"}}}
+
 Tests the provided filters without storing them in the system, to check whether they are well-formed or not.
 
 **Arguments**
@@ -132,6 +195,8 @@ A resolved promise if the provided filters are valid, or a rejected one with the
 ---
 
 ## `Repository`
+
+{{{since "1.0.0"}}}
 
 The Repository constructor provided in the plugin context gives access to methods
 that allow the plugin to interact with its plugin storage. The plugin storage is a dedicated
@@ -164,6 +229,8 @@ var someCollectionRepository = new context.constructors.Repository('someCollecti
 The Repository exposes the following methods:
 
 #### `create`
+
+{{{since "1.0.0"}}}
 
 Creates a document in the plugin storage.
 
@@ -216,6 +283,8 @@ someCollectionRepository.create({
 
 #### `createOrReplace`
 
+{{{since "1.0.0"}}}
+
 Creates or replaces a document in the plugin storage.
 
 **Arguments**
@@ -251,6 +320,8 @@ someCollectionRepository.createOrReplace({
 </aside>
 
 #### `delete`
+
+{{{since "1.0.0"}}}
 
 Deletes a document from the plugin storage.
 
@@ -293,6 +364,8 @@ someCollectionRepository.delete('someDocumentId')
 
 #### `get`
 
+{{{since "1.0.0"}}}
+
 Retrieves a document from the plugin storage.
 
 **Arguments**
@@ -313,6 +386,8 @@ someCollectionRepository.get('someDocumentId', 'someCollection');
 
 #### `mGet`
 
+{{{since "1.0.0"}}}
+
 Retrieves multiple documents from the plugin storage.
 
 **Arguments**
@@ -332,6 +407,8 @@ someCollectionRepository.mGet(['someDocumentId', 'anotherDocument']);
 ```
 
 #### `replace`
+
+{{{since "1.0.0"}}}
 
 Replaces a document in the plugin storage.
 
@@ -369,6 +446,8 @@ someCollectionRepository.replace({
 
 #### `search`
 
+{{{since "1.0.0"}}}
+
 Searches documents that match the provided `query` in the collection.
 
 **Arguments**
@@ -395,6 +474,8 @@ someCollectionRepository.search({
 ```
 
 #### `update`
+
+{{{since "1.0.0"}}}
 
 Updates a document in the plugin storage. You can provide a partial document to add or update one or more fields.
 
@@ -437,6 +518,8 @@ someCollectionRepository.update({
 
 ## `Request`
 
+{{{since "1.0.0"}}}
+
 This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response).
 
 Network protocol specific headers can be added to the response. If the protocol can handle them,
@@ -450,6 +533,8 @@ For more information about this object, please check [our detailed documentation
 #### Constructors
 
 **`new Request(<request object>, <data>, [options])`**
+
+{{{since "1.0.0"}}}
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -480,6 +565,8 @@ const derivedRequest = new context.constructors.Request(request, {
 ```
 
 **`new Request(<data>, [options])`**
+
+{{{since "1.2.0"}}}
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
@@ -552,6 +639,8 @@ Getters
 
 #### `response.getHeader`
 
+{{{since "1.0.0"}}}
+
 Returns the value registered for the response header `name`
 
 **Arguments**
@@ -562,9 +651,13 @@ Returns the value registered for the response header `name`
 
 #### `response.removeHeader`
 
+{{{since "1.0.0"}}}
+
 Removes header `name` from the response headers.
 
 #### `setHeader`
+
+{{{since "1.0.0"}}}
 
 Adds a header `name` with value `value` to the response headers.
 
@@ -584,6 +677,8 @@ to comply with the norm. For instance `set-cookie` values are amended in an arra
 
 #### `serialize`
 
+{{{since "1.0.0"}}}
+
 Serializes the `Request` object into a pair of POJOs that can be sent across the network, and then used to rebuild another equivalent `Request` object.
 
 
@@ -593,6 +688,8 @@ let bar = new context.constructors.Request(request, foo.data, foo.options);
 ```
 
 #### `setError`
+
+{{{since "1.0.0"}}}
 
 Adds an error to the request, and sets the request's status to the error one.
 
@@ -607,6 +704,8 @@ If a `KuzzleError` is provided, the request's status attribute is set to the err
 Otherwise, the provided error is encapsulated into a [InternalError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorsinternalerror) object, and the request's status is set to 500.
 
 #### `setResult`
+
+{{{since "1.0.0"}}}
 
 Sets the request's result.
 
@@ -624,5 +723,3 @@ The `options` argument may contain the following properties:
 | `status` | `integer` | HTTP status code | `200` |
 | `headers` | `object` | Protocol specific headers | `null` |
 | `raw` | `boolean` | Asks Kuzzle to send the provided result directly,instead of encapsulating it in a Kuzzle JSON response | `false` |
-
-

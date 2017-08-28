@@ -8,23 +8,50 @@ order: 100
 
 # [Plugin events]
 
-[Plugins]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) may add new controllers and actions to Kuzzle's API. These do not differ from native controllers/actions and these, too, trigger events that can be listened by plugins.
+{{{since "1.0.0"}}}
 
-| Event | Type | Description | Payload |
-|-------|------|-------------|---------|
-| `<pluginName>/<controller>:after<Action>` | Pipe | Triggered after the action `action` of the controller `controller` added by the plugin `pluginName` has completed | Type: Request |
-| `<pluginName>/<controller>:before<Action>` | Pipe | Triggered before the action `action` of the controller `controller` added by the plugin `pluginName` has started | Type: Request |
-| `<pluginName>/<controller>:error<Action>` | Pipe | When an error occurred during an action in `controller` controller, an event error is triggered | Type: Request |
+Plugins may [add new controllers and actions]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) to Kuzzle's API. These new controllers and actions behave exactly like native controllers/actions, and Kuzzle automatically triggers events when requests are sent to these plugin controllers.
 
-**Example:**
+---
 
-The plugin `foo` adds a controller named `fooController`, containing an action named `fooAction`.
+## `<pluginName>/<controller>:after<Action>`
 
-When an API request invokes this new API route, Kuzzle will automatically trigger the following events:
+{{{since "1.0.0"}}}
 
-* `foo/fooController:beforeFooAction` (before the request starts)
-* `foo/fooController:afterFooAction` (after the request completes)
+**Event type:** Pipe
 
-And in case of error, will trigger the event:
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-* `foo/fooController:errorFooAction`
+Triggered after the action `action` of the controller `controller` added by the plugin `pluginName` has completed successfully.
+
+Example: if a plugin named `foo` injects a controller named `controller`, containing an action named `action`, then any request successfully processed by that controller/action, triggers a `foo/controller:afterAction`.
+
+---
+
+## `<pluginName>/<controller>:before<Action>`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+Triggered before the action `action` of the controller `controller` added by the plugin `pluginName` has started
+
+Example: if a plugin named `foo` injects a controller named `controller`, containing an action named `action`, then before any request is sent to that controller/action, a `foo/controller:beforeAction` event is triggered.
+
+---
+
+## `<pluginName>/<controller>:error<Action>`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+Triggered after the action `action` of the controller `controller` added by the plugin `pluginName` has completed with an error.
+
+Example: if a plugin named `foo` injects a controller named `controller`, containing an action named `action`, then any request ending in error after being processed by that controller/action, triggers a `foo/controller:afterAction`.
+
+---

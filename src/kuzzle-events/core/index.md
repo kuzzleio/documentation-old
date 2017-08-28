@@ -8,21 +8,72 @@ order: 200
 
 # core
 
+{{{since "1.0.0"}}}
+
 Events triggered to synchronize Kuzzle server instances in a cluster.
 
-| Event | Type | Description | Payload |
-|-------|------|-------------|---------|
-| `core:auth:strategyAdded` | Hook | Sends information about a dynamic authentication strategy addition | `{pluginName, name, strategy}` |
-| `core:auth:strategyRemoved` | Hook | Sends information about a dynamic authentication strategy removal | `{pluginName, name}` |
-| `core:hotelClerk:addSubscription` | Hook | Sends a diff containing the filters and internal hotelClerk updates    | Array of `hcR` object |
-| `core:hotelClerk:join` | Hook | Sends hotelClerk diff when a room is joined | `hcR` object |
-| `core:hotelClerk:removeRoomForCustomer` | Hook | Sends the room unsubscription information if it changed | {connection, roomId} |
-| `core:indexCache:add` | Hook | Triggered when data is added to Kuzzle's index cache | {index, collection} |
-| `core:indexCache:remove` | Hook | Triggered if some data were actually removed from Kuzzle's index cache | {index, collection} |
-| `core:indexCache:reset` | Hook | Triggered if the indexCache is reset | {index} |
-| `core:kuzzleStart` | Hook | Emitted when Kuzzle is started | / |
-| `core:overload` | Hook | Triggered when the overload cache is filling up | Overload percentage. Type: Number |
-| `core:profileRepository:save` | Hook | Triggered when a profile is created or updated | {_id, policies} |
-| `core:profileRepository:delete` | Hook | Triggered when a profile is deleted | {_id} |
-| `core:roleRepository:save` | Hook | Triggered when a role is created or updated | {_id, controllers} |
-| `core:roleRepository:delete` | Hook | Triggered when a role is deleted | {_id} |
+---
+
+## `core:auth:strategyAdded`
+
+{{{since "1.2.0"}}}
+
+**Event type:** Hook
+
+**Payload:** Object (see below)
+
+This event is triggered whenever a plugin registers an [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy) **dynamically** (see [PluginContext]({{ site_base_path }}plugins-reference/plugins-context/accessors/#add)).  
+This event is NOT triggered when plugins register authentication strategies by exposing [a strategies object]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies).
+
+This event payload is a plain JSON object with the following properties:
+
+* `pluginName`: the name of the plugin having registered a strategy
+* `name`: authentication strategy name
+* `strategy`: authentication strategy properties, identical to the content of the [strategies object]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies) for a given strategy
+
+---
+
+## `core:auth:strategyRemoved`
+
+{{{since "1.2.0"}}}
+
+**Event type:** Hook
+
+**Payload:** Object (see below)
+
+This event is triggered whenever a plugin removes an [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy) **dynamically** (see [PluginContext]({{ site_base_path }}plugins-reference/plugins-context/accessors/#remove)).  
+
+This event payload is a plain JSON object with the following properties:
+
+* `pluginName`: the name of the plugin having registered a strategy
+* `name`: authentication strategy name
+
+---
+
+## `core:kuzzleStart`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Hook
+
+Triggered when Kuzzle has completed its starting sequence and is ready to process user requests.
+
+---
+
+## `core:overload`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Hook
+
+**Payload:** Requests buffer filling percentage (number)
+
+Kuzzle features an overload-protection system, configurable through the `limits` parameters in the `.kuzzlerc` file (see [Configuring Kuzzle]({{ site_base_path }}guide/essentials/configuration/)).
+
+This feature allows only a small number of requests to be processed simultaneously. If more requests are to be processed, then they are stored in a buffer until some of the running requests are finished.
+
+If requests are buffered more rapidly than they are processed, then Kuzzle enters `overload` mode, and starts triggering this event regularly, to inform about the state of the requests buffer.
+
+Any request submitted while the requests buffer is completely filled (i.e. the payload is equal to `100`) is automatically rejected.
+
+---

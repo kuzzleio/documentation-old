@@ -6,6 +6,8 @@ title: geoPolygon
 
 # geoPolygon
 
+{{{since "1.0.0"}}}
+
 Filter documents having their location field located inside a given polygon.
 
 Unlike the GeoJSON representation, a polygon, here, must contain at least 3 geopoints.  
