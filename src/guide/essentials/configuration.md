@@ -50,11 +50,13 @@ version: '2'
 services:
   kuzzle:
     image: kuzzleio/kuzzle
+    cap_add:
+      - SYS_PTRACE
     depends_on:
       - redis
       - elasticsearch
     environment:
-      - kuzzle_services__db__host=elasticsearch
+      - kuzzle_services__db__client__host=http://elasticsearch:9200
       - kuzzle_services__internalCache__node__host=redis
       - kuzzle_services__memoryStorage__node__host=redis
       - NODE_ENV=production
@@ -63,7 +65,14 @@ services:
     image: redis:3.2
 
   elasticsearch:
-    image: elasticsearch:5.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+    environment:
+      - cluster.name=kuzzle
+      # disable xpack
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
 ```
 
 <aside class="notice">

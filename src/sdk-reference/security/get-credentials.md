@@ -56,7 +56,7 @@ $credentials = $kuzzle->security->getCredentials('local', 'kuid');
 }
 ```
 
-Get credential information of the specified <strategy> for the current user. 
+Get credential information of the specified `strategy` for the specified `kuid`. 
 
 ---
 

@@ -55,16 +55,18 @@
 <link href="//fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
 
 <title>
+  {{#if title}}
+    {{ title }} -
+  {{/if}}
+
   {{#if ancestry.parent}}
-    {{ title }}
     {{#if (and ancestry.firstMember (ne title ancestry.firstMember.title))}}
-    - {{ ancestry.firstMember.title }}
+      {{ ancestry.firstMember.title }} -
     {{/if}}
     {{#if (and (ne ancestry.parent ancestry.root) (ne title ancestry.parent.title))}}
-    - {{ ancestry.parent.title }}
+      {{ ancestry.parent.title }} -
     {{/if}}
-     -
    {{/if}}
 
-   {{ site_title}}
+   {{ site_title }}
 </title>

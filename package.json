@@ -44,6 +44,9 @@
     "mime-types": "^2.1.14",
     "node-static": "^0.7.9",
     "open": "0.0.5",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "uglify-js": "^3.0.15",
     "striptags": "^3.0.1",
     "wordcount": "^1.1.1"
   }
