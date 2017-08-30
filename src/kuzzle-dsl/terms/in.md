@@ -6,6 +6,8 @@ title: in
 
 # in
 
+{{{since "1.0.0"}}}
+
 This filter allows testing a string field against multiple possibilities.
 
 ## Given the following documents:

@@ -24,9 +24,6 @@ You can write your custom config in `$HOME/.kuzzlerc` or [any other valid locati
     "db": {
       "host": "<ES_HOST>",
       "port": "<ES_PORT>"
-    },
-    "proxyBroker": {
-      "host": "<PROXY_HOST>"
     }
   }
 }
@@ -37,12 +34,12 @@ You can write your custom config in `$HOME/.kuzzlerc` or [any other valid locati
 The name of the environment variables must mimic the structure of the configuration object to override:
 
 * the variable needs to be prefixed with `kuzzle_`,
-* the `__` correspond to the levels of nesting in the configuration object (e.g. `kuzzle_services__proxyBroker__host` corresponds to `services.proxyBroker.host`).
+* the `__` correspond to the levels of nesting in the configuration object (e.g. `kuzzle_services__db__host` corresponds to `services.db.host`).
 
 ```bash
 #!/bin/bash
 
-kuzzle_services__proxyBroker__host="<PROXY_HOST>" node bin/kuzzle start
+kuzzle_services__db__host="<DB_HOST>" node bin/kuzzle start
 ```
 
 Environment variables are particularly handy to set your custom configuration **through a Docker container**. It is very easy to pass environment variables via the `environment` section of a `docker-compose.yml` file. Take a look at how we pass environment variables to Kuzzle in our default docker-compose file:
@@ -51,24 +48,17 @@ Environment variables are particularly handy to set your custom configuration **
 version: '2'
 
 services:
-  proxy:
-    image: kuzzleio/proxy
-    ports:
-      - "7512:7512"
-
   kuzzle:
     image: kuzzleio/kuzzle
     cap_add:
       - SYS_PTRACE
     depends_on:
-      - proxy
       - redis
       - elasticsearch
     environment:
       - kuzzle_services__db__client__host=http://elasticsearch:9200
       - kuzzle_services__internalCache__node__host=redis
       - kuzzle_services__memoryStorage__node__host=redis
-      - kuzzle_services__proxyBroker__host=proxy
       - NODE_ENV=production
 
   redis:

@@ -9,6 +9,8 @@ title: smembers
 
 # smembers
 
+{{{since "1.0.0"}}}
+
 
 
 

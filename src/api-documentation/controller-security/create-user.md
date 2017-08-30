@@ -10,6 +10,8 @@ title: createUser
 
 # createUser
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">
@@ -44,7 +46,7 @@ title: createUser
   },
   "credentials": {
     "local": {
-      "username": "MyUser"                  // ie: Mandatory for "local" authentication plugin
+      "username": "MyUser",                 // ie: Mandatory for "local" authentication plugin
       "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
     }
   }
@@ -65,7 +67,7 @@ title: createUser
   "body": {
     "content": {
       "profileIds": ["<profileId>"],    
-      "name": "John Doe",                 
+      "name": "John Doe"                 
     },
     "credentials": {
       "strategy-name": {

@@ -6,6 +6,8 @@ title: not
 
 # not
 
+{{{since "1.0.0"}}}
+
 The `not` filter reverts a filter result.
 
 ## Given the following documents:

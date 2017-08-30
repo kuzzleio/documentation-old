@@ -13,6 +13,8 @@ title: import
 
 ## Performing a bulk import on a data collection
 
+{{{since "1.0.0"}}}
+
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/<index>/<collection>/_bulk`  
@@ -110,6 +112,8 @@ In case a subset of the queries sent within the request fail, the client will re
 ---
 
 ## Performing a global bulk import
+
+{{{since "1.0.0"}}}
 
 <blockquote class="js">
 <p>

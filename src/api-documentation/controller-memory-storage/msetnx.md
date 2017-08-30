@@ -9,6 +9,8 @@ title: msetnx
 
 # msetnx
 
+{{{since "1.0.0"}}}
+
 
 
 

@@ -8,9 +8,33 @@ order: 200
 
 # room
 
-Events triggered on subscription rooms activity.
+{{{since "1.0.0"}}}
 
-| Event | Type | Description | Payload |
-|-------|------|-------------|---------|
-| `room:new` | Pipe | Triggered when a new room is added in the rooms list. You can't modify the input on this event | Type: Object. <br> `{roomId, index, collection, formattedFilters}` |
-| `room:remove` | Pipe | Triggered after a room is removed from the list. You can't modify the input on this event | Type: String.<br> The room id |
+Events triggered on real-time rooms activity.
+
+---
+
+## `room:new`
+
+**Event type:** Hook
+
+**Payload:** Object (see below)
+
+Triggered whenever a room is created by a real-time subscription.  
+
+This event payload is a plain JSON object with the following properties:
+* `index`: data index name
+* `collection`: data collection name
+* `roomId`: the new room unique identifier
+
+---
+
+## `room:remove`
+
+**Event type:** Hook
+
+**Payload:** Room unique identifier
+
+Triggered whenever a real-time room is destroyed.
+
+---

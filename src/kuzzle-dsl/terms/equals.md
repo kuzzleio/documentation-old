@@ -6,6 +6,8 @@ title: equals
 
 # equals
 
+{{{since "1.0.0"}}}
+
 The `equals` filter matches documents or messages attributes using string equality.
 
 ## Given the following documents:

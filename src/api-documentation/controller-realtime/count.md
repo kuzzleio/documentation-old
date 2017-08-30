@@ -10,6 +10,8 @@ title: count
 
 # count
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="json">

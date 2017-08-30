@@ -9,6 +9,8 @@ title: ping
 
 # ping
 
+{{{since "1.0.0"}}}
+
 
 
 

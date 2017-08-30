@@ -11,6 +11,8 @@ order: 300
 
 ## `KuzzleError`
 
+{{{since "1.0.0"}}}
+
 Inherits from `Error`. Abstract class inherited by Kuzzle error objects.
 
 This class should only be used to create new Kuzzle error objects.
@@ -18,6 +20,8 @@ This class should only be used to create new Kuzzle error objects.
 ---
 
 ## `BadRequestError`
+
+{{{since "1.0.0"}}}
 
 **Status Code:** `400`
 
@@ -31,6 +35,8 @@ const err = new context.errors.BadRequestError('error message');
 
 ## `ExternalServiceError`
 
+{{{since "1.0.0"}}}
+
 **Status Code:** `500`
 
 Used when an external service answers to a request with an error other than a bad request or a service unavailable one.
@@ -42,6 +48,8 @@ const err = new context.errors.ExternalServiceError('error message');
 ---
 
 ## `ForbiddenError`
+
+{{{since "1.0.0"}}}
 
 **Status Code:** `403`
 
@@ -55,6 +63,8 @@ const err = new context.errors.ForbiddenError('error message');
 
 ## `GatewayTimeoutError`
 
+{{{since "1.0.0"}}}
+
 **Status Code:** `504`
 
 Used when a plugin takes too long to perform a task.
@@ -66,6 +76,8 @@ const err = new context.errors.GatewayTimeoutError('error message');
 ---
 
 ## `InternalError`
+
+{{{since "1.0.0"}}}
 
 **Status Code:** `500`
 
@@ -79,6 +91,8 @@ const err = new context.errors.InternalError('error message');
 
 ## `NotFoundError`
 
+{{{since "1.0.0"}}}
+
 **Status Code:** `404`
 
 Used when asked resources cannot be found.
@@ -91,6 +105,8 @@ const err = new context.errors.NotFoundError('error message');
 
 ## `ParseError`
 
+{{{since "1.0.0"}}}
+
 **Status Code:** `400`
 
 Used when a provided resource cannot be interpreted.
@@ -102,6 +118,8 @@ const err = new context.errors.ParseError('error message');
 ---
 
 ## `PartialError`
+
+{{{since "1.0.0"}}}
 
 **Status Code:** `206`
 
@@ -117,6 +135,8 @@ const err = new context.errors.PartialError('error message', [{this: 'failed'}, 
 
 ## `PluginImplementationError`
 
+{{{since "1.0.0"}}}
+
 **Status Code:** `500`
 
 Used when a plugin fails.
@@ -128,6 +148,8 @@ const err = new context.errors.PluginImplementationError('error message');
 ---
 
 ## `PreconditionError`
+
+{{{since "1.0.0"}}}
 
 **Status Code:** `412`
 
@@ -142,6 +164,8 @@ const err = new context.errors.PreconditionError('error message');
 
 ## `ServiceUnavailableError`
 
+{{{since "1.0.0"}}}
+
 **Status Code:** `503`
 
 Used when a resource cannot respond because it is temporarily unavailable.
@@ -154,6 +178,8 @@ const err = new context.errors.ServiceUnavailableError('error message');
 
 ## `SizeLimitError`
 
+{{{since "1.0.0"}}}
+
 **Status Code:** `413`
 
 Used to notify about requests exceeding maximum limits.
@@ -165,6 +191,8 @@ const err = new context.errors.SizeLimitError('error message');
 ---
 
 ## `UnauthorizedError`
+
+{{{since "1.0.0"}}}
 
 **Status Code:** `401`
 

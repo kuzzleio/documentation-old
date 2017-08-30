@@ -7,7 +7,7 @@ order: 200
 
 # Listening synchronously
 
-Plugins enable you to add synchronous listener functions to a set of [events]({{ site_base_path }}plugins-reference/kuzzle-events-list). We'll call these synchronous listener functions **pipes** from now on.
+Plugins enable you to add synchronous listener functions to a set of [events]({{ site_base_path }}kuzzle-events/). We'll call these synchronous listener functions **pipes** from now on.
 
 Pipes are supplied with these events data, they are able to intercept the request, modify the data and interrupt its life-cycle.
 Kuzzle waits for their results before continuing the process.

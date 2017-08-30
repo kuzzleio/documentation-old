@@ -6,6 +6,8 @@ title: geoDistance
 
 # geoDistance
 
+{{{since "1.0.0"}}}
+
 Filter documents having their location field within a distance radius of a provided point of origin.
 
 By default, when it is not specified, the distance unit is expressed in meters.  

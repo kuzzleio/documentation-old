@@ -9,6 +9,8 @@ title: hexists
 
 # hexists
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">
@@ -46,7 +48,7 @@ title: hexists
   "collection": null,
   "index": null,
   "volatile": null,
-  "result": "[0|1]"
+  "result": [0|1]
 }
 ```
 

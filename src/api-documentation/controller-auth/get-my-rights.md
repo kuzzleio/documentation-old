@@ -9,6 +9,8 @@ title: getMyRights
 
 # getMyRights
 
+{{{since "1.0.0"}}}
+
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/users/_me/_rights`  

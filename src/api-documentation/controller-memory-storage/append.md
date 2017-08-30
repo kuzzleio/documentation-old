@@ -9,6 +9,8 @@ title: append
 
 # append
 
+{{{since "1.0.0"}}}
+
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/ms/_append/<key>`  

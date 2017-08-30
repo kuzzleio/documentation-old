@@ -6,4 +6,4 @@ description: Learn how to extend Kuzzle
 icon: fa-puzzle-piece
 ---
 
-# Plugins Reference
+# Plugins & Protocols

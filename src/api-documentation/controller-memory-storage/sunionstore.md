@@ -9,6 +9,8 @@ title: sunionstore
 
 # sunionstore
 
+{{{since "1.0.0"}}}
+
 
 
 

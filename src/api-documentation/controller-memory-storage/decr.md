@@ -9,6 +9,8 @@ title: decr
 
 # decr
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

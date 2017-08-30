@@ -10,6 +10,8 @@ title: getUserMapping
 
 # getUserMapping
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">
