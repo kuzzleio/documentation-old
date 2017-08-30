@@ -15,21 +15,24 @@
   "author": "The Kuzzle Team <support@kuzzle.io>",
   "license": "Apache-2.0",
   "dependencies": {
-    "algoliasearch": "^3.22.1",
     "bluebird": "^3.4.7",
     "cheerio": "^0.22.0",
+    "csso": "^3.1.1",
     "debug": "^2.6.6",
     "glob-watcher": "^3.2.0",
     "handlebars": "^4.0.8",
     "metalsmith": "^2.3.0",
+    "metalsmith-algolia": "^0.1.0",
     "metalsmith-ancestry": "^1.2.1",
     "metalsmith-auto-collections": "^0.1.1",
     "metalsmith-changed": "^3.1.1",
+    "metalsmith-css-packer": "^0.1.0",
     "metalsmith-debug": "^1.1.0",
     "metalsmith-gzip": "^1.1.0",
     "metalsmith-hbt-md": "^1.0.1",
     "metalsmith-html-minifier": "^2.2.0",
     "metalsmith-inline-svg": "^0.1.4",
+    "metalsmith-js-packer": "^0.1.0",
     "metalsmith-layouts": "^1.8.1",
     "metalsmith-linkcheck": "^0.3.0",
     "metalsmith-livereload": "^0.1.0",
@@ -44,7 +47,6 @@
     "node-static": "^0.7.9",
     "open": "0.0.5",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1",
-    "uglify-js": "^3.0.15"
+    "request-promise": "^4.2.1"
   }
 }
