@@ -1,0 +1,172 @@
+<!doctype html><html><head><meta http-equiv=Content-Type content="text/html; charset=utf-8"><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=msapplication-TileColor content=#FFFFFF><meta name=msapplication-TileImage content=http://docs.kuzzle.io/assets/images/favicon/mstile-144x144.png><meta name=msapplication-square70x70logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-70x70.png><meta name=msapplication-square150x150logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-150x150.png><meta name=msapplication-wide310x150logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-310x150.png><meta name=msapplication-square310x310logo content=http://docs.kuzzle.io/assets/images/favicon/mstile-310x310.png><meta name=google-site-verification content=luspUdq52gkUU0FFChQ2xmeXSs5HDafpARQ7fVXVBp4><meta itemprop=name content=Protocols><meta itemprop=image content=http://docs.kuzzle.io/assets/images/favicon/favicon-196x196.png><meta name=twitter:card value=summary><meta name=twitter:site content=@kuzzleio><meta name=twitter:title content=Protocols><meta name=twitter:creator content=@kuzzleio><meta name=twitter:image content=http://docs.kuzzle.io/assets/images/favicon/favicon-196x196.png><meta property=og:title content=Protocols><meta property=og:type content=article><meta property=og:site_name content=""><meta property=og:image content=http://docs.kuzzle.io/assets/images/favicon/favicon-96x96.png><meta property=article:published_time content=2017-08-30T15:07:32.787Z><meta property=article:modified_time content=2017-08-30T15:07:32.787Z><meta property=article:section content="Plugins Reference"><meta property=article:tag content=Protocols><meta property=og:description content="Extend Kuzzle communication capabilities"><meta itemprop=description content="Extend Kuzzle communication capabilities"><meta name=twitter:description content="Extend Kuzzle communication capabilities"><meta name=description content="Extend Kuzzle communication capabilities"><link rel=apple-touch-icon-precomposed sizes=57x57 href=/assets/images/favicon/apple-touch-icon-57x57.png><link rel=apple-touch-icon-precomposed sizes=114x114 href=/assets/images/favicon/apple-touch-icon-114x114.png><link rel=apple-touch-icon-precomposed sizes=72x72 href=/assets/images/favicon/apple-touch-icon-72x72.png><link rel=apple-touch-icon-precomposed sizes=144x144 href=/assets/images/favicon/apple-touch-icon-144x144.png><link rel=apple-touch-icon-precomposed sizes=60x60 href=/assets/images/favicon/apple-touch-icon-60x60.png><link rel=apple-touch-icon-precomposed sizes=120x120 href=/assets/images/favicon/apple-touch-icon-120x120.png><link rel=apple-touch-icon-precomposed sizes=76x76 href=/assets/images/favicon/apple-touch-icon-76x76.png><link rel=apple-touch-icon-precomposed sizes=152x152 href=/assets/images/favicon/apple-touch-icon-152x152.png><link rel=icon type=image/png href=/assets/images/favicon/favicon-196x196.png sizes=196x196><link rel=icon type=image/png href=/assets/images/favicon/favicon-96x96.png sizes=96x96><link rel=icon type=image/png href=/assets/images/favicon/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/assets/images/favicon/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/assets/images/favicon/favicon-128.png sizes=128x128><link rel=stylesheet href=/assets/font-awesome/scss/font-awesome.css><link href="//fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel=stylesheet><title>Protocols - Plugins Reference - Kuzzle documentation</title><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-light.min.css><link href=/assets/stylesheets/full/screen.css rel=stylesheet type=text/css media=screen></head><body class=index><header><div class=wrapper><div id=logo><a href=http://kuzzle.io/ >&#xA0;</a></div><a class=mobile-nav-burger href=javascript:;></a><nav><ul><li><a href=http://kuzzle.io/kuzzle-enterprise/ class=nav-item>product</a></li><li><a href=http://docs.kuzzle.io/ class="nav-item developers active">Documentation</a><ul class=mobile-nav><li><a href=/guide><span>Guide</span></a></li><li><a href=/sdk-reference><span>SDK Reference</span></a></li><li><a href=/kuzzle-dsl><span>Kuzzle DSL</span></a></li><li><a href=/validation-reference><span>Data Validation</span></a></li><li><a href=/api-documentation><span>API Documentation</span></a></li><li class=active><a href=/plugins-reference><span>Plugins Reference</span></a><ul class=sub-nav><li><a href=/plugins-reference/plugins-creation-prerequisites><span>Plugins creation prerequisites</span></a></li><li><a href=/plugins-reference/plugins-features><span>Plugins features</span></a></li><li><a href=/plugins-reference/managing-plugins><span>Managing Plugins</span></a></li><li><a href=/plugins-reference/plugins-context><span>The plugin context</span></a></li><li class=active><a href=/plugins-reference/protocols><span>Protocols</span></a></li></ul></li><li><a href=/kuzzle-events><span>Kuzzle events</span></a></li><li><a href=/elasticsearch-cookbook><span>Elasticsearch Cookbook</span></a></li></ul></li><li><a href=http://kuzzle.io/demos-tutorials/ class=nav-item>Demos</a></li><li><a href=http://kuzzle.io/blog/ class=nav-item>Blog</a></li><li><a href=http://kuzzle.io/contact/ class=nav-item>Contact</a></li><li><a href=http://kuzzle.io/install-kuzzle/ class=nav-item>Try it</a></li><li><a href=https://github.com/kuzzleio/kuzzle target=_blank class="nav-item github"><i class="icon icon-github icon-small"></i></a></li></ul></nav></div><div class="developer-nav open"><ul class=search><li><input name=search type=search placeholder=search tabindex=1></li></ul><ul class=nav><li><a href=/guide><span>Guide</span></a></li><li><a href=/sdk-reference><span>SDK Reference</span></a></li><li><a href=/kuzzle-dsl><span>Kuzzle DSL</span></a></li><li><a href=/validation-reference><span>Data Validation</span></a></li><li><a href=/api-documentation><span>API Documentation</span></a></li><li class=active><a href=/plugins-reference><span>Plugins Reference</span></a></li><li><a href=/kuzzle-events><span>Kuzzle events</span></a></li><li><a href=/elasticsearch-cookbook><span>Elasticsearch Cookbook</span></a></li></ul><div class=search-results><ul></ul></div><script type=text/plain id=search-results-template><li>
+        <a href="__link__" tabindex="__tabindex__">
+          <p class="page">
+            <span class="title">__title__</span>
+            <span class="firstMember">__firstMember__</span>
+            <span class="parent">__parent__</span>
+          </p>
+          <p class="preview">__preview__</p>
+        </a>
+      </li></script></div></header><div class=container><div class=tocify-wrapper><ul class=search-results></ul><div class=tocify><ul class=tocify-header><li class="tocify-item tocify-focus tocify-hover"></li></ul><ul class=tocify-header><li class=tocify-item><a style="color: #111; text-decoration: none" href=http://docs.kuzzle.io/plugins-reference title="back to Plugins Reference home">Plugins Reference</a></li><ul class=tocify-subheader><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-creation-prerequisites title="requirements to develop your plugin">Plugins creation prerequisites</a></li><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-features title="understand Kuzzle plugins mechanisms">Plugins features</a></li><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/plugins-reference/managing-plugins title="learn how to enable and configure plugins">Managing Plugins</a></li><li class=tocify-item><a style="color: #002835; text-decoration: none" href=/plugins-reference/plugins-context title="plugin initialization context attribute reference">The plugin context</a></li><li class="tocify-item tocify-focus"><a style="color: #FFF; text-decoration: none" href=# title="Extend Kuzzle communication capabilities">Protocols</a></li><ul class=tocify-header><ul class=tocify-subheader></ul></ul></ul></ul><ul class=toc-footer></ul></div></div><div class=page-wrapper><div class=toc><ul><li class="toc-item toc-level-1"><a href=#protocols title=Protocols>Protocols</a></li><li class="toc-item toc-level-2"><a href=#install title=Install>Install</a></li><li class="toc-item toc-level-2"><a href=#configure title=Configure>Configure</a></li><li class="toc-item toc-level-2"><a href=#build-your-own title="Build your own">Build your own</a></li><li class="toc-item toc-level-3"><a href=#init title=init>init</a></li><li class="toc-item toc-level-2"><a href=#available-objects-reference title="Available objects reference">Available objects reference</a></li><li class="toc-item toc-level-3"><a href=#clientconnection title=ClientConnection>ClientConnection</a></li><li class="toc-item toc-level-4"><a href=#constructor title=constructor>constructor</a></li><li class="toc-item toc-level-3"><a href=#context-instance title="context instance">context instance</a></li><li class="toc-item toc-level-4"><a href=#constructors title=constructors>constructors</a></li><li class="toc-item toc-level-4"><a href=#utils title=utils>utils</a></li><li class="toc-item toc-level-3"><a href=#entrypoint title=EntryPoint>EntryPoint</a></li><li class="toc-item toc-level-4"><a href=#config-property title="config property">config property</a></li><li class="toc-item toc-level-4"><a href=#execute-method title="execute method">execute method</a></li><li class="toc-item toc-level-4"><a href=#newconnection-method title="newConnection method">newConnection method</a></li><li class="toc-item toc-level-4"><a href=#removeconnection-method title="removeConnection method">removeConnection method</a></li><li class="toc-item toc-level-2"><a href=#tl-dr-custom-protocol-skeleton title="TL;DR custom protocol skeleton">TL;DR custom protocol skeleton</a></li></ul></div><div class=content><div class=mobile-breadcrumb><p style=float:left><a href=http://docs.kuzzle.io/ >Kuzzle documentation</a> &#xBB; <a href=http://docs.kuzzle.io/plugins-reference>Plugins Reference</a> &#xBB; Protocols</p><p style=float:right class=version-selector><select onchange="window.location = this.value"><option selected>1.x</option></select></p></div><div class=nav-sibling><div class=nav-left><p><a href=https://github.com/kuzzleio/documentation/edit/master/src/plugins-reference/protocols/index.md>edit on github<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span> <a href="https://github.com/kuzzleio/documentation/issues/new?labels=plugins-reference&amp;title=Feedback%20about%20page%20&apos;plugins-reference/protocols/index.md&apos;">send feedback about this content<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span><select class=rate-documentation><option value=""></option><option value=1>Unusable documentation</option><option value=2>Poor documentation</option><option value=3>OK documentation</option><option value=4>Good documentation</option><option value=5>Excellent documentation</option></select></p></div><div class=nav-right><p class=version-selector><span>current version:</span><select onchange="window.location = this.value"><option selected>1.x</option></select></p></div><div style=clear:both></div></div><div class=toc-inline><ul><li class="toc-item toc-level-1"><a href=#protocols title=Protocols>Protocols</a></li><li class="toc-item toc-level-2"><a href=#install title=Install>Install</a></li><li class="toc-item toc-level-2"><a href=#configure title=Configure>Configure</a></li><li class="toc-item toc-level-2"><a href=#build-your-own title="Build your own">Build your own</a></li><li class="toc-item toc-level-3"><a href=#init title=init>init</a></li><li class="toc-item toc-level-2"><a href=#available-objects-reference title="Available objects reference">Available objects reference</a></li><li class="toc-item toc-level-3"><a href=#clientconnection title=ClientConnection>ClientConnection</a></li><li class="toc-item toc-level-4"><a href=#constructor title=constructor>constructor</a></li><li class="toc-item toc-level-3"><a href=#context-instance title="context instance">context instance</a></li><li class="toc-item toc-level-4"><a href=#constructors title=constructors>constructors</a></li><li class="toc-item toc-level-4"><a href=#utils title=utils>utils</a></li><li class="toc-item toc-level-3"><a href=#entrypoint title=EntryPoint>EntryPoint</a></li><li class="toc-item toc-level-4"><a href=#config-property title="config property">config property</a></li><li class="toc-item toc-level-4"><a href=#execute-method title="execute method">execute method</a></li><li class="toc-item toc-level-4"><a href=#newconnection-method title="newConnection method">newConnection method</a></li><li class="toc-item toc-level-4"><a href=#removeconnection-method title="removeConnection method">removeConnection method</a></li><li class="toc-item toc-level-2"><a href=#tl-dr-custom-protocol-skeleton title="TL;DR custom protocol skeleton">TL;DR custom protocol skeleton</a></li></ul></div><div class=main-content><div class=reading-time><p>Reading time: 13 min</p></div><h1><a class=anchor id=protocols></a>Protocols</h1><p>By default, Kuzzle supports HTTP, Websocket and Socket.io protocols.</p><p>Kuzzle can be extended with custom protocols to support more type of entries.</p><hr><h2><a class=anchor id=install></a>Install</h2><p>Installing a protocol is very similar to <a href=/plugins-reference/managing-plugins/#installing-removing-enabling-and-disabling-plugins>plugins</a></p><p>The only difference is that protocols need to be installed in <code>protocols/enabled</code> directory.</p><hr><h2><a class=anchor id=configure></a>Configure</h2><p>Protocols are configured within <a href=/guide/essentials/configuration/ >Kuzzle configuration</a>, under the <code>server/protcols/&lt;protocol name&gt;</code> section.</p><p>Example:<br><em>.kuzzlerc</em></p><pre><code class="hljs json">{
+  <span class=hljs-attr>&quot;server&quot;</span>: {
+    <span class=hljs-attr>&quot;protocols&quot;</span>: {
+      <span class=hljs-attr>&quot;mqtt&quot;</span>: {
+        <span class=hljs-attr>&quot;port&quot;</span>: <span class=hljs-number>1883</span>,
+        <span class=hljs-attr>&quot;allowPubSub&quot;</span>: <span class=hljs-literal>true</span>
+      }
+    }
+  }
+}</code></pre><p>The example above will be taken into account by <a href=https://github.com/kuzzleio/protocol-mqtt>Kuzzle MQTT protocol</a>;</p><hr><h2><a class=anchor id=build-your-own></a>Build your own</h2><p>Protocols are constructors exposed in a nodejs module.</p><p>Protocols must implement the following methods:</p><table><thead><tr><th>Method</th><th>Arguments</th><th>Description</th></tr></thead><tbody><tr><td><code>broadcast</code></td><td><code>{channels, payload}</code></td><td>Asks Protocol Plugins to emit a data <code>payload</code> (pojo object) to clients connected to the channels list <code>channels</code> (array of strings)</td></tr><tr><td><code>disconnect</code></td><td><code>connectionId</code></td><td>Asks protocol plugins to force-close the connection <code>connectionId</code></td></tr><tr><td><code>init</code></td><td><code>proxy</code></td><td><a href=#init>Plugin initialization function</a></td></tr><tr><td><code>joinChannel</code></td><td><code>channel</code>, <code>connectionId</code></td><td>Tells Protocol Plugins that the connection <code>connectionId</code> subscribed to the channel <code>channel</code></td></tr><tr><td><code>leaveChannel</code></td><td><code>channel</code>, <code>connectionId</code></td><td>Tells Protocol Plugins that the connection <code>connectionId</code> left the channel <code>channel</code></td></tr><tr><td><code>notify</code></td><td><code>{channels, connectionId, payload}</code></td><td>Asks Protocol Plugins to emit a data <code>payload</code> (pojo object) to the connection <code>connectionId</code> (string), on the channels <code>channels</code> (array of strings)</td></tr></tbody></table><h3><a class=anchor id=init></a>init</h3><p><code>init ({EntryPoint} entryPoint, {Object} context)</code></p><p>return value: <code>void</code> or <code>Promise</code>. If the returned value is a promise, Kuzzle will wait till it is resolved to continue starting.</p><hr><h2><a class=anchor id=available-objects-reference></a>Available objects reference</h2><h3><a class=anchor id=clientconnection></a>ClientConnection</h3><p>ClientConnection objects <em>must</em> be given to the <a href=#execute-method><code>entryPoint.newConnection</code></a> method. Their auto-generated <code>id</code> must be used wherever a <code>connectionId</code>is required. The <a href=https://github.com/kuzzleio/kuzzle/blob/no-proxy/lib/api/core/entrypoints/embedded/clientConnection.js><code>ClientConnection</code> constructor</a> is exposed in the <code>context</code> object passed to the protocol <code>init</code> method.</p><h4><a class=anchor id=constructor></a>constructor</h4><p><code>new context.ClientConnection(protocol, ips, headers)</code></p><ul><li><code>protocol</code>: {string} the protocol identifier (= <code>this.protocol</code>)</li><li><code>ips</code>: {array of strings} list of forwarded ip addresses (or any client connection information) of the connection. In http, will contain the ip addresses from <a href=https://en.wikipedia.org/wiki/X-Forwarded-For><code>X-Forwarded-For</code></a> header.</li><li><code>headers</code>: [Optional] {object} A set of key/value pairs that can contain any extra information</li></ul><hr><h3><a class=anchor id=context-instance></a>context instance</h3><p>The <code>context</code> instance is passed to the protocol <code>init</code> method.</p><p>It contains useful functions and objects not directly related to the protocol communication.</p><h4><a class=anchor id=constructors></a>constructors</h4><ul><li><a href=#clientconnection><code>ClientConnection</code></a></li><li><a href=https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/request.js><code>Request</code></a></li></ul><h4><a class=anchor id=utils></a>utils</h4><ul><li><code>errors</code>: An object containing <a href=https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/errors/index.js>Kuzzle error constructors</a></li><li><code>log</code>: An set of <code>level</code> log functions. <code>level</code> values are: [<code>silly</code>, <code>verbose</code>, <code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code>]</li></ul><p>ex: <code>context.log.error(new context.errors.InternalError(&apos;something went bad&apos;))</code></p><hr><h3><a class=anchor id=entrypoint></a>EntryPoint</h3><h4><a class=anchor id=config-property></a>config property</h4><p>type: <code>pojo object</code></p><p>Contains Kuzzle configuration <code>server</code> subtree. The user configuration for the protocol can potentially be found under <code>entryPoint.config.protocols[protocolName]</code>.</p><h4><a class=anchor id=execute-method></a>execute method</h4><p><code>execute(request, callback)</code></p><ul><li><code>request</code><br>{<a href=https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/request.js><code>Request</code></a>} The <code>Request</code> constructor is exposed in the <a href=#context-instance><code>context</code></a> object given to the <code>init</code> method.<br>The request <strong>must</strong> be constructed with a valid request context, including the <code>connectionId</code> and the protocol (cf example below).</li><li><code>callback</code><br>{Function} The callback to be executed when Kuzzle gets the result.<br>Takes one <code>response</code> argument, being the result of <a href=https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/models/requestResponse.js><code>RequestResponse.toJSON()</code></a>.</li></ul><p>example:</p><pre><code class="hljs js"><span class=hljs-keyword>const</span> request = <span class=hljs-keyword>new</span> context.Request({
+  <span class=hljs-attr>controller</span>: <span class=hljs-string>&apos;server&apos;</span>,
+  <span class=hljs-attr>action</span>: <span class=hljs-string>&apos;now&apos;</span>
+}, {
+  <span class=hljs-attr>connectionId</span>: <span class=hljs-string>&apos;current connection Id&apos;</span>,
+  <span class=hljs-attr>protocol</span>: <span class=hljs-keyword>this</span>.protocol
+});
+
+entryPoint.execute(request, response =&gt; {
+  <span class=hljs-built_in>console</span>.log(response.content);
+});</code></pre><h4><a class=anchor id=newconnection-method></a>newConnection method</h4><p><code>newConnection(connection)</code></p><p>return value: none</p><ul><li><code>connection</code> {<a href=#clientconnection><code>ClientConnection</code></a>}.</li></ul><h4><a class=anchor id=removeconnection-method></a>removeConnection method</h4><p><code>removeConnection(connectionId)</code></p><p>return value: none</p><ul><li><code>connectionId</code>: {string} the <code>ClientConnection</code> auto generated id to remove.</li></ul><hr><h2><a class=anchor id=tl-dr-custom-protocol-skeleton></a>TL;DR custom protocol skeleton</h2><pre><code class="hljs javascript"><span class=hljs-class><span class=hljs-keyword>class</span> <span class=hljs-title>MyProtocol</span> </span>{
+  <span class=hljs-keyword>constructor</span> () {
+    <span class=hljs-keyword>this</span>.context = <span class=hljs-literal>null</span>;
+
+    <span class=hljs-comment>// [Mandatory] will be used a protocol name by Kuzzle</span>
+    <span class=hljs-keyword>this</span>.protocol = <span class=hljs-string>&apos;myProtocol&apos;</span>;
+
+    <span class=hljs-comment>// Example on how to maintain client connections</span>
+    <span class=hljs-keyword>this</span>.clients = {};
+    <span class=hljs-keyword>this</span>.connections = {};
+  }
+
+  <span class=hljs-comment>/** 
+  * [Required]
+  * 
+  * @param {EntryPoint} entryPoint - main protocol interface with Kuzzle
+  * @param {object} context - Constructors and utilities
+  */</span>
+  init (entryPoint, context) {
+    <span class=hljs-comment>// plugin initialization</span>
+    <span class=hljs-keyword>this</span>.entryPoint = entryPoint;
+    <span class=hljs-keyword>this</span>.context = context;
+
+    <span class=hljs-comment>// user configuration can be retrived from entryPoint.config[protcol name]</span>
+    <span class=hljs-keyword>this</span>.config = <span class=hljs-built_in>Object</span>.assign({
+      <span class=hljs-attr>default</span>: <span class=hljs-string>&apos;value&apos;</span>
+    }, entryPoint.config[<span class=hljs-keyword>this</span>.protocol] || {});
+  }
+
+  <span class=hljs-comment>/*
+   This function is only an example showing how to interact with
+   clients and with Kuzzle. It does not implement any actual protocol.
+
+   The way a protocol plugins handles clients closely depends on the
+   implemented protocol.
+   */</span>
+  handleClient () {
+    <span class=hljs-comment>// when a client connects</span>
+    <span class=hljs-keyword>this</span>.on(<span class=hljs-string>&apos;onClientConnect&apos;</span>, client =&gt; {
+
+      <span class=hljs-keyword>const</span> connection = <span class=hljs-keyword>new</span> context.constructor.ClientConnection(<span class=hljs-keyword>this</span>.protocol, [client.connection.stream.remoteAddress], {<span class=hljs-attr>some</span>: <span class=hljs-string>&apos;header&apos;</span>});
+      <span class=hljs-keyword>this</span>.entryPoint.newConnection(connection);
+
+      <span class=hljs-keyword>this</span>.clients[connection.id] = client;
+      <span class=hljs-keyword>this</span>.connections[client.id] = connection;
+    });
+
+    <span class=hljs-comment>// when a client sends a request</span>
+    <span class=hljs-keyword>this</span>.on(<span class=hljs-string>&apos;onClientRequest&apos;</span>, (client, data) =&gt; {
+      <span class=hljs-comment>// Instantiates a Request object to be passed to Kuzzle</span>
+      <span class=hljs-keyword>const</span>
+        connection = <span class=hljs-keyword>this</span>.connections[client.id],
+        request = <span class=hljs-keyword>new</span> <span class=hljs-keyword>this</span>.context.Request(data, {
+          <span class=hljs-attr>connectionId</span>: connection.id,
+          <span class=hljs-attr>protocol</span>: <span class=hljs-keyword>this</span>.protocol
+        });
+
+      <span class=hljs-keyword>this</span>.entryPoint.execute(request, response =&gt; {
+        <span class=hljs-comment>// forward the response to the client</span>
+      });
+    });
+
+    <span class=hljs-comment>// whenever a client is disconnected</span>
+    <span class=hljs-keyword>this</span>.on(<span class=hljs-string>&apos;onClientDisconnect&apos;</span>, client =&gt; {
+      <span class=hljs-keyword>const</span> connection = <span class=hljs-keyword>this</span>.connections[client.id];
+
+      <span class=hljs-keyword>this</span>.entryPoint.removeConnection(connection.id);
+      <span class=hljs-keyword>delete</span> <span class=hljs-keyword>this</span>.clients[connection.id];
+      <span class=hljs-keyword>delete</span> <span class=hljs-keyword>this</span>.connections[client.id];
+    });
+  }
+
+  <span class=hljs-comment>/*
+   Invoked by Kuzzle when a &quot;data.payload&quot; payload needs to be
+   broadcasted to the &quot;data.channels&quot; channels
+
+   The payload is a Kuzzle response as a plain-old JSON object
+  */</span>
+  broadcast (data) {
+    data.channels.forEach(<span class=hljs-function><span class=hljs-params>channel</span> =&gt;</span> {
+      <span class=hljs-comment>// sends data.payload to the channel</span>
+    });
+  }
+
+  <span class=hljs-comment>/*
+   Invoked by Kuzzle when a &quot;data.payload&quot; payload needs to be
+   notified to the connection &quot;data.id&quot;, on the &quot;data.channels&quot; channels
+
+   The payload is a Kuzzle response as a plain-old JSON object
+  */</span>
+  notify (data) {
+    data.channels.forEach(<span class=hljs-function><span class=hljs-params>channel</span> =&gt;</span> {
+      <span class=hljs-comment>// sends &quot;data.payload&quot; to the connection &quot;data.id&quot; and to</span>
+      <span class=hljs-comment>// the channel &quot;channel&quot;</span>
+    });
+  }
+
+  <span class=hljs-comment>/*
+    Invoked by Kuzzle when the connection &quot;connectionId&quot; joins the
+    channel &quot;channel&quot;
+   */</span>
+  joinChannel (channel, connectionId) {
+     <span class=hljs-comment>// ...</span>
+  }
+
+  <span class=hljs-comment>/*
+    Invoked by Kuzzle when the connection &quot;connectionId&quot; leaves the
+    channel &quot;channel&quot;
+   */</span>
+  leaveChannel (channel, connectionId) {
+    <span class=hljs-comment>// ...</span>
+  }
+
+  <span class=hljs-comment>/*
+    Invoked by Kuzzle when it needs to force-close a client connection
+   */</span>
+  disconnect (connectionId) {
+    <span class=hljs-keyword>const</span> client = <span class=hljs-keyword>this</span>.clients[connectionId];
+    <span class=hljs-comment>// close the client connection</span>
+  }
+}
+
+<span class=hljs-comment>// Exports the plugin objects, allowing Kuzzle to instantiate it</span>
+<span class=hljs-built_in>module</span>.exports = MyProtocol;</code></pre><div style="clear: both"></div></div><hr><div id=disqus_thread></div><script async data-packer=exclude>var disqus_developer = 1;
+      
+        var disqus_config = function () {
+          this.page.url = 'http://docs.kuzzle.io/plugins-reference/protocols';
+          this.page.title = 'Protocols';
+          this.page.identifier = 'plugins-reference/protocols';
+        };
+      
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://kuzzle-documentation.disqus.com/embed.js';
+          s.async = 'async';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();</script><div class="nav-sibling bottom"><div class=nav-left><p><a href=https://github.com/kuzzleio/documentation/edit/master/src/plugins-reference/protocols/index.md>edit on github<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span> <a href="https://github.com/kuzzleio/documentation/issues/new?labels=plugins-reference&amp;title=Feedback%20about%20page%20&apos;plugins-reference/protocols/index.md&apos;">send feedback about this content<i class="icon icon-github icon-small"></i></a> <span class=separator>|</span><select class=rate-documentation><option value=""></option><option value=1>Unusable documentation</option><option value=2>Poor documentation</option><option value=3>OK documentation</option><option value=4>Good documentation</option><option value=5>Excellent documentation</option></select></p></div><div class=nav-right><p class=medium-only><a href=http://docs.kuzzle.io/plugins-reference/plugins-context>&#xAB; The plugin context</a></p><p><a href=#>back to top &#x2191;</a></p></div><div style=clear:both></div></div></div></div></div><script type=text/javascript data-packer=exclude>var path = 'plugins-reference/protocols';
+  var site_url = 'http://docs.kuzzle.io'
+  var site_base_path = '/'
+  var ancestry_parent_path = 'plugins-reference'
+  var report404ga = ''
+  var algolia_projectId = '4RFBRWISJR'
+  var algolia_publicKey = '6febf1ebe906bd82bce58d5a20ac6c1b'</script><script src=/assets/javascript/e6791aa54bf763f10700a88b38d578282663be53.min.js></script></body></html>
