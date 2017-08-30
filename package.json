@@ -1,6 +1,6 @@
 {
   "name": "kuzzleio-documentation",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "Kuzzle Documentation",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "debug": "^2.6.6",
     "glob-watcher": "^3.2.0",
     "handlebars": "^4.0.8",
+    "match-words": "^1.0.0",
     "metalsmith": "^2.3.0",
     "metalsmith-algolia": "^0.1.0",
     "metalsmith-ancestry": "^1.2.1",
@@ -47,6 +48,7 @@
     "node-static": "^0.7.9",
     "open": "0.0.5",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "wordcount": "^1.1.1"
   }
 }

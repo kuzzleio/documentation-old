@@ -6,6 +6,8 @@ title: geoBoundingBox
 
 # geoBoundingBox
 
+{{{since "1.0.0"}}}
+
 Filter documents having their location field within a bounding box.
 
 A bounding box is a 2D box that can be defined using:

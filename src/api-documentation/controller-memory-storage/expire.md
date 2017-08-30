@@ -10,6 +10,8 @@ title: expire
 
 # expire
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">
@@ -61,7 +63,7 @@ title: expire
   "collection": null,
   "index": null,
   "volatile": null,
-  "result": "[0|1]" // success status
+  "result": [0|1] // success status
 }
 ```
 

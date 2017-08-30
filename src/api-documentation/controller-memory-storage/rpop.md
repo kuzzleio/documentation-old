@@ -9,6 +9,8 @@ title: rpop
 
 # rpop
 
+{{{since "1.0.0"}}}
+
 
 
 

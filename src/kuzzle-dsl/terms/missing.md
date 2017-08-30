@@ -6,6 +6,8 @@ title: missing
 
 # missing
 
+{{{since "1.0.0"}}}
+
 A filter matching documents with a missing field.
 
 ## Given the following documents:

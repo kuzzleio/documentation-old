@@ -8,6 +8,18 @@ order: 200
 
 # http
 
-| Event | Type | Description | Payload |
-|-------|------|-------------|---------|
-| `http:options` | Pipe | Triggered whenever a HTTP OPTIONS methods is handled | Type: Request |
+{{{since "1.0.0"}}}
+
+Events triggered on HTTP communications.
+
+---
+
+## `http:options`
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+Triggered whenever a request has been submitted through HTTP OPTIONS methods.
+
+---

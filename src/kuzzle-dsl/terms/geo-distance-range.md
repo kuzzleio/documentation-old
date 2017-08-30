@@ -6,6 +6,8 @@ title: geoDistanceRange
 
 # geoDistanceRange
 
+{{{since "1.0.0"}}}
+
 Filter documents having their location field within a distance range from a given point of origin.
 
 ![Illustration of geoDistanceRange]({{ site_base_path }}assets/images/geolocation/geoDistanceRange.png)

@@ -10,6 +10,8 @@ title: updateProfileMapping
 
 # updateProfileMapping
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">
@@ -76,8 +78,8 @@ title: updateProfileMapping
 
 ```javascript
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "action": "updateProfileMapping",
   "controller": "security",
   "requestId": "<unique request identifier>",

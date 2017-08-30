@@ -9,6 +9,8 @@ title: renamenx
 
 # renamenx
 
+{{{since "1.0.0"}}}
+
 
 
 
@@ -59,7 +61,7 @@ title: renamenx
   "collection": null,
   "index": null,
   "volatile": null,
-  "result": "OK"
+  "result": [0|1]
 }
 ```
 

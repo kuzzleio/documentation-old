@@ -73,20 +73,20 @@ Kuzzle will respond you with a list of the existing routes.
 # Updating docker images used by Kuzzle:  
 docker-compose -f "<docker-compose-file.yml>" pull
 
-# Showing Kuzzle core or Kuzzle proxy logs:  
-docker exec -ti "<docker core or proxy container name>" pm2 logs
+# Showing Kuzzle logs:  
+docker exec -ti "<container name>" pm2 logs
 
-# Restarting Kuzzle core or Kuzzle proxy:  
-docker exec -ti "<docker core or proxy container name>" pm2 restart all
+# Restarting Kuzzle:
+docker exec -ti "<container name>" pm2 restart all
 
-# Stopping Kuzzle core or Kuzzle proxy:  
-docker exec -ti "<docker core or proxy container name>" pm2 stop all
+# Stopping Kuzzle:
+docker exec -ti "<container name>" pm2 stop all
 
-# Starting Kuzzle core or Kuzzle proxy:  
-docker exec -ti "<docker core or proxy container name>" pm2 start all
+# Starting Kuzzle:
+docker exec -ti "<container name>" pm2 start all
 
 # Accessing Kuzzle CLI:
-docker exec -ti "<docker core container name>" bin/kuzzle -h
+docker exec -ti "<container name>" bin/kuzzle -h
 ```
 
 ---
@@ -134,29 +134,7 @@ mkdir -p "~/kuzzle"
 cd "~/kuzzle"
 ```
 
-### Create a directory for Kuzzle Proxy and install it
-
-```bash
-#!/bin/bash
-
-cd "~/kuzzle"
-git clone https://github.com/kuzzleio/kuzzle-proxy.git
-cd "kuzzle-proxy"
-npm install
-
-# init submodules to install defaults proxy plugins
-git submodule init
-git submodule update
-
-# install dependencies for all enabled plugins
-for PLUGIN in ./plugins/enabled/*; do
-  if [ -d "${PLUGIN}" ]; then
-    ( cd "${PLUGIN}" && npm install )
-  fi
-done
-```
-
-### Create a directory for Kuzzle Core and install it
+### Create a directory for Kuzzle and install it
 
 ```bash
 #!/bin/bash
@@ -199,9 +177,6 @@ sudo npm install -g pm2
 #!/bin/bash
 
 echo "apps:
-   - name: kuzzle-proxy
-     cwd: ${KUZZLE_PROXY_INSTALL_DIR}
-     script: ${KUZZLE_PROXY_INSTALL_DIR}/index.js
    - name: kuzzle
      cwd: ${KUZZLE_CORE_INSTALL_DIR}
      script: ${KUZZLE_CORE_INSTALL_DIR}/bin/kuzzle

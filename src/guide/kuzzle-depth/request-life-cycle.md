@@ -26,13 +26,13 @@ The following diagram shows how the Request flows between the client application
 ![read_scenario_http_details]({{ site_base_path }}assets/images/request-scenarios/read-http/details.png)
 
 * The HTTP client asks for a document via a HTTP GET Request. For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the collection `users`: `GET http://kuzzle:7512/mainindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
-* The proxy forwards the Request through the HTTP Entry point to the Router, which handles it and forwards the formatted Request to the Funnel.
+* The proxy forwards the Request through the entry point to the HTTP Router, which handles it and forwards the formatted Request to the Funnel.
 
 The formatted Request `input` looks like the following:
 
 ```javascript
 {
-  "controller": "read",
+  "controller": "document",
   "action": "get",
   "resource": {
     "index": "mainindex",
@@ -42,9 +42,9 @@ The formatted Request `input` looks like the following:
 }
 ```
 
-* The Funnel Controller validates the data before sending the request to the Document Controller.
-* The Document Controller calls the Read Engine service.
-* The Read Engine service performs an HTTP request to get the data from the data storage.
+* The Funnel validates the data before sending the request to the Document Controller.
+* The Document Controller calls the Storage Engine.
+* The Storage Engine performs an HTTP request to get the data from the data storage.
 
 The content returned by Elasticsearch looks like the following:
 
@@ -82,11 +82,12 @@ The following diagram shows how the Request flows between the client application
 
 ![read_scenario_websocket_details]({{ site_base_path }}assets/images/request-scenarios/read-websocket/details.png)
 
-* The client application opens a Websocket connection to Kuzzle Proxy and emits a "read" event containing the request. For instance, to retrieve the document `739c26bc-7a09-469a-803d-623c4045b0cb` in the collection `users`:
+* The client application opens a Websocket connection to Kuzzle Proxy and sends message containing the request. For instance, to retrieve the document `739c26bc-7a09-469a-803d-623c4045b0cb` in the collection `users`:
 
 ```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
+  "controller": "document",
   "action": "get",
   "collection": "users",
   "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
@@ -101,9 +102,7 @@ The client then listens to the `<requestId>` event on the socket, like the follo
   });
 ```
 
-* The Kuzzle Websocket plugin handles the Request and forwards the message to the Backend Broker.
-* The Backend Broker sends the message to the Proxy Broker (within the Kuzzle Core) through a Websocket connection.
-* The Proxy Broker forwards the Request through the Proxy Entry Point to the Router, who handles it and forwards the formatted Request to the Funnel.
+* The Proxy forwards the Request through the Proxy Entry Point to the Funnel.
 
 The formatted Request `input` looks like the following:
 
@@ -120,8 +119,8 @@ The formatted Request `input` looks like the following:
 ```
 
 * The Funnel validates the message and forward the request to the Document Controller.
-* The Document Controller forwards the Request `input` to the Read Engine service.
-* The Read Engine service performs an HTTP request to get the data from Elasticsearch.
+* The Document Controller forwards the Request `input` to the Storage Engine.
+* The Storage Engine performs an HTTP request to get the data from the data storage.
 
 The content returned by Elasticsearch looks like the following:
 
@@ -146,8 +145,7 @@ The content returned by Elasticsearch looks like the following:
 }
 ```
 
-* Promises functions are resolved to forward the response message back to the Proxy Broker.
-* The Proxy Broker sends the response to the proxy's Backend Broker through the Websocket connection.
+* Promises functions are resolved to forward the response message back to the Proxy Entry Point, who sends the response to the proxy.
 * The Proxy triggers the callback, which emits a `<requestId>` event to the Websocket client.
 
 ---
@@ -158,8 +156,8 @@ This section explains what happens when clients send new content to Kuzzle.
 
 Kuzzle is able to handle two different types of input:
 
-* **persisted data**, via the `_create_`, `_createOrUpdate_`, or `_delete_` actions.
-* **real-time data**, via the `_publish_` action.
+* **persisted data**, via the [Document controller]({{ site_base_path }}api-documentation/controller-document).
+* **real-time data**, via the [Realtime/Publish action]({{ site_base_path }}controller-realtime/publish).
 
 ### Writing persistent data
 
@@ -172,47 +170,40 @@ Detailed workflow:
 ![persistence_scenario_details]({{ site_base_path }}assets/images/request-scenarios/persistence/details.png)
 
 * A client sends new content to Kuzzle, either via an HTTP request, through a Websocket connection or using a custom plugin protocol.
-* The router handles the Request and forwards the message to the Funnel.
+* The Proxy forwards the Request through the Proxy Entry Point to the Funnel.
+
+The formatted Request `input` looks like the following:
 
 ```javascript
 {
-  "status": 102,
-  "id": "...", // ... The connection id
-  "context": {
-    // ... The connection context
+  "controller": "document",
+  "action": "create",
+  "resource": {
+    "index": "mainindex",
+    "collection": "users"
   },
-  "input": {
-    "resource": {
-      "index": "mainindex",
-      "collection": "users"
+  "body": {
+    "firstName": "Grace",
+    "lastName": "Hopper",
+    "age": 85,
+    "location": {
+      "lat": 32.692742,
+      "lon": -97.114127
     },
-    "controller": "document",
-    "action": "create",
-    "body": {
-      "firstName": "Grace",
-      "lastName": "Hopper",
-      "age": 85,
-      "location": {
-        "lat": 32.692742,
-        "lon": -97.114127
-      },
-      "city": "NYC",
-      "hobby": "computer"
-    }
+    "city": "NYC",
+    "hobby": "computer"
   }
 }
 ```
 
-* The Funnel validates the Request and triggers the Plugins Manager with a `document:create` event. The Plugins Manager calls all pipes and hooks configured by the active plugins (see the [Plugin Reference]({{ site_base_path }}plugins-reference)).
 * The Funnel forwards the Request to the Document Controller.
-* The Document Controller sends the request to the Storage Engine service.
-The Storage Engine sends the request to the database.
+* The Document Controller sends the request to the Storage Engine service, who sends the request to the data storage.
 * Once the Storage Engine gets the response back, it replies to the Document Controller.
 * The Document Controller wraps the response in a Kuzzle Response and forwards it back to the user.
 
 ### Subscribe and Notification scenario
 
-This subsection describes the life-cycle of **non persistent** data notifications as well as real-time notifications, implementing the [Publish/Subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
+This subsection describes the life-cycle of real-time notifications about persistent and non persistent data, implementing the [Publish/Subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
 
 Remember the [Architecture overview]({{ site_base_path }}guide/kuzzle-depth) and focus on the components involved by pub/sub actions:
 ![pubsub_overview]({{ site_base_path }}assets/images/request-scenarios/pubsub/overview.png)
@@ -223,14 +214,14 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 
 ![pubsub_scenario_details1]({{ site_base_path }}assets/images/request-scenarios/pubsub/details1.png)
 
-* The client application opens a Websocket or a MQ connection and emits a "subscribe" event with some filters (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)). For instance, to be notified about any content posted to the collection `users`, containing a field `hobby` equals to `computer`:
+* The client application opens a Websocket or a MQ connection and sends a subscription message with some filters (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)). For instance, to be notified about any content posted to the collection `users`, containing a field `hobby` equals to `computer`:
 
 ```javascript
 {
-  "index": "mainindex",
-  "collection": "users",
   "controller": "realtime",
   "action": "subscribe",
+  "index": "mainindex",
+  "collection": "users",
   "body": {
     "equals": {
       "hobby": "computer"
@@ -243,48 +234,45 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 See the [Kuzzle DSL Reference]({{ site_base_path }}kuzzle-dsl/) for more details.
 
 The client then listens to the `<requestId>` event on the socket.
-Kuzzle will get back to him with a corresponding Room ID and a Room Channel using this event.
 
-Sample Javascript code, using Websocket:
+* The proxy forwards the subscription message to the Funnel.
 
-```javascript
-  this.socket.once("ed4faaff-253a-464f-a6b3-387af9d8483d", function(response) {
-    callback(response);
-  });
-```
-
-* The Router interprets the input request and transfer the subscription message to the Funnel.
+The formatted Request `input` looks like the following:
 
 ```javascript
 {
-  "index": "mainindex",
-  "collection": "users",
-  "controller": "subscribe",
-  "action": "on",
-  "filter": {
-    "equals": {"hobby": "computer" }
-  }
+  "controller": "realtime",
+  "action": "subscribe",
+  "resource": {
+    "index": "mainindex",
+    "collection": "users"
+  },
+  "body": {
+    "equals": {
+      "hobby": "computer"
+    }
+  },
+  "state": "all"
 }
 ```
 
-* The Funnel validates the message and transfers it to the Realtime Controller.
+* The Funnel validates the request and forwards it to the Realtime Controller.
 * The Realtime Controller calls the HotelClerk internal component to create the subscription.
-* The HotelClerk calls the DSL component to get a formated filter related to the subscription (see [DSL Readme](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/dsl/README.md) for more details).
-* The HotelClerk creates a channel related to the filters and gives it back to the Realtime Controller.
-* The channel is sent back to the Websocket (or MQ) Router through the internal components.
-* The Websocket (or MQ) Router emits a `<requestId>` event to the client, containing the subscribed channel ID.
+* The HotelClerk calls the DSL component to normalize the filters and register the subscription (see [DSL Readme](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/dsl/README.md) for more details).
+* Promises functions are resolved to forward the channel ID from the HotelClerk to the Proxy
+* The Proxy triggers the callback, which emits a `<requestId>` event containing the subscribed channel ID to the Websocket client.
 
 Sample response content:
 
 ```javascript
 {
+  "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
   "status": 200,
   "error": null,
-  "index": "mainindex",
-  "collection": "users",
   "controller": "realtime",
   "action": "subscribe",
-  "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
+  "index": "mainindex",
+  "collection": "users",
   "result": {
     "roomId": "78c5b0ba-fead-4535-945c-8d64a7927459",
     "channel": "c5cd8bdc-06a4-4d6e-bae3-61f1a8ac2982"
@@ -292,7 +280,8 @@ Sample response content:
 }
 ```
 
-* The client now listens to this `channel` events to be notified about new messages corresponding to his subscription filters.
+* The client now listens to events from this `channel`, to be notified about new messages corresponding to the subscription filters.
+
 
 #### 2nd step : notify about real-time actions
 
@@ -301,19 +290,22 @@ The following diagram shows how Kuzzle handles a new message and how subscribed 
 ![pubsub_scenario_details2]({{ site_base_path }}assets/images/request-scenarios/pubsub/details2.png)
 
 * A new content is published to the Notifier component. The `_publish_` method can be triggered:
-  * either directly by the Document Controller for non persistent data (using the [publish]({{ site_base_path }}api-documentation/controller-realtime/publish) action).
-  * or by the Plugins Manager when a 'document:create' event is triggered, to notify users in real-time before the data are sent to the storage Engine.
+  * either directly by the Realtime controller for non persistent data (using the [publish]({{ site_base_path }}api-documentation/controller-realtime/publish) action).
+  * or by the write actions of the Document controllers, to notify users in real-time before the data are sent to the storage Engine.
+  (see [Notifications Documentation]({{ site_base_path }}api-documentation/notifications) for more details)
 * The Notifier calls the DSL component to test registered filters that match the content, and get related rooms.
 * The Notifier uses the Notification Cache engine to store the mapping content/rooms into cache.
 * The Notifier calls the HotelClerk to get the channels related to the rooms.
-* The Notifier broadcasts the message to each related channel to the Websocket and MQ plugins.
-* Finally, the plugins send the message to the clients who subscribed to it.
+* The Notifier broadcasts the message to each related channel to the proxy.
+* Finally, the proxy sends the message to the clients who subscribed to it.
 
 #### 3rd step : notify about persisted data
 
-![pubsub_scenario_details2]({{ site_base_path }}assets/images/request-scenarios/pubsub/details3.png)
+The following diagram show how subscribed clients are notified after a document has been persisted (created, updated or deleted) to the storage engine:
 
-* The Notifier component is notified about a new action by the Document Controller
+![pubsub_scenario_details3]({{ site_base_path }}assets/images/request-scenarios/pubsub/details3.png)
+
+* Once the document is actually persisted, the Notifier component is notified about it by the Document Controller
 * The Notifier calls the Notification Cache to get the rooms related to the content
 * The Notifier calls the HotelClerk to get the channels related to the rooms
 * The Notifier asks the proxy to broadcast the notification to all users having subscribed to the retrieved channels, on all registered network protocols

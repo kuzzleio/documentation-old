@@ -7,30 +7,52 @@ order: 100
 
 # accessors
 
-<aside class="notice">
-<a href="{{ site_base_path }}plugins-reference/plugins-features/adding-hooks/#executing-hooks-in-separate-threads">Plugins executed on separate threads</a> don't have access to accessors.
-</aside>
+## `execute`
 
----
-
-## Core accessors
-
-### `execute`
+{{{since "1.0.0"}}}
 
 Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
 
-#### Arguments
+
+#### With promises
+
+**`execute(request, [overloadProtection])`**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `request` | `Request` | A [`Request`]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) to execute  |
+| `overloadProtection` | `Boolean` | Optional. Default: `true`. See [Overload Protection]({{ site_base_path }}plugins-reference/plugins-context/accessors/#overload-protection) |
+
+Returns a Promise, either resolved with the source `Request` object with its response part filled (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)), or rejected with a [KuzzleError object]({{ site_base_path }}plugins-reference/plugins-context/errors/).
+
+
+#### With callbacks
+
+**`execute(request, [overloadProtection], callback)`**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `request` | `Request` | A [`Request`]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) to execute  |
+| `overloadProtection` | `Boolean` | Optional. Default: `true`. See [Overload Protection]({{ site_base_path }}plugins-reference/plugins-context/accessors/#overload-protection) |
 | `callback(error, request)` | `Function` | Function executed with the request's result |
 
-**Note:** when `callback` is invoked, the `request` argument is ALWAYS filled, even when there is an error.
-This argument is the provided request, with its `result` and/or `error` parts filled.
-To obtain the standardized Kuzzle response from it, simply use the getter `request.response`.
+Upon completion, the `request` argument provided to the callback function will be the source request with its response part filled (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)).
 
-#### Usage
+#### Overload protection
+
+Kuzzle server nodes feature a configurable overload-protection mechanism. When asking Kuzzle to execute an API request, there are three possible outcomes:
+
+* Kuzzle has room for that request: it is executed immediately
+* A lot of other requests are already running: it is delayed until time can be allocated to it
+* Kuzzle is overloaded: requests are rejected until room can be found again in the requests buffer
+
+Most of the time, plugins should go through that system when submitting requests. But some rare use cases require that requests must be executed within a predictible and constant delay, making this system impractical.  
+For those cases, plugins can disable the overload protection mechanism for specific requests.
+
+Be warned though that it is advised to only disable this protection if necessary, and only for a small set of requests.  
+If plugins have to handle rejected requests because Kuzzle gets overloaded, then disabling this protection to prevent such errors will only hide the problem instead of solving it. Instead, administrators are encouraged to either adjust the size of the request buffer in [Kuzzle's configuration]({{ site_base_path }}guide/essentials/configuration/), or to add more Kuzzle nodes to their infrastructure.
+
+#### Example
 
 ```js
 let
@@ -53,23 +75,37 @@ context.accessors.execute(request, (error, request) => {
 
 ---
 
-### `storage.bootstrap`
+## `storage`
 
-Allows to initialize the plugin storage index in Elasticsearch. When called, it will create the Elastisearch index
-and the `collections` provided in argument. Can be called at each plugin initialized as long as the mapping is
-not modified.
+This accessor allows plugins to manage their private and secure permanent storage.  
+Data stored in this space cannot be accessed from Kuzzle, its API, or from another plugin.
 
-#### Arguments
+The only way a document stored in this space can be accessed is if the owner plugin explicitly allows it, by extending Kuzzle's API with a route exposing that data.
+
+This storage space is a whole [data index]({{ site_base_path }}guide/essentials/persisted/#working-with-persistent-data).  
+
+Data stored in this space can be accessed by using the [Repository constructor]({{ site_base_path }}plugins-reference/plugins-context/constructors/#repository)
+
+### `bootstrap`
+
+{{{since "1.0.0"}}}
+
+Allows to initialize the plugin storage index. When called, it will create the Elastisearch index
+and the `collections` provided in argument. 
+
+Can be called multiple times as long as the mappings are not modified through calls.
+
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`collections`|`Object`| An object that contains the collection mappings. See the [guide]({{ site_base_path }}guide/essentials/persisted/#document-mapping) for more explanation about Elasticsearch mapping. |
 
-#### Returns
+**Returns**
 
 Returns a `promise` that resolves to a `boolean` that indicates if the index and the collections already existed or not.
 
-#### Usage
+**Usage**
 
 ```js
 context.accessors.storage.bootstrap({
@@ -90,25 +126,24 @@ context.accessors.storage.bootstrap({
 });
 ```
 
----
+### `createCollection`
 
-### `storage.createCollection`
+{{{since "1.0.0"}}}
 
-Allows to create a collection with its mapping. Can be called at each plugin initialization if the mapping is not
- modified. Consider using [`storage.bootstrap`]({{ site_base_path }}plugins-reference/plugins-context/accessors/#storage-bootstrap) if your collections are not dynamic.
+Allows to create a collection with its mapping. Can be called multiple times as long as the mapping is not modified. Consider using [`storage.bootstrap`]({{ site_base_path }}plugins-reference/plugins-context/accessors/#storage-bootstrap) if your collections are not dynamic.
 
-#### Arguments
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`collection`|`string`| The collection name |
 |`collectionMapping`|`object`| The collection mapping |
 
-#### Returns
+**Returns**
 
 Returns a `promise` that resolves to the object `{ acknowledged: true }`.
 
-#### Usage
+**Usage**
 
 ```js
 context.accessors.storage.createCollection('someCollection', {
@@ -124,18 +159,191 @@ context.accessors.storage.createCollection('someCollection', {
 
 ---
 
-### `validation.validate`
+## `strategies`
+
+This accessor allows to dynamically add or remove [authentication strategies]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy)
+
+In a cluster context, Kuzzle will add/remove strategies on all nodes.
+
+<aside class="warning">
+Plugins should also make sure that, when changing the list of available strategies dynamically, that list will remain the same after a Kuzzle node restarts.
+</aside>
+
+### `add`
+
+{{{since "1.2.0"}}}
+
+Adds a new authentication strategy. Users can be authenticated using that new strategy as soon as this method resolves.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `name` | `String` | The name of the new authentication strategy |
+| `properties` | `Object` | Strategy properties. The description format is the same than the one used when [exposing a `strategies` object during an auth plugin initialization]({{ site_base_path}}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies) |
+
+**Returns**
+
+This method returns a promise, that resolves to nothing when the authentication strategy has been successfully added.
+
+The promise will be rejected when:
+
+* the properties for that strategy are invalid or incomplete
+* a strategy of the same name already exists
+
+**Usage**
+
+```js
+context.accessors.strategies.add('someStrategy', {
+  config: {
+    constructor: StrategyConstructor,
+    strategyOptions: {},
+    authenticateOptions: {
+      scope: []
+    },
+    fields: ['field1', 'field2', '...', 'fieldn']
+  },
+  methods: {
+    afterRegister: 'afterRegister',
+    create: 'create',
+    delete: 'delete',
+    exists: 'exists',
+    getById: 'getById',
+    getInfo: 'getInfo',
+    update: 'update',
+    validate: 'validate',
+    verify: 'verify'
+  }
+});
+```
+
+### `remove`
+
+{{{since "1.2.0"}}}
+
+Dynamically removes a strategy, preventing new authentications using it.  
+
+<aside class="warning">
+Authentication tokens created using that strategy ARE NOT invalidated by using this method. 
+</aside>
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `name` | `String` | The name of the authentication strategy to remove |
+
+
+**Returns**
+
+A promise, resolving to nothing if the strategy has been successfully removed.
+
+This promise will be rejected when:
+
+* the strategy to remove does not exist
+* the strategy to remove is owned by another plugin
+
+**Usage**
+
+```js
+context.accessors.strategies.remove('someStrategy');
+```
+
+---
+
+## `trigger`
+
+{{{since "1.0.0"}}}
+
+Triggers a custom event, listenable by [`hooks`]({{ site_base_path }}/plugins-reference/plugins-features/adding-hooks/). This allows other plugins to react to events generated by the current plugin. 
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+| `eventName` | `String` | The custom event name |
+| `payload` | `Object` | An optional payload to attach to the triggered event |
+
+**Note** 
+
+The name of the resulting event being triggered will be generated as `"plugin-" + pluginName + ":" + eventName` in order to avoid collisions with Kuzzle native events.
+
+**Usage**
+
+```js
+// Emitting plugin, called "some-plugin"
+context.accessors.trigger('someEvent', {
+  someAttribute: 'someValue'
+});
+
+// Listening plugin
+class ListeningPlugin {
+  constructor () {
+    this.hooks = {
+      // Notice the generated event name
+      'plugin-some-plugin:someEvent': 'someEventListener'
+    };
+  }
+
+  someEventListener (payload) {
+    this.doSomething(payload);
+  }
+}
+```
+
+---
+
+## `validation`
+
+This accessor exposes basic functionalities of the [Data Validation API]({{ site_base_path }}validation-reference/)
+
+### `addType`
+
+{{{since "1.0.0"}}}
+
+Adds a new data type, that can be used to validate if a document is well-formed.
+
+**Arguments**
+
+| Name | Type | Description                      |
+|------|------|----------------------------------|
+|`validationType`|`object`| An object instance of a validation type |
+
+**Returns**
+
+Nothing. Can throw a `PluginImplementationError` if the validation type has not the expected form.
+
+**Usage**
+
+```js
+/**
+ * @typedef \{{
+ *   validate: Function,
+ *   validateFieldSpecification: Function,
+ *   typeName: string,
+ *   allowChildren: boolean,
+ *   checkAllowedProperties: Function,
+ *   allowedTypeOptions: string[]
+ * }} ValidationType
+ */
+```
+
+See constructor `BaseValidationType` for more details.
+
+### `validate`
+
+{{{since "1.0.0"}}}
 
 Validates a document wrapped in a `Request` object.
 
-#### Arguments
+**Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 |`request`|`Request`| A document wrapped as a `Request` object |
 |`verbose`|`boolean`| Defines the behavior of the validation |
 
-#### Returns
+**Returns**
 
 If `verbose` is set to `false`:
 
@@ -156,79 +364,3 @@ Where:
 
 * `errorMessages` is a structured javascript object reflecting the structure of the document with all errors collected during the validation process
 * `validation` is a `boolean` reflecting the validation state.
-
----
-
-### `validation.addType`
-
-### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`validationType`|`object`| An object instance of a validation type |
-
-#### Returns
-
-Nothing. Can throw a `PluginImplementationError` if the validation type has not the expected form.
-
-#### validationType form
-
-```js
-/**
- * @typedef \{{
- *   validate: Function,
- *   validateFieldSpecification: Function,
- *   typeName: string,
- *   allowChildren: boolean,
- *   checkAllowedProperties: Function,
- *   allowedTypeOptions: string[]
- * }} ValidationType
- */
-```
-
-See constructor `BaseValidationType` for more details.
-
----
-
-## Proxy accessors
-
-### `router.newConnection`
-
-Declares a new connection for a given protocol.  
-
-#### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`connection`|`object`| User connection instantiated by the [ClientConnection]({{ site_base_path }}plugins-reference/plugins-context/constructors/#clientconnection) constructor |
-
----
-
-### `router.execute`
-
-Forward a request to Kuzzle.
-
-#### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`data`|`object`| Request data, with following format: `{payload, connectionId, protocol, headers}` |
-|`callback`|`function`| Callback called with the request corresponding results |
-
-#### Callback
-
-The callback is invoked once the request has been processed by Kuzzle.  
-The provided callback is resolved with a `response` argument, which is a plain-object, representing a standardized [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response).
-
----
-
-### `router.removeConnection`
-
-Removes a connection from the connection pool maintained by Kuzzle.  
-Not calling this method after a connection is dropped will result in a memory-leak.
-
-#### Arguments
-
-| Name | Type | Description                      |
-|------|------|----------------------------------|
-|`connectionId`|`string`| Identifier of the User connection to remove|

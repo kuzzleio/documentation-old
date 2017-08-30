@@ -23,14 +23,19 @@ In any case, the chosen strategy must be available in the Plugin local directory
 
 ## Expose authentication strategies
 
-The `strategies` object must contain one attribute per added strategy. This attribute must be named after the strategy name and be an object containing:
+There are two ways of declaring authentication strategies:
 
-* config: The configuration part
+* By exposing a `strategies` object in an authentication plugin instance, listing strategies to explose and their properties. That object cannot be empty, and must contain one attribute per added strategy, with the attribute name used as the strategy name;
+* By [dynamically add or remove strategies]({{ site_base_path }}plugins-reference/plugins-context/accessors/#strategies).
+
+Whether strategies are statically or dynamically added, a properties object must be provided for each one of them. That object must be of the following structure:
+
+* config: an object containing the strategy configuration 
   * constructor: The constructor of the Passport strategy
   * strategyOptions: The options provided to the Passport strategy constructor
   * authenticateOptions: The options provided to the Passport's [authenticate method](http://passportjs.org/docs/authenticate).
   * fields: The list of fields that can be provided to the plugin.
-* methods:
+* methods: an object containing the list of exposed methods
   * afterRegister: The name of the `afterRegister` function in the plugin object.
   * create: [mandatory] The name of the `create` function in the plugin object.
   * delete: [mandatory] The name of the `delete` function in the plugin object.
@@ -41,6 +46,7 @@ The `strategies` object must contain one attribute per added strategy. This attr
   * validate: [mandatory] The name of the `validate` function in the plugin object.
   * verify: [mandatory] The name of the `verify` function in the plugin object.
 
+Even if each strategy must declare its own set of properties, a same strategy method can be used by multiple strategies.
 
 ---
 
@@ -63,7 +69,7 @@ The function **must** return a `Promise` that resolves to an object that can con
 
 ## The exists function
 
-You have to implement an `exists` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to verify if a user can be authenticated using your strategy.
+You have to implement an `exists` function (its name depends on the configuration provided in the `strategies` attribute), which will be used by Kuzzle to check whether a user has credentials using that strategy or not.
 
 Here is the generic signature of the `exists` function you have to implement:
 
@@ -137,7 +143,12 @@ The function **must** return a `Promise` that resolves to any value if deletion 
 
 ## The getInfo function
 
-You may implement a `getInfo` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to get informations about a user's credentials to this strategy. For security reasons, only **non sensitive** informations should be returned.
+You may implement a `getInfo` function (its name depends on the configuration provided in the `strategies` attribute), used by Kuzzle to get informations about a user's credentials to this strategy. 
+
+<aside class="warning">
+Kuzzle will NEVER expose data managed by plugins by itself. Plugins are entirely responsible for the data they expose.<br/>
+For security reasons, only NON SENSITIVE informations should be returned by that method.
+</aside>
 
 Here is the generic signature of the `getInfo` function you have to implement:
 
@@ -218,7 +229,7 @@ The function **must** return a `Promise` that resolves or rejects with an error 
 
 ## TL;DR plugin skeleton
 
-Here is a skeleton of authentication plugin
+Here is a skeleton example of an authentication plugin:
 
 ```javascript
 const StrategyConstructor = require('some-passport-strategy');
@@ -242,38 +253,38 @@ class AuthenticationPlugin {
       // The name of the strategy
       strategyName: {
         config: {
-          // The constructor of the passport strategy you chose
+          // The constructor of the passport strategy 
           constructor: StrategyConstructor,
 
-          // The options provided to the strategy constructor at instanciation
+          // Options provided to the strategy constructor at instantiation
           strategyOptions: {},
 
-          // The options provided to the authenticate function during the authentication process
+          // Options provided to the authenticate function during the authentication process
           authenticateOptions: {
             scope: []
           },
 
-          // The list of fields that may be provided in the credentials
+          // The list of fields that have to be provided in the credentials
           fields: ['login', 'password']
         },
         methods: {
-          // The name of the afterRegister function
+          // (optional) The name of the afterRegister function
           afterRegister: 'afterRegister',
-          // [mandatory] The name of the create function
+          // The name of the create function
           create: 'create',
-          // [mandatory] The name of the delete function
+          // The name of the delete function
           delete: 'delete',
-          // [mandatory] The name of the exists function
+          // The name of the exists function
           exists: 'exists',
-          // The name of the getById function
+          // (optional) The name of the getById function
           getById: 'getById',
-          // The name of the getInfo function
+          // (optional) The name of the getInfo function
           getInfo: 'getInfo',
-          // [mandatory] The name of the update function
+          // The name of the update function
           update: 'update',
-          // [mandatory] The name of the validate function
+          // The name of the validate function
           validate: 'validate',
-          // [mandatory] The name of the verify function
+          // The name of the verify function
           verify: 'verify'
         }
       }
@@ -281,6 +292,7 @@ class AuthenticationPlugin {
   }
 
   /**
+   * Optional.
    * Called after the strategy has been built with the constructor
    *
    * @param {*} constructedStrategy
@@ -332,6 +344,7 @@ class AuthenticationPlugin {
   }
 
   /**
+   * Optional.
    * Retrieves the non sensitive user's credentials information
    * from the persistence layer
    *
@@ -345,6 +358,7 @@ class AuthenticationPlugin {
   }
 
   /**
+   * Optional.
    * Retrieves the non sensitive user's credentials information
    * from the persistence layer using the strategy internal id
    *

@@ -9,6 +9,8 @@ title: geoadd
 
 # geoadd
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

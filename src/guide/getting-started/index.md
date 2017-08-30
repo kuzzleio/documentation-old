@@ -21,7 +21,7 @@ Grab a console and launch the following command
 ```bash
 #!/bin/bash
 
-sudo bash -c "$(curl -s https://raw.githubusercontent.com/kuzzleio/kuzzle-build/master/setup.sh)"
+sudo bash -c "$(curl http://get.kuzzle.io/)"
 ```
 
 <aside class="notice">

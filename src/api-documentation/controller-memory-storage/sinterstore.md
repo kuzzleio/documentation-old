@@ -9,6 +9,8 @@ title: sinterstore
 
 # sinterstore
 
+{{{since "1.0.0"}}}
+
 
 
 

@@ -10,6 +10,8 @@ title: mDeleteProfiles
 
 # mDeleteProfiles
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

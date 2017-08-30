@@ -65,6 +65,7 @@ For instance: `src/guide/`.
 Each section directory must contain an `index.md` file, with the following headers:
 
 ```
+
 ---
 layout: category-childrens.html
 title: <Name used in the section list>
@@ -98,6 +99,7 @@ A subsection has one of the 3 following behaviors:
 Each subsection directory must contain an `index.md` file, with the following headers:
 
 ```
+
 ---
 layout: <full.html or category-members.html>
 algolia: [true|false]
@@ -119,6 +121,7 @@ For instance: `src/guide/essentials/installing-kuzzle.md`
 Each article file must contain a header with the following properties:
 
 ```
+
 ---
 layout: <full.html or side-code.html>
 algolia: [true|false]

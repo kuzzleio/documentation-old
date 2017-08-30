@@ -9,6 +9,8 @@ title: hsetnx
 
 # hsetnx
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">
@@ -60,7 +62,7 @@ title: hsetnx
   "collection": null,
   "index": null,
   "volatile": null,
-  "result": "[0|1]"
+  "result": [0|1]
 }
 ```
 

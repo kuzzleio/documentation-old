@@ -9,6 +9,7 @@ title: mCreateOrReplace
 
 # mCreateOrReplace
 
+{{{since "1.0.0"}}}
 
 <blockquote class="js">
 <p>

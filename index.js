@@ -1,6 +1,8 @@
 const Metalsmith  = require('metalsmith');
-const handlebars = require('handlebars');
-const cheerio = require('cheerio');
+const handlebars  = require('handlebars');
+const cheerio     = require('cheerio');
+const stripTags   = require('striptags');
+const wordCount   = require('wordcount');
 
 const markdown    = require('metalsmith-markdown');
 const layouts     = require('metalsmith-layouts');
@@ -186,7 +188,13 @@ handlebars.registerHelper({
     }
 
     return d;
-  }
+  },
+  wordsToTime: function(context) {
+    // It seems that 75 words per minute is a fair value for technical material
+    return Math.ceil(wordCount(stripTags(context.data.root.contents)) / 75)
+  },
+  since: version => `<p class="since">Since Kuzzle v${version}</p>`,
+  deprecated: version => `<p class="deprecated">Deprecated since Kuzzle v${version}. This feature should not be used.</p>`
 })
 
 // Build site with metalsmith.

@@ -10,6 +10,8 @@ title: updateCredentials
 
 # updateCredentials
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

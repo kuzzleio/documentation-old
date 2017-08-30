@@ -9,6 +9,8 @@ title: persist
 
 # persist
 
+{{{since "1.0.0"}}}
+
 
 
 

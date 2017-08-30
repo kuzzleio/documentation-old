@@ -9,6 +9,8 @@ title: hscan
 
 # hscan
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

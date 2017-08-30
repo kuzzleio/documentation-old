@@ -76,13 +76,14 @@ Instantiates a new `Role` object, which is a representation of a set of right po
 
 ---
 
-## Role(Security, id, content)
+## Role(Security, id, content, [meta])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``Security`` | Security | An instantiated Security object |
+| ``Security`` | Security | An instantiated [Security]({{ site_base_path }}sdk-reference/security) object |
 | ``id`` | string | Unique role identifier |
 | ``content`` | JSON Object | Role content |
+| ``meta`` | JSON Object | Role metadata |
 
 **Note:**  this constructor won't make any call to Kuzzle.
 
@@ -94,6 +95,7 @@ Instantiates a new `Role` object, which is a representation of a set of right po
 |--------------|--------|-----------------------------------|---------|
 | `content` | JSON object | Raw role content | get |
 | `id` | string | Unique profile identifier | get |
+| `meta` | JSON object | Role metadata | get |
 
 ---
 

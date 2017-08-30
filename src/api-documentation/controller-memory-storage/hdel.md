@@ -10,6 +10,8 @@ title: hdel
 
 # hdel
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">

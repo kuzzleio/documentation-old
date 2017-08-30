@@ -6,6 +6,8 @@ title: bool
 
 # bool
 
+{{{since "1.0.0"}}}
+
 A filter matching documents matching boolean combinations of other queries.
 
 This operand accepts the following attributes:

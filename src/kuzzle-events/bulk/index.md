@@ -8,10 +8,44 @@ order: 200
 
 # bulk
 
+{{{since "1.0.0"}}}
+
 Events triggered when a request is treated in the [`bulk` controller]({{ site_base_path }}api-documentation/controller-bulk)
 
-| Event | Type | Description | Payload |
-|-------|------|-------------|---------|
-| `bulk:afterImport` | Pipe | The `import` action in `bulk` controller triggers an event after executing | Type: Request |
-| `bulk:beforeImport` | Pipe | The `import` action in `bulk` controller triggers an event before executing | Type: Request |
-| `bulk:errorImport` | Pipe | When an error occurred during the action `import` in `bulk` controller, an event error is triggered | Type: Request |
+---
+
+## `bulk:afterImport`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+Triggered after a successful execution of a [bulk import]({{ site_base_path }}api-documentation/controller-bulk/import/) request.
+
+---
+
+## `bulk:beforeImport`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+Triggered before a [bulk import]({{ site_base_path }}api-documentation/controller-bulk/import/) request is executed.
+
+---
+
+## `bulk:errorImport`
+
+{{{since "1.0.0"}}}
+
+**Event type:** Pipe
+
+**Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
+
+Triggered after an execution of a [bulk import]({{ site_base_path }}api-documentation/controller-bulk/import/) request failed.
+
+---

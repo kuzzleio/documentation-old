@@ -9,6 +9,8 @@ title: getConfig
 
 # getConfig
 
+{{{since "1.0.0"}}}
+
 
 
 <blockquote class="js">
@@ -65,6 +67,9 @@ title: getConfig
        "documentsFetchCount": 1000,
        "documentsWriteCount": 200
      },
+     
+     "...": ["..."],
+     
      "services": {
        "common": {
          "defaultInitTimeout": 10000,
@@ -90,11 +95,6 @@ title: getConfig
            "broker"
          ],
          "socket": "./run/broker.sock",
-         "retryInterval": 1000
-       },
-       "proxyBroker": {
-         "host": "proxy",
-         "port": 7331,
          "retryInterval": 1000
        },
        "db": {
