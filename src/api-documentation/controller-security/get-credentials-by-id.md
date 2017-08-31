@@ -16,7 +16,7 @@ title: getCredentialsById
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_byId`  
+**URL:** `http://kuzzle:7512/credentials/<strategy>/<userId>/_byId`  
 **Method:** `GET`  
 </p>
 </blockquote>
@@ -32,25 +32,28 @@ title: getCredentialsById
   "controller": "security",
   "action": "getCredentialsById",
   "strategy": "<strategy>",
-  "_id": "<strategyId>"
+  "_id": "<userId>"
 }
 ```
 
 >**Response**
 
 ```javascript
-// example with a "local" authentication
+// example with the "local" authentication plugin
 
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "action": "getCredentialsById",
   "controller": "security",
   "result": {
-    "username": "MyUser",
+    "username": "<userId>",
     "kuid": "<kuid>"
   }
 }
 ```
 
-Get credential information of the specified `<strategyId>` (storage key of the strategy) of the user. Storage key and provided information completely depend of the strategy. The result can be an empty object.
+Get credential information for the user identified by the strategy's unique user identifier `userId`.  
+The returned `result` object is completely dependant of the strategy implementation (see the [getById plugin function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#the-getbyid-function)), and it can be empty.
+
+**Note:** as shown in the code example, the `userId` identifier is specific to the specified strategy. If you wish to get credential information using a [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) identifier, see the [getCredentials]({{ site_base_path}}api-documentation/controller-security/get-credentials/) API route instead.
