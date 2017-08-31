@@ -61,6 +61,14 @@ All action functions receive a [Request]({{ site_base_path }}plugins-reference/p
 
 ---
 
+## Automatic events generation
+
+Kuzzle triggers events on all controller routes, and those added by plugins make no exception.  
+More on these automatic controller events [here]({{ site_base_path }}kuzzle-events/plugin-events/).
+
+
+---
+
 ## TL;DR plugin skeleton
 
 ```javascript
