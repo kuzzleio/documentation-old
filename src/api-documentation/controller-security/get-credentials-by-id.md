@@ -46,7 +46,6 @@ title: getCredentialsById
   "error": null,                     
   "action": "getCredentialsById",
   "controller": "security",
-  "_id": "<kuid>",
   "result": {
     "username": "MyUser",
     "kuid": "<kuid>"
