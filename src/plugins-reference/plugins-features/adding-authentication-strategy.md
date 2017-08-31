@@ -393,10 +393,11 @@ class AuthenticationPlugin {
    * @param {KuzzleRequest} request
    * @param {object} credentials
    * @param {string} kuid
+   * @param {string} strategy
    * @param {boolean} isUpdate
    * @returns {Promise<boolean>}
    */
-  validate (request, credentials, kuid, isUpdate) {
+  validate (request, credentials, kuid, strategy, isUpdate) {
     // validate credentials
     Promise.resolve(/* true|false */);
   }
