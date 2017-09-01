@@ -4,13 +4,14 @@ algolia: true
 title: Command Line Interface
 order: 900
 ---
+
 # Command Line Interface
 
 Kuzzle ships with a [Command line interface](https://en.wikipedia.org/wiki/Command-line_interface) which enables you to:
 
 * start a Kuzzle Core,
 * shutdown a Kuzzle Core gracefully
-* create the first administrator user,
+* create the first administrator user
 * reset Kuzzle internal data _(use with caution !)_
 * clear Kuzzle's cached data
 * produce a diagnostic dump of a Kuzzle Core current state
@@ -116,8 +117,6 @@ The generated directory can be used to feed a crash report to the support team i
 #    Options:
 #
 #      -h, --help             output usage information
-#      --fixtures <fixtures>  import some fixtures from file
-#      --mappings <mappings>  load and apply mappings from file
 #      --noint                non interactive mode
 ```
 
@@ -157,8 +156,104 @@ The `shutdown` command allows to stop a Kuzzle Core instance after remaining req
 #
 #      -h, --help                 output usage information
 #      -p, --port <port>          Kuzzle port number
-#          --fixtures <fixtures>  import some fixtures from file
-#          --mappings <mappings>  load and apply mappings from file
+#          --fixtures <file>      import data from file
+#          --mappings <file>      apply mappings from file
 ```
 
 The `start` command starts a Kuzzle Core instance in the foreground.
+
+This command also allows to initialize the storage layer with preset mappings (`--mappings`) and documents (`--fixtures`).
+
+#### `--mappings`
+
+Loads mappings from a file and applies them to the storage layer. 
+
+The file must be a JSON file of the following structure: 
+
+```json
+{
+  "index": {
+    "collection": {
+      "properties": {
+        "field1": {},
+        "field2": {},
+        "field...": {}
+      }
+    },
+  }
+}
+```
+
+**Notes:**
+
+* the file may contain as many index and collection descriptions as necessary
+* field definitions follow the [Elasticsearch mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/5.5/mapping.html)
+* Non-existing indexes or collections are automatically created
+* Mappings are loaded sequentially, one index/collection pair at a time. If a failure occurs, Kuzzle immediately interrupts its starting sequence
+* Mappings can be replayed across multiple Kuzzle start sequences, as long as they do not change in-between
+
+
+**Example:**
+
+```json
+{
+  "foo": {
+    "bar": {
+      "properties": {
+        "foobar": {"type": "keyword"},
+        "barfoo": {"type": "integer"}
+      }
+    },
+    "baz": {
+      "properties": {
+        "created": {"type": "date", "format": "strict_date_optional_time||epoch_millis"},
+        "other": {"type": "text"}
+      }
+    }
+  }
+}
+```
+
+### `--fixtures`
+
+Reads documents from a file and loads them in the storage layer.
+
+The file must be a JSON file, of the following format:
+
+```json
+{
+  "index": {
+    "collection": [
+      {"<command>": {}},
+      {"field": "value", "field2": "value", "field...", "value"}
+    ]
+  }
+}
+```
+
+**Notes:**
+
+* the file may contain as many index and collection descriptions as necessary
+* each collection description is an array containing data to load, following the [bulk:import API]({{ site_base_path }}api-documentation/controller-bulk/import/)
+* Non-existing indexes or collections will throw errors
+* Fixtures are loaded sequentially, one index/collection pair at a time. If a failure occurs, Kuzzle immediately interrupts its starting sequence
+
+
+**Example:**
+
+```json
+{
+  "foo": {
+    "bar": [
+      {"index": {}},
+      {"field": "foo", "another_field": 42},
+      {"index": {}},
+      {"field": "foo", "another_field": 42}
+    ],
+    "baz": [
+      {"index": {}},
+      {"bar": "baz", "qux": ["q", "u", "x"]}
+    ]
+  }
+}
+```
