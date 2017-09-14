@@ -14,7 +14,7 @@ title: logout
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/_logout`  
-**Method:** `GET`  
+**Method:** `POST`  
 **Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 </p>
 </blockquote>
