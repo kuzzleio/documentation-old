@@ -20,10 +20,10 @@ For each polygon points, all the possible point notations are valid (see above).
 ```javascript
 {
   points: [
-    [0,0],
+    {latLon: [0,0]},
     {lon: 1, lat: 2},
-    '2,1',
-    's037ms06g'
+    {latLon: '40.71, 70.32'},
+    {latLon: 's037ms06g'}
   ]
 }
 ```
