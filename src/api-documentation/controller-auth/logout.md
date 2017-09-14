@@ -30,7 +30,7 @@ title: logout
 {
   "controller": "auth",
   "action": "logout",
-  "jwt": "<encrypted_jwt_token>"
+  "jwt": "<encrypted_json_web_token>"
 }
 ```
 >**Response**
