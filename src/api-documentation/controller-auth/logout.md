@@ -14,8 +14,8 @@ title: logout
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/_logout`  
-**Method:** `GET`  
-**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
+**Method:** `POST`  
+**Headers:** `Authorization: "Bearer <json_web_token>"`
 </p>
 </blockquote>
 
@@ -30,7 +30,7 @@ title: logout
 {
   "controller": "auth",
   "action": "logout",
-  "jwt": "<encrypted_jwt_token>"
+  "jwt": "<json_web_token>"
 }
 ```
 >**Response**
