@@ -51,6 +51,6 @@ title: create
 }
 ```
 
-When creating a document, Kuzzle will automatically create a collection if needed.
-But in some cases, you may want to create an empty collection directly, prior to storing any document in it.  
+Creates a new [collection]({{ site_base_path }}guide/essentials/persisted) in Kuzzle's persistent storage layer, under the provided data `index`.
+
 This method does nothing if the collection already exists.
