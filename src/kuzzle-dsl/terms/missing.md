@@ -10,7 +10,9 @@ title: missing
 
 A filter matching documents with a missing field.
 
-## Given the following documents:
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -28,7 +30,7 @@ A filter matching documents with a missing field.
 }
 ```
 
-## The following filter validates the second document:
+The following filter validates the second document:
 
 ```javascript
 {

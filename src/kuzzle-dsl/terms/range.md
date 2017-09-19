@@ -20,7 +20,9 @@ The range filter accepts the following parameters:
 
 `lt` Less-than
 
-## Given the following documents:
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -46,13 +48,15 @@ The range filter accepts the following parameters:
 }
 ```
 
-## The following filter validates the last two documents:
+The following filter validates the last two documents:
 
 ```javascript
-range: {
-  age: {
-    gte: 36,
-    lt: 85
+{
+  range: {
+    age: {
+      gte: 36,
+      lt: 85
+    }
   }
 }
 ```

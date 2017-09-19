@@ -10,7 +10,9 @@ title: equals
 
 The `equals` filter matches documents or messages attributes using string equality.
 
-## Given the following documents:
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -23,10 +25,12 @@ The `equals` filter matches documents or messages attributes using string equali
 }
 ```
 
-## The following filter validates the first document:
+The following filter validates the first document:
 
 ```javascript
-equals: {
-  firstName: 'Grace'
+{
+  equals: {
+    firstName: 'Grace'
+  }
 }
 ```
