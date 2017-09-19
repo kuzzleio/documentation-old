@@ -230,4 +230,5 @@ Now that you are started and operational with Kuzzle, you can fully leverage its
 
 * <a href="{{ site_base_path }}sdk-reference">taking a look at the SDK reference</a>;
 * <a href="{{ site_base_path }}kuzzle-dsl">mastering the Kuzzle DSL syntax</a> to create incredibly fine-grained and blazing-fast subscriptions;
-* <a href="{{ site_base_path }}guide/#security">learning how to manage users and set-up fine-grained permission rights</a>.
+* <a href="{{ site_base_path }}guide/essentials/user-authentication/#perform-a-basic-login">learning how to perform a login</a>;
+* <a href="{{ site_base_path }}guide/essentials/security/">learning how to manage users and set-up fine-grained permission rights</a>.
