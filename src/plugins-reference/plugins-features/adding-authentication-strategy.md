@@ -58,10 +58,15 @@ The number of arguments taken by this `verify` function depends on the authentic
 
 Here is the generic signature of the `verify` function you have to implement:
 
-`verify(request, ...)`
+`verify(payload, ...)`
 
-* `request` is the login request made to passport. The object format is `{query: {passport: 'crendentials'}, original: Request}` (see [the `Request` documentation]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request))
+* `payload` is the login request made to passport
 * `...`: varies, depending on the used strategy
+
+The supplied `payload` is a simple JSON object, containing the following attributes:
+* `original`: the [Request object]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) containing the login request
+* `query`: a direct link to `original.input.args`, containing the optional request arguments
+* `body`: a direct link to `original.input.body`, containing the request body content
 
 The function **must** return a `Promise` that resolves to an object that can contain two attributes: `kuid` and `message`. If the user is authenticated, the `kuid` attribute must contain the [kuid]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) of the user, else the `kuid` should be null and the `message` attribute must contain a string giving the reason the user can not be authenticated. The function should reject the Promise if an error occurs (note: an authentication rejection is *not* an error).
 

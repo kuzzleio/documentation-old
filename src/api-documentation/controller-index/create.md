@@ -50,7 +50,4 @@ title: create
 }
 ```
 
-When creating a document or a collection, Kuzzle will automatically create a data index if needed.
-But in some cases, you may want to create an empty index directly, prior to storing any document in it.
-
-Create an `index` in Kuzzle's persistent storage layer.
+Creates a new [index]({{ site_base_path }}guide/essentials/persisted) in Kuzzle's persistent storage layer.
