@@ -180,6 +180,9 @@ handlebars.registerHelper({
   firstDefinedOf: function (...args) {
     return args.find(a => a);
   },
+  currentYear: function () {
+    return new Date().getFullYear();
+  },
   dateToISO: function(d) {
     if (d instanceof Date) {
       return d.toISOString();
