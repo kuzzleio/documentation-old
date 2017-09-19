@@ -12,7 +12,8 @@ Filter documents containing a geographical point, confined within a polygon of a
 
 ![Illustration of geoPolygon]({{ site_base_path }}assets/images/geolocation/geoPolygon.png)
 
-A `geoPolygon` filter is described using a `points` array, containing an arbitrary number of [geopoints]({{ site_base_path }}kuzzle-dsl/essential/geopoints/) (at least 3). 
+A `geoPolygon` filter is described using a `points` array, containing an arbitrary number of [geopoints]({{ site_base_path }}kuzzle-dsl/essential/geopoints/) (at least 3).  
+Koncorde automatically closes geopolygons.
 
 Different geopoint formats can be used to describe different corners of a polygon.
 
