@@ -2,6 +2,6 @@
 layout: category-members.html
 algolia: true
 title: Filter terms
-description: filter your queries with terms
+description: Filtering terms rundown
 order: 100
 ---
