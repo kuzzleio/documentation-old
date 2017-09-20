@@ -26,7 +26,7 @@ var kuzzle = new Kuzzle('localhost', () => {
       username: 'admin',
       password: 'test'
     })
-    .then(kuzzle => {
+    .then(() => {
       console.log('logged!')
     })
     .catch(err => {

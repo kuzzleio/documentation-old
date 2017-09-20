@@ -134,8 +134,7 @@ Append the following instructions after the Promise returned by `collection().cr
 kuzzle
   .createIndexPromise('playground')
   .then(() => kuzzle.collection('mycollection').createPromise())
-  .then(() => kuzzle
-    .collection('mycollection')
+  .then((collection) => collection
     .createDocumentPromise({
         message: 'Hello, World!'
     })
