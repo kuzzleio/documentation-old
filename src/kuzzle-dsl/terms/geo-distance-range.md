@@ -8,11 +8,19 @@ title: geoDistanceRange
 
 {{{since "1.0.0"}}}
 
-Filter documents having their location field within a distance range from a given point of origin.
+Filter documents containing a geographical point, whose position is within a distance range from a given point of origin:
 
 ![Illustration of geoDistanceRange]({{ site_base_path }}assets/images/geolocation/geoDistanceRange.png)
 
-## Given the following documents:
+A `geoDistanceRange` filter contains the following properties:
+
+* a [geopoint]({{ site_base_path }}kuzzle-dsl/essential/geopoints/) defining the center point of the distance range. This geopoint attribute must be named after the geographical point to test in future documents
+* a `from` attribute, describing the minimum distance from the center point, using a [geodistance format]({{ site_base_path }}kuzzle-dsl/essential/geodistances/)
+* a `to` attribute, describing the maximum distance from the center point, using a [geodistance format]({{ site_base_path }}kuzzle-dsl/essential/geodistances/)
+
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -33,15 +41,14 @@ Filter documents having their location field within a distance range from a give
 }
 ```
 
-## The following filter will match the second document only:
+The following filter will match the second document only:
 
 ```javascript
-geoDistanceRange: {
-  location: {
-    lat: 51.5029017,
-    lon: -0.1606903
-  },
-  from: '1km',
-  to: '10km'
+{
+  geoDistanceRange: {
+    location: [51.5029017, -0.1606903],
+    from: '1km',
+    to: '10 kilometers'
+  }
 }
 ```

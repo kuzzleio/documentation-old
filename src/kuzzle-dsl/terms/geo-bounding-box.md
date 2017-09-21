@@ -8,93 +8,57 @@ title: geoBoundingBox
 
 {{{since "1.0.0"}}}
 
-Filter documents having their location field within a bounding box.
-
-A bounding box is a 2D box that can be defined using:
-
-1. 2 points coordinates tuples, defining the top left and bottom right corners of the box
-2. 4 values defining the 4 box sides: ```top``` and ```bottom``` are latitudes, and ```left``` and ```right``` are longitudes
-
-### All of these representations are defining the same bounding box:
-
-```javascript
-{
-  top: -74.1,
-  left: 40.73,
-  bottom: -71.12,
-  right: 40.01
-}
-```
-
-```javascript
-{
-  topLeft: { lat: 40.73, lon: -74.1 },
-  bottomRight: { lat: 40.01, lon: -71.12 }
-}
-```
-
-```javascript
-{
-  top_left: { lat: 40.73, lon: -74.1 },
-  bottom_right: { lat: 40.01, lon: -71.12 }
-}
-```
-
-<aside class="note">
-When cooddinates are in array format, the format is [lon, lat] to comply with <a href="http://geojson.org/">GeoJSON</a>
-</aside>
-
-```javascript
-{
-  topLeft: [ -74.1, 40.73 ],
-  bottomRight: [ -71.12, 40.01 ]
-}
-```
-
-```javascript
-{
-  top_left: [ -74.1, 40.73 ],
-  bottom_right: [ -71.12, 40.01 ]
-}
-```
-
-<aside class="note">
-As a string, the coordinates format is "lat, lon"
-</aside>
-
-```javascript
-{
-  topLeft: "40.73, -74.1",
-  bottomRight: "40.01, -71.12"
-}
-```
-
-```javascript
-{
-  top_left: "40.73, -74.1",
-  bottom_right: "40.01, -71.12"
-}
-```
-
-### Here is the [geoHash](https://en.wikipedia.org/wiki/Geohash) representation
-
-```javascript
-{
-  topLeft: "dr5r9ydj2",
-  bottomRight: "drj7teegp"
-}
-```
-
-```javascript
-{
-  top_left: "dr5r9ydj2",
-  bottom_right: "drj7teegp"
-}
-```
+Filter documents containing a geographical point confined within a bounding box:
 
 ![Illustration of geoBoundingBox]({{ site_base_path }}assets/images/geolocation/geoBoundingBox.png)
 
-## Given the following documents:
+A bounding box is a 2D box that can be defined using either of the following formats:
+
+* 2 [geopoints]({{ site_base_path }}kuzzle-dsl/essential/geopoints/), defining the top left (`topLeft` or `top_left`) and bottom right (`bottomRight` or `bottom_right`) corners of the box
+* 4 distinct values defining the 4 box corners: `top` and `bottom` are latitudes, `left` and `right` are longitudes
+
+The bounding box description must be stored in an attribute, named after the geographical point to be tested in future documents.
+
+## Format examples
+
+All of the following filter examples test for a geographical point named `point`, whose coordinates should be in a bounding box with the following properties:
+
+* top-left corner of latitude `43.5810609` and longitude `3.8433703`
+* bottom-right corner of latitude `43.6331979` and longitude `3.9282093`
+
+
+```javascript
+{
+  point: {
+    top: 43.5810609,
+    left: 3.8433703,
+    bottom: 43.6331979,
+    right: 3.9282093
+  }
+}
+```
+
+```javascript
+{
+  point: {
+    topLeft: { lat: 43.5810609, lon: 3.8433703 },
+    bottomRight: { lat: 43.6331979, lon: 3.9282093 }
+  }
+}
+```
+
+```javascript
+{
+  point: {
+    top_left: "43.5810609, 3.8433703",
+    bottom_right: "43.6331979, 3.9282093"
+  }
+}
+```
+
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -115,15 +79,17 @@ As a string, the coordinates format is "lat, lon"
 }
 ```
 
-## The following filter will match the second document only:
+The following filter will match the second document only:
 
 ```javascript
-geoBoundingBox: {
-  location: {
-    top: -2.939744,
-    left: 52.394484,
-    bottom: 1.180129,
-    right: 51.143628
+{
+  geoBoundingBox: {
+    location: {
+      top: -2.939744,
+      left: 52.394484,
+      bottom: 1.180129,
+      right: 51.143628
+    }
   }
 }
 ```

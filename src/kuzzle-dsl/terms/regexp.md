@@ -13,12 +13,12 @@ You can test only 1 attribute per `regexp` filter.
 
 A `regexp` filter has the following structure, splitting the usual `/pattern/flags` into two parts:
 
-```json
+```javascript
 {
-  "regexp": {
-    "attributeToTest": {
-      "value": "search pattern",
-      "flags": "modifier flags"
+  regexp: {
+    attributeToTest: {
+      value: 'search pattern',
+      flags: 'modifier flags'
     }
   }
 }
@@ -26,15 +26,17 @@ A `regexp` filter has the following structure, splitting the usual `/pattern/fla
 
 Or, if you don't wish to add any modifier flags:
 
-```json
+```javascript
 {
-  "regexp": {
-    "attributeToTest": "search pattern"
+  regexp: {
+    attributeToTest: 'search pattern'
   }
 }
 ```
 
-## Given the following documents:
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -47,13 +49,15 @@ Or, if you don't wish to add any modifier flags:
 }
 ```
 
-## The following filter validates the first document:
+The following filter validates the first document:
 
 ```javascript
-regexp: {
-  firstName: {
-    value: '^g\w+',
-    flags: 'i'
+{
+  regexp: {
+    firstName: {
+      value: '^g\w+',
+      flags: 'i'
+    }
   }
 }
 ```

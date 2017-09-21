@@ -10,7 +10,9 @@ title: exists
 
 The `exists` filter matches documents containing non-null fields.
 
-## Given the following documents:
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -28,7 +30,7 @@ The `exists` filter matches documents containing non-null fields.
 }
 ```
 
-## The following filter validates the first document:
+The following filter validates the first document:
 
 ```javascript
 {
