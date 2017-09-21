@@ -9,6 +9,43 @@ order: 750
 
 Once [roles and profiles]({{ site_base_path }}guide/essentials/security) have been set, you can create users and allow them to authenticate themselves in different ways.
 
+## Perform a basic login
+
+The most simple way you can login to Kuzzle is via the `local` strategy, using the SDK. We'll use the NodeJS SDK here, but the process is similar for other languages.
+
+If you have no users in your Kuzzle Backend yet, you can read the documentation on [how to configure it for security]({{ site_base_path }}guide/essentials/security), or [create your first administrator using the backoffice](http://kuzzle-backoffice.netlify.com) (you don't even have to install it, it's available online).
+
+Create a `login.js` file, NPM-install the Kuzzle SDK and start coding:
+
+```javascript
+var Kuzzle = require('kuzzle-sdk')
+
+var kuzzle = new Kuzzle('localhost', () => {
+  kuzzle
+    .loginPromise('local', {
+      username: 'admin',
+      password: 'test'
+    })
+    .then(() => {
+      console.log('logged!')
+    })
+    .catch(err => {
+      console.error(err.message)
+    })
+})
+
+```
+
+Assuming that you have an `admin` user with `test` password in your Kuzzle Backoffice, the code above does the following:
+* loads the `Kuzzle` SDK from it NPM package,
+* instantiates the SDK by connecting it to the Kuzzle Backoffice running on `localhost`,
+* _after the SDK connected to Kuzzle Backend_, it performs a login for the `admin` user,
+* displays to console a success message or an error message whether the login has succeeded or failed.
+
+<aside class="notice">
+  It's very important that the `login` code executes after the SDK has successfully connected to the backend, since `login` is not a queuable method (queuable methods can be called before the SDK is connected to the backend and are automatically played once the connection is established). That's why we put all the `login` code in the constructor's callback.
+</aside>
+
 ---
 
 ## Authentication strategy

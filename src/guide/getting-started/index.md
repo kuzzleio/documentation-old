@@ -91,7 +91,7 @@ Before proceeding, ensure that your system matches the following requisites:
 * A fairly recent version of **NodeJS** (i.e. v6+) should be installed on your system (<a href="https://nodejs.org/en/download/">instructions here</a>),
 * A Kuzzle server up and running.
 
-### Create your first "Hello World" document
+### Prepare your environment
 
 Create your playground directory and install the [Javascript SDK]({{ site_base_path }}sdk-reference) from the command line using npm:
 
@@ -103,27 +103,54 @@ cd "kuzzle-playground"
 npm install kuzzle-sdk
 ```
 
-Save the following JS code in the new `create.js` file:
+Then, create a `create.js` file and start coding:
 
 ```javascript
 var Kuzzle = require('kuzzle-sdk')
 
 // connect to the Kuzzle server
 var kuzzle = new Kuzzle('localhost', {
-    defaultIndex: 'playground'
+  defaultIndex: 'playground'
+})
+
+kuzzle
+  .createIndexPromise('playground')
+  .then(() => kuzzle.collection('mycollection').createPromise());
+```
+
+This code does the following:
+* loads the `Kuzzle` SDK from its NPM package,
+* creates an instance of the SDK and connects it to the Kuzzle Backoffice running on `localhost` (and selects the `playground` as default index),
+* creates the `playground` index,
+* creates the `mycollection` collection (within the `playground` index).
+
+You're now ready to say Hello to the World!
+
+### Create your first "Hello World" document
+
+Append the following instructions after the Promise returned by `collection().createPromise` resolved
+
+```javascript
+kuzzle
+  .createIndexPromise('playground')
+  .then(() => kuzzle.collection('mycollection').createPromise())
+  .then((collection) => collection
+    .createDocumentPromise({
+        message: 'Hello, World!'
+    })
+  .then(res => {
+    console.log('the document has been successfully created')
+  })
+  .catch(err => {
+    console.error(err.message)
   })
 
-// get a reference to the a collection
-var collection = kuzzle.collection('mycollection')
-
-// define the document itself
-var document = {
-    message: 'Hello, world!'
-}
-
-// persist the document into the collection
-collection.createDocument(document)
 ```
+
+This code adds the following actions to the previous one:
+* creates a new document containing a message saying "Hello, World" in `mycollection` within the `playground` index,
+* logs a success message to the console if everything went fine,
+* logs an error message if any of the previous actions failed.
 
 Run your file in NodeJS
 
@@ -202,4 +229,5 @@ Now that you are started and operational with Kuzzle, you can fully leverage its
 
 * <a href="{{ site_base_path }}sdk-reference">taking a look at the SDK reference</a>;
 * <a href="{{ site_base_path }}kuzzle-dsl">mastering the Kuzzle DSL syntax</a> to create incredibly fine-grained and blazing-fast subscriptions;
-* <a href="{{ site_base_path }}guide/#security">learning how to manage users and set-up fine-grained permission rights</a>.
+* <a href="{{ site_base_path }}guide/essentials/user-authentication/#perform-a-basic-login">learning how to perform a login</a>;
+* <a href="{{ site_base_path }}guide/essentials/security/">learning how to manage users and set-up fine-grained permission rights</a>.
