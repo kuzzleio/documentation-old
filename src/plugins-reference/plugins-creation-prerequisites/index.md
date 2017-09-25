@@ -60,20 +60,23 @@ Where:
 |---------|------|---------------|-----------------------------|
 | `killTimeout` | `unsigned integer` | `6000 ` | (if `threads` > 0) Time (in milliseconds) to wait for a plugin to shut down before killing it |
 | `maxMemoryRestart` | `string` | `1G` | (if `threads` > 0) Maximum memory usage of a worker plugin. If exceeded, the plugin is restarted. <br>Examples: `10K` (10KB), `200M` (200MB), `3G` (3GB)|
-|`threads`|`unsigned integer`|`0`| If > 0, the plugin will be treated as a worker plugin (see below) |
 
 ---
 
 ## Plugin init function
 
-Plugins must expose a `init` function.
+Plugins must expose a `init` function. If it's missing, Kuzzle will refuse to start.  
+This method is called by Kuzzle during startup, and should be used to initialize the plugin:
 
-Kuzzle calls the `init` function at startup, during initialization, and ignores any plugin without this function exposed.
-
-Expected arguments:
-`function (config, context)`
+`init (config, context) { /* ... */ }`
 
 Where:
 
 * ``config`` (JSON Object): JSON object containing the custom plugin configuration
 * ``context`` (JSON Object): the [plugin context]({{ site_base_path }}plugins-reference/plugins-context)
+
+
+The `init` function may:
+
+* throw an error: Kuzzle will properly shutdown if it does so
+* return a Promise, if async tasks need to be performed. If so, please note that if plugins does not resolve (or reject) the returned Promise within the configured `plugins.common.initTimeout` parameter (see [Configuring Kuzzle]({{ site_base_path }}guide/essentials/configuration/)), then Kuzzle will shut itself down with a timeout error
