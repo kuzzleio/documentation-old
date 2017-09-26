@@ -43,6 +43,7 @@ title: publish
   "collection": "<collection>",
   "controller": "realtime",
   "action": "publish",
+  "volatile": {},
   "body": {}
 }
 ```
