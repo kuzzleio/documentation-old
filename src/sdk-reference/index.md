@@ -19,11 +19,12 @@ All you need is to download one of the available SDK and start coding!
         <div class="sdk-logos">
             <img src="{{ site_base_path }}assets/images/javascript-logo.png" link-exclude>
             <img src="{{ site_base_path }}assets/images/react-logo.png" link-exclude>
-            <img src="{{ site_base_path }}assets/images/cordova-logo.png" link-exclude>        
+            <img src="{{ site_base_path }}assets/images/cordova-logo.png" link-exclude>      
         </div><!--
         --><div class="sdk-sources">
             <ul class="sdk-sources-list">
                 <li><strong>NPM</strong> <code>npm install kuzzle-sdk</code></li>
+                <li><strong>Yarn</strong> <code>yarn add kuzzle-sdk</code></li>
                 <li><strong>CDN</strong> <code><a href="https://cdn.rawgit.com/kuzzleio/sdk-javascript/master/dist/kuzzle.js" link-exclude>https://cdn.rawgit.com/kuzzleio/sdk-javascript/master/dist/kuzzle.js</a></code></li>
                 <li><strong>GitHub</strong> <code>git clone git@github.com:kuzzleio/sdk-javascript.git</code></li>
             </ul>
