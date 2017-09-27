@@ -716,7 +716,7 @@ html, body {
 
     padding-bottom: 40px;
 
-    a[href^="http"]::after {
+    a[href^="http"]:not([link-exclude])::after {
       content: "";
       display: inline-block;
       width: 13px;
@@ -2122,4 +2122,42 @@ header {
   color: #afafaf;
   font-size: 12px;
   padding: 15px;
+}
+
+////////////////////////////////////////
+// SDK List in SDK Reference homepage //
+////////////////////////////////////////
+ul.sdk-list {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 25px !important;
+
+  li.sdk-item {
+    h2 {
+      margin-top: 15px;
+      border-left: none;
+      border-bottom: 1px solid #DDD;
+    }
+
+    img {
+      height: 45px;
+    }
+
+    .sdk-logos {
+      vertical-align: top;
+      width: 30%;
+      display: inline-block;
+      padding: 15px 0 0 10px;
+    }
+
+    .sdk-sources {
+      width: 70%;
+      display: inline-block;
+    }
+
+    .sdk-sources-list {
+      padding-top: 10px;
+      list-style-type: none;
+    }
+  }
 }

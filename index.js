@@ -261,7 +261,7 @@ const build = done => {
   metalsmith
     .use(hljs())
     .use(hbtmd(handlebars, {
-        pattern: '**/*.md'
+      pattern: '**/*.md'
     }))
     .use(markdown())
     .use(permalinks())
