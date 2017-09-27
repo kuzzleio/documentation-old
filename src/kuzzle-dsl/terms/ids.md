@@ -10,7 +10,9 @@ title: ids
 
 This filter returns only documents having their unique document ID listed in the provided list.
 
-## Given the following documents:
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -30,10 +32,12 @@ This filter returns only documents having their unique document ID listed in the
 }
 ```
 
-## The following filter validates first document:
+The following filter validates first document:
 
 ```javascript
-ids: {
-  values: ['a']
+{
+  ids: {
+    values: ['a']
+  }
 }
 ```

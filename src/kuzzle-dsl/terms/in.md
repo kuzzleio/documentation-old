@@ -8,9 +8,11 @@ title: in
 
 {{{since "1.0.0"}}}
 
-This filter allows testing a string field against multiple possibilities.
+This filter allows testing a string field against multiple values.
 
-## Given the following documents:
+## Example
+
+Given the following documents:
 
 ```javascript
 {
@@ -27,10 +29,12 @@ This filter allows testing a string field against multiple possibilities.
 }
 ```
 
-## The following filter validates the first two documents:
+The following filter validates the first two documents:
 
 ```javascript
-in: {
-  firstName: ['Grace', 'Ada']
+{
+  in: {
+    firstName: ['Grace', 'Ada']
+  }
 }
 ```

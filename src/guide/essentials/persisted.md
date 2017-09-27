@@ -29,12 +29,95 @@ This is why Kuzzle API handles `_id` and `_source` arguments separately, as the 
 
 ---
 
+## Creating a new index and a new collection
+
+Before continuing this tutorial, we need to [**create a new index**]({{ site_base_path }}api-documentation/controller-index/create/) to store collections. We will call it `myindex`.
+
+To create a new index, we only need to send the following `POST` request to the API endpoint (no body is necessary): `http://localhost:7512/myindex/_create`
+
+Here is Kuzzle's response:
+
+```json
+{
+    "requestId": "<random unique request id>",
+    "status": 200,
+    "error": null,
+    "controller": "index",
+    "action": "create",
+    "collection": null,
+    "index": "myindex",
+    "volatile": null,
+    "result": {
+        "acknowledged": true,
+        "shards_acknowledged": true
+    }
+}
+```
+
+Next, we need to [**create a new collection**]({{ site_base_path }}/api-documentation/controller-collection/create/) under that new index, to hold documents. We will call this new collection `mycollection`.
+
+To do so, we need to send the following `PUT` request: `http://localhost:7512/myindex/mycollection`
+
+Response:
+
+```json
+{
+    "requestId": "<random unique request id>",
+    "status": 200,
+    "error": null,
+    "controller": "collection",
+    "action": "create",
+    "collection": "mycollection",
+    "index": "myindex",
+    "volatile": null,
+    "result": {
+        "acknowledged": true
+    }
+}
+```
+
+**Note:** we just created a new collection, without any field mapping. The database layer will automatically create a mapping for new fields, by trying to infer the best datatype according to the supplied field data. Since a mapping cannot be changed once created, it's strongly advised to [**update the collection mappings**]({{ site_base_path }}guide/essentials/persisted/#document-mapping) as soon as the collection has been created. For now, we will continue this tutorial with automatic field mappings.
+
+--- 
+
+## Getting a list of existing collections
+
+You may ask Kuzzle for a [**list of collections**]({{ site_base_path }}api-documentation/controller-collection/list) in a given index. Let's try to list collections created under the `myindex` index, by sending a `GET` request to `http://localhost:7512/myindex/_list`.
+
+```json
+{
+  "status": 200,
+  "error": null,
+  "requestId": "<random unique request id>",
+  "controller": "collection",
+  "action": "list",
+  "collection": null,
+  "index": "myindex",
+  "volatile": null,
+  "headers": {},
+  "result": {
+    "collections": [
+      {
+        "name": "mycollection",
+        "type": "stored"
+      }
+    ],
+    "type": "all"
+  }
+}
+```
+
+The `result` field in the response contains an array of `collections`, each one defined by a `name` and a `type`.  
+Since we created `mycollection`, its type is `stored` (which stands for persistent). This is made to distinguish persisted collections from the virtual ones, used as channels for `realtime` (or volatile) [real-time messages]({{ site_base_path }}guide/essentials/real-time).
+
+---
+
 ## Document CRUD
 
 Kuzzle ships with a full data [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) API that enables you to operate in many ways on your documents.
 
-Let's [**create a new document**]({{ site_base_path }}api-documentation/controller-document/create), for example, in `mycollection`, within `myindex` via the HTTP protocol.
-This is done by sending a `POST` request to the API endpoint `http://localhost:7512/myindex/mycollection/_create` with the body set to
+Let's [**create a new document**]({{ site_base_path }}api-documentation/controller-document/create) in our newly created collection `mycollection`, within the `myindex` index.  
+This is done by sending a `POST` request to the API endpoint `http://localhost:7512/myindex/mycollection/_create`, with the document's content as the request body:
 
 ```json
 {
@@ -48,7 +131,7 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
 {
   "status": 200,
   "error": null,
-  "requestId": "38d08fa9-449d-47f7-8593-dc136f8b3559",
+  "requestId": "<random unique request id>",
   "controller": "document",
   "action": "create",
   "collection": "mycollection",
@@ -85,33 +168,6 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
 
 Take some time to examine the content of a [Kuzzle Response]({{ site_base_path }}guide/essentials/request-and-response-format/#status-codes). You may notice that it contains useful information like the name of the controller and action that correspond to the HTTP route we hit with our request, or the complete KuzzleDocument object we just created.
 
-One more thing you may notice is that `myindex` and `mycollection` are created on-the-fly along with the document. Let's verify it by [**getting the list of collections**]({{ site_base_path }}api-documentation/controller-collection/list) stored in `myindex` by sending a `GET` request to `http://localhost:7512/myindex/_list`.
-
-```json
-{
-  "status": 200,
-  "error": null,
-  "requestId": "51b276c3-3698-4412-b3dc-80d0f84541fb",
-  "controller": "collection",
-  "action": "list",
-  "collection": null,
-  "index": "myindex",
-  "volatile": null,
-  "headers": {},
-  "result": {
-    "collections": [
-      {
-        "name": "mycollection",
-        "type": "stored"
-      }
-    ],
-    "type": "all"
-  }
-}
-```
-
-Take a look at the `result` field in the Response from Kuzzle. It contains an array of `collections`, each one defined by a `name` and a `type`. `mycollection` is of type `stored` (which stands for persistent). This is made to distinguish persisted collection from the `realtime` (or volatile) collections, used to identify [real-time documents]({{ site_base_path }}guide/essentials/real-time).
-
 Let's [**modify to our brand new document**]({{ site_base_path }}api-documentation/controller-document/update) by sending a `PUT` request to `http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0/_update` with the body set to:
 
 ```json
@@ -121,7 +177,7 @@ Let's [**modify to our brand new document**]({{ site_base_path }}api-documentati
 }
 ```
 
-Which gives us the response...
+Which gives us the following response:
 
 ```json
 {
@@ -149,8 +205,6 @@ Which gives us the response...
 }
 ```
 
-...telling us that the document has been successfully updated.
-
 Now, we'll let you figure out what happens when we send a `DELETE` request to `http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0` with an empty body (take a look at the [API Reference]({{ site_base_path }}api-documentation/controller-document/delete) if you don't want to try).
 
 ---
@@ -165,7 +219,7 @@ Say we want to [**find**]({{ site_base_path }}api-documentation/controller-docum
 {
   "status": 200,
   "error": null,
-  "requestId": "3b486d49-f1f9-4595-8c10-b63cc5fc1279",
+  "requestId": "<random unique request id>",
   "controller": "document",
   "action": "search",
   "collection": "mycollection",
@@ -257,7 +311,7 @@ Which gives, as a result, the following response:
 {
   "status": 200,
   "error": null,
-  "requestId": "e00cf6d6-8983-498b-8481-96a1fe1b5d46",
+  "requestId": "<random unique request id>",
   "controller": "document",
   "action": "search",
   "collection": "mycollection",
@@ -352,7 +406,7 @@ Which gives, as a result, the following response:
 {
   "status": 200,
   "error": null,
-  "requestId": "e00cf6d6-8983-498b-8481-96a1fe1b5d46",
+  "requestId": "<random unique request id>",
   "controller": "document",
   "action": "search",
   "collection": "mycollection",
@@ -396,8 +450,7 @@ Which gives, as a result, the following response:
 
 ## Document mapping
 
-As previously said, Kuzzle relies on Elasticsearch to persist documents. Elasticsearch uses a mapping internally to match
-a document field to a field type. This mapping is attached to a `collection` (a `type` in Elasticsearch terminology).
+As previously said, Kuzzle relies on Elasticsearch to persist documents. Elasticsearch uses a mapping internally to match a document field to a field type. This mapping is attached to a `collection` (a `type` in Elasticsearch terminology).
 If no mapping is defined, Elasticsearch will infer it automatically from input documents.
 
 ou may want to define mappings manually, especially to provide more details to Elasticsearch on how it should interpret the documents stored in your collections.
@@ -414,7 +467,7 @@ This is done by sending a `PUT` request to the API endpoint `http://localhost:75
 }
 ```
 
-Which gives us the response...
+Which gives us the following response:
 
 ```json
 {
@@ -424,7 +477,7 @@ Which gives us the response...
   "error": null,
   "index": "myindex",
   "volatile": null,
-  "requestId": "8acca50e-592d-4f0d-962c-31719b11e171",
+  "requestId": "<random unique request id>",
   "result": {
     "acknowledged": true
   },

@@ -13,7 +13,6 @@ title: createRestrictedUser
 {{{since "1.0.0"}}}
 
 
-
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/users/<kuid>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`  
@@ -35,7 +34,7 @@ title: createRestrictedUser
   }
 }
 
-// example with a "local" authentication
+// example with the "local" authentication strategy
 
 {
   "content": {
@@ -121,12 +120,12 @@ title: createRestrictedUser
 }
 ```
 
-Creates a new `user` in Kuzzle's database layer.
+Creates a new `user` in Kuzzle, with a preset list of profiles.  
+The list of profiles is fixed, and needs to be configured in [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration/) (see `security.restrictedProfileIds` in `.kuzzlerc.sample`).
 
-If an `_id` is provided in the query and if a `user` already exists with the given `_id`, an error is returned.
+Correctly configured, this route allows users with limited rights to create other accounts, without risk for them to create accounts with unwanted privileges (e.g. an anonymous user creating his own account to register on an application).
+
+If a `user` already exists with the provided `_id`, an error is returned.  
 If not provided, the `_id` will be auto-generated.
 
-Profile ids are set accordingly to the Kuzzle configuration.
-This route is especially useful to allow anonymous users to create a user.
-
-Other mandatory additional information are needed in the `credentials` attribute depending on the installed authentication plugins you want to use.
+Other required information may be needed in the `credentials` attribute. Consult the corresponding authentication strategy plugin documentation for more information.
