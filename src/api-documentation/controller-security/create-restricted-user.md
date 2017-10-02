@@ -56,14 +56,15 @@ title: createRestrictedUser
 </p>
 </blockquote>
 
-```json
+```js
 {
   "controller": "security",
   "action": "createRestrictedUser",
-  "_id": "<kuid>",                           
+  "_id": "<kuid>",
   "body": {
     "content": {
-      "name": "John Doe",    
+      "name": "John Doe",                     // Additional optional User properties
+      ...
     },
     "credentials": {
       "strategy-name": {
@@ -71,22 +72,22 @@ title: createRestrictedUser
     }
   }
 }
-```
 
-```json
+// example with the "local" authentication strategy
+
 {
   "controller": "security",
   "action": "createRestrictedUser",
-  "_id": "<kuid>",                        
+  "_id": "<kuid>",
   "body": {
     "content": {
-      "profileIds": ["<profileId>"],   
-      "name": "John Doe",                 
+      "name": "John Doe",                     // Additional optional User properties
+      ...
     },
     "credentials": {
       "local": {
-        "username": "MyUser",
-        "password": "MyPassword"
+        "username": "MyUser"                  // ie: Mandatory for "local" authentication plugin
+        "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
       }
     }
   }
