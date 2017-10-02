@@ -22,13 +22,15 @@ const compress    = require('metalsmith-gzip');
 const optipng     = require('metalsmith-optipng');
 const sitemap     = require('metalsmith-sitemap');
 const htmlMin     = require('metalsmith-html-minifier');
+const algolia     = require('metalsmith-algolia');
+const jsPacker    = require('metalsmith-js-packer');
+const cssPacker   = require('metalsmith-css-packer');
+
 const logger      = require('./metalsmith-plugins/logger');
 const metatoc     = require('./metalsmith-plugins/metatoc');
 const languageTab = require('./metalsmith-plugins/language-tab');
-const algolia     = require('./metalsmith-plugins/algolia');
 const clickImage  = require('./metalsmith-plugins/clickable-images');
 const saveSrc     = require('./metalsmith-plugins/save-src');
-const jsPacker    = require('./metalsmith-plugins/js-packer');
 
 const nodeStatic = require('node-static');
 const watch = require('glob-watcher');
@@ -274,8 +276,12 @@ const build = done => {
         r.handlebars = handlebars
       }
     }))
+    .use(cssPacker({
+      siteRootPath: options.build.path,
+      inline: true
+    }))
     .use(jsPacker({
-      pathPrefix: options.build.path,
+      siteRootPath: options.build.path,
       inline: false
     }))
     .use(clickImage())

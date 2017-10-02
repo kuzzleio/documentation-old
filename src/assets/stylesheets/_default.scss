@@ -2124,6 +2124,11 @@ header {
   padding: 15px;
 }
 
+.content pre code a {
+  color: inherit;
+  font-size: inherit !important;
+}
+
 ////////////////////////////////////////
 // SDK List in SDK Reference homepage //
 ////////////////////////////////////////

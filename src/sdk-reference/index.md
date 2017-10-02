@@ -37,7 +37,7 @@ All you need is to download one of the available SDK and start coding!
         </div><!--
         --><div class="sdk-sources">
             <ul class="sdk-sources-list">
-                <li><strong>Maven</strong> <code><a href="http://dl.bintray.com/kblondel/maven/" link-exclude>http://dl.bintray.com/kblondel/maven/</a></code></li>
+                <li><strong>Maven</strong> <code><a href="http://dl.bintray.com/kblondel/maven/" link-exclude>http://dl.bintray.com/kuzzle/maven/</a></code></li>
                 <li><strong>Gradle</strong> <code>compile 'io.kuzzle:sdk-android:3.0.2'</code></li>
                 <li><strong>GitHub</strong> <code>git clone git@github.com:kuzzleio/sdk-android.git</code></li>
             </ul>
