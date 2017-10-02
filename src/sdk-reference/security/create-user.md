@@ -11,19 +11,22 @@ title: createUser
 # createUser
 
 ```js
-var userContent = {
+var user = {
   content: {
-    // A "profile" field is required to bind a user to an existing profile
+    // A "profileIds" field is required to bind a user to existing profiles
     profileIds: ['admin'],
+
+    // Additional information may be provided
     firstname: 'John',
     lastname: 'Doe'
   },
   credentials: {
-    local: {
-      // The "local" authentication strategy requires a password
-      password: 'secretPassword',
-      // You can also set custom fields to your user
-      lastLoggedIn: 1494411803
+    // Authentication strategy to use
+    "local": {
+      // The necessary information to provide vary,
+      // depending on the chosen authentication strategy
+      "username": "jdoe",
+      "password": "secret password"
     }
   }
 };
@@ -34,22 +37,22 @@ var options = {};
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .createUser('myuser', userContent, options, function(error, response) {
+  .createUser('myuser', user, options, function(error, response) {
     // result is a User object
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
-  .createUserPromise('myuser', userContent, options)
-  .then((response) => {
+  .createUserPromise('myuser', user, options)
+  .then(response => {
     // result is a User object
   });
 ```
 
 ```java
 JSONObject content = new JSONObject()
-  // A "profile" field is required to bind a user to existing profiles
+  // A "profileIds" field is required to bind a user to existing profiles
   .put("profileIds", new JSONArray()
     .put("admin")
   )
@@ -60,10 +63,12 @@ JSONObject content = new JSONObject()
 JSONObject newUser = new JSONObject().put("content", content);
 
 JSONObject credentials = new JSONObject()
+  // Authentication strategy to use
   .put("local", new JSONObject()
-    // The "local" authentication strategy requires a password
+    // The necessary information to provide vary,
+    // depending on the chosen authentication strategy
     .put("password", "secret password")
-    .put("lastLoggedIn", 1494411803)
+    .put("username", "jdoe")
   );
 
 newUser.put("credentials", credentials);
@@ -94,17 +99,19 @@ use \Kuzzle\Security\User;
 $kuid = 'myUser';
 $userDefinition = [
     'content' => [
-      // A "profile" field is required to bind a user to an existing profile
+      // A "profileIds" field is required to bind a user to existing profiles
       'profileIds' => ['admin'],
       // You can also set custom fields to your user
       'firstname' => 'John',
       'lastname' => 'Doe'
     ],
     'credentials' => [
+      // Authentication strategy to use
       'local' => [
-        // The "local" authentication strategy requires a password
-        'password' => 'secretPassword',
-        'lastLoggedIn' => 1494411803
+        // The necessary information to provide vary,
+        // depending on the chosen authentication strategy
+        'password' => 'secret password',
+        'username' => 'jdoe'
       ]
     ]
   ];
@@ -126,19 +133,29 @@ Create a new user in Kuzzle.
 
 <aside class="notice">
 There is a small delay between user creation and their creation in our search layer, usually a couple of seconds.
-That means that a user that was just been created will not be returned by <code>searchUsers</code> function
+That means that a user that was just been created will not be returned by <code>searchUsers</code> right away
 </aside>
 
 ---
 
-## createUser(id, content, [options], [callback])
+## createUser(id, user, [options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``id`` | string | Unique user identifier, will be used as username |
-| ``content`` | JSON Object | A plain JSON object representing the user |
+| ``id`` | string | [Unique user identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) |
+| ``user`` | JSON Object | A plain JSON object representing the user (see below) |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | Callback handling the response |
+
+
+The `user` object to provide must have the following properties:
+
+* `content` (JSON object): user global properties
+  * This object must contain a `profileIds` properties, an array of strings listing the [profiles]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles) to be attached to the new user 
+  * Any other property will be copied as additional global user information
+* `credentials` (JSON object): a description of how the new user can authentify himself to Kuzzle
+  * Any number of credentials can be added, each one being an object whose name is the one of the [authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies) that can be used for authentification, and its content the necessary login information for that user
+  * If that object is left empty, the described user will be created by Kuzzle but (s)he  won't be able to log in
 
 ---
 
