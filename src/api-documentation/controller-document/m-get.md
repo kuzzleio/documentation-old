@@ -13,7 +13,7 @@ title: mGet
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_mGet`  
+**URL:** `http://kuzzle:7512/<index>/<collection>/_mGet[?includeTrash=<boolean>]`  
 **Method:** `POST`  
 **Body:**
 </p>
@@ -22,7 +22,10 @@ title: mGet
 
 ```js
 {
-  "ids": ["<documentId>", "<anotherDocumentId>", ...]
+  "ids": ["<documentId>", "<anotherDocumentId>", ...],
+
+  // Optional arguments
+  "includeTrash": false
 }
 ```
 
@@ -109,3 +112,7 @@ Given `document ids`, retrieves the corresponding documents from the database.
 Only documents in the persistent data storage layer can be retrieved.
 
 Returns a [partial error]({{ site_base_path }}api-documentation/errors/#partialerror) (with status 206) if one or more document can not be retrieved.
+
+Optional arguments:
+
+- `includeTrash`: if set, documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/) will also be returned

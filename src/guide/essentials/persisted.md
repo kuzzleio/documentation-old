@@ -353,101 +353,6 @@ Which gives, as a result, the following response:
 
 ---
 
-## Document metadata
-
-When you create or update a document, Kuzzle adds metadata. These metadata describe the life-cycle of the document.
-They are available in the `_meta` part of a document:
-
-```json
-{
-  "_index": "myindex",
-  "_type": "mycollection",
-  "_id": "AVkDLAdCsT6qHI7MxLz4",
-  "_score": 0.25811607,
-  "_source": {
-    "message": "Hey! Ho!"
-  },
-  "_meta": {
-    "author": "-1",
-    "createdAt": 1481816934209,
-    "updatedAt": null,
-    "updater": null,
-    "active": true,
-    "deletedAt": null
-  }
-}
-```
-
-* `author`: The author identifier
-* `createdAt`: The UNIX Timestamp of the document creation (create or replace)
-* `updatedAt`: The UNIX Timestamp of the last document update, or `null` if no update has been made
-* `updater`: The updater identifier, or `null` if no update has been made
-* `active`: Always `true` for now
-* `deletedAt`: Always `null` for now
-
-
-They can be used in search queries to filter and sort documents like a normal document field:
-
-```json
-{
-  "query": {
-      "range": {
-          "_meta.createdAt": {
-            "lte": 1481816930000
-          }
-      }
-    }
-}
-```
-
-Which gives, as a result, the following response:
-
-```json
-{
-  "status": 200,
-  "error": null,
-  "requestId": "<random unique request id>",
-  "controller": "document",
-  "action": "search",
-  "collection": "mycollection",
-  "index": "myindex",
-  "volatile": null,
-  "headers": {},
-  "result": {
-    "took": 6,
-    "timed_out": false,
-    "_shards": {
-      "total": 5,
-      "successful": 5,
-      "failed": 0
-    },
-    "hits": [
-      {
-        "_index": "myindex",
-        "_type": "mycollection",
-        "_id": "AVkDK9iNsT6qHI7MxLz3",
-        "_score": 0,
-        "_source": {
-          "message": "Hello, world!"
-        },
-        "_meta": {
-          "author": "-1",
-          "createdAt": 1481816922252,
-          "updatedAt": null,
-          "updater": null,
-          "active": true,
-          "deletedAt": null
-        }
-      }
-    ],
-    "total": 1,
-    "max_score": 0.25811607
-  }
-}
-```
-
----
-
 ## Document mapping
 
 As previously said, Kuzzle relies on Elasticsearch to persist documents. Elasticsearch uses a mapping internally to match a document field to a field type. This mapping is attached to a `collection` (a `type` in Elasticsearch terminology).
@@ -497,5 +402,6 @@ The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/g
 ## Where do we go from here?
 
 
-* Refer to the [Elasticsearch cookbook]({{ site_base_path }}elasticsearch-cookbook) to get more details on how querying works in Kuzzle.
-* Keep track of the changes on your documents via the [Real-time Notifications]({{ site_base_path }}guide/essentials/real-time).
+* Refer to the [Elasticsearch cookbook]({{ site_base_path }}elasticsearch-cookbook) to get more details on how querying works in Kuzzle
+* Get history information, put a document in the trashcan and recover it, using [document metadata]({{ site_base_path }}guide/essentials/document-metadata)
+* Keep track of the changes on your documents via the [Real-time Notifications]({{ site_base_path }}guide/essentials/real-time)

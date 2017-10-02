@@ -13,7 +13,7 @@ title: search
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>]`  
+**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>][&includeTrash=<boolean>]`  
 **Method:** `POST`  
 **Body:**
 </p>
@@ -28,7 +28,13 @@ title: search
   },
   "aggregations": {
     ...
-  }
+  },
+
+  // Optional arguments
+  "from": 0,
+  "size": 42,
+  "scroll": "1m",
+  "includeTrash": false
 }
 ```
 
@@ -111,6 +117,7 @@ Optional arguments:
 * `size` controls the maximum number of documents returned in the response
 * `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
 * `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `_scroll_id` property, along with the first page of results. This cursor can then be moved forward using the [`scroll` API action]({{ site_base_path }}api-documentation/controller-document/scroll)
+* `includeTrash` makes Kuzzle also look for documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/)
 
 <aside class="warning">
   <p>
