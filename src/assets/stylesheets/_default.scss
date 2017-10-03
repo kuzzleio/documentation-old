@@ -465,8 +465,6 @@ html, body {
     }
   }
 
-
-
   h1 {
     @extend %header-font;
     font-size: 30px;
@@ -491,7 +489,7 @@ html, body {
   }
 
   hr + h2 {
-    margin-top: 10px
+    margin: 10px 0 20px 0;
   }
 
   // h2s right after h1s should bump right up
@@ -841,12 +839,6 @@ html, body {
       padding: $code-annotation-padding;
       color: #002835 !important;
     }
-  }
-
-
-
-  p {
-    margin-top: 20px;
   }
 
   h1 {
