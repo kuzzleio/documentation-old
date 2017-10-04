@@ -275,15 +275,20 @@ const build = done => {
       exposeConsolidate (r) {
         r.handlebars = handlebars
       }
-    }))
-    .use(cssPacker({
-      siteRootPath: options.build.path,
-      inline: true
-    }))
-    .use(jsPacker({
-      siteRootPath: options.build.path,
-      inline: false
-    }))
+    }));
+
+  if (!options.dev.enabled) {
+    metalsmith
+      .use(cssPacker({
+        siteRootPath: options.build.path,
+        inline: true
+      }))
+      .use(jsPacker({
+        siteRootPath: options.build.path,
+        inline: false
+      }))
+  }
+  metalsmith
     .use(clickImage())
     .use(logger());
 
