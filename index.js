@@ -7,7 +7,6 @@ const wordCount   = require('wordcount');
 const markdown    = require('metalsmith-markdown');
 const layouts     = require('metalsmith-layouts');
 const permalinks  = require('metalsmith-permalinks');
-const collect     = require('metalsmith-auto-collections');
 const debug       = require('metalsmith-debug');
 const changed     = require('metalsmith-changed');
 const livereload  = require('metalsmith-livereload');
@@ -36,8 +35,6 @@ const nodeStatic = require('node-static');
 const watch = require('glob-watcher');
 const open = require('open');
 const fs = require('fs');
-const path = require('path');
-const mime = require('mime-types');
 
 const versionsConfig = require('./versions.config.json');
 
@@ -204,7 +201,7 @@ handlebars.registerHelper({
 const build = done => {
   let metalsmith = Metalsmith(__dirname)
     .metadata({
-      site_title: "Kuzzle documentation",
+      site_title: 'Kuzzle documentation',
       site_url: options.build.host,
       site_base_path: options.build.path,
       gh_repo: options.github.repository,
@@ -348,22 +345,21 @@ const build = done => {
 
   metalsmith.build((error, files) => {
     console.log('==== build finished ====');
+    if (error) {
+      console.error(error)
 
-      if (error) {
-        console.error(error)
-
-        if (!options.dev.enabled) {
-          return done(error);
-        }
+      if (!options.dev.enabled) {
+        return done(error);
       }
-      done();
-    });
+    }
+    done();
+  });
 }
 
 if (options.dev.enabled) {
   // run dev server (build & serv ./build directory on 8080 port & watch => rebuild on change)
   var serve = new nodeStatic.Server(__dirname + '/build');
-  let cache = {};
+  // let cache = {};
 
   require('http').createServer((req, res) => {
     req.addListener('end', () => serve.serve(req, res, (e, r) => {

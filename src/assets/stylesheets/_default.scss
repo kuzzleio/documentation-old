@@ -704,7 +704,7 @@ html, body {
   .main-content {
 
     p, li, dt, dd {
-      color: #555;
+      color: #444;
     }
 
     padding-bottom: 40px;
@@ -1126,12 +1126,11 @@ header nav li.active span {
 }
 
 .developer-nav {
-
+  background-color: #fbfbfb;
   text-align: left;
   font-size: 14px;
   display: none;
   border-top: solid 1px #004B52;
-  background: #fff;
   height: 49px;
 
   &.open {

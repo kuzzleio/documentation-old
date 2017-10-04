@@ -1,6 +1,6 @@
 ---
 layout: category-childrens.html
-title: Kuzzle SDK
+title: SDK
 order: 0
 description: The multi-language reference for all published Kuzzle SDK
 icon: fa-briefcase

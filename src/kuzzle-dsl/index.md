@@ -1,6 +1,6 @@
 ---
 layout: category-childrens.html
-title: Kuzzle DSL
+title: Koncorde
 order: 300
 description: Kuzzle DSL Reference
 icon: fa-commenting-o
