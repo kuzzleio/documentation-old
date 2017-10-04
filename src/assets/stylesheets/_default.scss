@@ -1204,6 +1204,9 @@ header nav li.active span {
   .search-results {
     margin: 0 auto;
     display: none;
+    max-width: 1170px;
+    position: relative;
+    height: 100%;
 
     &.display {
       display: block;
@@ -1213,10 +1216,11 @@ header nav li.active span {
     ul {
       background: #FFF;
       margin: 5px 0 0 9px;
-      max-width: 550px;
+      max-width: 410px;
       text-align: left;
       position: absolute;
-      left: 0;
+      top: 33px;
+      right: 35px;
       padding: 5px;
       box-shadow: 0px 1px 4px 0px #ccc;
 
@@ -1734,15 +1738,8 @@ header {
     margin-left: 230px;
   }
   .developer-nav {
-    white-space: nowrap;
 
     >ul {
-      &.search {
-        input[type=search] {
-          width: 175px;
-        }
-      }
-
       li {
         padding: 0 7px;
         a {
@@ -2028,18 +2025,6 @@ header {
     margin-left: 0;
   }
   .developer-nav {
-    white-space: nowrap;
-
-    .search-results {
-      ul {
-        width: 100%;
-        max-width: none;
-        margin: 9px 0 0;
-        white-space: normal;
-        box-shadow: 0 45px 65px 0px #ccc;
-      }
-    }
-
     >ul {
       &.nav {
         display: none;
@@ -2055,16 +2040,20 @@ header {
           padding: 0;
           margin: 0 auto;
           display: block;
+          width: 100%;
 
           input[type=search] {
-            // width: 175px;
-            width: 70%;
             text-align: center;
             margin: 0 auto;
             display: block;
           }
         }
       }
+    }
+
+    >.search-results ul {
+      position: unset;
+      margin: 44px auto;
     }
   }
   .content {
