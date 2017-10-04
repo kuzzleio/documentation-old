@@ -1105,7 +1105,7 @@ header nav li a:after {
   transition: 0.5s ease;
 }
 header nav li a:hover:after,
-header nav li a.active:after {
+header nav li.active a:after {
   width: 100%;
 }
 header nav li:last-child a:after {

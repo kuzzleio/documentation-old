@@ -11,17 +11,33 @@
         <li>
           <a href="http://kuzzle.io/install-kuzzle/" class="nav-item">Install</a>
         </li>
+        {{#if (startwith path "guide") }}
+        <li class="active">
+        {{else}}
         <li>
-          <a href="{{ site_url }}{{ site_base_path }}" class="nav-item developers active">Guide</a>
+        {{/if}}
+          <a href="{{ site_url }}{{ site_base_path }}guide/getting-started/" class="nav-item developers">Guide</a>
         </li>
+        {{#if (startwith path "api") }}
+        <li class="active">
+        {{else}}
         <li>
-          <a href="{{ site_url }}{{ site_base_path }}api-documentation" class="nav-item">API</a>
+        {{/if}}
+          <a href="{{ site_url }}{{ site_base_path }}api-documentation/connecting-to-kuzzle/" class="nav-item">API</a>
         </li>
+        {{#if (startwith path "sdk") }}
+        <li class="active">
+        {{else}}
         <li>
-          <a href="{{ site_url }}{{ site_base_path }}sdk-reference" class="nav-item">SDK</a>
+        {{/if}}
+          <a href="{{ site_url }}{{ site_base_path }}sdk-reference/kuzzle/" class="nav-item">SDK</a>
         </li>
+        {{#if (startwith path "plugins") }}
+        <li class="active">
+        {{else}}
         <li>
-          <a href="{{ site_url }}{{ site_base_path }}plugins-reference" class="nav-item ">Plugins</a>
+        {{/if}}
+          <a href="{{ site_url }}{{ site_base_path }}plugins-reference/plugins-creation-prerequisites/" class="nav-item ">Plugins</a>
         </li>
         <li>
           <a href="" class="nav-item ">Cookbooks</a>
