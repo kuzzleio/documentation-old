@@ -467,7 +467,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 3.5em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
@@ -479,17 +479,13 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
-    margin: 2em 0 15px 0;
+    font-size: 2em;
+    margin: 1.5em 0 15px 0;
     // margin-bottom: 0;
     // border-top: 40px solid #EEE;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     // background-image: linear-gradient(to bottom, rgba(#fff, 0.6), rgba(#fff, 0));
-  }
-
-  hr + h2 {
-    margin: 10px 0 20px 0;
   }
 
   // h2s right after h1s should bump right up
@@ -521,12 +517,6 @@ html, body {
     }
   }
 
-  hr {
-    margin: 2em 0;
-    background: #f0f0f0;
-    height: 13px;
-    clear: both;
-  }
   .heading {
     clear: left;
 
@@ -842,25 +832,20 @@ html, body {
   }
 
   h1 {
-    // border-left: solid 21px $dark;
-    font-weight: 500;
+    font-weight: 800;
   }
   h2{
     font-weight: 500;
-    // border-left: solid 5px #002835;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
   h3 {
-    border-left: dotted 3px;
     font-weight: 500;
   }
   h4 {
-    border-left: solid 3px #CCC;
     font-weight: 500;
   }
   h5 {
-    border-left: dotted 3px #DDD;
     font-weight: 500;
   }
   h1 {
@@ -1687,7 +1672,7 @@ header {
   }
   .container {
     .page-wrapper {
-      padding: 10px 0 55px 0;
+      padding: 0 0 55px 0;
     }
   }
 }
@@ -1814,7 +1799,7 @@ header {
     }
 
     h2 {
-      margin-top: 3em;
+      margin-top: 1.5em;
     }
   }
 }
