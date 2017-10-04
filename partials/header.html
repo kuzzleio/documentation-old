@@ -9,49 +9,25 @@
     <nav>
       <ul>
         <li>
-          <a href="http://kuzzle.io/kuzzle-enterprise/" class="nav-item">product</a>
+          <a href="http://kuzzle.io/install-kuzzle/" class="nav-item">Install</a>
         </li>
         <li>
-          <a href="{{ site_url }}{{ site_base_path }}" class="nav-item developers active">Documentation</a>
-          <ul class="mobile-nav">
-            {{#each ancestry.root.ancestry.children}}
-            {{#if (startwith ../path path)}}
-              <li class="active">
-                <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
-
-                <ul class="sub-nav">
-                  {{#each ancestry.children}}
-                  {{#if (startwith ../../path path)}}
-                  <li class="active">
-                    <a href="{{ ../../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
-                  </li>
-                  {{else}}
-                  <li>
-                    <a href="{{ ../../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
-                  </li>
-                  {{/if}}
-                  {{/each}}
-                </ul>
-              </li>
-            {{else}}
-              <li>
-                <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
-              </li>
-            {{/if}}
-            {{/each}}
-          </ul>
+          <a href="{{ site_url }}{{ site_base_path }}" class="nav-item developers active">Guide</a>
         </li>
         <li>
-          <a href="http://kuzzle.io/demos-tutorials/" class="nav-item ">Demos</a>
+          <a href="{{ site_url }}{{ site_base_path }}api-documentation" class="nav-item">API</a>
         </li>
         <li>
-          <a href="http://kuzzle.io/blog/" class="nav-item ">Blog</a>
+          <a href="{{ site_url }}{{ site_base_path }}sdk-reference" class="nav-item">SDK</a>
         </li>
         <li>
-          <a href="http://kuzzle.io/contact/" class="nav-item ">Contact</a>
+          <a href="{{ site_url }}{{ site_base_path }}plugins-reference" class="nav-item ">Plugins</a>
         </li>
         <li>
-          <a href="http://kuzzle.io/install-kuzzle/" class="nav-item ">Try it</a>
+          <a href="" class="nav-item ">Cookbooks</a>
+        </li>
+        <li>
+          <a href="http://kuzzle-backoffice.netlify.com/" target="_blank" class="nav-item ">Backoffice</a>
         </li>
         <li>
           <a href="https://github.com/kuzzleio/kuzzle" target="_blank" class="nav-item github">
@@ -64,11 +40,11 @@
   <div class="developer-nav open">
     <ul class="search">
       <li>
-        <input name="search" type="search" placeholder="search" tabindex="1" />
+        <input name="search" type="search" placeholder="Search anything... (alt + S)" tabindex="1" />
         <!-- <input name="search" type="search" placeholder="search"></input> -->
       </li>
     </ul>
-    <ul class="nav">
+    <!-- <ul class="nav">
       {{#each ancestry.root.ancestry.children}}
       {{#if (startwith ../path path)}}
         <li class="active">
@@ -80,10 +56,8 @@
         </li>
       {{/if}}
       {{/each}}
-    </ul>
-
+    </ul> -->
     <div class="search-results"><ul></ul></div>
-
     <script type="text/plain" id="search-results-template">
       <li>
         <a href="__link__" tabindex="__tabindex__">
@@ -97,4 +71,5 @@
       </li>
     </script>
   </div>
+
 </header>

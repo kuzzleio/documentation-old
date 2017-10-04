@@ -88,12 +88,19 @@ html, body {
     margin-top: $logo-margin;
   }
 
+  ul.tocify-header>li.tocify-item>a {
+    color: #111;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
   .tocify-item>a, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
   }
 
   // The Table of Contents is composed of multiple nested
@@ -116,7 +123,6 @@ html, body {
   // This is the currently selected ToC entry
   .tocify-focus {
     box-shadow: 0px 1px 0px $nav-active-shadow;
-    background-color: $nav-active-bg;
     color: $nav-active-text;
   }
 
@@ -140,7 +146,6 @@ html, body {
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
       color: $nav-text;
@@ -202,7 +207,7 @@ html, body {
   margin-left: $nav-width;
   position: relative;
   z-index: 10;
-  background-color: $main-bg;
+//   background-color: $main-bg;
   min-height: 100%;
   font-size: 14px;
 
@@ -850,6 +855,7 @@ html, body {
   }
   h1 {
     clear: both;
+    text-shadow: 1px 1px 2px rgb(195, 201, 204);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -1078,18 +1084,13 @@ header nav li {
 }
 header nav li a {
   color: white;
-  font-size: 14px;
-  text-transform: uppercase;
-  font-family: 'Gobold';
+  font-size: 1.5em;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
-  letter-spacing: 2px;
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 15px 5px;
   line-height: 20px;
-  padding-top: 15px;
-  padding-bottom: 15px;
 }
 header nav li a:after {
   content: '';
@@ -1125,12 +1126,13 @@ header nav li.active span {
 }
 
 .developer-nav {
+
   text-align: left;
   font-size: 14px;
   display: none;
   border-top: solid 1px #004B52;
   background: #fff;
-  height: 41px;
+  height: 49px;
 
   &.open {
     display: block;
@@ -1146,30 +1148,30 @@ header nav li.active span {
 
 
     &.search {
-      float: left;
-      margin: 7px 0 0 0;
+      margin: 7px auto;
       position: relative;
+      max-width: 1170px;
 
       &:after {
         display: inline-block;
         font: normal normal normal 13px/1 FontAwesome;
-        font-size: 13px;
+        font-size: 1.2em;
         text-rendering: auto;
         content: "\f002";
         position: absolute;
-        right: 16px;
-        top: 6px;
+        right: 11px;
+        top: 8px;
       }
 
       input[type=search] {
         outline: none;
         border-radius: 9px;
-        width: 220px;
+        width: 420px;
         border: 1px solid #d0d0d0;
         letter-spacing: 0.2px;
-        line-height: 1.5;
+        line-height: 2;
         padding: 2px 22px 2px 10px;
-        font-size: 13px;
+        font-size: 1em;
         display: inline-block;
         margin: 0;
 
@@ -1181,7 +1183,8 @@ header nav li.active span {
 
     li {
       display: inline-block;
-      padding: 0 10px;
+      padding: 0;
+      float: right;
 
       &.active span {
         border-bottom: solid 3px $dark;
@@ -1698,8 +1701,8 @@ header {
       ul {
         li {
           a {
-            font-size: 12px;
-            padding: 10px 15px;
+            font-size: 1.3em;
+            padding: 10px 5px;
             line-height: 10px;
 
             &.github {

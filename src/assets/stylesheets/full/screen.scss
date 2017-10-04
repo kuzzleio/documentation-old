@@ -186,16 +186,9 @@
 
   .tocify-wrapper {
     top: 140px;
-    background: $light;
-    border-right: solid 10px #EEE;
-
-    // .version-selector {
-    //   padding: 10px 0 2px 14px;
-    //   opacity: 0.6;
-    // }
-    // .version-selector:hover {
-    //   opacity: 1;
-    // }
+    background: #fbfbfb;
+    padding-top: 40px;
+    box-shadow: rgba(0,0,0,0.1) 0 0 9px;
 
     .toc-footer li,
     .toc-footer a {
@@ -203,6 +196,12 @@
     }
 
     .tocify-item {
+
+      > a {
+        color: $dark;
+        text-decoration: none;
+      }
+
       &:hover:not(.tocify-focus) {
         background-color: #f0f0f0;
       }
@@ -210,8 +209,9 @@
 
     .tocify-focus {
       box-shadow: none;
-      color: #fff;
-      background-color: $dark;
+      font-weight: 800;
+//       color: #fff;
+//       background-color: $dark;
     }
     li {
       color: #393939;
@@ -290,7 +290,7 @@
 @media (max-width: 1500px) {
   .container {
     .page-wrapper {
-      padding: 10px 0 55px 0;
+      padding: 0 0 55px 0;
     }
   }
   .content {
