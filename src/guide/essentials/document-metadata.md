@@ -39,7 +39,7 @@ Added metadata can be viewed in document's `_meta` property:
 * `createdAt`: Timestamp of the document creation (create or replace), in Epoch-milliseconds format
 * `updatedAt`: Timestamp of the last document update in Epoch-milliseconds format, or `null` if no update has been made
 * `updater`: The updater [unique identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid), or `null` if no update has been made
-* `alive`: `true` until the document has been put in the trashcan
+* `active`: `true` until the document has been put in the trashcan
 * `deletedAt`: deletion timestamp, `null` until put in the trashcan
 
 ---
