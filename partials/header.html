@@ -39,8 +39,43 @@
         {{/if}}
           <a href="{{ site_url }}{{ site_base_path }}plugins-reference/plugins-creation-prerequisites/" class="nav-item ">Plugins</a>
         </li>
+        {{#if (mstartwith path "elasticsearch" "kuzzle-dsl" "validation" "kuzzle-events") }}
+        <li class="active">
+        {{else}}
         <li>
-          <a href="" class="nav-item ">Cookbooks</a>
+        {{/if}}
+          <a href="" class="nav-item dropdown-btn">Cookbooks <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+          <ul class="nav-dropdown">
+            {{#if (startwith path "elasticsearch") }}
+            <li class="active">
+            {{else}}
+            <li>
+            {{/if}}
+              <a href="{{ site_url }}{{ site_base_path }}elasticsearch-cookbook/installation/" class="dropdown-item ">Elasticsearch</a>
+            </li>
+            {{#if (startwith path "kuzzle-dsl") }}
+            <li class="active">
+            {{else}}
+            <li>
+            {{/if}}
+              <a href="{{ site_url }}{{ site_base_path }}kuzzle-dsl/essential/koncorde/" class="dropdown-item ">Koncorde</a>
+            </li>
+            {{#if (startwith path "validation") }}
+            <li class="active">
+            {{else}}
+            <li>
+            {{/if}}
+              <a href="{{ site_url }}{{ site_base_path }}validation-reference/schema/" class="dropdown-item ">Validation</a>
+            </li>
+            {{#if (startwith path "kuzzle-events") }}
+            <li class="active">
+            {{else}}
+            <li>
+            {{/if}}
+              <a href="{{ site_url }}{{ site_base_path }}kuzzle-events/plugin-events/" class="dropdown-item ">Events</a>
+            </li>
+            <li><!-- necessary to make previous element's pseudo ::after exist --></li>
+          </ul>
         </li>
         <li>
           <a href="http://kuzzle-backoffice.netlify.com/" target="_blank" class="nav-item ">Backoffice</a>
@@ -57,22 +92,8 @@
     <ul class="search">
       <li>
         <input name="search" type="search" placeholder="Search anything... (alt + S)" tabindex="1" />
-        <!-- <input name="search" type="search" placeholder="search"></input> -->
       </li>
     </ul>
-    <!-- <ul class="nav">
-      {{#each ancestry.root.ancestry.children}}
-      {{#if (startwith ../path path)}}
-        <li class="active">
-          <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
-        </li>
-      {{else}}
-        <li>
-          <a href="{{ ../site_base_path }}{{ path }}"><span>{{ title }}</span></a>
-        </li>
-      {{/if}}
-      {{/each}}
-    </ul> -->
     <div class="search-results"><ul></ul></div>
     <script type="text/plain" id="search-results-template">
       <li>

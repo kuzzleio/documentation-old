@@ -52,9 +52,13 @@
     "yoda": [2, "never"]
   },
   "env": {
-    "node": true,
-    "es6": true
+    "browser": true
   },
+  "globals": {
+    "$": false,
+    "metalsmith": true,
+    "algoliasearch": false
+  }
   "parserOptions": {
     "sourceType": "module"
   },

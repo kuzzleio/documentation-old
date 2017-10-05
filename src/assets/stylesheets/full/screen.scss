@@ -186,7 +186,6 @@
   .tocify-wrapper {
     top: 140px;
     background: #fbfbfb;
-    padding-top: 40px;
     box-shadow: rgba(0,0,0,0.1) 0 0 9px;
 
     .toc-footer li,
@@ -199,10 +198,6 @@
       > a {
         color: $dark;
         text-decoration: none;
-      }
-
-      &:hover:not(.tocify-focus) {
-        background-color: #f0f0f0;
       }
     }
 

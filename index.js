@@ -173,6 +173,13 @@ handlebars.registerHelper({
   startwith: function (str, substr) {
     return str.startsWith(substr);
   },
+  mstartwith: function() {
+    var args = Array.prototype.slice.call(arguments);
+    var str = args.shift();
+    return args.reduce(function(found, currentStr) {
+      return found || str.startsWith(currentStr);
+    }, false);
+  },
   endswith: function (str, substr) {
     return str.endsWith(substr);
   },

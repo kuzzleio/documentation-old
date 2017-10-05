@@ -1,12 +1,12 @@
 <div class="tocify-wrapper">
-  <ul class="search-results"></ul>
+  {{> version-select }}
 
   <div class="tocify">
     <ul  class="tocify-header">
       <li class="tocify-item tocify-focus tocify-hover"></li>
     </ul>
     <ul  class="tocify-header">
-      <li class="tocify-item"><a href="{{ site_url }}{{ site_base_path }}{{ ancestry.parent.path }}" title="back to {{ ancestry.parent.title }} home">{{ ancestry.parent.title }}</a></li>
+      <li class="tocify-item">{{ ancestry.parent.title }}</li>
       <ul class="tocify-subheader">
         {{#each ancestry.siblings}}
         {{#if separator}}

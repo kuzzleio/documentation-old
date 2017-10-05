@@ -57,7 +57,7 @@ html, body {
 
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
-
+  padding-top: 10px;
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
@@ -88,13 +88,13 @@ html, body {
     margin-top: $logo-margin;
   }
 
-  ul.tocify-header>li.tocify-item>a {
+  ul.tocify-header>li.tocify-item {
     color: #111;
     text-decoration: none;
     text-transform: uppercase;
   }
 
-  .tocify-item>a, .toc-footer li {
+  .tocify-item, .toc-footer li {
     padding: 0 $nav-padding 0 $nav-padding;
     display: block;
     overflow-x: hidden;
@@ -1081,6 +1081,13 @@ header nav li {
   position: relative;
   display: block;
   list-style: none;
+  position: relative;
+
+  &.open {
+    ul.nav-dropdown {
+      display: block;
+    }
+  }
 }
 header nav li a {
   color: white;
@@ -1105,7 +1112,7 @@ header nav li a:after {
   transition: 0.5s ease;
 }
 header nav li a:hover:after,
-header nav li.active a:after {
+header nav li.active > a:after {
   width: 100%;
 }
 header nav li:last-child a:after {
@@ -1123,6 +1130,19 @@ header a {
 header nav li.active span {
   border-bottom: solid 6px $dark;
   padding-bottom: 20px;
+}
+
+nav {
+  ul.nav-dropdown {
+    padding: 20px;
+    position: absolute;
+    left: -26px;
+    top: 39px;
+    background-color: $dark;
+    z-index: 1;
+    margin: 0;
+    display: none;
+  }
 }
 
 .developer-nav {
@@ -1607,6 +1627,16 @@ header {
 }
 .tocify-wrapper {
   transition: all 0.2s;
+}
+.version-selector {
+  padding: 15px;
+
+  select {
+    background: #f3f3f3;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    padding: 10px;
+  }
 }
 .developer-nav {
   >ul {
