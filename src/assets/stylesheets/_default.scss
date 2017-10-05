@@ -62,7 +62,7 @@ html, body {
   overflow-x: hidden;
   position: fixed;
   z-index: 30;
-  top: 0;
+  top: 150px;
   left: 0;
   bottom: 0;
   width: $nav-width;
@@ -115,6 +115,8 @@ html, body {
 
   li {
     color: $nav-text;
+    font-weight: 100;
+
     /*transition-property: background;
     transition-timing-function: linear;
     transition-duration: 230ms;*/
@@ -124,6 +126,7 @@ html, body {
   .tocify-focus {
     box-shadow: 0px 1px 0px $nav-active-shadow;
     color: $nav-active-text;
+    font-weight: 400;
   }
 
   // Subheaders are the submenus that slide open
