@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  {{&gt; common-meta }}
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-light.min.css">
+
+  <link href="{{ site_base_path }}assets/stylesheets/full/screen.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+
+<body class="index">
+{{&gt; header }}
+
+<div class="container">
+  {{&gt; nav-left }}
+
+  <div class="page-wrapper toto">
+    <div class="content">
+      <div class="main-content">
+        <!-- <div class="reading-time"><p>Reading time: {{#wordsToTime}}{{/wordsToTime}} min</p></div> -->
+        {{{ contents }}}
+        <div style="clear: both"></div>
+      </div>
+
+      {{&gt; disqus }}
+
+      {{&gt; nav-members-bottom }}
+    </div>
+  </div>
+  {{&gt; license }}
+</div>
+
+
+{{&gt; footer-scripts }}
+</body>
+</html>

@@ -5,13 +5,11 @@
       event.stopPropagation()
       $(event.target)
         .parent()
-        .addClass('open');
-      // console.dir(event);
+        .toggleClass('open');
     })
   $(window)
     .on('click', function () {
       $('.dropdown-btn')
-        .parent()
         .removeClass('open');
     });
 })();

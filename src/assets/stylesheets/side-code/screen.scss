@@ -110,23 +110,8 @@
     .toc-footer a {
       color: $dark;
     }
-
     .tocify-item {
 
-      > a {
-        color: $dark;
-        text-decoration: none;
-      }
-
-      &:hover:not(.tocify-focus) {
-        background-color: #f0f0f0;
-      }
-    }
-
-    .tocify-focus {
-      box-shadow: none;
-//       color: #fff;
-//       background-color: $dark;
     }
     li {
       color: #393939;

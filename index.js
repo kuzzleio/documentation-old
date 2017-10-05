@@ -32,7 +32,9 @@ const clickImage  = require('./metalsmith-plugins/clickable-images');
 const saveSrc     = require('./metalsmith-plugins/save-src');
 
 const nodeStatic = require('node-static');
-const watch = require('glob-watcher');
+// const serve = require('metalsmith-serve');
+// const watch = require('metalsmith-watch');
+const browserSync = require('metalsmith-browser-sync');
 const open = require('open');
 const fs = require('fs');
 
@@ -205,7 +207,7 @@ handlebars.registerHelper({
 })
 
 // Build site with metalsmith.
-const build = done => {
+// const build = done => {
   let metalsmith = Metalsmith(__dirname)
     .metadata({
       site_title: 'Kuzzle documentation',
@@ -234,11 +236,10 @@ const build = done => {
 
   console.log(`==== processing sources files ====`);
 
-  if (options.dev.watch) {
-    console.log(`= watch enabled =`);
-
-    metalsmith.use(changed());
-  }
+  // if (options.dev.watch) {
+  //   console.log(`= watch enabled =`);
+  //   metalsmith.use(changed());
+  // }
 
   metalsmith
     .use(links())
@@ -251,10 +252,11 @@ const build = done => {
     console.log(`= generating map sass files =`);
 
     metalsmith
-      .use(sass({
-        sourceMap: true,
-        sourceMapContents: true
-      }));
+      .use(sass());
+      // {
+      //   sourceMap: true,
+      //   sourceMapContents: true
+      // }
   }
   else {
     metalsmith
@@ -296,13 +298,13 @@ const build = done => {
     .use(clickImage())
     .use(logger());
 
-  if (options.dev.watch) {
-    console.log(`= livereload enabled =`);
+  // if (options.dev.watch) {
+  //   console.log(`= livereload enabled =`);
 
-    metalsmith
-      .use(debug())
-      .use(livereload({ debug: false, delay: 500 }));
-  }
+  //   metalsmith
+  //     .use(debug())
+  //     .use(livereload({ debug: false, delay: 500 }));
+  // }
 
   if (options.algolia.privateKey) {
     console.log(`= algolia indexing enabled =`);
@@ -350,57 +352,76 @@ const build = done => {
 
   console.log(`==== building site in "${options.build.path}" ====`);
 
+  if (options.dev.enabled) {
+    metalsmith
+      .use(browserSync({
+        server : "build",
+        files  : ["src/assets/stylesheets/*.scss"]
+      }, function (err, bs) {
+        console.log('==== build finished ====');
+      }));
+      // .use(serve({
+      //   port: 3000,
+      //   verbose: true
+      // }))
+      // .use(
+      //   watch({
+      //     paths: {
+      //       // "${source}/**/*": true,
+      //       "${source}/**/*": "${source}/assets/**/*", //"${source}/assets/**/*", //
+      //       // "src/**/*": true,
+      //       // "${source}/layouts/**/*": true
+      //     },
+      //     livereload: true
+      //   })
+      // )
+  }
+
   metalsmith.build((error, files) => {
     console.log('==== build finished ====');
     if (error) {
       console.error(error)
 
-      if (!options.dev.enabled) {
-        return done(error);
-      }
+      // if (!options.dev.enabled) {
+      //   return done(error);
+      // }
     }
-    done();
+    // done();
   });
-}
+// }
 
-if (options.dev.enabled) {
-  // run dev server (build & serv ./build directory on 8080 port & watch => rebuild on change)
-  var serve = new nodeStatic.Server(__dirname + '/build');
-  // let cache = {};
+// if (options.dev.enabled) {
+//   // run dev server (build & serv ./build directory on 8080 port & watch => rebuild on change)
+//   var serve = new nodeStatic.Server(__dirname + '/build');
+//   // let cache = {};
 
-  require('http').createServer((req, res) => {
-    req.addListener('end', () => serve.serve(req, res, (e, r) => {
-      // handle 404 page
-      if (e && (e.status === 404) && fs.existsSync(__dirname + '/build' + options.build.path + '404.html')) {
-        serve.serveFile(options.build.path + '404.html', 404, {}, req, res);
-      }
-    }));
-    req.resume();
-  }).listen(options.dev.port);
+//   require('http').createServer((req, res) => {
+//     req.addListener('end', () => serve.serve(req, res, (e, r) => {
+//       // handle 404 page
+//       if (e && (e.status === 404) && fs.existsSync(__dirname + '/build' + options.build.path + '404.html')) {
+//         serve.serveFile(options.build.path + '404.html', 404, {}, req, res);
+//       }
+//     }));
+//     req.resume();
+//   }).listen(options.dev.port);
 
+//   build(error => {
+//     if (error) {
+//       console.error(error);
+//     }
+//   })
 
-  if (options.dev.watch) {
-    watch(__dirname + '/{src,layouts,partials}/**/*', { ignoreInitial: false, queue: false }, build);
-  }
-  else {
-    build(error => {
-      if (error) {
-        console.error(error);
-      }
-    })
-  }
+//   if (options.dev.openBrowser) {
+//     open('http://localhost:' + options.dev.port);
+//   }
+// } else {
+//   // only build static site
+//   build(error => {
+//     if (error) {
+//       console.error(error);
+//       return process.exit(1);
+//     }
 
-  if (options.dev.openBrowser) {
-    open('http://localhost:' + options.dev.port);
-  }
-} else {
-  // only build static site
-  build(error => {
-    if (error) {
-      console.error(error);
-      return process.exit(1);
-    }
-
-    return process.exit(0);
-  })
-}
+//     return process.exit(0);
+//   })
+// }
