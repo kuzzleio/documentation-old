@@ -4,6 +4,7 @@
   var client = algoliasearch(algolia_projectId, algolia_publicKey);
   var index = client.initIndex('kuzzle-documentation');
   var template = $('#search-results-template').html();
+  var $searchBlock = $('.search');
   var $searchInput = $('.search input[type=search]');
   var $searchResults = $('.search-results');
   var $searchResultsContainer = $('ul', $searchResults);
@@ -73,7 +74,7 @@
   // search results open/close handlers
   $(window).on('click touch', function() {
     if (watchClose) {
-      $searchResults.removeClass('display');
+      $searchBlock.removeClass('display-results');
       watchClose = false;
 
       if (watchResultsDebounce) {
@@ -84,7 +85,7 @@
 
   $searchInput.on('click touch', function(event) {
     if (lastHits > 0) {
-      $searchResults.addClass('display');
+      $searchBlock.addClass('display-results');
       watchClose = true;
     }
     event.stopPropagation();
@@ -92,7 +93,7 @@
 
   $searchInput.on('focus', function(event) {
     if (lastHits > 0) {
-      $searchResults.addClass('display');
+      $searchBlock.addClass('display-results');
       watchClose = true;
     }
 
@@ -101,7 +102,7 @@
 
   $searchInput.on('blur', function(event) {
     if (lastHits > 0) {
-      $searchResults.addClass('display');
+      $searchBlock.addClass('display-results');
       watchClose = true;
     }
   });
@@ -123,7 +124,7 @@
 
     // clear search result on empty input
     if (this.value === '' || Base64.encode(this.value) === 'SGVscCBSeXUgYnkgY2xpY2tpbmcgeW91ciB3YXkgdGhyb3VnaCBkZXN0aW55IQ==') {
-      $searchResults.removeClass('display');
+      $searchBlock.removeClass('display-results');
       $searchResultsContainer.empty();
       watchClose = false;
 
@@ -144,7 +145,7 @@
       (d.head || d.body).appendChild(s);
 
       $searchResultsContainer.empty();
-      $searchResults.removeClass('display');
+      $searchBlock.removeClass('display-results');
       watchClose = false;
 
       this.disabled = true;
@@ -166,7 +167,7 @@
 
       if (lastHits === 0) {
         $searchResultsContainer.empty();
-        $searchResults.removeClass('display');
+        $searchBlock.removeClass('display-results');
         return;
       }
 
@@ -180,7 +181,7 @@
         });
       }, 4000);
 
-      $searchResults.addClass('display');
+      $searchBlock.addClass('display-results');
       watchClose = true;
 
       // make search result item from

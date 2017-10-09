@@ -33,9 +33,22 @@
 }
 
 header {
+  position: fixed;
+  top: 0;
+  background-color: $dark;
+  z-index: 100;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 9px;
+  width: 100%;
+  z-index: 10;
+  
   .wrapper {
     padding: 2em $header-padding;
     background-color: #FFF;
+
+    @media (max-width: $desktop-width) {
+      padding: 15px 0;
+      height: 75px;
+    }
 
     a {
       text-decoration: none;
@@ -52,6 +65,7 @@ header {
     .search {
       margin: 7px auto;
       float: right;
+      position: relative;
 
       &:after {
         display: inline-block;
@@ -59,8 +73,9 @@ header {
         font-size: 1.2em;
         text-rendering: auto;
         content: "\f002";
-        right: 29px;
-        position: relative;
+        right: 10px;
+        top: 8px;
+        position: absolute;
       }
 
       input[type=search] {
@@ -77,13 +92,23 @@ header {
         margin: 0;
 
         &:hover {
-          border-color: $dark;
+          border-color: $color-pinkpanther;
         }
 
         &:focus {
-          border-color: #687a86;
+          border-color: $color-pinkpanther;
           width: 420px;
-          box-shadow: 0px 1px 4px 0px #687a86;
+        }
+      }
+
+      &.display-results {
+        .search-results {
+          display: block;
+        }
+
+        input[type=search] {
+          border-color: $color-pinkpanther;
+          width: 420px;
         }
       }
 
@@ -93,10 +118,6 @@ header {
         max-width: 1170px;
         position: relative;
         height: 100%;
-
-        &.display {
-          display: block;
-        }
 
         ul {
           background: #FFF;
@@ -221,7 +242,7 @@ header {
 
     .cta-buttons {
       float: right;
-      margin: 7px 0 0 0;
+      margin: 9px 0 0 0;
 
       button {
         background: $color-pinkpanther;

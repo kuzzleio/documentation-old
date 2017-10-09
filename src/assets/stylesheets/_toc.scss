@@ -1,0 +1,121 @@
+.tocify-wrapper {
+  transition: left 0.3s ease-in-out;
+  padding: 0 0 0 4em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  z-index: 30;
+  top: 155px;
+  left: 0;
+  bottom: 0;
+  width: $nav-width;
+  background-color: $nav-bg;
+  font-size: 15px;
+  background: #fbfbfb;
+  box-shadow: rgba(0,0,0,0.1) 0 0 9px;
+
+  // The Table of Contents is composed of multiple nested
+  // unordered lists.  These styles remove the default
+  // styling of an unordered list because it is ugly.
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 28px;
+  }
+
+  a {
+    color: $dark;
+    text-decoration: none;
+  }
+  // language selector for mobile devices
+//   .lang-selector {
+//     display: none;
+//     a {
+//       padding-top: 0.5em;
+//       padding-bottom: 0.5em;
+//     }
+//   }
+
+//   // This is the logo at the top of the ToC
+//   &>img {
+//     display: block;
+//   }
+
+//   img+.tocify {
+//     margin-top: $logo-margin;
+//   }
+
+  .tocify-header {
+    &> .tocify-item {
+      color: #111;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid #bbb;
+      padding: 2em 0 1em 0;
+      margin: 0 4em 1em 0;
+    }
+
+    .tocify-subheader {
+      background: transparent;
+
+      .tocify-item {
+        font-size: 14px;
+      }
+
+      .tocify-level-2 {
+        padding-left: 15px;
+        font-size: 13px;
+      }
+
+      & > li:last-child {
+        box-shadow: none; // otherwise it'll overflow out of the subheader
+      }
+    }
+
+    .tocify-focus {
+      > a {
+        color: $color-pinkpanther;
+      }
+    }
+  }
+
+  .toc-footer {
+    padding: 1em 0;
+    margin-top: 1em;
+
+    li {
+      display: block;
+      overflow-x: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    li,a {
+      color: $nav-text;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    li {
+      font-size: 0.8em;
+      line-height: 1.7;
+      text-decoration: none;
+    }
+  }
+
+}
+
+.version-selector {
+  padding: 2em 0 0 0;
+
+  select {
+    background: #f3f3f3;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    padding: 10px;
+  }
+}
