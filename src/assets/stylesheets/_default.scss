@@ -60,18 +60,20 @@ html, body {
 
 .tocify-wrapper {
   transition: left 0.3s ease-in-out;
-  padding-top: 10px;
+  padding: 0 0 0 4em;
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
   z-index: 30;
-  top: 150px;
+  top: 155px;
   left: 0;
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 15px;
   font-weight: bold;
+  background: #fbfbfb;
+  box-shadow: rgba(0,0,0,0.1) 0 0 9px;
 
   // language selector for mobile devices
   .lang-selector {
@@ -95,10 +97,12 @@ html, body {
     color: #111;
     text-decoration: none;
     text-transform: uppercase;
+    border-bottom: 1px solid #bbb;
+    padding: 2em 0 1em 0;
+    margin: 0 4em 1em 0;
   }
 
   .tocify-item, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
@@ -106,10 +110,6 @@ html, body {
   }
 
   .tocify-item {
-      &:hover:not(.tocify-focus) {
-        background-color: #f0f0f0;
-      }
-
       > a {
         color: $dark;
         text-decoration: none;
@@ -145,15 +145,14 @@ html, body {
   // Subheaders are the submenus that slide open
   // in the table of contents.
   .tocify-subheader {
-    background-color: $nav-subitem-bg;
+    background: transparent;
     font-weight: 400;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
       font-size: 14px;
     }
 
     // for embossed look:
-    @include embossed-bg;
+//     @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -469,11 +468,9 @@ html, body {
   }
 
   h1 {
-    font-family: 'Ubuntu', sans-serif;
-    // text-transform: uppercase;
+    font-family: 'Ubuntu Light', sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 500;
 
     a {
       color: #3498db;
@@ -488,7 +485,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 3.5em;
+    font-size: 4em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
@@ -500,7 +497,7 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 2em;
+    font-size: 2.5em;
     margin: 1.5em 0 15px 0;
     // margin-bottom: 0;
     // border-top: 40px solid #EEE;
@@ -852,7 +849,6 @@ html, body {
     }
   }
   h2{
-    font-weight: 500;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
   }
@@ -867,7 +863,6 @@ html, body {
   }
   h1 {
     clear: both;
-    text-shadow: 1px 1px 2px rgb(195, 201, 204);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -1064,75 +1059,12 @@ header .container-logo img {
   margin: 15px 15px 0 15px;
 }
 
-header nav ul {
-  
-}
-header nav li {
- 
-}
-header nav li a {
-
-}
-header nav li a:after {
-
-}
-header nav li a:hover:after,
-header nav li.active > a:after {
-  width: 100%;
-}
-header nav li:last-child a:after {
-  content: none;
-}
-
-header nav li.active span {
-  border-bottom: solid 6px $dark;
-  padding-bottom: 20px;
-}
-
-
-
-
 .developer-nav {
   > ul {
     &.nav {
       max-width: 1170px;
       margin: 0 auto;
       text-align: right;
-    }
-
-
-    &.search {
-      margin: 7px auto;
-      position: relative;
-      max-width: 1170px;
-
-      &:after {
-        display: inline-block;
-        font: normal normal normal 13px/1 FontAwesome;
-        font-size: 1.2em;
-        text-rendering: auto;
-        content: "\f002";
-        position: absolute;
-        right: 11px;
-        top: 8px;
-      }
-
-      input[type=search] {
-        outline: none;
-        border-radius: 9px;
-        width: 420px;
-        border: 1px solid #d0d0d0;
-        letter-spacing: 0.2px;
-        line-height: 2;
-        padding: 2px 22px 2px 10px;
-        font-size: 1em;
-        display: inline-block;
-        margin: 0;
-
-        &:focus, &:hover {
-          border-color: #bbb;
-        }
-      }
     }
 
     li {
@@ -1154,112 +1086,7 @@ header nav li.active span {
       padding-bottom: 4px;
     }
   }
-
-  .search-results {
-    margin: 0 auto;
-    display: none;
-    max-width: 1170px;
-    position: relative;
-    height: 100%;
-
-    &.display {
-      display: block;
-    }
-
-
-    ul {
-      background: #FFF;
-      margin: 5px 0 0 9px;
-      max-width: 410px;
-      text-align: left;
-      position: absolute;
-      top: 33px;
-      right: 35px;
-      padding: 5px;
-      box-shadow: 0px 1px 4px 0px #ccc;
-
-      li {
-        padding: 0;
-        list-style: none;
-        border-bottom: #999 1px dashed;
-
-        &:last-of-type {
-          border-bottom: 0;
-        }
-
-        p {
-          em {
-            background: #bae8f5;
-            font-style: normal;
-          }
-
-          &.page {
-            line-height: 1.5;
-
-            span {
-              &.title {
-                font-size: 15px;
-                padding-right: 5px;
-                font-weight: 500;
-
-                &:before {
-                  content: " ";
-                  padding-right: 3px;
-                  width: 8px;
-                  display: inline-block;
-                }
-              }
-              &.firstMember,
-              &.parent {
-                font-size: 11px;
-                padding: 4px 6px;
-                color: #666;
-                background: #eee;
-                font-weight: 400;
-              }
-            }
-          }
-          &.preview {
-            font-size: 11px;
-            line-height: 1.3;
-            color: #999;
-            padding: 7px 8px 7px 5px;
-            font-weight: 400;
-
-            em {
-              background-color: #dcf7ff;
-            }
-          }
-        }
-
-
-
-        a {
-          display: block;
-          background: #FFF;
-          padding: 5px;
-          outline: none;
-
-
-          &:focus,
-          &:hover {
-            background: #F0F0F0;
-
-            .title {
-              &:before {
-                content: "›" !important;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-
 }
-
-
 
 /** header github **/
 .icon {
@@ -1450,73 +1277,8 @@ header nav li.active span {
 .icon.icon-eye-plus:before {
   content: "\e900";
 }
-
 .icon.icon-small {
   font-size: 18px;
-}
-.icon.icon-github:before {
-  content: "\e606";
-}
-header nav ul li a.github {
-  border-radius: 100%;
-  padding: 11px 0px 9px 10px;
-  overflow: hidden;
-  background-color: $dark;
-}
-header nav ul li a.github .icon {
-  position: relative;
-  line-height: 27px;
-  font-size: 33px;
-}
-header nav ul li a.github:hover .icon:after {
-  opacity: 1;
-  -webkit-transform: translateY(20%);
-  -ms-transform: translateY(20%);
-  transform: translateY(20%);
-}
-header nav ul li a.github .icon:after {
-  color: transparent;
-  position: absolute;
-  left: -2px;
-  top: -1px;
-  font-size: 1.3em;
-  display: inline-block;
-  content: "\e0ff";
-  transition-duration: 0.3s;
-  -webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
-  -webkit-animation-name: hvr-icon-drop;
-  animation-name: hvr-icon-drop;
-  -webkit-transform: translateY(-160%);
-  -ms-transform: translateY(-160%);
-  transform: translateY(-160%);
-  opacity: 0;
-}
-.icon.icon-github:before {
-  content: "\e606";
-}
-header nav ul li a.github:hover .icon:before {
-  color: transparent;
-  opacity: 0;
-  -webkit-transform: translateY(160%);
-  -ms-transform: translateY(160%);
-  transform: translateY(160%);
-}
-header nav ul li a.github .icon:before {
-  display: inline-block;
-  -webkit-transform: translateY(0px);
-  -ms-transform: translateY(0px);
-  transform: translateY(0px);
-  transition-duration: 0.3s;
-  -webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
-  -webkit-animation-name: hvr-icon-drop;
-  animation-name: hvr-icon-drop;
-  opacity: 1;
-}
-header nav ul li a.github .icon:before,
-header nav ul li a.github .icon:after {
-  color: #FFFFFF;
 }
 
 /* code preview hack */
@@ -1524,7 +1286,6 @@ header nav ul li a.github .icon:after {
   color: #d0d0d0;
   background: none;
 }
-
 
 
 
@@ -1566,7 +1327,7 @@ header {
   transition: all 0.2s;
 }
 .version-selector {
-  padding: 15px;
+  padding: 2em 0 0 0;
 
   select {
     background: #f3f3f3;

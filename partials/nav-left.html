@@ -3,9 +3,6 @@
 
   <div class="tocify">
     <ul  class="tocify-header">
-      <li class="tocify-item tocify-focus tocify-hover"></li>
-    </ul>
-    <ul  class="tocify-header">
       <li class="tocify-item">{{ ancestry.parent.title }}</li>
       <ul class="tocify-subheader">
         {{#each ancestry.siblings}}
@@ -22,9 +19,9 @@
               {{#each ../ancestry.members}}
                 {{#if (or show-subheader (ne @key 0))}}
                   {{#if (or (eq path ../../path) (eq path ../path))}}
-                    <li class="tocify-item tocify-level-2 tocify-focus"><a href="{{firstDefinedOf ../../site_base_path ../site_base_path}}{{ path }}" title="{{firstDefinedOf description title }}">&rsaquo; {{firstDefinedOf subheader-title title}}</a></li>
+                    <li class="tocify-item tocify-level-2 tocify-focus"><a href="{{firstDefinedOf ../../site_base_path ../site_base_path}}{{ path }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
                   {{else}}
-                    <li class="tocify-item tocify-level-2"><a href="{{firstDefinedOf ../../site_base_path ../site_base_path}}{{ path }}" title="{{firstDefinedOf description title }}">&rsaquo; {{firstDefinedOf subheader-title title}}</a></li>
+                    <li class="tocify-item tocify-level-2"><a href="{{firstDefinedOf ../../site_base_path ../site_base_path}}{{ path }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
                   {{/if}}
                 {{/if}}
               {{/each}}

@@ -1,8 +1,7 @@
 (function navDropdown() {
   $('.dropdown-btn')
     .on('click', function (event) {
-      event.preventDefault();
-      event.stopPropagation()
+      event.stopPropagation();
       $(event.target)
         .parent()
         .toggleClass('open');

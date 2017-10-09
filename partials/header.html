@@ -5,12 +5,25 @@
     </a>
     <h1>Kuzzle Documentation</h1>
     <a class="mobile-nav-burger" href="javascript:;"></a>
+    <div class="search">
+      <input name="search" type="search" placeholder="Search anything... (alt + S)" tabindex="1" />
+      <div class="search-results"><ul></ul></div>
+      <script type="text/plain" id="search-results-template">
+        <li>
+          <a href="__link__" tabindex="__tabindex__">
+            <p class="page">
+              <span class="title">__title__</span>
+              <span class="firstMember">__firstMember__</span>
+              <span class="parent">__parent__</span>
+            </p>
+            <p class="preview">__preview__</p>
+          </a>
+        </li>
+      </script>
+    </div>
   </div>
   <nav>
     <ul>
-      <li>
-        <a href="http://kuzzle.io/install-kuzzle/" class="nav-item">Install</a>
-      </li>
       {{#if (startwith path "guide") }}
       <li class="active">
       {{else}}
@@ -44,7 +57,7 @@
       {{else}}
       <li class="dropdown-btn">
       {{/if}}
-        <a href="" class="nav-item">Cookbooks <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+        <span class="nav-item">Cookbooks <i class="fa fa-caret-down" aria-hidden="true"></i></span>
         <ul class="nav-dropdown">
           {{#if (startwith path "elasticsearch") }}
           <li class="active">
@@ -78,32 +91,14 @@
         </ul>
       </li>
       <li>
-        <a href="http://kuzzle-backoffice.netlify.com/" target="_blank" class="nav-item ">Backoffice</a>
-      </li>
-      <li>
         <a href="https://github.com/kuzzleio/kuzzle" target="_blank" class="nav-item github">
           <i class="icon icon-github icon-small"></i>
         </a>
       </li>
     </ul>
+    <div class="cta-buttons">
+      <a href="http://kuzzle-backoffice.netlify.com/" target="_blank"><button>Backoffice</button></a>
+      <a href="http://kuzzle.io/install-kuzzle/"><button>Install</button></a>
+    </div>
   </nav>
-    <!-- <ul class="search">
-      <li>
-        <input name="search" type="search" placeholder="Search anything... (alt + S)" tabindex="1" />
-      </li>
-    </ul>
-    <div class="search-results"><ul></ul></div>
-    <script type="text/plain" id="search-results-template">
-      <li>
-        <a href="__link__" tabindex="__tabindex__">
-          <p class="page">
-            <span class="title">__title__</span>
-            <span class="firstMember">__firstMember__</span>
-            <span class="parent">__parent__</span>
-          </p>
-          <p class="preview">__preview__</p>
-        </a>
-      </li>
-    </script> -->
-
 </header>

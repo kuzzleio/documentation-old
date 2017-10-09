@@ -88,8 +88,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 %header-font {
   @extend %default-font;
-  font-family: 'Ubuntu', sans-serif;
-  //text-transform: uppercase;
+  font-family: 'Ubuntu Light', sans-serif;
 }
 
 %code-font {

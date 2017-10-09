@@ -252,11 +252,10 @@ handlebars.registerHelper({
     console.log(`= generating map sass files =`);
 
     metalsmith
-      .use(sass());
-      // {
-      //   sourceMap: true,
-      //   sourceMapContents: true
-      // }
+      .use(sass({
+        sourceMap: true,
+        sourceMapContents: true
+      }));
   }
   else {
     metalsmith
@@ -356,8 +355,12 @@ handlebars.registerHelper({
     metalsmith
       .use(browserSync({
         server : "build",
-        files  : ["src/assets/stylesheets/*.scss"]
+        files  : ["src/**/*", "partials/**/*", "layouts/**/*"]
       }, function (err, bs) {
+        if (err) {
+          console.error(err);
+          return;
+        }
         console.log('==== build finished ====');
       }));
       // .use(serve({

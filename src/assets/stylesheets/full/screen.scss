@@ -184,8 +184,6 @@
   }
 
   .tocify-wrapper {
-    background: #fbfbfb;
-    box-shadow: rgba(0,0,0,0.1) 0 0 9px;
 
     .toc-footer li,
     .toc-footer a {
@@ -223,9 +221,6 @@
     }
     > .search:before {
       color: #333;
-    }
-    .tocify-subheader  {
-      background: #FFF;
     }
     .tocify-header.header-active  {
       background: $dark;
