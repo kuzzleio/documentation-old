@@ -32,13 +32,20 @@ const clickImage  = require('./metalsmith-plugins/clickable-images');
 const saveSrc     = require('./metalsmith-plugins/save-src');
 
 const nodeStatic = require('node-static');
-// const serve = require('metalsmith-serve');
-// const watch = require('metalsmith-watch');
-const browserSync = require('metalsmith-browser-sync');
+const serve = require('metalsmith-serve');
+const watch = require('metalsmith-watch');
 const open = require('open');
 const fs = require('fs');
+const color = require('colors/safe');
 
 const versionsConfig = require('./versions.config.json');
+
+const ok = color.green("✔")
+const nok = color.red("✗")
+
+function log (args) {
+  console.log(color.magenta('[kuzzle-docs]'), args);
+}
 
 let options = {
   dev: {
@@ -102,17 +109,21 @@ if (process.argv.indexOf('--algolia-private-key') > -1) {
   options.algolia.privateKey = process.argv[process.argv.indexOf('--algolia-private-key') + 1];
 }
 
+if (options.dev.enabled) {
+  log(`Starting ${color.bold('development')} environment...`);
+} else {
+  log(`Starting ${color.bold('production')} build...`);
+}
 
 for (let config of versionsConfig) {
   if (config.version_path === options.build.path) {
-    console.log(`= predefined version ${config.version_label} =`);
+    log(`Using version ${color.bold(config.version_label)}`);
 
     options.github.repository = config.version_gh_repo;
     options.github.branch = config.version_gh_branch;
     options.algolia.index = config.algolia_index;
   }
 }
-
 
 options.algolia.fnFileParser = (file, data) => {
   let objects = [];
@@ -173,11 +184,17 @@ handlebars.registerHelper({
     return v1 || v2;
   },
   startwith: function (str, substr) {
+    if (!str) {
+      return false;
+    }
     return str.startsWith(substr);
   },
   mstartwith: function() {
     var args = Array.prototype.slice.call(arguments);
     var str = args.shift();
+    if (!str) {
+      return false;
+    }
     return args.reduce(function(found, currentStr) {
       return found || str.startsWith(currentStr);
     }, false);
@@ -207,224 +224,163 @@ handlebars.registerHelper({
 })
 
 // Build site with metalsmith.
-// const build = done => {
-  let metalsmith = Metalsmith(__dirname)
-    .metadata({
-      site_title: 'Kuzzle documentation',
-      site_url: options.build.host,
-      site_base_path: options.build.path,
-      gh_repo: options.github.repository,
-      gh_branch: options.github.branch,
-      algolia_projectId: options.algolia.projectId,
-      algolia_publicKey: options.algolia.publicKey,
-      algolia_index: options.algolia.index,
-      versions_config: versionsConfig
-    })
-    .source('./src')
-    .destination('./build' + options.build.path) // does not work with 'dist' folder ...
-    .clean(true)
-    .use(saveSrc())
-    .use((files, metalsmith, done) => {
-      setImmediate(done);
+let metalsmith = Metalsmith(__dirname)
+  .metadata({
+    site_title: 'Kuzzle documentation',
+    site_url: options.build.host,
+    site_base_path: options.build.path,
+    gh_repo: options.github.repository,
+    gh_branch: options.github.branch,
+    algolia_projectId: options.algolia.projectId,
+    algolia_publicKey: options.algolia.publicKey,
+    algolia_index: options.algolia.index,
+    versions_config: versionsConfig,
+    dev: options.dev.enabled
+  })
+  .source('./src')
+  .destination('./build' + options.build.path) // does not work with 'dist' folder ...
+  .clean(true)
+  .use(saveSrc())
+  .use((files, metalsmith, done) => {
+    setImmediate(done);
 
-      Object.keys(files).forEach(path => {
-        if (path.endsWith('.md') && files[path].order === undefined) {
-          files[path].order = Number.MAX_SAFE_INTEGER
-        }
-      });
-    });
-
-  console.log(`==== processing sources files ====`);
-
-  // if (options.dev.watch) {
-  //   console.log(`= watch enabled =`);
-  //   metalsmith.use(changed());
-  // }
-
-  metalsmith
-    .use(links())
-    .use(ancestry({
-      match: '**/*.md',
-      sortBy: ['order', 'title']
-    }));
-
-  if (options.dev.enabled) {
-    console.log(`= generating map sass files =`);
-
-    metalsmith
-      .use(sass({
-        sourceMap: true,
-        sourceMapContents: true
-      }));
-  }
-  else {
-    metalsmith
-      .use(sass({
-        sourceMap: false,
-        sourceMapContents: false
-      }));
-  }
-
-  metalsmith
-    .use(hljs())
-    .use(hbtmd(handlebars, {
-      pattern: '**/*.md'
-    }))
-    .use(markdown())
-    .use(permalinks())
-    .use(metatoc())
-    .use(languageTab())
-    .use(layouts({
-      engine: 'handlebars',
-      partials: 'partials',
-      exposeConsolidate (r) {
-        r.handlebars = handlebars
+    Object.keys(files).forEach(path => {
+      if (path.endsWith('.md') && files[path].order === undefined) {
+        files[path].order = Number.MAX_SAFE_INTEGER
       }
-    }));
-
-  if (!options.dev.enabled) {
-    metalsmith
-      .use(cssPacker({
-        siteRootPath: options.build.path,
-        inline: true
-      }))
-      .use(jsPacker({
-        siteRootPath: options.build.path,
-        inline: false
-      }))
-  }
-  metalsmith
-    .use(clickImage())
-    .use(logger());
-
-  // if (options.dev.watch) {
-  //   console.log(`= livereload enabled =`);
-
-  //   metalsmith
-  //     .use(debug())
-  //     .use(livereload({ debug: false, delay: 500 }));
-  // }
-
-  if (options.algolia.privateKey) {
-    console.log(`= algolia indexing enabled =`);
-
-    metalsmith
-      .use(algolia({
-        clearIndex: true,
-        projectId: options.algolia.projectId,
-        privateKey: options.algolia.privateKey,
-        index: options.algolia.index,
-        fileParser: options.algolia.fnFileParser
-      }));
-  }
-
-  if (options.build.checkLinks) {
-    console.log(`= checking dead links enabled =`);
-
-    metalsmith
-      .use(linkcheck({
-        verbose: true,
-        timeout: 5,
-        checkFile: '.linkcheck/.links_checked.json',
-        ignoreFile: '.linkcheck/links_ignore.json',
-        failFile: '.linkcheck/links_failed.json'
-      }));
-  }
-
-  if (options.build.compress) {
-    console.log(`= build compression enabled (may take a while) =`);
-
-    metalsmith
-      .use(inlineSVG())
-      .use(optipng({
-        pattern: '**/*.png',
-        options: ['-o7']
-      }))
-      .use(htmlMin())
-      .use(compress())
-      .use(sitemap({
-        hostname: options.build.host,
-        modifiedProperty: 'stats.mtime',
-        omitIndex: true
-      }));
-  }
-
-  console.log(`==== building site in "${options.build.path}" ====`);
-
-  if (options.dev.enabled) {
-    metalsmith
-      .use(browserSync({
-        server : "build",
-        files  : ["src/**/*", "partials/**/*", "layouts/**/*"]
-      }, function (err, bs) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        console.log('==== build finished ====');
-      }));
-      // .use(serve({
-      //   port: 3000,
-      //   verbose: true
-      // }))
-      // .use(
-      //   watch({
-      //     paths: {
-      //       // "${source}/**/*": true,
-      //       "${source}/**/*": "${source}/assets/**/*", //"${source}/assets/**/*", //
-      //       // "src/**/*": true,
-      //       // "${source}/layouts/**/*": true
-      //     },
-      //     livereload: true
-      //   })
-      // )
-  }
-
-  metalsmith.build((error, files) => {
-    console.log('==== build finished ====');
-    if (error) {
-      console.error(error)
-
-      // if (!options.dev.enabled) {
-      //   return done(error);
-      // }
-    }
-    // done();
+    });
   });
-// }
 
-// if (options.dev.enabled) {
-//   // run dev server (build & serv ./build directory on 8080 port & watch => rebuild on change)
-//   var serve = new nodeStatic.Server(__dirname + '/build');
-//   // let cache = {};
+metalsmith
+  .use(links())
+  .use(ancestry({
+    match: '**/*.md',
+    sortBy: ['order', 'title']
+  }));
 
-//   require('http').createServer((req, res) => {
-//     req.addListener('end', () => serve.serve(req, res, (e, r) => {
-//       // handle 404 page
-//       if (e && (e.status === 404) && fs.existsSync(__dirname + '/build' + options.build.path + '404.html')) {
-//         serve.serveFile(options.build.path + '404.html', 404, {}, req, res);
-//       }
-//     }));
-//     req.resume();
-//   }).listen(options.dev.port);
+if (options.dev.enabled) {
+  metalsmith
+    .use(sass({
+      sourceMap: true,
+      sourceMapContents: true
+    }));
+}
+else {
+  metalsmith
+    .use(sass({
+      sourceMap: false,
+      sourceMapContents: false
+    }));
+}
 
-//   build(error => {
-//     if (error) {
-//       console.error(error);
-//     }
-//   })
+metalsmith
+  .use(hljs())
+  .use(hbtmd(handlebars, {
+    pattern: '**/*.md'
+  }))
+  .use(markdown())
+  .use(permalinks({
+    // It is very important that this option is set to false.
+    // Otherwise, the partial builds in dev mode are not effective,
+    // since this plugin overwrites the processed files with their
+    // old version.
+    relative: false
+  }))
+  .use(metatoc())
+  .use(languageTab())
+  .use(layouts({
+    engine: 'handlebars',
+    partials: 'partials',
+    exposeConsolidate (r) {
+      r.handlebars = handlebars
+    }
+  }));
 
-//   if (options.dev.openBrowser) {
-//     open('http://localhost:' + options.dev.port);
-//   }
-// } else {
-//   // only build static site
-//   build(error => {
-//     if (error) {
-//       console.error(error);
-//       return process.exit(1);
-//     }
+if (!options.dev.enabled) {
+  log(`CSS and JS packers enabled`);
+  metalsmith
+    .use(cssPacker({
+      siteRootPath: options.build.path,
+      inline: true
+    }))
+    .use(jsPacker({
+      siteRootPath: options.build.path,
+      inline: false
+    }))
+}
+metalsmith
+  .use(clickImage())
+  .use(logger());
 
-//     return process.exit(0);
-//   })
-// }
+if (options.algolia.privateKey) {
+  log(`Algolia indexing enabled`);
+
+  metalsmith
+    .use(algolia({
+      clearIndex: true,
+      projectId: options.algolia.projectId,
+      privateKey: options.algolia.privateKey,
+      index: options.algolia.index,
+      fileParser: options.algolia.fnFileParser
+    }));
+}
+
+if (options.build.checkLinks) {
+  log(`Checking dead links enabled`);
+
+  metalsmith
+    .use(linkcheck({
+      verbose: true,
+      timeout: 5,
+      checkFile: '.linkcheck/.links_checked.json',
+      ignoreFile: '.linkcheck/links_ignore.json',
+      failFile: '.linkcheck/links_failed.json'
+    }));
+}
+
+if (options.build.compress) {
+  log(`Compression enabled (build may take a while)`);
+
+  metalsmith
+    .use(inlineSVG())
+    .use(optipng({
+      pattern: '**/*.png',
+      options: ['-o7']
+    }))
+    .use(htmlMin())
+    .use(compress())
+    .use(sitemap({
+      hostname: options.build.host,
+      modifiedProperty: 'stats.mtime',
+      omitIndex: true
+    }));
+}
+
+if (options.dev.enabled) {
+  metalsmith
+    .use(serve({
+      port: 3000,
+      verbose: false
+    }))
+    .use(
+      watch({
+        paths: {
+          "src/assets/stylesheets/**/*": "assets/stylesheets/**/*",
+          "src/**/*.md": true,
+          "src/assets/**/*.js": true,
+          "partials/**/*.md": true,
+          "layouts/**/*.md": true
+        },
+        livereload: true
+      })
+    )
+}
+
+log(`Building site in "${options.build.path}"`);
+metalsmith.build((error, files) => {
+  if (error) {
+    log(nok + color.yellow(' Ooops...'))
+    console.error(error)
+  }
+  log(ok + ' Build finished');
+});

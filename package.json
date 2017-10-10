@@ -25,7 +25,6 @@
     "metalsmith-algolia": "^0.1.0",
     "metalsmith-ancestry": "^1.2.1",
     "metalsmith-auto-collections": "^0.1.1",
-    "metalsmith-browser-sync": "^1.1.1",
     "metalsmith-changed": "^3.1.1",
     "metalsmith-css-packer": "^0.1.0",
     "metalsmith-debug": "^1.1.0",

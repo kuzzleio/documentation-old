@@ -1,18 +1,22 @@
 .tocify-wrapper {
-  transition: left 0.3s ease-in-out;
-  padding: 0 0 0 4em;
-  overflow-y: auto;
-  overflow-x: hidden;
   position: fixed;
   z-index: 30;
   top: 155px;
   left: 0;
   bottom: 0;
+
   width: $nav-width;
-  background-color: $nav-bg;
+  padding: 0 0 0 4em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  
   font-size: 15px;
+  
+  background-color: $nav-bg;
   background: #fbfbfb;
   box-shadow: rgba(0,0,0,0.1) 0 0 9px;
+  
+  transition: left 0.3s ease-in-out;
 
   // The Table of Contents is composed of multiple nested
   // unordered lists.  These styles remove the default
@@ -28,23 +32,6 @@
     color: $dark;
     text-decoration: none;
   }
-  // language selector for mobile devices
-//   .lang-selector {
-//     display: none;
-//     a {
-//       padding-top: 0.5em;
-//       padding-bottom: 0.5em;
-//     }
-//   }
-
-//   // This is the logo at the top of the ToC
-//   &>img {
-//     display: block;
-//   }
-
-//   img+.tocify {
-//     margin-top: $logo-margin;
-//   }
 
   .tocify-header {
     &> .tocify-item {
