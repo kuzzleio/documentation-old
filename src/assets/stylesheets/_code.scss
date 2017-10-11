@@ -14,6 +14,10 @@ table code,
 aside code,
 blockquote code {
   @extend %code-style;
+
+  @media (max-width: $desktop-width) {
+    font-size: 95%;
+  }
 }
 
 h1 code,

@@ -23,15 +23,6 @@
           max-width: 65%;
         }
 
-        > p, > table {
-          code {
-            padding: 5px 8px 3px;
-            border-radius: 4px;
-            word-break: normal;
-            font-size: 14px;
-          }
-        }
-        
         > aside {
           width: 45%;
           padding: 16px 34px;
@@ -78,6 +69,10 @@
 
         > table {
           margin: 25px;
+          
+          @media (max-width: $desktop-width) {
+            margin: 25px 0;
+          }
         }
 
         blockquote + pre,
@@ -116,7 +111,7 @@
 
 
 //large desktop
-@media (max-width: 1500px) {
+@media (max-width: $large-desktop-width) {
   .container {
     .page-wrapper {
       padding: 10px 0 55px 0;
@@ -127,7 +122,7 @@
 
 
 //medium desktop
-@media (max-width: 1295px) {
+@media (max-width: $desktop-width) {
   .content {
     width: 100%;
     max-width: none;
@@ -139,9 +134,9 @@
       >blockquote,
       >.language-tab-selector,
       >.language-tab {
-        width: auto;
-        float: none;
-        margin: 0 25px;
+//         width: auto;
+//         float: none;
+//         margin: 0 25px;
       }
 
       >.language-tab-selector {

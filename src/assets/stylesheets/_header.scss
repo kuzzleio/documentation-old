@@ -75,13 +75,18 @@ header {
     background-color: #FFF;
 
     @media (max-width: $desktop-width) {
-      padding: 15px 0;
+      padding: 1em 2em;
       height: 75px;
     }
 
     img.logo {
       width: 110px;
       margin-right: 3em;
+
+      @media (max-width: $desktop-width) {
+        width: 90px;
+        margin-top: 5px;
+      }
     }
 
     a {
@@ -94,12 +99,21 @@ header {
       font-size: 2.2em;
       color: #adadad;
       font-weight: 100;
+
+      @media (max-width: $desktop-width) {
+        font-size: 1.8em;
+        padding-top: 3px;
+      }
     }
 
     .search {
       margin: 7px auto;
       float: right;
       position: relative;
+
+      @media (max-width: $desktop-width) {
+        margin-top: 5px;
+      }
 
       &:after {
         display: inline-block;
@@ -110,6 +124,11 @@ header {
         right: 10px;
         top: 8px;
         position: absolute;
+
+        @media (max-width: $desktop-width) {
+          font-size: 90%;
+          top: 10px;
+        }
       }
 
       input[type=search] {
@@ -125,13 +144,17 @@ header {
         display: inline-block;
         margin: 0;
 
+        @media (max-width: $desktop-width) {
+          font-size: 90%;
+        }
+
         &:hover {
           border-color: $color-pinkpanther;
         }
 
         &:focus {
           border-color: $color-pinkpanther;
-          width: 420px;
+          width: 320px;
         }
       }
 
@@ -142,7 +165,7 @@ header {
 
         input[type=search] {
           border-color: $color-pinkpanther;
-          width: 420px;
+          width: 320px;
         }
       }
 
@@ -160,6 +183,12 @@ header {
           position: absolute;
           padding: 5px;
           box-shadow: 0px 1px 4px 0px #ccc;
+          margin-left: 0;
+          z-index: 60;
+
+          @media (max-width: $desktop-width) {
+            max-width: 350px;
+          }
 
           li {
             padding: 0;
@@ -244,6 +273,9 @@ header {
     background-color: #002835;
     padding: 0 $header-padding;
 
+    @media (max-width: $desktop-width) {
+      padding: 0 2em;
+    }
     ul {
       margin-left: 0;
 
@@ -254,6 +286,10 @@ header {
 
         .nav-item {
           @include item;
+
+          @media (max-width: $desktop-width) {
+            padding: 11px 8px;
+          }
 
           &:not(.github):hover:after {
             width: 100%;
@@ -278,12 +314,20 @@ header {
       float: right;
       margin: 9px 0 0 0;
 
+      @media (max-width: $desktop-width) {
+        margin-top: 8px;
+      }
+
       button {
         background: $color-pinkpanther;
         border: none;
         padding: 1em;
         @include nav-font;
         margin: 0 0 0 5px;
+
+        @media (max-width: $desktop-width) {
+          padding: 11px;
+        }
       }
     }
   }

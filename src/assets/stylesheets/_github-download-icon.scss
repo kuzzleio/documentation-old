@@ -8,6 +8,10 @@
     font-size: 25px;
     color: white;
 
+    @media (max-width: $desktop-width) {
+      font-size: 21px;
+    }
+
     &:before, &:after {
       transition-duration: 0.3s;
       -webkit-animation-duration: 0.5s;

@@ -232,55 +232,6 @@ li {
 
 }
 
-// RESPONSIVE DESIGN
-////////////////////////////////////////////////////////////////////////////////
-// These are the styles for phones and tablets
-// There are also a couple styles disperesed
-
-@media (max-width: $tablet-width) {
-  .tocify-wrapper {
-    left: -$nav-width;
-
-    &.open {
-      left: 0;
-    }
-  }
-
-  #nav-button {
-    display: block;
-  }
-
-  .tocify-wrapper .tocify-item > a {
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
-  }
-}
-
-@media (max-width: $phone-width) {
-  %left-col {
-    margin-right: 0;
-  }
-
-  .tocify-wrapper .lang-selector {
-    display: block;
-  }
-
-  .page-wrapper .lang-selector {
-    display: none;
-  }
-
-  %right-col {
-    width: auto;
-    float: none;
-  }
-
-  %right-col + %left-col {
-    margin-top: $main-padding;
-  }
-}
-
-
-
 // header .container-logo {
 //   display: inline-block;
 //   height: 100%;
@@ -406,79 +357,87 @@ header {
 
 
 
+// RESPONSIVE DESIGN
+////////////////////////////////////////////////////////////////////////////////
+// These are the styles for phones and tablets
+// There are also a couple styles disperesed
+
+@media (max-width: $tablet-width) {
+  .tocify-wrapper {
+    left: -$nav-width;
+
+    &.open {
+      left: 0;
+    }
+  }
+
+  #nav-button {
+    display: block;
+  }
+
+  .tocify-wrapper .tocify-item > a {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+  }
+}
+
+@media (max-width: $phone-width) {
+  %left-col {
+    margin-right: 0;
+  }
+
+  .tocify-wrapper .lang-selector {
+    display: block;
+  }
+
+  .page-wrapper .lang-selector {
+    display: none;
+  }
+
+  %right-col {
+    width: auto;
+    float: none;
+  }
+
+  %right-col + %left-col {
+    margin-top: $main-padding;
+  }
+}
 
 //default: x-large
 
 
-
-
-
-
-
-
-
 //large desktop
-@media (max-width: 1500px) {
+@media (max-width: $large-desktop-width) {
   .large-only {
     max-height: 500px;
   }
+
   .container {
     .page-wrapper {
-      padding: 0 0 55px 0;
+      .content {
+        margin-left: 50px;
+      }
     }
   }
 }
 
-
-
-
-
-
-
-
 //medium desktop
-@media (max-width: 1295px) {
+@media (max-width: $desktop-width) {
   .medium-only {
     max-height: 500px;
   }
-  header {
-    .wrapper {
-      white-space: nowrap;
-      overflow: hidden;
+  .container {
+    .tocify-wrapper {
+      width: 230px;
+      padding-left:2em;
     }
-    nav {
-      ul {
-        li {
-          a {
-            font-size: 1.3em;
-            padding: 10px 5px;
-            line-height: 10px;
+    .page-wrapper {
+      margin-left: 230px;
+      padding-right: 2em;
+    }    
+  }
 
-            &.github {
-              .icon {
-                margin-right: 15px;
-                line-height: 12px;
-                font-size: 21px;
-              }
-            }
-          }
-        }
-      }
-    }
-    .wrapper {
-      #logo {
-        margin-left: 15px;
-        transform-origin: 0 0;
-        transform: scale(0.6);
-      }
-    }
-  }
-  .tocify-wrapper {
-    width: 230px;
-  }
-  .page-wrapper {
-    margin-left: 230px;
-  }
   .developer-nav {
 
     >ul {
@@ -492,12 +451,6 @@ header {
     }
   }
   .container {
-    top: 115px !important;
-
-    .tocify-wrapper {
-      top: 115px !important;
-    }
-
     .page-wrapper {
       .toc {
         opacity: 0;
@@ -538,10 +491,6 @@ header {
           }
         }
       }
-    }
-
-    h2 {
-      margin-top: 1.5em;
     }
   }
 }
