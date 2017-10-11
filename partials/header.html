@@ -3,7 +3,7 @@
     <a href="http://kuzzle.io/">
       <img class="logo" src="{{ site_base_path }}assets/images/kuzzle-logo-blue.png">
     </a>
-    <h1>Kuzzle Documentation</h1>
+    <h1>Documentation</h1>
     <a class="mobile-nav-burger" href="javascript:;"></a>
     <div class="search">
       <input name="search" type="search" placeholder="Search anything... (alt + S)" tabindex="1" />
@@ -24,6 +24,11 @@
   </div>
   <nav>
     <ul>
+      <li class="btn-hamburger">
+        <a class="nav-item" href="">
+          <i class="icon icon-menu"></i>
+        </a>
+      </li>
       {{#if (startwith path "guide") }}
       <li class="active">
       {{else}}
@@ -96,10 +101,9 @@
         </a>
       </li>
     </ul>
-    <div class="cta-buttons">
-      <a href="http://kuzzle-backoffice.netlify.com/" target="_blank"><button>Backoffice</button></a>
-      <a href="http://kuzzle.io/install-kuzzle/"><button>Install</button></a>
-    </div>
+
+    {{> cta-buttons }}
+
     <div style="clear:both"></div>
   </nav>
 </header>

@@ -12,4 +12,9 @@
       $wrapper.scrollTop(Math.ceil($selectedItem.get(0).offsetTop - $wrapper.height() / 2));
     }
   }
+
+  $('nav .btn-hamburger').on('click', function (event) {
+    event.preventDefault();
+    $('.tocify-wrapper').toggleClass('open');
+  })
 })();

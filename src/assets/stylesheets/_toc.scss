@@ -1,9 +1,15 @@
 .tocify-wrapper {
   position: absolute;
+  z-index: 1;
 
   width: $nav-width;
   min-height: 100%;
   padding: 3em 0 0 4em;
+
+//   @media (max-width: $tablet-width) {
+//     padding-top: 0;
+//   }
+
   overflow-y: auto;
   overflow-x: hidden;
   
@@ -28,6 +34,26 @@
   a {
     color: $dark;
     text-decoration: none;
+  }
+
+  .cta-buttons {
+    display: none;
+
+//     @media (max-width: $tablet-width) {
+//       display: block;
+//     }
+
+    button {
+      background: $color-pinkpanther;
+      border: none;
+      padding: 1em;
+      font-weight: 700;
+      text-decoration: none;
+      color: white;
+      text-transform: uppercase;
+      font-size: 15px;
+      margin: 10px 0 0 0;
+    }
   }
 
   .tocify-header {
@@ -94,7 +120,6 @@
 }
 
 .version-selector {
-
   select {
     font-size: 14px;
     background: #f3f3f3;
@@ -102,4 +127,8 @@
     border-radius: 4px;
     padding: 10px;
   }
+
+//   @media (max-width: $tablet-width) {
+//     margin-top: 10px;
+//   }
 }

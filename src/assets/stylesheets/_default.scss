@@ -94,12 +94,12 @@ li {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
-#toc > ul > li > a > span {
-  float: right;
-  background-color: #2484FF;
-  border-radius: 40px;
-  width: 20px;
-}
+// #toc > ul > li > a > span {
+//   float: right;
+//   background-color: #2484FF;
+//   border-radius: 40px;
+//   width: 20px;
+// }
 
 @mixin embossed-bg {
   background:
@@ -368,6 +368,7 @@ header {
 
     &.open {
       left: 0;
+      box-shadow: rgba(0, 0, 0, 0.44) 0 0 17px;
     }
   }
 
@@ -416,7 +417,7 @@ header {
   .container {
     .page-wrapper {
       .content {
-        margin-left: 50px;
+        margin: 0 2em;
       }
     }
   }
@@ -434,7 +435,6 @@ header {
     }
     .page-wrapper {
       margin-left: 230px;
-      padding-right: 2em;
     }    
   }
 
@@ -661,8 +661,6 @@ header {
     }
   }
   header {
-    position: absolute;
-
     .mobile-nav-burger {
       display: block;
       position: absolute;
@@ -712,8 +710,16 @@ header {
   tr {
     display: grid;
   }
+  .container {
+    .tocify-wrapper {
+      padding-left:2em;
+    }
+    .page-wrapper {
+      margin-left: 0;
+    }    
+  }
   .page-wrapper {
-    margin-left: 0;
+    
   }
   .developer-nav {
     >ul {
