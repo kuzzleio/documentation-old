@@ -1,0 +1,121 @@
+.nav-sibling {
+    padding:10px;
+    height: 45px;
+    clear:both;
+    border-bottom: solid 5px #f0f0f0;
+
+    a {
+      .icon-github {
+        color: #afafaf;
+        font-size: 12px;
+        vertical-align:
+        text-bottom; margin-left: 6px;
+      }
+      &:hover {
+        .icon-github {
+          // hack to remove text-decoration on icon
+          text-decoration: underline;
+          text-decoration-color: #fff;
+        }
+      }
+    }
+
+    .br-theme-fontawesome-stars {
+      display: inline-block;
+      margin: 0px 5px;
+
+      .br-widget {
+        white-space: nowrap;
+
+        a {
+          font: normal normal normal 20px/1 FontAwesome;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          margin-right: 2px;
+          text-decoration: none !important;
+          font-size: 13px;
+          padding: 0px;
+        }
+
+        a:after {
+          content: '\f006';
+          color: #d2d2d2;
+        }
+
+        a.br-active:after {
+          content: '\f005';
+          color: #EDB867;
+        }
+
+        a.br-selected:after {
+          content: '\f005';
+          color: #EDB867;
+        }
+
+        .br-current-rating {
+          display: inline-block;
+          color: #afafaf;
+          margin-left: 5px;
+          opacity: 0;
+          transition: opacity 0.2s;
+
+          &.visible {
+            opacity: 1;
+          }
+        }
+      }
+
+      .br-readonly {
+        a {
+          cursor: default;
+        }
+      }
+
+    }
+
+    &.bottom {
+      margin-top: 30px;
+      margin-bottom: 0px;
+      border-bottom: 0;
+      border-top: solid 5px #f0f0f0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 11px;
+
+      a {
+        color: #3498db;
+        font-size: 13px;
+        padding: 0px 7px;
+        font-weight: 500;
+      }
+    }
+
+    .nav-left {
+      text-align:left;
+      float:left;
+
+      p {
+        a {
+          color: #afafaf;
+        }
+      }
+    }
+    .nav-right {
+      text-align:right;
+      float:right;
+    }
+
+    .nav-left {
+      width: 70%;
+      overflow: visible;
+      white-space: nowrap;
+    }
+
+    .nav-right {
+      width: 30%;
+      overflow: visible;
+      white-space: nowrap;
+    }
+  }

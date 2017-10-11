@@ -6,7 +6,6 @@
 @import '../default';
 @import '../content';
 
-
 .container {
   .page-wrapper {
     .content {
@@ -21,25 +20,32 @@
 
       .main-content {
         > p, > ul, > dt, > dd {
-          max-width: 85%;
+          max-width: 65%;
         }
-        > p, > table {
 
+        > p, > table {
           code {
             padding: 5px 8px 3px;
             border-radius: 4px;
             word-break: normal;
-            font-size: 12px;
+            font-size: 14px;
           }
         }
+        
         > aside {
           width: 45%;
           padding: 16px 34px;
           margin: 30px 0 30px 30px;
         }
 
-        > pre {
+        pre {
           margin: 0 0 30px 30px;
+          border-radius: 0;
+
+          code {
+            border-radius: 0;
+          }
+
           .clipboard {
             background: rgba(255, 255, 255, 0.07);
             font-size: 11px;
