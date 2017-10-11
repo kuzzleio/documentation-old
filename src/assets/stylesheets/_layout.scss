@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+
+  .page-wrapper {
+    padding: 0 0 55px 0;
+    position: relative;
+    margin-left: $nav-width;
+    min-height: 100%;
+    padding-bottom: 1px; // prevent margin overflow
+
+        .content {
+            margin: 0 0 0 100px;
+            max-width: 960px;
+
+            .main-content {
+                padding-bottom: 40px;
+            }
+        }
+    }
+     
+}

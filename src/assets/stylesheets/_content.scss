@@ -1,0 +1,193 @@
+.content {
+  h1, h2,  h3,  h4,  h5,  h6,  ul,  ol,  aside,  dl {
+    box-sizing: border-box;
+    display: block;
+  }
+ 
+  h1 {
+    color: $dark;
+    font-family: 'Ubuntu Light', sans-serif;
+    clear: both;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    + ul {
+      margin-top: 25px
+    }
+
+    padding-top: $h1-margin-bottom;
+  }
+
+  h1 {
+    @extend %header-font;
+    font-size: 4em;
+  }
+
+  h2 {
+    @extend %header-font;
+    font-size: 2.5em;
+    padding-top: 30px;
+  }
+
+  h3, h4, h5, h6 {
+    @extend %default-font;
+    font-weight: 500;
+    padding-top: 30px;
+  }
+
+  h3, h3 code, h4, h4 code {
+    font-size: 16px;
+  }
+
+  h5, h5 code, h6, h6 code {
+    font-size: 14px;
+  }
+
+  h4, h5, h6 {
+    &> span {
+      border-bottom: dashed 1px;
+      padding: 0 2px 3px 2px;
+      display: inline-block;
+    }
+  }
+
+  p {
+    font-size: 120%;
+    padding-top: 20px;
+
+    & + h1,
+    & + h2,
+    & + h3,
+    & + h4 {
+      padding-top: 40px;
+    }
+
+    & + p {
+      padding-top: 10px;
+    }
+
+    & + table {
+      margin-top: 20px;
+    }
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  table {
+    margin-bottom: 1em;
+    overflow: auto;
+    th,td {
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    th {
+      padding: 5px 40px 5px 10px;
+      border-bottom: 1px solid #ccc;
+      vertical-align: bottom;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    tr:last-child {
+      border-bottom: 1px solid #ccc;
+    }
+
+    tr:nth-child(odd)>td {
+      background-color: lighten($main-bg,4.2%);
+    }
+
+    tr:nth-child(even)>td {
+      background-color: lighten($main-bg,2.4%);
+    }
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: 15px;
+  }
+
+  p, li, dt, dd {
+    color: #444;
+    line-height: 1.6;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a, strong {
+    font-size: 15px;
+  }
+
+  pre,
+  aside {
+    margin: 20px 0 0 0;
+  }
+
+  aside {
+    padding: 17px 35px;
+    border-radius: 4px;
+    padding: 25px 40px;
+    background: $light;
+    color: $dark;
+    line-height: 1.6;
+    position: relative;
+
+    &:before {
+      vertical-align: middle;
+      padding-right: 0.5em;
+      font-size: 18px;
+
+      position: absolute;
+      top: 26px;
+      left: 14px;
+    }
+
+    &.notice{
+      &:before {
+        @extend %icon-info-sign;
+      }
+    }
+
+    &.warning {
+      background-color: #E08E79;
+      color: #F9EAEB;
+
+      &:before {
+        @extend %icon-exclamation-sign;
+      }
+
+      p, li, dt, dd {
+        color: #F9EAEB !important;
+      }
+
+      a {
+        color: #fefefe;
+      }
+    }
+
+    &.success {
+      background-color: $medium;
+      color: $dark;
+
+      &:before {  
+        @extend %icon-ok-sign;
+      }
+    }
+  }
+}

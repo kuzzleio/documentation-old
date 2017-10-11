@@ -4,13 +4,12 @@
 @import '../syntax';
 @import '../icon-font';
 @import '../default';
+@import '../content';
 
 
 .content {
-  margin: 0 0 0 100px;
-
   #disqus_thread {
-    margin: 25px 55px
+    margin: 30px 0;
   }
 
   .reading-time {
@@ -65,12 +64,7 @@
   }
 
   .main-content {
-    a, strong {
-      font-size: 15px;
-    }
     &> p {
-      padding: 0 $main-padding;
-      font-size: 120%;
 
       a.image {
         display: block;
@@ -82,37 +76,13 @@
       }
     }
 
-
-    &> table,
-    &> aside,
-    &> pre,
-    &> blockquote  {
-      margin: 20px 25px;
-    }
-
-    &> aside {
-      padding: 17px 35px;
-      border-radius: 4px;
-    }
-
-    &> pre {
-      border: solid 1px #e4e4e4;
-      background: #fbfbfb;
-      border-radius: 4px;
-    }
   }
 }
 
 .container {
-  position: absolute;
-  top: 140px;
-  bottom: 0;
-  left: 0;
-  right: 0;
 
   .page-wrapper {
-    padding: 25px 0 55px 0;
-    position: relative;
+
     .toc {
       position: fixed;
       padding: 2px 4px 9px;

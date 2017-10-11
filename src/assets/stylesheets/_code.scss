@@ -1,0 +1,67 @@
+code,
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code,
+li code,
+p code,
+table code,
+aside code,
+blockquote code {
+  background-color: #f5e0e6;
+  padding: 3px 5px;
+  border-radius: 3px;
+  @extend %break-words;
+  @extend %code-font;
+  word-break: normal;
+}
+
+aside code {
+  background-color: #d5d5d5;
+}
+
+pre {
+  border: solid 1px #e4e4e4;
+  background: #fbfbfb;
+  border-radius: 4px;
+  
+  .clipboard {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 6px 8px;
+    background: rgba(0, 0, 0, 0.07);
+    border: 0;
+    font-family: Ubuntu,Arial,monospace;
+    font-size: 11px;
+    opacity: 0;
+    outline: none;
+    transition: opacity 0.3s;
+    color: #111;
+
+    i {
+      color: #666;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+
+      i {
+        color: #111;
+      }
+    }
+  }
+  &:hover {
+    .clipboard {
+      opacity: 1;
+    }
+  }
+}
+
+
+.hljs {
+  padding: 25px 25px;
+  display: block;
+}

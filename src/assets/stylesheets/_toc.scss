@@ -1,12 +1,9 @@
 .tocify-wrapper {
-  position: fixed;
-  z-index: 30;
-  top: 155px;
-  left: 0;
-  bottom: 0;
+  position: absolute;
 
   width: $nav-width;
-  padding: 0 0 0 4em;
+  height: 100%;
+  padding: 3em 0 0 4em;
   overflow-y: auto;
   overflow-x: hidden;
   
@@ -97,9 +94,9 @@
 }
 
 .version-selector {
-  padding: 2em 0 0 0;
 
   select {
+    font-size: 14px;
     background: #f3f3f3;
     border: 1px solid #e4e4e4;
     border-radius: 4px;
