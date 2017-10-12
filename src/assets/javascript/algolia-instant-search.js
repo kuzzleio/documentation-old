@@ -92,6 +92,8 @@
   });
 
   $searchInput.on('focus', function(event) {
+    $searchInput.parent().addClass('focused');
+
     if (lastHits > 0) {
       $searchBlock.addClass('display-results');
       watchClose = true;
@@ -101,6 +103,8 @@
   });
 
   $searchInput.on('blur', function(event) {
+    $searchInput.parent().removeClass('focused');
+    
     if (lastHits > 0) {
       $searchBlock.addClass('display-results');
       watchClose = true;

@@ -1,6 +1,4 @@
 <div class="tocify-wrapper">
-  {{> cta-buttons }}
-
   {{> version-select }}
 
   <div class="tocify">
@@ -39,9 +37,15 @@
         {{/each}}
       </ul>
     </ul>
-    <ul class="toc-footer">
-      <!-- community links here ! -->
 
-    </ul>
+    <div class="toc-footer">
+      {{> cta-buttons }}
+    </div>
+
+  </div>
+
+  <div class="floating-toggle">
+    <i class="icon icon-menu"></i>
+    <i class="icon icon-cancel"></i>
   </div>
 </div>

@@ -28,9 +28,9 @@
       opacity: 1;
       display: inline-block;
 
-      -webkit-transform: translateY(-3px);
-      -ms-transform: translateY(-3px);
-      transform: translateY(-3px);
+      -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+      transform: translateY(0px);
     }
 
     &:after {
@@ -63,9 +63,9 @@
 
       &:after {
         opacity: 1;
-        -webkit-transform: translateY(-20%);
-        -ms-transform: translateY(-20%);
-        transform: translateY(-20%);
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
       }
     }
   }

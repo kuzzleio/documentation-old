@@ -4,7 +4,7 @@
   border-radius: 4px;
   @extend %break-words;
   @extend %code-font;
-  word-break: normal;
+//   word-break: normal;
 }
 
 code,
@@ -116,11 +116,15 @@ pre {
   font-weight: bold;
   margin: 10px 0 -10px 0;
   position: relative;
-  z-index: 50;
   border-bottom: 4px solid $medium;
   width: 50%;
   float: right;
   clear: right;
+
+  @media (max-width: $desktop-width) {
+    float: none;
+    width: 100%;
+  }
 
   a {
     display: block;

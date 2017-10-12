@@ -6,19 +6,13 @@
   min-height: 100%;
   padding: 3em 0 0 4em;
 
-//   @media (max-width: $tablet-width) {
-//     padding-top: 0;
-//   }
-
   overflow-y: auto;
   overflow-x: hidden;
-  
-  font-size: 15px;
-  
+
   background-color: $nav-bg;
   background: #fbfbfb;
   box-shadow: rgba(0,0,0,0.1) 0 0 9px;
-  
+
   transition: left 0.3s ease-in-out;
 
   // The Table of Contents is composed of multiple nested
@@ -28,7 +22,16 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 28px;
+    line-height: 26px;
+
+    .tocify-item {
+      font-size: 16px;
+
+      @media (max-width: $tablet-width) {
+        line-height: 31px;
+        font-size: 20px;
+      }
+    }
   }
 
   a {
@@ -39,9 +42,9 @@
   .cta-buttons {
     display: none;
 
-//     @media (max-width: $tablet-width) {
-//       display: block;
-//     }
+    @media (max-width: $tablet-width) {
+      display: block;
+    }
 
     button {
       background: $color-pinkpanther;
@@ -52,11 +55,11 @@
       color: white;
       text-transform: uppercase;
       font-size: 15px;
-      margin: 10px 0 0 0;
     }
   }
 
   .tocify-header {
+
     &> .tocify-item {
       color: #111;
       text-decoration: none;
@@ -69,13 +72,13 @@
     .tocify-subheader {
       background: transparent;
 
-      .tocify-item {
-        font-size: 14px;
-      }
-
       .tocify-level-2 {
         padding-left: 15px;
-        font-size: 13px;
+        font-size: 15px;
+
+        @media (max-width: $tablet-width) {
+          font-size: 18px;
+        }
       }
 
       & > li:last-child {
@@ -91,8 +94,7 @@
   }
 
   .toc-footer {
-    padding: 1em 0;
-    margin-top: 1em;
+    padding: 2em 0;
 
     li {
       display: block;
@@ -117,6 +119,31 @@
     }
   }
 
+  .floating-toggle {
+    display: none;
+
+    @media (max-width: $phone-width) {
+      display: block;
+    }
+
+    .icon-menu {
+      opacity: 1;
+    }
+    .icon-cancel {
+      opacity: 0;
+    }
+  }
+
+  &.open {
+    .floating-toggle {
+      .icon-menu {
+        opacity: 0;
+      }
+      .icon-cancel {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .version-selector {
@@ -126,9 +153,28 @@
     border: 1px solid #e4e4e4;
     border-radius: 4px;
     padding: 10px;
-  }
 
-//   @media (max-width: $tablet-width) {
-//     margin-top: 10px;
-//   }
+     @media (max-width: $tablet-width) {
+      font-size: 19px;
+    }
+  }
+}
+
+.floating-toggle {
+  position: relative;
+  background: $dark;
+  border-radius: 100%;
+  height: 70px;
+  width: 70px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: rgba(0,0,0,0.44) 2px 2px 11px 0px;
+
+  .icon {
+    transition: all 0.2s;
+    position: absolute;
+    top: 16.5px;
+    left: 16.5px;
+  }
 }

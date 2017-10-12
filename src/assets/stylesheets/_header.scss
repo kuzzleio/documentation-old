@@ -79,13 +79,24 @@ header {
       height: 75px;
     }
 
-    img.logo {
+    @media (max-width: $tablet-width) {
+      height: auto;
+      max-height: 75px;
+    }
+
+    @media (max-width: $phone-width) {
+        height: 0px;
+        overflow: hidden;
+        padding: 0;
+    }
+
+    .logo img {
       width: 110px;
       margin-right: 3em;
 
       @media (max-width: $desktop-width) {
         width: 90px;
-        margin: 5px;
+          margin: 5px 5px 5px 0;
       }
     }
 
@@ -122,6 +133,11 @@ header {
         z-index: 10;
       }
 
+      @media (max-width: $phone-width) {
+        margin: 0 auto;
+        top: 6px;
+      }
+
       &:after {
         display: inline-block;
         font: normal normal normal 13px/1 FontAwesome;
@@ -135,6 +151,19 @@ header {
         @media (max-width: $desktop-width) {
           font-size: 90%;
           top: 10px;
+        }
+
+        @media (max-width: $phone-width) {
+          color: #FFF;
+          font-size: 100%;
+          top: 10px;
+          opacity: 1
+        }
+      }
+
+      &.focused:after {
+        @media (max-width: $phone-width) {
+          color: $dark;
         }
       }
 
@@ -155,6 +184,11 @@ header {
           font-size: 90%;
         }
 
+        @media (max-width: $phone-width) {
+          width: 30px;
+          opacity: 0;          
+        }
+
         &:hover {
           border-color: $color-pinkpanther;
         }
@@ -162,6 +196,12 @@ header {
         &:focus {
           border-color: $color-pinkpanther;
           width: 320px;
+          opacity: 1;
+
+          @media (max-width: $phone-width) {
+            width: 220px;
+            font-size: 100%;
+          }
         }
       }
 
@@ -173,6 +213,17 @@ header {
         input[type=search] {
           border-color: $color-pinkpanther;
           width: 320px;
+          opacity: 1;
+
+          @media (max-width: $phone-width) {
+            width: 220px;
+          }
+        }
+
+        &:after {
+          @media (max-width: $phone-width) {
+            color: $dark;
+          }
         }
       }
 
@@ -194,6 +245,10 @@ header {
           z-index: 60;
 
           @media (max-width: $desktop-width) {
+            max-width: 350px;
+          }
+
+          @media (max-width: $phone-width) {
             max-width: 350px;
           }
 
@@ -279,24 +334,57 @@ header {
   nav {
     background-color: #002835;
     padding: 0 $header-padding;
-
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
     @media (max-width: $desktop-width) {
       padding: 0 2em;
     }
+
+    .logo-phone img {
+      width: 60px;
+      margin-right: 15px;
+      display: none;
+
+      @media (max-width: $phone-width) {
+        display: block;
+        margin-right: 5px;
+      }
+    }
+
     ul {
       margin-left: 0;
-
+      
+      @media (max-width: $phone-width) {
+        padding: 0 10px;
+        overflow: scroll;
+        white-space: nowrap;
+        mask-image: -webkit-linear-gradient(to right, transparent, black 20px, black 90%, transparent);
+        mask-image: -moz-linear-gradient(to right, transparent, black 20px, black 90%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 20px, black 90%, transparent);
+        -webkit-mask-image: -webkit-linear-gradient(to right, transparent, black 20px, black 90%, transparent);
+        -webkit-mask-image: -moz-linear-gradient(to right, transparent, black 20px, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 20px, black 90%, transparent);
+      }
+      
       li {
         margin-right: 15px;
-        float: left;
+        display: inline-block;
+        vertical-align: middle;
         list-style: none;
 
         &.btn-hamburger {
           display: none;
 
           @media (max-width: $tablet-width) {
-            display: block;
+            display: inline-block;
           }
+
+          @media (max-width: $phone-width) {
+            display: none;
+          }
+
           a:after {
             display: none;
           }
@@ -338,13 +426,18 @@ header {
       }
     }
 
-    .cta-buttons {
-      float: right;
-      margin: 9px 0 0 0;
+    .spacer {
+      flex-grow: 1;
 
-      @media (max-width: $desktop-width) {
-        margin-top: 8px;
+      @media (max-width: $phone-width) {
+        display: block;
+        min-width: 30px;
+        flex-basis: 30px;
       }
+    }
+
+    .cta-buttons {
+
       @media (max-width: $tablet-width) {
         display: none;
       }

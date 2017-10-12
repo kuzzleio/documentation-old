@@ -63,7 +63,9 @@ $color-lavandia: #73626E;
 
 // SIZES
 ////////////////////
-$nav-width: 280px; // width of the navbar
+$nav-width: 320px; // width of the navbar
+$nav-width-desktop: 300px;
+$nav-width-tablet: 320px;
 $examples-width: 50%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $header-padding: 4em;
@@ -77,7 +79,7 @@ $h1-margin-bottom: 30px; // padding under the largest header tags
 // DEVICE SIZES
 ////////////////////
 $large-desktop-width: 1440px;
-$desktop-width: 1290px;
+$desktop-width: 1200px;
 $tablet-width: 865px; // min width before reverting to tablet size
 $phone-width: 635px; // min width before reverting to mobile size
 
@@ -90,7 +92,7 @@ $code-font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono",
 %default-font {
   font-family: $text-font-family;
   color: $dark;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 %header-font {

@@ -17,4 +17,13 @@
     event.preventDefault();
     $('.tocify-wrapper').toggleClass('open');
   })
+
+  $('.floating-toggle').on('click', function (event) {
+    event.preventDefault();
+    $('.tocify-wrapper').toggleClass('open');
+  })
+
+  $('.main-content').on('click', function(event) {
+    $('.tocify-wrapper').removeClass('open');
+  })
 })();

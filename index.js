@@ -360,7 +360,8 @@ if (options.dev.enabled) {
   metalsmith
     .use(serve({
       port: 3000,
-      verbose: false
+      verbose: false,
+      host: '192.168.1.41'
     }))
     .use(
       watch({
