@@ -69,7 +69,7 @@ header {
   background-color: $dark;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 9px;
   width: 100%;
-  
+
   .wrapper {
     padding: 2em $header-padding;
     background-color: #FFF;
@@ -187,7 +187,7 @@ header {
 
         @media (max-width: $phone-width) {
           width: 30px;
-          opacity: 0;          
+          opacity: 0;
         }
 
         &:hover {
@@ -338,7 +338,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+
     @media (max-width: $desktop-width) {
       padding: 0 2em;
     }
@@ -354,12 +354,13 @@ header {
       }
     }
 
-    ul {
+    > ul {
       margin-left: 0;
-      
+
       @media (max-width: $phone-width) {
         padding: 0 10px;
-        overflow: scroll;
+        overflow-x: scroll;
+        overflow-y: visible;
         white-space: nowrap;
         mask-image: -webkit-linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
         mask-image: -moz-linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
@@ -368,12 +369,13 @@ header {
         -webkit-mask-image: -moz-linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
       }
-      
+
       li {
         margin-right: 15px;
         display: inline-block;
         vertical-align: middle;
         list-style: none;
+        overflow-y: visible;
 
         &.btn-hamburger {
           display: none;
@@ -408,8 +410,12 @@ header {
             padding: 11px 0px;
           }
 
-          &:not(.github):hover:after {
-            width: 100%;
+          &.item-cookbooks {
+            i {
+              @media (max-width: $phone-width) {
+                display: none;
+              }
+            }
           }
         }
 
@@ -417,11 +423,6 @@ header {
         {
           & > .nav-item:after {
             width: 100%;
-          }
-
-          span {
-            border-bottom: solid 6px $dark;
-            padding-bottom: 20px;
           }
         }
       }
@@ -458,6 +459,16 @@ header {
   }
 }
 
+body:not(.touchevents) {
+  nav {
+    .nav-item {
+      &:not(.github):hover:after {
+        width: 100%;
+      }
+    }
+  }
+}
+
 .dropdown-btn {
   position: relative;
 
@@ -466,7 +477,7 @@ header {
     position: absolute;
     left: -20px;
     background-color: $dark;
-    z-index: 1;
+    z-index: 200000;
     margin: 0;
     display: none;
 

@@ -272,7 +272,8 @@ else {
     .use(sass({
       sourceMap: false,
       sourceMapContents: false
-    }));
+    }))
+    .use(autoprefix());
 }
 
 // We override the default Markdown table renderer because
@@ -285,7 +286,6 @@ newMDRenderer.table = function (header, body) {
 }
 
 metalsmith
-  .use(autoprefix())
   .use(hljs())
   .use(hbtmd(handlebars, {
     pattern: '**/*.md'
