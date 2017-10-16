@@ -3,6 +3,11 @@
     .on('click', function (event) {
       if ($(window).width() > 637) {
         event.stopPropagation();
+        
+        if ($(event.target).hasClass('nav-item')) {
+          event.preventDefault();  
+        }
+        
         $(event.target)
           .parent()
           .toggleClass('open');
