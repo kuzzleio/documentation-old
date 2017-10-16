@@ -134,6 +134,11 @@
     }
   }
 
+  .table-wrapper {
+    overflow-x: scroll;
+    width: 100%;
+  }
+
   table {
     margin-bottom: 1em;
     overflow: auto;

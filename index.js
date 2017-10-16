@@ -5,6 +5,7 @@ const stripTags   = require('striptags');
 const wordCount   = require('wordcount');
 
 const markdown    = require('metalsmith-markdown');
+const marked      = require('marked');
 const layouts     = require('metalsmith-layouts');
 const permalinks  = require('metalsmith-permalinks');
 const debug       = require('metalsmith-debug');
@@ -273,12 +274,23 @@ else {
     }));
 }
 
+// We override the default Markdown table renderer because
+// we want tables to be wrapped into divs (for responsivity reasons).
+const newMDRenderer = new marked.Renderer();
+const tableRenderer = new marked.Renderer().table;
+
+newMDRenderer.table = function (header, body) {
+  return `<div class='table-wrapper'>${tableRenderer(header, body)}</div>`;
+}
+
 metalsmith
   .use(hljs())
   .use(hbtmd(handlebars, {
     pattern: '**/*.md'
   }))
-  .use(markdown())
+  .use(markdown({
+    renderer: newMDRenderer
+  }))
   .use(permalinks({
     // It is very important that this option is set to false.
     // Otherwise, the partial builds in dev mode are not effective,
