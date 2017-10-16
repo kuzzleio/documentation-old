@@ -15,6 +15,7 @@ const ancestry    = require('metalsmith-ancestry');
 const links       = require('metalsmith-relative-links');
 const hbtmd       = require('metalsmith-hbt-md');
 const sass        = require('metalsmith-sass');
+const autoprefix  = require('metalsmith-autoprefixer');
 const linkcheck   = require('metalsmith-linkcheck');
 const hljs        = require('metalsmith-metallic');
 const inlineSVG   = require('metalsmith-inline-svg');
@@ -284,6 +285,7 @@ newMDRenderer.table = function (header, body) {
 }
 
 metalsmith
+  .use(autoprefix())
   .use(hljs())
   .use(hbtmd(handlebars, {
     pattern: '**/*.md'

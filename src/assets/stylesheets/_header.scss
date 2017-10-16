@@ -179,6 +179,7 @@ header {
         font-size: 1em;
         display: inline-block;
         margin: 0;
+        height: 32px;
 
         @media (max-width: $desktop-width) {
           font-size: 90%;
@@ -360,12 +361,12 @@ header {
         padding: 0 10px;
         overflow: scroll;
         white-space: nowrap;
-        mask-image: -webkit-linear-gradient(to right, transparent, black 20px, black 90%, transparent);
-        mask-image: -moz-linear-gradient(to right, transparent, black 20px, black 90%, transparent);
-        mask-image: linear-gradient(to right, transparent, black 20px, black 90%, transparent);
-        -webkit-mask-image: -webkit-linear-gradient(to right, transparent, black 20px, black 90%, transparent);
-        -webkit-mask-image: -moz-linear-gradient(to right, transparent, black 20px, black 90%, transparent);
-        -webkit-mask-image: linear-gradient(to right, transparent, black 20px, black 90%, transparent);
+        mask-image: -webkit-linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
+        mask-image: -moz-linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
+        mask-image: linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
+        -webkit-mask-image: -webkit-linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
+        -webkit-mask-image: -moz-linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, $dark 20px, $dark 90%, transparent);
       }
       
       li {

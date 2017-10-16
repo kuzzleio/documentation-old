@@ -36,6 +36,11 @@
           width: 45%;
           padding: 16px 34px;
           margin: 30px 0 30px 30px;
+
+          @media (max-width: $desktop-width) {
+            margin-left: 0;
+            width: 100%;
+          }
         }
 
         pre {
