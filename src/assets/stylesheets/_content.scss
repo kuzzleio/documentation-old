@@ -134,8 +134,12 @@
   }
 
   .table-wrapper {
-    overflow-x: scroll;
-    width: 100%;
+    overflow-x: auto;
+    max-width: 45%;
+
+    @media (max-width: $desktop-width) {
+      max-width: 100%;
+    }
   }
 
   table {
