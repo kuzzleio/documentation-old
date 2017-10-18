@@ -26,6 +26,7 @@ const htmlMin     = require('metalsmith-html-minifier');
 const algolia     = require('metalsmith-algolia');
 const jsPacker    = require('metalsmith-js-packer');
 const cssPacker   = require('metalsmith-css-packer');
+const redirect    = require('metalsmith-redirect');
 
 const logger      = require('./metalsmith-plugins/logger');
 const metatoc     = require('./metalsmith-plugins/metatoc');
@@ -299,6 +300,17 @@ metalsmith
     // since this plugin overwrites the processed files with their
     // old version.
     relative: false
+  }))
+  .use(redirect({
+    '/': '/guide/getting-started',
+    '/guide': '/guide/getting-started',
+    '/api-documentation/': '/api-documentation/connecting-to-kuzzle/',
+    '/sdk-reference/': 'kuzzle/',
+    '/plugins-reference/': 'plugins-creation-prerequisites/',
+    '/elasticsearch-cookbook/': '/elasticsearch-cookbook/installation/',
+    '/kuzzle-dsl/': '/kuzzle-dsl/essential/koncorde/',
+    '/validation-reference/': '/validation-reference/schema/',
+    '/kuzzle-events/': '/kuzzle-events/plugin-events/'
   }))
   .use(metatoc())
   .use(languageTab())
