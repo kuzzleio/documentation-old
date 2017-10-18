@@ -303,8 +303,9 @@ metalsmith
   .use(metatoc())
   .use(languageTab())
   .use(layouts({
+    directory: 'src/layouts',
     engine: 'handlebars',
-    partials: 'partials',
+    partials: 'src/partials',
     exposeConsolidate (r) {
       r.handlebars = handlebars
     }
@@ -375,16 +376,16 @@ if (options.dev.enabled) {
     .use(serve({
       port: 3000,
       verbose: false,
-      host: '192.168.1.41'
+      host: 'localhost'
     }))
     .use(
       watch({
         paths: {
           "src/assets/stylesheets/**/*": "assets/stylesheets/**/*",
-          "src/**/*.md": true,
-          "src/assets/**/*.js": true,
-          "partials/**/*.md": true,
-          "layouts/**/*.md": true
+          "src/**/*.md": "**/*.md",
+          "src/partials/**/*": "**/*.md",
+          "src/layouts/**/*": "**/*.md",
+          "src/assets/**/*.js": true
         },
         livereload: true
       })
