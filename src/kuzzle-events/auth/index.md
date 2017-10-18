@@ -14,7 +14,7 @@ Events triggered when a request is sent to the [`auth` controller]({{ site_base_
 
 ---
 
-## `auth:after<Action>`
+### `auth:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -28,7 +28,7 @@ Example: after a successful [logout]({{ site_base_path }}api-documentation/contr
 
 ---
 
-## `auth:before<Action>`
+### `auth:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -42,7 +42,7 @@ Example: before performing a [checkToken]({{ site_base_path }}api-documentation/
 
 ---
 
-## `auth:error<Action>`
+### `auth:error<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -56,7 +56,7 @@ Example: after a failed [login]({{ site_base_path }}api-documentation/controller
 
 ---
 
-## `auth:strategyAuthenticated`
+### `auth:strategyAuthenticated`
 
 {{{since "1.0.0"}}}
 

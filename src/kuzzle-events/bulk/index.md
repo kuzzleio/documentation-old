@@ -14,7 +14,7 @@ Events triggered when a request is treated in the [`bulk` controller]({{ site_ba
 
 ---
 
-## `bulk:afterImport`
+### `bulk:afterImport`
 
 {{{since "1.0.0"}}}
 
@@ -26,7 +26,7 @@ Triggered after a successful execution of a [bulk import]({{ site_base_path }}ap
 
 ---
 
-## `bulk:beforeImport`
+### `bulk:beforeImport`
 
 {{{since "1.0.0"}}}
 
@@ -38,7 +38,7 @@ Triggered before a [bulk import]({{ site_base_path }}api-documentation/controlle
 
 ---
 
-## `bulk:errorImport`
+### `bulk:errorImport`
 
 {{{since "1.0.0"}}}
 
