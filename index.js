@@ -328,7 +328,8 @@ if (!options.dev.enabled) {
   metalsmith
     .use(cssPacker({
       siteRootPath: options.build.path,
-      inline: true
+      inline: true,
+      exclude: ['partials/**/*', 'layouts/**/*']
     }))
     .use(jsPacker({
       siteRootPath: options.build.path,

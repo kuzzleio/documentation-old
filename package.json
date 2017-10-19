@@ -28,7 +28,7 @@
     "metalsmith-auto-collections": "^0.1.1",
     "metalsmith-autoprefixer": "^1.1.2",
     "metalsmith-changed": "^3.1.1",
-    "metalsmith-css-packer": "^0.1.0",
+    "metalsmith-css-packer": "xbill82/metalsmith-css-packer",
     "metalsmith-debug": "^1.1.0",
     "metalsmith-gzip": "^1.1.0",
     "metalsmith-hbt-md": "^1.0.1",
