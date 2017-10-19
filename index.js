@@ -238,7 +238,7 @@ let metalsmith = Metalsmith(__dirname)
     algolia_publicKey: options.algolia.publicKey,
     algolia_index: options.algolia.index,
     versions_config: versionsConfig,
-    dev: options.dev.enabled
+    is_dev: options.dev.enabled
   })
   .source('./src')
   .destination('./build' + options.build.path) // does not work with 'dist' folder ...
@@ -332,7 +332,8 @@ if (!options.dev.enabled) {
     }))
     .use(jsPacker({
       siteRootPath: options.build.path,
-      inline: false
+      inline: false,
+      exclude: ['partials/**/*', 'layouts/**/*']
     }))
 }
 metalsmith
