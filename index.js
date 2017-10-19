@@ -409,6 +409,7 @@ metalsmith.build((error, files) => {
   if (error) {
     log(nok + color.yellow(' Ooops...'))
     console.error(error)
+    return;
   }
   log(ok + ' Build finished');
 });

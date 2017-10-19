@@ -34,7 +34,7 @@
     "metalsmith-hbt-md": "^1.0.1",
     "metalsmith-html-minifier": "^2.2.0",
     "metalsmith-inline-svg": "^0.1.4",
-    "metalsmith-js-packer": "^0.1.0",
+    "metalsmith-js-packer": "xbill82/metalsmith-js-packer",
     "metalsmith-layouts": "^1.8.1",
     "metalsmith-linkcheck": "^0.3.0",
     "metalsmith-livereload": "^0.1.0",
@@ -54,6 +54,7 @@
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
     "striptags": "^3.1.0",
+    "uglify-js": "^3.1.2",
     "wordcount": "^1.1.1"
   }
 }
