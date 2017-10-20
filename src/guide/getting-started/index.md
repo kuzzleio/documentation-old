@@ -169,7 +169,7 @@ kuzzle
   .catch(err => {
     console.error(err.message)
   })  
-  .finally(process.exit)
+  .finally(() => kuzzle.disconnect())
 ```
 
 This code adds the following actions to the previous one:
