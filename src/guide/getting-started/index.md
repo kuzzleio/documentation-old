@@ -106,51 +106,77 @@ npm install kuzzle-sdk
 Then, create a `create.js` file and start coding:
 
 ```javascript
-var Kuzzle = require('kuzzle-sdk')
+const Kuzzle = require('kuzzle-sdk')
 
 // connect to the Kuzzle server
-var kuzzle = new Kuzzle('localhost', {
+const kuzzle = new Kuzzle('localhost', {
   defaultIndex: 'playground'
 })
 
 kuzzle
-  .createIndexPromise('playground')
-  .then(() => kuzzle.collection('mycollection').createPromise());
+  .listIndexesPromise()
+  .then(indexes => {
+    if (indexes.indexOf('playground') === -1) {
+      // playground index not found, create it
+      return kuzzle.createIndexPromise('playground')
+    }   
+  })  
+  .then(() => kuzzle.listCollectionsPromise('playground', {type: 'stored'}))
+  .then(collections => {
+    if (collections.indexOf('mycollection') === -1) {
+      // mycollection not found, create it
+      return kuzzle.collection('mycollection').createPromise()
+    }   
+    return kuzzle.collection('mycollection')
+  })
 ```
 
 This code does the following:
 * loads the `Kuzzle` SDK from its NPM package,
 * creates an instance of the SDK and connects it to the Kuzzle Backoffice running on `localhost` (and selects the `playground` as default index),
-* creates the `playground` index,
-* creates the `mycollection` collection (within the `playground` index).
+* creates the `playground` index if it does not exist,
+* creates the `mycollection` collection (within the `playground` index) if it does not exist.
 
 You're now ready to say Hello to the World!
 
 ### Create your first "Hello World" document
 
-Append the following instructions after the Promise returned by `collection().createPromise` resolved
+Append the following instructions to the promises chain
 
 ```javascript
 kuzzle
-  .createIndexPromise('playground')
-  .then(() => kuzzle.collection('mycollection').createPromise())
-  .then((collection) => collection
-    .createDocumentPromise({
-        message: 'Hello, World!'
-    })
+  .listIndexesPromise()
+  .then(indexes => {
+    if (indexes.indexOf('playground') === -1) {
+      // playground index not found, create it
+      return kuzzle.createIndexPromise('playground')
+    }   
+  })  
+  .then(() => kuzzle.listCollectionsPromise('playground', {type: 'stored'}))
+  .then(collections => {
+    if (collections.indexOf('mycollection') === -1) {
+      // mycollection not found, create it
+      return kuzzle.collection('mycollection').createPromise()
+    }   
+    return kuzzle.collection('mycollection')
+  })  
+  .then(collection => collection.createDocumentPromise({
+    message: 'Hello, World!'
+  })) 
   .then(res => {
     console.log('the document has been successfully created')
-  })
+  })  
   .catch(err => {
     console.error(err.message)
-  })
-
+  })  
+  .finally(() => kuzzle.disconnect())
 ```
 
 This code adds the following actions to the previous one:
 * creates a new document containing a message saying "Hello, World" in `mycollection` within the `playground` index,
 * logs a success message to the console if everything went fine,
 * logs an error message if any of the previous actions failed.
+
 
 Run your file in NodeJS
 
@@ -177,25 +203,25 @@ Kuzzle provides pub/sub features that allow you to be notified in real-time on t
 Let's get started. Open a new termnial in the playground directory you created before and create the `subscribe.js` file containing the following code:
 
 ```javascript
-var Kuzzle = require('kuzzle-sdk')
+const Kuzzle = require('kuzzle-sdk')
 
 // connect to the Kuzzle server
-var kuzzle = new Kuzzle('localhost', {
+const kuzzle = new Kuzzle('localhost', {
     defaultIndex: 'playground'
   })
 
 // create a reference to the data collection
-var collection = kuzzle.collection('mycollection')
+const collection = kuzzle.collection('mycollection')
 
 // define a filter
-var filter = {
+const filter = {
     exists: {
         field: 'message'
     }
 }
 
 // create a subscription on the collection matching given filters
-collection.subscribe(filter, function(error, result) {
+collection.subscribe(filter, (error, result) => {
     // this function is called each time kuzzle notifies us with a document matching our filters
     console.log('message received from kuzzle:', result)
 })
@@ -220,6 +246,7 @@ You just leveraged Kuzzle's pub/sub mechanism.
 <aside class="notice">
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
+
 
 ---
 
