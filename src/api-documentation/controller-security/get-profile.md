@@ -16,7 +16,7 @@ title: getProfile
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_profiles/<profileId>`  
+**URL:** `http://kuzzle:7512/profiles/<profileId>`  
 **Method:** `GET`
 </p>
 </blockquote>

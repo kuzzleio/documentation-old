@@ -13,7 +13,7 @@ title: count
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_count`  
+**URL:** `http://kuzzle:7512/<index>/<collection>/_count[?includeTrash=<boolean>]`  
 **Method:** `POST`  
 **Body:**
 </p>
@@ -26,7 +26,10 @@ title: count
   // Use "query" instead of "filter" if you want to perform a query instead.
   "filter": {
     ...
-  }
+  },
+
+  // Optional arguments
+  "includeTrash": false
 }
 ```
 
@@ -71,3 +74,7 @@ title: count
 Given some filters, gets the number of matching documents from Kuzzle's data storage layer.
 
 Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
+
+Optional arguments:
+
+- `includeTrash` makes Kuzzle also look for documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/)

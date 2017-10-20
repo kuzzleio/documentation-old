@@ -58,5 +58,4 @@ that the related roles will NOT be deleted.
 
 <aside class="notice">
 The profile unique identifier. It's the same you set when you create a profile.
-in its responses when you create a profile.
 </aside>

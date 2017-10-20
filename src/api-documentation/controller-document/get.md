@@ -13,7 +13,7 @@ title: get
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>`  
+**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?includeTrash=<boolean>]`  
 **Method:** `GET`
 </p>
 </blockquote>
@@ -25,20 +25,22 @@ title: get
 </blockquote>
 
 
-```json
+```js
 {
   "index": "<index>",
   "collection": "<collection>",
   "controller": "document",
   "action": "get",
+  "_id": "<documentId>",
 
-  "_id": "<documentId>"
+  // Optional arguments
+  "includeTrash": false
 }
 ```
 
 >**Response**
 
-```javascript
+```js
 {
   "status": 200,
   "error": null,
@@ -71,3 +73,7 @@ title: get
 Given a `document id`, retrieves the corresponding document from the database.
 
 Only documents in the persistent data storage layer can be retrieved.
+
+Optional argument:
+
+* `includeTrash`: if set, Kuzzle will also look for the document in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/). Otherwise, if the document exists but is inactive, a [NotFound]({{ site_base_path }}api-documentation/errors/#notfounderror) error is returned

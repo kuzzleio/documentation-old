@@ -83,7 +83,7 @@ catch (ErrorException $e) {
 ]
 ```
 
-Gets the rights of the currently logged user.
+Given a Kuzzle user id (`kuid`), retrieves the list of permissions granted to the matching user.
 
 ---
 
@@ -107,5 +107,5 @@ Gets the rights of the currently logged user.
 
 ### Callback response
 
-Resolves to an array of JSON objects.
+Resolves to an array of objects.
 
