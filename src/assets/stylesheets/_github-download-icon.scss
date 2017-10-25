@@ -1,0 +1,72 @@
+.github {
+  overflow: hidden;
+  background-color: $dark;
+
+  .icon {
+    position: relative;
+    line-height: 27px;
+    font-size: 25px;
+    color: white;
+
+    @media (max-width: $desktop-width) {
+      font-size: 21px;
+    }
+
+    &:before, &:after {
+      transition-duration: 0.3s;
+      -webkit-animation-duration: 0.5s;
+      animation-duration: 0.5s;
+      
+      -webkit-animation-name: hvr-icon-drop;
+      animation-name: hvr-icon-drop;
+    }
+
+
+    &:before {
+      // The GitHub icon
+      content: "\e606";
+      opacity: 1;
+      display: inline-block;
+
+      -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+      transform: translateY(0px);
+    }
+
+    &:after {
+      // The Download icon
+      content: "\e0ff";
+      opacity: 0;
+      position: absolute;
+      left: -2px;
+      top: -1px;
+      font-size: 1.3em;
+      display: inline-block;
+      
+      -webkit-transform: translateY(-160%);
+      -ms-transform: translateY(-160%);
+      transform: translateY(-160%);
+    }
+  }
+
+  &:hover {
+    .icon {
+      &:before {
+        display: inline-block;
+        color: transparent;
+        opacity: 0;
+        
+        -webkit-transform: translateY(160%);
+        -ms-transform: translateY(160%);
+        transform: translateY(160%);
+      }
+
+      &:after {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+      }
+    }
+  }
+}

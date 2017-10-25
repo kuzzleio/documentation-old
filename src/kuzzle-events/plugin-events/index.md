@@ -6,7 +6,7 @@ description: list of events emitted by plugins
 order: 100
 ---
 
-# [Plugin events]
+# Plugin events
 
 {{{since "1.0.0"}}}
 
@@ -14,7 +14,7 @@ Plugins may [add new controllers and actions]({{ site_base_path }}plugins-refere
 
 ---
 
-## `<pluginName>/<controller>:after<Action>`
+#### `<pluginName>/<controller>:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -28,7 +28,7 @@ Example: if a plugin named `foo` injects a controller named `controller`, contai
 
 ---
 
-## `<pluginName>/<controller>:before<Action>`
+#### `<pluginName>/<controller>:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -42,7 +42,7 @@ Example: if a plugin named `foo` injects a controller named `controller`, contai
 
 ---
 
-## `<pluginName>/<controller>:error<Action>`
+#### `<pluginName>/<controller>:error<Action>`
 
 {{{since "1.0.0"}}}
 

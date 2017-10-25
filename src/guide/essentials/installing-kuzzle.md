@@ -13,8 +13,6 @@ In this section, we'll see how to install Kuzzle via Docker and Docker-compose a
 The easiest way to run Kuzzle is by using the <a href="{{ site_base_path }}guide/getting-started/#running-kuzzle-automagically">installation script</a> .
 </aside>
 
----
-
 ## Docker
 
 Before launching Kuzzle, ensure that your system matches the following pre-requisites:
@@ -123,9 +121,9 @@ The following operating systems are actively supported (64-bit versions only):
 
 ---
 
-## Step 1 - Retrieve Kuzzle components source code
+### Get Kuzzle source code
 
-### Create the Kuzzle root directory
+Create the Kuzzle root directory
 
 ```bash
 #!/bin/bash
@@ -134,7 +132,7 @@ mkdir -p "~/kuzzle"
 cd "~/kuzzle"
 ```
 
-### Create a directory for Kuzzle and install it
+Create a directory for Kuzzle and install it
 
 ```bash
 #!/bin/bash
@@ -156,14 +154,14 @@ for PLUGIN in ./plugins/enabled/*; do
 done
 ```
 
-### Create a directory for Kuzzle Back Office and [install it]({{ site_base_path }}guide/essentials/installing-backoffice).
+Create a directory for Kuzzle Back Office and [install it]({{ site_base_path }}guide/essentials/installing-backoffice).
 
 ---
 
 
-## Step 2 - pm2
+### Setup PM2
 
-### Install pm2
+Install pm2
 
 ```bash
 #!/bin/bash
@@ -171,7 +169,7 @@ done
 sudo npm install -g pm2
 ```
 
-### Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file)
+Create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file)
 
 ```bash
 #!/bin/bash
@@ -186,7 +184,7 @@ echo "apps:
   " > ~/kuzzle/pm2.conf.yml
 ```
 
-### Run Kuzzle via pm2 and show the logs:
+Run Kuzzle via pm2 and show the logs:
 
 ```bash
 #!/bin/bash

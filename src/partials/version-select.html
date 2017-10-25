@@ -1,0 +1,11 @@
+<p class="version-selector">
+ <select onchange="window.location = this.value">
+   {{#each versions_config}}
+     {{#if (eq ../site_base_path version_path)}}
+       <option selected>Version {{version_label}}</option>
+     {{else}}
+       <option value="{{version_path}}{{ ../path }}">{{version_label}}</option>
+     {{/if}}
+   {{/each}}
+ </select>
+</p>

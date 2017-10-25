@@ -12,7 +12,7 @@ module.exports = options => {
 
       promises.push(new Bluebird((resolve, reject) => {
         let $ = cheerio.load(files[file].contents.toString())
-        let images = $('.content img').each((index, image) => {
+        let images = $('.content img:not([link-exclude])').each((index, image) => {
           let src = $(image).attr('src')
           $(image).wrap(`<a class="image" href="${src}"></a>`)
         })

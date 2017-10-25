@@ -14,7 +14,7 @@ Events triggered when a request is sent to the [`memoryStorage` controller]({{ s
 
 ---
 
-## `ms:after<Action>`
+### `ms:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -28,7 +28,7 @@ Example: after a successful [geoadd]({{ site_base_path }}api-documentation/contr
 
 ---
 
-## `ms:before<Action>`
+### `ms:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -42,7 +42,7 @@ Example: before performing a [sunion]({{ site_base_path }}api-documentation/cont
 
 ---
 
-## `ms:error<Action>`
+### `ms:error<Action>`
 
 {{{since "1.0.0"}}}
 

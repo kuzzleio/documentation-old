@@ -49,8 +49,6 @@ $result = $kuzzle->createIndex('myIndex');
 
 ```
 
-Create a new empty data index, with no associated mapping.
-
 > Callback response:
 
 ```json
@@ -59,7 +57,11 @@ Create a new empty data index, with no associated mapping.
   "shards_acknowledged": true
 }
 ```
+
+Create a new empty data index, with no associated mapping.
+
 ---
+
 
 ## createIndex([index], [options], callback)
 

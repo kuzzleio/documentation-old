@@ -14,7 +14,7 @@ Global events triggered on requests execution.
 
 ---
 
-## `request:onAuthorized`
+### `request:onAuthorized`
 
 {{{since "1.0.0"}}}
 
@@ -27,7 +27,7 @@ This event occurs before any `<controller>:before<Action>` event.
 
 ---
 
-## `request:onError`
+### `request:onError`
 
 {{{since "1.0.0"}}}
 
@@ -40,7 +40,7 @@ This event occurs after any `<controller>:error<Action>` event.
 
 ---
 
-## `request:onSuccess`
+### `request:onSuccess`
 
 {{{since "1.0.0"}}}
 
@@ -53,7 +53,7 @@ This event occurs after any `<controller>:after<Action>` event.
 
 ---
 
-## `request:onUnauthorized`
+### `request:onUnauthorized`
 
 {{{since "1.0.0"}}}
 

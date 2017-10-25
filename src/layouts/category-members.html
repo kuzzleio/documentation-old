@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  {{> common-meta }}
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-light.min.css">
+
+  <link href="{{ site_base_path }}assets/stylesheets/full/screen.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<body class="index">
+{{> header }}
+
+<div class="container">
+
+  {{#unless nosidebar}}
+  {{> nav-left }}
+  {{/unless}}
+
+  <div class="page-wrapper">
+    <div class="content">
+      <div class="main-content">
+        <div class="categories">
+          <div class="panels">
+            {{#each ancestry.members}}
+
+              {{#if (or show-subheader (ne @key 0))}}
+                <div class="panel">
+                  <a href="{{ ../site_base_path }}{{ path }}">
+                    <div class="panel-title"><i class="fa {{ icon }}"></i> {{ title }}</div>
+                    <div class="panel-content">
+                      <span>{{ description }}</span>
+                    </div>
+                  </a>
+                </div>
+              {{/if}}
+            {{/each}}
+
+          </div>
+        </div>
+
+        <div style="clear: both"></div>
+      </div>
+
+    {{> nav-members-bottom }}
+    </div>
+  </div>
+  {{> license }}
+</div>
+
+{{> footer-scripts }}
+</body>
+</html>

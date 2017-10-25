@@ -15,7 +15,7 @@ Events triggered when a request is sent to the [`security` controller]({{ site_b
 ---
 
 
-## `security:after<Action>`
+### `security:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -29,7 +29,7 @@ Example: after a successful [getRole]({{ site_base_path }}api-documentation/cont
 
 ---
 
-## `security:before<Action>`
+### `security:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -43,7 +43,7 @@ Example: before performing a [searchUsers]({{ site_base_path }}api-documentation
 
 ---
 
-## `security:error<Action>`
+### `security:error<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -57,7 +57,7 @@ Example: after a failed [createUser]({{ site_base_path }}api-documentation/contr
 
 ---
 
-## `security:formatUserForSerialization`
+### `security:formatUserForSerialization`
 
 {{{deprecated "1.0.0"}}}
 

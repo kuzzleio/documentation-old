@@ -21,6 +21,11 @@
       </div>
 
       <div class="categories">
+        {{#if categories-header}}
+        <div class="categories-header">
+          {{ categories-header }}
+        </div>
+        {{/if}}
         <div class="panels">
           {{#each ancestry.children}}
           {{#if separator}}

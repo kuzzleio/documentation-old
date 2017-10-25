@@ -14,7 +14,7 @@ Events triggered when a request is sent to the [`realtime` controller]({{ site_b
 
 ---
 
-## `realtime:after<Action>`
+### `realtime:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -28,7 +28,7 @@ Example: after a successful [subscribe]({{ site_base_path }}api-documentation/co
 
 ---
 
-## `realtime:before<Action>`
+### `realtime:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -42,7 +42,7 @@ Example: before performing a [publish]({{ site_base_path }}api-documentation/con
 
 ---
 
-## `realtime:error<Action>`
+### `realtime:error<Action>`
 
 {{{since "1.0.0"}}}
 

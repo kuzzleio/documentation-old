@@ -63,37 +63,46 @@ $color-lavandia: #73626E;
 
 // SIZES
 ////////////////////
-$nav-width: 280px; // width of the navbar
+$nav-width: 320px; // width of the navbar
+$nav-width-desktop: 300px;
+$nav-width-tablet: 320px;
 $examples-width: 50%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
+$header-padding: 4em;
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
 $nav-v-padding: 10px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
-$h1-margin-bottom: 21px; // padding under the largest header tags
+$h1-margin-bottom: 30px; // padding under the largest header tags
+
+// DEVICE SIZES
+////////////////////
+$large-desktop-width: 1440px;
+$desktop-width: 1200px;
 $tablet-width: 865px; // min width before reverting to tablet size
-$phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
+$phone-width: 635px; // min width before reverting to mobile size
 
 
 // FONTS
 ////////////////////
+$text-font-family: 'Ubuntu Light', 'Helvetica', 'Arial', 'sans-serif', monospace;
+$code-font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+
 %default-font {
-  font-family: 'Ubuntu', 'Arial', monospace;
+  font-family: $text-font-family;
   color: $dark;
-  font-size: 14px;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 %header-font {
   @extend %default-font;
-  font-family: 'Ubuntu', sans-serif;
-  //text-transform: uppercase;
+  font-family: $text-font-family;
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 13px;
+  font-family: $code-font-family;
+  font-size: 14px;
   line-height: 1.3;
 }
 

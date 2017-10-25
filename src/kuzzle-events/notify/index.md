@@ -16,7 +16,7 @@ These events are triggered by Kuzzle's real-time engine, every time [a notificat
 
 ---
 
-## `notify:dispatch`
+### `notify:dispatch`
 
 {{{since "1.0.0"}}}
 
@@ -29,7 +29,7 @@ Use the `type` property to determine the notification type.
 
 ---
 
-## `notify:document`
+### `notify:document`
 
 {{{since "1.0.0"}}}
 
@@ -41,7 +41,7 @@ A document notification is about to be sent.
 
 ---
 
-## `notify:server`
+### `notify:server`
 
 {{{since "1.0.0"}}}
 
@@ -53,7 +53,7 @@ A server notification is about to be sent.
 
 ---
 
-## `notify:user`
+### `notify:user`
 
 {{{since "1.0.0"}}}
 

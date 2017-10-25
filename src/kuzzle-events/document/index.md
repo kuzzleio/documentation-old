@@ -14,7 +14,7 @@ Events triggered when a request is sent to the [`document` controller]({{ site_b
 
 ---
 
-## `document:after<Action>`
+### `document:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -28,7 +28,7 @@ Example: after a successful [create]({{ site_base_path }}api-documentation/contr
 
 ---
 
-## `document:before<Action>`
+### `document:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -42,7 +42,7 @@ Example: before performing a [get]({{ site_base_path }}api-documentation/control
 
 ---
 
-## `document:error<Action>`
+### `document:error<Action>`
 
 {{{since "1.0.0"}}}
 

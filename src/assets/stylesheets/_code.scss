@@ -1,0 +1,154 @@
+%code-style {
+  background-color: #f5e0e6;
+  padding: 3px 5px;
+  border-radius: 4px;
+  @extend %break-words;
+  @extend %code-font;
+//   word-break: normal;
+}
+
+code,
+li code,
+p code,
+table code,
+aside code,
+blockquote code {
+  @extend %code-style;
+
+  @media (max-width: $desktop-width) {
+    font-size: 95%;
+  }
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  @extend %code-style;
+  font-size: inherit;
+}
+
+aside code {
+  background-color: #d5d5d5;
+}
+
+pre, blockquote {
+  position: relative;
+  box-sizing: border-box;
+  @extend %right-col;
+
+  &>p { margin: 0; }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: dashed 1px #ccc;
+  }
+}
+
+blockquote {
+  padding: 0 !important;
+
+  &>p {
+    background-color: #bae8f5;
+    padding: $code-annotation-padding;
+    color: #002835 !important;
+  }
+}
+
+pre {
+  border: solid 1px #e4e4e4;
+  background: #fbfbfb;
+  border-radius: 4px;
+  @extend %code-font;
+
+  .clipboard {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 6px 8px;
+    background: rgba(0, 0, 0, 0.07);
+    border: 0;
+    font-family: Ubuntu,Arial,monospace;
+    font-size: 11px;
+    opacity: 0;
+    outline: none;
+    transition: opacity 0.3s;
+    color: #111;
+
+    i {
+      color: #666;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.15);
+
+      i {
+        color: #111;
+      }
+    }
+  }
+  &:hover {
+    .clipboard {
+      opacity: 1;
+    }
+  }
+}
+
+.hljs {
+  padding: 25px 25px;
+  display: block;
+}
+
+.language-tab {
+  display: none;
+
+  &.language-meta-tab,
+  &.language-tab-active {
+    display: block;
+  }
+}
+
+.language-tab-selector {
+  background-color: $dark;
+  font-weight: bold;
+  margin: 10px 0 -10px 0;
+  position: relative;
+  border-bottom: 4px solid $medium;
+  width: 50%;
+  float: right;
+  clear: right;
+
+  @media (max-width: $desktop-width) {
+    float: none;
+    width: 100%;
+  }
+
+  a {
+    display: block;
+    float:left;
+    color: $lang-select-text;
+    text-decoration: none;
+    padding: 0 10px;
+    line-height: 30px;
+    outline: 0;
+
+    &:active, &:focus {
+      background-color: $lang-select-pressed-bg;
+      color: $lang-select-pressed-text;
+    }
+
+    &.language-tab-active {
+      background-color: $medium;
+      color: $dark;
+    }
+  }
+
+  &:after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+}

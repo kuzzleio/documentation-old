@@ -15,7 +15,7 @@ Events triggered on server special events or when a request is sent to the [`ser
 ---
 
 
-## `server:after<Action>`
+### `server:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -29,7 +29,7 @@ Example: after a successful [info]({{ site_base_path }}api-documentation/control
 
 ---
 
-## `server:before<Action>`
+### `server:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -43,7 +43,7 @@ Example: before performing a [now]({{ site_base_path }}api-documentation/control
 
 ---
 
-## `server:error<Action>`
+### `server:error<Action>`
 
 {{{since "1.0.0"}}}
 

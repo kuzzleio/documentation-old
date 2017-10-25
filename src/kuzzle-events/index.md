@@ -1,6 +1,6 @@
 ---
 layout: category-childrens.html
-title: Kuzzle events
+title: Events
 order: 700
 description: Learn about Kuzzle Events
 icon: fa-eye

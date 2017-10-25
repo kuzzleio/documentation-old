@@ -14,7 +14,7 @@ Events triggered on HTTP communications.
 
 ---
 
-## `http:options`
+### `http:options`
 
 **Event type:** Pipe
 
