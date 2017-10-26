@@ -10,8 +10,6 @@ order: 0
 
 In this tutorial you will learn in a few steps how to **launch** Kuzzle and how to interact with it by **persisting data** and **being notified** when data is updated.
 
----
-
 ## Running Kuzzle automagically
 
 In this section, we'll learn how to launch Kuzzle the quick way, i.e. via the installation script.
@@ -79,8 +77,6 @@ Now that Kuzzle is running on your computer, you can dive into playing with it b
 <aside class="notice">
 You can also <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">install Kuzzle manually</a>.
 </aside>
-
----
 
 ## SDK play time
 
@@ -177,7 +173,6 @@ This code adds the following actions to the previous one:
 * logs a success message to the console if everything went fine,
 * logs an error message if any of the previous actions failed.
 
-
 Run your file in NodeJS
 
 ```bash
@@ -246,9 +241,6 @@ You just leveraged Kuzzle's pub/sub mechanism.
 <aside class="notice">
 Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
-
-
----
 
 ## Where do we go from here?
 

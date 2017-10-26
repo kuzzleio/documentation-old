@@ -14,7 +14,7 @@ Events triggered when a request is sent to the [`collection` controller]({{ site
 
 ---
 
-## `collection:after<Action>`
+### `collection:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -28,7 +28,7 @@ Example: after a successful [create]({{ site_base_path }}api-documentation/contr
 
 ---
 
-## `collection:before<Action>`
+### `collection:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -42,7 +42,7 @@ Example: before performing a [updateMapping]({{ site_base_path }}api-documentati
 
 ---
 
-## `collection:error<Action>`
+### `collection:error<Action>`
 
 {{{since "1.0.0"}}}
 

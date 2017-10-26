@@ -33,14 +33,14 @@
       <span class="separator">|</span>
       <a href="https://github.com/{{ gh_repo }}/issues/new?labels={{ ancestry.parent.path }}&title=Feedback%20about%20page%20'{{ src }}'">send feedback about this content<i class="icon icon-github icon-small"></i></a>
       <span class="separator">|</span>
-      <select class="rate-documentation">
+      <!-- <select class="rate-documentation">
         <option value=""></option>
         <option value="1">Unusable documentation</option>
         <option value="2">Poor documentation</option>
         <option value="3">OK documentation</option>
         <option value="4">Good documentation</option>
         <option value="5">Excellent documentation</option>
-      </select>
+      </select> -->
     </p>
   </div>
   <div class="nav-right">
@@ -55,14 +55,14 @@
           {{/if}}
         {{/each}}
       </select>
-      <!-- {{#if (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader))}}
-      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevMember.path }}">« {{firstDefinedOf ancestry.prevMember.subheader-title ancestry.prevMember.title }}</a>
+      <!-- {{#if ancestry.prevSibling}}
+      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
       {{/if}}
-      {{#if (and (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader)) ancestry.nextMember)}}
+      {{#if (and ancestry.prevSibling ancestry.nextSibling)}}
       <span class="separator">|</span>
       {{/if}}
-      {{#if ancestry.nextMember}}
-      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextMember.path }}">{{ ancestry.nextMember.title }} »</a>
+      {{#if ancestry.nextSibling}}
+      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>
       {{/if}} -->
     </p>
   </div>

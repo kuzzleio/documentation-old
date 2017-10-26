@@ -14,7 +14,7 @@ Events triggered to synchronize Kuzzle server instances in a cluster.
 
 ---
 
-## `core:auth:strategyAdded`
+### `core:auth:strategyAdded`
 
 {{{since "1.2.0"}}}
 
@@ -33,7 +33,7 @@ This event payload is a plain JSON object with the following properties:
 
 ---
 
-## `core:auth:strategyRemoved`
+### `core:auth:strategyRemoved`
 
 {{{since "1.2.0"}}}
 
@@ -50,7 +50,7 @@ This event payload is a plain JSON object with the following properties:
 
 ---
 
-## `core:kuzzleStart`
+### `core:kuzzleStart`
 
 {{{since "1.0.0"}}}
 
@@ -60,7 +60,7 @@ Triggered when Kuzzle has completed its starting sequence and is ready to proces
 
 ---
 
-## `core:overload`
+### `core:overload`
 
 {{{since "1.0.0"}}}
 

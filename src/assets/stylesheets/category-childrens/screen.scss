@@ -63,6 +63,15 @@
     float: right;
   }
 
+  .categories {
+    .categories-header {
+      color: $dark;
+      font-size: 30px;
+      font-weight: 500;
+      padding-top: 30px;
+    }
+  }
+
   .panels {
     padding: 35px;
     display: flex;

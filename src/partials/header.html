@@ -1,0 +1,113 @@
+<header>
+  <div class="wrapper">
+    <a class="logo" href="http://kuzzle.io/">
+      <img src="{{ site_base_path }}assets/images/kuzzle-logo-blue.png">
+    </a>
+    <h1>Docs</h1>
+    <div class="search">
+      <input name="search" type="search" placeholder="Search anything... (alt + S)" tabindex="1" />
+      <div class="search-results"><ul></ul></div>
+      <script type="text/plain" id="search-results-template">
+        <li>
+          <a href="__link__" tabindex="__tabindex__">
+            <p class="page">
+              <span class="title">__title__</span>
+              <span class="firstMember">__firstMember__</span>
+              <span class="parent">__parent__</span>
+            </p>
+            <p class="preview">__preview__</p>
+          </a>
+        </li>
+      </script>
+    </div>
+  </div>
+  <nav>
+    <a class="logo-phone" href="http://kuzzle.io/">
+      <img src="{{ site_base_path }}assets/images/kuzzle-logo.png">
+    </a>
+    <ul>
+      <li class="btn-hamburger">
+        <a class="nav-item" href="">
+          <i class="icon icon-menu"></i>
+        </a>
+      </li>
+      {{#if (startwith path "guide") }}
+      <li class="active">
+      {{else}}
+      <li>
+      {{/if}}
+        <a href="{{ site_url }}{{ site_base_path }}guide/getting-started/" class="nav-item developers">Guide</a>
+      </li>
+      {{#if (startwith path "api") }}
+      <li class="active">
+      {{else}}
+      <li>
+      {{/if}}
+        <a href="{{ site_url }}{{ site_base_path }}api-documentation/connecting-to-kuzzle/" class="nav-item">API</a>
+      </li>
+      {{#if (startwith path "sdk") }}
+      <li class="active">
+      {{else}}
+      <li>
+      {{/if}}
+        <a href="{{ site_url }}{{ site_base_path }}sdk-reference/kuzzle/" class="nav-item">SDK</a>
+      </li>
+      {{#if (startwith path "plugins") }}
+      <li class="active">
+      {{else}}
+      <li>
+      {{/if}}
+        <a href="{{ site_url }}{{ site_base_path }}plugins-reference/plugins-creation-prerequisites/" class="nav-item ">Plugins</a>
+      </li>
+      {{#if (mstartwith path "cookbooks" "elasticsearch" "kuzzle-dsl" "validation" "kuzzle-events") }}
+      <li class="dropdown-btn active">
+      {{else}}
+      <li class="dropdown-btn">
+      {{/if}}
+        <a href="{{ site_base_path }}cookbooks" class="nav-item item-cookbooks">Cookbooks <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+        <ul class="nav-dropdown">
+          {{#if (startwith path "elasticsearch") }}
+          <li class="active">
+          {{else}}
+          <li>
+          {{/if}}
+            <a href="{{ site_url }}{{ site_base_path }}elasticsearch-cookbook/installation/" class="dropdown-item ">Elasticsearch</a>
+          </li>
+          {{#if (startwith path "kuzzle-dsl") }}
+          <li class="active">
+          {{else}}
+          <li>
+          {{/if}}
+            <a href="{{ site_url }}{{ site_base_path }}kuzzle-dsl/essential/koncorde/" class="dropdown-item ">Koncorde</a>
+          </li>
+          {{#if (startwith path "validation") }}
+          <li class="active">
+          {{else}}
+          <li>
+          {{/if}}
+            <a href="{{ site_url }}{{ site_base_path }}validation-reference/schema/" class="dropdown-item ">Validation</a>
+          </li>
+          {{#if (startwith path "kuzzle-events") }}
+          <li class="active">
+          {{else}}
+          <li>
+          {{/if}}
+            <a href="{{ site_url }}{{ site_base_path }}kuzzle-events/plugin-events/" class="dropdown-item ">Events</a>
+          </li>
+          <li><!-- necessary to make previous element's pseudo ::after exist --></li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://github.com/kuzzleio/kuzzle" target="_blank" class="nav-item github">
+          <i class="icon icon-github icon-small"></i>
+        </a>
+      </li>
+    </ul>
+
+    <div class="spacer"></div>
+
+    {{> cta-buttons }}
+
+    <div style="clear:both"></div>
+  </nav>
+</header>

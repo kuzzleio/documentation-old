@@ -14,7 +14,7 @@ Events triggered on real-time rooms activity.
 
 ---
 
-## `room:new`
+### `room:new`
 
 **Event type:** Hook
 
@@ -29,7 +29,7 @@ This event payload is a plain JSON object with the following properties:
 
 ---
 
-## `room:remove`
+### `room:remove`
 
 **Event type:** Hook
 

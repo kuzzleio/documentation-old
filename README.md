@@ -182,6 +182,13 @@ This header makes the content of `index.md` appear like any other article, using
 
 If [show-subheader](#show-subheader) is set to `true`, then this value is used as the article name in the navigation bar.
 
+## has-toc
+
+**Type:** boolean
+**Default:** `<undefined>`
+
+If the page has no siblings (thus, is the `index.md` of a section), it can have a Table of Contents displayed in the second level of the left menu. Only the `h2` headers are shown in the TOC.
+
 ---
 
 # Sorting the documentation

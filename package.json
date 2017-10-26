@@ -1,6 +1,6 @@
 {
   "name": "kuzzleio-documentation",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Kuzzle Documentation",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,7 @@
   "author": "The Kuzzle Team <support@kuzzle.io>",
   "license": "Apache-2.0",
   "dependencies": {
+    "autoprefixer": "^7.1.4",
     "bluebird": "^3.4.7",
     "cheerio": "^0.22.0",
     "debug": "^2.6.6",
@@ -25,14 +26,15 @@
     "metalsmith-algolia": "^0.1.0",
     "metalsmith-ancestry": "^1.2.1",
     "metalsmith-auto-collections": "^0.1.1",
+    "metalsmith-autoprefixer": "^1.1.2",
     "metalsmith-changed": "^3.1.1",
-    "metalsmith-css-packer": "^0.1.0",
+    "metalsmith-css-packer": "xbill82/metalsmith-css-packer",
     "metalsmith-debug": "^1.1.0",
     "metalsmith-gzip": "^1.1.0",
     "metalsmith-hbt-md": "^1.0.1",
     "metalsmith-html-minifier": "^2.2.0",
     "metalsmith-inline-svg": "^0.1.4",
-    "metalsmith-js-packer": "^0.1.0",
+    "metalsmith-js-packer": "xbill82/metalsmith-js-packer",
     "metalsmith-layouts": "^1.8.1",
     "metalsmith-linkcheck": "^0.3.0",
     "metalsmith-livereload": "^0.1.0",
@@ -40,15 +42,19 @@
     "metalsmith-metallic": "^2.0.1",
     "metalsmith-optipng": "0.0.2",
     "metalsmith-permalinks": "^0.5.0",
+    "metalsmith-redirect": "^2.1.0",
     "metalsmith-relative-links": "^1.1.1",
     "metalsmith-sass": "^1.4.0",
+    "metalsmith-serve": "0.0.7",
     "metalsmith-sitemap": "^1.2.0",
+    "metalsmith-watch": "^1.0.3",
     "mime-types": "^2.1.14",
     "node-static": "^0.7.9",
     "open": "0.0.5",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
     "striptags": "^3.1.0",
+    "uglify-js": "^3.1.2",
     "wordcount": "^1.1.1"
   }
 }

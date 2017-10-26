@@ -14,7 +14,7 @@ Events triggered when a request is sent to the [`index` controller]({{ site_base
 
 ---
 
-## `index:after<Action>`
+### `index:after<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -28,7 +28,7 @@ Example: after a successful [create]({{ site_base_path }}api-documentation/contr
 
 ---
 
-## `index:before<Action>`
+### `index:before<Action>`
 
 {{{since "1.0.0"}}}
 
@@ -42,7 +42,7 @@ Example: before performing a [list]({{ site_base_path }}api-documentation/contro
 
 ---
 
-## `index:error<Action>`
+### `index:error<Action>`
 
 {{{since "1.0.0"}}}
 

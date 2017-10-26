@@ -54,7 +54,7 @@ Here is Kuzzle's response:
 }
 ```
 
-Next, we need to [**create a new collection**]({{ site_base_path }}/api-documentation/controller-collection/create/) under that new index, to hold documents. We will call this new collection `mycollection`.
+Next, we need to [**create a new collection**]({{ site_base_path }}api-documentation/controller-collection/create/) under that new index, to hold documents. We will call this new collection `mycollection`.
 
 To do so, we need to send the following `PUT` request: `http://localhost:7512/myindex/mycollection`
 

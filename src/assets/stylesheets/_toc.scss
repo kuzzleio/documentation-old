@@ -1,0 +1,181 @@
+.tocify-wrapper {
+  position: absolute;
+  z-index: 1;
+
+  width: $nav-width;
+  min-height: 100%;
+  padding: 3em 0 0 4em;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background-color: $nav-bg;
+  background: #fbfbfb;
+  box-shadow: rgba(0,0,0,0.1) 0 0 9px;
+
+  transition: left 0.3s ease-in-out;
+  overflow: visible;
+
+  // The Table of Contents is composed of multiple nested
+  // unordered lists.  These styles remove the default
+  // styling of an unordered list because it is ugly.
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 26px;
+
+    .tocify-item {
+      font-size: 16px;
+
+      @media (max-width: $tablet-width) {
+        line-height: 31px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  a {
+    color: $dark;
+    text-decoration: none;
+  }
+
+  .cta-buttons {
+    display: none;
+
+    @media (max-width: $tablet-width) {
+      display: block;
+    }
+
+    button {
+      background: $color-pinkpanther;
+      border: none;
+      padding: 1em;
+      font-weight: 700;
+      text-decoration: none;
+      color: white;
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+  }
+
+  .tocify-header {
+
+    &> .tocify-item {
+      color: #111;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid #bbb;
+      padding: 2em 0 1em 0;
+      margin: 0 4em 1em 0;
+    }
+
+    .tocify-subheader {
+      background: transparent;
+
+      .tocify-level-2 {
+        padding-left: 15px;
+        font-size: 15px;
+
+        @media (max-width: $tablet-width) {
+          font-size: 18px;
+        }
+      }
+
+      & > li:last-child {
+        box-shadow: none; // otherwise it'll overflow out of the subheader
+      }
+    }
+
+    .tocify-focus {
+      > a {
+        color: $color-pinkpanther;
+      }
+    }
+  }
+
+  .toc-footer {
+    padding: 2em 0;
+
+    li {
+      display: block;
+      overflow-x: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    li,a {
+      color: $nav-text;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    li {
+      font-size: 0.8em;
+      line-height: 1.7;
+      text-decoration: none;
+    }
+  }
+
+  .floating-toggle {
+    display: none;
+
+    @media (max-width: $phone-width) {
+      display: inline-block;
+    }
+
+    .icon-menu {
+      opacity: 1;
+    }
+    .icon-cancel {
+      opacity: 0;
+    }
+  }
+
+  &.open {
+    .floating-toggle {
+      .icon-menu {
+        opacity: 0;
+      }
+      .icon-cancel {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.version-selector {
+  select {
+    font-size: 14px;
+    background: #f3f3f3;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    padding: 10px;
+
+     @media (max-width: $tablet-width) {
+      font-size: 19px;
+    }
+  }
+}
+
+.floating-toggle {
+  background: $dark;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: rgba(0,0,0,0.44) 2px 2px 11px 0px;
+  z-index: 3;
+
+  .icon {
+    transition: all 0.2s;
+    position: absolute;
+    top: 16.5px;
+    left: 16.5px;
+  }
+}
