@@ -1,0 +1,70 @@
+<div class="mobile-breadcrumb">
+  <p style="float:left">
+  <a href="{{ site_url }}{{ site_base_path }}">{{ site_title}}</a>
+
+  {{#if ancestry.parent}}
+    {{#if (and (ne ancestry.parent ancestry.root) (ne title ancestry.parent.title))}}
+    &#xBB; <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.parent.path }}">{{ ancestry.parent.title }}</a>
+    {{/if}}
+    {{#if (and ancestry.firstMember (ne title ancestry.firstMember.title))}}
+    &#xBB; <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.firstMember.path }}">{{ ancestry.firstMember.title }}</a>
+    {{/if}}
+
+    &#xBB; {{ title }}
+   {{/if}}
+   </p>
+   <p style="float:right" class="version-selector">
+     <select onchange="window.location = this.value">
+       {{#each versions_config}}
+         {{#if (eq ../site_base_path version_path)}}
+           <option selected>{{version_label}}</option>
+         {{else}}
+           <option value="{{version_path}}{{ ../path }}">{{version_label}}</option>
+         {{/if}}
+       {{/each}}
+     </select>
+   </p>
+</div>
+
+<div class="nav-sibling">
+  <div class="nav-left">
+    <p>
+      <a href="https://github.com/{{ gh_repo }}/edit/{{ gh_branch }}/src/{{ src }}">edit on github<i class="icon icon-github icon-small"></i></a>
+      <span class="separator">|</span>
+      <a href="https://github.com/{{ gh_repo }}/issues/new?labels={{ ancestry.parent.path }}&amp;title=Feedback%20about%20page%20&apos;{{ src }}&apos;">send feedback about this content<i class="icon icon-github icon-small"></i></a>
+      <span class="separator">|</span>
+      <!-- <select class="rate-documentation">
+        <option value=""></option>
+        <option value="1">Unusable documentation</option>
+        <option value="2">Poor documentation</option>
+        <option value="3">OK documentation</option>
+        <option value="4">Good documentation</option>
+        <option value="5">Excellent documentation</option>
+      </select> -->
+    </p>
+  </div>
+  <div class="nav-right">
+    <p class="version-selector">
+      <span>current version:</span>
+      <select onchange="window.location = this.value">
+        {{#each versions_config}}
+          {{#if (eq ../site_base_path version_path)}}
+            <option selected>{{version_label}}</option>
+          {{else}}
+            <option value="{{version_path}}{{ ../path }}">{{version_label}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+      <!-- {{#if ancestry.prevSibling}}
+      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
+      {{/if}}
+      {{#if (and ancestry.prevSibling ancestry.nextSibling)}}
+      <span class="separator">|</span>
+      {{/if}}
+      {{#if ancestry.nextSibling}}
+      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>
+      {{/if}} -->
+    </p>
+  </div>
+  <div style="clear:both"></div>
+</div>

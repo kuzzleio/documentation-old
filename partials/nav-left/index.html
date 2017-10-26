@@ -1,0 +1,77 @@
+<div class="tocify-wrapper">
+  {{&gt; version-select }}
+
+  <div class="tocify">
+    <ul class="tocify-header">
+      <li class="tocify-item">{{ ancestry.parent.title }}</li>
+      <ul class="tocify-subheader">
+        <!-- We iterate through the other sections at the same level -->
+        {{#each ancestry.siblings as |section|}}
+        {{#if separator}}
+        </ul>
+        <li class="tocify-item"><a style="color: #111; text-decoration: none;" href="{{ ../site_base_path }}{{ ancestry.parent.path }}/#{{ separator }}" title="back to {{ ancestry.parent.title }} home">{{ separator }}</a></li>
+        <ul class="tocify-subheader">
+        {{/if}}
+
+        <!-- If current page is the index of the section being displayed... -->
+        {{#if (eq section.path ../ancestry.firstMember.path)}}
+        <li class="tocify-item tocify-focus"><a href="#" title="{{firstDefinedOf description title }}">{{ title }}</a></li>
+          <ul class="tocify-header">
+            <ul class="tocify-subheader">
+              <!-- ...and there are other pages in the current section, -->
+              {{#if (gt ../ancestry.members.length 1)}}
+                <!-- We iterate through the other pages of the directory -->
+                {{#each ../ancestry.members as |page|}}
+                  <!-- and show them (if the index has specified to show the subheader), except the index, -->
+                  {{#if (or section.show-subheader (ne @key 0))}}
+                    <!-- by highlighting the title of the page being displayed -->
+                    {{#if (or (eq page.path ../../path) (eq page.path section.path))}}
+                      <li class="tocify-item tocify-level-2 tocify-focus"><a href="{{firstDefinedOf ../../site_base_path ../site_base_path}}{{ path }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
+                    {{else}}
+                      <li class="tocify-item tocify-level-2"><a href="{{firstDefinedOf ../../site_base_path ../site_base_path}}{{ path }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
+                    {{/if}}
+                  {{/if}}
+                {{/each}}
+              {{else}}
+                <!-- ...and there are no other pages in current section,
+                     but the section has a Table of Contents, -->
+                {{#if section.has-toc}}
+                  <!-- we append the level-2 items to the menu. -->
+                  {{#each toc}}
+                    {{#if (eq level 2)}}
+                    <li class="tocify-item tocify-level-{{level}}">
+                        <a href="#{{ id }}" title="{{ title }}">
+                          {{ title }}
+                        </a>
+                    </li>
+                    {{/if}}
+                  {{/each}}
+                  <!-- Note: a section cannot have a TOC and subsections dispayed
+                       in a subheader, since this menu can only have 2 depth levels.
+                       In most cases, the need for a TOC shows the need for splitting
+                       a page into multiple ones. -->
+                {{/if}}
+              {{/if}}
+            </ul>
+          </ul>
+        <!-- If current section does not correspond to the one being displayed,
+             we just display the item in the menu (no highlighting,
+             no subheader open). -->
+        {{else}}
+          <li class="tocify-item"><a style="color: #002835; text-decoration: none;" href="{{ ../site_base_path }}{{ path }}" title="{{firstDefinedOf description title }}">{{ title }}</a></li>
+        {{/if}}
+        {{/each}}
+      </ul>
+    </ul>
+
+    <div class="toc-footer">
+      {{&gt; cta-buttons }}
+    </div>
+
+  </div>
+
+  <div class="floating-toggle">
+    <i class="icon icon-menu"></i>
+    <i class="icon icon-cancel"></i>
+  </div>
+</div>

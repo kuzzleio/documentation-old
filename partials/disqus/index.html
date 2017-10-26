@@ -1,0 +1,22 @@
+{{#unless (eq disqus false)}}
+<hr>
+<div id="disqus_thread"></div>
+
+<script async data-packer="exclude">
+  var disqus_developer = 1;
+
+  var disqus_config = function () {
+    this.page.url = '{{ site_url }}{{ site_base_path }}{{ path }}';
+    this.page.title = '{{ title }}';
+    this.page.identifier = '{{ path }}';
+  };
+
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://kuzzle-documentation.disqus.com/embed.js';
+    s.async = 'async';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+{{/unless}}
