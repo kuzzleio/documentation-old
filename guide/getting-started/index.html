@@ -28,8 +28,8 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="">
   <meta property="og:image" content="http://docs.kuzzle.io/assets/images/favicon/favicon-96x96.png">
-  <meta property="article:published_time" content="2017-10-26T12:55:53.778Z">
-  <meta property="article:modified_time" content="2017-10-26T12:55:53.778Z">
+  <meta property="article:published_time" content="2017-10-30T10:19:48.087Z">
+  <meta property="article:modified_time" content="2017-10-30T10:19:48.087Z">
   <meta property="article:section" content="Guide">
   <meta property="article:tag" content="Getting started">
   
@@ -206,7 +206,7 @@ html{-ms-text-size-adjust:100%}blockquote>p,pre>p{margin:0}article,aside,details
   <div class="page-wrapper">
     <div class="content">
       <div class="main-content">
-        <!-- <div class="reading-time"><p>Reading time: 16 min</p></div> -->
+        <!-- <div class="reading-time"><p>Reading time: 15 min</p></div> -->
         <h1><a class="anchor" id="getting-started"></a>Getting started</h1>
 <p>In this tutorial you will learn in a few steps how to <strong>launch</strong> Kuzzle and how to interact with it by <strong>persisting data</strong> and <strong>being notified</strong> when data is updated.</p>
 <h2><a class="anchor" id="running-kuzzle-automagically"></a>Running Kuzzle automagically</h2>
@@ -280,97 +280,86 @@ mkdir <span class="hljs-string">&quot;kuzzle-playground&quot;</span>
 <span class="hljs-built_in">cd</span> <span class="hljs-string">&quot;kuzzle-playground&quot;</span>
 npm install kuzzle-sdk</code></pre>
 
-<p>Then, create a <code>create.js</code> file and start coding:</p>
+<p>Then, create a <code>init.js</code> file and start coding:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">const</span> Kuzzle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;kuzzle-sdk&apos;</span>)
 
 <span class="hljs-comment">// connect to the Kuzzle server</span>
-<span class="hljs-keyword">const</span> kuzzle = <span class="hljs-keyword">new</span> Kuzzle(<span class="hljs-string">&apos;localhost&apos;</span>, {
-  <span class="hljs-attr">defaultIndex</span>: <span class="hljs-string">&apos;playground&apos;</span>
-})
+<span class="hljs-keyword">const</span> kuzzle = <span class="hljs-keyword">new</span> Kuzzle(<span class="hljs-string">&apos;localhost&apos;</span>, {<span class="hljs-attr">defaultIndex</span>: <span class="hljs-string">&apos;playground&apos;</span>})
 
 kuzzle
-  .listIndexesPromise()
-  .then(<span class="hljs-function"><span class="hljs-params">indexes</span> =&gt;</span> {
-    <span class="hljs-keyword">if</span> (indexes.indexOf(<span class="hljs-string">&apos;playground&apos;</span>) === <span class="hljs-number">-1</span>) {
-      <span class="hljs-comment">// playground index not found, create it</span>
-      <span class="hljs-keyword">return</span> kuzzle.createIndexPromise(<span class="hljs-string">&apos;playground&apos;</span>)
-    }   
-  })  
-  .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> kuzzle.listCollectionsPromise(<span class="hljs-string">&apos;playground&apos;</span>, {<span class="hljs-attr">type</span>: <span class="hljs-string">&apos;stored&apos;</span>}))
-  .then(<span class="hljs-function"><span class="hljs-params">collections</span> =&gt;</span> {
-    <span class="hljs-keyword">if</span> (collections.indexOf(<span class="hljs-string">&apos;mycollection&apos;</span>) === <span class="hljs-number">-1</span>) {
-      <span class="hljs-comment">// mycollection not found, create it</span>
-      <span class="hljs-keyword">return</span> kuzzle.collection(<span class="hljs-string">&apos;mycollection&apos;</span>).createPromise()
-    }   
-    <span class="hljs-keyword">return</span> kuzzle.collection(<span class="hljs-string">&apos;mycollection&apos;</span>)
-  })</code></pre>
-
-<p>This code does the following:</p>
-<ul>
-<li>loads the <code>Kuzzle</code> SDK from its NPM package,</li>
-<li>creates an instance of the SDK and connects it to the Kuzzle Backoffice running on <code>localhost</code> (and selects the <code>playground</code> as default index),</li>
-<li>creates the <code>playground</code> index if it does not exist,</li>
-<li>creates the <code>mycollection</code> collection (within the <code>playground</code> index) if it does not exist.</li>
-</ul>
-<p>You&apos;re now ready to say Hello to the World!</p>
-<h3><a class="anchor" id="create-your-first-hello-world-document"></a>Create your first &quot;Hello World&quot; document</h3>
-<p>Append the following instructions to the promises chain</p>
-<pre><code class="hljs javascript">kuzzle
-  .listIndexesPromise()
-  .then(<span class="hljs-function"><span class="hljs-params">indexes</span> =&gt;</span> {
-    <span class="hljs-keyword">if</span> (indexes.indexOf(<span class="hljs-string">&apos;playground&apos;</span>) === <span class="hljs-number">-1</span>) {
-      <span class="hljs-comment">// playground index not found, create it</span>
-      <span class="hljs-keyword">return</span> kuzzle.createIndexPromise(<span class="hljs-string">&apos;playground&apos;</span>)
-    }   
-  })  
-  .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> kuzzle.listCollectionsPromise(<span class="hljs-string">&apos;playground&apos;</span>, {<span class="hljs-attr">type</span>: <span class="hljs-string">&apos;stored&apos;</span>}))
-  .then(<span class="hljs-function"><span class="hljs-params">collections</span> =&gt;</span> {
-    <span class="hljs-keyword">if</span> (collections.indexOf(<span class="hljs-string">&apos;mycollection&apos;</span>) === <span class="hljs-number">-1</span>) {
-      <span class="hljs-comment">// mycollection not found, create it</span>
-      <span class="hljs-keyword">return</span> kuzzle.collection(<span class="hljs-string">&apos;mycollection&apos;</span>).createPromise()
-    }   
-    <span class="hljs-keyword">return</span> kuzzle.collection(<span class="hljs-string">&apos;mycollection&apos;</span>)
-  })  
-  .then(<span class="hljs-function"><span class="hljs-params">collection</span> =&gt;</span> collection.createDocumentPromise({
-    <span class="hljs-attr">message</span>: <span class="hljs-string">&apos;Hello, World!&apos;</span>
-  })) 
-  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;the document has been successfully created&apos;</span>)
+  .createIndexPromise(<span class="hljs-string">&apos;playground&apos;</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> kuzzle.collection(<span class="hljs-string">&apos;mycollection&apos;</span>).createPromise())
+  .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;playground/mycollection ready&apos;</span>)
   })  
   .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.error(err.message)
   })  
   .finally(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> kuzzle.disconnect())</code></pre>
 
-<p>This code adds the following actions to the previous one:</p>
+<p>This code does the following:</p>
 <ul>
-<li>creates a new document containing a message saying &quot;Hello, World&quot; in <code>mycollection</code> within the <code>playground</code> index,</li>
-<li>logs a success message to the console if everything went fine,</li>
-<li>logs an error message if any of the previous actions failed.</li>
+<li>loads the <code>Kuzzle</code> SDK from its NPM package,</li>
+<li>creates an instance of the SDK and connects it to the Kuzzle Backoffice running on <code>localhost</code> (and selects the <code>playground</code> as default index),</li>
+<li>creates the <code>playground</code> index,</li>
+<li>creates the <code>mycollection</code> collection (within the <code>playground</code> index),</li>
+<li>disconnect from Kuzzle to end the script.</li>
 </ul>
 <p>Run your file in NodeJS</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash
 </span>
-node create.js</code></pre>
+node init.js</code></pre>
+
+<p>You&apos;re now ready to say Hello to the World!</p>
+<h3><a class="anchor" id="create-your-first-hello-world-document"></a>Create your first &quot;Hello World&quot; document</h3>
+<p>Create a <code>create.js</code> file with following code:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> Kuzzle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;kuzzle-sdk&apos;</span>)
+
+<span class="hljs-comment">// connect to the Kuzzle server</span>
+<span class="hljs-keyword">const</span> kuzzle = <span class="hljs-keyword">new</span> Kuzzle(<span class="hljs-string">&apos;localhost&apos;</span>, {<span class="hljs-attr">defaultIndex</span>: <span class="hljs-string">&apos;playground&apos;</span>})
+
+<span class="hljs-comment">// get message from command line arguments</span>
+<span class="hljs-keyword">const</span> message = {<span class="hljs-attr">message</span>: process.argv[<span class="hljs-number">2</span>]}
+
+kuzzle.collection(<span class="hljs-string">&apos;mycollection&apos;</span>)
+  .createDocumentPromise(message)
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;the following document has been successfully created:\n&apos;</span>, message)
+  })
+  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message)
+  })
+  .finally(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> kuzzle.disconnect())</code></pre>
+
+<p>This code does the following:</p>
+<ul>
+<li>creates a new document containing a message saying &quot;Hello, World&quot; in <code>mycollection</code> within the <code>playground</code> index,</li>
+<li>logs a success message to the console if everything went fine,</li>
+<li>logs an error message if any of the previous actions failed,</li>
+<li>disconnect from Kuzzle to end the script.</li>
+</ul>
+<p>Run your file in NodeJS</p>
+<pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash
+</span>
+node create.js <span class="hljs-string">&apos;Hello, World&apos;</span></code></pre>
 
 <aside class="success">
-You have persisted your first document in Kuzzle. If you are running the Backoffice, you can use it to check the existence of the newly created document.
+You have persisted your first document in Kuzzle. If you are running the <a href="/guide/essentials/installing-backoffice">Backoffice</a>, you can use it to check the existence of the newly created document.
 </aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We&apos;ll be happy to help.
+Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We&apos;ll be happy to help.
 </aside>
 
 <p><em>You can find more resources about Kuzzle SDK in the <a href="/sdk-reference">SDK Documentation</a>.</em></p>
 <h3><a class="anchor" id="subscribe-to-data-changes-pub-sub"></a>Subscribe to data changes (pub/sub)</h3>
 <p>Kuzzle provides pub/sub features that allow you to be notified in real-time on the state of your data (check the <a href="/sdk-reference/#room">Room Class Documentation</a> for a deep-dive on notifications).</p>
-<p>Let&apos;s get started. Open a new termnial in the playground directory you created before and create the <code>subscribe.js</code> file containing the following code:</p>
+<p>Let&apos;s get started.
+Open a new termnial in the playground directory you created before and create the <code>subscribe.js</code> file containing the following code:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">const</span> Kuzzle = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;kuzzle-sdk&apos;</span>)
 
 <span class="hljs-comment">// connect to the Kuzzle server</span>
-<span class="hljs-keyword">const</span> kuzzle = <span class="hljs-keyword">new</span> Kuzzle(<span class="hljs-string">&apos;localhost&apos;</span>, {
-    <span class="hljs-attr">defaultIndex</span>: <span class="hljs-string">&apos;playground&apos;</span>
-  })
+<span class="hljs-keyword">const</span> kuzzle = <span class="hljs-keyword">new</span> Kuzzle(<span class="hljs-string">&apos;localhost&apos;</span>, {<span class="hljs-attr">defaultIndex</span>: <span class="hljs-string">&apos;playground&apos;</span>})
 
 <span class="hljs-comment">// create a reference to the data collection</span>
 <span class="hljs-keyword">const</span> collection = kuzzle.collection(<span class="hljs-string">&apos;mycollection&apos;</span>)
@@ -400,7 +389,7 @@ You just leveraged Kuzzle&apos;s pub/sub mechanism.
 </aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We&apos;ll be happy to help.
+Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We&apos;ll be happy to help.
 </aside>
 
 <h2><a class="anchor" id="where-do-we-go-from-here-where-do-we-go-from-here"></a>Where do we go from here?</h2>
