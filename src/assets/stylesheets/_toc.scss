@@ -185,5 +185,8 @@
 .container {
   .tocify-wrapper {
     top: $header-height;
+    @media (max-width: $phone-width) {
+      top: $header-height-phone;
+    }
   }
 }
