@@ -7,7 +7,6 @@
   bottom: 0;
 
   width: $nav-width;
-  min-height: 100%;
   padding: 3em 0 0 4em;
 
   overflow-y: auto;
@@ -185,6 +184,6 @@
 
 .container {
   .tocify-wrapper {
-    top: 240px;
+    top: 125px;
   }
 }
