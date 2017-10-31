@@ -4,17 +4,19 @@ console.log('leftNavUx');
 
 console.log('Wrap length', $wrapper.length);
   if ($wrapper.length !== 0) {
-    var $selectedItem = $('.tocify-level-2.tocify-focus', $wrapper);
+    var $selectedItemList = $('.tocify-level-2.tocify-focus', $wrapper);
 
-    if ($selectedItem.length === 0) {
-      $selectedItem = $('.tocify-focus', $wrapper);
+    if ($selectedItemList.length === 0) {
+      $selectedItemList = $('.tocify-focus', $wrapper);
     }
-console.log('selectedItem', $selectedItem);
-console.log('selectedItem Offset', $selectedItem.get(0).offsetTop + 120);
+console.log('selectedItemList', $selectedItemList);
+    var $selectedItem = $selectedItemList.get($selectedItemList.length-1)
+console.log('selectedItem Offset', $selectedItem.offsetTop);
 console.log('wrapper heigth', $wrapper.height());
 
-    if ($selectedItem.get(0).offsetTop + 120 > $wrapper.height()) {
-      $wrapper.scrollTop(Math.ceil($selectedItem.get(0).offsetTop - $wrapper.height() / 2));
+    if ($selectedItem.offsetTop + 120 > $wrapper.height()) {
+      console.log(Math.ceil($selectedItem.offsetTop - $wrapper.height() / 2));
+      $wrapper.scrollTop(Math.ceil($selectedItem.offsetTop - $wrapper.height() / 2));
     }
   }
 
