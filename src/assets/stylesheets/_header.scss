@@ -69,6 +69,8 @@ header {
   background-color: $dark;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 9px;
   width: 100%;
+  position: fixed;
+  z-index: 1;
 
   .wrapper {
     padding: 2em $header-padding;
