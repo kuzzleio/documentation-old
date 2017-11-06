@@ -15,7 +15,7 @@ title: createRestrictedUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>/_createRestricted` or `http://kuzzle:7512/users/_createRestricted`  
+**URL:** `http://kuzzle:7512/users/<kuid>/_createRestricted[?refresh=wait_for]` or `http://kuzzle:7512/users/_createRestricted[?refresh=wait_for]`  
 **Method:** `POST`  
 **Body**
 </p>
@@ -56,15 +56,15 @@ title: createRestrictedUser
 </p>
 </blockquote>
 
-```js
+```json
 {
   "controller": "security",
   "action": "createRestrictedUser",
+  "refresh": "wait_for",
   "_id": "<kuid>",
   "body": {
     "content": {
-      "name": "John Doe",                     // Additional optional User properties
-      ...
+      "name": "John Doe"
     },
     "credentials": {
       "strategy-name": {
@@ -72,22 +72,22 @@ title: createRestrictedUser
     }
   }
 }
+```
 
-// example with the "local" authentication strategy
-
+```json
 {
   "controller": "security",
   "action": "createRestrictedUser",
+  "refresh": "wait_for",
   "_id": "<kuid>",
   "body": {
     "content": {
-      "name": "John Doe",                     // Additional optional User properties
-      ...
+      "name": "John Doe"
     },
     "credentials": {
       "local": {
-        "username": "MyUser"                  // ie: Mandatory for "local" authentication plugin
-        "password": "MyPassword"              // ie: Mandatory for "local" authentication plugin
+        "username": "MyUser",
+        "password": "MyPassword"
       }
     }
   }

@@ -16,7 +16,7 @@ title: deleteUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>`  
+**URL:** `http://kuzzle:7512/users/<kuid>[?refresh=wait_for]`  
 **Method:** `DELETE`
 </p>
 </blockquote>
@@ -31,6 +31,7 @@ title: deleteUser
 {
   "controller": "security",
   "action": "deleteUser",
+  "refresh": "wait_for",
 
   "_id": "<kuid>"
 }
@@ -54,3 +55,6 @@ title: deleteUser
 ```
 
 Given a `user id`, deletes the corresponding [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) from Kuzzle's database layer.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the user's deletion indexation (indexed users are available for `search`).

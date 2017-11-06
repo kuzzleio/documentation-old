@@ -16,7 +16,7 @@ title: mDeleteProfiles
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/profiles/_mDelete`  
+**URL:** `http://kuzzle:7512/profiles/_mDelete[?refresh=wait_for]`  
 **Method:** `POST`  
 **Body:**
 </p>
@@ -40,6 +40,7 @@ title: mDeleteProfiles
 {
   "controller": "security",
   "action": "mDeleteProfiles",
+  "refresh": "wait_for",
   "body": {
     "ids": ["myFirstProfile", "mySecondProfile"]
   }
@@ -63,3 +64,6 @@ title: mDeleteProfiles
 ```
 
 Deletes a list of `profile` objects from Kuzzle's database layer given a list of profile ids.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the profiles' deletion indexation (indexed profiles are available for `search`).
