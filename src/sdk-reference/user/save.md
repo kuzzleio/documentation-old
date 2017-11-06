@@ -12,21 +12,21 @@ title: save
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-role
+user
   .save(function(error, result) {
-    // result is a Role object
+    // result is a User object
   });
 
 // Using promises (NodeJS)
-role
+user
   .savePromise()
   .then((result) => {
-    // result is a Role object
+    // result is a User object
   });
 ```
 
 ```java
-role.save(new ResponseListener<Role> {
+user.save(new ResponseListener<User> {
   @Override
   public void onSuccess(User user) {
 
@@ -42,7 +42,7 @@ role.save(new ResponseListener<Role> {
 ```php
 <?php
 
-use Kuzzle\Security\Role;
+use Kuzzle\Security\User;
 
 // ...
 
