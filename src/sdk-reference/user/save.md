@@ -5,28 +5,28 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: saveRestricted
+title: save
 ---
 
-# saveRestricted
+# save
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-user
-  .saveRestricted(function(error, result) {
-    // result is a User object
+role
+  .save(function(error, result) {
+    // result is a Role object
   });
 
 // Using promises (NodeJS)
-user
-  .saveRestrictedPromise()
-  .then(result => {
-    // result is a User object
+role
+  .savePromise()
+  .then((result) => {
+    // result is a Role object
   });
 ```
 
 ```java
-user.saveRestricted(new ResponseListener<User>() {
+role.save(new ResponseListener<Role> {
   @Override
   public void onSuccess(User user) {
 
@@ -42,7 +42,7 @@ user.saveRestricted(new ResponseListener<User>() {
 ```php
 <?php
 
-use Kuzzle\Security\User;
+use Kuzzle\Security\Role;
 
 // ...
 
@@ -51,19 +51,20 @@ use Kuzzle\Security\User;
  */
 
 try {
-  $user->saveRestricted();
+  $user = $user->save();
+
+  // $user instanceof User
 }
 catch (ErrorException $e) {
-
+  // error occured
 }
 ```
 
-Saves this user as restricted in Kuzzle's database layer.
-
+Creates or replaces this user in Kuzzle's database layer.
 
 ---
 
-## saveRestricted([options], [callback])
+## save([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
