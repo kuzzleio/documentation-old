@@ -49,7 +49,7 @@ const
       }
     }
   },
-  options= {
+  options = {
     from: 0,
     size: 20
   };
