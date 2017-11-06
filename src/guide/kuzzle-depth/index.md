@@ -14,7 +14,7 @@ In this section we'll take a deeper look at the Kuzzle Core internals.
 
 ![archi_core]({{ site_base_path }}assets/images/core-architecture.png)
 
-## Components
+## Core Components
 
 The above schema shows the main architecture in Kuzzle, which is composed of the following entities.
 
