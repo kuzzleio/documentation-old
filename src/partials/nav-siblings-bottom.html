@@ -18,13 +18,13 @@
   <div class="nav-right">
     <p class="medium-only">
       {{#if ancestry.prevSibling}}
-      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
+      <a href="{{ site_base_path }}{{ ancestry.prevSibling.path }}">« {{ ancestry.prevSibling.title }}</a>
       {{/if}}
       {{#if (and ancestry.prevSibling ancestry.nextSibling)}}
       |
       {{/if}}
       {{#if ancestry.nextSibling}}
-      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>
+      <a href="{{ site_base_path }}{{ ancestry.nextSibling.path }}">{{ ancestry.nextSibling.title }} »</a>
       {{/if}}
     </p>
     <p>

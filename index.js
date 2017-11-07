@@ -27,6 +27,7 @@ const algolia     = require('metalsmith-algolia');
 const jsPacker    = require('metalsmith-js-packer');
 const cssPacker   = require('metalsmith-css-packer');
 const redirect    = require('metalsmith-redirect');
+const paths      = require('metalsmith-paths/lib/node6');
 
 const logger      = require('./metalsmith-plugins/logger');
 const metatoc     = require('./metalsmith-plugins/metatoc');
@@ -73,8 +74,13 @@ let options = {
   github: {
     repository: '',
     branch: ''
-  }
+  },
+  offline: false
 };
+
+if (process.argv.indexOf('--offline') > -1) {
+  options.offline = true;
+}
 
 if (process.argv.indexOf('--dev') > -1) {
   options.dev.enabled = true;
@@ -244,6 +250,9 @@ let metalsmith = Metalsmith(__dirname)
   .destination('./build' + options.build.path) // does not work with 'dist' folder ...
   .clean(true)
   .use(saveSrc())
+  .use(paths({
+    property: "paths"
+  }))
   .use((files, metalsmith, done) => {
     setImmediate(done);
 
@@ -254,8 +263,20 @@ let metalsmith = Metalsmith(__dirname)
     });
   });
 
+metalsmith.use(links({
+  modifyLinks: function(uri, fromResolved) {
+    let result = '';
+    // Hack to calculate correct relative links for xxx.md files who will be compiled into xxx/index.html:
+    if (fromResolved.endsWith('.md') && !fromResolved.endsWith('/index.md')) {
+      result = '../';
+    }
+    result += uri.replace(/\.md$/, ".html");
+    return options.offline && result || result.replace(/(^|\/|\\)index.html$/, "$1");
+  }
+}));
+
+
 metalsmith
-  .use(links())
   .use(ancestry({
     match: '**/*.md',
     sortBy: ['order', 'title']
@@ -300,18 +321,29 @@ metalsmith
     // since this plugin overwrites the processed files with their
     // old version.
     relative: false
-  }))
-  .use(redirect({
-    '/': '/guide/getting-started',
-    '/guide': '/guide/getting-started',
-    '/api-documentation/': '/api-documentation/connecting-to-kuzzle/',
-    '/sdk-reference/': 'kuzzle/',
-    '/plugins-reference/': 'plugins-creation-prerequisites/',
-    '/elasticsearch-cookbook/': '/elasticsearch-cookbook/installation/',
-    '/kuzzle-dsl/': '/kuzzle-dsl/essential/koncorde/',
-    '/validation-reference/': '/validation-reference/schema/',
-    '/kuzzle-events/': '/kuzzle-events/plugin-events/'
-  }))
+  }));
+
+const redirectOptions = {
+  '': 'guide/getting-started/',
+  'guide/': 'getting-started/',
+  'api-documentation/': 'connecting-to-kuzzle/',
+  'sdk-reference/': 'kuzzle/',
+  'plugins-reference/': 'plugins-creation-prerequisites/',
+  'elasticsearch-cookbook/': 'installation/',
+  'kuzzle-dsl/': 'essential/koncorde/',
+  'validation-reference/': 'schema/',
+  'kuzzle-events/': 'plugin-events/'
+}
+
+if (options.offline) {
+  for (let i in redirectOptions) {
+    redirectOptions[i] = redirectOptions[i]+'index.html';
+    redirectOptions[i+'index.html'] = redirectOptions[i];
+  }
+}
+
+metalsmith
+  .use(redirect(redirectOptions))
   .use(metatoc())
   .use(languageTab())
   .use(layouts({
@@ -334,6 +366,7 @@ if (!options.dev.enabled) {
     .use(jsPacker({
       siteRootPath: options.build.path,
       inline: false,
+      relativeLinks: options.offline,
       exclude: ['partials/**/*', 'layouts/**/*']
     }))
 }

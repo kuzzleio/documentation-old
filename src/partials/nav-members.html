@@ -1,13 +1,13 @@
 <div class="mobile-breadcrumb">
   <p style="float:left">
-  <a href="{{ site_url }}{{ site_base_path }}">{{ site_title}}</a>
+  <a href="{{ site_base_path }}">{{ site_title}}</a>
 
   {{#if ancestry.parent}}
     {{#if (and (ne ancestry.parent ancestry.root) (ne title ancestry.parent.title))}}
-    » <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.parent.path }}">{{ ancestry.parent.title }}</a>
+    » <a href="{{ site_base_path }}{{ ancestry.parent.path }}">{{ ancestry.parent.title }}</a>
     {{/if}}
     {{#if (and ancestry.firstMember (ne title ancestry.firstMember.title))}}
-    » <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.firstMember.path }}">{{ ancestry.firstMember.title }}</a>
+    » <a href="{{ site_base_path }}{{ ancestry.firstMember.path }}">{{ ancestry.firstMember.title }}</a>
     {{/if}}
 
     » {{ title }}
@@ -56,13 +56,13 @@
         {{/each}}
       </select>
       <!-- {{#if (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader))}}
-      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.prevMember.path }}">« {{firstDefinedOf ancestry.prevMember.subheader-title ancestry.prevMember.title }}</a>
+      <a href="{{ site_base_path }}{{ ancestry.prevMember.path }}">« {{firstDefinedOf ancestry.prevMember.subheader-title ancestry.prevMember.title }}</a>
       {{/if}}
       {{#if (and (and ancestry.prevMember (or (ne ancestry.prevMember ancestry.firstMember) ancestry.prevMember.show-subheader)) ancestry.nextMember)}}
       <span class="separator">|</span>
       {{/if}}
       {{#if ancestry.nextMember}}
-      <a href="{{ site_url }}{{ site_base_path }}{{ ancestry.nextMember.path }}">{{ ancestry.nextMember.title }} »</a>
+      <a href="{{ site_base_path }}{{ ancestry.nextMember.path }}">{{ ancestry.nextMember.title }} »</a>
       {{/if}} -->
     </p>
   </div>
