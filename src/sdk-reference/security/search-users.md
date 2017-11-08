@@ -169,7 +169,12 @@ Executes a search on users according to a filter
 |---------------|---------|----------------------------------------|---------|
 | ``from`` | number | Starting offset | ``0`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``scroll`` | string | Start a scroll session, with a time to live equals to this parameter's value following the [Elastisearch time format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/common-options.html#time-units) | ``undefined`` |
 | ``size`` | number |  Number of hits to return | ``20`` |
+
+<aside class="notice">
+  To get more information about scroll sessions, please refer to the <a href="{{ site_base_path }}api-documentation/controller-document/search">API reference documentation</a>.
+</aside>
 
 ---
 

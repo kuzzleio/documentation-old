@@ -131,17 +131,20 @@ Executes a search on profiles according to a filter
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
-Available options:
+---
+
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``from`` | number | Starting offset | ``0`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``scroll`` | string | Start a scroll session, with a time to live equals to this parameter's value following the [Elastisearch time format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/common-options.html#time-units) | ``undefined`` |
 | ``size`` | integer | Number of hits to return | ``20`` |
 
 ---
 
-## Options
+## Filters
 
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
