@@ -16,7 +16,7 @@ title: createRole
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/roles/<roleId>/_create`  
+**URL:** `http://kuzzle:7512/roles/<roleId>/_create[?refresh=wait_for]`  
 **Method:** `POST`  
 **Body**
 </p>
@@ -44,6 +44,7 @@ title: createRole
 {
   "controller": "security",
   "action": "createRole",
+  "refresh": "wait_for",
   "_id": "<roleId>",
 
   "body": {
@@ -89,6 +90,9 @@ title: createRole
 
 Validates and stores a role in Kuzzle's persistent data storage.
 **Note:** The `_id` parameter is mandatory.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the role indexation (indexed roles are available for `search`).
 
 The body content needs to match Kuzzle's role definition.
 

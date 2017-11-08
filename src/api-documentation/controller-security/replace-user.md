@@ -13,7 +13,7 @@ title: replaceUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>/_replace`  
+**URL:** `http://kuzzle:7512/users/<kuid>/_replace[?refresh=wait_for]`  
 **Method:** `PUT`  
 **Body**
 </p>
@@ -37,6 +37,7 @@ title: replaceUser
 {
   "controller": "security",
   "action": "replaceUser",
+  "refresh": "wait_for",
   "_id": "<kuid>",
   "body": {
     "profileIds": ["<profileId>"],
@@ -67,3 +68,6 @@ title: replaceUser
 ```
 
 Given a [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid), replaces the matching User object in Kuzzle's database layer.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the user indexation (indexed users are available for `search`).

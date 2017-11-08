@@ -16,7 +16,7 @@ title: deleteRole
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/roles/<roleId>`  
+**URL:** `http://kuzzle:7512/roles/<roleId>[?refresh=wait_for]`  
 **Method:** `DELETE`
 </p>
 </blockquote>
@@ -31,6 +31,7 @@ title: deleteRole
 {
   "controller": "security",
   "action": "deleteRole",
+  "refresh": "wait_for",
 
   "_id": "<roleId>"
 }
@@ -55,6 +56,8 @@ title: deleteRole
 
 Given a `role id`, deletes the corresponding role from the database.
 
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the role's deletion indexation (indexed roles are available for `search`).
 
 <aside class="notice">
 The role unique identifier. It's the same you set when you create a role.

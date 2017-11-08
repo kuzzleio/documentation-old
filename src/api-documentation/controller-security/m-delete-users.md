@@ -16,7 +16,7 @@ title: mDeleteUsers
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/_mDelete`  
+**URL:** `http://kuzzle:7512/users/_mDelete[?refresh=wait_for]`  
 **Method:** `POST`  
 **Body:**
 </p>
@@ -40,6 +40,7 @@ title: mDeleteUsers
 {
   "controller": "security",
   "action": "mDeleteUsers",
+  "refresh": "wait_for",
   "body": {
     "ids": ["firstKuid", "secondKuid"]
   }
@@ -64,3 +65,6 @@ title: mDeleteUsers
 ```
 
 Deletes a list of `users` objects from Kuzzle's database layer given a list of [`<kuids>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the users' deletion indexation (indexed users are available for `search`).

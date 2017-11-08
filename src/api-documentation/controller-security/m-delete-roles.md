@@ -16,7 +16,7 @@ title: mDeleteRoles
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/roles/_mDelete`  
+**URL:** `http://kuzzle:7512/roles/_mDelete[?refresh=wait_for]`  
 **Method:** `POST`  
 **Body:**
 </p>
@@ -40,6 +40,7 @@ title: mDeleteRoles
 {
   "controller": "security",
   "action": "mDeleteRoles",
+  "refresh": "wait_for",
   "body": {
     "ids": ["myFirstRole", "mySecondRole"]
   }
@@ -63,3 +64,6 @@ title: mDeleteRoles
 ```
 
 Deletes a list of `roles` objects from Kuzzle's database layer given a list of role ids.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the roles' deletion indexation (indexed roles are available for `search`).

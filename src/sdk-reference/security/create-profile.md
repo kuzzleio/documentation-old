@@ -130,8 +130,9 @@ That means that a profile that was just been created will not be returned by <co
 
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``replaceIfExist`` | boolean | If the same profile already exists: throw an error if sets to false. Replace the existing profile otherwise | ``false`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``replaceIfExist`` | boolean | If the same profile already exists: throw an error if sets to false. Replace the existing profile otherwise | ``false`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 

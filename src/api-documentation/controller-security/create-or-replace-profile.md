@@ -16,7 +16,7 @@ title: createOrReplaceProfile
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/profiles/<profileId>`
+**URL:** `http://kuzzle:7512/profiles/<profileId>[?refresh=wait_for]`
 **Method:** `PUT`
 **Body**
 </p>
@@ -59,6 +59,7 @@ title: createOrReplaceProfile
 {
   "controller": "security",
   "action": "createOrReplaceProfile",
+  "refresh": "wait_for",
   "_id": "<profileId>",              
 
   "body": {
@@ -110,3 +111,6 @@ title: createOrReplaceProfile
 ```
 
 Creates or replaces (if `_id` matches an existing one) a profile with a list of policies.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the profile indexation (indexed profiles are available for `search`).
