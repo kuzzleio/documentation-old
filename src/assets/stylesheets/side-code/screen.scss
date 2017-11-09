@@ -97,7 +97,7 @@
 
         > table {
           margin: 25px;
-          
+
           @media (max-width: $desktop-width) {
             margin: 25px 0;
           }
@@ -142,7 +142,7 @@
 @media (max-width: $large-desktop-width) {
   .container {
     .page-wrapper {
-      padding: 10px 0 55px 0;
+      padding: $header-height 0 55px 0;
     }
   }
 }
@@ -177,4 +177,13 @@
 
 @media (max-width: $desktop-width) {
 
+}
+
+//phone
+@media (max-width: $phone-width) {
+  .container {
+    .page-wrapper {
+      padding-top: $header-height-phone;
+    }
+  }
 }

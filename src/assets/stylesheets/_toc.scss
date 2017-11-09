@@ -1,10 +1,13 @@
 .tocify-wrapper {
-  position: absolute;
+  position: fixed;
   z-index: 1;
 
+  top: 0;
+  left: 0;
+  bottom: 0;
+
   width: $nav-width;
-  min-height: 100%;
-  padding: 3em 0 0 4em;
+  padding: 1em 0 0 4em;
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -14,7 +17,6 @@
   box-shadow: rgba(0,0,0,0.1) 0 0 9px;
 
   transition: left 0.3s ease-in-out;
-  overflow: visible;
 
   // The Table of Contents is composed of multiple nested
   // unordered lists.  These styles remove the default
@@ -177,5 +179,14 @@
     position: absolute;
     top: 16.5px;
     left: 16.5px;
+  }
+}
+
+.container {
+  .tocify-wrapper {
+    top: $header-height;
+    @media (max-width: $phone-width) {
+      top: $header-height-phone;
+    }
   }
 }
