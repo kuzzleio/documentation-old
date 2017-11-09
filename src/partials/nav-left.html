@@ -9,7 +9,7 @@
         {{#each ancestry.siblings as |section|}}
         {{#if separator}}
         </ul>
-        <li class="tocify-item"><a style="color: #111; text-decoration: none;" href="{{ ../site_base_path }}{{ ancestry.parent.path }}/#{{ separator }}" title="back to {{ ancestry.parent.title }} home">{{ separator }}</a></li>
+        <li class="tocify-item"><a style="color: #111; text-decoration: none;" href="{{ link ../paths.href ancestry.parent.paths.href }}/#{{ separator }}" title="back to {{ ancestry.parent.title }} home">{{ separator }}</a></li>
         <ul class="tocify-subheader">
         {{/if}}
 
@@ -26,9 +26,17 @@
                   {{#if (or section.show-subheader (ne @key 0))}}
                     <!-- by highlighting the title of the page being displayed -->
                     {{#if (or (eq page.path ../../path) (eq page.path section.path))}}
-                      <li class="tocify-item tocify-level-2 tocify-focus"><a href="{{firstDefinedOf ../../site_base_path ../site_base_path}}{{ path }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
+                      {{#if  ../../paths.href}}
+                        <li class="tocify-item tocify-level-2 tocify-focus"><a href="{{ link ../../paths.href paths.href }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
+                      {{else}}
+                        <li class="tocify-item tocify-level-2 tocify-focus"><a href="{{ link ../paths.href paths.href }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
+                      {{/if}}
                     {{else}}
-                      <li class="tocify-item tocify-level-2"><a href="{{firstDefinedOf ../../site_base_path ../site_base_path}}{{ path }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
+                      {{#if  ../../paths.href}}
+                        <li class="tocify-item tocify-level-2"><a href="{{ link ../../paths.href paths.href }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
+                      {{else}}
+                        <li class="tocify-item tocify-level-2"><a href="{{ link ../paths.href paths.href }}" title="{{firstDefinedOf description title }}">{{firstDefinedOf subheader-title title}}</a></li>
+                      {{/if}}
                     {{/if}}
                   {{/if}}
                 {{/each}}
@@ -58,7 +66,7 @@
              we just display the item in the menu (no highlighting,
              no subheader open). -->
         {{else}}
-          <li class="tocify-item"><a style="color: #002835; text-decoration: none;" href="{{ ../site_base_path }}{{ path }}" title="{{firstDefinedOf description title }}">{{ title }}</a></li>
+          <li class="tocify-item yolo"><a style="color: #002835; text-decoration: none;" href="{{ link ../paths.href paths.href }}" title="{{firstDefinedOf description title }}">{{ title }}</a></li>
         {{/if}}
         {{/each}}
       </ul>

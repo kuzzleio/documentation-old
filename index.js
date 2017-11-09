@@ -264,14 +264,15 @@ let metalsmith = Metalsmith(__dirname)
   });
 
 metalsmith.use(links({
-  modifyLinks: function(uri, fromResolved) {
-    let result = '';
+  modifyLinks: function(uri, fromResolved, toResolved) {
+    let prefix = '';
     // Hack to calculate correct relative links for xxx.md files who will be compiled into xxx/index.html:
     if (fromResolved.endsWith('.md') && !fromResolved.endsWith('/index.md')) {
-      result = '../';
+      prefix = '../';
     }
-    result += uri.replace(/\.md$/, ".html");
-    return options.offline && result || result.replace(/(^|\/|\\)index.html$/, "$1");
+    return  prefix + (options.offline
+      && uri.replace(/\/index\.md$/, "/index.html").replace(/\.md$/, "/index.html")
+      || uri.replace(/\/index\.md$/, "/").replace(/\.md$/, "/") );
   }
 }));
 
