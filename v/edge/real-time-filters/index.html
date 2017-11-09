@@ -1,0 +1,860 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="google-site-verification" content="luspUdq52gkUU0FFChQ2xmeXSs5HDafpARQ7fVXVBp4" />
+    <title>Kuzzle Realtime DSL Reference</title>
+
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="images/favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="images/favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="images/favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="images/favicon/mstile-310x310.png" />
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="index">
+    <header>
+      <div class="wrapper">
+        <div id="logo">
+            <a href="http://kuzzle.io/">&nbsp;</a>
+        </div>
+
+        <nav>
+          <ul>
+            <li>
+              <a href="http://kuzzle.io/" class="nav-item">Home</a>
+            </li>
+            <li>
+              <a href="http://docs.kuzzle.io/" class="nav-item developers active">Documentation</a>
+            </li>
+            <li>
+              <a href="http://kuzzle.io/demos-tutorials/" class="nav-item ">Demos</a>
+            </li>
+            <li>
+              <a href="http://kuzzle.io/blog/" class="nav-item ">Blog</a>
+            </li>
+            <li>
+              <a href="https://github.com/kuzzleio/kuzzle" target="_blank" class="nav-item github">
+                <i class="icon icon-github icon-small"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="developer-nav open">
+        <ul>
+            <li><a href="/guide/"><span>Guide</span></a></li>
+            <li><a href="/sdk-reference/"><span>SDK</span></a></li>
+            <li class="active"><a href="/real-time-filters/"><span>Real-time filters</span></a></li>
+            <li><a href="/validation-reference/"><span>Data Validation</span></a></li>
+            <li><a href="/api-reference/"><span>API</span></a></li>
+            <li><a href="/plugin-reference/"><span>Plugins</span></a></li>
+            <li><a href="/elasticsearch-cookbook/"><span>Elasticsearch Cookbook</span></a></li>
+        </ul>
+        <div class="search">
+          <input type="text" class="search" id="input-search" tabindex="1" placeholder="Search in the guide">
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <a href="#" id="nav-button">
+        <span>
+          NAV
+          <img src="images/navbar.png" />
+        </span>
+      </a>
+      <div class="tocify-wrapper">
+
+<!--
+        <div id="version-selector">
+          <label>
+            select version:
+            <select>
+              <option value="/">v1.0.x (current)</option>
+              <option value="/v/edge">next</option>
+            </select>
+          </label>
+        </div>
+-->
+
+        <div id="toc">
+        </div>
+          <ul class="toc-footer">
+              <li><a href="http://kuzzle.io">Kuzzle official website</a></li>
+              <li><a href="http://github.com/kuzzleio/kuzzle">Kuzzle on GitHub</a></li>
+              <li><a href="http://github.com/tripit/slate">Documentation Powered by Slate</a></li>
+          </ul>
+      </div>
+      <div class="page-wrapper">
+        <div class="dark-box"></div>
+        <div class="content">
+          <h1 id="introduction">Introduction</h1>
+
+<p>This documentation section details the filtering syntax of <strong>subscriptions</strong>.<br>
+This is different from document searches, which are performed using <a href="https://www.elastic.co/guide/en/elasticsearch/reference/2.2/query-dsl.html">Elasticsearch Query DSL</a></p>
+
+<p>Kuzzle subscriptions use a subset of Elasticsearch Query DSL, called Kuzzle DSL.</p>
+
+            <h2 id="filter-terms">Filter terms</h2>
+
+<h3 id="equals">equals</h3>
+
+<p>The <code class="prettyprint">equals</code> filter matches documents or messages attributes using string equality.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the first document:</p>
+<pre class="highlight javascript"><code><span class="nx">equals</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="exists">exists</h3>
+
+<p>The <code class="prettyprint">exists</code> filter matches documents containing non-null fields.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">city</span><span class="err">:</span> <span class="s1">'NYC'</span><span class="p">,</span>
+  <span class="nx">hobby</span><span class="err">:</span> <span class="s1">'computer'</span><span class="p">,</span>
+  <span class="nx">alive</span><span class="err">:</span> <span class="kc">false</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'London'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'computer'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the first document:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">exists</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">field</span><span class="p">:</span> <span class="s1">'alive'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="ids">ids</h3>
+
+<p>This filter returns only documents having their unique document ID listed in the provided list.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">_id</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">,</span>
+  <span class="nx">firstName</span><span class="err">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">_id</span><span class="p">:</span> <span class="s1">'b'</span><span class="p">,</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">_id</span><span class="p">:</span> <span class="s1">'c'</span><span class="p">,</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Marie'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Curie'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates first document:</p>
+<pre class="highlight javascript"><code><span class="nx">ids</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">values</span><span class="p">:</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="in">in</h3>
+
+<p>This filter allows testing a string field against multiple possibilities.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Marie'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Curie'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the first two documents:</p>
+<pre class="highlight javascript"><code><span class="k">in</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Grace'</span><span class="p">,</span> <span class="s1">'Ada'</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="missing">missing</h3>
+
+<p>A filter matching documents with a missing field.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">city</span><span class="err">:</span> <span class="s1">'NYC'</span><span class="p">,</span>
+  <span class="nx">hobby</span><span class="err">:</span> <span class="s1">'computer'</span><span class="p">,</span>
+  <span class="nx">alive</span><span class="err">:</span> <span class="kc">false</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'London'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'computer'</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the second document:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">missing</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">field</span><span class="p">:</span> <span class="s1">'alive'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="range">range</h3>
+
+<p>Filters documents with fields having number attributes within a certain range.</p>
+
+<p>The range filter accepts the following parameters:</p>
+
+<p><code class="prettyprint">gte</code> Greater-than or equal to</p>
+
+<p><code class="prettyprint">gt</code> Greater-than</p>
+
+<p><code class="prettyprint">lte</code> Less-than or equal to</p>
+
+<p><code class="prettyprint">lt</code> Less-than</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">age</span><span class="err">:</span> <span class="mi">85</span><span class="p">,</span>
+  <span class="nx">city</span><span class="err">:</span> <span class="s1">'NYC'</span><span class="p">,</span>
+  <span class="nx">hobby</span><span class="err">:</span> <span class="s1">'computer'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">36</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'London'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'computer'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Marie'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Curie'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'Paris'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'radium'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the last two documents:</p>
+<pre class="highlight javascript"><code><span class="nx">range</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">age</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">gte</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span>
+    <span class="nx">lt</span><span class="err">:</span> <span class="mi">85</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="regexp">regexp</h3>
+
+<p>The <code class="prettyprint">regexp</code> filter matches documents or messages attributes using perl-compatible regular expressions (<a href="https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions">PCRE</a>).<br>
+You can test only 1 attribute per <code class="prettyprint">regexp</code> filter.</p>
+
+<p>A <code class="prettyprint">regexp</code> filter has the following structure, splitting the usual <code class="prettyprint">/pattern/flags</code> into two parts:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"regexp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"attributeToTest"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search pattern"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"flags"</span><span class="p">:</span><span class="w"> </span><span class="s2">"modifier flags"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Or, if you don&rsquo;t wish to add any modifier flags:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"regexp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"attributeToTest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"search pattern"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the first document:</p>
+<pre class="highlight javascript"><code><span class="nx">regexp</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">value</span><span class="p">:</span> <span class="s1">'^g\w+'</span><span class="p">,</span>
+    <span class="nx">flags</span><span class="err">:</span> <span class="s1">'i'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="geoboundingbox">geoBoundingBox</h3>
+
+<p>Filter documents having their location field within a <a href="#geospatial-filters">bounding box</a>.</p>
+
+<p>A bounding box is a 2D box that can be defined using:</p>
+
+<ol>
+<li>2 points coordinates tuples, defining the top left and bottom right corners of the box</li>
+<li>4 values defining the 4 box sides: <code class="prettyprint">top</code> and <code class="prettyprint">bottom</code> are latitudes, and <code class="prettyprint">left</code> and <code class="prettyprint">right</code> are longitudes</li>
+</ol>
+
+<p>All of these representations are defining the same bounding box:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="o">-</span><span class="mf">74.1</span><span class="p">,</span>
+  <span class="nx">left</span><span class="err">:</span> <span class="mf">40.73</span><span class="p">,</span>
+  <span class="nx">bottom</span><span class="err">:</span> <span class="o">-</span><span class="mf">71.12</span><span class="p">,</span>
+  <span class="nx">right</span><span class="err">:</span> <span class="mf">40.01</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">topLeft</span><span class="p">:</span> <span class="p">{</span> <span class="nl">lat</span><span class="p">:</span> <span class="mf">40.73</span><span class="p">,</span> <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">74.1</span> <span class="p">},</span>
+  <span class="nx">bottomRight</span><span class="err">:</span> <span class="p">{</span> <span class="nl">lat</span><span class="p">:</span> <span class="mf">40.01</span><span class="p">,</span> <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">71.12</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">top_left</span><span class="p">:</span> <span class="p">{</span> <span class="nl">lat</span><span class="p">:</span> <span class="mf">40.73</span><span class="p">,</span> <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">74.1</span> <span class="p">},</span>
+  <span class="nx">bottom_right</span><span class="err">:</span> <span class="p">{</span> <span class="nl">lat</span><span class="p">:</span> <span class="mf">40.01</span><span class="p">,</span> <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">71.12</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<aside class="note">
+When cooddinates are in array format, the format is [lon, lat] to comply with <a href="http://geojson.org/">GeoJSON</a>
+</aside>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">topLeft</span><span class="p">:</span> <span class="p">[</span> <span class="o">-</span><span class="mf">74.1</span><span class="p">,</span> <span class="mf">40.73</span> <span class="p">],</span>
+  <span class="nx">bottomRight</span><span class="err">:</span> <span class="p">[</span> <span class="o">-</span><span class="mf">71.12</span><span class="p">,</span> <span class="mf">40.01</span> <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">top_left</span><span class="p">:</span> <span class="p">[</span> <span class="o">-</span><span class="mf">74.1</span><span class="p">,</span> <span class="mf">40.73</span> <span class="p">],</span>
+  <span class="nx">bottom_right</span><span class="err">:</span> <span class="p">[</span> <span class="o">-</span><span class="mf">71.12</span><span class="p">,</span> <span class="mf">40.01</span> <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<aside class="note">
+As a string, the coordinates format is &ldquo;lat, lon&rdquo;
+</aside>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">topLeft</span><span class="p">:</span> <span class="s2">"40.73, -74.1"</span><span class="p">,</span>
+  <span class="nx">bottomRight</span><span class="err">:</span> <span class="s2">"40.01, -71.12"</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">top_left</span><span class="p">:</span> <span class="s2">"40.73, -74.1"</span><span class="p">,</span>
+  <span class="nx">bottom_right</span><span class="err">:</span> <span class="s2">"40.01, -71.12"</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Here is the <a href="https://en.wikipedia.org/wiki/Geohash">geoHash</a> representation</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">topLeft</span><span class="p">:</span> <span class="s2">"dr5r9ydj2"</span><span class="p">,</span>
+  <span class="nx">bottomRight</span><span class="err">:</span> <span class="s2">"drj7teegp"</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">top_left</span><span class="p">:</span> <span class="s2">"dr5r9ydj2"</span><span class="p">,</span>
+  <span class="nx">bottom_right</span><span class="err">:</span> <span class="s2">"drj7teegp"</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><img alt="Illustration of geoBoundingBox" src="images/geolocation/geoBoundingBox.png" /></p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">location</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nl">lat</span><span class="p">:</span> <span class="mf">32.692742</span><span class="p">,</span>
+    <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">97.114127</span>
+  <span class="p">}</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">location</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">lat</span><span class="p">:</span> <span class="mf">51.519291</span><span class="p">,</span>
+    <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.149817</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter will match the second document only:</p>
+<pre class="highlight javascript"><code><span class="nx">geoBoundingBox</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">location</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.939744</span><span class="p">,</span>
+    <span class="nx">left</span><span class="err">:</span> <span class="mf">52.394484</span><span class="p">,</span>
+    <span class="nx">bottom</span><span class="err">:</span> <span class="mf">1.180129</span><span class="p">,</span>
+    <span class="nx">right</span><span class="err">:</span> <span class="mf">51.143628</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="geodistance">geoDistance</h3>
+
+<p>Filter documents having their location field within a <a href="#geospatial-filters">distance</a> radius of a provided point of origin.</p>
+
+<p>By default, when it is not specified, the distance unit is expressed in meters.<br>
+Note that distance values are strings (including <code class="prettyprint">from</code> and <code class="prettyprint">to</code> attributes for <code class="prettyprint">geoDistanceRange</code>)</p>
+
+<p>All formats supported by the <a href="https://github.com/brettlangdon/node-units">node-units</a> library can be used:</p>
+
+<table><thead>
+<tr>
+<th>Units</th>
+<th>Notations</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>meters</td>
+<td>meter, m</td>
+</tr>
+<tr>
+<td>feet</td>
+<td>feet, ft</td>
+</tr>
+<tr>
+<td>inches</td>
+<td>inch, in</td>
+</tr>
+<tr>
+<td>yards</td>
+<td>yard, yd</td>
+</tr>
+<tr>
+<td>miles</td>
+<td>mile, mi</td>
+</tr>
+</tbody></table>
+
+<p>All these notations are equivalent:</p>
+<pre class="highlight plaintext"><code>1000
+1000 m
+1km
+3280.839895013123 ft
+3280.839895013123FT
+39370.078740157485 inches
+39370.078740157485 inch
+39370.078740157485 in
+1 093,6132983377079 yd
+0.6213727366498067 miles
+</code></pre>
+
+<p><img alt="Illustration of geoDistance" src="images/geolocation/geoDistance.png" /></p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">location</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nl">lat</span><span class="p">:</span> <span class="mf">32.692742</span><span class="p">,</span>
+    <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">97.114127</span>
+  <span class="p">}</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">location</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">lat</span><span class="p">:</span> <span class="mf">51.519291</span><span class="p">,</span>
+    <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.149817</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter will match the second document only:</p>
+<pre class="highlight javascript"><code><span class="nx">geoDistance</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">location</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">lat</span><span class="p">:</span> <span class="mf">51.5029017</span><span class="p">,</span>
+    <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">0.1606903</span>
+  <span class="p">},</span>
+  <span class="nx">distance</span><span class="err">:</span> <span class="s1">'10km'</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="geodistancerange">geoDistanceRange</h3>
+
+<p>Filter documents having their location field within a <a href="#geodistance">distance</a> range from a given point of origin</p>
+
+<p><img alt="Illustration of geoDistanceRange" src="images/geolocation/geoDistanceRange.png" /></p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">location</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nl">lat</span><span class="p">:</span> <span class="mf">32.692742</span><span class="p">,</span>
+    <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">97.114127</span>
+  <span class="p">}</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">location</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">lat</span><span class="p">:</span> <span class="mf">51.519291</span><span class="p">,</span>
+    <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.149817</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter will match the second document only:</p>
+<pre class="highlight javascript"><code><span class="nx">geoDistanceRange</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">location</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">lat</span><span class="p">:</span> <span class="mf">51.5029017</span><span class="p">,</span>
+    <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">0.1606903</span>
+  <span class="p">},</span>
+  <span class="nx">from</span><span class="err">:</span> <span class="s1">'1km'</span><span class="p">,</span>
+  <span class="nx">to</span><span class="err">:</span> <span class="s1">'10km'</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="geopolygon">geoPolygon</h3>
+
+<p>Filter documents having their location field located inside a given <a href="#geospatial-filters">polygon</a>.</p>
+
+<p>Unlike the GeoJSON representation, a polygon, here, must contain at least 3 <a href="#point">points</a>.<br>
+The last point do not have to be the same as the first one, but the points must be sorted in the right order. The polygon is automatically closed.</p>
+
+<p>For each polygon points, all the possible point notations are valid (see above).</p>
+
+<p>Example of a valid polygon representation:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">points</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">{</span><span class="na">lon</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">lat</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="s1">'2,1'</span><span class="p">,</span>
+    <span class="s1">'s037ms06g'</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><img alt="Illustration of geoPolygon" src="images/geolocation/geoPolygon.png" /></p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">location</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nl">lat</span><span class="p">:</span> <span class="mf">32.692742</span><span class="p">,</span>
+    <span class="nx">lon</span><span class="err">:</span> <span class="o">-</span><span class="mf">97.114127</span>
+  <span class="p">}</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">location</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">lat</span><span class="p">:</span> <span class="mf">51.519291</span><span class="p">,</span>
+    <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.149817</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter will match the second document only:</p>
+<pre class="highlight javascript"><code><span class="nx">geoPolygon</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nl">location</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">points</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="na">lat</span><span class="p">:</span> <span class="mf">51.523029</span><span class="p">,</span> <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.160793</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="na">lat</span><span class="p">:</span> <span class="mf">51.522842</span><span class="p">,</span> <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.145043</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="na">lat</span><span class="p">:</span> <span class="mf">51.518303</span><span class="p">,</span> <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.146116</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="na">lat</span><span class="p">:</span> <span class="mf">51.516487</span><span class="p">,</span> <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.162295</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="na">lat</span><span class="p">:</span> <span class="mf">51.520226</span><span class="p">,</span> <span class="na">lon</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.158432</span> <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+            <h2 id="filter-operands">Filter operands</h2>
+
+<p>Filter operands allow combining multiple filters using boolean operands.</p>
+
+<h3 id="and">and</h3>
+
+<p>The <code class="prettyprint">and</code> filter takes an array of filter objects, combining them with AND operands.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">city</span><span class="err">:</span> <span class="s1">'NYC'</span><span class="p">,</span>
+  <span class="nx">hobby</span><span class="err">:</span> <span class="s1">'computer'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'London'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'computer'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the first document:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">and</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">equals</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">city</span><span class="p">:</span> <span class="s1">'NYC'</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">equals</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">hobby</span><span class="p">:</span> <span class="s1">'computer'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="bool">bool</h3>
+
+<p>A filter matching documents matching boolean combinations of other queries.</p>
+
+<p>This operand accepts the following attributes:</p>
+
+<ul>
+<li><code class="prettyprint">must</code>: all listed conditions must be true</li>
+<li><code class="prettyprint">must_not</code>: all listed conditions must be false</li>
+<li><code class="prettyprint">should</code>: one of the listed condition must be true</li>
+<li><code class="prettyprint">should_not</code>: one of the listed condition must be false</li>
+</ul>
+
+<p>Each one of these attributes are an array of filter objects.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">age</span><span class="err">:</span> <span class="mi">85</span><span class="p">,</span>
+  <span class="nx">city</span><span class="err">:</span> <span class="s1">'NYC'</span><span class="p">,</span>
+  <span class="nx">hobby</span><span class="err">:</span> <span class="s1">'computer'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">36</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'London'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'computer'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Marie'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Curie'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'Paris'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'radium'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the second document:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">bool</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">must</span> <span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">in</span> <span class="p">:</span> <span class="p">{</span>
+          <span class="na">firstName</span> <span class="p">:</span> <span class="p">[</span><span class="s1">'Grace'</span><span class="p">,</span> <span class="s1">'Ada'</span><span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="na">range</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">age</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">gte</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span>
+            <span class="na">lt</span><span class="p">:</span> <span class="mi">85</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s1">'must_not'</span> <span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">equals</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">city</span><span class="p">:</span> <span class="s1">'NYC'</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="na">should</span> <span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">equals</span> <span class="p">:</span> <span class="p">{</span>
+          <span class="na">hobby</span> <span class="p">:</span> <span class="s1">'computer'</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="na">exists</span> <span class="p">:</span> <span class="p">{</span>
+          <span class="na">field</span> <span class="p">:</span> <span class="s1">'lastName'</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="not">not</h3>
+
+<p>The <code class="prettyprint">not</code> filter reverts a filter result.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">city</span><span class="err">:</span> <span class="s1">'NYC'</span><span class="p">,</span>
+  <span class="nx">hobby</span><span class="err">:</span> <span class="s1">'computer'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'London'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'computer'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the first document:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">not:</span><span class="w"> </span><span class="err">{</span><span class="w">
+    </span><span class="err">equals:</span><span class="w"> </span><span class="err">{</span><span class="w">
+      </span><span class="err">city:</span><span class="w"> </span><span class="err">'London'</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="or">or</h3>
+
+<p>The <code class="prettyprint">or</code> filter takes an array containing filter objects, combining them using OR operands.</p>
+
+<p>Given the following documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">firstName</span><span class="p">:</span> <span class="s1">'Grace'</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="err">:</span> <span class="s1">'Hopper'</span><span class="p">,</span>
+  <span class="nx">city</span><span class="err">:</span> <span class="s1">'NYC'</span><span class="p">,</span>
+  <span class="nx">hobby</span><span class="err">:</span> <span class="s1">'computer'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Ada'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Lovelace'</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'London'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'computer'</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Marie'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Curie'</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="s1">'Paris'</span><span class="p">,</span>
+  <span class="na">hobby</span><span class="p">:</span> <span class="s1">'radium'</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The following filter validates the first two documents:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">or</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">equals</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">city</span><span class="p">:</span> <span class="s1">'NYC'</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">equals</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">city</span><span class="p">:</span> <span class="s1">'London'</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+
+        </div>
+        <div class="dark-box">
+        </div>
+      </div>
+    </div>
+    <script>
+      ((window.gitter = {}).chat = {}).options = {
+        room: 'kuzzleio/kuzzle'
+      };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function() {
+                  (i[r].q = i[r].q || []).push(arguments)
+              }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-67035328-1', 'auto');
+      ga('send', 'pageview');
+
+
+      (function() {
+        var
+          r,
+          version;
+
+        r = /\/v\/([^/]+)(?:\/[^/]+\.html?)?$/.exec(window.location.pathname);
+
+        if (r) {
+          version = r[1];
+          $('#version-selector option[value="/v/' + version + '"]').prop('selected', true);
+        }
+
+        $('#version-selector').change(function (e) {
+          var
+            versionPath = $('#version-selector option:selected').val();
+          window.location = window.location.pathname
+            .replace(/\/v\/([^/]+)(\/[^/]+\.html?)?$/, '\2')
+            + versionPath
+            +'#' + window.location.hash;
+        });
+      })();
+    </script>
+  </body>
+</html>

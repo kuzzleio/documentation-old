@@ -1,0 +1,2273 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="google-site-verification" content="luspUdq52gkUU0FFChQ2xmeXSs5HDafpARQ7fVXVBp4" />
+    <title>Kuzzle Guide</title>
+
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="images/favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="images/favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="images/favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="images/favicon/mstile-310x310.png" />
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="index">
+    <header>
+      <div class="wrapper">
+        <div id="logo">
+            <a href="http://kuzzle.io/">&nbsp;</a>
+        </div>
+
+        <nav>
+          <ul>
+            <li>
+              <a href="http://kuzzle.io/" class="nav-item">Home</a>
+            </li>
+            <li>
+              <a href="http://docs.kuzzle.io/" class="nav-item developers active">Documentation</a>
+            </li>
+            <li>
+              <a href="http://kuzzle.io/demos-tutorials/" class="nav-item ">Demos</a>
+            </li>
+            <li>
+              <a href="http://kuzzle.io/blog/" class="nav-item ">Blog</a>
+            </li>
+            <li>
+              <a href="https://github.com/kuzzleio/kuzzle" target="_blank" class="nav-item github">
+                <i class="icon icon-github icon-small"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="developer-nav open">
+        <ul>
+            <li><a href="/guide/"><span>Guide</span></a></li>
+            <li><a href="/sdk-reference/"><span>SDK</span></a></li>
+            <li><a href="/real-time-filters/"><span>Real-time filters</span></a></li>
+            <li><a href="/validation-reference/"><span>Data Validation</span></a></li>
+            <li><a href="/api-reference/"><span>API</span></a></li>
+            <li class="active"><a href="/plugin-reference/"><span>Plugins</span></a></li>
+            <li><a href="/elasticsearch-cookbook/"><span>Elasticsearch Cookbook</span></a></li>
+        </ul>
+        <div class="search">
+          <input type="text" class="search" id="input-search" tabindex="1" placeholder="Search in the guide">
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <a href="#" id="nav-button">
+        <span>
+          NAV
+          <img src="images/navbar.png" />
+        </span>
+      </a>
+      <div class="tocify-wrapper">
+          <ul class="search-results"></ul>
+
+<!--
+        <div id="version-selector">
+          <label>
+            select version:
+            <select>
+              <option value="/">v1.0.x (current)</option>
+              <option value="/v/edge">next</option>
+            </select>
+          </label>
+        </div>
+-->
+
+        <div id="toc">
+        </div>
+          <ul class="toc-footer">
+              <li><a href="http://kuzzle.io">Kuzzle official website</a></li>
+              <li><a href="http://github.com/kuzzleio/kuzzle">Kuzzle on GitHub</a></li>
+              <li><a href="http://github.com/tripit/slate">Documentation Powered by Slate</a></li>
+          </ul>
+      </div>
+      <div class="page-wrapper">
+        <div class="dark-box"></div>
+        <div class="content">
+          
+            <h1 id="plugin-creation-prerequisites">Plugin creation prerequisites</h1>
+
+<h3 id="writing-plugin-code">Writing plugin code</h3>
+
+<p>Plugins must be written in Javascript, for the Node.js interpreter. You must be accustomed to <a href="https://nodejs.org/docs/v4.6.2/doc/api/modules.html">how modules are loaded and exported</a>.</p>
+
+<p>As Kuzzle treats plugins as Node.js modules, plugins must make themselves available to Kuzzle using <code class="prettyprint">module.exports</code>. Otherwise Kuzzle won&rsquo;t be able to instantiate them.</p>
+
+<h3 id="plugin-default-configuration">Plugin default configuration</h3>
+
+<p>Plugins must have a <code class="prettyprint">package.json</code> file in their root directory, containing a <code class="prettyprint">pluginInfo</code> entry.</p>
+
+<p>The optional <code class="prettyprint">defaultConfig</code> attribute is used by Kuzzle to initialize the plugin configuration when installing it.</p>
+
+<p>This configuration can then be changed using the command-line interface.</p>
+
+<p>Default configuration example:</p>
+<pre class="highlight json"><code><span class="s2">"name"</span><span class="err">:</span><span class="w"> </span><span class="s2">"plugin-name"</span><span class="err">,</span><span class="w">
+</span><span class="s2">"version"</span><span class="err">:</span><span class="w"> </span><span class="s2">"0.0.1"</span><span class="err">,</span><span class="w">
+</span><span class="s2">"main"</span><span class="err">:</span><span class="w"> </span><span class="s2">"./lib/index.js"</span><span class="err">,</span><span class="w">
+</span><span class="s2">"pluginInfo"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"defaultConfig"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"any"</span><span class="p">:</span><span class="w"> </span><span class="s2">"information"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"useful"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"to"</span><span class="p">,</span><span class="w"> </span><span class="s2">"the"</span><span class="p">,</span><span class="w"> </span><span class="s2">"plugin"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="special-plugin-configurations">Special plugin configurations</h3>
+
+<p>Additionally to plugins&rsquo; custom configuration, there are a few reserved words used by Kuzzle to configure how a plugin is loaded:</p>
+<pre class="highlight json"><code><span class="s2">"name"</span><span class="err">:</span><span class="w"> </span><span class="s2">"plugin-name"</span><span class="err">,</span><span class="w">
+</span><span class="s2">"version"</span><span class="err">:</span><span class="w"> </span><span class="s2">"0.0.1"</span><span class="err">,</span><span class="w">
+</span><span class="s2">"main"</span><span class="err">:</span><span class="w"> </span><span class="s2">"./lib/index.js"</span><span class="err">,</span><span class="w">
+</span><span class="s2">"pluginInfo"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"defaultConfig"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"threads"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"privileged"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Where:</p>
+
+<table><thead>
+<tr>
+<th>Keyword</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">threads</code></td>
+<td><code class="prettyprint">unsigned integer</code></td>
+<td><code class="prettyprint">0</code></td>
+<td>If &gt; 0, the plugin will be treated as a worker plugin (see below)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">privileged</code></td>
+<td><code class="prettyprint">boolean</code></td>
+<td><code class="prettyprint">false</code></td>
+<td>If <code class="prettyprint">true</code>, the plugin is loaded with privileged access to the running Kuzzle instance (see Plugin Context below)<br/>Ignored if <code class="prettyprint">threads</code> is greater than <code class="prettyprint">0</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="plugin-init-function">Plugin init function</h3>
+
+<p>Plugins must expose a <code class="prettyprint">init</code> function.</p>
+
+<p>Kuzzle calls these <code class="prettyprint">init</code> function at startup, during initialization, and ignore any plugin without this function exposed.</p>
+
+<p>Expected arguments:
+<code class="prettyprint">function (config, context)</code></p>
+
+<p>Where:</p>
+
+<ul>
+<li><code class="prettyprint">config</code> (JSON Object): JSON object containing the current plugin configuration</li>
+<li><code class="prettyprint">context</code> (JSON Object): the <a href="#the-plugin-context">plugin context</a></li>
+</ul>
+
+            <h1 id="plugin-types">Plugin types</h1>
+
+<p>To plug itself to Kuzzle, a plugin exposes properties, telling Kuzzle what the plugin does, and how and when it should be invoked.</p>
+
+<p>Depending on the properties it exposes, a plugin can be of one or several of the following types detailed below.</p>
+
+<h2 id="listener-plugins">Listener plugins</h2>
+
+<p><code class="prettyprint">listener</code> plugins simply listen to events, and are supplied with these events data. These plugins cannot change the provided data, and Kuzzle does not wait for them to process the data either.</p>
+
+<p>To configure a plugin as a <code class="prettyprint">listener</code> on Kuzzle events, it needs to expose a <code class="prettyprint">hooks</code> JSON object, linking Kuzzle events name with the names of plugin functions to execute.<br>
+Each function that Kuzzle needs to call must also be exposed.</p>
+
+<p><strong>Example</strong></p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">MyPlugin</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="cm">/*
+    This exposed "hooks" property tells Kuzzle that it needs to
+    attach the plugin function "myFunction" to the Kuzzle event
+    "eventType:hookName"
+
+    The function "myFunction" will be called whenever the event
+    "eventType:hookName" is fired.
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">hooks</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'eventType:hookName'</span><span class="p">:</span> <span class="s1">'myFunction'</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+   Required plugin initialization function
+   (see the "Plugin prerequisites" section)
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// initializes the plugin</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+   The configured function to call whenever the
+   "eventType:hookName" event is fired
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">myFunction</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">Event</span> <span class="nx">$</span><span class="p">{</span><span class="nx">event</span><span class="p">}</span> <span class="nx">triggered</span><span class="err">`</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">Message</span> <span class="nx">received</span><span class="err">:</span> <span class="nx">$</span><span class="p">{</span><span class="nx">message</span><span class="p">}</span><span class="err">`</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// Exports the plugin objects, allowing Kuzzle to instantiate it</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyPlugin</span><span class="p">;</span>
+</code></pre>
+
+<h2 id="worker-plugins">Worker plugins</h2>
+
+<p>A <code class="prettyprint">worker</code> plugin is simply a <code class="prettyprint">listener</code> plugin running in separate processes. This is especially useful when you have to perform cost-heavy operations without impeding Kuzzle performances.</p>
+
+<p>To convert a <code class="prettyprint">listener</code> plugin to a <code class="prettyprint">worker</code> one, you only need to add the following attribute to the <a href="#gt-plugin-default-configuration">plugin configuration</a>: <code class="prettyprint">threads: &lt;number of threads&gt;</code></p>
+
+<p>If this number of threads is greater than 0, Kuzzle will launch the plugin on as many separate threads.<br>
+If there are more than 1 thread for that plugin, each time a listened event is fired, Kuzzle will pick one thread to notify using round-robin.</p>
+
+<aside class="notice">
+As worker plugins are isolated in separated processes, the <a href="#the-plugin-context">plugin context</a> provided to worker plugins do not contain <code>accessors</code>
+</aside>
+
+<p>Plugin configuration example:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0.1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"defaultConfig"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"threads"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"activated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="pipe-plugins">Pipe plugins</h2>
+
+<p><code class="prettyprint">pipe</code> plugins, like <code class="prettyprint">listener</code> plugins, are attached to Kuzzle events, and they are supplied with these events data.<br>
+But unlike <code class="prettyprint">listener</code> plugins, Kuzzle waits for their results before continuing the process.</p>
+
+<p>This means that <code class="prettyprint">pipe</code> plugins may:</p>
+
+<ul>
+<li>modify the provided data on the fly</li>
+<li>instruct Kuzzle to abort the request, sending an immediate and custom answer to the requesting client</li>
+</ul>
+
+<p>Where a listener exposes a <code class="prettyprint">hooks</code> property, a pipe plugin needs to expose its events in a <code class="prettyprint">pipes</code> one, listing the listened events, and the plugin functions to invoke whenever these events are fired (see the example below).</p>
+
+<p>Since <code class="prettyprint">pipe</code> plugins are a part of how Kuzzle processes client requests, Kuzzle enforces a timeout on them, rejecting the request altogether if a <code class="prettyprint">pipe</code> plugin fails to respond in a timely fashion, and forwarding an appropriate <a href="#gt-error-gatewaytimeouterror">GatewayTimeoutError</a> error to the original client.<br>
+The timeout value can be configured in Kuzzle configuration file.</p>
+
+<p>A single event can be listened by multiple <code class="prettyprint">pipe</code> plugins. When this is the case, Kuzzle calls the attached plugins sequentially, without any particular order.</p>
+
+<p><code class="prettyprint">pipe</code> plugins functions take a callback as their last parameter, and this callback <strong>must</strong> be called at the end of the processing with the following arguments: <code class="prettyprint">callback(error, object)</code>, where:</p>
+
+<ul>
+<li><code class="prettyprint">error</code>: set this value to a <code class="prettyprint">KuzzleError</code> object to make Kuzzle abort the request, and return that error to the client. Otherwise, set it to <code class="prettyprint">null</code></li>
+<li><code class="prettyprint">object</code>: the resulting data, given back to Kuzzle for processing</li>
+</ul>
+
+<p>The following plugin example adds a <code class="prettyprint">createdAt</code> attribute to all newly created documents:</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">MyPlugin</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="cm">/*
+    This exposed "pipes" property tells Kuzzle that it needs to
+    attach the plugin function "addCreatedAt" to the Kuzzle event
+    "document:beforeCreate"
+
+    The function "addCreatedAt" will be called whenever the event
+    "document:beforeCreate" is fired. Kuzzle will wait for
+    the function's result before continuing the request process
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">pipes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'document:beforeCreate'</span><span class="p">:</span> <span class="s1">'addCreatedAt'</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+    Required plugin initialization function
+    (see the "Plugin prerequisites" section)
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Plugin initialization</span>
+  <span class="p">};</span>
+
+  <span class="c1">// Called whenever "document:beforeCreate" is fired</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">addCreatedAt</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">createdAt</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">request</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// Exports the plugin objects, allowing Kuzzle to instantiate it</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyPlugin</span><span class="p">;</span>
+</code></pre>
+
+<h2 id="controller-plugins">Controller plugins</h2>
+
+<p>Kuzzle API is divided into &ldquo;controllers&rdquo;, each one of them exposing &ldquo;actions&rdquo; to execute (see <a href="/api-reference/#common-attributes">API reference</a>).</p>
+
+<p><code class="prettyprint">controller</code> plugins extend Kuzzle API by adding new controllers to it, each with their own list of available actions.</p>
+
+<h3 id="how-is-the-api-extended">How is the API extended</h3>
+
+<p>To avoid name conflicts, added controllers are prefixed with the plugin name.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li><p>HTTP: <code class="prettyprint">GET http://&lt;server&gt;:&lt;port&gt;/_plugin/&lt;plugin name&gt;/&lt;url defined by the plugin&gt;/&lt;resources&gt;</code></p></li>
+<li><p>Other protocols:</p></li>
+</ul>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">controller</span><span class="p">:</span> <span class="s1">'&lt;plugin name&gt;/&lt;added controller name&gt;'</span><span class="p">,</span>
+  <span class="nx">action</span><span class="err">:</span> <span class="s1">'&lt;action of the added controller&gt;'</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre>
+
+<h3 id="how-to-implement-a-controller-plugin">How to implement a <code class="prettyprint">controller</code> plugin</h3>
+
+<p>A controller plugin must expose to Kuzzle the following objects:</p>
+
+<ul>
+<li><p>A <code class="prettyprint">controllers</code> object, describing the new controller to add. It will automatically be made available to any network protocol, except for HTTP</p></li>
+<li><p>A <code class="prettyprint">routes</code> objects, describing how the new controller should be exposed to the HTTP protocol. Only GET and POST verbs are accepted.</p></li>
+<li><p>Controller&rsquo;s actions functions. These methods take a <code class="prettyprint">Request</code> object as an argument, and must return a <code class="prettyprint">Promise</code> resolving with the action&rsquo;s result, or rejecting with a KuzzleError object.</p></li>
+</ul>
+
+<h3 id="controller-plugin-implementation-example">Controller plugin implementation example</h3>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">MyPlugin</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="cm">/*
+    This exposed "controllers" property tells Kuzzle that it needs to extend
+    its API with new controllers and actions.
+
+    Here, we add a controller "newController", with 2 described actions:
+    "myAction" and "myOtherAction".
+
+    These actions point to functions exposed to Kuzzle by the plugin.
+
+    Any network protocol other than HTTP will be able to invoke this new
+    controller with the following JSON object:
+
+    {
+      controller: '&lt;plugin name&gt;/newController',
+      action: 'myAction',
+      ...
+    }
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">controllers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">newController</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">myAction</span><span class="p">:</span> <span class="s1">'actionImplementation'</span><span class="p">,</span>
+      <span class="na">myOtherAction</span><span class="p">:</span> <span class="s1">'otherActionImplementation'</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+    We also want to expose our new controller to the HTTP protocol.
+    To do so, we give Kuzzle instructions on how we want to expose our
+    controller to HTTP.
+    Any parameter starting with a ':' in the URL will be made dynamic by Kuzzle.
+
+    The first route exposes the following GET URL:
+      http://&lt;kuzzle server&gt;:&lt;port&gt;/_plugin/&lt;plugin name&gt;/foo/&lt;dynamic value&gt;
+
+    Kuzzle will provide the function 'actionImplementation' with a Request object,
+    containing the "name" property: request.input.args.name = '&lt;dynamic value&gt;'
+
+    The second route exposes the following POST URL:
+      http://&lt;kuzzle server&gt;:&lt;port&gt;/_plugin/&lt;plugin name&gt;/bar
+
+    Kuzzle will provide the content body of the request in the Request object
+    passed to the function 'otherActionImplementation', in the request.input.body
+    property
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="na">verb</span><span class="p">:</span> <span class="s1">'get'</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="s1">'/foo/:name'</span><span class="p">,</span> <span class="na">controller</span><span class="p">:</span> <span class="s1">'newController'</span><span class="p">,</span> <span class="na">action</span><span class="p">:</span> <span class="s1">'myAction'</span><span class="p">},</span>
+    <span class="p">{</span><span class="na">verb</span><span class="p">:</span> <span class="s1">'post'</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="s1">'/bar'</span><span class="p">,</span> <span class="na">controller</span><span class="p">:</span> <span class="s1">'newController'</span><span class="p">,</span> <span class="na">action</span><span class="p">:</span> <span class="s1">'myOtherAction'</span><span class="p">}</span>
+  <span class="p">];</span>
+
+  <span class="cm">/*
+    Required plugin initialization function
+    (see the "Plugin prerequisites" section)
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// plugin initialization</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+    Implements the action newController/myAction
+    Takes a Request object as an argument, and MUST return
+    a promise resolved (or rejected) with the action's result
+    This result can be of any JS type (scalar, object, array), and
+    will be used to build a response to send to the requesting client
+
+    See the "How plugins receive action arguments" chapter just below
+    for more information.
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">actionImplementation</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do action</span>
+
+    <span class="c1">// optional: set network specific headers</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">===</span> <span class="s1">'http'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// expires in 1h</span>
+      <span class="nx">request</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">'expires'</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">+</span> <span class="mi">3600000</span><span class="p">).</span><span class="nx">toUTCString</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Resolve with the result content. For instance:</span>
+    <span class="k">return</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span><span class="na">acknowledge</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+    Implements the action newController/myOtherAction
+    Takes a Request object as an argument, and MUST return
+    a promise resolved (or rejected) with the action's result
+    This result can be of any JS type (scalar, object, array), and
+    will be used to build a response to send to the requesting client
+
+    See the "How plugins receive action arguments" chapter just below
+    for more information.
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">otherActionImplementation</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do action</span>
+    <span class="k">return</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="cm">/* result content */</span><span class="p">);</span>
+
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// Exports the plugin objects, allowing Kuzzle to instantiate it</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyController</span><span class="p">;</span>
+</code></pre>
+
+<h3 id="how-plugins-receive-action-arguments">How plugins receive action arguments</h3>
+
+<p>All action functions receive a <a href="#gt-constructor-request">Request</a> object as main argument. Kuzzle will fill it with arguments provided by clients invoking the added controller:</p>
+
+<ul>
+<li><p>HTTP:</p>
+
+<ul>
+<li>dynamic arguments provided in the URL, headers and query string arguments are stored in <code class="prettyprint">request.input.args</code></li>
+<li>content body is made available in <code class="prettyprint">request.input.body</code></li>
+<li>if the URL contains an <code class="prettyprint">index</code>, a <code class="prettyprint">collection</code> or a <code class="prettyprint">_id</code> argument, it will be stored in <code class="prettyprint">request.input.resource</code></li>
+</ul></li>
+<li><p>Other protocols:</p>
+
+<ul>
+<li>if the provided JSON object contains a <code class="prettyprint">body</code> object, then its content will be stored in <code class="prettyprint">request.input.body</code></li>
+<li>the following fields at the root of the provided JSON objects are available in <code class="prettyprint">request.input.resource</code>: <code class="prettyprint">index</code>, <code class="prettyprint">collection</code>, <code class="prettyprint">_id</code></li>
+<li>any unrecognized property at the root of the provided JSON object will be stored in the <code class="prettyprint">request.input.args</code> part of the <code class="prettyprint">Request</code> object</li>
+</ul></li>
+</ul>
+
+<h2 id="protocol-plugins">Protocol plugins</h2>
+
+<p>Kuzzle core only supports HTTP communications natively. All other supported protocols are implemented as <code class="prettyprint">protocol</code> plugins.<br>
+By default, the Kuzzle official docker image is shipped with the following protocol plugins:</p>
+
+<ul>
+<li><a href="https://www.npmjs.com/package/kuzzle-plugin-socketio">Socket.io</a></li>
+<li><a href="https://www.npmjs.com/package/kuzzle-plugin-websocket">WebSocket</a></li>
+</ul>
+
+<h3 id="how-it-works">How it works</h3>
+
+<p>Requests sent by clients can be forwarded to Kuzzle by protocol plugins using the <a href="#gt-accessor-router"><code class="prettyprint">router</code> accessor</a><br>
+To access these methods, simply call <code class="prettyprint">context.accessors.router.&lt;router method&gt;</code>:</p>
+
+<table><thead>
+<tr>
+<th>Router method</th>
+<th>Arguments</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">newConnection</code></td>
+<td><code class="prettyprint">protocol name</code> (string) <br/><code class="prettyprint">connection ID</code> (string)</td>
+<td>A promise resolving to a <code class="prettyprint">RequestContext</code> object</td>
+<td>Declares a new connection to Kuzzle.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">execute</code></td>
+<td><code class="prettyprint">request</code> (<a href="#gt-constructor-request">Request</a> object)<br/><code class="prettyprint">callback</code> (a callback resolved with Kuzzle&rsquo;s response)</td>
+<td></td>
+<td>Executes a client request.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">removeConnection</code></td>
+<td><code class="prettyprint">RequestContext</code> (obtained with <code class="prettyprint">newConnection</code>)</td>
+<td></td>
+<td>Asks Kuzzle to remove the corresponding connection and all its subscriptions</td>
+</tr>
+</tbody></table>
+
+<p>Kuzzle expects <code class="prettyprint">protocol</code> plugins to expose the following methods:</p>
+
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">init</code></td>
+<td><code class="prettyprint">pluginConfiguration, context</code></td>
+<td><a href="#gt-plugin-init-function">Plugin initialization function</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">joinChannel</code></td>
+<td><code class="prettyprint">{channel, id}</code></td>
+<td>Tells protocol plugins that the connection <code class="prettyprint">id</code> subscribed to the channel <code class="prettyprint">channel</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">leaveChannel</code></td>
+<td><code class="prettyprint">{channel, id}</code></td>
+<td>Tells protocol plugins that the connection <code class="prettyprint">id</code> left the channel <code class="prettyprint">channel</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">notify</code></td>
+<td><code class="prettyprint">{channels, id, payload}</code></td>
+<td>Asks protocol plugins to emit a data <code class="prettyprint">payload</code> (JSON Object) to the connection <code class="prettyprint">id</code> (string), on the channels  <code class="prettyprint">channels</code> (array of strings)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">broadcast</code></td>
+<td><code class="prettyprint">{channels, payload}</code></td>
+<td>Asks protocol plugins to emit a data <code class="prettyprint">payload</code> (JSON Object) to clients connected to the channels list <code class="prettyprint">channels</code> (array of strings)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">disconnect</code></td>
+<td><code class="prettyprint">id</code></td>
+<td>Asks protocol plugins to force-close the connection <code class="prettyprint">id</code></td>
+</tr>
+</tbody></table>
+
+<p>The connection <code class="prettyprint">id</code> Kuzzle sends to plugins is the one declared by <code class="prettyprint">protocol</code> plugins using <code class="prettyprint">context.accessors.router.newConnection</code>.</p>
+
+<p><em>For more information about channels, see our <a href="/api-reference/#subscribe">API Documentation</a></em></p>
+
+<h3 id="protocol-plugin-implementation-example"><code class="prettyprint">protocol</code> plugin implementation example</h3>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">MyPlugin</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">pluginContext</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="c1">// Example on how to maintain client contexts</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">clients</span> <span class="o">=</span> <span class="p">{};</span>
+
+  <span class="cm">/*
+   Required plugin initialization function
+   (see the "Plugin prerequisites" section)
+  */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// plugin initialization</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pluginContext</span> <span class="o">=</span> <span class="nx">context</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+   This function is only an example showing how to interact with
+   clients and with Kuzzle. It does not implement any actual protocol.
+
+   The way a protocol plugins handles clients closely depends on the
+   implemented protocol.
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">handleClient</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// when a client connects</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'onClientConnect'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">connectionId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">pluginContext</span><span class="p">.</span><span class="nx">accessors</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">newConnection</span><span class="p">(</span><span class="s2">"protocol name"</span><span class="p">,</span> <span class="nx">connectionId</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">context</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">clients</span><span class="p">[</span><span class="nx">connectionId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">context</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="c1">// when a client sends a request</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'onClientRequest'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">connectionId</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Instantiates a Request object to be passed to Kuzzle</span>
+      <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Request</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">clients</span><span class="p">[</span><span class="nx">connectionId</span><span class="p">]);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">pluginContext</span><span class="p">.</span><span class="nx">accessors</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// forward the response to the client</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="c1">// whenever a client is disconnected</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'onClientDisconnect'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">connectionId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">pluginContext</span><span class="p">.</span><span class="nx">accessors</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">removeConnection</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">clients</span><span class="p">[</span><span class="nx">connectionId</span><span class="p">]);</span>
+      <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">clients</span><span class="p">[</span><span class="nx">connectionId</span><span class="p">];</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+   Invoked by Kuzzle when a "data.payload" payload needs to be
+   broadcasted to the "data.channels" channels
+
+   The payload is a Kuzzle response as a plain-old JSON object
+  */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">broadcast</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">data</span><span class="p">.</span><span class="nx">channels</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">channel</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// sends data.payload to the channel</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+   Invoked by Kuzzle when a "data.payload" payload needs to be
+   notified to the connection "data.id", on the "data.channels" channels
+
+   The payload is a Kuzzle response as a plain-old JSON object
+  */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">notify</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">data</span><span class="p">.</span><span class="nx">channels</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">channel</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// sends "data.payload" to the connection "data.id" and to</span>
+      <span class="c1">// the channel "channel"</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+    Invoked by Kuzzle when the connection "data.id" joins the
+    channel "data.channel"
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">joinChannel</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// ...</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+    Invoked by Kuzzle when the connection "data.id" leaves the
+    channel "data.channel"
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">leaveChannel</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">};</span>
+
+  <span class="cm">/*
+    Invoked by Kuzzle when it needs to force-close a client connection
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">disconnect</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// close the connection opened by the connection "id"</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// Exports the plugin objects, allowing Kuzzle to instantiate it</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyPlugin</span><span class="p">;</span>
+</code></pre>
+
+<h2 id="authentication-plugin">Authentication plugin</h2>
+
+<p>Kuzzle handles users security and authentication. The supported authentication strategies can be extended using <code class="prettyprint">authentication</code> plugins.</p>
+
+<p>Any strategy supported by <a href="http://passportjs.org/">Passport</a> can be used to extend Kuzzle supported strategies, like we did with our official <a href="https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth">OAUTH2 Authentication plugin</a>.  </p>
+
+<h3 id="choose-or-implement-a-passport-strategy">Choose or implement a Passport strategy</h3>
+
+<p><a href="http://passportjs.org">Passport</a> supports a wide range of authentication strategies. If that is not enough, you can also implement your own strategy for your authentication plugin.</p>
+
+<p>In any case, the chosen strategy must be available in the plugin local directory when Kuzzle installs it, either by adding the strategy in the plugin&rsquo;s NPM dependencies, or by including the strategy code directly in the plugin repository.</p>
+
+<h3 id="create-a-verification-function">Create a verification function</h3>
+
+<p>Since Kuzzle uses <a href="http://passportjs.org">Passport</a> directly, using a strategy with Kuzzle is the same than using one with Passport.</p>
+
+<p>First, you have to implement a <a href="http://passportjs.org/docs/configure"><code class="prettyprint">verify</code> function</a>, which will be provided to a Passport strategy constructor. This function is then used by the Passport strategy to authorize or to deny access to a user.</p>
+
+<p>The number of arguments taken by this <code class="prettyprint">verify</code> function depends on the authentication strategy. For instance, a <code class="prettyprint">local password</code> strategy needs the <code class="prettyprint">verify</code> callback to be provided with an <code class="prettyprint">user</code> name and his <code class="prettyprint">password</code>.</p>
+
+<p>All strategies require this <code class="prettyprint">verify</code> callback to take a <code class="prettyprint">done</code> callback as its last argument, supplying Passport with the authenticated user&rsquo;s information.</p>
+
+<h3 id="register-the-strategy-to-kuzzle">Register the strategy to Kuzzle</h3>
+
+<p>Once you chose a strategy and implemented its corresponding <code class="prettyprint">verify</code> callback function, all you have to do is to register it to Kuzzle, using the <code class="prettyprint">passport</code> accessor available in the plugin context:</p>
+<pre class="highlight javascript"><code><span class="nx">pluginContext</span><span class="p">.</span><span class="nx">accessors</span><span class="p">.</span><span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">strategy</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="optional-scope-of-access">(optional) Scope of access</h3>
+
+<p>Some authentication procedures, like OAUTH 2.0, need a <a href="http://passportjs.org/docs/oauth">scope of access</a> to be configured.</p>
+
+<p>Kuzzle authentication plugins support scope of access. To add one in your plugin, simply expose a <code class="prettyprint">scope</code> attribute. Its format depends on the provider the strategy implements.</p>
+
+<h3 id="authentication-plugin-example-using-the-localstrategy-strategy">Authentication plugin example, using the LocalStrategy strategy</h3>
+
+<aside class="notice">Passport strategy constructors take a &ldquo;verify&rdquo; callback. As the following example demonstrates, if the provided callback uses &ldquo;this.[attribute]&rdquo; attributes, then it&rsquo;s necessary to bind the provided callback to the plugin&rsquo;s context</aside>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">LocalStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'passport-local'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">MyAuthenticationPlugin</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="cm">/*
+    Required plugin initialization function
+    (see the "Plugin prerequisites" section)
+   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">pluginConfiguration</span><span class="p">,</span> <span class="nx">pluginContext</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="nx">pluginContext</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">accessors</span><span class="p">.</span><span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">verify</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)));</span>
+  <span class="p">}</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">verify</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Code performing the necessary verifications</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">accessors</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">username</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">done</span><span class="p">(</span><span class="k">new</span> <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">ForbiddenError</span><span class="p">(</span><span class="s1">'Login failed'</span><span class="p">));</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// Exports the plugin objects, allowing Kuzzle to instantiate it</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyAuthenticationPlugin</span><span class="p">;</span>
+</code></pre>
+
+            <h1 id="the-plugin-context">The plugin context</h1>
+
+<p>The plugin context is an object containing a set of constructors, accessors and configurations, allowing plugins to interact with Kuzzle.</p>
+
+<p>A plugin context is provided by Kuzzle to plugins when calling their <code class="prettyprint">init</code> function.<br>
+Each plugin receives its own plugin context instance.</p>
+
+<p>Here is the list of shared objects contained in the provided <code class="prettyprint">context</code>:</p>
+
+<table><thead>
+<tr>
+<th>Attribute path</th>
+<th>Purpose</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">context.accessors.execute</code></td>
+<td>Access to Kuzzle API</td>
+</tr>
+<tr>
+<td><code class="prettyprint">context.accessors.passport</code></td>
+<td>Access to Kuzzle <a href="http://passportjs.org">Passport</a> instance. Allow <a href="/#gt-authentication-plugin">authentication plugins</a> to register a new login strategy to Kuzzle.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">context.accessors.router</code></td>
+<td>Access to Kuzzle protocol communication system. Allow <strong>protocol</strong> plugins to interface themselves with Kuzzle.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">context.accessors.users</code></td>
+<td>Access to users management, especially useful for authentication plugins. Provides methods for handling users. This accessor is mainly used by authentication plugins.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">context.accessors.validation</code></td>
+<td>Access to validation mechanisms, useful to validate documents and add field types.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">context.config</code></td>
+<td>Contains the entire Kuzzle instance configuration (most of it coming from Kuzzle configuration file)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">context.constructors.Dsl</code></td>
+<td>Constructor allowing plugins to instantiate their own Kuzzle real-time engine instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">context.constructors.Request</code></td>
+<td>Constructor for standardized requests sent to Kuzzle</td>
+</tr>
+<tr>
+<td><code class="prettyprint">context.constructors.BaseValidationType</code></td>
+<td>Constructor for the Validation Type base constructor</td>
+</tr>
+<tr>
+<td><code class="prettyprint">errors.&lt;ErrorConstructor&gt;</code></td>
+<td>Kuzzle error constructors, built dynamically from available Kuzzle error objects at runtime</td>
+</tr>
+</tbody></table>
+
+<p><strong>Note:</strong> <code class="prettyprint">context.accessors</code> are not available to <a href="#gt-worker-plugins">worker plugins</a>, as they are run in their own process(es), without access to Kuzzle instances.</p>
+
+<h2 id="accessor">Accessor</h2>
+
+<aside class="notice">
+<a href="#gt-worker-plugins">Worker plugins</a> don&rsquo;t have access to accessors
+</aside>
+
+<h3 id="execute"><code class="prettyprint">execute</code></h3>
+
+<p>Sends a request to <a href="/api-reference">Kuzzle API</a>.</p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">request</code></td>
+<td><code class="prettyprint">Request</code></td>
+<td>A <a href="#request"><code class="prettyprint">Request</code></a> to execute</td>
+</tr>
+<tr>
+<td><code class="prettyprint">callback(error, request)</code></td>
+<td><code class="prettyprint">Function</code></td>
+<td>Function executed with the request&rsquo;s result</td>
+</tr>
+</tbody></table>
+
+<p><strong>Note:</strong> when <code class="prettyprint">callback</code> is invoked, the <code class="prettyprint">request</code> argument is ALWAYS filled, even when there is an error. This argument is the provided request, with its <code class="prettyprint">result</code> and/or <code class="prettyprint">error</code> parts filled. To obtain the standardized Kuzzle response from it, simply use the getter <code class="prettyprint">request.response</code>.</p>
+
+<p>Example:</p>
+<pre class="highlight javascript"><code><span class="kd">let</span>
+  <span class="nx">derivedRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">constructors</span><span class="p">.</span><span class="nx">Request</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">index</span><span class="p">:</span> <span class="s1">'index'</span><span class="p">,</span>
+    <span class="na">collection</span><span class="p">:</span> <span class="s1">'collection'</span><span class="p">,</span>
+    <span class="na">controller</span><span class="p">:</span> <span class="s1">'read'</span><span class="p">,</span>
+    <span class="na">action</span><span class="p">:</span> <span class="s1">'get'</span><span class="p">,</span>
+    <span class="na">_id</span><span class="p">:</span> <span class="s1">'documentID'</span>
+  <span class="p">});</span>
+
+<span class="nx">context</span><span class="p">.</span><span class="nx">accessors</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">request</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="cm">/*
+   Kuzzle's response can be obtained with request.response
+
+   See Request constructor documentation for more information
+   */</span>
+<span class="p">});</span>
+</code></pre>
+
+<h3 id="passport-use"><code class="prettyprint">passport.use</code></h3>
+
+<p>Implements <a href="http://passportjs.org/docs/configure">Passport <code class="prettyprint">use()</code> method</a></p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">strategy</code></td>
+<td><code class="prettyprint">Strategy object</code></td>
+<td>A Passport instantiated strategy object</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Passport strategy constructors take a &ldquo;verify&rdquo; callback. As the following example demonstrates, if the provided callback uses &ldquo;this.[attribute]&rdquo; attributes, then it&rsquo;s necessary to bind the provided callback to the plugin&rsquo;s context</aside>
+
+<p>Example:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">LocalStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'passport-local'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">verify</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// verification code</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">userVerified</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">userInformation</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">done</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">pluginContext</span><span class="p">.</span><span class="nx">accessors</span><span class="p">.</span><span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">(</span><span class="nx">verify</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)));</span>
+</code></pre>
+
+<h3 id="router-newconnection"><code class="prettyprint">router.newConnection</code></h3>
+
+<p>Declares a new connection for a given protocol.  </p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">protocolName</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Protocol name, used for Kuzzle internal statistics</td>
+</tr>
+<tr>
+<td><code class="prettyprint">connectionUniqueId</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Unique ID identifying the user connection</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<p>A <code class="prettyprint">promise</code> resolving to a <code class="prettyprint">RequestContext</code> object. This object is needed for other router methods.</p>
+
+<h3 id="router-execute"><code class="prettyprint">router.execute</code></h3>
+
+<p>Forward a request to Kuzzle.</p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">request</code></td>
+<td><code class="prettyprint">Request</code></td>
+<td>An user request wrapped as a <code class="prettyprint">Request</code> instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">callback</code></td>
+<td><code class="prettyprint">function</code></td>
+<td>Callback called with the request corresponding results</td>
+</tr>
+</tbody></table>
+
+<h4 id="callback">Callback</h4>
+
+<p>The callback is invoked once the request has been processed by Kuzzle.<br>
+The provided callback is resolved with a <code class="prettyprint">response</code> argument, which is a plain-object, representing a standardized <a href="/api-reference/#kuzzle-response">Kuzzle response</a>.</p>
+
+<h3 id="router-removeconnection"><code class="prettyprint">router.removeConnection</code></h3>
+
+<p>Removes a connection from the connection pool maintained by Kuzzle.<br>
+Not calling this method after a connection is dropped will result in a memory-leak.</p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">context</code></td>
+<td><code class="prettyprint">RequestContext</code></td>
+<td>Object identifying the connection context. Obtained by calling <code class="prettyprint">newConnection()</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="users-create"><code class="prettyprint">users.create</code></h3>
+
+<p>Creates a new user in Kuzzle. Will return an error if the user already exists.</p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">loginName</code></td>
+<td><code class="prettyprint">string</code></td>
+<td></td>
+<td>Name of the user&rsquo;s login to create</td>
+</tr>
+<tr>
+<td><code class="prettyprint">userProfile</code></td>
+<td><code class="prettyprint">string</code></td>
+<td><code class="prettyprint">default</code></td>
+<td><a href="#permissions">User profile</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">userInfo</code></td>
+<td><code class="prettyprint">object</code></td>
+<td><code class="prettyprint">{}</code></td>
+<td>Misc. information about the user</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<p>A <code class="prettyprint">promise</code> resolving a <code class="prettyprint">user</code> object containing the created information.</p>
+
+<h3 id="users-load"><code class="prettyprint">users.load</code></h3>
+
+<p>Loads a user from Kuzzle</p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">loginName</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Name of the user&rsquo;s login to load</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<p>A <code class="prettyprint">promise</code> resolving to a <code class="prettyprint">user</code> object containing the user information.</p>
+
+<h3 id="validation-validate"><code class="prettyprint">validation.validate</code></h3>
+
+<p>Validates a document wrapped in a <code class="prettyprint">Request</code> object.</p>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">request</code></td>
+<td><code class="prettyprint">Request</code></td>
+<td>A document wrapped as a <code class="prettyprint">Request</code> object</td>
+</tr>
+<tr>
+<td><code class="prettyprint">verbose</code></td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Defines the behavior of the validation</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<p>If <code class="prettyprint">verbose</code> is set to <code class="prettyprint">false</code>:</p>
+
+<p>Returns a <code class="prettyprint">promise</code> that resolves to a modified <code class="prettyprint">Request</code> instance where <code class="prettyprint">defaultValues</code> are applied. Rejects if validation fails.</p>
+
+<p>If <code class="prettyprint">verbose</code> is set to <code class="prettyprint">true</code>:</p>
+
+<p>Returns a <code class="prettyprint">promise</code> that resolves to an <code class="prettyprint">object</code>:</p>
+<pre class="highlight javascript"><code><span class="p">{</span>
+  <span class="nl">errorMessages</span><span class="p">:</span> <span class="p">...,</span>
+  <span class="nx">validation</span><span class="err">:</span> <span class="p">...</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Where:</p>
+
+<ul>
+<li><code class="prettyprint">errorMessages</code> is a structured javascript object reflecting the structure of the document with all errors collected during the validation process</li>
+<li><code class="prettyprint">validation</code> is a <code class="prettyprint">boolean</code> reflecting the validation state.</li>
+</ul>
+
+<h3 id="validation-addtype"><code class="prettyprint">validation.addType</code></h3>
+
+<h4 id="arguments">Arguments</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">validationType</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>An object instance of a validation type</td>
+</tr>
+</tbody></table>
+
+<h4 id="returns">Returns</h4>
+
+<p>Nothing. Can throw a <code class="prettyprint">PluginImplementationError</code> if the validation type has not the expected form.</p>
+
+<h4 id="validationtype-form">validationType form</h4>
+<pre class="highlight javascript"><code><span class="cm">/**
+ * @typedef {{
+ *   validate: Function,
+ *   validateFieldSpecification: Function,
+ *   typeName: string,
+ *   allowChildren: boolean,
+ *   checkAllowedProperties: Function,
+ *   allowedTypeOptions: string[]
+ * }} ValidationType
+ */</span>
+</code></pre>
+
+<p>See constructor <code class="prettyprint">BaseValidationType</code> for more details.</p>
+
+<h2 id="constructor">Constructor</h2>
+
+<h3 id="basevalidationtype"><code class="prettyprint">BaseValidationType</code></h3>
+
+<p>The <code class="prettyprint">BaseValidationType</code> constructor provides a base to create your own validation types. It provides a common structure for all validation types developped in Kuzzle.</p>
+
+<p>You can find an example of a type creation in the <a href="https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template">Kuzzle source code</a>.</p>
+
+<h3 id="dsl"><code class="prettyprint">Dsl</code></h3>
+
+<p>The DSL constructor provided in the plugin context gives access to <a href="#filtering-syntax">Kuzzle real-time filtering capabilities</a>. It allows managing filters, and testing data to get a list of matching filters.</p>
+
+<p>Each plugin can instantiate its own sandboxed DSL instance:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">dsl</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">constructors</span><span class="p">.</span><span class="nx">Dsl</span><span class="p">();</span>
+</code></pre>
+
+<p>The DSL exposes the following methods:</p>
+
+<h4 id="exists"><code class="prettyprint">exists</code></h4>
+
+<p>Returns a boolean indicating if filters exist for an index-collection pair</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">index</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data index name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">collection</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data collection name</td>
+</tr>
+</tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>Returns <code class="prettyprint">true</code> if at least one filter exists on the provided index-collection pair, returns <code class="prettyprint">false</code> otherwise</p>
+
+<h4 id="getfilterids"><code class="prettyprint">getFilterIds</code></h4>
+
+<p>Retrieves filter IDs registered on an index-collection pair</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">index</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data index name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">collection</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data collection name</td>
+</tr>
+</tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>An <code class="prettyprint">array</code> of <code class="prettyprint">filterId</code> corresponding to filters registered on an index-collection pair.</p>
+
+<h4 id="register"><code class="prettyprint">register</code></h4>
+
+<p>Registers a filter to the DSL.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">index</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data index name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">collection</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data collection name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">filters</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Filters in <a href="#filtering-syntax">Kuzzle DSL</a> format</td>
+</tr>
+</tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>A <code class="prettyprint">promise</code> resolving to an object containing the following attributes:</p>
+
+<ul>
+<li><code class="prettyprint">id</code>: the filter unique identifier</li>
+<li><code class="prettyprint">diff</code>: <code class="prettyprint">false</code> if the filter already existed in the engine. Otherwise, contains an object with the canonical version of the provided filters</li>
+</ul>
+
+<h4 id="remove"><code class="prettyprint">remove</code></h4>
+
+<p>Removes all references to a given filter from the DSL</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">filterId</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Filter unique ID. Obtained by using <code class="prettyprint">register</code></td>
+</tr>
+</tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>A <code class="prettyprint">promise</code> resolved once the filter has been completely removed from the DSL</p>
+
+<h4 id="test"><code class="prettyprint">test</code></h4>
+
+<p>Test data against filters registered in the DSL, returning matching filter IDs, if any.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">index</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data index name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">collection</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Data collection name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">data</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Data to test against filters</td>
+</tr>
+<tr>
+<td><code class="prettyprint">documentId</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>If applicable, document unique ID</td>
+</tr>
+</tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>An array of <code class="prettyprint">filterId</code> matching the provided data (and/or documentId, if any).</p>
+
+<h4 id="validate"><code class="prettyprint">validate</code></h4>
+
+<p>Tests the provided filters without storing them in the system, to check whether they are well-formed or not.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">filters</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Filters in <a href="#filtering-syntax">Kuzzle DSL</a> format</td>
+</tr>
+</tbody></table>
+
+<p><strong>Returns</strong></p>
+
+<p>A resolved promise if the provided filters are valid, or a rejected one with the appropriate error object otherwise.</p>
+
+<h3 id="request"><code class="prettyprint">Request</code></h3>
+
+<p>This constructor is used to transform an <a href="/api-reference/?others#common-attributes">API call</a> into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard <a href="/api-reference/?others#kuzzle-response">Kuzzle response</a> to be forwarded to the requesting client.</p>
+
+<p>Network protocol specific headers can be added to the response. If the protocol can handle them, these headers will be used to configure the response sent to the client.<br>
+As Kuzzle supports the HTTP protocol natively, this object handles HTTP headers special cases. Other network protocols headers are stored in raw format, and protocol plugins need to handle their own specific headers manually.</p>
+
+<p>For more information about this object, please check <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#request">our detailed documentation</a>.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">request</code></td>
+<td><code class="prettyprint">Request</code></td>
+<td><code class="prettyprint">Request</code> object used to derive a new object instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">data</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Passed to <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput">RequestInput</a> constructor</td>
+</tr>
+<tr>
+<td><code class="prettyprint">options</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Optional initialization parameters</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">RequestContext</code> is usually obtained with <code class="prettyprint">context.accessors.router.newConnection</code>.  </p>
+
+<p>If a raw <code class="prettyprint">options</code> object is provided, it may contain:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">connectionId</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Passed to <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext">RequestContext</a> constructor</td>
+</tr>
+<tr>
+<td><code class="prettyprint">error</code></td>
+<td><code class="prettyprint">KuzzleError</code> or <code class="prettyprint">Error</code></td>
+<td>Invokes <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#seterrorerror">setError</a> at initialization</td>
+</tr>
+<tr>
+<td><code class="prettyprint">protocol</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Passed to <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext">RequestContext</a> constructor</td>
+</tr>
+<tr>
+<td><code class="prettyprint">requestId</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Initializes the <code class="prettyprint">id</code> property</td>
+</tr>
+<tr>
+<td><code class="prettyprint">result</code></td>
+<td><em>(varies)</em></td>
+<td>Invokes <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#setresultresult-options--null">setResult</a> at initialization</td>
+</tr>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>HTTP error code</td>
+</tr>
+<tr>
+<td><code class="prettyprint">token</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Passed to <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext">RequestContext</a> constructor</td>
+</tr>
+<tr>
+<td><code class="prettyprint">user</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Passed to <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext">RequestContext</a> constructor</td>
+</tr>
+</tbody></table>
+
+<p>Here is an example:</p>
+<pre class="highlight javascript"><code><span class="kd">let</span> <span class="nx">derivedRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">constructors</span><span class="p">.</span><span class="nx">Request</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">controller</span><span class="p">:</span> <span class="s1">'write'</span><span class="p">,</span>
+  <span class="na">action</span><span class="p">:</span> <span class="s1">'create'</span><span class="p">,</span>
+  <span class="na">index</span><span class="p">:</span> <span class="s1">'foo'</span><span class="p">,</span>
+  <span class="na">collection</span><span class="p">:</span> <span class="s1">'bar'</span><span class="p">,</span>
+  <span class="na">_id</span><span class="p">:</span> <span class="s1">'some document ID'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">document</span><span class="p">:</span> <span class="s1">'content'</span>
+  <span class="p">},</span>
+  <span class="na">metadata</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">some</span><span class="p">:</span> <span class="s1">'volatile data'</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+
+<p><strong>Attributes</strong></p>
+
+<p>Read-only</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">timestamp</code></td>
+<td>integer</td>
+<td>Request creation timestamp</td>
+</tr>
+</tbody></table>
+
+<p>Writable</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">context</code></td>
+<td><code class="prettyprint">RequestContext</code></td>
+<td><a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext">RequestContext</a> object</td>
+<td>Request connection context</td>
+</tr>
+<tr>
+<td><code class="prettyprint">error</code></td>
+<td><code class="prettyprint">KuzzleError</code></td>
+<td><code class="prettyprint">null</code></td>
+<td>Request error, if any</td>
+</tr>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Auto-generated UUID</td>
+<td>Request unique identifier</td>
+</tr>
+<tr>
+<td><code class="prettyprint">input</code></td>
+<td><code class="prettyprint">RequestInput</code></td>
+<td><a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput">RequestInput</a> object</td>
+<td>Request&rsquo;s parameters</td>
+</tr>
+<tr>
+<td><code class="prettyprint">result</code></td>
+<td><em>(varies)</em></td>
+<td><code class="prettyprint">null</code></td>
+<td>Request result, if any</td>
+</tr>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td><code class="prettyprint">102</code></td>
+<td>HTTP status code</td>
+</tr>
+</tbody></table>
+
+<p>Any undefined attribute from the list above will be set to null.</p>
+
+<p>Please refer to our <a href="/api-reference/?others">API Reference</a> for a complete list of controllers-actions and their purposes.</p>
+
+<p>Getters</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">response</code></td>
+<td><code class="prettyprint">RequestResponse</code></td>
+<td>Response view of the request, standardized as the expected <a href="/api-reference/?others#kuzzle-response">Kuzzle API response</a></td>
+</tr>
+</tbody></table>
+
+<h4 id="response-getheader"><code class="prettyprint">response.getHeader</code></h4>
+
+<p>Returns the value registered for the response header <code class="prettyprint">name</code></p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">name</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Header name</td>
+</tr>
+</tbody></table>
+
+<h4 id="response-getheaders"><code class="prettyprint">response.getHeaders()</code></h4>
+
+<p>Returns an object describing all currently registered headers on that response.</p>
+<pre class="highlight plaintext"><code>if (request.context.protocol === 'http') {
+  request.response.setHeader('Content-Type', 'text/plain');
+
+  /*
+    Prints:
+    { "Content-Type": "text/plain" }
+   */
+  console.log(request.response.getHeaders());
+}
+</code></pre>
+
+<h4 id="response-removeheader"><code class="prettyprint">response.removeHeader</code></h4>
+
+<p>Removes header <code class="prettyprint">name</code> from the response headers.</p>
+
+<h4 id="setheader"><code class="prettyprint">setHeader</code></h4>
+
+<p>Adds a header <code class="prettyprint">name</code> with value <code class="prettyprint">value</code> to the response headers.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">name</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Header name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">value</code></td>
+<td><code class="prettyprint">string</code></td>
+<td>Header value</td>
+</tr>
+</tbody></table>
+
+<p>For standard headers, if <code class="prettyprint">name</code> already exists, then the provided <code class="prettyprint">value</code> will be concatenated to the existing value, separated by a comma.  </p>
+
+<p>As Kuzzle implements HTTP natively, this behavior changes for some HTTP specific headers, to comply with the norm. For instance <code class="prettyprint">set-cookie</code> values are amended in an array, and other headers like <code class="prettyprint">user-agent</code> or <code class="prettyprint">host</code> can store only 1 value.</p>
+
+<h4 id="serialize"><code class="prettyprint">serialize</code></h4>
+
+<p>Serializes the <code class="prettyprint">Request</code> object into a pair of POJOs that can be sent across the network, and then used to rebuild another equivalent <code class="prettyprint">Request</code> object.</p>
+<pre class="highlight javascript"><code><span class="kd">let</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">serialize</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">constructors</span><span class="p">.</span><span class="nx">Request</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">options</span><span class="p">);</span>
+</code></pre>
+
+<h4 id="seterror"><code class="prettyprint">setError</code></h4>
+
+<p>Adds an error to the request, and sets the request&rsquo;s status to the error one.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">error</code></td>
+<td><code class="prettyprint">KuzzleError</code> or <code class="prettyprint">Error</code></td>
+<td>Error object to set</td>
+</tr>
+</tbody></table>
+
+<p>If a <code class="prettyprint">KuzzleError</code> is provided, the request&rsquo;s status attribute is set to the error one.</p>
+
+<p>Otherwise, the provided error is encapsulated into a <a href="https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorsinternalerror">InternalError</a> object, and the request&rsquo;s status is set to 500.</p>
+
+<h4 id="setresult"><code class="prettyprint">setResult</code></h4>
+
+<p>Sets the request&rsquo;s result.</p>
+
+<p><strong>Arguments</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">result</code></td>
+<td><em>(varies)</em></td>
+<td>Request&rsquo;s result</td>
+</tr>
+<tr>
+<td><code class="prettyprint">options</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Optional parameters</td>
+</tr>
+</tbody></table>
+
+<p>The <code class="prettyprint">options</code> argument may contain the following properties:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td><code class="prettyprint">integer</code></td>
+<td>HTTP status code</td>
+<td><code class="prettyprint">200</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">headers</code></td>
+<td><code class="prettyprint">object</code></td>
+<td>Protocol specific headers</td>
+<td><code class="prettyprint">null</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">raw</code></td>
+<td><code class="prettyprint">boolean</code></td>
+<td>Asks Kuzzle to send the provided result directly, instead of encapsulating it in a Kuzzle JSON response</td>
+<td><code class="prettyprint">false</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="errors">Errors</h2>
+
+<h3 id="kuzzleerror"><code class="prettyprint">KuzzleError</code></h3>
+
+<p>Inherits from <code class="prettyprint">Error</code>. Abstract class inherited by Kuzzle error objects.</p>
+
+<p>This class should only be used to create new Kuzzle error objects.</p>
+
+<h3 id="badrequesterror"><code class="prettyprint">BadRequestError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">400</code></p>
+
+<p>Used to notify about badly formed requests.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">BadRequestError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="forbiddenerror">ForbiddenError`</h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">403</code></p>
+
+<p>Used when a user tries to use resources beyond his access rights.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">ForbiddenError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="gatewaytimeouterror"><code class="prettyprint">GatewayTimeoutError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">504</code></p>
+
+<p>Used when a plugin takes too long to perform a task.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">GatewayTimeoutError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="internalerror"><code class="prettyprint">InternalError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">500</code></p>
+
+<p>Standard generic error. Used for uncatched exceptions.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">InternalError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="notfounderror"><code class="prettyprint">NotFoundError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">404</code></p>
+
+<p>Used when asked resources cannot be found.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">NotFoundError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="parseerror"><code class="prettyprint">ParseError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">400</code></p>
+
+<p>Used when a provided resource cannot be interpreted.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">ParseError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="partialerror"><code class="prettyprint">PartialError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">206</code></p>
+
+<p>Used when a request only partially succeeded.</p>
+
+<p>The constructor takes an additional <code class="prettyprint">array</code> argument containing a list of failed parts.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">PartialError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">,</span> <span class="p">[{</span><span class="na">this</span><span class="p">:</span> <span class="s1">'failed'</span><span class="p">},</span> <span class="p">{</span><span class="na">andThis</span><span class="p">:</span> <span class="s1">'failed too'</span><span class="p">}]);</span>
+</code></pre>
+
+<h3 id="pluginimplementationerror"><code class="prettyprint">PluginImplementationError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">500</code></p>
+
+<p>Used when a plugin fails.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">PluginImplementationError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="serviceunavailableerror"><code class="prettyprint">ServiceUnavailableError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">503</code></p>
+
+<p>Used when a resource cannot respond because it is temporarily unavailable.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">ServiceUnavailableError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="sizelimiterror"><code class="prettyprint">SizeLimitError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">413</code></p>
+
+<p>Used to notify about requests exceeding maximum limits.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">SizeLimitError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+<h3 id="unauthorizederror"><code class="prettyprint">UnauthorizedError</code></h3>
+
+<p><strong>Status Code:</strong> <code class="prettyprint">401</code></p>
+
+<p>Used when a user fails a login attempt.</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">context</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">UnauthorizedError</span><span class="p">(</span><span class="s1">'error message'</span><span class="p">);</span>
+</code></pre>
+
+            <h1 id="kuzzle-events-list">Kuzzle events list</h1>
+
+<h2 id="auth">auth</h2>
+
+<p>Events triggered when a request is treated in the <a href="/api-reference/#auth-controller"><code class="prettyprint">auth</code> controller</a></p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">auth:after&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">auth</code> controller trigger an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">auth:before&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">auth</code> controller trigger an event before executing</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+<h2 id="bulk">bulk</h2>
+
+<p>Events triggered when a request is treated in the <a href="/api-reference/#bulk-controller"><code class="prettyprint">bulk</code> controller</a></p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">bulk:afterImport</code></td>
+<td>The <code class="prettyprint">import</code> action in <code class="prettyprint">bulk</code> controller triggers an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">bulk:beforeImport</code></td>
+<td>The <code class="prettyprint">import</code> action in <code class="prettyprint">bulk</code> controller triggers an event before executing</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+<h2 id="cleandb">cleanDb</h2>
+
+<p>Events triggered when a database reset is asked to the command-line interface.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">cleanDb:deleteIndexes</code></td>
+<td>Triggered during <code class="prettyprint">cleanDb</code> process just before indexes deletion.</td>
+<td>Type: Request object.<br> Contains all indexes to delete in <code class="prettyprint">requestObject.data.body.indexes</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">cleanDb:done</code></td>
+<td>Triggered after indexes deletion.</td>
+<td>/</td>
+</tr>
+<tr>
+<td><code class="prettyprint">cleanDb:error</code></td>
+<td>Triggered when an error occurred on clean db</td>
+<td>Type: Error</td>
+</tr>
+</tbody></table>
+
+<h2 id="collection">collection</h2>
+
+<p>Events triggered when a request is treated in the <a href="/api-reference/#collection-controller"><code class="prettyprint">collection</code> controller</a>.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">collection:after&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">collection</code> controller trigger an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">collection:before&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">collection</code> controller trigger an event before executing</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+<h2 id="core">core</h2>
+
+<p>Events triggered to synchronize Kuzzle server instances in a cluster.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">core:kuzzleStart</code></td>
+<td>Emitted when Kuzzle is started</td>
+<td>/</td>
+</tr>
+<tr>
+<td><code class="prettyprint">core:hotelClerk:addSubscription</code></td>
+<td>Sends a diff containing the filters and internal hotelClerk updates</td>
+<td>hcR object</td>
+</tr>
+<tr>
+<td><code class="prettyprint">core:hotelClerk:join</code></td>
+<td>Sends hotelClerk diff when a room is joined</td>
+<td>hcR object</td>
+</tr>
+<tr>
+<td><code class="prettyprint">core:hotelClerk:removeRoomForCustomer</code></td>
+<td>Sends the room unsubscription information if it changed</td>
+<td>{connection, roomId}</td>
+</tr>
+<tr>
+<td><code class="prettyprint">core:indexCache:add</code></td>
+<td>Triggered when data is added to Kuzzle&rsquo;s index cache</td>
+<td>{index, collection}</td>
+</tr>
+<tr>
+<td><code class="prettyprint">core:indexCache:remove</code></td>
+<td>Triggered if some data were actually removed from Kuzzle&rsquo;s index cache</td>
+<td>{index, collection}</td>
+</tr>
+<tr>
+<td><code class="prettyprint">core:indexCache:reset</code></td>
+<td>Triggered if the indexCache is reset</td>
+<td>{index}</td>
+</tr>
+<tr>
+<td><code class="prettyprint">core:overload</code></td>
+<td>Triggered when the overload cache is filling up</td>
+<td>Overload percentage. Type: Number</td>
+</tr>
+</tbody></table>
+
+<h2 id="index">index</h2>
+
+<p>Events triggered when a request is treated in the <a href="/api-reference/#index-controller"><code class="prettyprint">index</code> controller</a>.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">index:after&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">index</code> controller trigger an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">index:before&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">index</code> controller trigger an event before executing</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+<h2 id="document">document</h2>
+
+<p>Events triggered when a request is treated in the <a href="/api-reference/#document-controller"><code class="prettyprint">document</code> controller</a>.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">document:after&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">document</code> controller trigger an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">document:before&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">document</code> controller trigger an event before executing</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+<h2 id="http">http</h2>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">http:options</code></td>
+<td>Triggered whenever a HTTP OPTIONS methods is handled</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+<h2 id="internalbroker">internalBroker</h2>
+
+<aside class="warning">Internal use only</aside>
+
+<p>Events triggered by the Kuzzle internal message broker, used to transmit data between Kuzzle instances.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">internalBroker:connected</code></td>
+<td>Triggered when the internal broker is connected</td>
+<td>Type: String.<br> <code class="prettyprint">&#39;Connected to Kuzzle server&#39;</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">internalBroker:error</code></td>
+<td>Triggered when an error occured in internal broker</td>
+<td>Type: Object.<br> {host, port, message, retry}</td>
+</tr>
+<tr>
+<td><code class="prettyprint">internalBroker:reregistering</code></td>
+<td>Triggered when the internal broker is reregistered</td>
+<td>Type: String.<br> <code class="prettyprint">&#39;Re-registering room: &#39; + room</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">internalBroker:socketClosed</code></td>
+<td>Triggered when the socket is closed</td>
+<td>Type: String</td>
+</tr>
+<tr>
+<td><code class="prettyprint">internalBroker:started</code></td>
+<td>Triggered when the internal broker is started</td>
+<td>Type: String.<br> <code class="prettyprint">&#39;Internal broker server started&#39;</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="ms-memorystorage">ms (memoryStorage)</h2>
+
+<p>Events triggered when a request is sent to the <a href="/#memorystorage-controller"><code class="prettyprint">memoryStorage</code> controller</a>.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">ms:after&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">memoryStorage</code> controller trigger an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">ms:before&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">memoryStorage</code> controller trigger an event before executing</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+<h2 id="preparedb">prepareDb</h2>
+
+<p>Events triggered during Kuzzle startup, when the database is prepared for Kuzzle&rsquo;s use.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">prepareDb:createFixturesIndex</code></td>
+<td>Triggered during database preparation. Called for each index in fixtures</td>
+<td>Type: Request.<br> Contains the index to create in <code class="prettyprint">requestObject.index</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">prepareDb:createInternalIndex</code></td>
+<td>Triggered on Kuzzle start to create the internal index <code class="prettyprint">%kuzzle</code></td>
+<td>Type: Request.<br> Contains the internal index in <code class="prettyprint">requestObject.index</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">prepareDb:error</code></td>
+<td>Triggered when an error occurred during database preparation</td>
+<td>Type: Error.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">prepareDb:importFixtures</code></td>
+<td>Triggered during database preparation. Called for each fixtures to import</td>
+<td>Type: Request.<br> Contains the index in <code class="prettyprint">requestObject.index</code> and bulk in <code class="prettyprint">requestObject.data.body</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">prepareDb:importMapping</code></td>
+<td>Triggered during database preparation. Called for each mapping to import</td>
+<td>Type: Request.<br> Contains the index in <code class="prettyprint">requestObject.index</code> and mapping in <code class="prettyprint">requestObject.data.body</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">prepareDb:updateMappingProfiles</code></td>
+<td>Triggered on Kuzzle start to create the internal mapping for Profiles collection</td>
+<td>Type: Request.<br> Contains the default mapping in <code class="prettyprint">requestObject.data.body</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">prepareDb:updateMappingRoles</code></td>
+<td>Triggered on Kuzzle start to create the internal mapping for Roles collection</td>
+<td>Type: Request.<br> Contains the default mapping in <code class="prettyprint">requestObject.data.body</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">prepareDb:updateMappingUsers</code></td>
+<td>Triggered on Kuzzle start to create the internal mapping for Users collection</td>
+<td>Type: Request.<br> Contains the default mapping in <code class="prettyprint">requestObject.data.body</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="proxy">proxy</h2>
+
+<p>Events triggered when interacting with <code class="prettyprint">proxy</code>.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">proxy:broadcast</code></td>
+<td>Triggered before broadcast. You can&rsquo;t modify the input on this event</td>
+<td>Type: Object.<br> <code class="prettyprint">{payload, channelsList}</code><br> <code class="prettyprint">payload</code> is the notification content. <br><code class="prettyprint">channelsList</code> is an array of channels to broadcast.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">proxy:joinChannel</code></td>
+<td>Triggered after attaching a user to a room. You can&rsquo;t modify the input on this event</td>
+<td>Type: Object.<br> <code class="prettyprint">{channel, id}</code><br> <code class="prettyprint">channel</code> is the channel name.<br> <code class="prettyprint">id</code> is the connection id</td>
+</tr>
+<tr>
+<td><code class="prettyprint">proxy:leaveChannel</code></td>
+<td>Triggered before a room is removed for the user. You can&rsquo;t modify the input on this event</td>
+<td>Type: Object.<br> <code class="prettyprint">{channel, id}</code><br> <code class="prettyprint">channel</code> is the channel name.<br> <code class="prettyprint">id</code> is the connection id</td>
+</tr>
+<tr>
+<td><code class="prettyprint">proxy:notify</code></td>
+<td>Triggered before notifying a connection id</td>
+<td>Type: Object.<br> <code class="prettyprint">{payload, channelsList, id}</code><br> <code class="prettyprint">payload</code> is the notification content. <br><code class="prettyprint">channelsList</code> is an array of channels to notify.<br> <code class="prettyprint">id</code> is the connection id</td>
+</tr>
+</tbody></table>
+
+<h2 id="realtime">realtime</h2>
+
+<p>Events triggered when a request is sent to the <a href="/api-reference/#realtime-controller"><code class="prettyprint">realtime</code> controller</a>.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">realtime:after&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">realtime</code> controller trigger an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">realtime:before&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">realtime</code> controller trigger an event before executing</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+<h2 id="room">room</h2>
+
+<p>Events triggered on subscription rooms activity.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">room:new</code></td>
+<td>Triggered when a new room is added in the rooms list. You can&rsquo;t modify the input on this event</td>
+<td>Type: Object. <br> <code class="prettyprint">{roomId, index, collection, formattedFilters}</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">room:remove</code></td>
+<td>Triggered after a room is removed from the list. You can&rsquo;t modify the input on this event</td>
+<td>Type: String.<br> The room id</td>
+</tr>
+</tbody></table>
+
+<h2 id="security">security</h2>
+
+<p>Events triggered when a request is sent to the <a href="/api-reference/#security-controller"><code class="prettyprint">security</code> controller</a>.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">security:after&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">security</code> controller trigger an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">security:before&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">security</code> controller trigger an event before executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">security:formatUserForSerialization</code></td>
+<td>Triggered before serializing a user. Useful to clean a user like attribute <code class="prettyprint">password</code></td>
+<td>Type: User</td>
+</tr>
+</tbody></table>
+
+<h2 id="server">server</h2>
+
+<p>Events triggered on server special events or when a request is sent to the <a href="/api-reference/#server-controller"><code class="prettyprint">server</code> controller</a>.</p>
+
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+<th>Input</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">server:after&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">server</code> controller trigger an event after executing</td>
+<td>Type: Request</td>
+</tr>
+<tr>
+<td><code class="prettyprint">server:before&lt;Action&gt;</code></td>
+<td>All actions in <code class="prettyprint">server</code> controller trigger an event before executing</td>
+<td>Type: Request</td>
+</tr>
+</tbody></table>
+
+        </div>
+        <div class="dark-box">
+        </div>
+      </div>
+    </div>
+    <script>
+      ((window.gitter = {}).chat = {}).options = {
+        room: 'kuzzleio/kuzzle'
+      };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+    <script type="text/javascript">
+      (function(i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function() {
+                  (i[r].q = i[r].q || []).push(arguments)
+              }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-67035328-1', 'auto');
+      ga('send', 'pageview');
+
+
+      (function() {
+        var
+          r,
+          version;
+
+        r = /\/v\/([^/]+)(?:\/[^/]+\.html?)?$/.exec(window.location.pathname);
+
+        if (r) {
+          version = r[1];
+          $('#version-selector option[value="/v/' + version + '"]').prop('selected', true);
+        }
+
+        $('#version-selector').change(function (e) {
+          var
+            versionPath = $('#version-selector option:selected').val();
+          window.location = window.location.pathname
+            .replace(/\/v\/([^/]+)(\/[^/]+\.html?)?$/, '\2')
+            + versionPath
+            +'#' + window.location.hash;
+        });
+      })();
+    </script>
+  </body>
+</html>
