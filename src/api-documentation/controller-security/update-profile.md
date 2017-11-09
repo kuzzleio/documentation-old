@@ -16,7 +16,7 @@ title: updateProfile
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/profiles/<profileId>/_update`  
+**URL:** `http://kuzzle:7512/profiles/<profileId>/_update[?refresh=wait_for]`  
 **Method:** `PUT`  
 **Body**
 </p>
@@ -58,6 +58,7 @@ title: updateProfile
 {
   "controller": "security",
   "action": "updateProfile",
+  "refresh": "wait_for",
   "_id": "<profileId>",
   "body": {
     "policies": [
@@ -105,3 +106,6 @@ title: updateProfile
 ```
 
 Given a `profileId`, updates the matching Profile object in Kuzzle's database layer.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the profile indexation (indexed profiles are available for `search`).

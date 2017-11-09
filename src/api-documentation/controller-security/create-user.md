@@ -15,7 +15,7 @@ title: createUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>/_create` or `http://kuzzle:7512/users/_create`  
+**URL:** `http://kuzzle:7512/users/<kuid>/_create[?refresh=wait_for]` or `http://kuzzle:7512/users/_create[?refresh=wait_for]`  
 **Method:** `POST`  
 **Body**
 </p>
@@ -62,7 +62,8 @@ title: createUser
 {
   "controller": "security",
   "action": "createUser",
-  "_id": "<kuid>",      
+  "refresh": "wait_for",
+  "_id": "<kuid>",
   "body": {
     "content": {
       "profileIds": ["<profileId>"],    
@@ -80,7 +81,8 @@ title: createUser
 {
   "controller": "security",
   "action": "createUser",
-  "_id": "<kuid>",                      
+  "refresh": "wait_for",
+  "_id": "<kuid>",
   "body": {
     "content": {
       "profileIds": ["<profileId>"],    
@@ -127,6 +129,9 @@ Creates a new `user` in Kuzzle's database layer.
 
 If an `_id` is provided in the query and if a user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) already exists, an error is returned.
 If not provided, the `_id` will be auto-generated.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the user indexation (indexed users are available for `search`).
 
 The body content describes the user to be created, and it must have the following properties:
 

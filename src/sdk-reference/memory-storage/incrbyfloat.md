@@ -73,8 +73,9 @@ Increments the number stored at `key` by the provided float value. If the key do
 | `options` | JSON Object | Optional parameters |
 | `callback` | function | Callback |
 
+---
 
-Available options:
+## Options
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|

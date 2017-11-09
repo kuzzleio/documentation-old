@@ -16,7 +16,7 @@ title: createOrReplaceRole
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/roles/<roleId>`  
+**URL:** `http://kuzzle:7512/roles/<roleId>[?refresh=wait_for]`  
 **Method:** `PUT`  
 **Body**
 </p>
@@ -44,6 +44,7 @@ title: createOrReplaceRole
 {
   "controller": "security",
   "action": "createOrReplaceRole",
+  "refresh": "wait_for",
   "_id": "<roleId>",
 
   "body": {
@@ -88,6 +89,9 @@ title: createOrReplaceRole
 ```
 
 Validates and stores a role in Kuzzle's persistent data storage.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the role indexation (indexed roles are available for `search`).
 
 The body content needs to match Kuzzle's role definition.
 

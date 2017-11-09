@@ -16,7 +16,7 @@ title: createProfile
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/profiles/<profileId>/_create`  
+**URL:** `http://kuzzle:7512/profiles/<profileId>/_create[?refresh=wait_for]`  
 **Method:** `POST`  
 **Body**
 </p>
@@ -59,6 +59,7 @@ title: createProfile
 {
   "controller": "security",
   "action": "createProfile",
+  "refresh": "wait_for",
   "_id": "<profileId>",
 
   "body": {
@@ -108,5 +109,8 @@ title: createProfile
 ```
 
 Creates a profile with a new list of roles.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the profile indexation (indexed profiles are available for `search`).
 
 **Note:** The `_id` parameter is mandatory.

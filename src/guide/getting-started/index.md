@@ -99,68 +99,19 @@ cd "kuzzle-playground"
 npm install kuzzle-sdk
 ```
 
-Then, create a `create.js` file and start coding:
+Then, create a `init.js` file and start coding:
 
 ```javascript
 const Kuzzle = require('kuzzle-sdk')
 
 // connect to the Kuzzle server
-const kuzzle = new Kuzzle('localhost', {
-  defaultIndex: 'playground'
-})
+const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 kuzzle
-  .listIndexesPromise()
-  .then(indexes => {
-    if (indexes.indexOf('playground') === -1) {
-      // playground index not found, create it
-      return kuzzle.createIndexPromise('playground')
-    }   
-  })  
-  .then(() => kuzzle.listCollectionsPromise('playground', {type: 'stored'}))
-  .then(collections => {
-    if (collections.indexOf('mycollection') === -1) {
-      // mycollection not found, create it
-      return kuzzle.collection('mycollection').createPromise()
-    }   
-    return kuzzle.collection('mycollection')
-  })
-```
-
-This code does the following:
-* loads the `Kuzzle` SDK from its NPM package,
-* creates an instance of the SDK and connects it to the Kuzzle Backoffice running on `localhost` (and selects the `playground` as default index),
-* creates the `playground` index if it does not exist,
-* creates the `mycollection` collection (within the `playground` index) if it does not exist.
-
-You're now ready to say Hello to the World!
-
-### Create your first "Hello World" document
-
-Append the following instructions to the promises chain
-
-```javascript
-kuzzle
-  .listIndexesPromise()
-  .then(indexes => {
-    if (indexes.indexOf('playground') === -1) {
-      // playground index not found, create it
-      return kuzzle.createIndexPromise('playground')
-    }   
-  })  
-  .then(() => kuzzle.listCollectionsPromise('playground', {type: 'stored'}))
-  .then(collections => {
-    if (collections.indexOf('mycollection') === -1) {
-      // mycollection not found, create it
-      return kuzzle.collection('mycollection').createPromise()
-    }   
-    return kuzzle.collection('mycollection')
-  })  
-  .then(collection => collection.createDocumentPromise({
-    message: 'Hello, World!'
-  })) 
-  .then(res => {
-    console.log('the document has been successfully created')
+  .createIndexPromise('playground')
+  .then(() => kuzzle.collection('mycollection').createPromise())
+  .then(() => {
+    console.log('playground/mycollection ready')
   })  
   .catch(err => {
     console.error(err.message)
@@ -168,25 +119,67 @@ kuzzle
   .finally(() => kuzzle.disconnect())
 ```
 
-This code adds the following actions to the previous one:
-* creates a new document containing a message saying "Hello, World" in `mycollection` within the `playground` index,
-* logs a success message to the console if everything went fine,
-* logs an error message if any of the previous actions failed.
+This code does the following:
+* loads the `Kuzzle` SDK from its NPM package,
+* creates an instance of the SDK and connects it to the Kuzzle Backoffice running on `localhost` (and selects the `playground` as default index),
+* creates the `playground` index,
+* creates the `mycollection` collection (within the `playground` index),
+* disconnect from Kuzzle to end the script.
 
 Run your file in NodeJS
 
 ```bash
 #!/bin/bash
 
-node create.js
+node init.js
+```
+
+You're now ready to say Hello to the World!
+
+### Create your first "Hello World" document
+
+Create a `create.js` file with following code:
+
+```javascript
+const Kuzzle = require('kuzzle-sdk')
+
+// connect to the Kuzzle server
+const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
+
+// get message from command line arguments
+const message = {message: process.argv[2]}
+
+kuzzle.collection('mycollection')
+  .createDocumentPromise(message)
+  .then(res => {
+    console.log('the following document has been successfully created:\n', message)
+  })
+  .catch(err => {
+    console.error(err.message)
+  })
+  .finally(() => kuzzle.disconnect())
+```
+
+This code does the following:
+* creates a new document containing a message saying "Hello, World" in `mycollection` within the `playground` index,
+* logs a success message to the console if everything went fine,
+* logs an error message if any of the previous actions failed,
+* disconnect from Kuzzle to end the script.
+
+Run your file in NodeJS
+
+```bash
+#!/bin/bash
+
+node create.js 'Hello, World'
 ```
 
 <aside class="success">
-You have persisted your first document in Kuzzle. If you are running the Backoffice, you can use it to check the existence of the newly created document.
+You have persisted your first document in Kuzzle. If you are running the <a href="{{ site_base_path }}guide/essentials/installing-backoffice">Backoffice</a>, you can use it to check the existence of the newly created document.
 </aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
+Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
 
 _You can find more resources about Kuzzle SDK in the [SDK Documentation]({{ site_base_path }}sdk-reference)._
@@ -195,15 +188,14 @@ _You can find more resources about Kuzzle SDK in the [SDK Documentation]({{ site
 
 Kuzzle provides pub/sub features that allow you to be notified in real-time on the state of your data (check the <a href="{{ site_base_path }}sdk-reference/#room">Room Class Documentation</a> for a deep-dive on notifications).
 
-Let's get started. Open a new termnial in the playground directory you created before and create the `subscribe.js` file containing the following code:
+Let's get started.
+Open a new termnial in the playground directory you created before and create the `subscribe.js` file containing the following code:
 
 ```javascript
 const Kuzzle = require('kuzzle-sdk')
 
 // connect to the Kuzzle server
-const kuzzle = new Kuzzle('localhost', {
-    defaultIndex: 'playground'
-  })
+const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // create a reference to the data collection
 const collection = kuzzle.collection('mycollection')
@@ -239,7 +231,7 @@ You just leveraged Kuzzle's pub/sub mechanism.
 </aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
+Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.
 </aside>
 
 ## Where do we go from here?

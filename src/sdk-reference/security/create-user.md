@@ -146,6 +146,7 @@ That means that a user that was just been created will not be returned by <code>
 | ``user`` | JSON Object | A plain JSON object representing the user (see below) |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | Callback handling the response |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 
 The `user` object to provide must have the following properties:

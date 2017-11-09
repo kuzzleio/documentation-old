@@ -16,7 +16,7 @@ title: updateUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>/_update`  
+**URL:** `http://kuzzle:7512/users/<kuid>/_update[?refresh=wait_for]`  
 **Method:** `PUT`  
 **Body**
 </p>
@@ -40,6 +40,7 @@ title: updateUser
 {
   "controller": "security",
   "action": "updateUser",
+  "refresh": "wait_for",
   "_id": "<kuid>",
   "body": {
     "foo": "bar",    
@@ -69,3 +70,6 @@ title: updateUser
 ```
 
 Given a [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid), updates the matching User object in Kuzzle's database layer.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the user indexation (indexed users are available for `search`).

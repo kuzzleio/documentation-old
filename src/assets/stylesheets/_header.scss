@@ -73,11 +73,13 @@ header {
   z-index: 2;
 
   .wrapper {
-    padding: 2em $header-padding;
     background-color: #FFF;
-
-    padding: 1em 2em;
+    padding: 1em 4em;
     height: 75px;
+
+    @media (max-width: $desktop-width) {
+      padding: 1em 2em;
+    }
 
     @media (max-width: $tablet-width) {
       height: auto;
@@ -92,7 +94,11 @@ header {
 
     .logo img {
       width: 90px;
-        margin: 5px 5px 5px 0;
+      margin: 5px 2em 5px 0;
+
+      @media (max-width: $tablet-width) {
+        margin: 5px 1em 5px 0;
+      }
     }
 
     a {

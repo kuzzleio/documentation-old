@@ -16,7 +16,7 @@ title: updateRole
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/roles/<roleId>/_update`  
+**URL:** `http://kuzzle:7512/roles/<roleId>/_update[?refresh=wait_for]`  
 **Method:** `PUT`  
 **Body**
 </p>
@@ -44,6 +44,7 @@ title: updateRole
 {
   "controller": "security",
   "action": "updateRole",
+  "refresh": "wait_for",
   "_id": "<roleId>",
   "body": {
     "controllers": {
@@ -78,6 +79,9 @@ title: updateRole
 ```
 
 Given a `role id`, updates the matching Role object in Kuzzle's database layer.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the role indexation (indexed roles are available for `search`).
 
 The body content needs to match Kuzzle's role definition.
 

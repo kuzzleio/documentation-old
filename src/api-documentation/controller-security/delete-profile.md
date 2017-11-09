@@ -16,7 +16,7 @@ title: deleteProfile
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_profiles/<profileId>`  
+**URL:** `http://kuzzle:7512/_profiles/<profileId>[?refresh=wait_for]`  
 **Method:** `DELETE`
 </p>
 </blockquote>
@@ -31,6 +31,7 @@ title: deleteProfile
 {
   "controller": "security",
   "action": "deleteProfile",
+  "refresh": "wait_for",
 
   "_id": "<profileId>"
 }
@@ -55,6 +56,9 @@ title: deleteProfile
 
 Given a `profile id`, deletes the corresponding profile from the database. Note
 that the related roles will NOT be deleted.
+
+The optional parameter `refresh` can be used
+with the value `wait_for` in order to wait for the profile's deletion indexation (indexed profiles are available for `search`).
 
 <aside class="notice">
 The profile unique identifier. It's the same you set when you create a profile.
