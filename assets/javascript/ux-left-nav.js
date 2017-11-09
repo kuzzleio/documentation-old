@@ -2,14 +2,15 @@
   var $wrapper = $('.tocify-wrapper');
 
   if ($wrapper.length !== 0) {
-    var $selectedItem = $('.tocify-level-2.tocify-focus', $wrapper);
+    var $selectedItemList = $('.tocify-level-2.tocify-focus', $wrapper);
 
-    if ($selectedItem.length === 0) {
-      $selectedItem = $('.tocify-focus', $wrapper);
+    if ($selectedItemList.length === 0) {
+      $selectedItemList = $('.tocify-focus', $wrapper);
     }
+    var $selectedItem = $selectedItemList.get($selectedItemList.length-1)
 
-    if ($selectedItem.get(0).offsetTop + 120 > $wrapper.height()) {
-      $wrapper.scrollTop(Math.ceil($selectedItem.get(0).offsetTop - $wrapper.height() / 2));
+    if ($selectedItem.offsetTop + 120 > $wrapper.height()) {
+      $wrapper.scrollTop(Math.ceil($selectedItem.offsetTop - $wrapper.height() / 2));
     }
   }
 
