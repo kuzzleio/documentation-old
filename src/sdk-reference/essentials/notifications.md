@@ -34,7 +34,7 @@ var
   room;
 
 /*
-* simple subscribe to document changes with default scope/state options
+* Use case 1 : Simple subscription to document changes with default scope/state options
 */
 room = collection.subscribe(filters, function(data) {
   if (data.scope === 'in') {
@@ -49,9 +49,16 @@ room = collection.subscribe(filters, function(data) {
     console.log('Subscription ready');
   }
 });
+```
+
+```js
+var
+  collection = kuzzle.collection('foo', 'bar'),
+  filters = {equals: {foo: 'bar'}},
+  room;
 
 /*
-* subscribe only to documents leaving the scope
+* Use case 2 : Subscribe only to documents leaving the scope
 */
 room = collection.subscribe(filters, {scope: 'out'}, function(data) {
   console.log('Document moved from the scope: ', data.document);
@@ -62,9 +69,16 @@ room = collection.subscribe(filters, {scope: 'out'}, function(data) {
     console.log('Subscription ready');
   }
 });
+```
+
+```js
+var
+  collection = kuzzle.collection('foo', 'bar'),
+  filters = {equals: {foo: 'bar'}},
+  room;
 
 /*
-* Create a Room with custom options and add some listeners to it
+* Use case 3 : Create a Room with custom options and add some listeners to it
 */
 
 // create the room:
@@ -100,6 +114,15 @@ room.on('user', function(data) {
   if (data.user == 'out') {
     console.log('A user has leaved the room', data.volatile);
     console.log('Number of listening users: ', data.result.count);
+  }
+});
+
+// subscribe to the room:
+room.subscribe(function(err, res) {
+  if (err) {
+    console.error('Error while subscribing to the room: ', err);
+  } else {
+    console.log('Subscription ready');
   }
 });
 ```
