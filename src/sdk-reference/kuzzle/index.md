@@ -89,6 +89,7 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 | ``headers`` | JSON object | Common headers for all sent documents | |
 | ``volatile`` | JSON object | Common volatile data, will be sent to all future requests | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
+| ``protocol`` | string | (Javascript only) Network protocol to use to connect to Kuzzle (``websocket`` | ``socketio``) | ``websocket``|
 | ``port`` | integer | Kuzzle network port | 7512 |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | ``120000`` |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | ``500`` |
