@@ -54,7 +54,7 @@ Kuzzle is up and running. It will accept requests at <code>localhost:7512</code>
 </aside>
 
 <aside class="notice">
-Having trouble? 
+Having trouble?
 <ul>
   <li><a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.</li>
   <li>Check out the <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">alternative installation methods.</a></li>
@@ -107,7 +107,7 @@ const Kuzzle = require('kuzzle-sdk')
 // connect to the Kuzzle server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
-kuzzle.addListener('connected', () => {
+kuzzle.once('connected', () => {
   kuzzle
     .createIndexPromise('playground')
     .then(() => kuzzle.collection('mycollection').createPromise())
@@ -151,7 +151,7 @@ const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 // get message from command line arguments
 const message = {message: process.argv[2]}
 
-kuzzle.addListener('connected', () => {
+kuzzle.once('connected', () => {
   kuzzle.collection('mycollection')
     .createDocumentPromise(message)
     .then(res => {
