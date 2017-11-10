@@ -68,7 +68,10 @@ room = collection.subscribe(filters, {scope: 'out'}, function(data) {
 */
 
 // create the room:
-room = collection.room(filters, {state: 'all', scope: 'in', users: 'all', subscribeToSelf: false});
+room = collection.room(
+  filters,
+  {state: 'all', scope: 'in', users: 'all', subscribeToSelf: false}
+);
 
 // listen to notifications about pending new documents:
 room.on('document', function(data) {
