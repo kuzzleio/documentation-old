@@ -140,22 +140,18 @@ const Kuzzle = require('kuzzle-sdk')
 // instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
-// add a listener to detect any connection problems
-kuzzle.on("networkError",function(error){
-  console.error("Network Error:"+error);
+kuzzle.addListener('connected', () => {
+  kuzzle
+    .createIndexPromise('playground')
+    .then(() => kuzzle.collection('mycollection').createPromise())
+    .then(() => {
+      console.log('playground/mycollection ready')
+    })
+    .catch(err => {
+      console.error(err.message)
+    })
+    .finally(() => process.exit())
 })
-
-// create a 'playground' index and then a collection named 'mycollection' that we can use to store data
-kuzzle
-  .createIndexPromise('playground')
-  .then(() => kuzzle.collection('mycollection').createPromise())
-  .then(() => {
-    console.log('playground/mycollection ready')
-  })  
-  .catch(err => {
-    console.error(err.message)
-  })  
-  .finally(() => kuzzle.disconnect())
 ```
 
 This code does the following:
@@ -199,16 +195,17 @@ const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 // create an object that contains the message we want to store
 const message = {message: "Hello, World!"}
 
-// create a document in the 'mycollection' collection
-kuzzle.collection('mycollection')
-  .createDocumentPromise(message)
-  .then(res => {
-    console.log('the following document has been successfully created:\n', message)
-  })
-  .catch(err => {
-    console.error(err.message)
-  })
-  .finally(() => kuzzle.disconnect())
+kuzzle.addListener('connected', () => {
+  kuzzle.collection('mycollection')
+    .createDocumentPromise(message)
+    .then(res => {
+      console.log('the following document has been successfully created:\n', message)
+    })
+    .catch(err => {
+      console.error(err.message)
+    })
+    .finally(() => process.exit())
+})
 ```
 
 This code does the following:
@@ -224,7 +221,7 @@ node create.js
 ```
 
 <aside class="success">
-You have now successfully stored your first document into Kuzzle. Click <a href="{{ site_base_path }}guide/essentials/installing-console">here</a> to see how you can use the 
+You have now successfully stored your first document into Kuzzle. Click <a href="{{ site_base_path }}guide/essentials/installing-console">here</a> to see how you can use the
   <strong>Kuzzle Admin Console</strong> to browse your collection and confirm that your document was saved.
 </aside>
 
@@ -258,7 +255,7 @@ const filter = {
 }
 
 // create a subscription on the collection matching given filters
-collection.subscribe(filter, (error, result) => {
+collection.subscribe(filter, result => {
     // this function is called each time kuzzle notifies us with a document matching our filters
     console.log('message received from kuzzle:', result)
 })
