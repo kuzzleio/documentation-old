@@ -117,7 +117,7 @@ kuzzle.addListener('connected', () => {
     .catch(err => {
       console.error(err.message)
     })
-    .finally(() => process.exit())
+    .finally(() => kuzzle.disconnect())
 })
 ```
 
@@ -160,7 +160,7 @@ kuzzle.addListener('connected', () => {
     .catch(err => {
       console.error(err.message)
     })
-    .finally(() => process.exit())
+    .finally(() => kuzzle.disconnect())
 })
 ```
 
