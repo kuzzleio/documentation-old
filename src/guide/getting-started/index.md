@@ -140,7 +140,7 @@ const Kuzzle = require('kuzzle-sdk')
 // instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
-kuzzle.addListener('connected', () => {
+kuzzle.once('connected', () => {
   kuzzle
     .createIndexPromise('playground')
     .then(() => kuzzle.collection('mycollection').createPromise())
@@ -195,7 +195,7 @@ const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 // create an object that contains the message we want to store
 const message = {message: "Hello, World!"}
 
-kuzzle.addListener('connected', () => {
+kuzzle.once('connected', () => {
   kuzzle.collection('mycollection')
     .createDocumentPromise(message)
     .then(res => {
