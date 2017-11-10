@@ -66,7 +66,7 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 |---------------|---------|----------------------------------------|
 | ``callback`` | function | Optional callback handling the response |
 
-This method empties the `jwtToken` property
+This method empties the `jwt` property
 
 ---
 
@@ -79,4 +79,4 @@ Returns the `Kuzzle` object to allow chaining.
 ## Callback response
 
 Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
-The `Kuzzle` object will unset the property `jwtToken` if the user is successfully logged out.
+The `Kuzzle` object will unset the property `jwt` if the user is successfully logged out.

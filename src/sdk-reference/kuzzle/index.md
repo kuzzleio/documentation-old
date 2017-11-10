@@ -113,7 +113,7 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 | ``defaultIndex`` | string | Kuzzle's default index to use |
 | ``headers`` | JSON object | Common headers for all sent documents. |
 | ``host`` | string | Target Kuzzle host name/address |
-| ``jwtToken`` | string | Token used in requests for authentication. |
+| ``jwt`` | string | Token used in requests for authentication. |
 | ``volatile`` | JSON object | Common volatile data, will be sent to all future requests |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode |
 | ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue |

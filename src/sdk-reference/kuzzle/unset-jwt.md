@@ -5,17 +5,17 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: unsetJwtToken
+title: unsetJw
 ---
 
-# unsetJwtToken
+# unsetJwt
 
 ```js
-kuzzle.unsetJwtToken();
+kuzzle.unsetJwt();
 ```
 
 ```java
-kuzzle.unsetJwtToken();
+kuzzle.unsetJwt();
 ```
 
 ```php
@@ -24,7 +24,7 @@ use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
 
-$kuzzle->unsetJwtToken();
+$kuzzle->unsetJwt();
 ```
 
 Unsets the internal JSON Web Token used for authentication, and stops all existing subscriptions
