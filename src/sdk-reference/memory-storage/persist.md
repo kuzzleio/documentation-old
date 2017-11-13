@@ -24,9 +24,9 @@ kuzzle.memoryStorage.persistPromise('key')
 ```
 
 ```java
-kuzzle.memoryStorage.persist("key", new ResponseListener<Integer>() {
+kuzzle.memoryStorage.persist("key", new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Boolean status) {
     // callback called once the action has completed
   }
 
@@ -55,7 +55,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Removes the expiration delay or timestamp from a key, making it persistent.
@@ -89,4 +89,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to an integer containing the operation status (`0`: fail, `1`: success).
+Resolves to a boolean telling if the operation was successful.

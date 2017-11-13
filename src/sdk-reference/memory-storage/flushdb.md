@@ -12,21 +12,21 @@ title: flushdb
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.flushdb(function (err, status) {
+kuzzle.memoryStorage.flushdb(function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.flushdbPromise()
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
 
 ```java
-kuzzle.memoryStorage.flushdb(new ResponseListener<Long>() {
+kuzzle.memoryStorage.flushdb(new ResponseListener<Void>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -45,17 +45,11 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->flushdb();
+  $kuzzle->memoryStorage()->flushdb();
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Deletes all the keys of the database dedicated to client applications (the reserved space for Kuzzle is unaffected).
@@ -89,4 +83,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.

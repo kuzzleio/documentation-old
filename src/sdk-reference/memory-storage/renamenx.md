@@ -24,9 +24,9 @@ kuzzle.memoryStorage.renamenxPromise('key', 'newId')
 ```
 
 ```java
-kuzzle.memoryStorage.renamenx("key", "newId", new ResponseListener<Integer>() {
+kuzzle.memoryStorage.renamenx("key", "newId", new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Boolean status) {
     // callback called once the action has completed
   }
 
@@ -55,7 +55,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Renames a key to `newkey`, only if `newkey` does not already exist.
@@ -92,4 +92,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to an integer indicating if the insertion succeeded (`1`) or failed (`0`).
+Resolves to a boolean telling if the operation was successful.

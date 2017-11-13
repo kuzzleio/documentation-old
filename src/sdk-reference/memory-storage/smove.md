@@ -24,9 +24,9 @@ kuzzle.memoryStorage.smovePromise('key', 'destination', 'member')
 ```
 
 ```java
-kuzzle.memoryStorage.smove("key", "destination", "member", new ResponseListener<Integer>() {
+kuzzle.memoryStorage.smove("key", "destination", "member", new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Boolean status) {
     // callback called once the action has completed
   }
 
@@ -55,7 +55,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Moves a member from a set of unique values to another.
@@ -93,4 +93,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to an integer containing the operation status (`0`: fail, `1`: success).
+Resolves to a boolean telling if the operation was successful.
