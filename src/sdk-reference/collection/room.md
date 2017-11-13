@@ -14,7 +14,7 @@ title: room
 let room = kuzzle
   .collection('collection', 'index')
   .room({in: {field: ['some', 'filter']}})
-  .on('document', functon (err, res) {
+  .on('document', function (err, res) {
     // handle notifications
   })
   .subscribe();
@@ -32,7 +32,7 @@ JSONObject filters = new JSONObject()
 
 Room room = kuzzle.collection("collection", "index")
   .room(filters)
-  .on(new ResponseListener<NotificationResponse>() {
+  .on("document", new ResponseListener<NotificationResponse>() {
     @Override
       public void onSuccess(NotificationResponse object) {
         // handle notifications
