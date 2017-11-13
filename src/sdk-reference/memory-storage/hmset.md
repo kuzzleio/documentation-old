@@ -18,13 +18,13 @@ var entries = [
 ];
 
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.hmset('key', entries, function (err, status) {
+kuzzle.memoryStorage.hmset('key', entries, function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.hmsetPromise('key', entries)
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
@@ -36,9 +36,9 @@ JSONObject[] entries = new JSONObject[]{
   new JSONObject().put("field", "...").put("value", "...")
 };
 
-kuzzle.memoryStorage.hmset("key", entries, new ResponseListener<String>() {
+kuzzle.memoryStorage.hmset("key", entries, new ResponseListener<Void>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -63,17 +63,11 @@ $entries = [
 ];
 
 try {
-  $status = $kuzzle->memoryStorage()->hmset('key', entries);
+  $kuzzle->memoryStorage()->hmset('key', entries);
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Sets multiple fields at once in a hash.
@@ -109,4 +103,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.

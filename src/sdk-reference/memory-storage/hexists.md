@@ -24,9 +24,9 @@ kuzzle.memoryStorage.hexistsPromise('key', 'field1')
 ```
 
 ```java
-kuzzle.memoryStorage.hexists("key", "field1", new ResponseListener<Integer>() {
+kuzzle.memoryStorage.hexists("key", "field1", new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(int exists) {
+  public void onSuccess(Boolean exists) {
     // callback called once the action has completed
   }
 
@@ -55,7 +55,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Checks if a field exists in a hash.
@@ -85,4 +85,4 @@ Checks if a field exists in a hash.
 
 ## Callback response
 
-`1` if field exists, `0` otherwise.
+A boolean value telling if the field exists.

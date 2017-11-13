@@ -36,9 +36,9 @@ JSONObject[] entries = new JSONObject[]{
   new JSONObject().put("key", "...").put("value", "...")
 };
 
-kuzzle.memoryStorage.msetnx(entries, new ResponseListener<Integer>() {
+kuzzle.memoryStorage.msetnx(entries, new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Boolean status) {
     // callback called once the action has completed
   }
 
@@ -72,7 +72,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Sets the provided keys to their respective values, only if they do not exist. If a key exists, then the whole operation is aborted and no key is set.
@@ -108,4 +108,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to an integer containing the operation status (`0`: fail, `1`: success).
+Resolves to a boolean telling if the operation was successful.
