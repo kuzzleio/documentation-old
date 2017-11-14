@@ -53,4 +53,4 @@ Removes all listeners, either from a specific event or from all events
 
 ## Return value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `KuzzleEventEmitter` object to allow chaining.
