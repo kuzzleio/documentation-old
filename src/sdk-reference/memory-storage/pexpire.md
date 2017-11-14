@@ -24,9 +24,9 @@ kuzzle.memoryStorage.pexpirePromise('key', 42000)
 ```
 
 ```java
-kuzzle.memoryStorage.pexpire("key", 42000, new ResponseListener<Integer>() {
+kuzzle.memoryStorage.pexpire("key", 42000, new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Boolean status) {
     // callback called once the action has completed
   }
 
@@ -55,7 +55,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Sets a timeout (in milliseconds) on a key. After the timeout has expired, the key will automatically be deleted.
@@ -93,4 +93,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to an integer containing the operation status (`0`: fail, `1`: success).
+Resolves to a boolean telling if the operation was successful.

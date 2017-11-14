@@ -12,21 +12,21 @@ title: set
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.set('key', 'value', function (err, status) {
+kuzzle.memoryStorage.set('key', 'value', function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.setPromise('key', 'value')
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
 
 ```java
-kuzzle.memoryStorage.set("key", "value", new ResponseListener<String>() {
+kuzzle.memoryStorage.set("key", "value", new ResponseListener<Void>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -45,17 +45,11 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->set('key', 'value');
+  $kuzzle->memoryStorage()->set('key', 'value');
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Creates a key holding the provided value, or overwrites it if it already exists.
@@ -96,4 +90,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.

@@ -12,21 +12,21 @@ title: psetex
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.psetex('key', 'value', 42000, function (err, status) {
+kuzzle.memoryStorage.psetex('key', 'value', 42000, function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.psetexPromise('key', 'value', 42000)
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
 
 ```java
-kuzzle.memoryStorage.psetex("key", "value", 42000, new ResponseListener<String>() {
+kuzzle.memoryStorage.psetex("key", "value", 42000, new ResponseListener<Void>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -45,17 +45,11 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->psetex('key', 'value', 42000);
+  $kuzzle->memoryStorage()->psetex('key', 'value', 42000);
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Sets a key with the provided value, and an expiration delay expressed in milliseconds. If the key does not exist, it is created beforehand.
@@ -93,4 +87,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.

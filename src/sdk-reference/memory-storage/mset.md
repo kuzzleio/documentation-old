@@ -18,13 +18,13 @@ var entries = [
 ];
 
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.mset(entries, function (err, status) {
+kuzzle.memoryStorage.mset(entries, function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.msetPromise(entries)
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
@@ -36,9 +36,9 @@ JSONObject[] entries = new JSONObject[]{
   new JSONObject().put("key", "...").put("value", "...")
 };
 
-kuzzle.memoryStorage.mset(entries, new ResponseListener<String>() {
+kuzzle.memoryStorage.mset(entries, new ResponseListener<Void>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -62,17 +62,11 @@ $entries = [
 ];
 
 try {
-  $status = $kuzzle->memoryStorage()->mset(entries);
+  $kuzzle->memoryStorage()->mset(entries);
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Sets the provided keys to their respective values. If a key does not exist, it is created. Otherwise, the key’s value is overwritten.
@@ -108,4 +102,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.

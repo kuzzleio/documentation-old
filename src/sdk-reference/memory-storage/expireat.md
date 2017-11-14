@@ -24,9 +24,9 @@ kuzzle.memoryStorage.expireatPromise('key', 1488372354)
 ```
 
 ```java
-kuzzle.memoryStorage.expireat("key", 1488372354, new ResponseListener<Integer>() {
+kuzzle.memoryStorage.expireat("key", 1488372354, new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Boolean status) {
     // callback called once the action has completed
   }
 
@@ -55,7 +55,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Sets an expiration timestamp on a key. After the timestamp has been reached, the key will automatically be deleted.
@@ -92,4 +92,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to an integer containing the operation status (`0`: fail, `1`: success).
+Resolves to a boolean telling if the operation was successful

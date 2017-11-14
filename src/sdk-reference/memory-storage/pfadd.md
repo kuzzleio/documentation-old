@@ -26,9 +26,9 @@ kuzzle.memoryStorage.pfaddPromise('key', ['foo', 'bar', 'baz'])
 ```java
 String[] elements = new String[]{"foo", "bar", "baz"};
 
-kuzzle.memoryStorage.pfadd("key", elements, new ResponseListener<Integer>() {
+kuzzle.memoryStorage.pfadd("key", elements, new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Boolean status) {
     // callback called once the action has completed
   }
 
@@ -57,7 +57,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Adds elements to an [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure.
@@ -94,4 +94,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to an integer containing the operation status (`0`: fail, `1`: success).
+Resolves to a boolean telling if the operation was successful.

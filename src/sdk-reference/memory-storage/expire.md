@@ -24,7 +24,7 @@ kuzzle.memoryStorage.expirePromise('key', 42)
 ```
 
 ```java
-kuzzle.memoryStorage.expire("key", 42, new ResponseListener<Integer>() {
+kuzzle.memoryStorage.expire("key", 42, new ResponseListener<Boolean>() {
   @Override
   public void onSuccess(int status) {
     // callback called once the action has completed
@@ -55,7 +55,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Sets a timeout (in seconds) on a key. After the timeout has expired, the key will automatically be deleted.
@@ -91,4 +91,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to an integer containing the operation status (`0`: fail, `1`: success).
+Resolves to a boolean telling if the operation was successful.

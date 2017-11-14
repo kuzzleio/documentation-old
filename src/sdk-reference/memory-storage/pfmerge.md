@@ -12,13 +12,13 @@ title: pfmerge
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.pfmerge('key', ['key1', 'key2', '...'], function (err, status) {
+kuzzle.memoryStorage.pfmerge('key', ['key1', 'key2', '...'], function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.pfmergePromise('key', ['key1', 'key2', '...'])
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
@@ -26,9 +26,9 @@ kuzzle.memoryStorage.pfmergePromise('key', ['key1', 'key2', '...'])
 ```java
 String[] keys = new String[]{"key1", "key2", "..."};
 
-kuzzle.memoryStorage.pfmerge('key', keys, new ResponseListener<Long>() {
+kuzzle.memoryStorage.pfmerge('key', keys, new ResponseListener<Void>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -47,17 +47,11 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->pfmerge('key', ['key1', 'key2', '...']);
+  $kuzzle->memoryStorage()->pfmerge('key', ['key1', 'key2', '...']);
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Merges multiple [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structures into an unique HyperLogLog structure stored at `key`, approximating the cardinality of the union of the source structures.
@@ -88,4 +82,4 @@ Merges multiple [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data st
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.
