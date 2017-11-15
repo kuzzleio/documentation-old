@@ -136,8 +136,9 @@ under the License.
     animation: 1s all;
     box-shadow: 0;
   }
-  .panel a:hover {
+  .panel a[href]:hover {
     box-shadow: 2px 2px 12px 0 rgba(0, 0, 0, 0.2);
+    text-decoration: none !important;
   }
   .panel-title {
     color: #111;

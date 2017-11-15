@@ -44,6 +44,9 @@ title: deleteByQuery
   "collection": "<collection>",
   "controller": "document",
   "action": "deleteByQuery",
+  
+  "includeTrash": false,
+  "bypassTrash": false,
 
   "body": {
     "query": {}
@@ -63,8 +66,8 @@ title: deleteByQuery
   "action": "deleteByQuery",
   "requestId": "<unique request identifier>",
   "result": {
-    // Array of strings listing the IDs of removed documents
-    "hits": ["id1", "id2", ..., "idn"]
+    // Number of deleted documents
+    "deleted": 42
   }
 }
 ```
@@ -72,3 +75,13 @@ title: deleteByQuery
 Deletes all the documents matching the given filter or query from Kuzzle's database.
 
 Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
+
+Optional arguments:
+
+* `bypassTrash` (boolean): If set to `true`, directly deletes documents from Kuzzle database layer, without marking them as trashed. Default to `false`
+* `includeTrash` (boolean): If set to `true`, includes trashed documents in the query. Default to `false`
+* `refresh` (boolean): If set to `true`, refreshes Kuzzle underlying database index (cf [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/guide/current/near-real-time.html#refresh-api) for more information).
+
+<aside class="warning">
+  Deletions done by this method do not trigger any real-time notification!
+</aside>
