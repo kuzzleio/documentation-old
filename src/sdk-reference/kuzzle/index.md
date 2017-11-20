@@ -64,6 +64,8 @@ $kuzzle = new Kuzzle('localhost', [
 
 This is the main entry point to communicate with Kuzzle. Every other objects inherits properties from the `Kuzzle` object.
 
+`Kuzzle` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/event-emitter/) instance, so that we can listen to global events.
+
 ---
 
 ## Kuzzle(host, [options], [callback])
@@ -89,6 +91,7 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 | ``headers`` | JSON object | Common headers for all sent documents | |
 | ``volatile`` | JSON object | Common volatile data, will be sent to all future requests | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
+| ``protocol`` | string | (Javascript only) Network protocol to use to connect to Kuzzle (``websocket`` | ``socketio``) | ``websocket``|
 | ``port`` | integer | Kuzzle network port | 7512 |
 | ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | ``120000`` |
 | ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | ``500`` |
@@ -113,7 +116,7 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 | ``defaultIndex`` | string | Kuzzle's default index to use |
 | ``headers`` | JSON object | Common headers for all sent documents. |
 | ``host`` | string | Target Kuzzle host name/address |
-| ``jwtToken`` | string | Token used in requests for authentication. |
+| ``jwt`` | string | Token used in requests for authentication. |
 | ``volatile`` | JSON object | Common volatile data, will be sent to all future requests |
 | ``offlineQueue`` | JSON object | Contains the queued requests during offline mode |
 | ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue |

@@ -5,26 +5,26 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: setJwtToken
+title: setJwt
 ---
 
-# setJwtToken
+# setJwt
 
 ```js
 // Directly with a JWT Token
-kuzzle.setJwtToken('some jwt token');
+kuzzle.setJwt('some jwt token');
 
 /*
  Or with a Kuzzle response.
  For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
  and it can be provided to this method directly
  */
-kuzzle.setJwtToken(authenticationResponse);
+kuzzle.setJwt(authenticationResponse);
 ```
 
 ```java
 // Directly with a JWT Token
-kuzzle.setJwtToken("some jwt token");
+kuzzle.setJwt("some jwt token");
 
 /*
  Or with a Kuzzle response.
@@ -33,7 +33,7 @@ kuzzle.setJwtToken("some jwt token");
 
  Here, "authenticationResponse" is an instance of JSONObject
  */
-kuzzle.setJwtToken(authenticationResponse)
+kuzzle.setJwt(authenticationResponse)
 ```
 
 ```php
@@ -43,7 +43,7 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 // Directly with a JWT Token
-$kuzzle->setJwtToken('some jwt token');
+$kuzzle->setJwt('some jwt token');
 
 
 /*
@@ -51,7 +51,7 @@ $kuzzle->setJwtToken('some jwt token');
  For instance, the final OAUTH2 response is obtained with a redirection from Kuzzle,
  and it can be provided to this method directly
  */
- $kuzzle->setJwtToken($authenticationResponse);
+ $kuzzle->setJwt($authenticationResponse);
 ```
 
 Sets the internal JWT token which will be used to request kuzzle.
@@ -64,15 +64,15 @@ If not, the `loginAttempt` event is fired with the following response:
 
 ---
 
-## setJwtToken(jwtToken)
+## setJwt(jwt)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``jwtToken`` | string | Previously generated JSON Web Token |
+| ``jwt`` | string | Previously generated JSON Web Token |
 
 ---
 
-## setJwtToken(kuzzleResponse)
+## setJwt(kuzzleResponse)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

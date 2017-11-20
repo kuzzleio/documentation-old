@@ -64,7 +64,7 @@ When leaving offline-mode, the JWT validity is verified. If it has expired, the 
 If <code>autoReplay</code> is set, then all pending requests will be automatically played as an anonymous user.
 </aside>
 
-Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``replayQueue`` method. Or you can let the SDK replay it automatically upon reconnection, by setting the ``autoReplay`` option to ``true``.  
+Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``playQueue`` method. Or you can let the SDK replay it automatically upon reconnection, by setting the ``autoReplay`` option to ``true``.  
 
 Requests are sent to Kuzzle with the ``replayInterval`` delay between each one of them.
 

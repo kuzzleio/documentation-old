@@ -54,7 +54,7 @@ Kuzzle is up and running. It will accept requests at <code>localhost:7512</code>
 </aside>
 
 <aside class="notice">
-Having trouble? 
+Having trouble?
 <ul>
   <li><a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.</li>
   <li>Check out the <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">alternative installation methods.</a></li>
@@ -107,16 +107,18 @@ const Kuzzle = require('kuzzle-sdk')
 // connect to the Kuzzle server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
-kuzzle
-  .createIndexPromise('playground')
-  .then(() => kuzzle.collection('mycollection').createPromise())
-  .then(() => {
-    console.log('playground/mycollection ready')
-  })  
-  .catch(err => {
-    console.error(err.message)
-  })  
-  .finally(() => kuzzle.disconnect())
+kuzzle.once('connected', () => {
+  kuzzle
+    .createIndexPromise('playground')
+    .then(() => kuzzle.collection('mycollection').createPromise())
+    .then(() => {
+      console.log('playground/mycollection ready')
+    })
+    .catch(err => {
+      console.error(err.message)
+    })
+    .finally(() => kuzzle.disconnect())
+})
 ```
 
 This code does the following:
@@ -149,15 +151,17 @@ const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 // get message from command line arguments
 const message = {message: process.argv[2]}
 
-kuzzle.collection('mycollection')
-  .createDocumentPromise(message)
-  .then(res => {
-    console.log('the following document has been successfully created:\n', message)
-  })
-  .catch(err => {
-    console.error(err.message)
-  })
-  .finally(() => kuzzle.disconnect())
+kuzzle.once('connected', () => {
+  kuzzle.collection('mycollection')
+    .createDocumentPromise(message)
+    .then(res => {
+      console.log('the following document has been successfully created:\n', message)
+    })
+    .catch(err => {
+      console.error(err.message)
+    })
+    .finally(() => kuzzle.disconnect())
+})
 ```
 
 This code does the following:
@@ -208,7 +212,7 @@ const filter = {
 }
 
 // create a subscription on the collection matching given filters
-collection.subscribe(filter, (error, result) => {
+collection.subscribe(filter, result => {
     // this function is called each time kuzzle notifies us with a document matching our filters
     console.log('message received from kuzzle:', result)
 })

@@ -1,5 +1,7 @@
 ---
-layout: full.html
+layout: side-code.html
+language-tab:
+  js: Javascript
 algolia: true
 title: Notifications
 ---
@@ -24,7 +26,108 @@ You may subscribe multiple times to the same room, with identical or different s
 
 ---
 
+```js
+var
+  collection = kuzzle.collection('foo', 'bar'),
+  filters = {equals: {foo: 'bar'}},
+  room;
+
+/*
+* Use case 1 : Simple subscription to document changes with default scope/state options
+*/
+room = collection.subscribe(filters, function(data) {
+  if (data.scope === 'in') {
+    console.log('New document within the scope: ', data.document);
+  } else if (data.scope === 'out') {
+    console.log('Document moved from the scope: ', data.document);
+  }
+}).onDone(function(err, res) {
+  if (err) {
+    console.error('Error while subscribing to the room: ', err);
+  } else {
+    console.log('Subscription ready');
+  }
+});
+```
+
+```js
+var
+  collection = kuzzle.collection('foo', 'bar'),
+  filters = {equals: {foo: 'bar'}},
+  room;
+
+/*
+* Use case 2 : Subscribe only to documents leaving the scope
+*/
+room = collection.subscribe(filters, {scope: 'out'}, function(data) {
+  console.log('Document moved from the scope: ', data.document);
+}).onDone(function(err, res) {
+  if (err) {
+    console.error('Error while subscribing to the room: ', err);
+  } else {
+    console.log('Subscription ready');
+  }
+});
+```
+
+```js
+var
+  collection = kuzzle.collection('foo', 'bar'),
+  filters = {equals: {foo: 'bar'}},
+  room;
+
+/*
+* Use case 3 : Create a Room with custom options and add some listeners to it
+*/
+
+// create the room:
+room = collection.room(
+  filters,
+  {state: 'all', scope: 'in', users: 'all', subscribeToSelf: false}
+);
+
+// listen to notifications about pending new documents:
+room.on('document', function(data) {
+  if (data.state === 'pending') {
+    console.log('A new document is about to enter the scope: ', data.document);
+  }
+});
+
+// listen to notifications about new documents:
+room.on('document', function(data) {
+  if (data.state === 'done') {
+    console.log('New document within the scope: ', data.document);
+  }
+});
+
+// listen to notifications about other users subscribing to the same room:
+room.on('user', function(data) {
+  if (data.user === 'in') {
+    console.log('A user has joigned the room', data.volatile);
+    console.log('Number of listening users: ', data.result.count);
+  }
+});
+
+// listen to notifications about other users leaving the same room:
+room.on('user', function(data) {
+  if (data.user == 'out') {
+    console.log('A user has leaved the room', data.volatile);
+    console.log('Number of listening users: ', data.result.count);
+  }
+});
+
+// subscribe to the room:
+room.subscribe(function(err, res) {
+  if (err) {
+    console.error('Error while subscribing to the room: ', err);
+  } else {
+    console.log('Subscription ready');
+  }
+});
+```
+
 ## Document notification
+
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
@@ -35,6 +138,7 @@ You may subscribe multiple times to the same room, with identical or different s
 
 #### Example
 
+<div class="noside">
 ```json
 {
   "status": 200,
@@ -55,6 +159,7 @@ You may subscribe multiple times to the same room, with identical or different s
   }
 }
 ```
+</div>
 
 ---
 
@@ -69,6 +174,7 @@ You may subscribe multiple times to the same room, with identical or different s
 
 #### Example
 
+<div class="noside">
 ```json
 {
   "status": 200,
@@ -87,3 +193,4 @@ You may subscribe multiple times to the same room, with identical or different s
   }
 }
 ```
+</div>

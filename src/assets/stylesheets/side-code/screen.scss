@@ -80,6 +80,33 @@
           }
         }
 
+        .noside {
+          pre {
+            float: none;
+            clear: none;
+            max-width: 45%;
+            border: solid 1px #e4e4e4;
+            background: #fbfbfb;
+            border-radius: 4px;
+            margin: 20px 0 0;
+            @media (max-width: $desktop-width) {
+              max-width: 100%;
+            }
+            .clipboard {
+              i {
+                color: #666;
+              }
+            }
+            code.hljs {
+              display: block;
+              overflow-x: auto;
+              padding: 25px;
+              color: #383a42;
+              background: #fafafa;
+            }
+          }
+        }
+
         > .language-tab-selector,
         > blockquote {
           margin: 0 0 0 30px;

@@ -5,17 +5,17 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: replayQueue
+title: playQueue
 ---
 
-# replayQueue
+# playQueue
 
 ```js
-kuzzle.replayQueue();
+kuzzle.playQueue();
 ```
 
 ```java
-kuzzle.replayQueue();
+kuzzle.playQueue();
 ```
 
 ```php

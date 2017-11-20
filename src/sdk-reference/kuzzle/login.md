@@ -74,7 +74,7 @@ If the Kuzzle response contains a JWT Token, the SDK token is set and the `login
 `{ success: true }`
 This is the case, for instance, with the `local` authentication strategy.
 
-If the request succeeds but there is no token, then it means that the chosen strategy is a two-steps authentication method, like OAUTH. In that case, the `loginAttempt` event is **not** fired. To complete the login attempt, the `setJwtToken` method must be called either with a token or with an appropriate Kuzzle response.
+If the request succeeds but there is no token, then it means that the chosen strategy is a two-steps authentication method, like OAUTH. In that case, the `loginAttempt` event is **not** fired. To complete the login attempt, the `setJwt` method must be called either with a token or with an appropriate Kuzzle response.
 
 If the login attempt fails, the `loginAttempt` event is fired with the following response:  
 `{ success: false, error: 'error message' }`

@@ -68,10 +68,7 @@ Once our client has started and initialized with the set of TO-DO items it fetch
 ```javascript
 kuzzle
     .collection('todos', 'todo-list')
-    .subscribe({}, (error, notification) => {
-        if (error) {
-            throw new Error(error)
-        }
+    .subscribe({}, notification => {
         console.log('Something happened and we should do something.', notification)
     })
 ```
@@ -141,10 +138,7 @@ kuzzle
     regexp: {
       label: 'URGENT'
     }
-  }, (error, notification) => {
-    if (error) {
-        throw new Error(error)
-    }
+  }, notification => {
     console.log('Something happened and we should do something URGENTLY.', notification)
   })
 ```
@@ -182,10 +176,7 @@ kuzzle
     { // The Options object
       subscribeToSelf: false
     },
-    (error, notification) => { // The callback
-      if (error) {
-          throw new Error(error)
-      }
+    notification => { // The callback
       console.log('Something happened and we should do something URGENTLY.', notification)
   })
 ```
