@@ -18,7 +18,6 @@ order: 100
 var kuzzle = new Kuzzle('localhost', {
   defaultIndex: 'some index',
   autoReconnect: true,
-  headers: {someheader: "value"},
   port: 7512
 });
 
@@ -36,7 +35,6 @@ Options options = new Options();
 
 options.setDefaultIndex("some index")
   .setAutoReconnect(true),
-  .setHeaders(new JSONObject().put("someheader", "value"))
   .setPort(7512);
 
 Kuzzle kuzzle = new Kuzzle("localhost", options, new ResponseListener<Void>() {
@@ -88,8 +86,6 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | ``true`` |
 | ``connect`` | string | Manually or automatically connect to the Kuzzle instance | ``auto`` |
 | ``defaultIndex`` | string | Set the default index to use | |
-| ``headers`` | JSON object | Common headers for all sent documents | |
-| ``volatile`` | JSON object | Common volatile data, will be sent to all future requests | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
 | ``protocol`` | string | (Javascript only) Network protocol to use to connect to Kuzzle (``websocket`` | ``socketio``) | ``websocket``|
 | ``port`` | integer | Kuzzle network port | 7512 |
@@ -98,6 +94,7 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 | ``replayInterval`` | integer | Delay between each replayed requests, in milliseconds | ``10`` |
 | ``reconnectionDelay`` | integer | number of milliseconds between reconnection attempts | ``1000`` |
 | ``sslConnection`` | boolean | Switch Kuzzle connection to SSL mode | ``false`` |
+| ``volatile`` | JSON object | Common volatile data, will be sent to all future requests | |
 
 **Notes:**
 
@@ -107,26 +104,25 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 
 ## Properties
 
-| Property name | Type | Description |
-|---------------|------|-------------|
-| ``autoQueue`` | boolean | Automatically queue all requests during offline mode |
-| ``autoReconnect`` | boolean | Automatically reconnect after a connection loss |
-| ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event |
-| ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event |
-| ``defaultIndex`` | string | Kuzzle's default index to use |
-| ``headers`` | JSON object | Common headers for all sent documents. |
-| ``host`` | string | Target Kuzzle host name/address |
-| ``jwt`` | string | Token used in requests for authentication. |
-| ``volatile`` | JSON object | Common volatile data, will be sent to all future requests |
-| ``offlineQueue`` | JSON object | Contains the queued requests during offline mode |
-| ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue |
-| ``port`` | integer | Kuzzle network port |
-| ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued |
-| ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode |
-| ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds |
-| ``replayInterval`` | integer | Delay between each replayed requests |
-| ``reconnectionDelay`` | integer | Number of milliseconds between reconnection attempts |
-| ``sslConnection`` | boolean | Connect to Kuzzle using SSL |
+| Property name | Type | Description | Writable? |
+|---------------|------|-------------|:---------:|
+| ``autoQueue`` | boolean | Automatically queue all requests during offline mode | Yes |
+| ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | No |
+| ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event |  Yes |
+| ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | No |
+| ``defaultIndex`` | string | Kuzzle's default index to use | Yes |
+| ``host`` | string | Target Kuzzle host name/address | No |
+| ``jwt`` | string | Token used in requests for authentication. | Yes |
+| ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | Yes |
+| ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue | Yes |
+| ``port`` | integer | Kuzzle network port | No |
+| ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | Yes |
+| ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | Yes |
+| ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | Yes |
+| ``replayInterval`` | integer | Delay between each replayed requests | Yes |
+| ``reconnectionDelay`` | integer | Number of milliseconds between reconnection attempts | No |
+| ``sslConnection`` | boolean | Connect to Kuzzle using SSL | No |
+| ``volatile`` | JSON object | Common volatile data, will be sent to all future requests | Yes |
 
 **Notes:**
 
@@ -138,7 +134,6 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are discarded to make room for new requests
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
 * the ``offlineQueueLoader`` must be set with a function, taking no argument, and returning an array of objects containing a `query` member with a Kuzzle query to be replayed, and an optional `cb` member with the corresponding callback to invoke with the query result
-* updates to ``host``, ``port``, ``autoReconnect``, ``reconnectionDelay`` and ``sslConnection`` properties will only take effect on next ``connect`` call
 
 ---
 
