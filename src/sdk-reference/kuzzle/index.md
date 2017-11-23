@@ -113,7 +113,7 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 | ``defaultIndex`` | string | Kuzzle's default index to use | Yes |
 | ``host`` | string | Target Kuzzle host name/address | No |
 | ``jwt`` | string | Token used in requests for authentication. | Yes |
-| ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | Yes |
+| ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | No |
 | ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue | Yes |
 | ``port`` | integer | Kuzzle network port | No |
 | ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | Yes |
