@@ -177,4 +177,4 @@ The safest way to process all documents in a collection is to retrieve them by b
 
 <aside class="warning">Make sure your first search request includes <code>size</code> and <code>scroll</code> parameters</aside>
 
-<aside class="notice"><sup>\[1\]</sup> Elasticsearch limits the number of documents inside a single page to [10,000 by default](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html#dynamic-index-settings).</aside>
+<aside class="notice"><sup>\[1\]</sup> Elasticsearch limits the number of documents inside a single page to [10,000 by default](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/index-modules.html#dynamic-index-settings).</aside>
