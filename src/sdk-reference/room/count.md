@@ -12,12 +12,12 @@ title: count
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-room.count(function (error, result) {
+room.count(function (error, count) {
   // ...
 });
 
 // Using promises (NodeJS)
-room.countPromise().then(result => {
+room.countPromise().then(count => {
   // ...
 });
 ```

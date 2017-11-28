@@ -71,7 +71,7 @@ A `Room` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/even
 
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
-| ``autoResubscribe`` | boolean | Automatically renew the room on a ``reconnected`` event | global ``autoResubscribe`` kuzzle option |
+| ``autoResubscribe`` | boolean | Automatically renew the subscription on a ``reconnected`` event | global ``autoResubscribe`` kuzzle option |
 | ``scope`` | string | Filter [document notifications]({{ site_base_path }}sdk-reference/essentials/notifications/#document-notification) depending on their scope status. You may receive entering documents (scope: ``in``), leaving documents (scope: ``out``), all documents changes (scope: ``all``) or filter these notifications completely (scope: ``none``). This filter does not affect pub/sub messages or user events. | ``all`` |
 | ``state`` | string | Filter [document notifications]({{ site_base_path }}sdk-reference/essentials/notifications/#document-notification) depending on the state of the modifying request. You may receive real-time notifications when a document is about to be changed (state: ``pending``), or be notified when the change has been fully written in the database (state: ``done``), or both (state: ``all``). This filter does not affect pub/sub messages or user events. | ``done`` |
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | ``true`` |
@@ -93,5 +93,5 @@ A `Room` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/even
 
 **Notes:**
 
-* updating the ``volatile`` property takes effect after ``renew`` is called
-* by default, the global Kuzzle ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``volatile`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
+* updating the ``volatile`` property takes effect only after the subscription is renewed
+* by default, the global Kuzzle ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``volatile`` for the subscription only. In case of conflicts, subscription ``volatile`` data takes priority over the global ``volatile`` ones.

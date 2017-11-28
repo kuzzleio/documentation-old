@@ -11,21 +11,27 @@ title: onDone
 # onDone
 
 ```js
-room.onDone(function (err, res) {
-  // handles the subscription result
+// Using callbacks (NodeJS or Web Browser)
+room.onDone(function (error, room) {
+  // callback called once the action has completed
 });
+
+// Using promises (NodeJS only)
+room.onDonePromise()
+  .then(room => {
+    // resolved once the action has completed
+  });
 ```
 
 ```java
 room.onDone(new ResponseListener<Room>() {
  @Override
- public void onSuccess(Room result) throws Exception {
-  // Handle the subscription result
+ public void onSuccess(Room room) {
+  // callback called once the action has completed
  }
 
  @Override
- public void onError(JSONObject error) throws Exception {
-   // Handle error
+ public void onError(JSONObject error) {
  }
 });
 ```
@@ -36,7 +42,7 @@ room.onDone(new ResponseListener<Room>() {
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Calls a callback when the subscription ends, either successfully or with an error.
+Calls the provided callback when the subscription finishes.
 
 ---
 
@@ -45,3 +51,15 @@ Calls a callback when the subscription ends, either successfully or with an erro
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``callback`` | function | Function called with the subscription result |
+
+---
+
+## Return value
+
+Returns this `Room` object to allow chaining.
+
+---
+
+## Callback response
+
+Resolves to this `Room` object

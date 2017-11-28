@@ -11,14 +11,28 @@ title: subscribe
 # subscribe
 
 ```js
-room.subscribe(function (err, res) {
-  // handles the subscription result
+// Using callbacks (NodeJS or Web Browser)
+room.subscribe(function (error, room) {
+  // callback called once the action has completed
 });
+
+// Using promises (NodeJS only)
+room.subscribePromise()
+  .then(room => {
+    // resolved once the action has completed
+  });
 ```
 
 ```java
-room.renew(new ResponseListener<Room>() {
-  // Handle the subscription result
+room.subscribe(new ResponseListener<Room>() {
+  @Override
+  public void onSuccess(Room room) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
 });
 ```
 
@@ -28,18 +42,20 @@ room.renew(new ResponseListener<Room>() {
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Renew the subscription. Force a new subscription using the same filters.
+Subscribes using the filters provided at the object creation.
 
-Unsubscribes first if this `Room` object was already listening to events.
+This method does nothing if the room is already subscribing, or if the subscription is already active, unless [unsubscribe]({{ site_base_path }}sdk-reference/room/unsubscribe/) is called first.
+
+Calling `subscribe` is also unnecessary on a network reconnection event, if the `autoResubscribe` option is set to `true`.
 
 ---
 
-## subscribe([options], subscriptionCallback)
+## subscribe([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``options`` | JSON Object | Optional parameters |
-| ``subscriptionCallback`` | function | Function called with the subscription result |
+| ``callback`` | function | Optional result callback |
 
 ---
 
@@ -48,3 +64,16 @@ Unsubscribes first if this `Room` object was already listening to events.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+
+---
+
+## Return value
+
+Returns this `Room` object to allow chaining.
+
+---
+
+## Callback response
+
+Resolves to this `Room` object
+
