@@ -37,7 +37,7 @@ $metadata = [
 $document->setMeta($metadata);
 ```
 
-Replaces or updates the current document metadata with provided ones.  
+Replaces or updates the current document [metadata]({{ site_base_path }}guide/essentials/document-metadata/) with the provided ones.  
 This is a helper function returning itself, allowing to easily chain calls.
 
 <aside class="notice">

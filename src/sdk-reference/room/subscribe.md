@@ -8,7 +8,7 @@ algolia: true
 title: subscribe
 ---
 
-# renew
+# subscribe
 
 ```js
 room.subscribe(function (err, res) {
