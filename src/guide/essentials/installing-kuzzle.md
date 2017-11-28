@@ -108,8 +108,8 @@ The following operating systems are actively supported (64-bit versions only):
 
 ### Prerequisites
 
-* A [Elasticsearch](https://www.elastic.co/products/elasticsearch) version 5.0 instance or upper running on localhost:9200.
-* A [Redis](http://redis.io/) version 3.x instance running on localhost:6379 (_preferred version: v3.2_).
+* [Elasticsearch](https://www.elastic.co/products/elasticsearch) version 5.x
+* [Redis](http://redis.io/) version 3.x
 * [NodeJS](https://nodejs.org/en/download/package-manager/) version 6.x or upper.
 * [Python](https://www.python.org/) version 2.7 preferred.
 * a C++11 compatible compiler.
@@ -207,7 +207,7 @@ Socket IO and Websocket channels can be reached over the HTTP server, on port 75
 
 #### Change external services hosts or ports
 
-If you are running some of the service(s) externally, you can configure their host and port using some environment variables and/or a `.kuzzlerc` file.
+Unless you're running external services locally (i.e. Elasticsearch and Redis), you'll need to configure their host and port to allow Kuzzle to reach them, in the `.kuzzlerc` file.
 
 Please refer to the [Kuzzle configuration section]({{ site_base_path }}guide/essentials/configuration) for more information.
 
@@ -216,14 +216,11 @@ Please refer to the [Kuzzle configuration section]({{ site_base_path }}guide/ess
 ```bash
 #!/bin/bash
 
-# howing Kuzzle logs:
+# Displaying Kuzzle logs:
 pm2 logs
 
 # Starting, restarting or stopping Kuzzle core :
 pm2 "<start|stop|restart>" KuzzleServer
-
-# Starting, restarting or stopping Kuzzle core :  
-pm2 "<start|stop|restart>" KuzzleProxy
 
 # Accessing Kuzzle CLI
 ~/kuzzle/bin/kuzzle -h
