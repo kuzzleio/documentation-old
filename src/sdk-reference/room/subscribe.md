@@ -46,7 +46,7 @@ Subscribes using the filters provided at the object creation.
 
 This method does nothing if the room is already subscribing, or if the subscription is already active, unless [unsubscribe]({{ site_base_path }}sdk-reference/room/unsubscribe/) is called first.
 
-Calling `subscribe` is also unnecessary on a network reconnection event, if the `autoResubscribe` option is set to `true`.
+Calling `subscribe` is also unnecessary on a network reconnection event if the [`autoResubscribe` property]({{ site_base_path }}sdk-reference/room/#properties) is set to `true`.
 
 ---
 
