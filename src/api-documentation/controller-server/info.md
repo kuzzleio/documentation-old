@@ -37,8 +37,8 @@ title: info
 
 ```javascript
 {
-  "status": 200,                     
-  "error": null,                     
+  "status": 200,
+  "error": null,
   "controller": "server",
   "action": "info",
   "result": {
@@ -50,18 +50,28 @@ title: info
               "action1": {
                 "controller": "controller1",
                 "action": "action1",
-                "http": {
-                  "verb": "GET",
-                  "url": "/action1/url"
-                }
+                "nproutes": 2,
+                 "http": [
+                  {
+                    "verb": "GET",
+                    "url": "/action1/url"
+                  },
+                  {
+                    "verb": "GET",
+                    "url": "/action1/url/:variable"
+                  }
+                ]
               },
               "action2": {
                 "controller": "controller1",
                 "action": "action2",
-                "http": {
-                  "verb": "POST",
-                  "url": "/action2/url"
-                }
+                "nproutes": 1,
+                "http": [
+                  {
+                    "verb": "POST",
+                    "url": "/action2/url"
+                  }
+                ]
               },
               {
                 "...": "..."
@@ -71,10 +81,13 @@ title: info
               "action": {
                 "controller": "pluginName/controller",
                 "action": "action",
-                "http": {
-                  "verb": "GET",
-                  "url": "/action/url"
-                }
+                "nproutes": 1,
+                "http": [
+                  {
+                    "verb": "GET",
+                    "url": "/action/url"
+                  }
+                ]
               },
               {
                 "...": " ..."
