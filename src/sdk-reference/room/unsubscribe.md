@@ -11,11 +11,29 @@ title: unsubscribe
 # unsubscribe
 
 ```js
-room.unsubscribe();
+// Using callbacks (NodeJS or Web Browser)
+room.unsubscribe(function (error, id) {
+  // callback called once the action has completed
+});
+
+// Using promises (NodeJS only)
+room.subscribePromise()
+  .then(id => {
+    // resolved once the action has completed
+  });
 ```
 
 ```java
-room.unsubscribe();
+room.unsubscribe(new ResponseListener<String>() {
+  @Override
+  public void onSuccess(String id) {
+    // callback called once the action has completed
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+  }
+});
 ```
 
 ```php
@@ -24,10 +42,26 @@ room.unsubscribe();
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Cancels the current subscription.
+Cancels the current subscription. 
+
+If the room is trying to subscribe when this method is called, then the provided callback will be invoked with an error.
+
+---
+
+## unsubscribe([callback])
+
+| Arguments | Type | Description |
+|---------------|---------|----------------------------------------|
+| ``callback`` | function | Optional result callback |
 
 ---
 
 ## Return value
 
 Returns this `Room` object to allow chaining.
+
+---
+
+## Callback response
+
+Resolves to a string containing the room unique identifier.
