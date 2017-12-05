@@ -69,7 +69,6 @@ Now that Kuzzle is running on your computer, you can dive into playing with it b
 * installing one of the available <a href="{{ site_base_path }}sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
  * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_base_path }}guide/getting-started/#sdk-play-time">SDK play time</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
- * <a href="https://github.com/kuzzleio/sdk-ios">iOS</a>,
  * <a href="https://github.com/kuzzleio/sdk-android">Android</a>;
 * exploring the <a href="{{ site_base_path }}api-documentation">Kuzzle API Documentation</a>;
 * <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">setting-up a Kuzzle Server without Docker</a>.
