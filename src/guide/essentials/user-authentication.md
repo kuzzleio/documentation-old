@@ -18,33 +18,27 @@ If you have no users in your Kuzzle Backend yet, you can read the documentation 
 Create a `login.js` file, NPM-install the Kuzzle SDK and start coding:
 
 ```javascript
-var Kuzzle = require('kuzzle-sdk')
+const Kuzzle = require('kuzzle-sdk')
 
-var kuzzle = new Kuzzle('localhost', () => {
-  kuzzle
-    .loginPromise('local', {
-      username: 'admin',
-      password: 'test'
-    })
-    .then(() => {
-      console.log('logged!')
-    })
-    .catch(err => {
-      console.error(err.message)
-    })
-})
+const kuzzle = new Kuzzle('localhost')
 
+kuzzle
+  .connectPromise()
+  .then(() => loginPromise('local', {username: '<username>', password: '<password>'})
+  .then(() => {
+    console.log('logged!')
+  })
+  .catch(err => {
+    console.error(err.message)
+  })
 ```
 
-Assuming that you have an `admin` user with `test` password in your Kuzzle Backoffice, the code above does the following:
-* loads the `Kuzzle` SDK from it NPM package,
-* instantiates the SDK by connecting it to the Kuzzle Backoffice running on `localhost`,
-* _after the SDK connected to Kuzzle Backend_, it performs a login for the `admin` user,
-* displays to console a success message or an error message whether the login has succeeded or failed.
+The code above does the following:
 
-<aside class="notice">
-  It's very important that the `login` code executes after the SDK has successfully connected to the backend, since `login` is not a queuable method (queuable methods can be called before the SDK is connected to the backend and are automatically played once the connection is established). That's why we put all the `login` code in the constructor's callback.
-</aside>
+* loads the `Kuzzle` SDK from the NPM package,
+* instantiates a new SDK object
+* connects it to a remote Kuzzle server
+* performs a login with the provided username and password
 
 ---
 

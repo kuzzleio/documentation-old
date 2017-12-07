@@ -20,11 +20,6 @@ var kuzzle = new Kuzzle('localhost', {
   autoReconnect: true,
   port: 7512
 });
-
-// A callback is also available and will be invoked once connected to the Kuzzle instance:
-kuzzle = new Kuzzle('localhost', function (err, res) {
-  // ...
-});
 ```
 
 ```java
@@ -37,17 +32,7 @@ options.setDefaultIndex("some index")
   .setAutoReconnect(true),
   .setPort(7512);
 
-Kuzzle kuzzle = new Kuzzle("localhost", options, new ResponseListener<Void>() {
- @Override
- public void onSuccess(Void object) {
-   // invoked once connected, object contains the kuzzle instance
- }
-
- @Override
- public void onError(JSONObject error) {
-   // Handle connection error
- }
-});
+Kuzzle kuzzle = new Kuzzle("localhost", options);
 ```
 
 ```php
@@ -66,13 +51,12 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 
 ---
 
-## Kuzzle(host, [options], [callback])
+## Kuzzle(host, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``host`` | string | The server name (or the IP address) of a Kuzzle instance |
 | ``options`` | JSON object | Optional Kuzzle connection configuration |
-| ``callback`` | function | Optional callback |
 
 ---
 
@@ -84,7 +68,6 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 | ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | ``true`` |
 | ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event | ``false`` |
 | ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | ``true`` |
-| ``connect`` | string | Manually or automatically connect to the Kuzzle instance | ``auto`` |
 | ``defaultIndex`` | string | Set the default index to use | |
 | ``offlineMode`` | string | Offline mode configuration | ``manual`` |
 | ``protocol`` | string | (Javascript only) Network protocol to use to connect to Kuzzle (``websocket`` | ``socketio``) | ``websocket``|
@@ -126,18 +109,10 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 
 **Notes:**
 
-* if ``connect`` is set to ``manual``, the ``connect`` method will have to be called manually
-* the kuzzle instance will automatically queue all requests, and play them automatically once a first connection is established, regardless of the ``connect`` or offline mode option values.
+* newly instantiated Kuzzle objects automatically start in [offline mode]({{ site_base_path }}sdk-reference/essentials/offline-first/)
 * multiple methods allow passing specific ``volatile`` data. These ``volatile`` data will be merged with the global Kuzzle object ``volatile`` when sending the request, with the request specific ``volatile`` taking priority over the global ones.
 * the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle API]({{ site_base_path }}api-documentation/query-syntax) format
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
 * The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are discarded to make room for new requests
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
 * the ``offlineQueueLoader`` must be set with a function, taking no argument, and returning an array of objects containing a `query` member with a Kuzzle query to be replayed, and an optional `cb` member with the corresponding callback to invoke with the query result
-
----
-
-## Callback response
-
-If the connection succeeds, resolves to the `Kuzzle` object itself.
-If the `connect` option is set to `manual`, the callback will be called after the `connect` method is resolved.

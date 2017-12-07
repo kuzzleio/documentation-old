@@ -15,7 +15,7 @@ Our goal is to provide our users with the right tools to handle such situations.
 
 There are two ways to handle a network disconnection:
 
-* Stop all further communication with Kuzzle and invalidate the current instance and all its children. The application will have to manually instantiate a new Kuzzle object once the network has recovered. To do so, simply pass the ``autoReconnect`` option to ``false`` when starting a new Kuzzle instance.
+* Stop all further communication with Kuzzle and invalidate the current instance and all its children. The application will have to manually reconnect once the network has recovered. To do so, simply pass the ``autoReconnect`` option to ``false`` when starting a new Kuzzle instance.
 * Reconnect automatically to Kuzzle when possible, and enter *offline mode* in the meantime. This is the default behavior.
 
 Offline mode simply refers to the time between a ``disconnected`` and a ``reconnected`` event (see [Events]({{ site_base_path }}sdk-reference/essentials/events)).
@@ -46,7 +46,7 @@ The queue itself can be configured using the ``queueTTL`` and ``queueMaxSize`` o
 
 ---
 
-## Filtering requests to be queued
+## Filter requests to be queued
 
 After request queuing is activated, by default, all requests are queued.
 
