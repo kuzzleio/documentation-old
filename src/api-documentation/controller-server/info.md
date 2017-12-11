@@ -50,7 +50,6 @@ title: info
               "action1": {
                 "controller": "controller1",
                 "action": "action1",
-                "nproutes": 2,
                  "http": [
                   {
                     "verb": "GET",
@@ -65,7 +64,6 @@ title: info
               "action2": {
                 "controller": "controller1",
                 "action": "action2",
-                "nproutes": 1,
                 "http": [
                   {
                     "verb": "POST",
@@ -81,7 +79,6 @@ title: info
               "action": {
                 "controller": "pluginName/controller",
                 "action": "action",
-                "nproutes": 1,
                 "http": [
                   {
                     "verb": "GET",
