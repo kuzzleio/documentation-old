@@ -13,34 +13,7 @@ subheader-title: Constructor
 
 # Constructor
 
-```js
-/* 
- This class can only be instantiated internally by this SDK, 
- either as a result of a document search API call, a result
- of a scroll API call, or by requesting the next result page
- using this class "fetchNext" exposed method
- */
-```
-
-```java
-/* 
- This class can only be instantiated internally by this SDK, 
- either as a result of a document search API call, a result
- of a scroll API call, or by requesting the next result page
- using this class "fetchNext" exposed method
- */
-```
-
-```php
-/* 
- This class can only be instantiated internally by this SDK, 
- either as a result of a document search API call, a result
- of a scroll API call, or by requesting the next result page
- using this class "fetchNext" exposed method
- */
-```
-
-This object is the result of a [search]({{ site_base_path }}sdk-reference/collection/search) or a [scroll]({{ site_base_path }}sdk-reference/collection/scroll) request, allowing to manipulate the result and do subsequent requests.
+This object can only be instantiated internally by this SDK, and is an easy-to-use representation of a paginated result from a [search]({{ site_base_path }}sdk-reference/collection/search) or a [scroll]({{ site_base_path }}sdk-reference/collection/scroll) request.
 
 ---
 
