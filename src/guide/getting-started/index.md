@@ -103,26 +103,26 @@ Then, create a `init.js` file and start coding:
 ```javascript
 const Kuzzle = require('kuzzle-sdk')
 
-// connect to the Kuzzle server
+// create a new kuzzle object
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
-kuzzle.once('connected', () => {
-  kuzzle
-    .createIndexPromise('playground')
-    .then(() => kuzzle.collection('mycollection').createPromise())
-    .then(() => {
-      console.log('playground/mycollection ready')
-    })
-    .catch(err => {
-      console.error(err.message)
-    })
-    .finally(() => kuzzle.disconnect())
-})
+kuzzle
+  .connectPromise()
+  .then(() => kuzzle.createIndexPromise('playground'))
+  .then(() => kuzzle.collection('mycollection').createPromise())
+  .then(() => {
+    console.log('playground/mycollection ready')
+  })
+  .catch(err => {
+    console.error(err.message)
+  })
+  .finally(() => kuzzle.disconnect())
 ```
 
 This code does the following:
 * loads the `Kuzzle` SDK from its NPM package,
-* creates an instance of the SDK and connects it to the Kuzzle Backoffice running on `localhost` (and selects the `playground` as default index),
+* creates an instance of the SDK,
+* connects the SDK to a remote Kuzzle server running on `localhost` (and selects the `playground` as default index),
 * creates the `playground` index,
 * creates the `mycollection` collection (within the `playground` index),
 * disconnect from Kuzzle to end the script.
@@ -144,23 +144,22 @@ Create a `create.js` file with following code:
 ```javascript
 const Kuzzle = require('kuzzle-sdk')
 
-// connect to the Kuzzle server
+// create a new Kuzzle SDK object
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // get message from command line arguments
 const message = {message: process.argv[2]}
 
-kuzzle.once('connected', () => {
-  kuzzle.collection('mycollection')
-    .createDocumentPromise(message)
-    .then(res => {
-      console.log('the following document has been successfully created:\n', message)
-    })
-    .catch(err => {
-      console.error(err.message)
-    })
-    .finally(() => kuzzle.disconnect())
-})
+kuzzle
+  .connectPromise()
+  .then(() => kuzzle.collection('mycollection').createDocumentPromise(message))
+  .then(res => {
+    console.log('the following document has been successfully created:\n', message)
+  })
+  .catch(err => {
+    console.error(err.message)
+  })
+  .finally(() => kuzzle.disconnect())
 ```
 
 This code does the following:
@@ -197,7 +196,7 @@ Open a new termnial in the playground directory you created before and create th
 ```javascript
 const Kuzzle = require('kuzzle-sdk')
 
-// connect to the Kuzzle server
+// create a new kuzzle object
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // create a reference to the data collection
@@ -211,10 +210,16 @@ const filter = {
 }
 
 // create a subscription on the collection matching given filters
-collection.subscribe(filter, result => {
+collection
+  .subscribe(filter, result => {
     // this function is called each time kuzzle notifies us with a document matching our filters
-    console.log('message received from kuzzle:', result)
-})
+    console.log('Message received from kuzzle:', result)
+  })
+  .onDone(() => console.log('Subscription active. Waiting for messages...'))
+
+// Connects the client to a remote Kuzzle server and plays the previously
+// configured subscriptions
+kuzzle.connect()
 ```
 
 Run your file in NodeJS
