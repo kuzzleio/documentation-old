@@ -52,30 +52,30 @@ $statistics = $kuzzle->getStatistics();
 
 ```json
 [
-  { 
+  {
     "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "mqtt": 37, "socketio": 17 },
     "failedRequests": { "socketio": 1 },
-    "timestamp": "1453110641308" 
+    "timestamp": "1453110641308"
   }
 ]
 ```
 
-> When providing a timestamp, retrieves all frames recorded after that timestamp:
+> When providing one timestamp, retrieves all frames recorded after that timestamp:
 
 ```js
 // Date can be either in ISO format or a timestamp (utc, in milliseconds)
-var ts = Date.parse('2015-10-26T12:19:10.213Z');
+const startTime = Date.parse('2015-10-26T12:19:10.213Z');
 
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.getStatistics(ts, function (error, statistics) {
+kuzzle.getStatistics(startTime, function (error, statistics) {
 
 });
 
 // Using promises (NodeJS only)
 kuzzle
-  .getStatisticsPromise(ts)
+  .getStatisticsPromise(startTime)
   .then(statistics => {
 
   });
@@ -112,26 +112,103 @@ $statistics = $kuzzle->getStatistics($date);
 
 ```json
 [
-  { 
+  {
     "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "mqtt": 37, "socketio": 17 },
     "failedRequests": { "socketio": 1 },
-    "timestamp": "1453110641308" 
+    "timestamp": "1453110641308"
   },
-  { 
+  {
     "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "socketio": 34 },
     "failedRequests": { "socketio": 3 },
-    "timestamp": "1453110642308" 
+    "timestamp": "1453110642308"
   },
-  { 
+  {
     "connections": {},
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "socketio": 40 },
     "failedRequests": {},
-    "timestamp": "1453110643308" 
+    "timestamp": "1453110643308"
+  }
+]
+```
+
+> When providing 2 timestamps, retrieves all frames recorded between these timestamps:
+
+```js
+// Date can be either in ISO format or a timestamp (utc, in milliseconds)
+const
+  startTime = Date.parse('2015-10-26T12:19:10.213Z'),
+  stopTime = Date.parse('2015-10-26T12:29:10.213Z');
+
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.getStatistics(startTime, stopTime, function (error, statistics) {
+
+});
+
+// Using promises (NodeJS only)
+kuzzle
+  .getStatisticsPromise(startTime, stopTime)
+  .then(statistics => {
+
+  });
+```
+
+```java
+// Date can be either in ISO format or a timestamp (utc, in milliseconds)
+kuzzle.getStatistics("2015-11-15T13:36:45.558Z", "2015-11-15T13:46:45.123Z", new ResponseListener<JSONObject[]>() {
+  @Override
+  public void onSuccess(JSONObject[] statistics) {
+    // ...
+  }
+
+  @Override
+  public void onError(JSONObject error) {
+    // Handle error
+  }
+};
+```
+
+```php
+<?php
+use \Kuzzle\Kuzzle;
+
+$kuzzle = new Kuzzle('localhost');
+// Date can be either in ISO format or a timestamp (utc, in milliseconds)
+$startTime = strtotime('2015-10-26T12:19:10.213Z') * 1000,
+$stopTime = strtotime('2015-10-26T12:29:10.213Z') * 1000;
+$statistics = $kuzzle->getStatistics($startTime, $stopTime);
+
+// $statistics is an array of statistics objects
+```
+
+> Callback response
+
+```json
+[
+  {
+    "connections": { "socketio": 1 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "mqtt": 37, "socketio": 17 },
+    "failedRequests": { "socketio": 1 },
+    "timestamp": "1453110641308"
+  },
+  {
+    "connections": { "socketio": 1 },
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "socketio": 34 },
+    "failedRequests": { "socketio": 3 },
+    "timestamp": "1453110642308"
+  },
+  {
+    "connections": {},
+    "ongoingRequests": { "rest": 0, "socketio": 0 },
+    "completedRequests": { "socketio": 40 },
+    "failedRequests": {},
+    "timestamp": "1453110643308"
   }
 ]
 ```
