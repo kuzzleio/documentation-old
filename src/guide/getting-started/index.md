@@ -92,6 +92,10 @@ cd "kuzzle-playground"
 npm install kuzzle-sdk
 ```
 
+<aside class="notice">
+If you are performing a clean install you might see some `UNMET PEER DEPENDENCY` warnings, these are safe to ignore as they refer to optional dependencies.
+</aside>
+
 Then, create an `init.js` file and start by adding the code below. This will load the Kuzzle Javascript SDK:
 
 ```javascript
