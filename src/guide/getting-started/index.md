@@ -1,7 +1,7 @@
 ---
 layout: full.html
 algolia: true
-title: Getting started
+title: Getting Started
 description: learn kuzzle in a few steps
 order: 0
 ---
