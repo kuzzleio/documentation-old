@@ -10,63 +10,57 @@ subheader-title: Introduction
 
 # Introduction
 
-Kuzzle is a ready-to-use, **on-premises backend** that enables you to manage your persistent data and be notified in real-time on whatever happens to it. It also provides you with a flexible and powerful user-management system.
+Kuzzle Backend is a ready-to-use, **open-source**, **on-premises** suite that allows you to build modern web, mobile and IoT applications in no time. Thanks to its built-in features you can easily:
 
-Kuzzle enables you to build modern web applications and complex IoT networks in no time.
+* **connect your apps** using our available SDKs and multiple protocols.
+* **manage your data** using the built-in storage engine.
+* **trigger real-time notifications** using our pub/sub engine.
+* **manage authentication** using Oauth2 and many other authentication strategies.
+* **customize your backend** using the plugins engine and your own code.
 
-* **Persisted data**: store your data and perform advanced searches on it.
-* **Real-time notifications**: subscribe to fine-grained subsets of data.
-* **User Management**: login, logout and security rules are no more a burden.
-* **Extensible**: fit Kuzzle to your needs by leveraging the plugin system.
+## Connect your apps
 
-## Persistent data
+Kuzzle Backend ships with a set of open-source [SDKs]({{ site_base_path }}sdk-reference) for a variety of programming languages:
 
-Kuzzle relies on [Elasticsearch](https://www.elastic.co/) to store and fetch persistent data.
-You can perform a variety of CRUD and fine-grained search operations on persistent data.
-Please refer to the [dedicated section]({{ site_base_path }}guide/essentials/persisted) for more details.
-
-## Real-time notifications
-
-Kuzzle enables you to set up subscriptions to sets of data, in order to be notified in real-time about whatever happens to them.
-You can create a subscription by selecting a set of data. Selections (also called **filters**) are expressed in a
-Domain-specific Language (DSL) that we tailored for this purpose.
-Please refer to the [dedicated section]({{ site_base_path }}guide/essentials/real-time) for more details.
-
-## SDK
-
-Kuzzle ships with a set of open-source [SDK]({{ site_base_path }}sdk-reference) for a variety of languages:
-
-- [Javascript](https://github.com/kuzzleio/sdk-javascript) (NodeJS & Browsers)
+- [Javascript](https://github.com/kuzzleio/sdk-javascript) (Node.js & Browsers)
 - [Android](https://github.com/kuzzleio/sdk-android)
 - [PHP](https://github.com/kuzzleio/sdk-php)
-- C (planned)
+- C (coming soon)
 
-## Supported protocols
-
-Kuzzle supports a variety of communication protocols.  
-For the time being, Kuzzle supports the following protocols:
+Additionally, Kuzzle Backend supports a variety of communication protocols:
 
 - HTTP
 - Websocket
 - Socket.io
 - MQTT (via plugin)
 
-You can directly interact with Kuzzle using the [Kuzzle API reference]({{ site_base_path }}api-documentation).
+You can interact directly with Kuzzle Backend through its API, read the [Kuzzle API reference]({{ site_base_path }}api-documentation) for more information.
 
-## Authentication
+## Manage your data
 
-Kuzzle supports a variety of authentication strategies via [PassportJS](http://passportjs.org/). Local and OAuth-based authentication is natively supported, but you can also add your own custom strategy.
+Kuzzle relies on [Elasticsearch](https://www.elastic.co/) to store, fetch and peform a variety of CRUD and fine-grained search operations on persistent data. Please refer to our [working with persistent data]({{ site_base_path }}guide/essentials/persisted) section for more details.
 
-Please refer to the [dedicated section]({{ site_base_path }}guide/essentials/security) for more details.
+## Trigger real-time notifications
 
-## Plugins
+Kuzzle lets you to setup subscriptions on specific datasets in order to trigger real-time notifications based on different data events.
+To define what events will trigger a notification we use **filters**, which describe what data to observe using a domain-specific language (DSL) that we tailored for this purpose.
 
-Kuzzle is extensible in many ways. Plugins enable you to
+Please click [here]({{ site_base_path }}guide/essentials/real-time) for more details.
 
-* trigger actions on data-related events,
-* intercept the data flow at any point of its lifecycle,
-* add custom methods to the public API,
-* add new communication protocols,
-* add new authentication strategies.
+## Manage Authentication
 
-Please refer to the [dedicated section]({{ site_base_path }}guide/essentials/plugins) for more details.
+Kuzzle supports a variety of authentication strategies via [Passport.js](http://passportjs.org/). Local and OAuth-based authentication is natively supported, but you can also add your own custom strategy.
+
+Please click [here]({{ site_base_path }}guide/essentials/security) for more details.
+
+## Customize your backend
+
+Kuzzle Backend can be tailored to your specific requirements thanks to the plugin engine, which lets you:
+
+* trigger actions on data-related events
+* intercept the data flow at any point of its lifecycle
+* add custom methods to the public API
+* add new communication protocols
+* add new authentication strategies
+
+Please click [here]({{ site_base_path }}guide/essentials/plugins) for more details.
