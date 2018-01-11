@@ -37,7 +37,7 @@ var kuzzle = new Kuzzle('localhost', () => {
 ```
 
 Assuming that you have an `admin` user with `test` password in your Kuzzle Backoffice, the code above does the following:
-* loads the `Kuzzle` SDK from it NPM package,
+* loads the `Kuzzle` SDK from its NPM package,
 * instantiates the SDK by connecting it to the Kuzzle Backoffice running on `localhost`,
 * _after the SDK connected to Kuzzle Backend_, it performs a login for the `admin` user,
 * displays to console a success message or an error message whether the login has succeeded or failed.
