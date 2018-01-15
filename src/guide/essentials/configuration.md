@@ -1,22 +1,22 @@
 ---
 layout: full.html
 algolia: true
-title: Configuring Kuzzle
+title: Configure Kuzzle Backend
 order: 200
 ---
 
-# Configuring Kuzzle
+# Configuring Kuzzle Backend
 
-The **complete default configuration** of Kuzzle is stored in the [kuzzlerc file](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample) at the root of the installation directory.
+The Kuzzle Backend **configuration** is stored in a [kuzzlerc file](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample) found in the root folder of your Kuzzle Backend installation.
 
-Kuzzle uses [rc](https://github.com/dominictarr/rc) to **override** its default configuration. The most common ways to do it is:
+Kuzzle Backend uses [rc](https://github.com/dominictarr/rc) to **override** its default configuration by either:
 
-- via a `.kuzzlerc` file ([example here](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample));
-- via environment variables prefixed with `kuzzle_`.
+- loading parameters from a `.kuzzlerc` file ([sample file](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample));
+- loading parameters from environment variables with a `kuzzle_` prefix.
 
-### Example 1: configuring Kuzzle via a custom `.kuzzlerc` file
+### Example 1: configuring Kuzzle Backend using a custom `.kuzzlerc` file
 
-You can write your custom config in `$HOME/.kuzzlerc` or [any other valid location](https://github.com/dominictarr/rc/blob/master/README.md#standards):
+You can write your custom config parameters in a `.kuzzlerc` and store it in `$HOME/.kuzzlerc` or [one of these locations](https://github.com/dominictarr/rc/blob/master/README.md#standards):
 
 ```json
 {
@@ -29,20 +29,20 @@ You can write your custom config in `$HOME/.kuzzlerc` or [any other valid locati
 }
 ```
 
-### Example 2: configuring Kuzzle via Environment Variables
+### Example 2: configuring Kuzzle Backend using Environment Variables
 
-The name of the environment variables must mimic the structure of the configuration object to override:
+The name of the environment variable must match the path of the configuration parameter in the `.kuzzlerc` file. To set the name of the environment variable:
 
-* the variable needs to be prefixed with `kuzzle_`,
-* the `__` correspond to the levels of nesting in the configuration object (e.g. `kuzzle_services__db__host` corresponds to `services.db.host`).
+* Use the prefix `kuzzle_`,
+* then append the parameter path (as defined in the  `.kuzzlerc` file) by using a **double underscore** `__` to separate each level of its hierarchy. 
+
+For example, the `.kuzzlerc` parameter `services.db.host` in example 1, is represented by the environment variable `kuzzle_services__db__host`:
 
 ```bash
-#!/bin/bash
-
-kuzzle_services__db__host="<DB_HOST>" node bin/kuzzle start
+export kuzzle_services__db__host="<DB_HOST>"
 ```
 
-Environment variables are particularly handy to set your custom configuration **through a Docker container**. It is very easy to pass environment variables via the `environment` section of a `docker-compose.yml` file. Take a look at how we pass environment variables to Kuzzle in our default docker-compose file:
+Environment variables are particularly handy when running Kuzzle Backend in a **Docker** container. Using **Docker Compose**, they can easily be configured in the `environment` section of the `docker-compose.yml` file. For example, here's how we pass environment variables to Kuzzle Backend in our default docker-compose file:
 
 ```yaml
 version: '2'
@@ -76,5 +76,5 @@ services:
 ```
 
 <aside class="notice">
-  For an exhaustive list of configuration parameters, please refer to the <a href="https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample">kuzzlerc</a> file.
+  For an exhaustive list of configuration parameters, please refer to the <a href="https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample">sample</a> kuzzlerc file.
 </aside>
