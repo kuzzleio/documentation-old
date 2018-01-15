@@ -1,51 +1,48 @@
 ---
 layout: full.html
 algolia: true
-title: Installing Kuzzle Backoffice
+title: Installing Kuzzle Console
 order: 100
 ---
 
-# Installing Kuzzle Backoffice
+# Installing Kuzzle Console
 
-The Kuzzle Backoffice is a handy **web application** that helps you administrate Kuzzle. You can use it to **manage your data**, subscribe to **real-time notifications** and manage **security** rules.
+The Kuzzle Console is a web application that lets you manage your Kuzzle Backend, including **data**, **real-time notifications** and **security**.
 
-You can use the <a href="http://kuzzle-backoffice.netlify.com/">publicly hosted Kuzzle Backoffice</a>.
-If you want to host the Kuzzle Backoffice on your own server, you can download the source code [here](https://github.com/kuzzleio/kuzzle-backoffice/releases).
+If you don't want to install Kuzzle Console yourself you can use our <a href="http://kuzzle-backoffice.netlify.com/">publicly hosted</a>  Kuzzle Console. Otherwise, grab the source code [here](https://github.com/kuzzleio/kuzzle-backoffice/releases) and install it on your own environment.
 
-In both cases, you'll be able to <a href="{{ site_base_path }}guide/essentials/installing-backoffice/#select-the-kuzzle-server-to-connect-to">select the Kuzzle server</a> you want to manage once the Backoffice starts up.
+In both cases the configuration is the same and you'll be able to select which <a href="{{ site_base_path }}guide/essentials/installing-backoffice/#select-the-kuzzle-server-to-connect-to">Kuzzle Backend</a> installation that you want to manage.
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a>
+Having trouble? Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzzle">Gitter!</a> We're happy to help.
 </aside>
 
-## Select the Kuzzle server to connect to
+## Configure Kuzzle Backend Connection
 
-The Kuzzle Backoffice automatically looks for a Kuzzle server on `localhost:7512`. If none is present, you will be prompted to choose a Kuzzle instance to connect to.
+The Kuzzle Console automatically searches for Kuzzle Backend on `localhost:7512` and will be prompt you to introduce your own host and port if it is not detected.
 
-You can tell the Backoffice to connect to any Kuzzle server by clicking on the **"Choose Environment"** dropdown menu, then by selecting **"Create new"**.
+At any time, you can reconfigure Kuzzle Console to connect to any Kuzzle Backend installation by clicking on the **"Choose Environment"** dropdown menu and then selecting **"Create new"**. This feature allows you to manage multiple Kuzzle Backend installations on a single Kuzzle Console.
 
-![Kuzzle Backoffice is trying to connect to a Kuzzle server]({{ site_base_path }}assets/images/kuzbo-connecting.png)
+![Kuzzle Console is trying to connect to Kuzzle Backend]({{ site_base_path }}assets/images/kuzbo-connecting.png)
 
-Create a new Backoffice environment by providing the address of the Kuzzle server you want to administrate. You can associate it with a custom **name** (e.g. "Development" or "My First Kuzzle") and a **color** (e.g. red may be a good idea for production environments).
+To create a connection to Kuzzle Backend, provide its **name** (e.g. "Development" or "My First Kuzzle"), **address** (or hostname) and **port**. Optionally, select a **color** to identify the connection (e.g. red could be used to identify production environments).
 
-<aside class="success">Your Kuzzle Backoffice is connected to Kuzzle.</aside>
+<aside class="success">Your Kuzzle Console is now connected to Kuzzle Backend.</aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
+Having trouble? Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzzle">Gitter!</a> We're happy to help.
 </aside>
 
-## Create an admin account
+## Create an Admin Account
 
-At this point, Kuzzle is still pristine, which means that no admin account has been set-up: this means that the `anonymous` user has full rights on the server.
+At this point the Kuzzle Backend is not secure and any `anonymous` user has full access. The Kuzzle Console configurator will automatically request that an Admin Account be created. For the purpose of this tutorial, leave the **reset default and anonymous rights** unchecked, as we will use the `anonymous` account in the next steps.
 
-![Kuzzle Backoffice prompts the creation of a first admin account]({{ site_base_path }}assets/images/kuzbo-firstadmin.png)
+![Kuzzle Console requests that an admin account be created]({{ site_base_path }}assets/images/kuzbo-firstadmin.png)
 
-The Backoffice will prompt you with an admin account name and a password. **Leave the "Reset anonymous account rights" unchecked**, as we will use the `anonymous` account in the next steps of this tutorial.
+Once the Admin Account credentials have been created, use them to login.
 
-Once you created the admin account, use its credentials to log-in.
-
-<aside class="success">You are now able to manage Kuzzle via the Backoffice.</aside>
+<aside class="success">You can now manage Kuzzle Backend via the Console.</aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle-bo">Get in touch with us on Gitter!</a> We'll be happy to help.
+Having trouble? Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzzle">Gitter!</a> We're happy to help.
 </aside>
