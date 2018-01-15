@@ -1,7 +1,7 @@
 ---
 layout: full.html
 algolia: true
-title: Installing Kuzzle Backend
+title: Install Kuzzle Backend
 order: 0
 ---
 
