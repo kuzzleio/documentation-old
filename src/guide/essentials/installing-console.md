@@ -1,7 +1,7 @@
 ---
 layout: full.html
 algolia: true
-title: Installing Kuzzle Console
+title: Install Kuzzle Console
 order: 100
 ---
 
