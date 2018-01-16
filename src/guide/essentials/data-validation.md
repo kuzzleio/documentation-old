@@ -7,23 +7,21 @@ order: 500
 
 # Data Validation
 
-One common need when you are dealing with data is validation. Every time you create new documents, update them or publish real-time messages, you may want to **check that their content meets a given set of criteria**.
+One common requirement when you are managing data is to perform **data validation**. In real world applications you may need to check that any newly created or updated document meet a certain criteria.
 
-The most common example is the "e-mail field validation". Imagine you provide a registration form to your users to collect their name and e-mail. It's quite vital to you that the user provides a valid e-mail address.
+A common example is **email validation**. Let's say you have developed a registration page where you request a user's name and email and you want to ensure that the email they provide is valid.
 
-Instead of leaving you with the burden of coding this logic, Kuzzle natively provides a way to validate your data input against a validation schema. It enables you to define the set document fields to validate and provides you with [an extended set of validation rules]({{ site_base_path }}validation-reference).
+With Kuzzle Backend, instead of programming the validation logic yourself, you can pick from a set of predefined [validation patterns]({{ site_base_path }}validation-reference). Validations are defined in a validation schema which determines what pattern is linked to what field, every time Kuzzle Backend receives input data, it checks this validation schema and returns an error if a validation pattern fails. The validation schema can be configured in the `validation` field of the [configuration file]({{ site_base_path }}guide/essentials/configuration).
 
-This way, every time Kuzzle receives a data input, it checks it against the validation schema and returns a **standard error** when the validation fails.
-
-You can specify the validation rules in the kuzzle [configuration file]({{ site_base_path }}guide/essentials/configuration) in the `validation` field.
-
-You can take a look at the [Kuzzle Data Validation Reference]({{ site_base_path }}validation-reference) for a straight dive, or keep reading for a smoother introduction.
+For a detailed look at data validation, please refer to our [Data Validation Reference]({{ site_base_path }}validation-reference).
 
 ---
 
-## Basic validation
+## Basic Validation
 
-The place to specify your validation schema is the `validation` field in your kuzzlerc file. A validation schema has a [hierarchical structure]({{ site_base_path }}validation-reference/schema), where you specify a set of rules per collection.
+A validation schema is defined using a [hierarchical]({{ site_base_path }}validation-reference/schema) structure that contains a set of rules within an index, collection, and document field.
+
+For example, below is a validation schema for the `onlineshop` index  and `products` collection that defines the validation pattern for field `price` and field `productDescription`:
 
 ```json
 {
@@ -46,19 +44,21 @@ The place to specify your validation schema is the `validation` field in your ku
 }
 ```
 
-Let's take a look at what we just did here.
+Let's take a look at what this validation schema does:
 
-* We defined a set of rules for the documents contained in the `products` collection, within the `onlineshop` index.
-* We specified the field `price` as mandatory (which means that it must have a value) and of type `Number`.
-* We specified the field `productDescription` as of type `String`, with a sorry-ish default value.
+* It defines a set of rules for documents in the `products` collection of the `onlineshop` index.
+* It ensures that `price` exists and is a `Number`.
+* It ensures that `productDescription` is a `String` and has a value when none is provided.
 
-Take a look at the [Validation Fields Reference]({{ site_base_path }}validation-reference/fields/fields/#fields) for a complete insight of all the available specifications.
+For a complete list of validation patterns please refer to our [Validation Patterns Reference]({{ site_base_path }}validation-reference/fields/#fields).
 
 ---
 
-## Basic validation with type options
+## Type Options
 
-Some field types admit options that can be used to add constraints to these fields.
+Type Options can be used to provide advanced validation of certain fields. These are only available for some field types.
+
+Below is an example of how the `range` type option is used to ensure that the field `price` is greater than zero:
 
 ```json
 {
@@ -86,16 +86,20 @@ Some field types admit options that can be used to add constraints to these fiel
 }
 ```
 
-In the example above, we specified that the value of the field `price` (of documents contained in the `products` collection) must be greater than 0 (because we do not want to make an online shop that gives products away). We leveraged the `typeOption range`, that you can look-up in the [Data Validation Reference]({{ site_base_path }}validation-reference/fields/fields/#field-typeoptions).
+ For more information regarding Type Options, please refer to [this]({{ site_base_path }}validation-reference/fields/#field-typeoptions) section of the Data Validation Reference.
+
 
 ---
 
-## Complex validation via the DSL
+## Advanced Validation
 
-When the validation fields are not enough for your need, or you want conditional validation,
-you can switch gears and create a complex validation specification via the [filtering DSL]({{ site_base_path }}kuzzle-dsl)
-(the same DSL used to create real-time subscriptions).
-The idea is pretty simple: you specify a filter that documents must match in order to be valid.
+If the basic validation functionality doesn't meet your requirements, you can take advantage of the [filtering DSL]({{ site_base_path }}kuzzle-dsl) to create complex validation specifications. 
+
+<aside class="notice">
+This is the same DSL used to create real-time subscriptions.
+</aside>
+
+The idea is simple: use the DSL to specify a filter that can be used to validate documents. For example, here we ensure that at least one of the fields `price` or `vatPrice` exists by placing a DSL filter in the `validators` field of the validation schema:
 
 ```json
 {
@@ -147,7 +151,5 @@ The idea is pretty simple: you specify a filter that documents must match in ord
 }
 ```
 
-In the example above, we specified that at least one of the fields `price` or `vatPrice` must exist (because if the product has no price, we can't sell it).
-We leveraged the `exists` term with the `or` operand, that you can look-up in the [Kuzzle DSL Reference]({{ site_base_path }}kuzzle-dsl/terms/exists).
+In the example above, we used both the `exists` operator and the `or` operator to build our validation rule. For more information take a look at our [DSL Reference]({{ site_base_path }}kuzzle-dsl/terms/exists).
 
-You can take a look at the [Kuzzle Data Validation Reference]({{ site_base_path }}validation-reference) for deeper insight.
