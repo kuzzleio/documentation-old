@@ -140,7 +140,7 @@ We can [**create a new document**]({{ site_base_path }}api-documentation/control
 Let's create a new document in the `mycollection` collection of the `myindex` index: 
 
 ```bash
- curl -X POST -H "Content-Type: application/json" -d '{"message": "Hello, world!"}' http://localhost:7512/myindex/mycollection/_create
+ curl -X POST -H "Content-Type: application/json" -d '{"message": "Hello World!"}' http://localhost:7512/myindex/mycollection/_create
 ```
 
 You should receive the following response (with your own `_id` value):
@@ -169,7 +169,7 @@ You should receive the following response (with your own `_id` value):
     },
     "created": true,
     "_source": {
-      "message": "Hello, world!"
+      "message": "Hello World!"
     },
     "_meta": {
       "author": "-1",
@@ -217,7 +217,7 @@ You should receive the following response (with your own `_id` value):
     "_version": 1,
     "found": true,
     "_source": {
-      "message": "Hello, world!"
+      "message": "Hello World!"
     },
     "_meta": {
       "author": "-1",
