@@ -1,21 +1,19 @@
 ---
 layout: full.html
 algolia: true
-title: Real-time notifications
+title: Real-time Notifications
 order: 600
 ---
 
-# Real-time notifications
+# Real-time Notifications
 
-Besides persisting data and retrieving it via advanced searches, Kuzzle features highly customizable push notifications, by enabling **live subscriptions** to any set of data.
-
-Live subscriptions are great to **keep track of the evolution** of a portion of your data you are interested in.
+Kuzzle Backend features highly customizable push notifications thanks to its **pub/sub engine** which lets you configure live subscriptions to any dataset. These live subscriptions are a great way to **track** changes in specific subsets of data.
 
 ---
 
 ## Introduction
 
-Imagine you are developing [a collaborative TO-DO list](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) application. All the TO-DO items are persisted in Kuzzle (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
+Imagine you are developing a collaborative TO-DO application like [this](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) one. All the TO-DO items are persisted in Kuzzle Backend (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
 
 But imagine that one of the users (let's call her Ann), adds a new TO-DO item. In order for other users (let's call them Tom and Matt) to display these new item, they need to perform a new document search on the corresponding data collection. They will not see the new items until they refresh (or restart) their application.
 
