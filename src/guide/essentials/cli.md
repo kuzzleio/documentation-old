@@ -1,29 +1,29 @@
 ---
 layout: full.html
 algolia: true
-title: Command Line Interface
+title: Command Line Interface (CLI)
 order: 900
 ---
 
-# Command Line Interface
+# Command Line Interface (CLI)
 
-Kuzzle ships with a [Command line interface](https://en.wikipedia.org/wiki/Command-line_interface) which enables you to:
+Kuzzle Backend ships with a [Command line interface](https://en.wikipedia.org/wiki/Command-line_interface) which allows you to:
 
-* start a Kuzzle Core,
-* shutdown a Kuzzle Core gracefully
-* create the first administrator user
-* reset Kuzzle internal data _(use with caution !)_
-* clear Kuzzle's cached data
-* produce a diagnostic dump of a Kuzzle Core current state
+* Start Kuzzle Backend
+* Gracefully shutdown Kuzzle Backend
+* Create a first Administrator
+* Reset Kuzzle Backend internal data _(use with caution!)_
+* Clear Kuzzle Backend cache
+* Diagnose the Kuzzle Backend installation
 
 <aside class="warning">
-If you are running Kuzzle in a Docker container, you will have to <a href="https://docs.docker.com/engine/reference/commandline/exec/">enter the Kuzzle container</a> to run these commands.
+If you are running Kuzzle Backend in a Docker container, you will have to execute these commands from within the <a href="https://docs.docker.com/engine/reference/commandline/exec/">running container</a>.
 </aside>
 
-```bash
-#!/bin/bash
+The CLI is located in the `bin` folder of your Kuzzle Backend installation. To get a list of commands and options run the CLI:
 
-./bin/kuzzle
+```bash
+./bin/kuzzle 
 
 #   Usage: kuzzle [options] [command]
 #
@@ -50,14 +50,12 @@ If you are running Kuzzle in a Docker container, you will have to <a href="https
 ## createFirstAdmin
 
 ```bash
-#!/bin/bash
-
 ./bin/kuzzle createFirstAdmin
 ```
 
-When Kuzzle runs for the first time, no users are defined and the anonymous user is granted with super-admin rights.
+When Kuzzle Backend runs for the first time, no users are defined and the anonymous user is granted full access rights.
 
-The `createFirstAdmin` command lets you define an administrator user and set your own permissions.
+The `createFirstAdmin` command lets you create an administrator to manage security.
 
 <aside class="notice">NB: This command can only be run interactively</aside>
 
@@ -66,20 +64,16 @@ The `createFirstAdmin` command lets you define an administrator user and set you
 ## clearCache
 
 ```bash
-#!/bin/bash
-
 ./bin/kuzzle clearCache
 ```
 
-Kuzzle relies on the Redis service to store frequently accessed internal data. If you need to restart Kuzzle with a fresh cache, this command can come in hand.
+Kuzzle Backend uses Redis to store frequently accessed internal data. Use this command if you need to clear this data (cache).
 
 ---
 
 ## dump
 
 ```bash
-#!/bin/bash
-
 ./bin/kuzzle dump
 
 # [ℹ] Creating dump file...
@@ -89,25 +83,23 @@ Kuzzle relies on the Redis service to store frequently accessed internal data. I
 # [ℹ] You can send the folder to the kuzzle core team at support@kuzzle.io
 ```
 
-The `dump` command creates a snapshot of the state of Kuzzle, including:
+The `dump` command creates a snapshot of the state of Kuzzle Backend, including:
 
-* a coredump of Kuzzle Core
-* the current Kuzzle Core instance configuration
+* a coredump of Kuzzle Backend
+* the current Kuzzle Backend configuration
 * server logs
 * Node.js binary & properties
 * a list of OS properties
-* plugins configuration,
+* plugins configuration
 * usage statistics of the dumped instance
 
-The generated directory can be used to feed a crash report to the support team if you own a Kuzzle License.
+The generated directory can be used to feed a crash report to the support team if you own a Kuzzle Backend License.
 
 ---
 
 ## reset
 
 ```bash
-#!/bin/bash
-
 ./bin/kuzzle reset --help
 
 #    Usage: reset [options]
@@ -120,32 +112,28 @@ The generated directory can be used to feed a crash report to the support team i
 #      --noint                non interactive mode
 ```
 
-The `reset` command deletes all currently set configurations and users from the database.
+The `reset` command deletes all current configurations and users from the database.
 
-Only Kuzzle internal data are cleaned up: this command has no impact over plugins stored data, or stored documents.
+Note: this command has no impact on any plugins stored data, or on any Kuzzle Backend stored documents. 
 
 ---
 
 ## shutdown
 
 ```bash
-#!/bin/bash
-
 ./bin/kuzzle shutdown
 
 # [ℹ] Shutting down...
 # [✔] Done!
 ```
 
-The `shutdown` command allows to stop a Kuzzle Core instance after remaining requests are processed, ensuring that no unnecessary `Service Unavailable` errors are forwarded to clients.
+The `shutdown` command lets you stop a Kuzzle Backend instance after any remaining requests are processed, ensuring that no unnecessary `Service Unavailable` errors are returned to connected clients.
 
 ---
 
 ## start
 
 ```bash
-#!/bin/bash
-
 ./bin/kuzzle start --help
 
 #    Usage: start [options]
@@ -160,15 +148,15 @@ The `shutdown` command allows to stop a Kuzzle Core instance after remaining req
 #          --mappings <file>      apply mappings from file
 ```
 
-The `start` command starts a Kuzzle Core instance in the foreground.
+The `start` command starts a Kuzzle Backend instance.
 
-This command also allows to initialize the storage layer with preset mappings (`--mappings`) and documents (`--fixtures`).
+Using this command you can also initialize the storage layer mapping rules, using the mappings `--mappings` options, and the storage layer documents using the `--fixtures` option.
 
 #### `--mappings`
 
-Loads mappings from a file and applies them to the storage layer. 
+Loads mapping rules from a file and apply them to the storage layer. 
 
-The file must be a JSON file of the following structure: 
+The input file must be a JSON file with the following structure: 
 
 ```json
 {
@@ -186,11 +174,11 @@ The file must be a JSON file of the following structure:
 
 **Notes:**
 
-* the file may contain as many index and collection descriptions as necessary
-* field definitions follow the [Elasticsearch mapping format](https://www.elastic.co/guide/en/elasticsearch/reference/5.5/mapping.html)
-* Non-existing indexes or collections are automatically created
-* Mappings are loaded sequentially, one index/collection pair at a time. If a failure occurs, Kuzzle immediately interrupts its starting sequence
-* Mappings can be replayed across multiple Kuzzle start sequences, as long as they do not change in-between
+* The file can contain any number of index and collection configurations.
+* Field definitions follow the [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.5/mapping.html) mapping format.
+* If an index or collection does not exist, it will be created automatically.
+* Mapping rules are loaded sequentially, one index/collection pair at a time. If a failure occurs, Kuzzle Backend immediately interrupts the sequence.
+* Mapping rules can be replayed across multiple Kuzzle start sequences, as long as they do not change in-between.
 
 
 **Example:**
@@ -216,9 +204,9 @@ The file must be a JSON file of the following structure:
 
 ### `--fixtures`
 
-Reads documents from a file and loads them in the storage layer.
+Reads documents from a file and loads them into the storage layer.
 
-The file must be a JSON file, of the following format:
+The file must be a JSON file with the following structure:
 
 ```json
 {
@@ -233,10 +221,10 @@ The file must be a JSON file, of the following format:
 
 **Notes:**
 
-* the file may contain as many index and collection descriptions as necessary
-* each collection description is an array containing data to load, following the [bulk:import API]({{ site_base_path }}api-documentation/controller-bulk/import/)
-* Non-existing indexes or collections will throw errors
-* Fixtures are loaded sequentially, one index/collection pair at a time. If a failure occurs, Kuzzle immediately interrupts its starting sequence
+* The file can contain any number of index and collection configurations.
+* Each collection contains an array of data to load, just like the [bulk:import API]({{ site_base_path }}api-documentation/controller-bulk/import/).
+* If an index or collection does not exist, the load will fail.
+* Fixtures are loaded sequentially, one index/collection pair at a time. If a failure occurs, Kuzzle Backend immediately interrupts the sequence.
 
 
 **Example:**
