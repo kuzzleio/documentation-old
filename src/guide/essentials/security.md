@@ -11,7 +11,7 @@ Kuzzle Backend provides a full set of functionalities to configure fine-grained 
 
 ---
 
-## Securing a Fresh Install
+## Initial Setup
 
 When Kuzzle Backend is first installed there is no administrator account and anonymous users (i.e. unauthenticated users) have administrative privileges.
 
