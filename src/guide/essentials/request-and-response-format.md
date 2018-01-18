@@ -1,13 +1,13 @@
 ---
 layout: full.html
 algolia: true
-title: Request and Response format
+title: Request and Response Format
 order: 800
 ---
 
-# Request and Response format
+# Request and Response Format
 
-All transactions in Kuzzle are represented by a [Request](https://github.com/kuzzleio/kuzzle-common-objects#request) object. The object is created by the client to send a request to Kuzzle and returned by Kuzzle containing the response.
+Any access to a Kuzzle Backend resource must be made through a [Request](https://github.com/kuzzleio/kuzzle-common-objects#request). The object is created by the client to send a request to Kuzzle and returned by Kuzzle containing the response.
 
 The state of this object evolves along with the [lifecycle of the transaction]({{ site_base_path }}guide/essentials/request-and-response-format/#life-cycle).
 
