@@ -1,103 +1,104 @@
 ---
 layout: full.html
 algolia: true
-title: The Plugin System
+title: The Kuzzle Plugin Engine
 order: 1000
 ---
 
-# The Plugin System
+# The Kuzzle Plugin Engine
 
-Being able to grab a full-feature backend and run it quickly is very convenient, but Kuzzle is about more than that. As soon as you start developing real-life applications that live out in the wild, you need to **extend your backend with your own business-logic**.
-That's quite legitimate: some logic is sensible and cannot live on the client.
+Our prepackaged multi-feature backend solution will meet most project requirements, but in some cases you may want to **implement your own business logic**.
 
-For example, imagine your application needs to leverage a **third-party payment system**, such as Braintree. You don't want to put the client in charge of bearing API keys and tokens. Also, you will probably want to **keep track of orders** and payments, once the transactions successfully end. This should be also a concern of your backend. Also, you are not likely to allow your customers to purchase more items than available, right? At some point, **your backend has to validate the transaction** by comparing the ordered quantity with the available stocks.
+For example, imagine you are developing a mobile application that accesses a **third-party payment platform**, such as Braintree, through this third-party's API. For **security** reasons, you will want to avoid accessing the third-party's API directly from the mobile device. Also, you will not want users to purchase more items than are currently in stock, so your backend will need to **monitor** what has been purchased. To achieve all this, you will want to develop a custom Plugin that lets Kuzzle Backend communicate directly with the third-party payment platform.
 
-To make sure Kuzzle fits whatever needs you might have, it includes a powerful **[Plugin System]({{ site_base_path }}plugins-reference)** allowing you to add features to your server in a modular fashion. With Kuzzle Plugins you can:
+The **[Kuzzle Plugin Engine]({{ site_base_path }}plugins-reference)** is a powerful feature that ensures that Kuzzle Backend meets any project requirement. With The Kuzzle Plugin Engine you can:
 
-* use an existing plugin from the Kuzzle Plugins ecosystem (such as the [OAuth2 Authentication strategy](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth) or the [MQTT Protocol](https://github.com/kuzzleio/kuzzle-plugin-mqtt));
-* [create your own plugin]({{ site_base_path }}plugins-reference/plugins-features) from scratch.
+* select from a set of prebuilt plugins (such as the [OAuth2 Authentication Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth) or the [MQTT Plugin](https://github.com/kuzzleio/kuzzle-plugin-mqtt)).
+* [create your own plugin]({{ site_base_path }}plugins-reference/plugins-features) to meet your specific requirements.
 
 ---
 
 ## Plugin Types
 
-There are three main Plugin types, each one has specific features.
+There are three main Plugin types: core, worker and protocol. Each of these Plugin types have their own components.
 
 ### Core Plugins
 
-They are the most common type of plugins and are meant to extend the Kuzzle Core features. They are plugged on the Kuzzle Core at startup and they share its execution thread. A Core Plugin can extend Kuzzle with the following features:
+Core plugins are the most common type of Plugin and are used to add extended functionality to your Kuzzle Backend installation. They are loaded into Kuzzle Backend during startup and share its execution thread. A Core Plugin can add the following components:
 
-[Listen asynchronously]({{ site_base_path }}plugins-reference/plugins-features/adding-hooks), and perform operations that depend on data-related events. The chunk of data involved with the event is passed to the triggered callback, but the Kuzzle Core continues its execution without waiting for the callback to return.
+[Hooks]({{ site_base_path }}plugins-reference/plugins-features/adding-hooks): add an asynchronous listener that performs operations triggered by data events. When the event occurs, the data is sent to the listener and the Kuzzle Backend continues its process without waiting for the callback to complete.
 
-  _Example - "Write a log to a third-party log system every time a document is deleted"_. The [Logger Plugin](https://github.com/kuzzleio/kuzzle-plugin-logger), shipped with Kuzzle, uses this feature to log all the data-related events.
+  _Example - "Write a log to a third-party logging service every time a document is deleted"_. The [Logger Plugin](https://github.com/kuzzleio/kuzzle-plugin-logger) (shipped with Kuzzle Backend) uses this feature to log all the data-related events.
 
-[Listen synchronously]({{ site_base_path }}plugins-reference/plugins-features/adding-pipes), and perform operations that depend on data-related events. Multiple synchronous listeners can be chained, forming a pipeline. The chunk of data involved with the event is passed to one plugin to another in the pipeline, and it can be modified. The Kuzzle Core waits for the pipeline to return and receives then processes the potentially modified value. A plugin can even stop a request life-cycle, by returning a standard Error to the Kuzzle Core.
+[Pipes]({{ site_base_path }}plugins-reference/plugins-features/adding-pipes): add a synchronous listener that performs operations triggered by data events. Multiple synchronous listeners can be chained sequentially. When the event occurs, the data is passed through the series of synchronous listeners, each modifying the input data and returning the result to the next listener. The Kuzzle Backend waits until the last listener completes and returns its data. If the last listener returns a standard error, it will interrumpt the Kuzzle Backend lifecycle.
 
-  _Example - "Compare the ordered quantity with the available stocks and return an error if the amount of ordered items exceeds the stocks"_.
+  _Example - "Compare the ordered quantity with the available stock and return an error if the amount of ordered items exceeds the amount in stock"_.
 
-[Add a controller route]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) to expose new actions to the API.
+[Controllers & Routes]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers): add a route to expose new entries in the API.
 
-  _Example - "Expose a `checkout` API endpoint that handles the Braintree payment process"_.
+  _Example - "Expose a `checkout` API endpoint that handles a third-party payment process"_.
 
-[Add an authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) to the User authentication system.
+[Strategies]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy): add an authentication strategy to identify and authenticate users.
 
-  _Example - "Enable Kuzzle to authenticate users via the OAuth strategy"_
-  Kuzzle ships with an Authentication Plugin already bundled in its Community Edition, the [Local Strategy Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local). Thanks to PassportJS, more than 300 authentication strategies are readily available.
+  _Example - "Enable OAuth based authentication in Kuzzle Backend"_
+  Kuzzle Backend Community Edition ships with the [Local Strategy Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local) and thanks to PassportJS, more than 300 authentication strategies are readily available.
 
 ### Worker Plugins
 
-[Workers Plugins]({{ site_base_path }}plugins-reference/plugins-features/adding-hooks/#executing-hooks-in-separate-threads) are Core Plugins running on separate processes. The only feature they can add is to asynchronously listen to data-related events. They are useful when performing costly operations as they have no impact on Kuzzle performances.
+[Worker Plugins]({{ site_base_path }}plugins-reference/plugins-features/adding-hooks/#executing-hooks-in-separate-threads) are similar to Core Plugins but, unlike Core Plugins, they run in a separate execution thread than that of the Kuzzle Backend they're installed on . They are limited to the asynchronous processing functionality outlined above and are particularly useful when performing compute-intensive operations that would otherwise impact Kuzzle Backend's performance.
 
-_Example - "Compute a complex data-mining operation and commit the result to a third-party Business-Intelligence platform every time a document is changed"._
+_Example - "Compute a complex data-mining operation and commit the result to a third-party platform every time a document is changed"._
 
 ### Protocol Plugins
 
-[Protocol Plugins]({{ site_base_path }}plugins-reference/plugins-features/adding-protocol) extend Kuzzle networking capabilities by adding new network protocols.
+[Protocol Plugins]({{ site_base_path }}plugins-reference/plugins-features/adding-protocol) add extended networking capabilities to your Kuzzle Backend installation. These are useful if you need to handle various transport protocols.
 
-_Example - "Enable Kuzzle to interact with XMPP-oriented services"_
-Kuzzle ships with a Protocol Plugin already bundled in its Community Edition, the [MQTT Plugin](https://github.com/kuzzleio/kuzzle-plugin-mqtt).
+_Example - "Allow Kuzzle Backend to interact with XMPP-oriented services"_
+Kuzzle Backend Community Edition ships with the [MQTT Plugin](https://github.com/kuzzleio/kuzzle-plugin-mqtt).
 
 ---
 
-## How to install Plugin
+## Installing a Plugin
 
 <aside class="notice">
-If you are running Kuzzle in a Docker container, you will need to enter the container to access the installation directory.
+If you are running Kuzzle in a Docker container, you will need to access the running container's shell and then the Kuzzle Backend installation folder inside the container.
 </aside>
 
-To install a Plugin, you just need to make it accessible within the `plugins/enabled` directory (relative to the path of the Kuzzle installation directory).  
-A common practice is to copy the Plugin code in the `plugins/available` directory, and to create a symbolic link in `plugins/enabled` pointing to it. This way, enabling and disabling a plugin is just a matter of creating or deleting a symbolic link.
+To install a Plugin, you need to make it accessible in the `plugins/enabled` folder of your Kuzzle Backend installation.  
+
+A common practice is to first copy the Plugin to a `plugins/available` folder, and then creating a symbolic link from that folder to the `plugins/enabled` folder. This way, you can easily enable and disable a Plugin just by creating or deleting a symbolic link, respectively.
+
+Prior to loading the Plugin into Kuzzle Backend, you will need to load all of the Plugin depencies by running `npm install` from within the Plugin folder.
+
+To demonstrate, we are going to install the [**Core Plugin Boilerplate**](https://github.com/kuzzleio/kuzzle-core-plugin-boilerplate), a Plugin that uses all features available to a Core Plugin.
 
 
-We are going to install the [**Core Plugin Boilerplate**](https://github.com/kuzzleio/kuzzle-core-plugin-boilerplate), which demonstrates each feature of a Core Plugin:
-
-- [listen asynchronously]({{ site_base_path }}plugins-reference/plugins-features/adding-hooks), and perform operations that depend on data-related events;
-- [listen synchronously]({{ site_base_path }}plugins-reference/plugins-features/adding-pipes), and approve, modify and/or reject data-related queries;
-- [add a controller route]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) to expose new actions to the API;
-- [add an authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) to Kuzzle.
-
-
-Go to the Kuzzle installation directory and type:
+Go to the Kuzzle Backend installation folder and type:
 
 
 ```bash
-#!/bin/bash
-
+# Open plugins/available folder
 cd "plugins/available"
+
+# Download Plugin to plugins/available folder
 git clone https://github.com/kuzzleio/kuzzle-core-plugin-boilerplate.git
 
-cd "../enabled"
+# Install the Plugin dependencies
+npm install
+
+# Open plugins/enabled folder
+cd "../../enabled"
+
+# Creata the symbolic link from the enabled folder to the available folder
 ln -s "../available/kuzzle-core-plugin-boilerplate" .
 
 # Restart Kuzzle to reload Plugins
-pm2 restart KuzzleServer
+pm2 restart kuzzlebackend
 ```
 
 ---
 
-## Check your plugin installation
-
-Once Kuzzle has restarted you can check the server information at `http://localhost:7512/?pretty=true` which contains the new `kuzzle-core-plugin-boilerplate` plugin entry:
+Once Kuzzle Backend has restarted, check the server information at `http://localhost:7512/?pretty=true` to confirm that the Plugin has been installed. You should now see the `kuzzle-core-plugin-boilerplate` Plugin entry:
 
 ```json
 {
@@ -152,11 +153,11 @@ Once Kuzzle has restarted you can check the server information at `http://localh
 }
 ```
 
-Here you can see what your plugin has registered:
+Note that the Plugin description above contains a property for each Core Plugin component:
 - `hooks` asynchronous operations that depend on data-related events
 - `pipes` synchronous operations that depend on data-related events
-- `controllers` list of exposed actions to the API
-- `routes` list of exposed actions to the **REST** API
+- `controllers` list of exposed actions in the API
+- `routes` list of exposed actions in the **REST** API
 - `strategies` list of exposed authentication strategies
 
 
@@ -164,18 +165,18 @@ Here you can see what your plugin has registered:
 
 ## Managing Plugins
 
-To learn about how to manage or configure plugins, please check our [Plugin reference documentation]({{ site_base_path }}plugins-reference/managing-plugins).
+To learn more about how to manage or configure plugins, please check our [Plugin Reference Documentation]({{ site_base_path }}plugins-reference/managing-plugins).
 
 ---
 
-## Going further
+## Going Further
 
-To get a deeper insight on how Plugins work in Kuzzle, please refer to the [Plugin Reference]({{ site_base_path }}plugins-reference).
+To get more insight into how plugins work, please refer to the [Plugin Reference]({{ site_base_path }}plugins-reference).
 
-Here is a list of officials Plugins:
-- [**kuzzle-plugin-auth-passport-local**](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local): shipped with Kuzzle installation, authentication plugin
-- [**kuzzle-plugin-logger**](https://github.com/kuzzleio/kuzzle-plugin-logger): shipped with Kuzzle installation, worker plugin
+Here is a list of official plugins:
+- [**kuzzle-plugin-auth-passport-local**](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local): authentication Plugin shipped with Kuzzle Backend 
+- [**kuzzle-plugin-logger**](https://github.com/kuzzleio/kuzzle-plugin-logger): worker Plugin shipped with Kuzzle Backend
 - [**kuzzle-plugin-auth-passport-oauth**](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth): authentication plugin
 - [**kuzzle-plugin-mqtt**](https://github.com/kuzzleio/kuzzle-plugin-mqtt): protocol plugin
 
-You also can search for `kuzzle-plugin` topic on [github](https://github.com/search?q=topic%3Akuzzle-plugin&type=Repositories)
+To find more plugins, search the `kuzzle-plugin` topic on [github](https://github.com/search?q=topic%3Akuzzle-plugin&type=Repositories)
