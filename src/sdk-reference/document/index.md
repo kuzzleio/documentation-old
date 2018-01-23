@@ -89,6 +89,7 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Do
 | ``content`` | JSON Object | The content of the document | get/set |
 | ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
 | ``id`` | string | Unique document identifier | get/set |
+| ``meta`` | JSON Object | Document metadata | get |
 | ``version`` | integer | Current document version | get |
 
 **Notes:**  
