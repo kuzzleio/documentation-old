@@ -88,11 +88,10 @@ Kuzzle handles documents, either as realtime messages or as stored documents. Do
 | ``collection`` | string | The data collection associated to this document | get |
 | ``content`` | JSON Object | The content of the document | get/set |
 | ``id`` | string | Unique document identifier | get/set |
-| ``meta`` | JSON Object | Document [metadata]({{ site_base_path }}guide/essentials/document-metadata/) | get/set |
+| ``meta`` | JSON Object | Document [metadata]({{ site_base_path }}guide/essentials/document-metadata/) | get |
 | ``version`` | integer | Current document version | get |
 
 **Notes:**  
 
 * setting a new value to the ``content`` property is equivalent to calling ``setContent(data, false)``
-* setting a new value to the ``meta`` property is equivalent to calling ``setMeta(data, false)``
-* setting a new value to the ``id`` property will create a new document after `save` is called
+* setting a new value to the ``id`` property will force this value for this document
