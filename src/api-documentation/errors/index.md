@@ -60,7 +60,7 @@ A `ForbiddenError` is thrown if the requested action is not authorized for the c
 
 **status**: 504
 
-A `GatewayTimeoutError` is thrown if Kuzzle is too long to respond.
+A `GatewayTimeoutError` is thrown if Kuzzle takes too long to respond.
 
 <aside class="warning">
 Receiving this error does not guarantee the original request was not processed, just that it was not processed _in time_.<br>
