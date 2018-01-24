@@ -7,35 +7,32 @@ order: 0
 
 # Request Life-Cycle
 
-In this section we are going to focus on how Requests flow between Kuzzle components. We are going to analyze the life-cycle of a Request in order to understand in depth the Kuzzle Core architecture.
+In this section we are going to focus on how Requests are processed by Kuzzle Backend. We are going to analyze the life-cycle of a Request in order to understand the Kuzzle Backend architecture.
 
 ---
 
-## Reading content from Kuzzle
+## Reading Content 
 
-By "reading", we mean any action involving getting content from the persistent layer: getting a single document, count documents, or search contents with advanced filters.
+By "reading", we mean any action that involves getting content from the persistent layer: such as fetching a single document, counting documents, or searching documents using advanced filters.
 
 ### HTTP Request
 
-The schema below shows the [Architecture overview]({{ site_base_path }}guide/kuzzle-depth) showed above and highlights the components involved in reading actions:
+The diagram below shows Kuzzle Backend's [Architecture]({{ site_base_path }}guide/kuzzle-depth), components involved in a read request are highlighted:
 
 ![read_scenario_http_overview]({{ site_base_path }}assets/images/request-scenarios/read-http/overview.png)
 
-The following diagram shows how the Request flows between the client application, the different Kuzzle components, and the external services:
+The following diagram shows how a Request flows between the client application, the different Kuzzle Backend components, and the external services:
 
 ![read_scenario_http_details]({{ site_base_path }}assets/images/request-scenarios/read-http/details.png)
 
-* The HTTP client asks for a document via a HTTP GET Request. For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the collection `users`: `GET http://kuzzle:7512/mainindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
-* The proxy forwards the Request through the entry point to the HTTP Router, which handles it and forwards the formatted Request to the Funnel.
-
-The formatted Request `input` looks like the following:
-
+* The HTTP Client asks for a document via an HTTP GET Request. For instance, to retrieve the document '739c26bc-7a09-469a-803d-623c4045b0cb' in the `users` collection: `GET http://kuzzlebackend:7512/myindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
+* The proxy forwards the Request through the Proxy Entry Point to the HTTP Router, which formats the document and forwards it to the Funnel. The formatted Request `input` looks like this:
 ```javascript
 {
   "controller": "document",
   "action": "get",
   "resource": {
-    "index": "mainindex",
+    "index": "myindex",
     "collection": "users",
     "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
   }
@@ -43,14 +40,13 @@ The formatted Request `input` looks like the following:
 ```
 
 * The Funnel validates the data before sending the request to the Document Controller.
+
 * The Document Controller calls the Storage Engine.
-* The Storage Engine performs an HTTP request to get the data from the data storage.
 
-The content returned by Elasticsearch looks like the following:
-
+* The Storage Engine performs an HTTP request to get the data from the data storage. The content returned by Elasticsearch looks like this:
 ```javascript
 {
-  "_index": "mainindex",
+  "_index": "myindex",
   "_type": "users",
   "_id": "739c26bc-7a09-469a-803d-623c4045b0cb",
   "_version": 1,
@@ -69,21 +65,19 @@ The content returned by Elasticsearch looks like the following:
 }
 ```
 
-* Promises functions are resolved to forward the response message back to the HTTP Router.
-* The HTTP Router sends the response to the HTTP client.
+* The Storage Engine response is passed back through each component to reach the HTTP Client.
 
-### Websocket connection
+### Websocket Connection
 
-The schema below shows the [Architecture overview]({{ site_base_path }}guide/kuzzle-depth) showed above and highlights the components involved in reading actions:
+The diagram below shows Kuzzle Backend's [Architecture]({{ site_base_path }}guide/kuzzle-depth), components involved in a read request are highlighted:
 
 ![read_scenario_websocket_overview]({{ site_base_path }}assets/images/request-scenarios/read-websocket/overview.png)
 
-The following diagram shows how the Request flows between the client application, the different Kuzzle components, and the external services:
+The following diagram shows how a Request flows between the client application, the different Kuzzle Backend components, and the external services:
 
 ![read_scenario_websocket_details]({{ site_base_path }}assets/images/request-scenarios/read-websocket/details.png)
 
-* The client application opens a Websocket connection to Kuzzle Proxy and sends message containing the request. For instance, to retrieve the document `739c26bc-7a09-469a-803d-623c4045b0cb` in the collection `users`:
-
+* The client application opens a websocket connection to Kuzzle Backend's Proxy component and sends a request message. For instance, to retrieve the document with `_id=739c26bc-7a09-469a-803d-623c4045b0cb` in the `users` collection the message would look like this:
 ```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
@@ -94,39 +88,34 @@ The following diagram shows how the Request flows between the client application
 }
 ```
 
-The client then listens to the `<requestId>` event on the socket, like the following:
-
+* The client then listens to the `<requestId>` event on the socket, as follows:
 ```javascript
   this.socket.once("ed4faaff-253a-464f-a6b3-387af9d8483d", function(response) {
     callback(response);
   });
 ```
 
-* The Proxy forwards the Request through the Proxy Entry Point to the Funnel.
-
-The formatted Request `input` looks like the following:
-
+* The Proxy forwards the Request through the Proxy Entry Point to the Funnel. The formatted `input` Request looks like this:
 ```javascript
 {
   "controller": "read",
   "action": "get",
   "resource": {
-    "index": "mainindex",
+    "index": "myindex",
     "collection": "users",
     "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
   }
 }
 ```
 
-* The Funnel validates the message and forward the request to the Document Controller.
-* The Document Controller forwards the Request `input` to the Storage Engine.
-* The Storage Engine performs an HTTP request to get the data from the data storage.
+* The Funnel validates the data before sending the request to the Document Controller.
 
-The content returned by Elasticsearch looks like the following:
+* The Document Controller calls the Storage Engine.
 
+* The Storage Engine performs an HTTP request to get the data from the data storage. The content returned by Elasticsearch looks like this:
 ```javascript
 {
-  "_index": "mainindex",
+  "_index": "myindex",
   "_type": "users",
   "_id": "739c26bc-7a09-469a-803d-623c4045b0cb",
   "_version": 1,
@@ -145,41 +134,40 @@ The content returned by Elasticsearch looks like the following:
 }
 ```
 
-* Promises functions are resolved to forward the response message back to the Proxy Entry Point, who sends the response to the proxy.
-* The Proxy triggers the callback, which emits a `<requestId>` event to the Websocket client.
+* The Storage Engine response is passed back through each component to reach the Proxy.
+
+* The Proxy triggers the callback, which emits a `<requestId>` event to the websocket client.
 
 ---
 
-## Subscribing and writing content to Kuzzle
+## Subscribing and Writing Content
 
-This section explains what happens when clients send new content to Kuzzle.
+This section explains what happens when clients send new content to Kuzzle Backend.
 
-Kuzzle is able to handle two different types of input:
+Kuzzle Backend is able to handle two different input types:
 
 * **persisted data**, via the [Document controller]({{ site_base_path }}api-documentation/controller-document).
 * **real-time data**, via the [Realtime/Publish action]({{ site_base_path }}controller-realtime/publish).
 
-### Writing persistent data
+### Writing Persistent Data
 
-This subsection describes the process for **persistent** data, with an example using the "_create_" action (see also [API Documentation]({{ site_base_path }}api-documentation/controller-document/create)).
+This subsection describes the process for writing **persistent** data, using the "_create_" action (see also [API Documentation]({{ site_base_path }}api-documentation/controller-document/create)).
 
 ![persistence_overview]({{ site_base_path }}assets/images/request-scenarios/persistence/overview.png)
 
-Detailed workflow:
+The following diagram shows how a Request flows between the client application, the different Kuzzle Backend components, and the external services:
 
 ![persistence_scenario_details]({{ site_base_path }}assets/images/request-scenarios/persistence/details.png)
 
-* A client sends new content to Kuzzle, either via an HTTP request, through a Websocket connection or using a custom plugin protocol.
-* The Proxy forwards the Request through the Proxy Entry Point to the Funnel.
+* A client sends content to Kuzzle Backend, either via an HTTP request, via a websocket connection or via a custom protocol.
 
-The formatted Request `input` looks like the following:
-
+* The Proxy forwards the Request through the Proxy Entry Point to the Funnel. The formatted `input` Request looks like this:
 ```javascript
 {
   "controller": "document",
   "action": "create",
   "resource": {
-    "index": "mainindex",
+    "index": "myindex",
     "collection": "users"
   },
   "body": {
@@ -197,30 +185,32 @@ The formatted Request `input` looks like the following:
 ```
 
 * The Funnel forwards the Request to the Document Controller.
-* The Document Controller sends the request to the Storage Engine service, who sends the request to the data storage.
+
+* The Document Controller sends the request to the Storage Engine, who sends the request to the Storage Service.
+
 * Once the Storage Engine gets the response back, it replies to the Document Controller.
-* The Document Controller wraps the response in a Kuzzle Response and forwards it back to the user.
 
-### Subscribe and Notification scenario
+* The Document Controller wraps the response and forwards it back to the user.
 
-This subsection describes the life-cycle of real-time notifications about persistent and non persistent data, implementing the [Publish/Subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
+### Subscription and Notification
 
-Remember the [Architecture overview]({{ site_base_path }}guide/kuzzle-depth) and focus on the components involved by pub/sub actions:
+This subsection describes the life-cycle of real-time notifications which implement the [Publish/Subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
+
+The diagram below shows Kuzzle Backend's [Architecture]({{ site_base_path }}guide/kuzzle-depth), components involved in a pub/sub pattern are highlighted::
 ![pubsub_overview]({{ site_base_path }}assets/images/request-scenarios/pubsub/overview.png)
 
-#### 1st step: subscription
+#### 1st step: Subscription
 
-The following diagram shows how two different clients, a Websocket and a MQ one, subscribe to data.
+The following diagram shows how a client can subscribe to data.
 
 ![pubsub_scenario_details1]({{ site_base_path }}assets/images/request-scenarios/pubsub/details1.png)
 
-* The client application opens a Websocket or a MQ connection and sends a subscription message with some filters (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)). For instance, to be notified about any content posted to the collection `users`, containing a field `hobby` equals to `computer`:
-
+* The client application opens a websocket (or a MQ connection), sends a subscription message with some filters (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)), and listens for the `<requestId>` event on the socket. For instance, this message would subscribe to content posted to the `users` collection that contains a field `hobby` equal to `computer` (see the [Kuzzle DSL Reference]({{ site_base_path }}kuzzle-dsl/) for more details):
 ```javascript
 {
   "controller": "realtime",
   "action": "subscribe",
-  "index": "mainindex",
+  "index": "myindex",
   "collection": "users",
   "body": {
     "equals": {
@@ -231,20 +221,13 @@ The following diagram shows how two different clients, a Websocket and a MQ one,
 }
 ```
 
-See the [Kuzzle DSL Reference]({{ site_base_path }}kuzzle-dsl/) for more details.
-
-The client then listens to the `<requestId>` event on the socket.
-
-* The proxy forwards the subscription message to the Funnel.
-
-The formatted Request `input` looks like the following:
-
+* The Proxy forwards the subscription message to the Funnel. The formatted `input` Request looks like this:
 ```javascript
 {
   "controller": "realtime",
   "action": "subscribe",
   "resource": {
-    "index": "mainindex",
+    "index": "myindex",
     "collection": "users"
   },
   "body": {
@@ -257,13 +240,14 @@ The formatted Request `input` looks like the following:
 ```
 
 * The Funnel validates the request and forwards it to the Realtime Controller.
+
 * The Realtime Controller calls the HotelClerk internal component to create the subscription.
+
 * The HotelClerk calls the DSL component to normalize the filters and register the subscription (see [DSL Readme](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/dsl/README.md) for more details).
-* Promises functions are resolved to forward the channel ID from the HotelClerk to the Proxy
-* The Proxy triggers the callback, which emits a `<requestId>` event containing the subscribed channel ID to the Websocket client.
 
-Sample response content:
+* The response from the HotelClerk, that includes the channel ID, is passed through the components to the Proxy
 
+* The Proxy triggers the callback, which emits a `<requestId>` event containing the subscribed channel ID to the websocket client. Sample response content:
 ```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
@@ -271,7 +255,7 @@ Sample response content:
   "error": null,
   "controller": "realtime",
   "action": "subscribe",
-  "index": "mainindex",
+  "index": "myindex",
   "collection": "users",
   "result": {
     "roomId": "78c5b0ba-fead-4535-945c-8d64a7927459",
@@ -280,12 +264,12 @@ Sample response content:
 }
 ```
 
-* The client now listens to events from this `channel`, to be notified about new messages corresponding to the subscription filters.
+* The client now listens to events from the `channel`, and will be notified any time a message is processed that matches the subscription filters.
 
 
-#### 2nd step : notify about real-time actions
+#### 2nd step : Notification
 
-The following diagram shows how Kuzzle handles a new message and how subscribed clients are notified:
+The following diagram shows how Kuzzle Backend handles a new message and how subscribed clients are notified:
 
 ![pubsub_scenario_details2]({{ site_base_path }}assets/images/request-scenarios/pubsub/details2.png)
 
