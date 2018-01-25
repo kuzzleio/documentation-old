@@ -7,17 +7,17 @@ order: 200
 
 # Advanced Roles Definitions
 
-In the [User Guide]({{ site_base_path }}guide/essentials/security/#permissions), we have seen how to assign basic roles to profiles and profiles to users. Here, we are going to learn how to set complex and dynamic permissions.
+In the [Getting Started Guide]({{ site_base_path }}guide/essentials/security/#permissions), we discussed how to assign basic permissions to users through roles and profiles. We are now going to look at more complex and dynamic permissions.
 
-The privileges for a certain action (restricted to a given set of indexes and collections) must be expressed as a boolean value. So far, we hard-coded this value within the permissions configuration. In some cases, this will not fit your needs. In a collaborative TO-DO list application, for example, a user should not be allowed to update other user's items. This need is addressed by what we call Permission Closures.
+Kuzzle Backend permissions configuration uses boolean expressions to determine if a user can perform a specific action. So far we have shown how to limit acces by hard-coding a boolean value inside the permissions configuration; however, in some cases, you will want to perform a more complex evaluation. For example, in a collaborative TO-DO application, a user should not be allowed to update another user's list. We can address this by using **Permission Closures**.
 
 ---
 
 ## Permission Closures
 
-Instead of hard-coding the permission boolean value, we assign a function (a closure) that computes this value and returns it based on the execution context.
+With Permission Closures, instead of hard-coding the permission boolean value, we assign a function (or closure) that evaluates to a boolean value and determines whether or not an action is permitted.
 
-For example, if we need to allow users to update only their own documents, it can be done with this sample role:
+For example, here is a role definition that limits access to documents such that a document can only be modified by its owner:
 
 ```javascript
 let role = {
@@ -42,16 +42,16 @@ let role = {
 };
 ```
 
-Where:
+In the definition above:
 
 - `test` is the body of [the permission function]({{ site_base_path }}guide/kuzzle-depth/roles-definitions/#the-permission-function)
 - `args` is the parameter given to [the fetch definition function]({{ site_base_path }}guide/kuzzle-depth/roles-definitions/#the-fetch-definition)
 
 ---
 
-## The permission function
+## The Permission Function
 
-The permission function is executed in a sandbox with a limited context. Its body is the evaluation of the `test` parameter given in the role's definition and **must return a boolean value**.
+The permission function is executed in a sandbox with a limited context. It is defined in the `test` parameter of the role definition and **must return a boolean value**.
 
 The permission function has the following signature:
 
@@ -70,20 +70,21 @@ function ($request, $currentUserId, args) {
 };
 ```
 
-### $request
+### Permission Function Predefined Variables
 
-The [Request](https://github.com/kuzzleio/kuzzle-common-objects#request) object is the request that is currently being evaluated.  
 
-### $currentUserId
+There are a set of predefined variables which are automatically accessible in a Permission Function, these are:
 
-The `$currentUserId` variable contains the current user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid). It is an alias for `request.context.token.userId`.
+- `$request`: The complete [request](https://github.com/kuzzleio/kuzzle-common-objects#request) object being evaluated.
+- `$currentUserId`: The current user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) (equivalent to `request.context.token.userId`).
 
-### args
+### Permission Function Args
 
-The main purpose of the "closures" behavior is to define a role policy based on the current state of the persistence layer. This means that we need to fetch documents from the storage engine in order to use them within the permission function.
+The main purpose of the "closure" behavior is to grant permissions based on the current state of the storage layer. This means that, in order to determine if an action can be granted, we will first need to fetch documents used in the permission function from the storage layer.
 
-The `args` object contains these documents, as a result of the evaluation of the [fetch definition]({{ site_base_path }}guide/kuzzle-depth/roles-definitions/#the-fetch-definition).
-Each `args` item will look like:
+Documents fetched from the storage layer are stored in the `args` object as defined by the [fetch definition]({{ site_base_path }}guide/kuzzle-depth/roles-definitions/#the-fetch-definition).
+
+Each `args` object will look like:
 
 ```javascript
 {
@@ -92,19 +93,26 @@ Each `args` item will look like:
 }
 ```
 
-In the sample role above (`return args.document.content.user.id === $currentUserId`), the `update` action is allowed only if the fetched document contains an attribute `user.id` which value is the current user ID.
+In the sample role above (`return args.document.content.user.id === $currentUserId`), the `update` action is allowed only if the fetched document contains an attribute `user.id` with value equal to the current user's id.
 
 ---
 
 ## The Fetch Definition
 
-The Fetch Definition allows you to pass some documents fetched from the persistence layer to your permission function.
+The Fetch Definition allows you to pass documents fetched from the persistence layer to your Permission Function.
 
-In our sample role above, we fetch a `document` variable which contains the document that was requested for update, and we use it in the permission function to test if it is owned by the current user.
+In our sample role above, the `document` variable references the document we want to update and it is used in the Permission Function to test if the current user is the document owner.
 
-### args element structure
+### Fetch Definition Predefined Variables
 
-The `args` element is the place where we define our Fetch Definitions and has the following structure:
+There are a set of predefined variables which are automatically accessible in a Fetch Definition, these are:
+
+- `$request`: The complete request object being evaluated.
+- `$currentId`: The current request document id (equivalent to `$request.input.resource._id`).
+
+### Fetch Definition Args
+
+We define the Fetch Definition in a `args` object with the following structure:
 
 ```javascript
 {
@@ -124,22 +132,13 @@ The `args` element is the place where we define our Fetch Definitions and has th
 }
 ```
 
-You can define one or more variables inside the args element and, for each of them, the action to use to populate them. Each variable will then be available in [your permission function]({{ site_base_path }}guide/kuzzle-depth/roles-definitions/#the-permission-function) as `args.<variable>`.
+You can define one or more variables inside the `args` object and, for each variable, define the action used to populate it. Each of these variables will then be available in the [permission function]({{ site_base_path }}guide/kuzzle-depth/roles-definitions/#the-permission-function), accessible in the `args` object as follows: `args.<variable>`.
 
-### Embedded variables
+### Fetch Definition Actions
 
-Some variables are exposed by Kuzzle and can be used within your Fetch  Definition:
+#### GET
 
-- `$request`: The complete request object being evaluated.
-- `$currentId`: The current request document ID. It is an alias for `$request.input.resource._id`.
-
-### action types
-
-#### `get`
-
-The `get` action type performs a read/get call. It fetches a document by its ID.
-
-Example:
+The `get` action type fetches a document by its id. For example:
 
 ```javascript
 {
@@ -162,17 +161,17 @@ Example:
 }
 ```
 
-In the `args` field, we declare the following Fetch Definitions:
+In the `args` object above, we declare the following Fetch Definition:
 
-* `currentDocument`, which represents the document that the user wants to update and whose Fetch Definition is composed of:
-  - `index`: the index pointed by the current Request;
-  - `collection`: the collection pointed by the current Request;
-  - `$currentId`: the document ID pointed by the current Request, passed as an argument to the `get` action.
-* `anotherDocument`, which represents another document, just as an example, fetched the same way as the previous one but with different parameters.
+* `currentDocument` which represents the document that the user wants to update and whose Fetch Definition is composed of:
+  - `index`: the index where the collection resides
+  - `collection`: the collection in the index
+  - `$currentId`: the document id as defined in the `get` request
+* `anotherDocument` which represents another document, just as an example, fetched the same way as the previous one but with different parameters.
 
-#### `mget`
+#### MGET
 
-The `mget` action type takes a list of document ids for entry and returns the list of matching documents.
+The `mget` action type accepts a list of document ids and returns the list of matching documents.
 
 ```javascript
 {
@@ -192,9 +191,9 @@ The `mget` action type takes a list of document ids for entry and returns the li
 }
 ```
 
-In the `args` field, we declare a multi-valued Fetch Definition. Notice how the `mget` action takes an array of IDs rather than a single value.
+In the `args` object, we declare a multi-valued Fetch Definition. Notice how the `mget` action takes an array of ids rather than a single value.
 
-These documents are accessed in the Permission Function as follows:
+These documents are then accessed in the Permission Function as follows:
 
 ```javascript
 args.myDocuments = [
@@ -208,11 +207,9 @@ args.myDocuments = [
 ]
 ```
 
-#### `search`
+#### SEARCH
 
-The `search` action type performs a search on the persistence layer and returns the resulting documents. It behave exactly like a normal [document search]({{ site_base_path }}guide/essentials/persisted/#document-search).
-
-Example:
+The `search` action type performs a search on the persistence layer and returns the resulting documents. It is a typical [document search]({{ site_base_path }}guide/essentials/persisted/#document-search). For example:
 
 ```javascript
 {
@@ -244,6 +241,6 @@ args.myDocuments = [
 ]
 ```
 
-The content of `action.search` is directly passed to Elasticsearch.
+The content of `action.search` is passed directly to Elasticsearch.
 
-Please refer to [our Elasticsearch Cookbook]({{ site_base_path }}elasticsearch-cookbook/) for additional information on how to build your query.
+Please refer to our [Elasticsearch Cookbook]({{ site_base_path }}elasticsearch-cookbook/) for more help on how to build your search query.
