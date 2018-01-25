@@ -15,10 +15,10 @@ Kuzzle Backend uses [Passport.js](http://Passportjs.org/) to support numerous au
 
 In the diagram below, we highlighted the components of Kuzzle Backend's [Architecture]({{ site_base_path }}guide/kuzzle-depth) that are used in the authentication process:
 
-* The Auth Controller
-* The Passport Wrapper, which acts as an interface between Kuzzle controllers and the Passport library
-* The User and Token [Repositories](https://github.com/kuzzleio/kuzzle/tree/master/lib/api/core/models/repositories) where user data is stored
-* The Authentication strategy, implemented within a [dedicated plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy).
+* The Auth Controller: manages the authentication process.
+* The Passport Wrapper: acts as an interface between Kuzzle Backend and the Passport.js library.
+* The User and Token [Repositories](https://github.com/kuzzleio/kuzzle/tree/master/lib/api/core/models/repositories): stores user data.
+* The Authentication Strategy: implemented using a [dedicated plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy).
 
 ---
 
