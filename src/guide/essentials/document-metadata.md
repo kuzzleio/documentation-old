@@ -16,11 +16,11 @@ Whenever a document gets created, updated or deleted, Kuzzle Backend will add or
 Metadata can be viewed in the document's `_meta` field and contains the following properties:
 
 * `author`: The [unique identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) of the user who created the document.
-* `createdAt`: Timestamp of document creation (create or replace), in epoch-milliseconds format
-* `updatedAt`: Timestamp of last document update in epoch-milliseconds format, or `null` if no update has been made
-* `updater`: The [unique identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) of the user that updated the document, or `null` if the document has never been updated
-* `active`: The status of the document. `true` if the document is active and `false` if the document has been put in the trashcan
-* `deletedAt`: Timestamp of document deletion in epoch-milliseconds format, or `null` if the document has not been deleted
+* `createdAt`: Timestamp of document creation (create or replace), in epoch-milliseconds format.
+* `updatedAt`: Timestamp of last document update in epoch-milliseconds format, or `null` if no update has been made.
+* `updater`: The [unique identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) of the user that updated the document, or `null` if the document has never been updated.
+* `active`: The status of the document. `true` if the document is active and `false` if the document has been put in the trashcan.
+* `deletedAt`: Timestamp of document deletion in epoch-milliseconds format, or `null` if the document has not been deleted.
 
 Here is an example of a document and its `_meta` field:
 
