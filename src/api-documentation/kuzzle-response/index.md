@@ -1,22 +1,19 @@
 ---
 layout: full.html
 algolia: true
-title: Kuzzle response
-description: understand Kuzzle response mechanisms
+title: Kuzzle Backend Response
+description: understanding the Kuzzle Backend response mechanisms
 order: 300
 ---
 
-# Kuzzle response
+# Kuzzle Backend Response
 
-A `response` is the result of a query you send to Kuzzle.
-It may be the results of a search query, an acknowledgement of a created action, and so on.
-When you subscribe to a room, Kuzzle also sends a notification to your application in the form of a `response` object.
+A `response` is the result of a query you send to Kuzzle Backend.
+It may be the result of a search query, an acknowledgement to a create action, etc...
+When you subscribe to a room, Kuzzle Backend also sends a notification to your application in the form of a `response` object.
 
-A `response` is a JSON object as shown in the sample pane.
+A `response` is a JSON object with following format:
 
-_NB: For more details about status code and error object, see status-codes.md_
-
-## Example
 
 ```javascript
 {
@@ -44,3 +41,5 @@ _NB: For more details about status code and error object, see status-codes.md_
   }
 }
 ```
+_NB: For more details about status code and error object, see status-codes.md_
+
