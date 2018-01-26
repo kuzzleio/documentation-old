@@ -34,7 +34,7 @@ title: logout
 }
 ```
 
-**Response**
+>**Response**
 
 ```javascript
 {
