@@ -41,5 +41,6 @@ A `response` is a JSON object with following format:
   }
 }
 ```
+
 _NB: For more details about status code and error object, see status-codes.md_
 
