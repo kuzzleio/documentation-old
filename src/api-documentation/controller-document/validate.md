@@ -63,7 +63,10 @@ title: validate
 ```
 
 Validates data against existing validation rules. 
+
 If the document is valid, the `result.valid` value is `true`, if not, it is `false`.
 If the document is not valid, the `result.errorMessages` will contain detailed hints on what is wrong with the document.
-Note that if no validation specifications are set for the &lt;data index>/&lt;data collection>, the document will always be valid.
+
+Note that if no validation specifications are set for the `<data index>`/`<data collection>`, the document will always be valid.
+
 This request does **not** store or publish the document.
