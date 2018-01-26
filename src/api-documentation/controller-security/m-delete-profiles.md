@@ -63,7 +63,7 @@ title: mDeleteProfiles
 }
 ```
 
-Deletes a list of `profile` objects from Kuzzle's database layer given a list of profile ids.
+Deletes a list of security `profile` objects from Kuzzle Backend's database layer given a list of profile ids.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the profiles' deletion indexation (indexed profiles are available for `search`).
+with the value `wait_for` in order to wait for the profiles' deletion to be indexed (indexed profiles are available for `search`).

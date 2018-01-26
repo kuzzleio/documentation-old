@@ -121,12 +121,12 @@ title: createRestrictedUser
 }
 ```
 
-Creates a new `user` in Kuzzle, with a preset list of profiles.  
-The list of profiles is fixed, and needs to be configured in [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration/) (see `security.restrictedProfileIds` in `.kuzzlerc.sample`).
+Creates a new `user` in Kuzzle Backend, with a preset list of security profiles.  
+The list of security profiles is fixed, and needs to be configured in the [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration/) (see `security.restrictedProfileIds` in `.kuzzlerc.sample`).
 
-Correctly configured, this route allows users with limited rights to create other accounts, without risk for them to create accounts with unwanted privileges (e.g. an anonymous user creating his own account to register on an application).
+This method allows users with limited rights to create other accounts, but blocks them from creating accounts with unwanted privileges (e.g. an anonymous user creating his own account to register on an application).
 
 If a `user` already exists with the provided `_id`, an error is returned.  
-If not provided, the `_id` will be auto-generated.
+If not provided, the `_id` will be generated automatically.
 
 Other required information may be needed in the `credentials` attribute. Consult the corresponding authentication strategy plugin documentation for more information.

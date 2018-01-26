@@ -89,9 +89,9 @@ title: updateProfileMapping
 }
 ```
 
-At the first initialization, Kuzzle defines a default mapping for the `profiles` internal collection in the persistent data storage layer.
+When it first initializes, Kuzzle Backend defines a default mapping for the `profiles` internal collection in the persistent data storage layer.
 
-This mapping is intended to store the basic information of a profile; typically, its policies (roles and restrictions).
+This mapping is intended to store the basic information of a security profile; typically, its policies (roles and restrictions).
 
-But if you want to store more information about your profiles, Kuzzle's API offers a way to update the `profiles` data mapping using the
-[mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
+But if you want to store more information about your profiles, you can update the `profiles` data mapping using the Kuzzle Backend API and
+ElasticSearch's [mapping capabilities](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
