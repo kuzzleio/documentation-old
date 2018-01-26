@@ -1,11 +1,13 @@
 ---
 layout: full.html
 algolia: true
-title: A document has been created
-order: 200
+title: On Document Creation
+order: 100
 ---
 
-# A document has been created
+# On Document Creation
+
+Notification received when a document is created:
 
 ```javascript
 {

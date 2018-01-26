@@ -1,11 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: A user left this room
+title: A User Leaves a Room
 order: 800
 ---
 
-# A user left this room
+# A User Leaves a Room
 
 ```javascript
 {

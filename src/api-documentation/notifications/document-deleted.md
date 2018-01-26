@@ -1,11 +1,13 @@
 ---
 layout: full.html
 algolia: true
-title: A document has been deleted
-order: 500
+title: On Document Deletion
+order: 300
 ---
 
-# A document has been deleted
+# On Document Deletion
+
+Notification received when a document is deleted:
 
 ```javascript
 {
