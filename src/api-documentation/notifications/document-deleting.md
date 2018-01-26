@@ -1,11 +1,13 @@
 ---
 layout: full.html
 algolia: true
-title: A document is about to be deleted
+title: On Document Deletion Pending 
 order: 400
 ---
 
-# A document is about to be deleted
+# On Document Deletion Pending 
+
+Notification received when a document is about to be deleted:
 
 ```javascript
 {

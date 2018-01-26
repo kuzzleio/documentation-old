@@ -1,11 +1,13 @@
 ---
 layout: full.html
 algolia: true
-title: An updated document left your listening scope
+title: On Document Exiting Subscription Scope
 order: 600
 ---
 
-# An updated document left your listening scope
+# On Document Exiting Subscription Scope
+
+Notification received when a document is updated and exits a subscription scope:
 
 ```javascript
 {
