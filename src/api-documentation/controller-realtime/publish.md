@@ -64,8 +64,8 @@ title: publish
 }
 ```
 
-Sends a real-time message to Kuzzle. The message will be dispatched to all the clients
-who have subscribed to a subscription for which the filters match the message content.
+Sends a real-time message to Kuzzle Backend. The message will be dispatched to all the clients
+who have subscribed using filters that match the message content.
 
 <aside class="warning">
   The message is **not** persisted in the database.
