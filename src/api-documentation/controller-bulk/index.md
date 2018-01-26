@@ -9,11 +9,10 @@ order: 700
 
 # bulk controller
 
-A bulk import allows your application to perform multiple writing operations thanks to a single query.
-This is especially useful if you want to create a large number of documents. A bulk import will be
-a lot faster compared to creating them individually using `create` queries.
+A bulk import allows your application to perform multiple write operations in a single request.
+This is especially useful if you want to create a large number of documents. A bulk import request will execute faster than multiple requests to the `create` action.
 
-For other queries, the syntax for bulk imports closely resembles the
+The syntax for bulk imports closely resembles the
 [ElasticSearch Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-bulk.html).
 
 <aside class="warning">

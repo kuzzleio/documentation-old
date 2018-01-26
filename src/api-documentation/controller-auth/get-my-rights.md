@@ -55,5 +55,4 @@ title: getMyRights
     ],
 }
 ```
-
-Gets the rights of the user identified by the `JSON Web Token` provided in the query or the `Authorization` header.
+Returns the rights for the user linked to the `JSON Web Token`, provided in the query or the `Authorization` header.

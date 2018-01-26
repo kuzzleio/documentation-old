@@ -69,4 +69,4 @@ title: updateMyCredentials
 }
 ```
 
-Create credentials of the specified `<strategy>` for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Update the current user's credentials for the specified `<strategy>`. The credentials to send will depend on the authentication plugin and the authentication strategy.
