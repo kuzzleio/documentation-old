@@ -148,4 +148,4 @@ title: mCreateOrReplace
 
 Creates or replaces documents in the persistent data storage.
 
-Returns a [partial error]({{ site_base_path }}api-documentation/errors/#partialerror) (with status 206) if one or more documents can not be created or replaced.
+Returns a [partial error]({{ site_base_path }}api-documentation/errors/#partialerror) (with status 206) if one or more documents cannot be created or replaced.
