@@ -62,7 +62,7 @@ title: scan
 }
 ```
 
-Iterates incrementally the set of keys in the database using a cursor.
+Iterates incrementally over the set of keys in the database using a cursor.
 
 An iteration starts when the cursor is set to 0.  
 To get the next page of results, simply re-send the request with the updated cursor position provided in the result set.  
