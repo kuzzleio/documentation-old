@@ -56,9 +56,9 @@ title: setAutoRefresh
 }
 ```
 
-The `autoRefresh` flag, when set to true, will make Kuzzle perform a
+The `autoRefresh` flag, when set to true, will make Kuzzle Backend perform a
 [`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api) request
-immediately after each write request, forcing the documents to be immediately visible to search.
+immediately after each write request, forcing the documents to be immediately visible in a search.
 
 Given an index, the `setAutoRefresh` action updates its `autoRefresh` status.
 
@@ -67,7 +67,7 @@ Given an index, the `setAutoRefresh` action updates its `autoRefresh` status.
     A refresh operation comes with some performance costs.
   </p>
   <p>
-    While forcing the autoRefresh can be convenient on a development or test environmnent, it is advised to avoid
-    using it on production or at least to carefully monitor its implications before using it.
+    While forcing the autoRefresh can be convenient on a development or test environmnent, we recommend that you avoid
+    using it in production or at least carefully monitor its implications before using it.
   </p>
 </aside>

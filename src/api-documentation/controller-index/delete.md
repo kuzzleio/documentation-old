@@ -49,4 +49,4 @@ title: delete
 }
 ```
 
-Deletes an entire `index` from Kuzzle's persistent storage layer.
+Deletes an entire `index` from Kuzzle Backend's persistent storage layer.
