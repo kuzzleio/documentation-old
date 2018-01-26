@@ -81,5 +81,4 @@ title: getSpecifications
 }
 ```
 
-Allows to get the validation specifications associated to the given
-index and collection if some specifications has been defined first.
+Returns the validation specifications associated to the given index and collection.
