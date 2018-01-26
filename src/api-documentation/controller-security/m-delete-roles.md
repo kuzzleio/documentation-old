@@ -63,7 +63,7 @@ title: mDeleteRoles
 }
 ```
 
-Deletes a list of `roles` objects from Kuzzle's database layer given a list of role ids.
+Deletes a list of `roles` objects from Kuzzle Backend's database layer given a list of role ids.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the roles' deletion indexation (indexed roles are available for `search`).
+with the value `wait_for` in order to wait for the roles' deletion to be indexed (indexed roles are available for `search`).

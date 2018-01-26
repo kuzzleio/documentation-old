@@ -55,8 +55,8 @@ title: getProfile
   }
 }
 ```
-Given a `profile id`, retrieves the corresponding profile from the database.
+Given a `profile id`, retrieves the corresponding security profile from the database.
 
 <aside class="notice">
-The profile unique identifier. It's the same you set when you create a profile.
+The security `profile id` is the same one you set when you create a security profile.
 </aside>
