@@ -49,12 +49,12 @@ title: refreshInternal
 ```
 
 When writing or deleting security and internal documents (users, roles, profiles, configuration, etc.)
-in Kuzzle's database layer, the update needs to be indexed before being reflected in the search index.
+in Kuzzle Backend's database layer, the update needs to be indexed before being reflected in the search index.
 By default, this operation can take up to 1 second.
 
 Given an index, the `refreshInternal` action forces a
 [`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api),
-on the internal index, making the documents visible to search immediately.
+on the internal index, making the documents available to search immediately.
 
 <aside class="left warning">
   <p>
