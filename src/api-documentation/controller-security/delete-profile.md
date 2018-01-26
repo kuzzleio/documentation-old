@@ -54,7 +54,7 @@ title: deleteProfile
 }
 ```
 
-Given a `profile id`, delete the corresponding profile from the database. Note
+Given a `profile id`, deletes the corresponding profile from the database. Note
 that the related roles will NOT be deleted.
 
 The optional parameter `refresh` can be used
