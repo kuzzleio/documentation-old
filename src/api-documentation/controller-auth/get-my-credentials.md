@@ -51,4 +51,4 @@ title: getMyCredentials
 }
 ```
 
-Get credential information of the specified `<strategy>` for the current user. Provided information completely depend of the strategy. The result can be an empty object.
+Returns the current user's credential information for the specified `<strategy>`. The data returned will depend on the specified strategy. The result can be an empty object.

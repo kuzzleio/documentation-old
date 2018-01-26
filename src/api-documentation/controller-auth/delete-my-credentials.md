@@ -50,4 +50,4 @@ title: deleteMyCredentials
 }
 ```
 
-Delete credentials of the specified `<strategy>` for the current user. If the credentials that generated the current JWT are removed, the user will remain logged in until he logs out or his session expires, but won't be able to log in with these credentials afterward.
+Delete the current user's credentials for the specified `<strategy>`. If the credentials that generated the current JWT are removed, the user will remain logged in until he logs out or his session expires, after that they will no longer be able to log in with the deleted credentials.

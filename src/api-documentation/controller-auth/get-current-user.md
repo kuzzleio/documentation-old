@@ -49,7 +49,7 @@ title: getCurrentUser
         "first": "Steve",
         "last": "Wozniak"
       },
-      ...   // The user object content
+      ...   // The profile object content
       "profile": {
         "_id":"<profileId>",
         "roles": [
@@ -62,4 +62,4 @@ title: getCurrentUser
 }
 ```
 
-Gets the user object identified by the `JSON Web Token` provided in the query or the `Authorization` header.
+Returns the profile object for the user linked to the `JSON Web Token`, provided in the query or the `Authorization` header.
