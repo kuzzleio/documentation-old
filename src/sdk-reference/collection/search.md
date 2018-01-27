@@ -238,14 +238,14 @@ catch (ErrorException $e) {
 Executes a search on the data collection.
 
 <aside class="notice">
-  There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
+There is a small delay between the time a document is created and their availability in our search layer (usually a couple of seconds). That means that a document that was just created might not be returned by this function at first.
 </aside>
 
 ## Processing large data sets
 
-When processing a large number of documents (i.e. more than 1000), using `search` requests only is not the best option.
+When processing a large number of documents (i.e. more than 1000), using `search` is not always the best option.
 
-Pagination of results can be done by using the from and size but the cost becomes prohibitive when the deep pagination is reached. In fact, Elasticsearch, the database Kuzzle is relying on, prevents going beyond 10,000 results by default.
+Pagination of results can be done by using the from and size but the cost becomes prohibitive when deep pagination is reached. In fact, Elasticsearch, Kuzzle Backend's embedded database, limits results to 10,000 records by default.
 
 Instead, the recommended way to process a large number of documents is to use [`Collection.scroll`]({{ site_base_path }}sdk-reference/collection/scroll/) or, easier, [`SearchResult.fetchNext`]({{ site_base_path }}sdk-reference/search-result/fetch-next).
 

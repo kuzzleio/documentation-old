@@ -93,7 +93,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create or replace the provided [Documents]({{ site_base_path }}sdk-reference/document/).
+Create or replace the input [Documents]({{ site_base_path }}sdk-reference/document/).
 
 ---
 
@@ -123,5 +123,5 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback response
 
-Resolves to a `JSON object` containing the raw Kuzzle response.
-Can return a 206 partial error in case some documents could not be created or replaced.
+Resolves to a `JSON object` containing the raw Kuzzle Backend response.
+Can return a 206 partial error in cases where some documents could not be created or replaced.

@@ -117,10 +117,10 @@ catch (ErrorException $e) {
 [ "AVCoeBkimsySTKTfa8AX" ]
 ```
 
-Delete either a stored document, or all stored documents matching search filters.
+Delete a stored document, or all stored documents matching a search filter.
 
 <aside class="notice">
-There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be deleted by the filtered version of this function
+There is a small delay between the time a document is created and their availability in our search layer (usually a couple of seconds). That means that a document that was just created might not be returned by this function at first.
 </aside>
 
 ---
@@ -151,7 +151,7 @@ There is a small delay between documents creation and their existence in our sea
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 

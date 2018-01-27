@@ -93,7 +93,7 @@ kuzzle
 
 Subscribes to this data collection with a set of filters.
 
-The provided callback will be called everytime a [notification]({{ site_base_path }}sdk-reference/essentials/notifications) is received from Kuzzle.
+The provided callback will be called everytime a [notification]({{ site_base_path }}sdk-reference/essentials/notifications) is received from Kuzzle Backend.
 
 ---
 
