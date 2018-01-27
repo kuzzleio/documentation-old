@@ -71,7 +71,7 @@ catch (ErrorException $e) {
 Returns the number of documents matching the provided set of filters.+
 
 <aside class="notice">
-There is a small delay between documents creation and their existence in our search layer, usually a couple of seconds. That means that a document that was just been created won't be returned by this function
+There is a small delay between the time a document is created and their availability in our search layer (usually a couple of seconds). That means that a document that was just created might not be returned by this function at first.
 </aside>
 
 ---
@@ -96,4 +96,4 @@ There is a small delay between documents creation and their existence in our sea
 
 ## Callback response
 
-Resolves to the matched documents count as a ``integer``.
+Returns a count for the number of document matches as an ``integer``.

@@ -94,7 +94,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Validate a specification, returning whether or not the provided specification as a valid format or not.
+Validate a specification.
 
 ---
 
@@ -118,4 +118,4 @@ Validate a specification, returning whether or not the provided specification as
 
 ## Callback response
 
-Resolves to a boolean indicating whether or not the provided specifications are valid or not.
+Resolves to a boolean indicating whether or not the input specifications is valid or not.

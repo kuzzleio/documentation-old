@@ -81,7 +81,7 @@ catch (ErrorException $e) {
 
 Truncate the data collection, removing all stored documents but keeping all associated mappings.
 
-This method is a lot faster than removing all documents using a query.
+This method is a lot faster than removing all documents using multiple delete requests.
 
 ---
 
@@ -99,7 +99,7 @@ This method is a lot faster than removing all documents using a query.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
@@ -111,4 +111,4 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback response
 
-Resolves to a `JSON object` containing the raw Kuzzle response.
+Resolves to a `JSON object` containing the raw Kuzzle Backend response.

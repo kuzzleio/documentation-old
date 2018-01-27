@@ -109,4 +109,4 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback response
 
-Resolves to a `JSON object` containing the raw Kuzzle response.
+Resolves to a `JSON object` containing the raw Kuzzle Backend response.

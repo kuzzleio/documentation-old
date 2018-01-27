@@ -76,7 +76,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Get multiple [Documents]({{ site_base_path }}sdk-reference/document/) according to the provided document IDs.
+Get multiple [Documents]({{ site_base_path }}sdk-reference/document/) according to the input document IDs.
 
 ---
 
@@ -100,4 +100,4 @@ Get multiple [Documents]({{ site_base_path }}sdk-reference/document/) according 
 
 ## Callback response
 
-Resolves to a `JSON object` containing the raw Kuzzle response.
+Resolves to a `JSON object` containing the raw Kuzzle Backend response.
