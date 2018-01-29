@@ -71,7 +71,7 @@ $result = [
 Checks the validity of a JSON Web Token.
 
 <aside class="notice">
-This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error.
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback return an error.
 </aside>
 
 ---
@@ -83,11 +83,11 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 | ``token``    | string   | The token to check |
 | ``callback`` | function | Callback handling the response |
 
-**Note:** this method sends an unauthenticated API call to Kuzzle, meaning it ignores the JWT Token property, even if it has been set.
+**Note:** this method sends an unauthenticated API call to Kuzzle Backend, meaning it ignores the JWT Token property, even if it has been set.
 
 ---
 
-## Callback response
+## Callback Response
 
 A JSON object with a `valid` boolean property.  
-If the token is valid, a `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.
+If the token is valid, an `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.

@@ -79,7 +79,7 @@ Removes and returns one or more elements at random from a set of unique values.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `count` | int | Number of elements to remove | `1` |
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---

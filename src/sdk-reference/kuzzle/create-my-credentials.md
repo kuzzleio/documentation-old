@@ -50,7 +50,7 @@ $result = $kuzzle->createMyCredentials('local', ['username' => 'foo']);
 // $result = [username => 'foo', kuid => '<kuid>']
 ```
 
-Create credentials of the specified <strategy> for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Create the current user's credentials for the specified <strategy>. The credentials required will depend on the authentication plugin and strategy.
 
 ---
 
@@ -58,7 +58,7 @@ Create credentials of the specified <strategy> for the current user. The credent
 
 | Arguments | Type | Description
 |-----------|------|------------
-| `strategy` | string | Strategy you want to create credentials in
+| `strategy` | string | Strategy you want to create credentials for
 | `credentials` | JSON object | The credentials
 | `options` | JSON object | Optional parameters
 | `callback`| function | Optional callback handling the response
@@ -69,10 +69,10 @@ Create credentials of the specified <strategy> for the current user. The credent
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
 The response is a an object reflecting the created credentials.

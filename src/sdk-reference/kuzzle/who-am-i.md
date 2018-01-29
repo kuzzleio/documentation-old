@@ -53,7 +53,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves informations about the currently logged user.
+Returns informations about the currently logged user.
 
 ---
 
@@ -65,6 +65,6 @@ Retrieves informations about the currently logged user.
 
 ---
 
-## Callback response
+## Callback Response
 
 An instantiated [User]({{ site_base_path }}sdk-reference/user) object.

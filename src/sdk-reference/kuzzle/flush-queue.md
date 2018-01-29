@@ -28,6 +28,6 @@ Empties the offline queue without replaying it.
 
 ---
 
-## Return value
+## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK instance to allow chaining.

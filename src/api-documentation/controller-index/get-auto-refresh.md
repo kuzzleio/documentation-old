@@ -49,7 +49,7 @@ title: getAutoRefresh
 
 The `autoRefresh` flag, when set to true, will make Kuzzle Backend perform a
 [`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api) request
-immediately after each write request, forcing the documents to be immediately visible in a search request.
+immediately after each write request, causing documents to be immediately visible in a search.
 
 The `getAutoRefresh` actions returns the current `autoRefresh` status for the given index.
 

@@ -31,6 +31,6 @@ Get internal Json Web Token used to request kuzzle.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the stored JWT as a string value.

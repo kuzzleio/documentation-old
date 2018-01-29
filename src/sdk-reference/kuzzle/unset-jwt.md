@@ -31,6 +31,6 @@ Unsets the internal JSON Web Token used for authentication, and stops all existi
 
 ---
 
-## Return value
+## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.

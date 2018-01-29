@@ -140,7 +140,7 @@ Executes a search on roles according to a filter
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``from`` | number | Starting offset | ``0`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``size`` | number |  Number of hits to return | ``20`` |
 
 ---

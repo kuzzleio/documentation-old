@@ -48,9 +48,9 @@ $result = $kuzzle->getAutoRefresh('myIndex');
 // $result = true | false
 ```
 
-The `autoRefresh` flag, when set to true, will make Kuzzle perform a
+The `autoRefresh` flag, when set to true, will make Kuzzle Backend perform a
 [`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api) request
-immediately after each write request, forcing the documents to be immediately visible to search.
+immediately after each write request, causing documents to be immediately visible in a search.
 
 The `getAutoRefresh` function returns the current `autoRefresh` status for the given index.
 
@@ -59,8 +59,8 @@ The `getAutoRefresh` function returns the current `autoRefresh` status for the g
         A refresh operation comes with some performance costs.
     </p>
     <p>
-        While forcing the autoRefresh can be convenient on a development or test environmnent, it is advised to avoid
-        using it on production or at least to carefully monitor its implications before using it.
+      While forcing the autoRefresh can be convenient on a development or test environmnent, we recommend that you avoid
+      using it in production or at least carefully monitor its implications before using it.
     </p>
 </aside>
 
@@ -80,10 +80,10 @@ The `getAutoRefresh` function returns the current `autoRefresh` status for the g
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a boolean reflecting the index `autoRefresh`status.
+The response is a boolean reflecting the index `autoRefresh` status.

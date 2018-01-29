@@ -76,7 +76,7 @@ Publish a real-time message.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 

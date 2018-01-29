@@ -73,10 +73,10 @@ Get [credential information]({{ site_base_path }}guide/essentials/user-authentic
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
 The response is an object reflecting the credentials for the provided authentication strategy.

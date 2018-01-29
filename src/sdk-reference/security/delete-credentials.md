@@ -56,7 +56,7 @@ $result = $kuzzle->security->deleteCredentials('local', 'kuid');
 }
 ```
 
-Delete credentials of the specified <strategy> for the current user. 
+Delete current user's credentials for the specified <strategy>. 
 ---
 
 ## deleteCredentials(strategy, kuid, [options], [callback])
@@ -74,7 +74,7 @@ Delete credentials of the specified <strategy> for the current user.
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 

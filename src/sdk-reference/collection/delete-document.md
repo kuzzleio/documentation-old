@@ -150,7 +150,7 @@ There is a small delay between the time a document is created and their availabi
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---

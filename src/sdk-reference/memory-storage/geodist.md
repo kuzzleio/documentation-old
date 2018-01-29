@@ -81,7 +81,7 @@ The returned distance is expressed in meters by default.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 | `unit` | string | Distance unit.<br/>Allowed values: `m`, `km`, `mi`, `ft` | `m` |
 
 ---
