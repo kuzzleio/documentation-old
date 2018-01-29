@@ -91,6 +91,6 @@ Delete specifications linked to the collection object.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.

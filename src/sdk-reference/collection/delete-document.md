@@ -155,12 +155,12 @@ There is a small delay between the time a document is created and their availabi
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an `array` containing the deleted document IDs.
+Returns an `array` containing the deleted document IDs.

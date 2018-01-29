@@ -114,12 +114,12 @@ Create a new document in Kuzzle Backend and resolves to a [Document]({{ site_bas
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a [Document]({{ site_base_path }}sdk-reference/document/) object containing the newly created document.
+Returns a [Document]({{ site_base_path }}sdk-reference/document/) object containing the newly created document.

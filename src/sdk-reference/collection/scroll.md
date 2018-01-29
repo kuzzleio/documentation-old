@@ -117,9 +117,9 @@ There is a small delay between the time a document is created and their availabi
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an instantiated [SearchResult]({{ site_base_path }}sdk-reference/search-result) object.
+Returns an instantiated [SearchResult]({{ site_base_path }}sdk-reference/search-result) object.
 
 ---
 

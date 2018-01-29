@@ -80,12 +80,12 @@ Publish a real-time message.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a raw Kuzzle Backend response in JSON format.
+Returns a raw Kuzzle Backend response in JSON format.

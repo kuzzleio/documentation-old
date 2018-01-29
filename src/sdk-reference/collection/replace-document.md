@@ -94,12 +94,12 @@ Replace an existing document and return the updated version as a [Document]({{ s
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an updated [Document]({{ site_base_path }}sdk-reference/document/) object.
+Returns an updated [Document]({{ site_base_path }}sdk-reference/document/) object.

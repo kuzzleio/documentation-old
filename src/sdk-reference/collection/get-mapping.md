@@ -83,6 +83,6 @@ Retrieves the current mapping of this collection as a [CollectionMapping]({{ sit
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a [CollectionMapping]({{ site_base_path }}sdk-reference/collection-mapping/) object.
+Returns a [CollectionMapping]({{ site_base_path }}sdk-reference/collection-mapping/) object.

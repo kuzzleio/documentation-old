@@ -138,6 +138,6 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.

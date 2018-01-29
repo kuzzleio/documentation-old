@@ -122,6 +122,6 @@ See the [Room object]({{ site_base_path }}sdk-reference/room/) documentation for
 
 ---
 
-## Return value
+## Return Value
 
 Returns the [Room object]({{ site_base_path }}sdk-reference/room/) associated to the subscription.
