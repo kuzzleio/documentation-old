@@ -82,7 +82,7 @@ $profile = $security->profile($profileId, $profileDefinition);
 $profile = new Profile($security, $profileId, $profileDefinition);
 ```
 
-Instantiates a new `Profile` object, representing a [profile]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles), which is a set of one or many [Role]({{ site_base_path }}sdk-reference/role) objects.
+Instantiates a new `Profile` object, representing a security [profile]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles), which is a set of one or many [Role]({{ site_base_path }}sdk-reference/role) objects.
 
 ---
 
@@ -109,6 +109,6 @@ Instantiates a new `Profile` object, representing a [profile]({{ site_base_path 
 
 ---
 
-## Return value
+## Return Value
 
 Returns to the `Profile` object.

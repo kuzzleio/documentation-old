@@ -29,7 +29,7 @@ profile.setPolicies(new JSONObject[]{
 });
 ```
 
-Replaces the roles policies associated to the profile.
+Replaces the roles associated with this security profile.
 
 ---
 
@@ -49,7 +49,7 @@ Replaces the roles policies associated to the profile.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Profile` object.
 
