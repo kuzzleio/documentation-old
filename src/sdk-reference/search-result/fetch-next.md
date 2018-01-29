@@ -64,7 +64,7 @@ If the previous request was a search or a scroll action which provided a `scroll
 `fetchNext` will use the `scrollId` retrieved from the current result to make a new scroll request.
 
 If the previous request was a search action which provided `size` argument and `sort` filtering,
-`fetchNext` will use Elasticsearch's [`search_after`](https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-search-after.html) mechanism, which can efficiently search through a large volume of document, bypassing internal hard limits<sup>\[1\]</sup>,
+`fetchNext` will use Elasticsearch's [`search_after`](https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-search-after.html) mechanism, which can efficiently search through a large volume of documents, bypassing internal hard limits<sup>\[1\]</sup>,
 but at the cost of reflecting the latest changes of the index, as opposed to using scroll.
 
 If the previous request was a search action which provided `from` and `size` arguments,
@@ -173,7 +173,7 @@ catch (ErrorException $e) {
 }
 ```
 
-The safest way to process all documents in a collection is to retrieve them by batch to avoid memory exhaustion and possibly hitting some hard limits<sup>\[1\]</sup> from the database layer.
+The safest way to process all documents in a collection is to fetch them as a batch in order to avoid memory exhaustion and possibly hitting some hard limits<sup>\[1\]</sup> on the database layer.
 
 <aside class="warning">Make sure your first search request includes <code>size</code> and <code>scroll</code> parameters</aside>
 
