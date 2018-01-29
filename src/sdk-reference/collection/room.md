@@ -66,6 +66,6 @@ Provided options are passed directly to the [Room]({{ site_base_path }}sdk-refer
 
 ---
 
-## Return value
+## Return Value
 
 Returns the newly created [Room]({{ site_base_path }}sdk-reference/room/) object.

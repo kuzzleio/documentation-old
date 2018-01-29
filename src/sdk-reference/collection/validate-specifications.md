@@ -116,6 +116,6 @@ Validate a specification.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean indicating whether or not the input specifications is valid or not.
+Returns a boolean indicating whether or not the input specifications is valid or not.

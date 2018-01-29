@@ -92,7 +92,7 @@ Delete multiple [Documents]({{ site_base_path }}sdk-reference/document/) accordi
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `JSON object` containing the raw Kuzzle Backend response.
+Returns a `JSON object` containing the raw Kuzzle Backend response.
 Can return a 206 partial error in cases where some documents could not be deleted.

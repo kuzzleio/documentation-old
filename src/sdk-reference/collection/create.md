@@ -101,12 +101,12 @@ Create a new empty data collection, with no associated mapping.
 
 ---
 
-## Return value
+## Return Ralue
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `JSON object` containing the raw Kuzzle Backend response.
+Returns a `JSON object` containing the raw Kuzzle Backend response.

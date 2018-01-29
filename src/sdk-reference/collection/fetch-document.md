@@ -86,6 +86,6 @@ Retrieves a single stored document using its unique document ID, and returns it 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a [Document]({{ site_base_path }}sdk-reference/document/) object.
+Returns a [Document]({{ site_base_path }}sdk-reference/document/) object.

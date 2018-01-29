@@ -94,6 +94,6 @@ There is a small delay between the time a document is created and their availabi
 
 ---
 
-## Callback response
+## Callback Response
 
 Returns a count for the number of document matches as an ``integer``.

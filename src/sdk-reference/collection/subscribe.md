@@ -122,7 +122,7 @@ See the [Room object]({{ site_base_path }}sdk-reference/room/) documentation for
 
 ---
 
-## Return value
+## Return Value
 
 Returns an object exposing the following method:  
   `onDone(callback)`

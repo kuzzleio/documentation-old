@@ -278,6 +278,6 @@ See [`SearchResult.fetchNext`]({{ site_base_path }}sdk-reference/search-result/f
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an instance of [SearchResult]({{ site_base_path }}sdk-reference/search-result).
+Returns an instance of [SearchResult]({{ site_base_path }}sdk-reference/search-result).

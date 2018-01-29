@@ -115,13 +115,13 @@ Create or replace the input [Documents]({{ site_base_path }}sdk-reference/docume
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `JSON object` containing the raw Kuzzle Backend response.
+Returns a `JSON object` containing the raw Kuzzle Backend response.
 Can return a 206 partial error in cases where some documents could not be created or replaced.
