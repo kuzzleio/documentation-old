@@ -73,7 +73,7 @@ $profile = $security->profile($profileId, $profileDefinition);
 // $profile instanceof Profile
 ```
 
-Instantiate a new [Profile]({{ site_base_path }}sdk-reference/profile) object.
+Instantiate a new security [Profile]({{ site_base_path }}sdk-reference/profile) object.
 
 ---
 
@@ -86,6 +86,6 @@ Instantiate a new [Profile]({{ site_base_path }}sdk-reference/profile) object.
 
 ---
 
-## Return value
+## Return Value
 
-Returns the new [Profile]({{ site_base_path }}sdk-reference/profile) object.
+Returns the new security [Profile]({{ site_base_path }}sdk-reference/profile) object.

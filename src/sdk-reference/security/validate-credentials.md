@@ -55,7 +55,7 @@ $result = $kuzzle->security->validateCredentials('local', 'kuid', ['username' =>
 true
 ```
 
-Validate credentials of the specified <strategy> for the user <kuid>.
+Validate credentials of user with `kuid` for the specified `strategy`.
 
 ---
 
@@ -79,6 +79,6 @@ Validate credentials of the specified <strategy> for the user <kuid>.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean value
+Returns a boolean value

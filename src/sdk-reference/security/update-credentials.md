@@ -41,7 +41,7 @@ kuzzle.security.updateCredentials("local", "kuid", credentials, new ResponseList
 ```
 
 ```php
-<?php
+<?phpfound
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
@@ -82,6 +82,6 @@ Update the current user's credentials for the specified <strategy>. The credenti
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an object reflecting the updated credentials.
+Returns an object with the updated credentials.

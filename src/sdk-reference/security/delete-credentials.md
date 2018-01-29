@@ -56,7 +56,8 @@ $result = $kuzzle->security->deleteCredentials('local', 'kuid');
 }
 ```
 
-Delete current user's credentials for the specified <strategy>. 
+Delete current user's credentials for the specified `strategy`.
+ 
 ---
 
 ## deleteCredentials(strategy, kuid, [options], [callback])
@@ -78,6 +79,6 @@ Delete current user's credentials for the specified <strategy>.
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an object reflecting the query status.
+Returns an object reflecting the query status.

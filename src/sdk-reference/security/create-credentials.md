@@ -59,7 +59,7 @@ $credentials = $kuzzle->security->createCredentials('local', 'kuid', ['username'
 }
 ```
 
-Create credentials of the specified <strategy> for the user <kuid>.
+Create credentials of user with `kuid` for the specified `strategy`.
 
 ---
 
@@ -83,6 +83,6 @@ Create credentials of the specified <strategy> for the user <kuid>.
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an object reflecting the created credentials.
+Returns an object with the created credentials.

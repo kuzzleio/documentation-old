@@ -69,8 +69,8 @@ catch (ErrorException $e) {
 Delete the provided role.
 
 <aside class="notice">
-There is a small delay between role deletion and their deletion in our search layer, usually a couple of seconds.
-That means that a role that was just been delete will be returned by <code>searchRoles</code> function
+There is a small delay between role deletion and its availability in our search layer (usually a couple of seconds).
+That means that a role that was just deleted may still be returned by the <code>searchRoles</code> function at first.
 </aside>
 
 ---
@@ -90,16 +90,16 @@ That means that a role that was just been delete will be returned by <code>searc
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Security` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves the role id which has been deleted.
+Returns the id of the rold that has been deleted.

@@ -178,6 +178,6 @@ Executes a search on users according to a filter
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON Object containing the total number of found users, and an array of [User]({{ site_base_path }}sdk-reference/user) objects.
+Return a JSON Object that contains the total number of users found, and an array of [User]({{ site_base_path }}sdk-reference/user) objects.

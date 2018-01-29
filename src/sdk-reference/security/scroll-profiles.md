@@ -75,6 +75,6 @@ Scrolls on stored profiles using the provided scroll ID.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves the list of retrieved profiles according to the scroll parameters (offset, limit etc.).
+Returns the list of fetched security profiles according to the scroll parameters (offset, limit etc.).

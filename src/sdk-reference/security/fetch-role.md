@@ -64,7 +64,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves a single stored role using its unique ID.
+Fetches a single stored role using its unique ID.
 
 ---
 
@@ -86,6 +86,6 @@ Retrieves a single stored role using its unique ID.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a [Role]({{ site_base_path }}sdk-reference/role) object.
+Returns a [Role]({{ site_base_path }}sdk-reference/role) object.
