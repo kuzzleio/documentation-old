@@ -89,6 +89,6 @@ Returns the values of the provided keys.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of the specified keys' values
+Returns an array of the specified keys' values

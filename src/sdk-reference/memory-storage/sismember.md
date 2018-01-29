@@ -84,7 +84,7 @@ Checks if `member` is a member of the set of unique values stored at `key`.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean telling if `member` is a member of the set.
+Returns a boolean specifying if `member` is a member of the set or not.
 

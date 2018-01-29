@@ -84,6 +84,6 @@ Checks if the specified keys exist in the database.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of existing keys amongst the provided list.
+Returns an integer containing the number of existing keys amongst the provided list.

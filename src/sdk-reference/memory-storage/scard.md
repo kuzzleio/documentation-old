@@ -83,6 +83,6 @@ Returns the number of members stored in a set of unique values.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of items in the set.
+Returns an integer containing the number of items in the set.

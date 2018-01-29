@@ -84,6 +84,6 @@ Returns the score of a member in a sorted set.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a floating point number containing the searched member's score.
+Returns a floating point number containing the searched member's score.

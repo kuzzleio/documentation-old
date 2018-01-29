@@ -86,12 +86,12 @@ Removes members from a set of unique values.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of removed elements.
+Returns an integer containing the number of removed elements.

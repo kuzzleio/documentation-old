@@ -86,12 +86,12 @@ Adds elements to an [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) dat
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean telling if the operation was successful.
+Returns a boolean specifying if the operation was successful or not.

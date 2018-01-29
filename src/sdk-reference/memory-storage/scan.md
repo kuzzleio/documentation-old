@@ -65,7 +65,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Iterates incrementally the set of keys in the database using a cursor.
+Iterates incrementally over the set of keys in the database using a cursor.
 
 An iteration starts when the cursor is set to `0`.  
 To get the next page of results, simply re-send the identical request with the updated cursor position provided in the result set.  
@@ -96,9 +96,9 @@ The scan terminates when the next position cursor returned by the server is `0`.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON object containing 2 entries:
+Returns a JSON object containing 2 entries:
 
 * the cursor position for the next page of results (a next position of `0` indicates the end of the scan)
 * a list of fetched keys

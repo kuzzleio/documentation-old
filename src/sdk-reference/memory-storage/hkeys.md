@@ -86,6 +86,6 @@ Returns all field names contained in a hash.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves an array of field names.
+Returns an array of field names.

@@ -52,7 +52,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Deletes all the keys of the database dedicated to client applications (the reserved space for Kuzzle is unaffected).
+Deletes all the keys of the database dedicated to client applications (the reserved space for Kuzzle Backend is unaffected).
 
 [[_Redis documentation_]](https://redis.io/commands/flushdb)
 
@@ -75,12 +75,12 @@ Deletes all the keys of the database dedicated to client applications (the reser
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves if successful. No value is returned.
+Returns null if successful.

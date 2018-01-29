@@ -83,12 +83,12 @@ Appends a value to a key. If the key does not exist, it is created.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the new length of the key's value
+Return an integer containing the new length of the key's value

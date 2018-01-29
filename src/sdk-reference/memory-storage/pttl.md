@@ -83,6 +83,6 @@ Returns the remaining time to live of a key, in milliseconds.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the remaining time to live of the key, in milliseconds.
+Returns an integer containing the remaining time to live of the key, in milliseconds.

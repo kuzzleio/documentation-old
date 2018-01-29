@@ -84,12 +84,12 @@ Removes and returns one or more elements at random from a set of unique values.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of removed elements.
+Returns an array of removed elements.

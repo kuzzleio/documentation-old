@@ -87,6 +87,6 @@ By default, the provided min and max values are inclusive. This behavior can be 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of elements in the provided score range.
+Returns an integer containing the number of elements in the provided score range.

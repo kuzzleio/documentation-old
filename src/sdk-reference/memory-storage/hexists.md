@@ -83,6 +83,6 @@ Checks if a field exists in a hash.
 
 ---
 
-## Callback response
+## Callback Response
 
-A boolean value telling if the field exists.
+A boolean value specifying if the field exists or not.

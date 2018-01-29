@@ -86,6 +86,6 @@ Returns the position of the first bit set to 1 or 0 in a string, or in a substri
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the first position of the searched bit in the string value
+Returns an integer containing the first position of the searched bit in the string value

@@ -87,12 +87,12 @@ Performs a bitwise operation between multiple keys (containing string values) an
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the length of the new key's value
+Returns an integer containing the length of the new key's value

@@ -86,12 +86,12 @@ Removes members from a sorted set.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of members removed from the sorted set.
+Returns an integer containing the number of members removed from the sorted set.

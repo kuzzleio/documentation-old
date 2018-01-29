@@ -96,6 +96,6 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of matching members.
+Returns an array of matching members.

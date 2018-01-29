@@ -86,12 +86,12 @@ Adds members to a set of unique values stored at `key`. If the `key` does not ex
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of added elements to the set.
+Returns an integer containing the number of added elements to the set.

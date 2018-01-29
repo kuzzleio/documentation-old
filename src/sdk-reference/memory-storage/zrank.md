@@ -84,6 +84,6 @@ Returns the position of an element in a sorted set, with scores in ascending ord
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the member's position in the sorted set.
+Returns an integer containing the member's position in the sorted set.

@@ -95,9 +95,9 @@ Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), exce
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON array containing 2 entries:
+Returns a JSON array containing 2 entries:
 
 * the cursor position for the next page of results (a next position of `0` indicates the end of the scan)
-* an array of, alternatively, sorted set members and their associated scores
+* an array of sorted set members and their associated scores

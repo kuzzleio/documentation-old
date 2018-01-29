@@ -90,12 +90,12 @@ Returns all the elements in the sorted set at key with a score between `min` and
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of matching members.
+Returns an array of matching members.

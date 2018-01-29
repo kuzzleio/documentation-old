@@ -84,12 +84,12 @@ Appends the specified value at the end of a list, only if the key already exists
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the updated number of items in the list.
+Returns an integer containing the updated number of items in the list.

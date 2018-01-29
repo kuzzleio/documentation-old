@@ -87,12 +87,12 @@ Positions are 0-based, meaning the first member of the set has a position of 0.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of removed members from the sorted set.
+Returns an integer containing the number of removed members from the sorted set.

@@ -83,6 +83,6 @@ Returns the length of a value stored at `key`.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the length of a value.
+Returns an integer containing the length of a value.

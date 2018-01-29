@@ -83,6 +83,6 @@ Returns the element at the provided index in a list.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a string containing the retrieved element's value.
+Returns a string containing the retrieved element's value.

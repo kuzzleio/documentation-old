@@ -89,6 +89,6 @@ If `count` is provided and is positive, the returned values are unique. If `coun
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of members of a set of unique values.
+Returns an array of members of a set of unique values.

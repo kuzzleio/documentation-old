@@ -83,6 +83,6 @@ Returns the number of elements held by a sorted set.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of elements in a sorted set.
+Returns an integer containing the number of elements in a sorted set.
