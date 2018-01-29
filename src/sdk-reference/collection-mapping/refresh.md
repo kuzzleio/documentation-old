@@ -70,6 +70,6 @@ Instantiates a new CollectionMapping object with an up-to-date content.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to this updated `CollectionMapping` object.
+Returns the updated `CollectionMapping` object.
