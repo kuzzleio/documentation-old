@@ -109,12 +109,12 @@ If a member to insert is already in the sorted set, its score is updated and the
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of elements added to the sorted set.
+Returns an integer containing the number of elements added to the sorted set.

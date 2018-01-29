@@ -83,6 +83,6 @@ Returns the bit value at `offset`, in the string value stored in a key.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the bit value at the provided offset.
+Returns the bit value at the provided offset.

@@ -89,15 +89,15 @@ Identical to [zrange]({{ site_base_path }}sdk-reference/memory-storage/zrange), 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of objects, each containing the following properties:
+Returns an array of objects, each containing the following properties:
 
 * `member`: member value in the sorted set
 * `score`: member associated score

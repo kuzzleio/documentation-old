@@ -79,12 +79,12 @@ Sets a key with the provided value, and an expiration delay expressed in millise
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves if successful. No value is returned.
+Returns null if successful.

@@ -84,12 +84,12 @@ Deletes a list of keys.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of deleted keys.
+Return an integer containing the number of deleted keys.

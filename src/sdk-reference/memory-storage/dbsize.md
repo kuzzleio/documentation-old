@@ -81,6 +81,6 @@ Returns the number of keys in the application database.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of keys in the application database
+Returns an integer containing the number of keys in the application database

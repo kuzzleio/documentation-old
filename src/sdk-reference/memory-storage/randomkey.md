@@ -82,6 +82,6 @@ Returns a random key from the memory storage.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to one of the stored key name, at random.
+Returns one of the stored key names, at random.

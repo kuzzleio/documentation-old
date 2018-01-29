@@ -85,6 +85,6 @@ Inspects the low-level properties of a key.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the value of the inspected property.
+Returns the value of the inspected property.

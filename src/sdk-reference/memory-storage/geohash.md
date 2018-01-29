@@ -85,6 +85,6 @@ Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provide
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of geohashes, in the same order than the provided members list.
+Returns an array of geohashes, in the same order than the provided members list.

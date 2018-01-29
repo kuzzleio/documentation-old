@@ -84,12 +84,12 @@ Increments the number stored in a hash field by the provided integer value.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the new incremented value.
+Returns the newly incremented value.

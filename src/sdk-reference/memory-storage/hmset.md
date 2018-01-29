@@ -95,12 +95,12 @@ Sets multiple fields at once in a hash.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves if successful. No value is returned.
+Returns null if successful.

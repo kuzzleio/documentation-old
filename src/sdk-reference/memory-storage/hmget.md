@@ -89,6 +89,6 @@ Returns the values of the specified hash’s fields.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array containing the specified fields values.
+Returns an array containing the specified fields values.

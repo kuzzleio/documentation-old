@@ -85,6 +85,6 @@ Returns the probabilistic cardinality of a [HyperLogLog](https://en.wikipedia.or
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the aggregated probabilistic cardinality of HyperLogLog structures.
+Returns an integer containing the aggregated probabilistic cardinality of HyperLogLog structures.

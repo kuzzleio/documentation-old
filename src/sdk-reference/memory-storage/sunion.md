@@ -89,6 +89,6 @@ Returns the union of the provided sets of unique values.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of the values in the computed union.
+Returns an array of values in the computed union.

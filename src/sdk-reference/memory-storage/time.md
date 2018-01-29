@@ -85,9 +85,9 @@ Returns the current server time.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array containing the following two items, in this order:
+Returns an array containing the following two items, in this order:
 
 * a timestamp in [Epoch time](https://en.wikipedia.org/wiki/Unix_time)
 * the number of microseconds already elapsed in the current second

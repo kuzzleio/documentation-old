@@ -85,12 +85,12 @@ Moves a member from a set of unique values to another.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean telling if the operation was successful.
+Returns a boolean specifying if the operation was successful or not.

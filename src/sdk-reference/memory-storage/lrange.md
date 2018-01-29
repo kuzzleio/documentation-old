@@ -88,6 +88,6 @@ Returns the list elements between the start and stop positions (inclusive).
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of retrieved values.
+Returns an array of retrieved values.

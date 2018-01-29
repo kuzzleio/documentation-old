@@ -80,6 +80,6 @@ Merges multiple [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data st
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves if successful. No value is returned.
+Returns null if successful.

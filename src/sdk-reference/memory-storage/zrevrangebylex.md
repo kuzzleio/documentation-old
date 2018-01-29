@@ -90,12 +90,12 @@ Identical to [zrangebylex]({{ site_base_path }}sdk-reference/memory-storage/zran
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of matching members.
+Returns an array of matching members.

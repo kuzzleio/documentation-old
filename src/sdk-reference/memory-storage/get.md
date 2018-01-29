@@ -82,6 +82,6 @@ Returns the value of a key, or null if the key doesn’t exist.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the key's value.
+Returns the key's value.

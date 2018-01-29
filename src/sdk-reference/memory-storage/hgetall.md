@@ -86,6 +86,6 @@ Returns all fields and values of a hash.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON object containing the fields and values of a hash.
+Returns a JSON object containing the fields and values of a hash.

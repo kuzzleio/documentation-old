@@ -85,12 +85,12 @@ Removes fields from a hash.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the number of removed fields.
+Returns the number of removed fields.

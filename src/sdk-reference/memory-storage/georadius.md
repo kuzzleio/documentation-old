@@ -111,6 +111,6 @@ Returns the members (added with [geoadd]({{ site_base_path }}sdk-reference/memor
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of point names inside the provided radius.
+Returns an array of names for points that are inside the provided radius.

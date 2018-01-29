@@ -83,6 +83,6 @@ Returns the field’s value of a hash.
 
 ---
 
-## Callback response
+## Callback Response
 
 Returns the requested field's value.

@@ -82,12 +82,12 @@ Decrements the number stored at `key` by 1. If the key does not exist, it is set
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the updated key value
+Returns an integer containing the updated key value

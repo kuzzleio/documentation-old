@@ -91,6 +91,6 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of altered keys.
+Returns an integer containing the number of altered keys.

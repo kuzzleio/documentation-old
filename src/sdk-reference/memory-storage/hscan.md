@@ -65,7 +65,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), except that `hscan` iterates the fields contained in a hash.  
+Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), except that `hscan` iterates over the fields contained in a hash.  
 
 [[_Redis documentation_]](https://redis.io/commands/hscan)
 
@@ -92,9 +92,9 @@ Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), exce
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an object containing 2 entries:
+Returns an object containing 2 entries:
 
 * the cursor position for the next page of results (a next position of `0` indicates the end of the scan)
-* an array of, alternatively, field names and values
+* an array of field names and values

@@ -81,12 +81,12 @@ Removes and returns the last element of a list.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the value of the removed item.
+Returns the value of the removed item.

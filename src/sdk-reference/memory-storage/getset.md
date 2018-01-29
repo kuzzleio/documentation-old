@@ -83,12 +83,12 @@ Sets a new value for a key and returns its previous value.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the key's previous value.
+Returns the key's previous value.

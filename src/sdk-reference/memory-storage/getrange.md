@@ -84,6 +84,6 @@ Returns a substring of a key's value (index starts at position `0`).
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a substring of the key's value.
+Returns a substring of the key's value.

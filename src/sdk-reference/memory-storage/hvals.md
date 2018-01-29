@@ -86,6 +86,6 @@ Returns all values contained in a hash.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array containing the values of a hash.
+Returns an array containing the values of a hash.

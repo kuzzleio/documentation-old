@@ -86,6 +86,6 @@ Returns all keys matching the provided pattern.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of key names matching the provided pattern.
+Returns an array of key names matching the provided pattern.

@@ -90,12 +90,12 @@ Returns elements in a sorted set where all members have equal score, using lexic
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of matching members.
+Returns an array of matching members.

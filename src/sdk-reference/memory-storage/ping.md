@@ -82,6 +82,6 @@ Pings the memory storage database.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a simple "PONG" string.
+Returns a simple "PONG" string.

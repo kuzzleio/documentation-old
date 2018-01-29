@@ -91,12 +91,12 @@ Returns the difference between the set of unique values stored at `key` and the 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of differences.
+Returns an array of differences.

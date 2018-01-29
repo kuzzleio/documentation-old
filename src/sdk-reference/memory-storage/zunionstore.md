@@ -90,6 +90,6 @@ If the destination key already exists, it is overwritten.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of members in the stored union.
+Returns an integer containing the number of members in the stored union.
