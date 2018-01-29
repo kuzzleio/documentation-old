@@ -73,10 +73,10 @@ Deletes this document in Kuzzle.
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a string containing the deleted document ID
+Returns a string containing the deleted document ID

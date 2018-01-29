@@ -38,7 +38,7 @@ $document->setMeta($metadata);
 ```
 
 Replaces or updates the current document [metadata]({{ site_base_path }}guide/essentials/document-metadata/) with the provided ones.  
-This is a helper function returning itself, allowing to easily chain calls.
+This is a helper function returning a reference to itself so that you can easily chain calls.
 
 <aside class="notice">
 Changes made by this function won't be applied until the <code>save</code> method is called
@@ -57,6 +57,6 @@ Changes made by this function won't be applied until the <code>save</code> metho
 
 ---
 
-## Return value
+## Return Value
 
 Returns this `Document` object to allow chaining.

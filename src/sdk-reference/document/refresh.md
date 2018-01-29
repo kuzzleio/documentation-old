@@ -75,6 +75,6 @@ Creates a new `Document` object with the last version of this document stored in
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a new `Document` object containing the last document version.
+Return a new `Document` object containing the last document version.
