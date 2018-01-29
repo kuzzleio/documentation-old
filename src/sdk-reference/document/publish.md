@@ -57,6 +57,6 @@ Publishes the content of this document as a real-time message.
 
 ---
 
-## Return value
+## Return Value
 
 Returns this `Document` object to allow chaining.
