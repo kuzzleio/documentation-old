@@ -70,12 +70,12 @@ Applies the new mapping to the data collection.
 
 ---
 
-## Return value
+## Return Value
 
 Returns this `CollectionMapping` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to this updated `CollectionMapping` object.
+Returns the updated `CollectionMapping` object.
