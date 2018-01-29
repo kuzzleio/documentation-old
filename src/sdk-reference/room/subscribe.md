@@ -42,11 +42,11 @@ room.subscribe(new ResponseListener<Room>() {
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Subscribes using the filters provided at the object creation.
+Subscribes using the filters provided as input when the object is created.
 
-This method does nothing if the room is already subscribing, or if the subscription is already active, unless [unsubscribe]({{ site_base_path }}sdk-reference/room/unsubscribe/) is called first.
+This method does nothing if the room is already subscribed to, or if the subscription is already active, unless [unsubscribe]({{ site_base_path }}sdk-reference/room/unsubscribe/) is called first.
 
-Calling `subscribe` is also unnecessary on a network reconnection event if the [`autoResubscribe` property]({{ site_base_path }}sdk-reference/room/#properties) is set to `true`.
+Calling `subscribe` is also unnecessary on a network reconnection event if the [`autoResubscribe`]({{ site_base_path }}sdk-reference/room/#properties) property is set to `true`.
 
 ---
 
@@ -67,13 +67,13 @@ Calling `subscribe` is also unnecessary on a network reconnection event if the [
 
 ---
 
-## Return value
+## Return Value
 
 Returns this `Room` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to this `Room` object
+Return this `Room` object
 

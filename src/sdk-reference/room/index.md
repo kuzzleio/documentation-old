@@ -50,9 +50,9 @@ Room room = new Room(dataCollection, filters, options);
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-The `Room` object is the result of a subscription request, allowing to manipulate the subscription itself.
+The `Room` object is the result of a subscription request, allowing you to manipulate the subscription itself.
 
-A `Room` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/event-emitter/) instance, so that we can listen to subription notifications.
+A `Room` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/event-emitter/) instance that emits events on notifications.
 
 
 ---
@@ -94,4 +94,4 @@ A `Room` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/even
 **Notes:**
 
 * updating the ``volatile`` property takes effect only after the subscription is renewed
-* by default, the global Kuzzle ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``volatile`` for the subscription only. In case of conflicts, subscription ``volatile`` data takes priority over the global ``volatile`` ones.
+* by default, the global ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``volatile`` for the subscription only. In case of conflicts, subscription ``volatile`` data takes priority over the global ``volatile`` ones.

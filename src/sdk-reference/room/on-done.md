@@ -54,12 +54,12 @@ Calls the provided callback when the subscription finishes.
 
 ---
 
-## Return value
+## Return Value
 
 Returns this `Room` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to this `Room` object
+Returns this `Room` object
