@@ -37,7 +37,7 @@ Integer nbListeners = kuzzle.listenerCount(Event.connected);
 
 ```
 
-Returns the number of callbacks who listen to an event.
+Returns the number of callbacks that listen to an event.
 
 ---
 
@@ -45,10 +45,10 @@ Returns the number of callbacks who listen to an event.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
+| ``event`` | string | One of the events described in the ``Event Handling`` section of this documentation |
 
 ---
 
-## Return value
+## Return Value
 
-Returns the number of callbacks who listen to an event.
+Returns the number of callbacks that listen to an event.
