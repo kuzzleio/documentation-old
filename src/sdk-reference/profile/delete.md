@@ -58,7 +58,7 @@ catch(ErrorException $e) {
 }
 ```
 
-Deletes this profile from Kuzzle.
+Deletes this security profile from Kuzzle Backend.
 
 ---
 
@@ -79,6 +79,6 @@ Deletes this profile from Kuzzle.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the id of the deleted profile.
+Returns the id of the deleted profile.
