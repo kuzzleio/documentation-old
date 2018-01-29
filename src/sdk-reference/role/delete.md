@@ -55,7 +55,7 @@ catch(ErrorException $e) {
 }
 ```
 
-Deletes the role from Kuzzle's database layer.
+Deletes the role from Kuzzle Backend's database layer.
 
 ---
 
@@ -76,6 +76,6 @@ Deletes the role from Kuzzle's database layer.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the id of the deleted role.
+Returns the id of the deleted role.
