@@ -129,11 +129,11 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new user in Kuzzle.
+Create a new user in Kuzzle Backend.
 
 <aside class="notice">
-There is a small delay between user creation and their creation in our search layer, usually a couple of seconds.
-That means that a user that was just been created will not be returned by <code>searchUsers</code> right away
+There is a small delay between user creation and its availability in our search layer (usually a couple of seconds).
+That means that a user that was just created may not be returned by the <code>searchUsers</code> function at first.
 </aside>
 
 ---
@@ -146,17 +146,17 @@ That means that a user that was just been created will not be returned by <code>
 | ``user`` | JSON Object | A plain JSON object representing the user (see below) |
 | ``options`` | string | (Optional) Optional arguments |
 | ``callback`` | function | Callback handling the response |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 
 The `user` object to provide must have the following properties:
 
 * `content` (JSON object): user global properties
-  * This object must contain a `profileIds` properties, an array of strings listing the [profiles]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles) to be attached to the new user 
+  * This object must contain a `profileIds` properties, an array of strings listing the security [profiles]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles) to be attached to the new user 
   * Any other property will be copied as additional global user information
-* `credentials` (JSON object): a description of how the new user can authentify himself to Kuzzle
-  * Any number of credentials can be added, each one being an object whose name is the one of the [authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies) that can be used for authentification, and its content the necessary login information for that user
-  * If that object is left empty, the described user will be created by Kuzzle but (s)he  won't be able to log in
+* `credentials` (JSON object): a description of how the new user can identify themselves on Kuzzle Backend
+  * Any number of credentials can be added, each one being an object with name equal to the [authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies) used to authenticate the user, and with the login data as content.
+  * If this object is left empty, the user will be created in Kuzzle Backend but the will not be able to login.
 
 ---
 
@@ -168,6 +168,6 @@ The `user` object to provide must have the following properties:
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a [User]({{ site_base_path }}sdk-reference/user) object.
+Returns a [User]({{ site_base_path }}sdk-reference/user) object.

@@ -64,7 +64,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves a single stored profile using its unique ID.
+Fetches a single stored profile using its unique ID.
 
 ---
 
@@ -86,6 +86,6 @@ Retrieves a single stored profile using its unique ID.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a [Profile]({{ site_base_path }}sdk-reference/profile) object.
+Returns a security [Profile]({{ site_base_path }}sdk-reference/profile) object.

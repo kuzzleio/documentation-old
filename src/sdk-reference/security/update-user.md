@@ -98,16 +98,16 @@ Performs a partial update on an existing user.
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Security` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an updated [User]({{ site_base_path }}sdk-reference/user) object
+Returns an updated [User]({{ site_base_path }}sdk-reference/user) object

@@ -88,7 +88,7 @@ Returns a [SearchResult]({{ site_base_path }}sdk-reference/search-result/) objec
 A scroll session is always initiated by a `search` action and including the `scroll` argument; more information below.
 
 <aside class="notice">
-There is a small delay between the time a document is created and their availability in our search layer (usually a couple of seconds). That means that a document that was just created might not be returned by this function at first.
+There is a small delay between the time a document is created and its availability in our search layer (usually a couple of seconds). That means that a document that was just created might not be returned by this function at first.
 </aside>
 
 <aside class="notice">

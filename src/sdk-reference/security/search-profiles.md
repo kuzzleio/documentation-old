@@ -152,6 +152,6 @@ Executes a search on profiles according to a filter
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON Object containing the number of found profiles and an array of [Profile]({{ site_base_path }}sdk-reference/profile) objects.
+Returns a JSON Object containing the number of security profiles found and an array of security [Profile]({{ site_base_path }}sdk-reference/profile) objects.

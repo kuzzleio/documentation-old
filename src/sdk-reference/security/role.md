@@ -76,6 +76,6 @@ Instantiate a new [Role]({{ site_base_path }}sdk-reference/role) object.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the new [Role]({{ site_base_path }}sdk-reference/role) object.

@@ -75,6 +75,6 @@ Scrolls on stored users using the provided scroll ID.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves the list of retrieved users according to the scroll parameters (offset, limit etc.).
+Returns the list of fetched users according to the scroll parameters (offset, limit etc.).

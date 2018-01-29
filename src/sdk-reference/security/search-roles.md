@@ -145,6 +145,6 @@ Executes a search on roles according to a filter
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON Object containing the total number of found roles and an array of [Role]({{ site_base_path }}sdk-reference/role) objects.
+Return a JSON Object containing the total number of roles found and an array of [Role]({{ site_base_path }}sdk-reference/role) objects.
