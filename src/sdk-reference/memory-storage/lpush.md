@@ -79,7 +79,7 @@ Prepends the specified values to a list. If the key does not exist, it is create
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 

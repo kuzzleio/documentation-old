@@ -79,7 +79,7 @@ Counts the number of set bits (population counting) in a string.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `end` | int | Ending offset | `-1` |
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 | `start` | int | Starting offset | `0` |
 
 ---

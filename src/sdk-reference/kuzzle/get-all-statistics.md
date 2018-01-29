@@ -74,8 +74,8 @@ foreach($stats as $frame) {
     "timestamp": "1453110643308" }]
 ```
 
-Kuzzle monitors active connections, and ongoing/completed/failed requests.  
-This method returns all available statistics from Kuzzle.
+Kuzzle Backend monitors active connections, and ongoing/completed/failed requests.  
+This method returns all available statistics from Kuzzle Backend.
 
 ---
 
@@ -92,10 +92,10 @@ This method returns all available statistics from Kuzzle.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-### Callback response
+### Callback Response
 
-The response is an array of JSON objects, each one of them being a statistic frame.
+The response is an array of JSON objects that each contain a statistics frame.

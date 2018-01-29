@@ -74,7 +74,7 @@ Renames a key to `newkey`. If `newkey` already exists, it is overwritten.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---

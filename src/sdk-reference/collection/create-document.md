@@ -108,7 +108,7 @@ Create a new document in Kuzzle Backend and resolves to a [Document]({{ site_bas
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 | ``ifExist`` | string | If the same document already exists: resolves to an ``error``. Replaces the existing document if set to ``replace`` | ``false`` |
 

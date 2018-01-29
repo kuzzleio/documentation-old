@@ -79,7 +79,7 @@ Decrements the number stored at `key` by a provided integer value. If the key do
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 

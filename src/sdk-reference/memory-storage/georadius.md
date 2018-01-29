@@ -104,7 +104,7 @@ Returns the members (added with [geoadd]({{ site_base_path }}sdk-reference/memor
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `count` | int | Limit the result set to `count` members | `null` |
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 | `sort` | string | Return items from the nearest to the farthest to the center (`ASC`) or vice versa (`DESC`) | `null` |
 | `withcoord` | boolean | Also return the longitude and latitude coordinates of the matching items | `false` |
 | `withdist` | boolean | Also return the distance of the returned items from the specified center, in the same unit than the one provided with `unit` | `false` |

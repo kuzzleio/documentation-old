@@ -126,7 +126,7 @@ That means that a role that was just been created will not be returned by <code>
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``replaceIfExist`` | boolean | If the same role already exists: throw an error if sets to false. Replace the existing role otherwise | ``false`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---

@@ -50,7 +50,7 @@ $result = $kuzzle->updateMyCredentials('local', ['username' => 'foo']);
 // $result = [username => 'foo', kuid => '<kuid>']
 ```
 
-Update credentials of the specified <strategy> for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to update credentials for.
+Update current user credentials for the specified <strategy>. The credentials to send depend on the authentication plugin and the strategy.
 
 ---
 
@@ -69,7 +69,7 @@ Update credentials of the specified <strategy> for the current user. The credent
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 

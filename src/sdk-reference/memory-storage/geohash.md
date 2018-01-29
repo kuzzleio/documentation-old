@@ -81,7 +81,7 @@ Returns a valid [geohash](https://en.wikipedia.org/wiki/Geohash) for the provide
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 

@@ -88,7 +88,7 @@ Identical to [scan]({{ site_base_path }}sdk-reference/memory-storage/scan), exce
 |--------|------|-------------|---------|
 | `count` | int | Return the _approximate_ `count` number of items per result page | `10` |
 | `match` | string | Search only for member values matching the provided pattern | `*` |
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---

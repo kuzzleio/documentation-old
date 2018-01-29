@@ -88,7 +88,7 @@ Delete multiple [Documents]({{ site_base_path }}sdk-reference/document/) accordi
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 

@@ -80,7 +80,7 @@ Sets a field and its value in a hash. If the key does not exist, a new key holdi
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 

@@ -52,7 +52,7 @@ $indexes = $kuzzle->listIndexes();
 [ "index", "another index", "..."]
 ```
 
-Retrieves the list of indexes stored in Kuzzle.
+Returns the list of indexes stored in Kuzzle Backend.
 
 ---
 
@@ -69,10 +69,10 @@ Retrieves the list of indexes stored in Kuzzle.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
 The response is an `array` of index names.

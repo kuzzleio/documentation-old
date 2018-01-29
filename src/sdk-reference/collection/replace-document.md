@@ -89,7 +89,7 @@ Replace an existing document and return the updated version as a [Document]({{ s
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---

@@ -90,7 +90,7 @@ While Kuzzle API supports the "store" option for this command, SDK methods do no
 | `direction` | string | Sort in ascendant (`ASC`) or descendant (`DESC`)  order | `ASC` |
 | `get` | array | Sort the values stored at `key` but, instead of returning these directly, return the values contained in external keys, using the provided array of patterns completed by the sorted values | `null` |
 | `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ### Callback response
 

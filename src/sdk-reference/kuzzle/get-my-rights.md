@@ -73,7 +73,7 @@ $rights = $kuzzle->security()->getMyRights();
 ]
 ```
 
-Gets the rights of the current user
+Gets the rights for the current user
 
 ---
 
@@ -90,10 +90,10 @@ Gets the rights of the current user
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of rights.
+Returns an array of rights.

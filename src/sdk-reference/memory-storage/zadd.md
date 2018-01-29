@@ -103,7 +103,7 @@ If a member to insert is already in the sorted set, its score is updated and the
 | `ch` | boolean | Instead of returning the number of added allements, return the total number of changes performed (including updates) | `false` |
 | `incr` | boolean | Instead of adding elements, increment the existing member with the provided `score` value. Only one score+element pair can be specified if this option is set | `false` |
 | `nx` | boolean | Only add new elements, do not update existing ones | `false` |
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 | `xx` | boolean | Never add new elements, update only exiting ones | `false` |
 
 

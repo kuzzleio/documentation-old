@@ -85,7 +85,7 @@ Identical to [zrangebyscore]({{ site_base_path }}sdk-reference/memory-storage/zr
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
