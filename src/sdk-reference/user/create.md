@@ -58,7 +58,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create the user in kuzzle. Credentials can be created during the process by using [setCredentials]({{ site_base_path }}sdk-reference/user/set-credentials) beforehand.
+Create the user in Kuzzle Backend. Credentials can be created during the process by using [setCredentials]({{ site_base_path }}sdk-reference/user/set-credentials) beforehand.
 
 ---
 
@@ -79,12 +79,12 @@ Create the user in kuzzle. Credentials can be created during the process by usin
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `User` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `User` object.
+Returns a `User` object.

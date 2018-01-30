@@ -58,7 +58,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Replaces the user in kuzzle.
+Replaces the user in Kuzzle Backend.
 
 ---
 
@@ -79,12 +79,12 @@ Replaces the user in kuzzle.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `User` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `User` object.
+Returns a `User` object.

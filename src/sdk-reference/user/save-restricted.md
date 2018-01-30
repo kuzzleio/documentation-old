@@ -58,7 +58,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Saves this user as restricted in Kuzzle's database layer.
+Saves this user as restricted in Kuzzle Backend's database layer.
 
 
 ---
@@ -80,12 +80,12 @@ Saves this user as restricted in Kuzzle's database layer.
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `User` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `User` object.
+Returns a `User` object.
