@@ -17,11 +17,9 @@ In the boolean compound query, there are 4 occurrence types:
 - `must` and `should` are used to filter *AND* score the documents.
 - `filter` and `must_not` are used to filter the documents (whether they match or not) but don't influence the score.
 
-This is what it looks like when we use every occurence types:
+This is what it looks like when we use every occurence type:
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -102,19 +100,17 @@ You can find a full description in the [Bool Query documentation](https://www.el
 
 ## The `filter` occurrence type
 
-The `filter` occurrence type allows to filter documents with additional queries without affecting the score.
-You can even use a `bool` query in a `filter` occurrence type. We will introduce you with some ways
-to make basic `filter` requests. Up to you to choose your favorite.
+The `filter` occurrence type can be used to filter documents with additional queries without affecting the score.
+You can even use a `bool` query in a `filter` occurrence type. We will introduce some ways
+to make basic `filter` requests. It will be up to you to choose your favorite.
 
-Each example is equivalent from one to the others. As you will see there are different ways to achieve
+Each example produces the same result. As you will see, there are different ways to achieve
 the same result using the `filter` occurence type.
 
 
 ### Using a logical `AND` operator between fields
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -129,8 +125,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -196,8 +190,6 @@ of the `bool` query.
 ### Using a logical `AND` operator between terms
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -212,8 +204,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -231,8 +221,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -295,8 +283,6 @@ All examples above generate the same result:
 ### Using a logical `OR` operator between fields
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -311,8 +297,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -379,8 +363,6 @@ Both examples above generate the same result:
 ### Using a logical `OR` operator between terms
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -395,8 +377,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -416,8 +396,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -518,8 +496,6 @@ Reply:
 In this example we are using a `bool` query in the `filter` occurence type.
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -534,8 +510,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -614,14 +588,12 @@ Both examples above generate the same result:
 
 ## The `must_not` occurrence type
 
-The `must_not` occurrence type allows to specify a query that will excludes documents from the result set.
+The `must_not` occurrence type can be used to specify a query that excludes documents from the result set.
 It acts like a logical `NOT`.
 
 ### Usage of `must_not` with one query
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -698,13 +670,11 @@ in a filter (like we did in the previous example).
 
 ### Usage of `must_not` with multiple queries
 
-If you need to use more than one query to use in the `must_not` occurence type, you can replace the object query by
-an array of query objects. It will evict all documents where the field `status` is equal to "pending" or the field
+If you need to use more than one query in the `must_not` occurence type, you can replace the query object by
+an array of query objects. It will ignore all documents where the field `status` is equal to "pending" or the field
 `tags` contains "pet":
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -720,8 +690,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 Reply:
 
 ```bash
-#!/bin/bash
-
 {
   "took": 1,
   "timed_out": false,
@@ -772,14 +740,11 @@ Reply:
 The `must` occurrence type can be used used like the `filter` occurence type
 with the difference that it will influence the score.
 Let's take a look at all the scores we get by replacing the `filter` occurence type in the previous examples with `must`.
-The `AND` examples give the same score for all documents. It is due to the little number of documents we use,
-their size and the small size of the corpus.
+The `AND` examples give the same score for all documents. This is due to the small number and small size of the documents we are querying.
 
 ### Using a logical `AND` operator between fields
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -794,8 +759,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -857,8 +820,6 @@ Have the same reply with the same score:
 ### Using a logical `AND` operator between terms
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -873,8 +834,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -892,8 +851,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -957,8 +914,6 @@ All examples above generate the same result:
 ### Using a logical `OR` operator between fields
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -973,8 +928,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -1042,8 +995,6 @@ Both examples above generate the same result:
 ### Using a logical `OR` operator between terms
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -1058,8 +1009,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -1079,8 +1028,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -1172,8 +1119,6 @@ Reply:
 ### Using a logical `NOT` operator
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -1188,8 +1133,6 @@ curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
 ```
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -1269,13 +1212,11 @@ Both examples above generate the same result:
 
 ## The `should` occurrence type
 
-The `should` occurrence type is different from the 3 others as it allows to specify queries that "SHOULD" match the documents. If used without `filter` or `must` occurence types, at least one query will have to match the document. It could be seen as a logical `OR` operator. Its behaviour can be modified by the `minimum_should_match`. It allows to specify a number or a percentage of queries that have to match in order to select the document. You can see all available value formats of `minimum_should_match` in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl-minimum-should-match.html).
+The `should` occurrence type is different from the 3 other types as it can be used to specify queries that "SHOULD" match the documents. If used without `filter` or `must` occurence types, at least one query will have to match the document. It could be seen as a logical `OR` operator. Its behavior can be modified by the `minimum_should_match`. It allows us to specify a number or a percentage of queries that have to match in order to select the document. You can see all available value formats of `minimum_should_match` in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl-minimum-should-match.html).
 
 ### Usage of `minimum_should_match`
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {
@@ -1351,8 +1292,6 @@ Reply:
 
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "bool": {

@@ -1,18 +1,18 @@
 ---
 layout: full.html
 algolia: true
-title: Data insertion
+title: Data Insertion
 description: learn how to index data with elasticsearch
 order: 200
 ---
 
-# Data insertion
+# Data Insertion
 
 We use the `?pretty` keyword to get human-readable outputs from our requests.
 
 ---
 
-## Mapping creation
+## Creating a Mapping
 
 We will provide Elasticsearch with a mapping (RDBM: schema) for the data we want to index.
 Here we create a new document `type` (RDBM: table) called `blogpost` with 6 fields (RDBM: columns).
@@ -24,8 +24,6 @@ Here we create a new document `type` (RDBM: table) called `blogpost` with 6 fiel
 </aside>
 
 ```bash
-#!/bin/bash
-
 curl -g -X PUT "http://localhost:9200/example/?pretty" -d '{
   "settings" : {
     "index" : {
@@ -75,11 +73,9 @@ Reply:
 ---
 
 
-## Document creation
+## Creating a Document
 
 ```bash
-#!/bin/bash
-
 curl -g -X PUT "http://localhost:9200/example/blogpost/1?pretty" -d '{
   "author": "John Doe",
   "title": "I love cats",
@@ -208,9 +204,9 @@ Replies:
 ---
 
 
-## The id
+## The 'id'
 
-The number (1 to 5) at the end of the request url defines the id of the document \(RDBM: primary key\).
+The number (1 to 5) at the end of the request url specifies the document id \(RDBM: primary key\).
 
 If you do not specify it, Elasticsearch will automatically generate an ID and assign it to the document.  
 Even if the ID is actually a String, you can use numbers for convenience.
@@ -218,7 +214,7 @@ For the sake of this example, we explicitly defined the ID of each document (tak
 
 ---
 
-## The body
+## The 'body'
 
 The body of the request must contain the content of the document you want to create.
 
@@ -228,12 +224,12 @@ As a result, Elasticsearch will analyze and index our document as specified.
 
 ---
 
-## The structure
+## The Structure
 
-In the requests outlined above, we insert an array into a field that is defined as a string (`tags`). This is one of the features of Elasticsearch: any field can be an array of the defined type. 
+In the requests outlined above, we insert an array into a field that is defined as a string (`tags`). This is one of the features of Elasticsearch: any field can be an array of the defined type.
 
-Any field can be an array of the defined type. For example, the `tags` field is defined as a string, but we chose to use it as an array of strings (and it is totally fine).  
+For example, the `tags` field is defined as a string, but we chose to use it as an array of strings (and this is totally fine).  
 Another feature of Elasticsearch is that you can nest a field to build complex documents.
 
-It is not addressed in this cookbook but you can find more information in the
+While this feature is not addressed in this cookbook, you can find more information in the
 [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/object.html).
