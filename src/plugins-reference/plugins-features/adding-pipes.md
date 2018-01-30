@@ -1,33 +1,31 @@
 ---
 layout: full.html
 algolia: true
-title: Listening synchronously
+title: Listen Synchronously
 order: 200
 ---
 
-# Listening synchronously
+# Listening Synchronously
 
-Plugins enable you to add synchronous listener functions to a set of [events]({{ site_base_path }}kuzzle-events/). We'll call these synchronous listener functions **pipes** from now on.
+Plugins allow you to add synchronous listener functions to a set of [events]({{ site_base_path }}kuzzle-events/). We call these synchronous listener functions **pipes**.
 
-Pipes are supplied with these events data, they are able to intercept the request, modify the data and interrupt its life-cycle.
-Kuzzle waits for their results before continuing the process.
+Kuzzle Backend will execute a pipe and wait for the pipe to return a result before continuing its process. The pipe will receive event data and can modify it before it is passed back to the Kuzzle Backend process, allowing it to update or interrupt the request.
 
-Pipes are a step in the process of handling client requests, thus Kuzzle enforces a timeout on them, rejecting the request altogether if a synchronous listener fails to respond in a timely fashion, and forwarding an appropriate [GatewayTimeoutError]({{ site_base_path }}plugins-reference/plugins-context/errors/#gatewaytimeouterror) error to the client.  
-The timeout value can be configured in [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration).
+Pipes are a step in the Kuzzle Backend request handling process. As such, Kuzzle Backend enforces a timeout, rejecting a request if a synchronous listener fails to respond in the specified timeframe and returning a [GatewayTimeoutError]({{ site_base_path }}plugins-reference/plugins-context/errors/#gatewaytimeouterror) error to the client.  
+The Kuzzle Backend synchronous listenre timeout value can be configured in [Kuzzle Backend configuration file]({{ site_base_path }}guide/essentials/configuration).
 
-Pipes are declared in the `pipes` property of the Plugin class, where the keys of the object are event names and the values are the names of the corresponding listeners.
-Each pipes must also be exported.
+Pipes are declared in the `pipes` property of the Plugin class, which accepts an object who's keys are the name of the events to listen to and values are the names of the corresponding functions to execute.
 
-A single event can be listened by multiple pipes. When this is the case, they behave like middleware functions (like a pipeline). Kuzzle calls them sequentially, without any particular order, piping the data from one function to the other.
+A single Kuzzle Backend event can be attached to multiple pipes. When this is the case, they behave like a pipeline: Kuzzle Backend will call each `pipe` sequentially, without any particular order, piping the data from one function to the other.
 
-Pipes take a callback as their last parameter, which **must** be called at the end of the processing with the following arguments: `callback(error, object)`, where:
+Pipes accept a callback as an input (in the function's last argument), which **must** be called when the pipe has finished processing the data. The callback should be called with the following arguments: `callback(error, object)`, where:
 
-* `error`: set this value to a `KuzzleError` object to make Kuzzle abort the request, and return that error to the client. Otherwise, set it to `null`
-* `object`: the resulting data, given back to Kuzzle for processing
+* `error`: is a `KuzzleError` object if an error ocurred, or `null` if there is no error. If this field is not null Kuzzle Backend will abort the request and return that error to the client.
+* `object`: the result of the `pipe` which is passed back to Kuzzle Backend for processing.
 
 ---
 
-## TL;DR plugin skeleton
+## Plugin Skeleton
 
 The following plugin example adds a `createdAt` attribute to all newly created documents:
 

@@ -1,20 +1,19 @@
 ---
 layout: full.html
 algolia: true
-title: Plugins features
-description: understand Kuzzle plugins mechanisms
-order: 200
+title: The Plugin Engine
+description: the plugin engine
+order: 100
 show-subheader: true
 subheader-title: Introduction
 ---
 
 
-# Plugins Features
+# The Plugin Engine
 
+The plugin engine lets you extend on Kuzzle Backend's functionality by adding code modules that offer auxiliary features. These modules can:
 
-Depending on the properties it exposes, a plugin can extend of one or several of the following features of Kuzzle:
-
-- Listening asynchronously to events (on the same thread or a separate one),
-- Listening synchronously to events (and intercept the Request life-cycle),
-- Adding a controller route,
-- Adding a new authentication strategy.
+- Listen asynchronously to events (on the same thread as the Kuzzle Backend process or on a separate one),
+- Listen synchronously to events (and intercept a request),
+- Add a controller route,
+- Add a new authentication strategy.
