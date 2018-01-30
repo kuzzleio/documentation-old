@@ -48,7 +48,7 @@ room.count(new ResponseListener<Integer>() {
 1
 ```
 
-Returns the number of subscribers in the room
+Returns the number of subscribers in the room.
 
 ---
 

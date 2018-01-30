@@ -85,4 +85,4 @@ Returns the type of the value held by a key.
 
 ## Callback Response
 
-Returns one of the following values: `hash`, `list`, `set`, `string`, `zset`
+Returns one of the following values: `hash`, `list`, `set`, `string`, `zset`.

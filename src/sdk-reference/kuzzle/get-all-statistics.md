@@ -98,4 +98,4 @@ This method returns all available statistics from Kuzzle Backend.
 
 ### Callback Response
 
-The response is an array of JSON objects that each contain a statistics frame.
+Returns an array of JSON objects that each contain a statistics frame.

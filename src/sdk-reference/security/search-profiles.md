@@ -119,7 +119,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Executes a search on profiles according to a filter
+Executes a search on profiles according to a filter.
 
 ---
 

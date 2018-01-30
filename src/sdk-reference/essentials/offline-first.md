@@ -5,7 +5,7 @@ title: Offline First
 order: 400
 ---
 
-# Offline Firunstablest
+# Offline First
 
 When using an unstable network connection, an application must maintain a normal behavior when it is disconnected. Our goal is to provide the right toolkit to handle such situations.
 
@@ -13,12 +13,12 @@ When using an unstable network connection, an application must maintain a normal
 
 ## Handling a Network Disconnect
 
-There are two ways to handle a network disconnection:
+There are two ways to handle a network disconnect:
 
 * Automatically reconnect to Kuzzle Backend when possible, and enter *offline mode* in the meantime. This is the default behavior.
-* Stop all further communication with Kuzzle Backend and invalidate the current instance and all its children. The application will have to manually reconnect once the network is available. To do so, simply set the ``autoReconnect`` option to ``false`` when starting a new Kuzzle SDK instance.
+* Stop all further communication with Kuzzle Backend and invalidate the current instance and all its children. The application will have to manually reconnect once the network is available. To do so, simply set the ``autoReconnect`` option to ``false`` when creating the Kuzzle SDK instance.
 
-Offline mode simply refers to the time between a ``disconnected`` and a ``reconnected`` event (see [Events]({{ site_base_path }}sdk-reference/essentials/events)).
+*Offline mode* refers to the time between a ``disconnected`` and a ``reconnected`` event (see [Events]({{ site_base_path }}sdk-reference/essentials/events)).
 
 ---
 
@@ -35,7 +35,7 @@ While in offline mode, the Kuzzle SDK client maintains all subscriptions configu
 While in offline mode, API requests can be queued, and then executed once the network connection has been reestablished.  
 By default, there is no request queuing.
 
-* Queue all requests automatically when going offline by setting the ``autoQueue`` option to ``true`` (see [Kuzzle constructor]({{ site_base_path }}sdk-reference/kuzzle))
+* Queue all requests automatically when going offline by setting the ``autoQueue`` option to ``true`` (see [Kuzzle SDK constructor]({{ site_base_path }}sdk-reference/kuzzle))
 * Start and stop queuing manually, by using the [startQueuing]({{ site_base_path }}sdk-reference/kuzzle/start-queuing) and [stopQueuing]({{ site_base_path }}sdk-reference/kuzzle/stop-queuing) methods
 
 The queue itself can be configured using the ``queueTTL`` and ``queueMaxSize`` options.
@@ -70,7 +70,7 @@ Any request made while the Kuzzle SDK client is processing the queue will be del
 
 ## Taking Control of the Offline Queue
 
-You can be notified about what's going on in the offline queue, by using the [`offlineQueuePush` and the `offlineQueuePop` events]({{ site_base_path }}sdk-reference/essentials/events)).  
+You can be notified about what's going on in the offline queue, by using the [`offlineQueuePush`]({{ site_base_path }}sdk-reference/essentials/events) and the [`offlineQueuePop`]({{ site_base_path }}sdk-reference/essentials/events) events.  
 
 The `offlineQueuePush` event is fired whenever a request is queued. It will emit an object containing a `query` property, describing the queued request, and an optional `cb` property containing the corresponding callback, if any.
 
@@ -85,10 +85,10 @@ This property must be set with a function that returns an array of objects with 
 Finally, if the provided methods don't give you enough control over the offline queue, you can access and edit the queue directly using the ``offlineQueue`` property.
 
 ---
-unstable
+
 ## Automatic Offline-Mode
 
-You can set the ``offlineMode`` option to ``auto`` when instantiating the [Kuzzle instance]({{ site_base_path }}sdk-reference/kuzzle). This sets the offline mode configuration to the following preset:
+You can set the ``offlineMode`` option to ``auto`` when instantiating the [Kuzzle SDK instance]({{ site_base_path }}sdk-reference/kuzzle). This sets the offline mode configuration to the following presets:
 
 * ``autoReconnect`` = ``true``
 * ``autoQueue`` = ``true``

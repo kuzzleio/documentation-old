@@ -110,4 +110,4 @@ Returns the `Security` object to allow chaining.
 
 ## Callback Response
 
-Returns an updated [User]({{ site_base_path }}sdk-reference/user) object
+Returns an updated [User]({{ site_base_path }}sdk-reference/user) object.

@@ -91,4 +91,4 @@ Returns the values of the provided keys.
 
 ## Callback Response
 
-Returns an array of the specified keys' values
+Returns an array of the specified keys' values.

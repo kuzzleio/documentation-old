@@ -27,7 +27,7 @@ $kuzzle = new Kuzzle('localhost');
 $kuzzle->unsetJwtToken();
 ```
 
-Unsets the internal JSON Web Token used for authentication, and stops all existing subscriptions
+Unsets the internal JSON Web Token used for authentication, and stops all existing subscriptions.
 
 ---
 

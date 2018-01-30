@@ -131,4 +131,4 @@ Returns the `Role` object to allow chaining.
 
 ## Callback Response
 
-Returns the updated version of this object
+Returns the updated version of this object.

@@ -92,4 +92,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback Response
 
-Returns a boolean specifying if the operation was successful or not
+Returns a boolean specifying if the operation was successful or not.

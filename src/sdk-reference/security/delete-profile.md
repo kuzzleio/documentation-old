@@ -69,7 +69,7 @@ catch (ErrorException $e) {
 Delete the provided profile.
 
 <aside class="notice">
-There is a small delay between profile deletion and its availability in our search layer (usually a couple of seconds).
+There is a small delay between the time a profile is deleted and it being reflected in the search layer (usually a couple of seconds).
 That means that a profile that was just deleted may still be returned by the <code>searchProfiles</code> function at first.
 </aside>
 
@@ -103,4 +103,4 @@ Returns the `Security` object to allow chaining.
 
 ## Callback Response
 
-Returns the id of the security profile that has been deleted.
+Returns the ID of the security profile that has been deleted.

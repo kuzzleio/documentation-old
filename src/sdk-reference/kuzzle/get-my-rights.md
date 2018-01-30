@@ -73,7 +73,7 @@ $rights = $kuzzle->security()->getMyRights();
 ]
 ```
 
-Gets the rights for the current user
+Gets the rights for the current user.
 
 ---
 

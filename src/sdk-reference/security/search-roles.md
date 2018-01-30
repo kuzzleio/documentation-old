@@ -113,7 +113,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Executes a search on roles according to a filter
+Executes a search on roles according to a filter.
 
 ---
 

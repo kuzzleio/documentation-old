@@ -75,4 +75,4 @@ Returns the list of indexes stored in Kuzzle Backend.
 
 ## Callback Response
 
-The response is an `array` of index names.
+Returns an `array` of index names.

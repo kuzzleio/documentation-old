@@ -78,4 +78,4 @@ Deletes the role from Kuzzle Backend's database layer.
 
 ## Callback Response
 
-Returns the id of the deleted role.
+Returns the ID of the deleted role.

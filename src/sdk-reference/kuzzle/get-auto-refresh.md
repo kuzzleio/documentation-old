@@ -86,4 +86,4 @@ The `getAutoRefresh` function returns the current `autoRefresh` status for the g
 
 ## Callback Response
 
-The response is a boolean reflecting the index `autoRefresh` status.
+Returns a boolean with the index `autoRefresh` status.

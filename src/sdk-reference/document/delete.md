@@ -54,7 +54,7 @@ try {
 }
 ```
 
-Deletes this document in Kuzzle.
+Deletes this document in Kuzzle Backend.
 
 ---
 
@@ -79,4 +79,4 @@ Deletes this document in Kuzzle.
 
 ## Callback Response
 
-Returns a string containing the deleted document ID
+Returns a string containing the ID of the deleted document.

@@ -149,7 +149,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Executes a search on users according to a filter
+Executes a search on users according to a filter.
 
 ---
 

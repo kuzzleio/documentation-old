@@ -54,7 +54,7 @@ try {
 }
 ```
 
-Creates a new `Document` object with the last version of this document stored in Kuzzle.
+Creates a new `Document` object with the last version of this document stored in Kuzzle Backend.
 
 ---
 
