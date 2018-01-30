@@ -8,7 +8,7 @@ title: bool
 
 {{{since "1.0.0"}}}
 
-A filter matching documents matching boolean combinations of other queries.
+Returns documents matching a combinations of filters.
 
 This operand accepts the following attributes:
 

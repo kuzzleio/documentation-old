@@ -8,7 +8,7 @@ title: not
 
 {{{since "1.0.0"}}}
 
-The `not` filter reverts a filter result.
+The `not` filter omits the filter match.
 
 ## Given the following documents:
 
