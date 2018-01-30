@@ -25,7 +25,7 @@ This class should only be used to create new Kuzzle error objects.
 
 **Status Code:** `400`
 
-Used to notify about badly formed requests.
+Thrown when a request is malformatted.
 
 ```js
 const err = new context.errors.BadRequestError('error message');
@@ -39,7 +39,7 @@ const err = new context.errors.BadRequestError('error message');
 
 **Status Code:** `500`
 
-Used when an external service answers to a request with an error other than a bad request or a service unavailable one.
+Thrown when an external service replies to a request with an error that is not a bad request or a service unavailable error.
 
 ```js
 const err = new context.errors.ExternalServiceError('error message');
@@ -53,7 +53,7 @@ const err = new context.errors.ExternalServiceError('error message');
 
 **Status Code:** `403`
 
-Used when a user tries to use resources beyond his access rights.
+Thrown when a user tries to access a resource that they have no permission to access.
 
 ```js
 const err = new context.errors.ForbiddenError('error message');
@@ -67,7 +67,7 @@ const err = new context.errors.ForbiddenError('error message');
 
 **Status Code:** `504`
 
-Used when a plugin takes too long to perform a task.
+Thrown when a plugin takes too long to perform a task.
 
 ```js
 const err = new context.errors.GatewayTimeoutError('error message');
@@ -95,7 +95,7 @@ const err = new context.errors.InternalError('error message');
 
 **Status Code:** `404`
 
-Used when asked resources cannot be found.
+Thrown when a requested resource cannot be found.
 
 ```js
 const err = new context.errors.NotFoundError('error message');
@@ -109,7 +109,7 @@ const err = new context.errors.NotFoundError('error message');
 
 **Status Code:** `400`
 
-Used when a provided resource cannot be interpreted.
+Thrown when a provided resource cannot be interpreted.
 
 ```js
 const err = new context.errors.ParseError('error message');
@@ -123,9 +123,9 @@ const err = new context.errors.ParseError('error message');
 
 **Status Code:** `206`
 
-Used when a request only partially succeeded.
+Thrown when a request only partially succeeds.
 
-The constructor takes an additional `array` argument containing a list of failed parts.
+The constructor takes an additional `array` argument containing a list of failures.
 
 ```js
 const err = new context.errors.PartialError('error message', [{this: 'failed'}, {andThis: 'failed too'}]);
@@ -139,7 +139,7 @@ const err = new context.errors.PartialError('error message', [{this: 'failed'}, 
 
 **Status Code:** `500`
 
-Used when a plugin fails.
+Thrown when a plugin fails.
 
 ```js
 const err = new context.errors.PluginImplementationError('error message');
@@ -153,7 +153,7 @@ const err = new context.errors.PluginImplementationError('error message');
 
 **Status Code:** `412`
 
-Used when a request could not be processed because preconditions weren't met.
+Thrown when a request could not be processed because preconditions were not met.
 
 ```js
 const err = new context.errors.PreconditionError('error message');
@@ -168,7 +168,7 @@ const err = new context.errors.PreconditionError('error message');
 
 **Status Code:** `503`
 
-Used when a resource cannot respond because it is temporarily unavailable.
+Thrown when a resource cannot respond because it is temporarily unavailable.
 
 ```js
 const err = new context.errors.ServiceUnavailableError('error message');
@@ -182,7 +182,7 @@ const err = new context.errors.ServiceUnavailableError('error message');
 
 **Status Code:** `413`
 
-Used to notify about requests exceeding maximum limits.
+Thrown when a request has exceeded the maximum limits.
 
 ```js
 const err = new context.errors.SizeLimitError('error message');
@@ -196,7 +196,7 @@ const err = new context.errors.SizeLimitError('error message');
 
 **Status Code:** `401`
 
-Used when a user fails a login attempt.
+Thrown when a user fails to login.
 
 ```js
 const err = new context.errors.UnauthorizedError('error message');
