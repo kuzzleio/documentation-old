@@ -75,4 +75,4 @@ Create the current user's credentials for the specified <strategy>. The credenti
 
 ## Callback Response
 
-The response is a an object reflecting the created credentials.
+Returns an object with the created credentials.

@@ -86,4 +86,4 @@ Counts the number of set bits (population counting) in a string.
 
 ## Callback Response
 
-Return an integer containing the count of set bits
+Return an integer containing the count of set bits.

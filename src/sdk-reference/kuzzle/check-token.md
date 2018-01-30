@@ -89,5 +89,5 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 
 ## Callback Response
 
-A JSON object with a `valid` boolean property.  
+Returns a JSON object with a `valid` boolean property.  
 If the token is valid, an `expiresAt` property is set with the expiration timestamp. If not, a `state` property is set explaining why the token is invalid.

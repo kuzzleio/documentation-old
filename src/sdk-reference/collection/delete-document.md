@@ -120,7 +120,7 @@ catch (ErrorException $e) {
 Delete a stored document, or all stored documents matching a search filter.
 
 <aside class="notice">
-There is a small delay between the time a document is created and its availability in our search layer (usually a couple of seconds). That means that a document that was just created might not be returned by this function at first.
+There is a small delay between the time a document is deleted and it being reflected in the search layer (usually a couple of seconds). That means that a document that was just deleted may still be returned by this function at first.
 </aside>
 
 ---
@@ -163,4 +163,4 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback Response
 
-Returns an `array` containing the deleted document IDs.
+Returns an `array` containing the ids of the deleted documents.

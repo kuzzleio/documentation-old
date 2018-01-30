@@ -79,4 +79,4 @@ Get [credential information]({{ site_base_path }}guide/essentials/user-authentic
 
 ## Callback Response
 
-The response is an object reflecting the credentials for the provided authentication strategy.
+Returns an object with the credentials for the provided authentication strategy.

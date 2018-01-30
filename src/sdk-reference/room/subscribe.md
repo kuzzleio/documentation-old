@@ -75,5 +75,5 @@ Returns this `Room` object to allow chaining.
 
 ## Callback Response
 
-Return this `Room` object
+Return this `Room` object.
 

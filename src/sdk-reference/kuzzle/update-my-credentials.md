@@ -50,7 +50,7 @@ $result = $kuzzle->updateMyCredentials('local', ['username' => 'foo']);
 // $result = [username => 'foo', kuid => '<kuid>']
 ```
 
-Update current user credentials for the specified <strategy>. The credentials to send depend on the authentication plugin and the strategy.
+Update current user credentials for the specified `strategy`. The credentials to send depend on the authentication plugin and the strategy.
 
 ---
 
@@ -75,4 +75,4 @@ Update current user credentials for the specified <strategy>. The credentials to
 
 ## Callback response
 
-The response is a an object reflecting the updated credentials.
+Returns an object reflecting the updated credentials.

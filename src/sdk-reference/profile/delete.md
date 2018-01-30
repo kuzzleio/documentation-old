@@ -81,4 +81,4 @@ Deletes this security profile from Kuzzle Backend.
 
 ## Callback Response
 
-Returns the id of the deleted profile.
+Returns the ID of the deleted profile.

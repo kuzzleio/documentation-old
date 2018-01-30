@@ -91,4 +91,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback Response
 
-Return an integer containing the new length of the key's value
+Return an integer containing the new length of the key's value.

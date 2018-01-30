@@ -83,4 +83,4 @@ Create a new empty data index, with no associated mapping.
 
 ## Callback Response
 
-The response is a an object reflecting the index creation status.
+Returns an object with the index creation status.

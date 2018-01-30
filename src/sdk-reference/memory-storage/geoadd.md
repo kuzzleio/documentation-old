@@ -127,4 +127,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback Response
 
-Returns an integer containing the number of points added to the key
+Returns an integer containing the number of points added to the key.

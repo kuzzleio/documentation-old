@@ -88,4 +88,4 @@ The returned distance is expressed in meters by default.
 
 ## Callback Response
 
-Returns the calculated distance between the two provided geospatial points
+Returns the calculated distance between the two provided geospatial points.

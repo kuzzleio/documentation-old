@@ -50,7 +50,7 @@ $result = $kuzzle->validateMyCredentials('local', ['username' => 'foo']);
 // $result = true or false
 ```
 
-Update current user's credentials for the specified <strategy>. The credentials to send depend on the authentication plugin and the strategy.
+Update current user's credentials for the specified `strategy`. The credentials to send depend on the authentication plugin and the strategy.
 
 ---
 

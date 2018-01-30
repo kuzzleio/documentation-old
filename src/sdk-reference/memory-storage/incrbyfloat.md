@@ -91,4 +91,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback Response
 
-Returns a floating point number that contains the updated key value
+Returns a floating point number that contains the updated key value.

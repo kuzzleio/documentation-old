@@ -78,7 +78,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new document in Kuzzle Backend and resolves to a [Document]({{ site_base_path }}sdk-reference/document/) object.
+Create a new document in Kuzzle Backend and instantiate a [Document]({{ site_base_path }}sdk-reference/document/) object.
 
 ---
 

@@ -73,4 +73,4 @@ Returns the `Kuzzle` SDK object to allow chaining.
 
 ## Callback Response
 
-The response is a boolean reflecting the new `autoRefresh` status.
+Returns a boolean with the new `autoRefresh` status.

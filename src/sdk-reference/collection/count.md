@@ -68,7 +68,7 @@ catch (ErrorException $e) {
 12
 ```
 
-Returns the number of documents matching the provided set of filters.+
+Returns the number of documents matching the provided set of filters.
 
 <aside class="notice">
 There is a small delay between the time a document is created and its availability in our search layer (usually a couple of seconds). That means that a document that was just created might not be returned by this function at first.

@@ -69,7 +69,7 @@ catch (ErrorException $e) {
 Delete the provided role.
 
 <aside class="notice">
-There is a small delay between role deletion and its availability in our search layer (usually a couple of seconds).
+There is a small delay between the time a role is deleted and it being reflected in the search layer (usually a couple of seconds).
 That means that a role that was just deleted may still be returned by the <code>searchRoles</code> function at first.
 </aside>
 

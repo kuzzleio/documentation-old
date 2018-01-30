@@ -93,7 +93,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Base method used to send queries to Kuzzle Backend, following the [API Documentation]({{ site_base_path }}api-documentation)
+Base method used to send queries to Kuzzle Backend, following the [API Documentation]({{ site_base_path }}api-documentation).
 
 <aside class="warning">
 This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.<br/>

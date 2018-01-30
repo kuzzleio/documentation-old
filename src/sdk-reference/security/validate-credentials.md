@@ -81,4 +81,4 @@ Validate credentials of user with `kuid` for the specified `strategy`.
 
 ## Callback Response
 
-Returns a boolean value
+Returns a boolean value.
