@@ -13,7 +13,7 @@ subheader-title: Introduction
 
 The plugin engine lets you extend on Kuzzle Backend's functionality by adding code modules that offer auxiliary features. These modules can:
 
-- Listen asynchronously to events (on the same thread as the Kuzzle Backend process or on a separate one),
-- Listen synchronously to events (and intercept a request),
-- Add a controller route,
-- Add a new authentication strategy.
+- Listen asynchronously to events (on the same thread as the Kuzzle Backend process or on a separate one)
+- Listen synchronously to events (and intercept a request)
+- Add a controller route
+- Add a new authentication strategy
