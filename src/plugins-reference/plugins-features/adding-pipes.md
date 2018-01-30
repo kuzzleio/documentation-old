@@ -12,7 +12,7 @@ Plugins allow you to add synchronous listener functions to a set of [events]({{ 
 Kuzzle Backend will execute a pipe and wait for the pipe to return a result before continuing its process. The pipe will receive event data and can modify it before it is passed back to the Kuzzle Backend process, allowing it to update or interrupt the request.
 
 Pipes are a step in the Kuzzle Backend request handling process. As such, Kuzzle Backend enforces a timeout, rejecting a request if a synchronous listener fails to respond in the specified timeframe and returning a [GatewayTimeoutError]({{ site_base_path }}plugins-reference/plugins-context/errors/#gatewaytimeouterror) error to the client.  
-The Kuzzle Backend synchronous listenre timeout value can be configured in [Kuzzle Backend configuration file]({{ site_base_path }}guide/essentials/configuration).
+The Kuzzle Backend synchronous listener timeout value can be configured in [Kuzzle Backend configuration file]({{ site_base_path }}guide/essentials/configuration).
 
 Pipes are declared in the `pipes` property of the Plugin class, which accepts an object who's keys are the name of the events to listen to and values are the names of the corresponding functions to execute.
 
@@ -20,7 +20,7 @@ A single Kuzzle Backend event can be attached to multiple pipes. When this is th
 
 Pipes accept a callback as an input (in the function's last argument), which **must** be called when the pipe has finished processing the data. The callback should be called with the following arguments: `callback(error, object)`, where:
 
-* `error`: is a `KuzzleError` object if an error ocurred, or `null` if there is no error. If this field is not null Kuzzle Backend will abort the request and return that error to the client.
+* `error`: is a `KuzzleError` object if an error ocurred, or `null` if there is no error. If this field is set, then Kuzzle Backend will abort the request and return the error to the client.
 * `object`: the result of the `pipe` which is passed back to Kuzzle Backend for processing.
 
 ---
