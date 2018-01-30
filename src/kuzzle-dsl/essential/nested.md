@@ -1,16 +1,16 @@
 ---
 layout: full.html
 algolia: true
-title: Testing nested fields
+title: Testing Nested Fields
 description: How to test nested fields
 order: 20
 ---
 
-# Testing nested fields
+# Testing Nested Fields
 
-Examples described in this documentation show how to test for fields at the root of provided data objects, but it is also possible to add filters on nested properties.
+Examples described in this documentation show how to test for fields at the root of the provided data objects, but it is also possible to add filters on nested properties.
 
-To do that, instead of giving the name of the property to test, its path must be supplied, in the following manner: `path.to.property`
+To do that, instead of giving the name of the property to test, its path must be supplied as follows: `path.to.property`
 
 **Example:**
 
@@ -25,7 +25,7 @@ Given the following document:
 }
 ```
 
-Here is a filter, testing for equality on the field `last` in the `name` sub-object:
+Here is a filter, testing for equality on the field `last` in the `name` object:
 
 ```json
 {
