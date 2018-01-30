@@ -35,10 +35,10 @@ foreach($user->getProfileIds() as $profileId) {
 }
 ```
 
-Returns the list of profile identifiers associated to this user.
+Returns the list of profile identifiers associated with this user.
 
 ---
 
-## Return value
+## Return Value
 
-Returns an array of strings of associated profile identifiers
+Returns an array of strings, each a profile identifier associated with this user.

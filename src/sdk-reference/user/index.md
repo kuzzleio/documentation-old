@@ -76,7 +76,7 @@ $user = $security->user($kuid, $userDefinition);
 $user = new User($security, $kuid, $userDefinition);
 ```
 
-Instantiates a new User object, an object representation of an user, which is associated to a [Profile]({{ site_base_path }}sdk-reference/profile) object
+Instantiates a new User object, which is a representation of a Kuzzle Backend user and is linked to a security [Profile]({{ site_base_path }}sdk-reference/profile).
 
 
 ---
@@ -104,6 +104,6 @@ Instantiates a new User object, an object representation of an user, which is as
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `User` object.
