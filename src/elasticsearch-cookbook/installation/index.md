@@ -18,8 +18,8 @@ Alternatively you can simply trust the results we provide in the cookbook and sk
 
 ## Launch Elasticsearch
 
-Below we provide a way to get Elasticsearch running quickly using docker, but you can also follow the official
-[installation documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/_installation.html).
+Below we provide a way to get Elasticsearch running quickly using docker, but you can follow the official
+[installation documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/_installation.html) instead.
 
 
 To launch Elasticsearch, run these commands:
@@ -30,7 +30,6 @@ sudo sysctl -w vm.max_map_count=262144
 docker run -p 9200:9200 elasticsearch:5.0
 ```
 
-(To stop Elasticsearch, you can use Ctrl-C)
 This will run Elasticsearch in the terminal. To stop it, you can simply exit the terminal or press Ctrl-C.
 
 The Elasticsearch instance will be accessible on port 9200 of the localhost.
@@ -40,7 +39,7 @@ If you installed Elasticsearch using another method, adapt the examples provided
 
 ## Confirm Elasticsearch is Running
 
-To be sure Elasticsearch is running, execute the following command:
+To ensure that Elasticsearch is running, execute the following command:
 
 ```bash
 curl -g -X GET "http://localhost:9200/"
