@@ -38,7 +38,7 @@ Example: after a successful [create]({{ site_base_path }}api-documentation/contr
 
 All actions in the `collection` controllers trigger this event before execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
-Example: before performing a [updateMapping]({{ site_base_path }}api-documentation/controller-collection/update-mapping/) request, a `collection:beforeUpdateMapping` event is triggered.
+Example: before performing an [updateMapping]({{ site_base_path }}api-documentation/controller-collection/update-mapping/) request, a `collection:beforeUpdateMapping` event is triggered.
 
 ---
 
