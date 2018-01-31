@@ -158,7 +158,7 @@ The following diagram shows how a request flows between the client application, 
 ## Asynchronous Communication
 
 In an asynchronous request, Kuzzle Backend will receive a request over one channel, process it, and trigger a response over another channel. In order to receive the response, the Client must subscribe to the trigger. Because two separate channels are used, the request and response do not need to be made by the same Client nor do they need to be made sequentially.
-, on all registered network protocols
+
 This form of communication is generally referred to as publish/subscribe, because on the one side a Client is **subscribing** to a channel and on the other side a Client is **publishing** to a channel.
 
 This subsection describes the life-cycle of real-time notifications which implement the [Publish/Subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern.
