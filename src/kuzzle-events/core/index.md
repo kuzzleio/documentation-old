@@ -24,7 +24,6 @@ Events triggered to synchronize Kuzzle Backend instances in a cluster.
 
 This event is triggered whenever a plugin registers an [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy) **dynamically** (see [PluginContext]({{ site_base_path }}plugins-reference/plugins-context/accessors/#add)).  
 This event is NOT triggered when plugins register authentication strategies by exposing [a strategies object]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies).
-level
 The payload is a plain JSON object with the following properties:
 
 * `pluginName`: the name of the plugin having registered a strategy
@@ -56,7 +55,7 @@ The payload is a plain JSON object with the following properties:
 
 **Event type:** Hook
 
-Triggered when Kuzzle Backend has completed its starting sequence and is ready to process user requests.
+Triggered when Kuzzle Backend has finished booting and is ready to process user requests.
 
 ---
 
@@ -72,8 +71,8 @@ Kuzzle Backend features an overload-protection system, configurable through the 
 
 This feature allows only a small number of requests to be processed simultaneously. If more requests are to be processed, then they are stored in a buffer until some of the running requests have completed.
 
-If requests are buffered more rapidly than they are processed, Kuzzle Backend enters `overload` mode and will trigger this event regularly to inform about the state of the request buffer.
+If requests are buffered more rapidly than they are processed, Kuzzle Backend enters `overload` mode and will trigger this event regularly to send updates about the state of the request buffer.
 
-Any request submitted while the request buffer is completely filled (i.e. the payload is equal to `100`) is automatically rejected.
+Any request submitted while the request buffer is completely filled (i.e. the payload is equal to `100`) will be automatically rejected.
 
 ---

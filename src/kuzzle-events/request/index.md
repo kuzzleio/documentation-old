@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Global events triggered on requests execution.
+Global events triggered on request execution.
 
 ---
 

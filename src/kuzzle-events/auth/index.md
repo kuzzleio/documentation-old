@@ -64,7 +64,7 @@ Example: after a failed [login]({{ site_base_path }}api-documentation/controller
 
 **Payload:** Object (see below)
 
-This event is triggered immediately after a successful user authentication, but before a token is generated (and before a `auth:afterLogin` event is triggered).
+This event is triggered immediately after a successful user authentication, but before a token is generated (and before an `auth:afterLogin` event is triggered).
 
 This event's payload is a plain JSON object with the following properties:
 * `strategy`: the [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy) name 
