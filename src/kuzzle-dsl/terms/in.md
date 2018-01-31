@@ -8,7 +8,7 @@ title: in
 
 {{{since "1.0.0"}}}
 
-This filter allows testing a string field against multiple values.
+This filter can be used to match a field to one of many values.
 
 ## Example
 

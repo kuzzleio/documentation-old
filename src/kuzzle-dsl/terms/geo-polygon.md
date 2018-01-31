@@ -8,7 +8,7 @@ title: geoPolygon
 
 {{{since '1.0.0'}}}
 
-Filter documents containing a geographical point, confined within a polygon of an arbitrary number of sides:
+Filter documents containing a geographical point, confined within a polygon that has an arbitrary number of sides:
 
 ![Illustration of geoPolygon]({{ site_base_path }}assets/images/geolocation/geoPolygon.png)
 
@@ -36,7 +36,7 @@ Given the following documents:
 {
   firstName: 'Ada',
   lastName: 'Lovelace',
-  location: {
+  location: {record
     lat: 51.519291,
     lon: -0.149817
   }

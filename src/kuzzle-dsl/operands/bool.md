@@ -8,7 +8,7 @@ title: bool
 
 {{{since "1.0.0"}}}
 
-Returns documents matching a combinations of filters.
+Returns documents matching a combination of filters.
 
 This operand accepts the following attributes:
 
