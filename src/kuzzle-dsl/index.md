@@ -8,7 +8,7 @@ icon: fa-commenting-o
 
 # Kuzzle Backend DSL
 
-This documentation section details Kuzzle Backend DSL, interpreted by [Koncorde](https://www.npmjs.com/package/koncorde), Kuzzle's real-time percolation engine.
+This documentation section details Kuzzle Backend DSL, interpreted by [Koncorde](https://www.npmjs.com/package/koncorde), Kuzzle Backend's real-time percolation engine.
 
 This engine is used by Kuzzle Backend to:
 
