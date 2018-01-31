@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered when a request is sent to the [`auth` controller]({{ site_base_path }}api-documentation/controller-auth)
+Events triggered when a request is sent to the [`auth`]({{ site_base_path }}api-documentation/controller-auth) controller.
 
 ---
 
@@ -22,7 +22,7 @@ Events triggered when a request is sent to the [`auth` controller]({{ site_base_
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `auth` controller trigger this event after a successful execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `auth` controller trigger this event after a successful execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a successful [logout]({{ site_base_path }}api-documentation/controller-auth/logout/) request, a `auth:afterLogout` event is triggered.
 
@@ -36,7 +36,7 @@ Example: after a successful [logout]({{ site_base_path }}api-documentation/contr
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `auth` controller trigger this event before execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `auth` controller trigger this event before execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: before performing a [checkToken]({{ site_base_path }}api-documentation/controller-auth/check-token/) request, a `auth:beforeCheckToken` event is triggered.
 
@@ -50,7 +50,7 @@ Example: before performing a [checkToken]({{ site_base_path }}api-documentation/
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `auth` controller trigger this event after a failed execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `auth` controller trigger this event after a failed execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a failed [login]({{ site_base_path }}api-documentation/controller-auth/login/) request, a `auth:errorLogin` event is triggered.
 

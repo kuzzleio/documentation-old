@@ -22,7 +22,7 @@ Global events triggered on requests execution.
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-Triggered whenever a request passed authorization checks and is ready to be processed.  
+Triggered whenever a request passes authorization checks and is ready to be processed.  
 This event occurs before any `<controller>:before<Action>` event.
 
 ---
@@ -61,6 +61,6 @@ This event occurs after any `<controller>:after<Action>` event.
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-Triggered whenever a request failed authorization checks, and is about to be rejected with a `401` error code.
+Triggered whenever a request fails authorization checks, and is about to be rejected with a `401` error code.
 
 ---
