@@ -8,19 +8,19 @@ order: 200
 
 # Data insertion
 
-From now on we will add the `?pretty` keyword to requests in order to get human-readable outputs.
+We use the `?pretty` keyword to get human-readable outputs from our requests.
 
 ---
 
 ## Mapping creation
 
-We will provide to Elasticsearch the mapping (RDBM: schema) of the data we want to index.
+We will provide Elasticsearch with a mapping (RDBM: schema) for the data we want to index.
 Here we create a new document `type` (RDBM: table) called `blogpost` with 6 fields (RDBM: columns).
 
 <aside class="warning">
   The mapping is not mandatory, but if you don't define it before pushing data to Elasticsearch,
-  Elasticsearch will infer to define the type of each field for you depending of their content.
-  Once defined, the field type can not be changed.
+  Elasticsearch will infer the mapping for each field based on its content.
+  Once defined, the field type cannot be changed.
 </aside>
 
 ```bash
@@ -212,11 +212,9 @@ Replies:
 
 The number (1 to 5) at the end of the request url defines the id of the document \(RDBM: primary key\).
 
-If you do not specify it, Elasticsearch will assign an id to the document automatically.  
-For the sake of this example, we explicitly defined the ID of each document (take a look at the last chunk of the URLs).
-
 If you do not specify it, Elasticsearch will automatically generate an ID and assign it to the document.  
 Even if the ID is actually a String, you can use numbers for convenience.
+For the sake of this example, we explicitly defined the ID of each document (take a look at the last chunk of the URLs).
 
 ---
 
@@ -224,7 +222,7 @@ Even if the ID is actually a String, you can use numbers for convenience.
 
 The body of the request must contain the content of the document you want to create.
 
-As you can see, the structure of the document matches our mapping.
+In the requests outlined above, the structure of the document matches our mapping.
 As a result, Elasticsearch will analyze and index our document as specified.
 
 
@@ -232,7 +230,7 @@ As a result, Elasticsearch will analyze and index our document as specified.
 
 ## The structure
 
-As you can see, we insert an array in a field ment to be a string. It is one of the feature of Elasticsearch;
+In the requests outlined above, we insert an array into a field that is defined as a string (`tags`). This is one of the features of Elasticsearch: any field can be an array of the defined type. 
 
 Any field can be an array of the defined type. For example, the `tags` field is defined as a string, but we chose to use it as an array of strings (and it is totally fine).  
 Another feature of Elasticsearch is that you can nest a field to build complex documents.

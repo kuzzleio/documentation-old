@@ -9,8 +9,8 @@ has-toc: true
 
 # The `bool` (Boolean) query
 
-(optional) You may need to explore the theory first, to understand the paradigm behind this kind of query.
-Thanksfully you can find a good resource on [Wikipedia](https://en.wikipedia.org/wiki/Standard_Boolean_model).
+You might want to explore the theory behind this query to understand it more in detail.
+If you're interested, you can find a good description on [Wikipedia](https://en.wikipedia.org/wiki/Standard_Boolean_model).
 
 In the boolean compound query, there are 4 occurrence types:
 
@@ -189,7 +189,7 @@ Both examples above generate the same result:
 }
 ```
 
-You can notice that the score of both documents is *0*: this is because we only use the `filter` occurence type
+You can notice that the score of both documents is *0* : this is because we only use the `filter` occurence type
 of the `bool` query.
 
 

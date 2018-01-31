@@ -257,8 +257,8 @@ Reply:
 
 ## The `query_string` query
 
-The `query_string` query is a way to "talk" directly to the core engine of Elasticsearch.
-If you are used to use Solr, it will look familiar.
+The `query_string` query is a way to communicate directly with the Elasticsearch core engine.
+If you are familiar with Solr, then you might recognize this.
 
 ```bash
 #!/bin/bash
@@ -328,7 +328,7 @@ As a result, the choice of the analyzer applied to a field is very important. To
 we recommend you to read the
 [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/analysis-analyzers.html).
 
-It results in a set of documents where a score is applied.
+It returns a set of documents that includes a score.
 
 ```bash
 #!/bin/bash
@@ -387,9 +387,9 @@ Reply:
 }
 ```
 
-You can see that the second document does not contain cake at all but is still matching.
-This is because, by default, the `match` query operator applies a `or` operand to the provided searched terms.
-To return documents matching all tokens, you have to use the `and` operator:
+You can see that the second document does not have a title that contains the text "cake" but it is still considered a match.
+This is because, by default, the `match` query operator applies an `or` operand to the provided search terms.
+In order to return documents matching all tokens, you have to use the `and` operator:
 
 ```bash
 #!/bin/bash
@@ -442,7 +442,7 @@ Reply:
 
 ## The `prefix` query
 
-The `prefix` query matches all the documents where the given field has a value that begins with the given string.
+The `prefix` query matches all documents where the specified field has a value that begins with the given string.
 In the following example, we want to match all the documents where the value of field status begins with `pub`:
 
 ```bash
@@ -506,8 +506,8 @@ Reply:
 
 ## The `range` query
 
-The `range` query matches all the documents where the value of the given field is included within the specified range.
-In the following example, we want to match all the document where `published_date` is included within the two specified dates:
+The `range` query matches all documents where the value of the specified field is included within the given range.
+In the following example, we want to match all the document where `published_date` is within the two specified dates:
 
 ```bash
 #!/bin/bash
@@ -876,7 +876,7 @@ Reply:
 ## Sorting the result set
 
 If you want to sort your result set in a different order than the `_score` default sort
-or compound the `_score` sort with other fields, you can specify the sort order alongside to the query:
+or compound the `_score` sort with other fields, you can specify the sort order in the query:
 
 ```bash
 #!/bin/bash
