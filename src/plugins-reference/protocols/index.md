@@ -2,29 +2,27 @@
 layout: full.html
 algolia: true
 title: Protocols
-description: Extend Kuzzle communication capabilities
+description: Extend Kuzzle Backend communication capabilities
 order: 500
 ---
 
 # Protocols
 
-By default, Kuzzle supports HTTP, Websocket and Socket.io protocols.
-
-Kuzzle can be extended with custom protocols to support more type of entries.
+By default, Kuzzle Backend supports HTTP, Websocket and Socket.io protocols. However, you can add more protocols and even create your own.
 
 --- 
 
-## Install 
+## Installing a Protocol
 
-Installing a protocol is very similar to [plugins]({{ site_base_path }}plugins-reference/managing-plugins/#installing-removing-enabling-and-disabling-plugins)
+Adding a new protocol is similar to adding a [plugin]({{ site_base_path }}plugins-reference/managing-plugins/#installing-removing-enabling-and-disabling-plugins)
 
 The only difference is that protocols need to be installed in `protocols/enabled` directory.
 
 --- 
 
-## Configure 
+## Configuring a Protocol
 
-Protocols are configured within [Kuzzle configuration]({{ site_base_path }}guide/essentials/configuration/), under the `server/protcols/<protocol name>` section.
+Protocols are configured in the [Kuzzle Backend configuration]({{ site_base_path }}guide/essentials/configuration/), under the `server/protcols/<protocol name>` section.
 
 Example:  
 *.kuzzlerc*
@@ -41,15 +39,13 @@ Example:
 }
 ```
 
-The example above will be taken into account by [Kuzzle MQTT protocol](https://github.com/kuzzleio/protocol-mqtt);
+The example above will be set the configuration for the [Kuzzle Backend MQTT protocol](https://github.com/kuzzleio/protocol-mqtt);
 
 ---
 
-## Build your own
+## Building a Protocol
 
-Protocols are constructors exposed in a nodejs module.
-
-Protocols must implement the following methods:
+Protocols are constructors exposed in a Node.js module that must implement the following methods:
 
 | Method | Arguments | Description                 |
 |------|----------------|-----------------------------|
@@ -64,11 +60,11 @@ Protocols must implement the following methods:
 
 `init ({EntryPoint} entryPoint, {Object} context)`
 
-return value: `void` or `Promise`. If the returned value is a promise, Kuzzle will wait till it is resolved to continue starting.
+return value: `void` or `Promise`. If the returned value is a promise, Kuzzle Backend will wait until it is resolved to continue booting.
 
 --- 
 
-## Available objects reference
+## Object Reference
 
 ### ClientConnection
 
@@ -97,7 +93,7 @@ It contains useful functions and objects not directly related to the protocol co
 
 #### utils
 
-* `errors`: An object containing [Kuzzle error constructors](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/errors/index.js)
+* `errors`: An object containing [Kuzzle Backend error constructors](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/errors/index.js)
 * `log`: An set of `level` log functions. `level` values are: [`silly`, `verbose`, `debug`, `info`, `warn`, `error`]
 
 ex: `context.log.error(new context.errors.InternalError('something went bad'))`
@@ -110,14 +106,14 @@ ex: `context.log.error(new context.errors.InternalError('something went bad'))`
 
 type: `pojo object`
 
-Contains Kuzzle configuration `server` subtree. The user configuration for the protocol can potentially be found under `entryPoint.config.protocols[protocolName]`.
+Contains Kuzzle Backend configuration `server` subtree. The user configuration for the protocol can potentially be found under `entryPoint.config.protocols[protocolName]`.
 
 #### execute method
 
 `execute(request, callback)`
 
 * `request` <br>{[`Request`](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/request.js)} The `Request` constructor is exposed in the [`context`](#context-instance) object given to the `init` method.<br>The request **must** be constructed with a valid request context, including the `connectionId` and the protocol (cf example below).
-* `callback` <br>{Function} The callback to be executed when Kuzzle gets the result.<br>Takes one `response` argument, being the result of [`RequestResponse.toJSON()`](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/models/requestResponse.js).
+* `callback` <br>{Function} The callback to be executed when Kuzzle Backend gets the result.<br>Takes one `response` argument, being the result of [`RequestResponse.toJSON()`](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/lib/models/requestResponse.js).
 
 example:
 
@@ -153,7 +149,7 @@ return value: none
 
 ---
 
-## TL;DR custom protocol skeleton
+## Custom Protocol Sample
 
 ```javascript
 class MyProtocol {

@@ -17,13 +17,13 @@ Plugins must be constructed as a Node.js [module](https://nodejs.org/dist/latest
 * an `index.js` file in its root directory, exporting a valid Javascript class exposing an `init` method, or
 * a [`package.json`](https://docs.npmjs.com/files/package.json) file in its root directory, specifying the path of the entry point in the `main` field.
 
-To determine the Plugin name, Kuzzle Backend looks for the `name` field in the `package.json` file and, if it does not exist it, will use the plugin directory name.
+To determine the Plugin name, Kuzzle Backend looks for the `name` field in the `package.json` file and if it does not exist it will use the plugin directory name.
 
 ---
 
 ## Custom Plugin Configuration
 
-When initializing a Plugin, Kuzzle Backend calls its `init(customConfig, context)` method, passing the plugin's custom configuration and the [context]({{ site_base_path }}plugins-reference/plugins-context) as inputs.
+When initializing a Plugin, Kuzzle Backend calls the plugin `init(customConfig, context)` method, passing the plugin's custom configuration and the [context]({{ site_base_path }}plugins-reference/plugins-context) as inputs.
 
 Custom configuration parameters are specified for each plugin in the `plugins` object of the Kuzzle Backend [configuration file]({{ site_base_path }}guide/essentials/configuration). For example:
 
@@ -38,9 +38,9 @@ Custom configuration parameters are specified for each plugin in the `plugins` o
 }
 ```
 
-Each Plugin is responsible of handling any custom configuration parameters. The plugin `init` function will determine if the custom configuration is merged with the Kuzzle Backend defaults or not.
+Each Plugin is responsible for handling any custom configuration parameters. The plugin `init` function will determine if the custom configuration is merged with the Kuzzle Backend defaults or not.
 
-Kuzzle Backend has a set of predefined configuration parameters that are reserved and apply to the underlying plugin engine:
+Kuzzle Backend has a set of predefined configuration parameters that are reserved and apply to the underlying plugin engine, these are:
 
 ```json
 {
@@ -66,17 +66,16 @@ Where:
 ## Plugin 'init' Function
 
 All plugins must expose an `init` function. If it is missing, Kuzzle Backend will fail to load the plugin and shutdown.
-The `init` method is called by Kuzzle Backend when it is booting, and is used to initialize a plugin:
+The `init` method is called by Kuzzle Backend when it is booting and is used to initialize a plugin:
 
 `init (config, context) { /* ... */ }`
-will shut itself down with a timeout error
 Where:
 
 * ``config`` (JSON Object): JSON object containing the custom plugin configuration
 * ``context`` (JSON Object): the [plugin context]({{ site_base_path }}plugins-reference/plugins-context)
 
 
-The `init` function may:
+The `init` function can:
 
 * throw an error: Kuzzle Backend will properly shutdown if it does
 * return a Promise, if async tasks need to be performed. If so, please note that if a plugin does not resolve (or reject) the returned Promise within the configured timeout (see `plugins.common.initTimeout` in [Configuring Kuzzle Backend]({{ site_base_path }}guide/essentials/configuration/)), then Kuzzle Backend will throw a timeout error and shutdown
