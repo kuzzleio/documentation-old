@@ -44,7 +44,7 @@ Since the Plugin is isolated in separate processes, the <a href="{{ site_base_pa
 
 ---
 
-## Plugin Skeleton
+## Plugin Sample
 
 ```javascript
 class HookPlugin {

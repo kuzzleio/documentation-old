@@ -14,10 +14,10 @@ order: 200
 {{{since "1.0.0"}}}
 
 The `BaseValidationType` constructor provides a base to create your own validation types.
-It provides a common structure for all validation types developped in Kuzzle Backend.
+It provides a common structure for all validation types in Kuzzle Backend.
 
-You can find an example of a type creation in the
-[Kuzzle Backend source code](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template).
+You can find an example of a type creation in the Kuzzle Backend 
+[source code](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template).
 
 ---
 
@@ -40,7 +40,7 @@ The DSL exposes the following methods:
 
 {{{since "1.0.0"}}}
 
-Returns a boolean indicating if filters exist for an index-collection pair
+Returns a boolean indicating if filters exist for an index-collection pair.
 
 **Arguments**
 
@@ -52,13 +52,13 @@ Returns a boolean indicating if filters exist for an index-collection pair
 
 **Returns**
 
-Returns `true` if at least one filter exists in the provided index-collection pair, returns `false` otherwise
+Returns `true` if at least one filter exists in the provided index-collection pair, returns `false` otherwise.
 
 #### `getFilterIds`
 
 {{{since "1.0.0"}}}
 
-Retrieves filter IDs registered on an index-collection pair
+Retrieves filter IDs registered on an index-collection pair.
 
 
 **Arguments**
@@ -119,7 +119,7 @@ Registers a filter to the DSL. This method is equivalent to executing [normalize
 A `promise` that resolves to an object containing the following attributes:
 
 * `id`: the filter unique identifier
-* `diff`: `false` if the filter already existed in the engine. Otherwise, contains an object with the canonical version of the provided filters
+* `diff`: `false` if the filter already exists in the engine. Otherwise, contains an object with the canonical version of the provided filters
 
 #### `remove`
 
@@ -190,7 +190,7 @@ Tests the provided filters without storing them in the system, to check whether 
 
 **Returns**
 
-A resolved promise if the provided filters are valid, or a rejected one with the appropriate error object otherwise.
+A resolved promise if the provided filters are valid, or a rejected one with the appropriate error object.
 
 ---
 
@@ -201,9 +201,7 @@ A resolved promise if the provided filters are valid, or a rejected one with the
 The Repository constructor provided in the plugin context gives access to methods
 that allow the plugin to interact with its plugin storage. The plugin storage is a dedicated
 index in Elasticsearch where the plugin can [create collections]({{ site_base_path }}plugins-reference/plugins-context/accessors/#createcollection).
-To do so the plugin should first [bootstrap]({{ site_base_path }}plugins-reference/plugins-context/accessors/#bootstrap) the index.
-
-Once done, the plugin can instantiate repositories to interact with the different collections it created.
+To do so, the plugin should first [bootstrap]({{ site_base_path }}plugins-reference/plugins-context/accessors/#bootstrap) the index. Once done, the plugin can instantiate repositories to interact with the different collections it created.
 
 
 **Arguments**
@@ -216,7 +214,7 @@ Once done, the plugin can instantiate repositories to interact with the differen
 
 **Usage**
 
-Each plugin can instantiate its own repositories linked to its own sandbox plugin storage:
+Each plugin can instantiate its own repositories linked to its own storage sandbox:
 
 ```js
 function ObjectConstructor() {

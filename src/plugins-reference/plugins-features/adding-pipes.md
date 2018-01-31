@@ -25,7 +25,7 @@ Pipes accept a callback as an input (in the function's last argument), which **m
 
 ---
 
-## Plugin Skeleton
+## Plugin Sample
 
 The following plugin example adds a `createdAt` attribute to all newly created documents:
 

@@ -69,7 +69,7 @@ Read more about these automatic controller events [here]({{ site_base_path }}kuz
 
 ---
 
-## Plugin Skeleton
+## Plugin Sample
 
 ```javascript
 class ControllerPlugin {
