@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered on server special events or when a request is sent to the [`server` controller]({{ site_base_path }}api-documentation/controller-server).
+Events triggered on server special events or when a request is sent to the [`server`]({{ site_base_path }}api-documentation/controller-server) controller.
 
 ---
 
@@ -23,7 +23,7 @@ Events triggered on server special events or when a request is sent to the [`ser
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `server` controller trigger this event after a successful execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `server` controller trigger this event after a successful execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a successful [info]({{ site_base_path }}api-documentation/controller-server/info/) request, a `server:afterInfo` event is triggered.
 
@@ -37,7 +37,7 @@ Example: after a successful [info]({{ site_base_path }}api-documentation/control
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `server` controllers trigger this event before execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `server` controllers trigger this event before execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: before performing a [now]({{ site_base_path }}api-documentation/controller-server/now/) request, a `server:beforeNow` event is triggered.
 
@@ -51,7 +51,7 @@ Example: before performing a [now]({{ site_base_path }}api-documentation/control
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `server` controllers trigger this event after a failed execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `server` controllers trigger this event after a failed execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a failed [delete]({{ site_base_path }}api-documentation/controller-server/admin-exists/) request, a `server:errorAdminExists` event is triggered.
 

@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered when a request is sent to the [`security` controller]({{ site_base_path }}api-documentation/controller-security).
+Events triggered when a request is sent to the [`security`]({{ site_base_path }}api-documentation/controller-security) controller.
 
 ---
 
@@ -23,7 +23,7 @@ Events triggered when a request is sent to the [`security` controller]({{ site_b
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `security` controller trigger this event after a successful execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `security` controller trigger this event after a successful execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a successful [getRole]({{ site_base_path }}api-documentation/controller-security/get-role/) request, a `security:afterGetRole` event is triggered.
 
@@ -37,7 +37,7 @@ Example: after a successful [getRole]({{ site_base_path }}api-documentation/cont
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `security` controllers trigger this event before execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `security` controllers trigger this event before execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: before performing a [searchUsers]({{ site_base_path }}api-documentation/controller-security/search-users/) request, a `security:beforeSearchUsers` event is triggered.
 
@@ -51,7 +51,7 @@ Example: before performing a [searchUsers]({{ site_base_path }}api-documentation
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `security` controllers trigger this event after a failed execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `security` controllers trigger this event after a failed execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a failed [createUser]({{ site_base_path }}api-documentation/controller-security/create-user/) request, a `security:errorCreateUser` event is triggered.
 
