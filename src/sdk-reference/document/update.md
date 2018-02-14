@@ -5,34 +5,26 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: updateDocument
+title: update
 ---
 
-# updateDocument
+# update
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle
-  .collection('collection', 'index')
-  .updateDocument('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
+document.update('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
     // result is a Document object
   });
 
 // Using promises (NodeJS)
-kuzzle
-  .collection('collection', 'index')
-  .updateDocumentPromise('documentId', {title: 'foo', content: 'bar'})
+document.updatePromise('documentId', {title: 'foo', content: 'bar'})
   .then(result => {
     // result is a Document object
   });
 ```
 
 ```java
-JSONObject newTitle = new JSONObject().put("title", "a shiny new title");
-
-kuzzle
-  .collection("collection", "index")
-  .updateDocument("documentId", newTitle, new ResponseListener<Document>() {
+  myDocument.update(new ResponseListener<Document>() {
     @Override
     public void onSuccess(Document result) {
       // result is an updated Document object
@@ -51,16 +43,8 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Document;
 
-$documentId = 'foobar';
-$documentContent = [
-  'newField' => 'foo'
-];
-
-$kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->collection('collection', 'index');
-
 try {
-  $document = $dataCollection->updateDocument($documentId, $documentContent);
+  $document = $document->update();
 
   // $document instanceof Document
 }
@@ -74,12 +58,10 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 
 ---
 
-## updateDocument(documentId, content, [options], [callback])
+## update([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``documentId`` | string | Unique document identifier |
-| ``content`` | JSON object | Content of the document to create |
 | ``options`` | JSON object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
@@ -98,10 +80,10 @@ Note that you cannot remove fields this way: missing fields will simply be left 
 
 ## Return value
 
-Returns the `Collection` object to allow chaining.
+Returns the `Document` object to allow chaining.
 
 ---
 
 ## Callback response
 
-Resolves to an up-to-date [Document]({{ site_base_path }}sdk-reference/document/) object.
+Resolves to an up-to-date `Document` object.
