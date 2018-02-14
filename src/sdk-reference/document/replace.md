@@ -5,23 +5,19 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: replaceDocument
+title: replace
 ---
 
-# replaceDocument
+# replace
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle
-  .collection('collection', 'index')
-  .replaceDocument('documentId', {title: 'foo', content: 'bar'}, function (error, result) {
+document.replace(function (error, result) {
     // result is a Document object
   });
 
 // Using promises (NodeJS)
-kuzzle
-  .collection('collection', 'index')
-  .replaceDocumentPromise('documentId', {title: 'foo', content: 'bar'})
+document.replacePromise()
   .then(result => {
     // result is a Document object
   });
@@ -30,9 +26,7 @@ kuzzle
 ```java
 JSONObject newContent = new JSONObject("new", "document content");
 
-kuzzle
-  .collection("collection", "index")
-  .replaceDocument("documentId", newContent, new ResponseListener<Document>() {
+document.replace(new ResponseListener<Document>() {
     @Override
     public void onSuccess(Document document) {
 
@@ -51,16 +45,8 @@ kuzzle
 use \Kuzzle\Kuzzle;
 use \Kuzzle\Document;
 
-$documentId = 'foobar';
-$documentContent = [
-  'field' => 'value'
-];
-
-$kuzzle = new Kuzzle('localhost');
-$dataCollection = $kuzzle->collection('collection', 'index');
-
 try {
-  $document = $dataCollection->replaceDocument($documentId, $documentContent);
+  $document = $document->replace();
 
   // $document instanceof Document
 }
@@ -73,12 +59,10 @@ Replace an existing document and returns the updated version of it as a [Documen
 
 ---
 
-## replaceDocument(documentId, content, [options], [callback])
+## replace([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``documentId`` | string | Unique document identifier |
-| ``content`` | JSON Object | Content of the document to create |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Optional callback |
 
@@ -96,10 +80,10 @@ Replace an existing document and returns the updated version of it as a [Documen
 
 ## Return value
 
-Returns the `Collection` object to allow chaining.
+Returns the `Document` object to allow chaining.
 
 ---
 
 ## Callback response
 
-Resolves to an updated [Document]({{ site_base_path }}sdk-reference/document/) object.
+Resolves to an updated `Document` object.

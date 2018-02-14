@@ -5,28 +5,28 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: save
+title: create
 ---
 
-# save
+# create
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-document.save(function (error, result) {
-  // called once the save action has been completed
+document.create(function (error, result) {
+  // called once the create action has been completed
 });
 
 // Using promises (NodeJS)
-document.savePromise().then(result => {
-  // called once the save action has been completed
+document.createPromise().then(result => {
+  // called once the create action has been completed
 });
 ```
 
 ```java
-document.save(new ResponseListener<Document>() {
+document.create(new ResponseListener<Document>() {
     @Override
     public void onSuccess(Document object) {
-      // called once the save action has been completed
+      // called once the create action has been completed
     }
 
     @Override
@@ -54,14 +54,11 @@ try {
 }
 ```
 
-Saves this document into Kuzzle.
-
-If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
-Otherwise, this method will replace the latest version of this document in Kuzzle by the current content of this object.
+Create a new document in Kuzzle and resolves to a Document object.
 
 ---
 
-## save([options], [callback])
+## create([options], [callback])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
@@ -77,6 +74,7 @@ Otherwise, this method will replace the latest version of this document in Kuzzl
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``ifExist`` | string | If the same document already exists: resolves to an error if sets to ``error``. Replaces the existing document if set to ``replace`` | ``false`` |
 
 ---
 
