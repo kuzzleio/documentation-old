@@ -17,7 +17,6 @@ In this section we'll take a closer look at Kuzzle Backend's internal architectu
 
 The diagram above depicts the various components that make up Kuzzle Backend's architecture, these are:
 
-* **Proxy**: handles the communication between the client and Kuzzle Backend (see [Connecting to Kuzzle Backend]({{ site_base_path }}api-documentation/connecting-to-kuzzle/)).
 * **Entry Points**: handles the incoming message from the Proxy and sends them to the Funnel.
 * **Router**: exposes the HTTP endpoints, normalizes any request, and forwards it to the Funnel.
 * **Funnel**: receives normalized requests and forwards it to the appropriate Controller, sends results back to the Router.
