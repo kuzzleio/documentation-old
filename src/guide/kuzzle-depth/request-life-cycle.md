@@ -40,7 +40,7 @@ The following diagram shows how a request flows between the client application, 
 
 * The HTTP Client will request a document by making an HTTP GET request. For instance, to retrieve a document with `_id` equal to `739c26bc-7a09-469a-803d-623c4045b0cb` in the `users` collection, the Client will perform the following request: `GET http://kuzzlebackend:7512/myindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
 
-* The Proxy forwards the request to the Server through the Proxy Entry Point which passes it to the HTTP Router. The HTTP router formats the document and forwards it to the Funnel. The formatted document will look like this:
+* The HTTP router receives the message and creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object that it forwards to the Funnel. The `Request Input` will look like this:
 ```javascript
 {
   "controller": "document",
@@ -91,10 +91,11 @@ The following diagram shows how a request flows between the client application, 
 
 ![read_scenario_websocket_details]({{ site_base_path }}assets/images/request-scenarios/read-websocket/details.png)
 
-* The Client opens a websocket connection to Kuzzle Backend's Proxy component and sends a request message. to retrieve a document with `_id` equal to `739c26bc-7a09-469a-803d-623c4045b0cb` in the `users` collection, the Client will send the following message:
+* The Client opens a websocket connection to Kuzzle Backend and sends a request message. For example, to retrieve a document with `_id` equal to `739c26bc-7a09-469a-803d-623c4045b0cb` in the `users` collection, the Client will send the following message:
 ```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
+  "index": "myindex",
   "controller": "document",
   "action": "get",
   "collection": "users",
@@ -109,7 +110,7 @@ The following diagram shows how a request flows between the client application, 
   });
 ```
 
-* The Proxy forwards the request through the Proxy Entry Point to the Funnel. The formatted request looks like this:
+* The Kuzzle Backend receives the message and the protocol entrypoint creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object which it passes to the Funnel. The `Request Input` looks like this: 
 ```javascript
 {
   "controller": "read",
@@ -148,9 +149,9 @@ The following diagram shows how a request flows between the client application, 
 }
 ```
 
-* The document will make its way through the chain of components back to the Proxy.
+* The document will make its way back through the chain of components back to the entry point.
 
-* The Proxy then triggers the callback, which emits a `<requestId>` event to the websocket and the Client receives the response.
+* The entry point emits the `<requestId>` event and the Client receives the response.
 
 ---
 
@@ -172,7 +173,7 @@ The following diagram shows how a client can subscribe to a channel.
 
 ![pubsub_scenario_details1]({{ site_base_path }}assets/images/request-scenarios/pubsub/details1.png)
 
-* The client application opens a websocket (or MQ) connection, sends a subscription request (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)), and then listens for the `<requestId>` event on the socket. The subscription request is a message that contains a filter description which tells Kuzzle Backend what events should trigger a response. For instance, this message would trigger a response whenever content is posted to the `users` collection that contains the field `hobby` with value `computer` (see the [Kuzzle DSL Reference]({{ site_base_path }}kuzzle-dsl/) for more details):
+* The client application opens a websocket (or MQ) connection, sends a subscription request (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)), and then listens for the `<requestId>` event on the socket. The subscription request is a message that contains a filter description which tells Kuzzle Backend what events should trigger a response. For instance, this message would trigger a response whenever content is posted to the `users` collection that contains the field `hobby` with value `computer` (see the [Koncorde Reference]({{ site_base_path }}kuzzle-dsl/) for more details):
 ```javascript
 {
   "controller": "realtime",
@@ -188,7 +189,7 @@ The following diagram shows how a client can subscribe to a channel.
 }
 ```
 
-* The Proxy forwards the subscription message to the Funnel, with the following format:
+* Kuzzle Backend receives the message and the protocol entrypoint creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object. The `Request Input` is passed to the Funnel, with the following format:
 ```javascript
 {
   "controller": "realtime",
@@ -210,9 +211,9 @@ The following diagram shows how a client can subscribe to a channel.
 
 * The Real-time Controller registers the subscription with the HotelClerk, an internal component that acts as a lookup table of subscribers.
 
-* The HotelClerk calls the DSL component to normalize the filters and register the subscription (see [DSL Readme](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/dsl/README.md) for more details). It then sends a response which includes the `channel` ID back to the Proxy.
+* The HotelClerk calls Koncorde to normalize the filters and register the subscription (see [Koncorde](https://github.com/kuzzleio/koncorde) for more details). It then sends a response which includes the `channel` ID back to the entrypoint.
 
-* The Proxy then sends a response to the Client, which includes a `<requestId>` and the `channel` ID, and looks like this:
+* The entrypoint then returns a response to the Client, which includes a `<requestId>` and the `channel` ID, and looks like this:
 ```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
@@ -229,7 +230,7 @@ The following diagram shows how a client can subscribe to a channel.
 }
 ```
 
-* The Client is now subscribed and listening to events on the `channel`, and will be notified any time a message is processed that matches the subscription filters.
+* The Client can now subscribe to the `channel` and listen to events in order to be notified any time a message is processed that matches the subscription filters.
 
 
 #### Publishing to a Channel Directly
@@ -239,15 +240,15 @@ The following diagram shows how Kuzzle Backend triggers a response as a result o
 ![pubsub_scenario_details2]({{ site_base_path }}assets/images/request-scenarios/pubsub/details2.png)
 
 * The Real-time Controller receives the **publish** request from a Client and sends it to the Notifier component.
-* The Notifier Component calls the DSL component to check if the content matches any filters.
+* The Notifier Component calls Koncorde to check if the content matches any filters.
 * The Notifier Component uses the Notification Cache Engine to store the mapping rules into cache.
 * The Notifier Component calls the HotelClerk to get the channels related to the filters.
-* The Notifier Component broadcasts the message to the Proxy for each channel that is linked to the filter.
-* Finally, the Proxy sends the message to the Clients that are **subscribed** to it.
+* The Notifier Component broadcasts the message for each channel that is linked to the filter.
+* Finally, the entrypoint emits the message to the Clients that are **subscribed** to it.
 
 #### Publishing to a Channel Indirectly
 
-The following diagram shows how Kuzzle Backend uses the Document Controller to trigger a response as a result of a change to persistent data.
+The following diagram shows how Kuzzle Backend uses the Document Controller to trigger a notification as a result of a change to persistent data.
 
 ![pubsub_scenario_details3]({{ site_base_path }}assets/images/request-scenarios/pubsub/details3.png)
 
@@ -256,4 +257,4 @@ The following diagram shows how Kuzzle Backend uses the Document Controller to t
 * Once the document is stored, the Document Controller calls the Notifier Component.
 * The Notifier Component then calls the Notification Cache to check if the content matches any filters.
 * The Notifier Component calls the HotelClerk to get the channels related to the filters.
-* The Notifier Component asks the Proxy to broadcast the notification to all Clients that are subscribed to the channels.
+* The Notifier Component asks the entrypoint to broadcast the notification to all Clients that are subscribed to the channels.
