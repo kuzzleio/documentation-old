@@ -101,7 +101,7 @@ The provided callback will be called everytime a [notification]({{ site_base_pat
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters]({{ site_base_path }}kuzzle-dsl) |
+| ``filters`` | JSON Object | [Koncorde Filters]({{ site_base_path }}kuzzle-dsl) |
 | ``options`` | object | (Optional) Subscription configuration. Passed to the Room constructor. |
 | ``callback`` | function | Callback to call every time a notification is received on this subscription |
 

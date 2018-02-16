@@ -93,13 +93,13 @@ Below is an example of how the `range` type option is used to ensure that the fi
 
 ## Advanced Validation
 
-If the basic validation functionality doesn't meet your requirements, you can take advantage of the [filtering DSL]({{ site_base_path }}kuzzle-dsl) to create complex validation specifications. 
+If the basic validation functionality doesn't meet your requirements, you can take advantage of [Koncorde]({{ site_base_path }}kuzzle-dsl) to create complex validation specifications. 
 
 <aside class="notice">
-This is the same DSL used to create real-time subscriptions.
+Koncorde is the same component used to create real-time subscriptions.
 </aside>
 
-The idea is simple: use the DSL to specify a filter that can be used to validate documents. For example, here we ensure that at least one of the fields `price` or `vatPrice` exists by placing a DSL filter in the `validators` field of the validation schema:
+The idea is simple: use Koncorde to specify a filter that can be used to validate documents. For example, here we ensure that at least one of the fields `price` or `vatPrice` exists by placing a filter in the `validators` field of the validation schema:
 
 ```json
 {
@@ -151,5 +151,5 @@ The idea is simple: use the DSL to specify a filter that can be used to validate
 }
 ```
 
-In the example above, we used both the `exists` operator and the `or` operator to build our validation rule. For more information take a look at our [DSL Reference]({{ site_base_path }}kuzzle-dsl/terms/exists).
+In the example above, we used both the `exists` operator and the `or` operator to build our validation rule. For more information take a look at our [Koncorde Reference]({{ site_base_path }}kuzzle-dsl/terms/exists).
 

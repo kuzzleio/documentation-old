@@ -60,7 +60,7 @@ Creates a new [Room]({{ site_base_path }}sdk-reference/room/) object, using its 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters]({{ site_base_path }}kuzzle-dsl) |
+| ``filters`` | JSON Object | [Koncorde Filters]({{ site_base_path }}kuzzle-dsl) |
 | ``options`` | object | Subscription configuration |
 
 ## Options

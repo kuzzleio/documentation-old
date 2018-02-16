@@ -157,7 +157,7 @@ Executes a search on users according to a filter.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters]({{ site_base_path }}kuzzle-dsl) |
+| ``filters`` | JSON Object | [Koncorde Filters]({{ site_base_path }}kuzzle-dsl) |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 

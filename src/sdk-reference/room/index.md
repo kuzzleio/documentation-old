@@ -62,7 +62,7 @@ A `Room` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/even
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``Collection`` | object | an instantiated Kuzzle Collection object |
-| ``filters`` | JSON Object | [Filters]({{ site_base_path }}kuzzle-dsl) |
+| ``filters`` | JSON Object | [Koncorde Filters]({{ site_base_path }}kuzzle-dsl) |
 | ``options`` | object | Optional subscription configuration |
 
 ---

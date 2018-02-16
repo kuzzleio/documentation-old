@@ -85,7 +85,7 @@ You should receive the following response:
 }
 ```
 
-**Note:**  we have just created a new collection without specifying any mapping rules. As a result, the database layer will automatically create a mapping rule that assigns a best guess data type to any new field it detects in input documents. Since these mapping rules cannot be changed once they are created, we strongly recommend that you [**create your own mapping rules**]({{ site_base_path }}guide/essentials/persisted/#document-mapping) as soon as the collection has been created. For the purpose of this tutorial, we will continue without defining our own mapping rules.
+**Note:**  we have just created a new collection without specifying any mappings. As a result, the database layer will automatically create a mapping that assigns a best guess data type to any new field it detects in input documents. Since these mappings cannot be changed once they are created, we strongly recommend that you [**create your own mappings**]({{ site_base_path }}guide/essentials/persisted/#document-mapping) as soon as the collection has been created. For the purpose of this tutorial, we will continue without defining our own mappings.
 
 --- 
 
@@ -497,15 +497,15 @@ You should receive the following response (with your own `_id` values):
 
 ---
 
-## Mapping Rules
+## Mappings
 
-Kuzzle Backend uses Elasticsearch as a persistent document store, which uses mapping rules to assign a type to a document field. These mappings are attached to a `collection` (aka `type` in Elasticsearch terminology) and are automatically inferred from input documents if no mapping rules are preconfigured.
+Kuzzle Backend uses Elasticsearch as a persistent document store, which uses mappings to assign a type to a document field. These mappings are attached to a `collection` (aka `type` in Elasticsearch terminology) and are automatically inferred from input documents if no mappings are preconfigured.
 
-If you want to control how Kuzzle Backend interprets your documents, we recommend that you configure your own mapping rules using our mapping rules creation endpoint.
+If you want to control how Kuzzle Backend interprets your documents, we recommend that you configure your own mappings using our mappings creation endpoint.
 
-Create a mapping rule by sending a `PUT` request to the `http://localhost:7512/<index name>/<collection name>/_mapping` and setting the mapping rule in the request body.
+Create a mapping by sending a `PUT` request to the `http://localhost:7512/<index name>/<collection name>/_mapping` and setting the mapping in the request body.
 
-Use [this](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html) syntax when definng a mapping rule. For example, if we want to create a mapping rule that will define a field `birthday` as a `date` type, we would send the following JSON in the body:
+Use [this](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html) syntax when definng a mapping. For example, if we want to create a mapping that will define a field `birthday` as a `date` type, we would send the following JSON in the body:
 
 ```json
 {
@@ -543,7 +543,7 @@ You should receive the following response:
 
 Here we have now defined the type `date` for the field labeled `birthday` in our `mycollection` collection. Defining types in this way can be especially useful when dealing with specific types (`date`, `geo_shape`, etc.), full-text search, or complex data structures.
 
-Please note that the mapping rules of a collection cannot be updated once they are created, this is true whether you create the rules yourself using our API or whether Elasticsearch generates the rules automatically based on the input documents it processes. Because of this, you should almost always define mapping rules when you first create your collections and before creating any documents.
+Please note that the mappings of a collection cannot be updated once they are created, this is true whether you create the rules yourself using our API or whether Elasticsearch generates the rules automatically based on the input documents it processes. Because of this, you should almost always define mappings when you first create your collections and before creating any documents.
 
 ---
 
