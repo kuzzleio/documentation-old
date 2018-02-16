@@ -241,7 +241,7 @@ The following diagram shows how Kuzzle Backend triggers a response as a result o
 
 * The Real-time Controller receives the **publish** request from a Client and sends it to the Notifier component.
 * The Notifier Component calls Koncorde to check if the content matches any filters.
-* The Notifier Component uses the Notification Cache Engine to store the mapping rules into cache.
+* The Notifier Component uses the Notification Cache Engine to store the mappings into cache.
 * The Notifier Component calls the HotelClerk to get the channels related to the filters.
 * The Notifier Component broadcasts the message for each channel that is linked to the filter.
 * Finally, the entrypoint emits the message to the Clients that are **subscribed** to it.
