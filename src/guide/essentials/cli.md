@@ -150,11 +150,11 @@ The `shutdown` command lets you stop a Kuzzle Backend instance after any remaini
 
 The `start` command starts a Kuzzle Backend instance.
 
-Using this command you can also initialize the storage layer mapping rules, using the mappings `--mappings` options, and the storage layer documents using the `--fixtures` option.
+Using this command you can also initialize the storage layer mappings, using the mappings `--mappings` options, and the storage layer documents using the `--fixtures` option.
 
 #### `--mappings`
 
-Loads mapping rules from a file and apply them to the storage layer. 
+Loads mappings from a file and apply them to the storage layer. 
 
 The input file must be a JSON file with the following structure: 
 
@@ -177,8 +177,8 @@ The input file must be a JSON file with the following structure:
 * The file can contain any number of index and collection configurations.
 * Field definitions follow the [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.5/mapping.html) mapping format.
 * If an index or collection does not exist, it will be created automatically.
-* Mapping rules are loaded sequentially, one index/collection pair at a time. If a failure occurs, Kuzzle Backend immediately interrupts the sequence.
-* Mapping rules can be replayed across multiple Kuzzle start sequences, as long as they do not change in-between.
+* Mappings are loaded sequentially, one index/collection pair at a time. If a failure occurs, Kuzzle Backend immediately interrupts the sequence.
+* Mappings can be replayed across multiple Kuzzle start sequences, as long as they do not change in-between.
 
 
 **Example:**

@@ -121,13 +121,13 @@ The Notification bears some useful information about what just happened:
 
 We won't analyze the other attributes for the moment. Take a look at the [Notifications section of the API Reference]({{ site_base_path }}api-documentation/notifications) for a comprehensive list of available notification properties.
 
-This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Kuzzle DSL Reference]({{ site_base_path }}kuzzle-dsl/).
+This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Kuzzle Koncorde Reference]({{ site_base_path }}kuzzle-dsl/).
 
 ---
 
 ### Subscription with filters
 
-Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions]({{ site_base_path }}kuzzle-dsl/). It enables you to perform fine-grained selections on the documents you want to subscribe to.
+Kuzzle Backend ships with a powerful filtering tool named [Koncorde]({{ site_base_path }}kuzzle-dsl/). It enables you to perform fine-grained selections on the documents you want to subscribe to.
 
 In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp]({{ site_base_path }}kuzzle-dsl/#regexp) filter.
 
@@ -147,7 +147,7 @@ kuzzle
   })
 ```
 
-This way, Tom will be notified about urgent TO-DO items. Take a look at the [Filtering DSL Reference]({{ site_base_path }}kuzzle-dsl/) for a comprehensive list of available filters.
+This way, Tom will be notified about urgent TO-DO items. Take a look at the [Koncorde Reference]({{ site_base_path }}kuzzle-dsl/) for a comprehensive list of available filters.
 
 There are a few things that deserve to be noticed here:
 

@@ -235,7 +235,7 @@ You can also create multiple subscriptions to the same room, each with different
 Kuzzle Backend will provide you with a channel for each of these subscriptions,
 allowing your application to handle these processes separately.
 
-The criteria is defined in Kuzzle Backend using [Kuzzle DSL]({{ site_base_path }}kuzzle-dsl)
+The criteria is defined in Kuzzle Backend using [Kuzzle Koncorde]({{ site_base_path }}kuzzle-dsl)
 
 How subscription works:
 

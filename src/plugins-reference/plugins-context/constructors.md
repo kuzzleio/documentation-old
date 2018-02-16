@@ -25,7 +25,7 @@ You can find an example of a type creation in the Kuzzle Backend
 
 {{{since "1.0.0"}}}
 
-The DSL constructor provided in the plugin context can be used to access [Kuzzle Backend DSL capabilities]({{ site_base_path }}kuzzle-dsl).  
+The DSL constructor provided in the plugin context can be used to access [Koncorde]({{ site_base_path }}kuzzle-dsl).  
 It can be used to manage filters and test data to get a list of matching filters.
 
 Each plugin can instantiate its own DSL sandbox instance:
@@ -88,7 +88,7 @@ If you do not need the Room unique identifier prior to store the DSL filters, th
 |------|------|----------------------------------|
 |`index`|`string`| Data index name |
 |`collection`|`string`| Data collection name |
-|`filters`|`object`| Filters in [Kuzzle Backend DSL]({{ site_base_path }}kuzzle-dsl) format |
+|`filters`|`object`| Filters in [Koncorde]({{ site_base_path }}kuzzle-dsl) format |
 
 **Returns**
 
@@ -112,7 +112,7 @@ Registers a filter to the DSL. This method is equivalent to executing [normalize
 |------|------|----------------------------------|
 |`index`|`string`| Data index name |
 |`collection`|`string`| Data collection name |
-|`filters`|`object`| Filters in [Kuzzle Backend DSL]({{ site_base_path }}kuzzle-dsl) format |
+|`filters`|`object`| Filters in [Koncorde]({{ site_base_path }}kuzzle-dsl) format |
 
 **Returns**
 
@@ -186,7 +186,7 @@ Tests the provided filters without storing them in the system, to check whether 
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`filters`|`object`| Filters in [Kuzzle Backend DSL]({{ site_base_path }}kuzzle-dsl) format |
+|`filters`|`object`| Filters in [Koncorde]({{ site_base_path }}kuzzle-dsl) format |
 
 **Returns**
 
