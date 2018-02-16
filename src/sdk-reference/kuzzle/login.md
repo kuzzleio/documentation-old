@@ -91,7 +91,7 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 |---------------|---------|----------------------------------------|
 | ``strategy`` | string | Authentication strategy (local, facebook, github, ...) |
 | ``credentials`` | JSON object | Optional login credentials, depending on the strategy |
-| ``expiresIn`` | \<varies\> | Login expiration time |
+| ``expiresIn`` | *varies* | Login expiration time |
 | ``callback`` | function | Optional callback handling the response |
 
 **Note:** If the ``expiresIn`` argument is not set, the default token expiration value will be taken from the Kuzzle server configuration.
