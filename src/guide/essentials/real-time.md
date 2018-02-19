@@ -7,7 +7,7 @@ order: 600
 
 # Real-time Notifications
 
-Kuzzle Backend features highly customizable push notifications thanks to its **pub/sub engine** which lets you configure live subscriptions to any dataset. These live subscriptions are a great way to **track** changes in specific subsets of data.
+Kuzzle Backend features highly customizable notifications thanks to its **pub/sub engine** which lets you configure live subscriptions to any dataset. These live subscriptions are a great way to **track** changes in specific subsets of data.
 
 ---
 
@@ -22,9 +22,9 @@ This cannot be called a "modern" application: it rather looks like an old-school
 A more interesting user-experience would be that clients display the new TO-DO item _as soon as it is created_. How can we achieve that?
 
 * By implementing a long-polling mechanism in the clients. Every, say, one second, the clients perform a document search and update their list of TO-DO items. Doesn't look like a great idea (performances would be rather bad, for example)
-* By providing push notifications to subscribed clients, allowing them to receive these new items automatically, as soon as they are saved in the system
+* By providing notifications to subscribed clients, allowing them to receive these new items automatically, as soon as they are saved in the system
 
-The second solution is exactly what we are looking for and Kuzzle ships it natively. We can call it **pub/sub**, **push notifications** or **live subscriptions** and it is often used to solve use-cases like this one, where things need to be kept _in sync_ between clients and the back-end server.
+The second solution is exactly what we are looking for and Kuzzle ships it natively. We can call it **pub/sub**, **notifications** or **live subscriptions** and it is often used to solve use-cases like this one, where things need to be kept _in sync_ between clients and the back-end server.
 
 Getting back to our example, our collaborative TO-DO list clients only need to subscribe to the TO-DO data collection (right after the first document search), in order to be notified _in real-time_ about new TO-DO items. This way, once Ann creates her new item, Tom and Matt can see it immediately on their screen.
 
