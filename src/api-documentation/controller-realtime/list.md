@@ -43,7 +43,7 @@ title: list
   "index": "<index>",
   "collection": "<collection>",
   "controller": "realtime",
-  "action": "publish",
+  "action": "list",
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
