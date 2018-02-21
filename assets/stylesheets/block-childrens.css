@@ -439,9 +439,7 @@ body {
     display: block;
     padding: 6px 6px 6px;
     background-color: rgba(234, 242, 246, 0.7);
-    -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
-    -webkit-transform: rotate(-90deg) translate(-100%, 0);
     transform: rotate(-90deg) translate(-100%, 0);
     border-radius: 0 0 0 5px
 }
@@ -728,7 +726,6 @@ body {
     width: 20px;
     z-index: 10000;
     height: 20px;
-    -webkit-transform: skew(-45deg, 0);
     transform: skew(-45deg, 0)
 }
 .content blockquote {
@@ -1075,13 +1072,11 @@ header nav li.active span {
 }
 .icon.icon-right-round:before {
     content: "\e61b";
-    -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     display: inline-block
 }
 .icon.icon-right-arrow:before {
     content: "\e61c";
-    -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     display: inline-block
 }
@@ -1185,7 +1180,6 @@ header nav ul li a.github .icon {
 }
 header nav ul li a.github:hover .icon:after {
     opacity: 1;
-    -webkit-transform: translateY(20%);
     transform: translateY(20%)
 }
 header nav ul li a.github .icon:after {
@@ -1197,11 +1191,8 @@ header nav ul li a.github .icon:after {
     display: inline-block;
     content: "\e0ff";
     transition-duration: 0.3s;
-    -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
-    -webkit-animation-name: hvr-icon-drop;
     animation-name: hvr-icon-drop;
-    -webkit-transform: translateY(-160%);
     transform: translateY(-160%);
     opacity: 0
 }
@@ -1211,17 +1202,13 @@ header nav ul li a.github .icon:after {
 header nav ul li a.github:hover .icon:before {
     color: transparent;
     opacity: 0;
-    -webkit-transform: translateY(160%);
     transform: translateY(160%)
 }
 header nav ul li a.github .icon:before {
     display: inline-block;
-    -webkit-transform: translateY(0px);
     transform: translateY(0px);
     transition-duration: 0.3s;
-    -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
-    -webkit-animation-name: hvr-icon-drop;
     animation-name: hvr-icon-drop;
     opacity: 1
 }
@@ -1330,13 +1317,11 @@ h3 .heading-links {
 .content .panels {
     padding: 35px;
     display: -ms-flexbox;
-    display: -webkit-box;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -ms-flex-pack: center;
-    -webkit-box-pack: center;
-            justify-content: center;
+    justify-content: center;
     -ms-flex-line-pack: center;
     align-content: center
 }
@@ -1351,7 +1336,6 @@ h3 .heading-links {
     padding: 15px 25px;
     border: solid 1px #DDD;
     background-color: #FFF;
-    -webkit-animation: 1s all;
     animation: 1s all;
     box-shadow: 0
 }
