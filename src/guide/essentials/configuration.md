@@ -22,8 +22,10 @@ You can write your custom config in `$HOME/.kuzzlerc` or [any other valid locati
 {
   "services": {
     "db": {
-      "host": "<ES_HOST>",
-      "port": "<ES_PORT>"
+      "client": {
+        "host": "http://localhost:9200",
+        "apiVersion": "5.4"
+      }
     }
   }
 }
