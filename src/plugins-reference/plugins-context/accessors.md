@@ -16,40 +16,25 @@ Sends a request to [Kuzzle Backend API]({{ site_base_path }}api-documentation).
 
 #### With promises
 
-**`execute(request, [overloadProtection])`**
+**`execute(request)`**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `request` | `Request` | A [`Request`]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) to execute  |
-| `overloadProtection` | `Boolean` | Optional. Default: `true`. See [Overload Protection]({{ site_base_path }}plugins-reference/plugins-context/accessors/#overload-protection) |
 
 Returns a Promise, that resolves to the source `Request` object with the response part set (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)), or rejects with a [KuzzleError]({{ site_base_path }}plugins-reference/plugins-context/errors/).
 
 
 #### With callbacks
 
-**`execute(request, [overloadProtection], callback)`**
+**`execute(request, callback)`**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `request` | `Request` | A [`Request`]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) to execute  |
-| `overloadProtection` | `Boolean` | Optional. Default: `true`. See [Overload Protection]({{ site_base_path }}plugins-reference/plugins-context/accessors/#overload-protection) |
 | `callback(error, request)` | `Function` | Function executed with the request's result |
 
 Upon completion, the `request` argument provided to the callback function will be the source request with its response part filled (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)).
-
-#### Overload Protection
-
-Kuzzle Backend has a configurable overload-protection mechanism. When a request is made to the Kuzzle Backend API, there are three possible outcomes:
-
-* Kuzzle Backend has room for that request and it is executed immediately
-* Other requests are already running and taking up resources, the new request is delayed until resources are freed
-* Kuzzle Backend is overloaded: requests are rejected until the request buffer is no longer at capacity
-
-In general, requests should be processed with the overload-protection enabled. However, in some cases you may want to ensure that a request is executed with a predictable and constant delay. For such cases, the overload protection mechanism can be disabled.
-
-We recommend that you only disable the overload protection when it is truly necessary and only for small sets of requests.  
-If plugins have to handle rejected requests because Kuzzle Backend is overloaded, then disabling this protection to prevent these errors will only hide the problem instead of solving it. Instead, we encourage administrators to either adjust the size of the request buffer in [Kuzzle Backend's configuration]({{ site_base_path }}guide/essentials/configuration/), or to add more Kuzzle Backend nodes to their infrastructure.
 
 #### Example
 
