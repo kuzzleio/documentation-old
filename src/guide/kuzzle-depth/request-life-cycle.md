@@ -7,13 +7,13 @@ order: 0
 
 # Request Life-Cycle
 
-In this section we are going to focus on how requests are processed by Kuzzle Backend. We are going to analyze the life-cycle of a request in order to review Kuzzle Backend's internal architecture.
+In this section we are going to focus on how requests are processed by Kuzzle. We are going to analyze the life-cycle of a request in order to review Kuzzle server's internal architecture. 
 
-Kuzzle Backend has two main modes of communication:
+Kuzzle has two main modes of communication:
 
-* **Synchronous**: Clients send requests to Kuzzle Backend, which processes the data using the [Document Controller]({{ site_base_path }}api-documentation/controller-document) and then sends a response back to the Client.
+* **Synchronous**: Clients send requests to the Kuzzle server, which processes the data using the [Document Controller]({{ site_base_path }}api-documentation/controller-document) and then sends a response back to the client.
 
-* **Asynchronous**: Clients subscribe to Kuzzle Backend via the [Real-time/Subscribe]({{ site_base_path }}api-documentation/controller-realtime/publish) API action and receive data asynchronously as a result of a [Real-time/Publish]({{ site_base_path }}api-documentation/controller-realtime/publish) API action or a [Document Controller]({{ site_base_path }}api-documentation/controller-document) event.
+* **Asynchronous**: Clients subscribe to the Kuzzle server via the [Real-time/Subscribe]({{ site_base_path }}api-documentation/controller-realtime/publish) API action and receive data asynchronously as a result of a [Real-time/Publish]({{ site_base_path }}api-documentation/controller-realtime/publish) API action or a [Document Controller]({{ site_base_path }}api-documentation/controller-document) event.
 
 These modes of communication are generally independant from the transport protocol. For example, a synchronous request can be made via HTTP or Websockets.
 
@@ -22,25 +22,28 @@ These modes of communication are generally independant from the transport protoc
 ## Synchronous Communication
 
 
-In a synchronous request, Kuzzle Backend will receive a request, process it, and return the result in a response over the same channel. All this is done sequentially.
+In a synchronous request, the Kuzzle server will receive a request, process it, and return the result in a response over the same channel. All this is done sequentially.
 
 Currently all forms of synchronous communication pass through the Document Controller and involve some operation on persistent data: a synchronous request will generally be used to read, create, update, or delete a document.
 
-Depending on the transport protocol used to communicate with Kuzzle Backend, different components of the architecture will be used; however, in all cases the data will flow through the Document Controller to and from the storage layer. To demonstrate, we will describe how a "read" request is performed, using two different protocols: HTTP and Websocket. The process is similar for a synchronous update or write.
+Depending on the transport protocol used to communicate with the Kuzzle server, different components of the architecture will be used; however, in all cases the data will flow through the Document Controller to and from the storage layer. To demonstrate, we will describe how a "read" request is performed, using two different protocols: HTTP and Websocket. The process is similar for a synchronous update or write.
 
 ### Synchronous Request using HTTP Protocol
 
-In the diagram below, we highlighted the components of Kuzzle Backend's [Architecture]({{ site_base_path }}guide/kuzzle-depth) that are used in a read request using HTTP:
+In the diagram below, we highlighted the components of Kuzzle's server [architecture]({{ site_base_path }}guide/kuzzle-depth) that are used in a read request using HTTP:
 
-![read_scenario_http_overview]({{ site_base_path }}assets/images/request-scenarios/read-http/overview.png)
+![read_scenario_http_overview]({{ site_base_path }}assets/images/request-scenarios/read-http/Synchronous_Request_HTTP_Protocol_Overview.png)
 
-The following diagram shows how a request flows between the client application, the different Kuzzle Backend components, and the external services:
+The following diagram shows how a request flows between the client application, the different Kuzzle server components, and the external services:
 
-![read_scenario_http_details]({{ site_base_path }}assets/images/request-scenarios/read-http/details.png)
+![read_scenario_http_details]({{ site_base_path }}assets/images/request-scenarios/read-http/Synchronous_Request_HTTP_Protocol_Sequence.png)
 
-* The HTTP Client will request a document by making an HTTP GET request. For instance, to retrieve a document with `_id` equal to `739c26bc-7a09-469a-803d-623c4045b0cb` in the `users` collection, the Client will perform the following request: `GET http://kuzzlebackend:7512/myindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
+* The HTTP client will request a document by making an HTTP GET request. For instance, to retrieve a document with `_id` equal to `739c26bc-7a09-469a-803d-623c4045b0cb` in the `users` collection, the client will perform the following request: `GET http://kuzzlebackend:7512/myindex/users/739c26bc-7a09-469a-803d-623c4045b0cb`.
 
-* The HTTP router receives the message and creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object that it forwards to the Funnel. The `Request Input` will look like this:
+* The *Entry Point* receives the message and passes it on to the *HTTP Router*.
+
+* The *HTTP Router* creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object and sends it to the *Funnel*. The `Request Input` will look like this:
+
 ```javascript
 {
   "controller": "document",
@@ -53,11 +56,12 @@ The following diagram shows how a request flows between the client application, 
 }
 ```
 
-* The Funnel then validates the formatted data and sends it to the Document Controller.
+* The *Funnel* then validates the formatted data and sends it to the *Document Controller*.
 
-* The Document Controller then requests the document from the Storage Engine.
+* The *Document Controller* then requests the document from the *Persistence Engine*.
 
-* The Storage Engine retrieves the data from the document store (Elasticsearch) and returns a document to the Document Controller which looks like this:
+* The *Persistence Engine* retrieves the data from the document store (Elasticsearch) and returns a document to the *Document Controller* which looks like this:
+
 ```javascript
 {
   "_index": "mainindex",
@@ -77,21 +81,23 @@ The following diagram shows how a request flows between the client application, 
       "hobby": "computer"
   }
 }
-```
+```  
 
-* The document will make its way through the chain of components until it is received by the Client.
+ <br/>
+* The document will make its way through the chain of components until it is received by the client application.
 
 ### Synchronous Request using Websocket Protocol
 
-In the diagram below, we highlighted the components of Kuzzle Backend's [Architecture]({{ site_base_path }}guide/kuzzle-depth) that are used in a read request using Websockets:
+In the diagram below, we highlighted the components of Kuzzle's server [architecture]({{ site_base_path }}guide/kuzzle-depth) that are used in a read request using Websockets:
 
-![read_scenario_websocket_overview]({{ site_base_path }}assets/images/request-scenarios/read-websocket/overview.png)
+![read_scenario_websocket_overview]({{ site_base_path }}assets/images/request-scenarios/read-websocket/Synchronous_Request_Websocket_Protocol_Overview.png)
 
-The following diagram shows how a request flows between the client application, the different Kuzzle Backend components, and the external services:
+The following diagram shows how a request flows between the client application, the different Kuzzle server components, and the external services:
 
-![read_scenario_websocket_details]({{ site_base_path }}assets/images/request-scenarios/read-websocket/details.png)
+![read_scenario_websocket_details]({{ site_base_path }}assets/images/request-scenarios/read-websocket/Synchronous_Request_Websocket_Protocol_Sequence.png)
 
-* The Client opens a websocket connection to Kuzzle Backend and sends a request message. For example, to retrieve a document with `_id` equal to `739c26bc-7a09-469a-803d-623c4045b0cb` in the `users` collection, the Client will send the following message:
+* The client application opens a websocket connection to Kuzzle server and sends a request message. For example, to retrieve a document with `_id` equal to `739c26bc-7a09-469a-803d-623c4045b0cb` in the `users` collection, the client application will send the following message:
+
 ```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
@@ -103,14 +109,18 @@ The following diagram shows how a request flows between the client application, 
 }
 ```
 
-* The Client then listens to the `<requestId>` event on the socket. For example:
+ <br/>
+* The client application then listens to the `<requestId>` event on the socket. For example:
+
 ```javascript
   this.socket.once("ed4faaff-253a-464f-a6b3-387af9d8483d", function(response) {
     callback(response);
   });
-```
+```  
 
-* The Kuzzle Backend receives the message and the protocol entrypoint creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object which it passes to the Funnel. The `Request Input` looks like this: 
+ <br/>
+* The *Entry Point* receives the message and creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object which it passes to the *Funnel*. The `Request Input` looks like this:
+
 ```javascript
 {
   "controller": "read",
@@ -123,11 +133,12 @@ The following diagram shows how a request flows between the client application, 
 }
 ```
 
-* The Funnel then validates the formatted data and sends it to the Document Controller.
+* The *Funnel* then validates the formatted data and sends it to the *Document Controller*.
 
-* The Document Controller then requests the document from the Storage Engine.
+* The *Document Controller* then requests the document from the *Persistence Engine*.
 
-* The Storage Engine retrieves the data from the document store (Elasticsearch) and returns a document to the Document Controller which looks like this:
+* The *Persistence Engine* retrieves the data from the document store (Elasticsearch) and returns a document to the *Document Controller* which looks like this:
+
 ```javascript
 {
   "_index": "mainindex",
@@ -147,33 +158,32 @@ The following diagram shows how a request flows between the client application, 
       "hobby": "computer"
   }
 }
-```
+```  
 
-* The document will make its way back through the chain of components back to the entry point.
+* The document will make its way back through the chain of components back to the *Entry Point*.
 
-* The entry point emits the `<requestId>` event and the Client receives the response.
+* The *Entry Point* emits the `<requestId>` response and the client application receives it.
 
 ---
 
 
 ## Asynchronous Communication
 
-In an asynchronous request, Kuzzle Backend will receive a request over one channel, process it, and trigger a response over another channel. In order to receive the response, the Client must subscribe to the trigger. Because two separate channels are used, the request and response do not need to be made by the same Client nor do they need to be made sequentially.
+In an asynchronous request, Kuzzle server will receive a request over one channel, process it, and trigger a response over another channel. In order to receive the response, the Client application must subscribe to the channel. Because two separate channels are used, the request and response do not need to be made by the same client nor do they need to be made sequentially.
 
-This form of communication is generally referred to as publish/subscribe, because on the one side a Client is **subscribing** to a channel and on the other side a Client is **publishing** to a channel.
+This form of communication is generally referred to as publish/subscribe, because on the one side a client is **subscribing** to a channel and on the other side a client is **publishing** to a channel.
 
-This subsection describes the life-cycle of real-time notifications which implement the [Publish/Subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern.
-
-In the diagram below, we highlighted the components of Kuzzle Backend's [Architecture]({{ site_base_path }}guide/kuzzle-depth) that are used in the publish/subscribe pattern:
-![pubsub_overview]({{ site_base_path }}assets/images/request-scenarios/pubsub/overview.png)
+This subsection describes the life-cycle of real-time notifications which implement the [Publish/Subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern. In the diagram below, we highlighted the components of Kuzzle's server [architecture]({{ site_base_path }}guide/kuzzle-depth) that are used in this pattern:
+![pubsub_overview]({{ site_base_path }}assets/images/request-scenarios/pubsub/Asynchronous_Communication_Overview.png)
 
 #### Subscribing to a Channel
 
 The following diagram shows how a client can subscribe to a channel.
 
-![pubsub_scenario_details1]({{ site_base_path }}assets/images/request-scenarios/pubsub/details1.png)
+![pubsub_scenario_details1]({{ site_base_path }}assets/images/request-scenarios/pubsub/Asynchronous_Communication_Subscription.png)
 
-* The client application opens a websocket (or MQ) connection, sends a subscription request (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)), and then listens for the `<requestId>` event on the socket. The subscription request is a message that contains a filter description which tells Kuzzle Backend what events should trigger a response. For instance, this message would trigger a response whenever content is posted to the `users` collection that contains the field `hobby` with value `computer` (see the [Koncorde Reference]({{ site_base_path }}kuzzle-dsl/) for more details):
+* The client application opens a socket (or MQ) connection, sends a subscription request (see the [API Documentation]({{ site_base_path }}api-documentation/controller-realtime/subscribe)), and then listens for the `<requestId>` event on the socket. The subscription request is a message that contains a filter description that defines which events should trigger a response. For instance, the following filter will trigger a response anytime content is posted to the `users` collection that contains the field `hobby` with value `computer` (see the [Koncorde Reference]({{ site_base_path }}kuzzle-dsl/) for more details):
+
 ```javascript
 {
   "controller": "realtime",
@@ -188,8 +198,9 @@ The following diagram shows how a client can subscribe to a channel.
   "state": "all"
 }
 ```
+ <br/>
+* The Kuzzle server receives the message and the *Entry Point* creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object with the following format:
 
-* Kuzzle Backend receives the message and the protocol entrypoint creates a [Request Input](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object. The `Request Input` is passed to the Funnel, with the following format:
 ```javascript
 {
   "controller": "realtime",
@@ -206,14 +217,17 @@ The following diagram shows how a client can subscribe to a channel.
   "state": "all"
 }
 ```
+ <br/>
+* The  *Entry Point* passes the `Request Input` to the *Funnel*.
 
-* The Funnel validates the request and forwards it to the Real-time Controller.
+* The *Funnel* validates the request and forwards it to the *Realtime Controller*.
 
-* The Real-time Controller registers the subscription with the HotelClerk, an internal component that acts as a lookup table of subscribers.
+* The *Realtime Controller* registers the subscription with the *Hotel Clerk*, an internal component that acts as a lookup table of subscribers.
 
-* The HotelClerk calls Koncorde to normalize the filters and register the subscription (see [Koncorde](https://github.com/kuzzleio/koncorde) for more details). It then sends a response which includes the `channel` ID back to the entrypoint.
+* The *Hotel Clerk* calls *Koncorde* to normalize the filters and register the subscription (see [Koncorde](https://github.com/kuzzleio/koncorde) for more details). It then sends a response which includes the `channel` ID back to the *Entry Point*.
 
-* The entrypoint then returns a response to the Client, which includes a `<requestId>` and the `channel` ID, and looks like this:
+* The *Entry Point* then returns a response to the client, which includes a `<requestId>` and the `channel` ID, and looks like this:
+
 ```javascript
 {
   "requestId": "ed4faaff-253a-464f-a6b3-387af9d8483d",
@@ -229,32 +243,33 @@ The following diagram shows how a client can subscribe to a channel.
   }
 }
 ```
+ <br/>
 
-* The Client can now subscribe to the `channel` and listen to events in order to be notified any time a message is processed that matches the subscription filters.
+* The client can now subscribe to the `channel` and listen to events in order to be notified any time a message is processed that matches the subscription filters.
 
 
 #### Publishing to a Channel Directly
 
-The following diagram shows how Kuzzle Backend triggers a response as a result of a publish request made using the [Real-time/Publish]({{ site_base_path }}api-documentation/controller-realtime/publish) action)
+The following diagram shows how the Kuzzle server triggers a response as a result of a publish request made using the [Real-time/Publish]({{ site_base_path }}api-documentation/controller-realtime/publish) action.
 
-![pubsub_scenario_details2]({{ site_base_path }}assets/images/request-scenarios/pubsub/details2.png)
+![pubsub_scenario_details2]({{ site_base_path }}assets/images/request-scenarios/pubsub/Asynchronous_Communication_Publishing_Directly.png)
 
-* The Real-time Controller receives the **publish** request from a Client and sends it to the Notifier component.
-* The Notifier Component calls Koncorde to check if the content matches any filters.
-* The Notifier Component uses the Notification Cache Engine to store the mappings into cache.
-* The Notifier Component calls the HotelClerk to get the channels related to the filters.
-* The Notifier Component broadcasts the message for each channel that is linked to the filter.
-* Finally, the entrypoint emits the message to the Clients that are **subscribed** to it.
+* The *Realtime Controller* receives the **publish** request from a client and sends it to the *Notifier* component.
+* The *Notifier* calls *Koncorde* to check if the content matches any filters.
+* The *Notifier* uses the *Internal Cache* to store the mappings into cache.
+* The *Notifier* calls the *Hotel Clerk* to get the channels related to the filters.
+* The *Notifier* broadcasts the message for each channel that is linked to the filter.
+* Finally, the *Entry Point* emits the message to the clients that are **subscribed** to it.
 
 #### Publishing to a Channel Indirectly
 
-The following diagram shows how Kuzzle Backend uses the Document Controller to trigger a notification as a result of a change to persistent data.
+The following diagram shows how Kuzzle uses the Document Controller to trigger a notification as a result of a change in persistent data.
 
-![pubsub_scenario_details3]({{ site_base_path }}assets/images/request-scenarios/pubsub/details3.png)
+![pubsub_scenario_details3]({{ site_base_path }}assets/images/request-scenarios/pubsub/Asynchronous_Communication_Publishing_Indirectly.png)
 
-* A Client makes a synchronous "create" request, which goes through the Kuzzle Backend components to the Document Controller.
-* The Document Controllers sends the data to the Storage Engine.
-* Once the document is stored, the Document Controller calls the Notifier Component.
-* The Notifier Component then calls the Notification Cache to check if the content matches any filters.
-* The Notifier Component calls the HotelClerk to get the channels related to the filters.
-* The Notifier Component asks the entrypoint to broadcast the notification to all Clients that are subscribed to the channels.
+* A client makes a synchronous **create** request, which goes through the Kuzzle server components to the *Document Controller*.
+* The *Document Controller* sends the data to the *Persistence Engine*.
+* Once the document is stored, the *Document Controller* calls the *Notifier* component.
+* The *Notifier* then calls the *Internal Cache* to check if the content matches any filters.
+* The *Notifier* calls the *Hotel Clerk* to get the channels related to the filters.
+* The *Notifier* asks the *Entry Point* to broadcast the notification to all clients that are **subscribed** to the channels.
