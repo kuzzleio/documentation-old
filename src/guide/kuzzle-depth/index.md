@@ -9,26 +9,26 @@ subheader-title: Architecture
 
 # Architecture
 
-In this section we'll take a closer look at Kuzzle Backend's internal architecture.
+In this section we'll take a closer look at Kuzzle's server architecture.
 
-![archi_core]({{ site_base_path }}assets/images/core-architecture.png)
+![archi_core]({{ site_base_path }}assets/images/Kuzzle_Server_Architecture.png)
  
 ## Core Components
 
-The diagram above depicts the various components that make up Kuzzle Backend's architecture, these are:
+The diagram above depicts the various components that make up the server architecture, these are:
 
-* **Entry Points**: handles the incoming message and sends them to the Funnel.
-* **Router**: exposes the HTTP endpoints, normalizes any request, and forwards it to the Funnel.
-* **Funnel**: receives normalized requests and forwards it to the appropriate Controller, sends results back to the Router.
-* **Controllers**: receives data fom the Funnel, processes it, and returns a result to the Funnel (see [API reference]({{ site_base_path }}api-documentation)).
+* **Entry Points**: handles the incoming message and sends them to the *Funnel*.
+* **Router**: exposes the HTTP endpoints, normalizes any request, and forwards it to the *Funnel*.
+* **Funnel**: receives normalized requests and forwards it to the appropriate controller, sends results back to the *Entry Points*.
+* **Controllers**: receives data fom the *Funnel*, processes it, and returns a result to the *Funnel* (see [API reference]({{ site_base_path }}api-documentation)).
 * **Internal Components**: are internal modules used by controllers to process a request.
-* **Service Components**: are interfaces used by controllers to connect to external services. (see [below]({{ site_base_path }}guide/kuzzle-depth/#services)).
+* **Service Components**: are interfaces used by controllers to connect to external services (see [below]({{ site_base_path }}guide/kuzzle-depth/#services)).
 
 ## Services
 
-In Kuzzle Backend, a Service is an interface that interacts with external components.
+In our architecture, a "Service" is an interface that interacts with external components.
 
-Kuzzle Backend currently implements the following Services:
+Kuzzle currently implements the following Services:
 
 * [elasticsearch.js](https://github.com/kuzzleio/kuzzle/blob/master/lib/services/elasticsearch.js): interface to [Elasticsearch](https://www.elastic.co/products/elasticsearch), used for persistent data storage.
 * [redis.js](https://github.com/kuzzleio/kuzzle/blob/master/lib/services/redis.js): interface to the [redis](http://redis.io), used as a cache.
