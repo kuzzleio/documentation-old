@@ -1,17 +1,17 @@
 ---
 layout: full.html
 algolia: true
-title: Query syntax
-description: learn how to send raw queries to kuzzle
+title: Query Syntax
+description: learn how to send raw queries to Kuzzle Backend
 show-subheader: true
 subheader-title: Introduction
 order: 200
 ---
 
-# Query syntax
+# Query Syntax
 
-The query message format is (almost) identical between all the protocols.
+The query message format is (almost) identical for all communication protocols.
 
-The only exceptions are about the specific nature of HTTP protocol, where the URL represents the action.
+The one exception is the HTTP protocol, where the URL defines the action.
 
-Please refer to the code samples on the right pane for more detail on the specific implementations.
+Please refer to the code samples on the right pane for more details on specific implementations.

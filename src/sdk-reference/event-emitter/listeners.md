@@ -45,10 +45,10 @@ Returns the list of callbacks that listen to the given event.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``event`` | string | One of the event described in the [Event Handling]({{ site_base_path }}sdk-reference/essentials/events/) section of this documentation |
+| ``event`` | string | One of the events described in the [Event Handling]({{ site_base_path }}sdk-reference/essentials/events/) section of this documentation |
 
 ---
 
-## Return value
+## Return Value
 
 Returns an array of functions.

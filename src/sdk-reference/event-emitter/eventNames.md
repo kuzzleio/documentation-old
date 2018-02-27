@@ -36,5 +36,5 @@ List<String> events = room.eventNames();
   // => Array('loginAttempt', 'queryError')
 ```
 
-Returns an array listing the events for which the emitter has registered listeners.
+Returns an array listing the event names for which the emitter has listeners registered.
 

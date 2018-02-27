@@ -67,7 +67,7 @@ title: replaceUser
 }
 ```
 
-Given a [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid), replaces the matching User object in Kuzzle's database layer.
+Given a [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid), replaces the matching user object in Kuzzle Backend's database layer.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the user indexation (indexed users are available for `search`).
+with the value `wait_for` in order to wait for the user to be indexed (indexed users are available for `search`).

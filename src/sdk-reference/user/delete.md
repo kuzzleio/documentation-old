@@ -57,7 +57,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Deletes the user in Kuzzle
+Deletes the user in Kuzzle Backend.
 
 ---
 
@@ -74,10 +74,10 @@ Deletes the user in Kuzzle
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `String` containing the deleted user ID
+Returns a `String` containing the id of the deleted user. 

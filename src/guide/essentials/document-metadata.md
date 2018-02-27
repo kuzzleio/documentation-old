@@ -1,19 +1,28 @@
 ---
 layout: full.html
 algolia: true
-title: Document metadata
+title: Document Metadata
 order: 450
 ---
 
-# Document metadata
+# Document Metadata
 
-Whenever a document gets created, updated or deleted, Kuzzle adds metadata to it, providing information about its life-cycle.
+Whenever a document gets created, updated or deleted, Kuzzle Backend will add or update the document's metadata. This metadata provides information about the document's lifecycle.
 
 ---
 
 ## Overview
 
-Added metadata can be viewed in document's `_meta` property:
+Metadata can be viewed in the document's `_meta` field and contains the following properties:
+
+* `author`: The [unique identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) of the user who created the document.
+* `createdAt`: Timestamp of document creation (create or replace), in epoch-milliseconds format.
+* `updatedAt`: Timestamp of last document update in epoch-milliseconds format, or `null` if no update has been made.
+* `updater`: The [unique identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) of the user that updated the document, or `null` if the document has never been updated.
+* `active`: The status of the document. `true` if the document is active and `false` if the document has been put in the trashcan.
+* `deletedAt`: Timestamp of document deletion in epoch-milliseconds format, or `null` if the document has not been deleted.
+
+Here is an example of a document and its `_meta` field:
 
 ```json
 {
@@ -22,7 +31,7 @@ Added metadata can be viewed in document's `_meta` property:
   "_id": "AVkDLAdCsT6qHI7MxLz4",
   "_score": 0.25811607,
   "_source": {
-    "message": "Hey! Ho!"
+    "message": "Hello World!"
   },
   "_meta": {
     "author": "<kuid>",
@@ -35,18 +44,11 @@ Added metadata can be viewed in document's `_meta` property:
 }
 ```
 
-* `author`: The author [unique identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid)
-* `createdAt`: Timestamp of the document creation (create or replace), in Epoch-milliseconds format
-* `updatedAt`: Timestamp of the last document update in Epoch-milliseconds format, or `null` if no update has been made
-* `updater`: The updater [unique identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid), or `null` if no update has been made
-* `active`: `true` until the document has been put in the trashcan
-* `deletedAt`: deletion timestamp, `null` until put in the trashcan
-
 ---
 
-## Search queries
+## Querying Metadata
 
-Metadata can be queried like any other document properties:
+Metadata can be queried like any other document property. For example, to query by a document's creation timestamp, we can use the following search filter:
 
 ```json
 {
@@ -62,20 +64,17 @@ Metadata can be queried like any other document properties:
 
 ---
 
-## Documents deletion
+## Documents Deletion
 
-When a document gets deleted, Kuzzle first isolates it from other active documents, by putting in an area called the trashcan.
+When a document gets deleted, Kuzzle Backend first isolates it from other active documents by placing it in the `trashcan`.
 
-Documents in the trashcan cannot be accessed, searched or counted, unless the `includeTrash` flag is set when invoking the corresponding API routes.
+Documents in the `trashcan` cannot be accessed, searched or counted, unless the `includeTrash` flag is set to `true` when invoking the API route.
 
 ---
 
-## Garbage collection
+## Garbage Collection
 
-On regular intervals, Kuzzle will permanently delete some documents in the trashcan, starting from documents having stayed the longest in that area.
+Kuzzle Backend will routinely search and permanently delete the oldest documents in the `trashcan`. This garbage collecting can be configured using the `services.garbageCollector` property in the Kuzzle Backend [configuration file]({{ site_base_path }}guide/essentials/configuration/). In general, garbage collection works as follows:
 
-The garbage collector follows the following rules:
-
-* if Kuzzle is in [overloaded state]({{ site_base_path }}kuzzle-events/core/#core-overload) when garbage collection is about to start, or if Kuzzle enters that state during garbage collection, then it will be delayed and wait until Kuzzle is no longer overloaded
-* Its behavior is configured using the `services.garbageCollector` property in Kuzzle's [configuration file]({{ site_base_path }}guide/essentials/configuration/), namely how often it passes and how many documents are deleted per data collection
-* When Kuzzle is started, it will wait the configured delay before running the garbage collector for the first time
+* When Kuzzle Backend is started, it will check the `services.garbageCollector` property and wait the configured delay before running the garbage collection for the first time.
+* If Kuzzle Backend is in [overload]({{ site_base_path }}kuzzle-events/core/#core-overload) the garbage collecting will be postponed until the load is reduced.

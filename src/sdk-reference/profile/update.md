@@ -91,16 +91,16 @@ Performs a partial content update on this object.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Profile` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the updated version of this object
+Returns the updated version of this object.

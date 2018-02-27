@@ -73,7 +73,7 @@ Authenticates a user.
 
 **Type:** string
 
-The name of the authentication [strategy name]({{ site_base_path }}guide/essentials/security/#authentication) used to log the user in.
+The name of the authentication [strategy]({{ site_base_path }}guide/essentials/security/#authentication) used to log the user in.
 
 #### `expiresIn` (optional)
 
@@ -88,10 +88,10 @@ Examples: `"6d"`, `"10h"`, `86400000`
 #### Other arguments
 
 Depending on the chosen authentication `strategy`, additional [credential arguments]({{ site_base_path}}guide/kuzzle-depth/authentication/#authentication) may be required.  
-The API call example in this page provides the necessary arguments for the [`local` authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local).
+The API request example in this page provides the necessary arguments for the [`local` authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local).
 
 Check the appropriate [authentication plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/) documentation to get the list of additional arguments to provide.
 
 ## Result
 
-The **_login** action returns an encrypted JSON Web Token, that must then be sent within the [requests headers]({{ site_base_path }}api-documentation/query-syntax/authorization-token/).
+The **_login** action returns an encrypted JSON Web Token, that must then be sent in the [requests headers]({{ site_base_path }}api-documentation/query-syntax/authorization-token/).

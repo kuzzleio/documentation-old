@@ -60,7 +60,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates or replaces this user in Kuzzle's database layer.
+Creates or replaces this user in Kuzzle Backend's database layer.
 
 ---
 
@@ -77,16 +77,16 @@ Creates or replaces this user in Kuzzle's database layer.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `User` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `User` object.
+Returns a `User` object.

@@ -50,7 +50,7 @@ $result = $kuzzle->validateMyCredentials('local', ['username' => 'foo']);
 // $result = true or false
 ```
 
-Update credentials of the specified <strategy> for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to update credentials for.
+Update current user's credentials for the specified `strategy`. The credentials to send depend on the authentication plugin and the strategy.
 
 ---
 
@@ -69,10 +69,10 @@ Update credentials of the specified <strategy> for the current user. The credent
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is either true or false.
+Returns true or false.

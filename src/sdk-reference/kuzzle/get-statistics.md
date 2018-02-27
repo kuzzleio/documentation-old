@@ -136,7 +136,7 @@ $statistics = $kuzzle->getStatistics($date);
 ]
 ```
 
-> When providing 2 timestamps, retrieves all frames recorded between these timestamps:
+> If two timestamps are provided, retrieves all frames recorded between these two timestamps:
 
 ```js
 // Date can be either in ISO format or a timestamp (utc, in milliseconds)
@@ -213,8 +213,8 @@ $statistics = $kuzzle->getStatistics($startTime, $stopTime);
 ]
 ```
 
-Kuzzle monitors active connections, and ongoing/completed/failed requests.  
-This method allows getting either the last statistics frame, or a set of frames starting from a provided timestamp.
+Kuzzle Backend monitors active connections, and ongoing/completed/failed requests.  
+This method returns either the last statistics frame, or a set of frames starting from a provided timestamp.
 
 ---
 
@@ -232,12 +232,12 @@ This method allows getting either the last statistics frame, or a set of frames 
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 **Note:** Kuzzle statistics are cleaned up regularly. If the timestamp is set too far in the past, then this method will return all available statistics.
 
 ---
 
-### Callback response
+### Callback Response
 
-Resolves to an `array` containing one or more statistics frame(s), as JSON objects.
+Returns an `array` containing one or more statistics frame (as JSON objects).

@@ -113,7 +113,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Executes a search on roles according to a filter
+Executes a search on roles according to a filter.
 
 ---
 
@@ -140,11 +140,11 @@ Executes a search on roles according to a filter
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``from`` | number | Starting offset | ``0`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``size`` | number |  Number of hits to return | ``20`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON Object containing the total number of found roles and an array of [Role]({{ site_base_path }}sdk-reference/role) objects.
+Return a JSON Object containing the total number of roles found and an array of [Role]({{ site_base_path }}sdk-reference/role) objects.

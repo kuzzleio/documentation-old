@@ -45,10 +45,10 @@ kuzzle.connect(new ResponseListener<Void>() {
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Connects to the Kuzzle instance using the `host` and `port` parameters provided to the constructor.
+Connects to the Kuzzle Backend using the `host` and `port` parameters provided in the constructor.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves with nothing once connected to a remote Kuzzle server.
+Returns null once connected to a remote Kuzzle Backend.

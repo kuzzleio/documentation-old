@@ -70,7 +70,7 @@ catch (ErrorException $e) {
 ["doc1", "doc2"]
 ```
 
-Delete multiple [Documents]({{ site_base_path }}sdk-reference/document/) according to the provided IDs.
+Delete multiple [Documents]({{ site_base_path }}sdk-reference/document/) according to the input IDs.
 
 ---
 
@@ -88,11 +88,11 @@ Delete multiple [Documents]({{ site_base_path }}sdk-reference/document/) accordi
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `JSON object` containing the raw Kuzzle response.
-Can return a 206 partial error in case some documents could not be deleted.
+Returns a `JSON object` containing the raw Kuzzle Backend response.
+Can return a 206 partial error in cases where some documents could not be deleted.

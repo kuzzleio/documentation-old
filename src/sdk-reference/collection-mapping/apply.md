@@ -66,16 +66,16 @@ Applies the new mapping to the data collection.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns this `CollectionMapping` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to this updated `CollectionMapping` object.
+Returns the updated `CollectionMapping` object.

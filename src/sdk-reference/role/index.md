@@ -72,7 +72,7 @@ $role = $security->role($roleId, $roleDefinition);
 $role = new Role($security, $roleId, $roleDefinition);
 ```
 
-Instantiates a new `Role` object, which is a representation of a set of right policies.
+Instantiates a new `Role` object, which defines a set of right policies.
 
 ---
 
@@ -85,7 +85,7 @@ Instantiates a new `Role` object, which is a representation of a set of right po
 | ``content`` | JSON Object | Role content |
 | ``meta`` | JSON Object | Role metadata |
 
-**Note:**  this constructor won't make any call to Kuzzle.
+**Note:**  this constructor won't make any call to Kuzzle Backend.
 
 ---
 
@@ -99,6 +99,6 @@ Instantiates a new `Role` object, which is a representation of a set of right po
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Role` object.

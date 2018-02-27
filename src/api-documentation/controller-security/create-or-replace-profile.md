@@ -110,7 +110,7 @@ title: createOrReplaceProfile
 }
 ```
 
-Creates or replaces (if `_id` matches an existing one) a profile with a list of policies.
+Creates or replaces a profile with a list of policies (if `_id` matches an existing one).
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the profile indexation (indexed profiles are available for `search`).
+with the value `wait_for` in order to wait for the profile to be indexed (indexed profiles are available for `search`).

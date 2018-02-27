@@ -79,17 +79,17 @@ Removes and returns one or more elements at random from a set of unique values.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `count` | int | Number of elements to remove | `1` |
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of removed elements.
+Returns an array of removed elements.

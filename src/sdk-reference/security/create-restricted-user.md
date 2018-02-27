@@ -102,12 +102,12 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new restricted user in Kuzzle.  
-This function allows anonymous users for instance to create a "restricted" user with predefined rights.
+Create a new restricted user in Kuzzle Backend.  
+This function allows anonymous users to create a "restricted" user with predefined rights.
 
 <aside class="notice">
-There is a small delay between user creation and their creation in our search layer, usually a couple of seconds.
-That means that a user that was just been created will not be returned by <code>searchUsers</code> function.
+There is a small delay between user creation and its availability in our search layer (usually a couple of seconds).
+That means that a user that was just created may not be returned by the <code>searchUsers</code> function at first.
 </aside>
 
 ---
@@ -127,7 +127,7 @@ That means that a user that was just been created will not be returned by <code>
 
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---

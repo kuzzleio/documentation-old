@@ -54,10 +54,10 @@ try {
 }
 ```
 
-Saves this document into Kuzzle.
+Saves this document into Kuzzle Backend.
 
-If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
-Otherwise, this method will replace the latest version of this document in Kuzzle by the current content of this object.
+If this is a new document, this function will create it in Kuzzle Backend and the ``id`` property will be made available.  
+Otherwise, this method will replace the latest version of the document in Kuzzle Backend with the content of this current object.
 
 ---
 
@@ -75,17 +75,17 @@ Otherwise, this method will replace the latest version of this document in Kuzzl
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns this `Document` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to this `Document` object once the document has been saved.
+Return this `Document` object once the document has been saved.

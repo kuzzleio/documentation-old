@@ -27,10 +27,10 @@ $kuzzle = new Kuzzle('localhost');
 $kuzzle->unsetJwt();
 ```
 
-Unsets the internal JSON Web Token used for authentication, and stops all existing subscriptions
+Unsets the internal JSON Web Token used for authentication, and stops all existing subscriptions.
 
 ---
 
-## Return value
+## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.

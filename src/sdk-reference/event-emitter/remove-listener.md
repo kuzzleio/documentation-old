@@ -27,7 +27,7 @@ $kuzzle = new Kuzzle('localhost');
 $kuzzle->removeListener('queryError', $callback);
 ```
 
-Removes a listener from an event.
+Remove a listener from an event.
 
 ---
 
@@ -35,11 +35,11 @@ Removes a listener from an event.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
+| ``event`` | string | One of the events described in the ``Event Handling`` section of this documentation |
 | ``callback`` | function/object | the callback |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `KuzzleEventEmitter` object to allow chaining.

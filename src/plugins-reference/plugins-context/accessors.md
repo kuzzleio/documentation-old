@@ -11,7 +11,7 @@ order: 100
 
 {{{since "1.0.0"}}}
 
-Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
+Sends a request to [Kuzzle Backend API]({{ site_base_path }}api-documentation).
 
 
 #### With promises
@@ -23,7 +23,7 @@ Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
 | `request` | `Request` | A [`Request`]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) to execute  |
 | `overloadProtection` | `Boolean` | Optional. Default: `true`. See [Overload Protection]({{ site_base_path }}plugins-reference/plugins-context/accessors/#overload-protection) |
 
-Returns a Promise, either resolved with the source `Request` object with its response part filled (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)), or rejected with a [KuzzleError object]({{ site_base_path }}plugins-reference/plugins-context/errors/).
+Returns a Promise, that resolves to the source `Request` object with the response part set (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)), or rejects with a [KuzzleError]({{ site_base_path }}plugins-reference/plugins-context/errors/).
 
 
 #### With callbacks
@@ -38,19 +38,18 @@ Returns a Promise, either resolved with the source `Request` object with its res
 
 Upon completion, the `request` argument provided to the callback function will be the source request with its response part filled (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)).
 
-#### Overload protection
+#### Overload Protection
 
-Kuzzle server nodes feature a configurable overload-protection mechanism. When asking Kuzzle to execute an API request, there are three possible outcomes:
+Kuzzle Backend has a configurable overload-protection mechanism. When a request is made to the Kuzzle Backend API, there are three possible outcomes:
 
-* Kuzzle has room for that request: it is executed immediately
-* A lot of other requests are already running: it is delayed until time can be allocated to it
-* Kuzzle is overloaded: requests are rejected until room can be found again in the requests buffer
+* Kuzzle Backend has room for that request and it is executed immediately
+* Other requests are already running and taking up resources, the new request is delayed until resources are freed
+* Kuzzle Backend is overloaded: requests are rejected until the request buffer is no longer at capacity
 
-Most of the time, plugins should go through that system when submitting requests. But some rare use cases require that requests must be executed within a predictible and constant delay, making this system impractical.  
-For those cases, plugins can disable the overload protection mechanism for specific requests.
+In general, requests should be processed with the overload-protection enabled. However, in some cases you may want to ensure that a request is executed with a predictable and constant delay. For such cases, the overload protection mechanism can be disabled.
 
-Be warned though that it is advised to only disable this protection if necessary, and only for a small set of requests.  
-If plugins have to handle rejected requests because Kuzzle gets overloaded, then disabling this protection to prevent such errors will only hide the problem instead of solving it. Instead, administrators are encouraged to either adjust the size of the request buffer in [Kuzzle's configuration]({{ site_base_path }}guide/essentials/configuration/), or to add more Kuzzle nodes to their infrastructure.
+We recommend that you only disable the overload protection when it is truly necessary and only for small sets of requests.  
+If plugins have to handle rejected requests because Kuzzle Backend is overloaded, then disabling this protection to prevent these errors will only hide the problem instead of solving it. Instead, we encourage administrators to either adjust the size of the request buffer in [Kuzzle Backend's configuration]({{ site_base_path }}guide/essentials/configuration/), or to add more Kuzzle Backend nodes to their infrastructure.
 
 #### Example
 
@@ -77,21 +76,21 @@ context.accessors.execute(request, (error, request) => {
 
 ## `storage`
 
-This accessor allows plugins to manage their private and secure permanent storage.  
-Data stored in this space cannot be accessed from Kuzzle, its API, or from another plugin.
+This accessor allows plugins to manage their own private and secure permanent storage.  
+Data stored in this space cannot be accessed from Kuzzle Backend, or from the Kuzzle Backend API, or from another plugin.
 
-The only way a document stored in this space can be accessed is if the owner plugin explicitly allows it, by extending Kuzzle's API with a route exposing that data.
+The only way a document stored in this space can be accessed outside the plugin is if that plugin extends Kuzzle Backend's API with a route exposing that data.
 
 This storage space is a whole [data index]({{ site_base_path }}guide/essentials/persisted/#working-with-persistent-data).  
 
-Data stored in this space can be accessed by using the [Repository constructor]({{ site_base_path }}plugins-reference/plugins-context/constructors/#repository)
+Data stored in this space can be accessed through the [Repository constructor]({{ site_base_path }}plugins-reference/plugins-context/constructors/#repository).
 
 ### `bootstrap`
 
 {{{since "1.0.0"}}}
 
-Allows to initialize the plugin storage index. When called, it will create the Elastisearch index
-and the `collections` provided in argument. 
+Used to initialize the plugin storage index. When called, it will create the Elastisearch index
+and the `collections` provided in the input argument. 
 
 Can be called multiple times as long as the mappings are not modified through calls.
 
@@ -130,7 +129,7 @@ context.accessors.storage.bootstrap({
 
 {{{since "1.0.0"}}}
 
-Allows to create a collection with its mapping. Can be called multiple times as long as the mapping is not modified. Consider using [`storage.bootstrap`]({{ site_base_path }}plugins-reference/plugins-context/accessors/#storage-bootstrap) if your collections are not dynamic.
+Used to create a collection with its mapping. Can be called multiple times as long as the mapping is not modified. Consider using [`storage.bootstrap`]({{ site_base_path }}plugins-reference/plugins-context/accessors/#storage-bootstrap) if your collections are not dynamic.
 
 **Arguments**
 
@@ -161,12 +160,12 @@ context.accessors.storage.createCollection('someCollection', {
 
 ## `strategies`
 
-This accessor allows to dynamically add or remove [authentication strategies]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy)
+This accessor can be used to dynamically add or remove [authentication strategies]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy)
 
-In a cluster context, Kuzzle will add/remove strategies on all nodes.
+In a cluster context, Kuzzle Backend will add/remove strategies on all nodes.
 
 <aside class="warning">
-Plugins should also make sure that, when changing the list of available strategies dynamically, that list will remain the same after a Kuzzle node restarts.
+Plugins should also make sure that, when changing the list of available strategies dynamically, that list will remain the same after a Kuzzle Backend node restarts.
 </aside>
 
 ### `add`
@@ -184,7 +183,7 @@ Adds a new authentication strategy. Users can be authenticated using that new st
 
 **Returns**
 
-This method returns a promise, that resolves to nothing when the authentication strategy has been successfully added.
+This method returns a promise that resolves to nothing when the authentication strategy has been successfully added.
 
 The promise will be rejected when:
 
@@ -221,10 +220,10 @@ context.accessors.strategies.add('someStrategy', {
 
 {{{since "1.2.0"}}}
 
-Dynamically removes a strategy, preventing new authentications using it.  
+Dynamically removes a strategy, preventing new authentications from using it.  
 
 <aside class="warning">
-Authentication tokens created using that strategy ARE NOT invalidated by using this method. 
+Authentication tokens previously created using that strategy ARE NOT invalidated after using this method. 
 </aside>
 
 **Arguments**
@@ -255,7 +254,7 @@ context.accessors.strategies.remove('someStrategy');
 
 {{{since "1.0.0"}}}
 
-Triggers a custom event, listenable by [`hooks`]({{ site_base_path }}/plugins-reference/plugins-features/adding-hooks/). This allows other plugins to react to events generated by the current plugin. 
+Triggers a custom event, listened to by [`hooks`]({{ site_base_path }}/plugins-reference/plugins-features/adding-hooks/). This allows other plugins to react to events generated by the current plugin. 
 
 **Arguments**
 
@@ -266,7 +265,7 @@ Triggers a custom event, listenable by [`hooks`]({{ site_base_path }}/plugins-re
 
 **Note** 
 
-The name of the resulting event being triggered will be generated as `"plugin-" + pluginName + ":" + eventName` in order to avoid collisions with Kuzzle native events.
+The name of the resulting event being triggered will have the format `"plugin-" + pluginName + ":" + eventName` in order to avoid any conflicts with Kuzzle Backend native events.
 
 **Usage**
 
@@ -301,7 +300,7 @@ This accessor exposes basic functionalities of the [Data Validation API]({{ site
 
 {{{since "1.0.0"}}}
 
-Adds a new data type, that can be used to validate if a document is well-formed.
+Adds a new data type, that can be used to validate a document.
 
 **Arguments**
 
@@ -311,7 +310,7 @@ Adds a new data type, that can be used to validate if a document is well-formed.
 
 **Returns**
 
-Nothing. Can throw a `PluginImplementationError` if the validation type has not the expected form.
+Nothing. Can throw a `PluginImplementationError` if the validation type does not have the expected form.
 
 **Usage**
 
@@ -347,7 +346,7 @@ Validates a document wrapped in a `Request` object.
 
 If `verbose` is set to `false`:
 
-Returns a `promise` that resolves to a modified `Request` instance where `defaultValues` are applied. Rejects if validation fails.
+Returns a `promise` that resolves to a modified `Request` instance where `defaultValues` are applied. Rejects if the validation fails.
 
 If `verbose` is set to `true`:
 

@@ -56,7 +56,7 @@ $credentials = $kuzzle->security->getCredentials('local', 'kuid');
 }
 ```
 
-Get credential information of the specified `strategy` for the specified `kuid`. 
+Get credential information of user with `kuid` for the specified `strategy`. 
 
 ---
 
@@ -75,10 +75,10 @@ Get credential information of the specified `strategy` for the specified `kuid`.
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an object reflecting the credentials.
+The result is a an object with the credentials.

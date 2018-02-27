@@ -100,11 +100,11 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new role in Kuzzle.
+Create a new role in Kuzzle Backend.
 
 <aside class="notice">
-There is a small delay between role creation and their creation in our search layer, usually a couple of seconds.
-That means that a role that was just been created will not be returned by <code>searchRole</code> function
+There is a small delay between role creation and its availability in our search layer (usually a couple of seconds).
+That means that a role that was just created may not be returned by the <code>searchRole</code> function at first.
 </aside>
 
 
@@ -126,11 +126,11 @@ That means that a role that was just been created will not be returned by <code>
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``replaceIfExist`` | boolean | If the same role already exists: throw an error if sets to false. Replace the existing role otherwise | ``false`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a [Role]({{ site_base_path }}sdk-reference/role) object.
+Returns a [Role]({{ site_base_path }}sdk-reference/role) object.

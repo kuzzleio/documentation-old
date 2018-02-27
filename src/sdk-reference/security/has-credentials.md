@@ -49,7 +49,7 @@ $result = $kuzzle->security->hasCredentials('local', 'kuid');
 // $result is a boolean
 ```
 
-Checks if a user has credentials associated with the provided strategy.
+Checks if a user has credentials for the provided strategy.
 
 ---
 
@@ -57,7 +57,7 @@ Checks if a user has credentials associated with the provided strategy.
 
 | Arguments | Type | Description
 |-----------|------|------------
-| `strategy` | string | Strategy you want to create credentials in
+| `strategy` | string | Strategy to check for credentials
 | `kuid` | JSON object | User's kuid
 | `options` | JSON object | Optional parameters
 | `callback`| function | Callback handling the response
@@ -68,11 +68,11 @@ Checks if a user has credentials associated with the provided strategy.
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean value.
+Returns a boolean value.
 

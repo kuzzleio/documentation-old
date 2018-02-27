@@ -54,7 +54,7 @@ try {
 }
 ```
 
-Creates a new `Document` object with the last version of this document stored in Kuzzle.
+Creates a new `Document` object with the last version of this document stored in Kuzzle Backend.
 
 ---
 
@@ -71,10 +71,10 @@ Creates a new `Document` object with the last version of this document stored in
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a new `Document` object containing the last document version.
+Return a new `Document` object containing the last document version.

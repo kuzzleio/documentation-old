@@ -84,12 +84,12 @@ If the destination key already exists, it is overwritten.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `aggregate` | string | Specify how members' scores are aggregated during the intersection.<br/>Allowed values: `min`, `max`, `sum` | `sum` |
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 | `weights` | array | Specify a multiplication factor for each input sorted set | `[1]` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of members in the stored intersection.
+Returns an integer containing the number of members in the stored intersection.

@@ -89,7 +89,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Updates the role object Kuzzle's database layer.
+Updates the role object in Kuzzle Backend's database layer.
 
 <aside class="warning">
   <p>
@@ -101,7 +101,7 @@ Updates the role object Kuzzle's database layer.
   </p>
 </aside>
 
-To get more information on Kuzzle permissions, please refer to our [Kuzzle Permissions guide]({{ site_base_path }}guide/essentials/security/#permissions).
+To get more information on Kuzzle Backend permissions, please refer to our [permissions guide]({{ site_base_path }}guide/essentials/security/#permissions).
 
 ---
 
@@ -119,16 +119,16 @@ To get more information on Kuzzle permissions, please refer to our [Kuzzle Permi
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Role` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the updated version of this object
+Returns the updated version of this object.

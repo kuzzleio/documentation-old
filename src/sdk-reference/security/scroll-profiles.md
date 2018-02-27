@@ -71,10 +71,10 @@ Scrolls on stored profiles using the provided scroll ID.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves the list of retrieved profiles according to the scroll parameters (offset, limit etc.).
+Returns the list of fetched security profiles according to the scroll parameters (offset, limit etc.).

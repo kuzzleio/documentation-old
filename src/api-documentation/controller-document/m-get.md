@@ -111,8 +111,8 @@ Given `document ids`, retrieves the corresponding documents from the database.
 
 Only documents in the persistent data storage layer can be retrieved.
 
-Returns a [partial error]({{ site_base_path }}api-documentation/errors/#partialerror) (with status 206) if one or more document can not be retrieved.
+Returns a [partial error]({{ site_base_path }}api-documentation/errors/#partialerror) (with status 206) if one or more documents cannot be retrieved.
 
 Optional arguments:
 
-- `includeTrash`: if set, documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/) will also be returned
+- `includeTrash`: if set, documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/) will also be returned.

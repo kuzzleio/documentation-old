@@ -72,11 +72,11 @@ This method empties the `jwt` property
 
 ## Return value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the `Kuzzle` object itself once the logout process is complete, either successfully or not.  
-The `Kuzzle` object will unset the property `jwt` if the user is successfully logged out.
+Returns the `Kuzzle` SDK object once the logout process is complete, either successfully or not.  
+The `Kuzzle` SDK object will unset the `jwt` property if the user is successfully logged out.

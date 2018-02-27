@@ -1,18 +1,18 @@
 ---
 layout: full.html
 algolia: true
-title: Specification structure
-description: understand Kuzzle validation mechanisms
+title: Specification Structure
+description: understanding the validation mechanisms
 order: 0
 ---
 
-# Specification structure
+# Specification Structure
 
-When a collection is created, its specification is empty. As a result, any document validates the specification.
+When a collection is created, its specification is empty. As a result, any document will be valid.
 
-In order to update the specification, you can use the [updateSpecifications action]({{ site_base_path }}api-documentation/controller-collection/update-specifications/).
+In order to update the specification, you can use the [updateSpecifications]({{ site_base_path }}api-documentation/controller-collection/update-specifications/) action.
 
-Here is an example of a fully described specification:
+Here is an example of a full specification:
 
 ```js
 const specification = {

@@ -96,4 +96,4 @@ title: mGetRoles
 }
 ```
 
-Retrieves a list of `role` objects from Kuzzle's database layer given a list of role ids.
+Retrieves a list of `role` objects from Kuzzle Backend's database layer given a list of role ids.

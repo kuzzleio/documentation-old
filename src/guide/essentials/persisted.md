@@ -1,41 +1,42 @@
 ---
 layout: full.html
 algolia: true
-title: Working with persistent data
+title: Working with Persistent Data
 order: 400
 ---
 
-# Working with persistent data
+# Working with Persistent Data
 
-Kuzzle relies on [Elasticsearch](https://www.elastic.co/) to store and fetch persistent data.
+Kuzzle Backend relies on [Elasticsearch](https://www.elastic.co/) to store and fetch persistent data.
 
-In Kuzzle, data is organized in the following way:
+In Kuzzle Backend, data is organized as follows:
 
-* **Documents** are the atomic unit of data. They are defined as JSON structures, in the classical NoSQL fashion and are identified by a unique `_id`.
-* Documents are grouped into **Collections**, identified by a unique name.
-* Collections are grouped into **Indexes**, identified by a unique name.
-
----
-
-## Why document identifiers are not part of their content?
-
-Contrary to relational databases, where primary and foreign keys are stored in data tables and used to identify parts and subparts of data, NoSQL databases are key-value repositories.
-
-As Kuzzle has been primarily built to work with document-oriented databases (a subset of NoSQL databases), each stored value is a whole document, meaning that key-value pairs are more like id-document pairs.
-
-This means that document identifiers are not a part of the content they are referencing, but external values used to identify document contents.
-
-This is why Kuzzle API handles `_id` and `_source` arguments separately, as the rest of this guide below will show.
+* **Documents** are atomic units of data that are each defined in JSON format and contain a unique `_id`.
+* **Collections** are a group of Documents, identified by a unique name.
+* **Indexes** are a group of Collections, identified by a unique name.
 
 ---
 
-## Creating a new index and a new collection
+## Document Content & Identifiers
 
-Before continuing this tutorial, we need to [**create a new index**]({{ site_base_path }}api-documentation/controller-index/create/) to store collections. We will call it `myindex`.
+Kuzzle Backend automatically generates document ids and indexes them. The generated id is labeled `_id` and can be found in the `result` field of a response, use it to reference a specific document. The content of the Document is labeled `_source` and can be found in the `result` field of the response.
 
-To create a new index, we only need to send the following `POST` request to the API endpoint (no body is necessary): `http://localhost:7512/myindex/_create`
+---
 
-Here is Kuzzle's response:
+## Creating an Index
+
+We will start off by [**creating a new index**]({{ site_base_path }}api-documentation/controller-index/create/) which we will use to store a collection.
+
+To create a new index, send a `POST` request to the following API endpoint and leave the request body empty:  `http://localhost:7512/<index name>/_create`. 
+
+
+Let's create an index named `myindex`:
+
+```bash
+ curl -X POST http://localhost:7512/myindex/_create
+```
+
+You should receive the following response:
 
 ```json
 {
@@ -54,11 +55,19 @@ Here is Kuzzle's response:
 }
 ```
 
-Next, we need to [**create a new collection**]({{ site_base_path }}api-documentation/controller-collection/create/) under that new index, to hold documents. We will call this new collection `mycollection`.
+## Creating a Collection
 
-To do so, we need to send the following `PUT` request: `http://localhost:7512/myindex/mycollection`
+Next, we will [**create a new collection**]({{ site_base_path }}api-documentation/controller-collection/create/), which we will use to store documents.
 
-Response:
+To create a collection, send a `PUT` request to the following API endpoint and leave the request body empty: `http://localhost:7512/<index name>/<colletion name>`.
+
+Let's create the collection `mycollection` in the `myindex` index:
+
+```bash
+ curl -X PUT http://localhost:7512/myindex/mycollection
+```
+
+You should receive the following response:
 
 ```json
 {
@@ -76,13 +85,21 @@ Response:
 }
 ```
 
-**Note:** we just created a new collection, without any field mapping. The database layer will automatically create a mapping for new fields, by trying to infer the best datatype according to the supplied field data. Since a mapping cannot be changed once created, it's strongly advised to [**update the collection mappings**]({{ site_base_path }}guide/essentials/persisted/#document-mapping) as soon as the collection has been created. For now, we will continue this tutorial with automatic field mappings.
+**Note:**  we have just created a new collection without specifying any mappings. As a result, the database layer will automatically create a mapping that assigns a best guess data type to any new field it detects in input documents. Since these mappings cannot be changed once they are created, we strongly recommend that you [**create your own mappings**]({{ site_base_path }}guide/essentials/persisted/#document-mapping) as soon as the collection has been created. For the purpose of this tutorial, we will continue without defining our own mappings.
 
 --- 
 
-## Getting a list of existing collections
+## Browse Collections
 
-You may ask Kuzzle for a [**list of collections**]({{ site_base_path }}api-documentation/controller-collection/list) in a given index. Let's try to list collections created under the `myindex` index, by sending a `GET` request to `http://localhost:7512/myindex/_list`.
+To browse the [**list of collections**]({{ site_base_path }}api-documentation/controller-collection/list) in a given index you can send a `GET` request to the following API endpoint: `http://localhost:7512/<index name>/_list`.
+
+Let's get the list of collections in the `myindex` index:
+
+```bash
+ curl http://localhost:7512/myindex/_list
+```
+
+You should receive the following response:
 
 ```json
 {
@@ -107,25 +124,26 @@ You may ask Kuzzle for a [**list of collections**]({{ site_base_path }}api-docum
 }
 ```
 
-The `result` field in the response contains an array of `collections`, each one defined by a `name` and a `type`.  
-Since we created `mycollection`, its type is `stored` (which stands for persistent). This is made to distinguish persisted collections from the virtual ones, used as channels for `realtime` (or volatile) [real-time messages]({{ site_base_path }}guide/essentials/real-time).
+The `result` field in the response contains an array of `collections`, each with its own `name` and a `type`.  
+Note that the `mycollection`'s type is `stored`, which means it is a persistant store. The `type` allows us to distinguish between persistant store collections and temporary store collections, such as those used for [real-time messaging]({{ site_base_path }}guide/essentials/real-time).
 
 ---
 
 ## Document CRUD
 
-Kuzzle ships with a full data [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) API that enables you to operate in many ways on your documents.
+Kuzzle Backend ships with a full data [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) API that can be used to manage documents.
 
-Let's [**create a new document**]({{ site_base_path }}api-documentation/controller-document/create) in our newly created collection `mycollection`, within the `myindex` index.  
-This is done by sending a `POST` request to the API endpoint `http://localhost:7512/myindex/mycollection/_create`, with the document's content as the request body:
+### CREATE
 
-```json
-{
-  "message": "Hello, world!"
-}
+We can [**create a new document**]({{ site_base_path }}api-documentation/controller-document/create) by sending a `POST` request to the following API endpoint and setting the document contents in the request body: `http://localhost:7512/<index name>/<collection name>/_create`.
+
+Let's create a new document in the `mycollection` collection of the `myindex` index: 
+
+```bash
+ curl -X POST -H "Content-Type: application/json" -d '{"message": "Hello World!"}' http://localhost:7512/myindex/mycollection/_create
 ```
 
-Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7MxLz0`, as we can see in the response:
+You should receive the following response (with your own `_id` value):
 
 ```json
 {
@@ -151,7 +169,7 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
     },
     "created": true,
     "_source": {
-      "message": "Hello, world!"
+      "message": "Hello World!"
     },
     "_meta": {
       "author": "-1",
@@ -165,25 +183,72 @@ Notice that the document is associated to the auto-generated id `AVkDBl3YsT6qHI7
 }
 ```
 
+Note that the document contains the auto-generated id `AVkDBl3YsT6qHI7MxLz0`. Take some time to examine the content of the [response]({{ site_base_path }}guide/essentials/request-and-response-format/#status-codes) message as it contains useful information, like the name of the controller, the action performed in the request, and of course the object we just created in the `source` field.
 
-Take some time to examine the content of a [Kuzzle Response]({{ site_base_path }}guide/essentials/request-and-response-format/#status-codes). You may notice that it contains useful information like the name of the controller and action that correspond to the HTTP route we hit with our request, or the complete KuzzleDocument object we just created.
 
-Let's [**modify to our brand new document**]({{ site_base_path }}api-documentation/controller-document/update) by sending a `PUT` request to `http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0/_update` with the body set to:
+
+### READ
+
+
+We can [**read a document**]({{ site_base_path }}api-documentation/controller-document/get)  by sending a `GET` request to `http://localhost:7512/<index name>/<collection name>/<document id>`.
+
+Let's read the document we just created in the `mycollection` collection of the `myindex` index: 
+
+```bash
+ curl http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0
+```
+
+You should receive the following response (with your own `_id` value):
 
 ```json
 {
-  "message": "in a bottle",
-  "an_englishman": "in New York"
+  "requestId": "<random unique request id>",
+  "status": 200,
+  "error": null,
+  "controller": "document",
+  "action": "get",
+  "collection": "mycollection",
+  "index": "myindex",
+  "volatile": null,
+  "result": {
+    "_index": "myindex",
+    "_type": "mycollection",
+    "_id": "AVkDBl3YsT6qHI7MxLz0",
+    "_version": 1,
+    "found": true,
+    "_source": {
+      "message": "Hello World!"
+    },
+    "_meta": {
+      "author": "-1",
+      "createdAt": 1481814465050,
+      "updatedAt": null,
+      "updater": null,
+      "active": true,
+      "deletedAt": null
+    }
+  }
 }
 ```
 
-Which gives us the following response:
+### UPDATE
+
+We can [**update a document**]({{ site_base_path }}api-documentation/controller-document/update) by sending a `PUT` request to the following API endpoint and setting the document's updated contents in the request body: `http://localhost:7512/<index name>/<collection name>/<document id>/_update`.
+
+Let's update the document we just created, with id `AVkDBl3YsT6qHI7MxLz0`, in the `mycollection` collection of the `myindex` index: 
+
+
+```bash
+ curl -X PUT -H "Content-Type: application/json" -d '{"message": "in a bottle","an_englishman":"in New York"}' http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0/_update
+```
+
+You should receive the following response (with your own `_id` value):
 
 ```json
 {
   "status": 200,
   "error": null,
-  "requestId": "6241ec4d-8529-43ba-9b77-3028b99cd621",
+  "requestId": "<random unique request id>",
   "controller": "document",
   "action": "update",
   "collection": "mycollection",
@@ -205,29 +270,85 @@ Which gives us the following response:
 }
 ```
 
-Now, we'll let you figure out what happens when we send a `DELETE` request to `http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0` with an empty body (take a look at the [API Reference]({{ site_base_path }}api-documentation/controller-document/delete) if you don't want to try).
+### DELETE
+
+
+We can [**delete a document**]({{ site_base_path }}api-documentation/controller-document/delete)  by sending a `DELETE` request to the following API endpoint with no request body: `http://localhost:7512/<index name>/<collection name>/<document id>`.
+
+Let's delete the document we just created in the `mycollection` collection of the `myindex` index: 
+
+```bash
+ curl -X DELETE http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0
+```
+
+You should receive the following response (with your own `_id` value):
+
+```json
+{
+  "requestId": "<random unique request id>",
+  "status": 200,
+  "error": null,
+  "controller": "document",
+  "action": "delete",
+  "collection": "mycollection",
+  "index": "myindex",
+  "volatile": null,
+  "result": {
+    "_index": "myindex",
+    "_type": "mycollection",
+    "_id": "AVkDBl3YsT6qHI7MxLPOSTz0",
+    "_version": 3,
+    "result": "updated",
+    "_shards": {
+      "total": 2,
+      "successful": 1,
+      "failed": 0
+    }
+  }
+}
+```
+
 
 ---
 
 ## Document Search
 
-One thing that Elasticsearch is _really_ good at doing is... Searching! It enables to create extremely precise search queries, thanks to its powerful query DSL. We wrote a [comprehensive cookbook]({{ site_base_path }}elasticsearch-cookbook) to help you understand how it works in detail, but let's take a look at a couple of simple examples, just to get started.
+One thing that Elasticsearch is _really_ good at doing is... Searching! Thanks to its powerful query DSL it can create extremely precise search queries. We wrote an [Elasticsearch Cookbook]({{ site_base_path }}elasticsearch-cookbook) to help you understand how it works in detail, but let's take a look at a couple of simple examples, just to get started.
 
-Say we want to [**find**]({{ site_base_path }}api-documentation/controller-document/search) all the documents within `mycollection`, via the HTTP protocol. To do it, we send a `POST` request to `http://localhost:7512/myindex/mycollection/_search` (we leave the body empty since we have no filters to apply to our query). Depending on the documents you have created in your database, the response will look like:
+Say we want to [**find**]({{ site_base_path }}api-documentation/controller-document/search) all documents in the `mycollection` collection. Whe can do this by sending a `POST` request to `http://localhost:7512/<index name>/<collection name>/_search` and setting any search filters in the request body.
+
+As an example, let's create some documents in the `mycollection` collection of the `myindex` index and then search for them: 
+
+First, let's create a few documents, since at this point our collection is empty:
+
+```bash
+ curl -X POST -H "Content-Type: application/json" -d '{"message": "Bonjour!"}' http://localhost:7512/myindex/mycollection/_create
+ curl -X POST -H "Content-Type: application/json" -d '{"message": "Hello!"}' http://localhost:7512/myindex/mycollection/_create
+ curl -X POST -H "Content-Type: application/json" -d '{"message": "Au revoir!"}' http://localhost:7512/myindex/mycollection/_create
+ curl -X POST -H "Content-Type: application/json" -d '{"message": "Goodbye!"}' http://localhost:7512/myindex/mycollection/_create
+```
+
+Now, let's search for these documents:
+
+```bash
+ curl -X POST http://localhost:7512/myindex/mycollection/_search
+```
+
+You should receive the following response (with your own `_id` values):
+
 
 ```json
 {
+  "requestId": "<random unique request id>",
   "status": 200,
   "error": null,
-  "requestId": "<random unique request id>",
   "controller": "document",
   "action": "search",
   "collection": "mycollection",
   "index": "myindex",
   "volatile": null,
-  "headers": {},
   "result": {
-    "took": 69,
+    "took": 9,
     "timed_out": false,
     "_shards": {
       "total": 5,
@@ -238,14 +359,14 @@ Say we want to [**find**]({{ site_base_path }}api-documentation/controller-docum
       {
         "_index": "myindex",
         "_type": "mycollection",
-        "_id": "AVkDLAdCsT6qHI7MxLz4",
+        "_id": "AWD-hP9Y2f6djIwk5oeW",
         "_score": 0,
         "_source": {
-          "message": "Hey! Ho!"
+          "message": "Bonjour!"
         },
         "_meta": {
           "author": "-1",
-          "createdAt": 1481816934209,
+          "createdAt": 1516098617157,
           "updatedAt": null,
           "updater": null,
           "active": true,
@@ -255,14 +376,14 @@ Say we want to [**find**]({{ site_base_path }}api-documentation/controller-docum
       {
         "_index": "myindex",
         "_type": "mycollection",
-        "_id": "AVkDK9iNsT6qHI7MxLz3",
+        "_id": "AWD-hQ_N2f6djIwk5oeX",
         "_score": 0,
         "_source": {
-          "message": "Hello, world!"
+          "message": "Hello!"
         },
         "_meta": {
           "author": "-1",
-          "createdAt": 1481816922252,
+          "createdAt": 1516098621387,
           "updatedAt": null,
           "updater": null,
           "active": true,
@@ -272,14 +393,31 @@ Say we want to [**find**]({{ site_base_path }}api-documentation/controller-docum
       {
         "_index": "myindex",
         "_type": "mycollection",
-        "_id": "AVkDLCdRsT6qHI7MxLz5",
+        "_id": "AWD-hSjM2f6djIwk5oeZ",
         "_score": 0,
         "_source": {
-          "message": "Let's go!"
+          "message": "Goodbye!"
         },
         "_meta": {
           "author": "-1",
-          "createdAt": 1481816942415,
+          "createdAt": 1516098627787,
+          "updatedAt": null,
+          "updater": null,
+          "active": true,
+          "deletedAt": null
+        }
+      },
+      {
+        "_index": "myindex",
+        "_type": "mycollection",
+        "_id": "AWD-hR2H2f6djIwk5oeY",
+        "_score": 0,
+        "_source": {
+          "message": "Au revoir!"
+        },
+        "_meta": {
+          "author": "-1",
+          "createdAt": 1516098624901,
           "updatedAt": null,
           "updater": null,
           "active": true,
@@ -287,39 +425,45 @@ Say we want to [**find**]({{ site_base_path }}api-documentation/controller-docum
         }
       }
     ],
-    "total": 3,
+    "total": 4,
     "max_score": 0
   }
 }
+
 ```
 
-Looks neat. Say that now we only want to **query** the documents containing the word `Hey` in the `message` field. We can achieve this by adding the following query to our body:
+Now let's say that we only want to **find** documents containing the word `Hello` in the `message` field. We can achieve this by adding the following JSON to our body:
 
 ```json
 {
   "query": {
       "match": {
-          "message":"Hey"
+          "message":"Hello"
       }
     }
 }
 ```
 
-Which gives, as a result, the following response:
+Let's try it:
+
+```bash
+ curl -X POST -H "Content-Type: application/json" -d '{"query":{"match":{"message": "Hello"}}}' http://localhost:7512/myindex/mycollection/_search
+```
+
+You should receive the following response (with your own `_id` values):
 
 ```json
 {
+  "requestId": "<random unique request id>",
   "status": 200,
   "error": null,
-  "requestId": "<random unique request id>",
   "controller": "document",
   "action": "search",
   "collection": "mycollection",
   "index": "myindex",
   "volatile": null,
-  "headers": {},
   "result": {
-    "took": 6,
+    "took": 10,
     "timed_out": false,
     "_shards": {
       "total": 5,
@@ -330,14 +474,14 @@ Which gives, as a result, the following response:
       {
         "_index": "myindex",
         "_type": "mycollection",
-        "_id": "AVkDLAdCsT6qHI7MxLz4",
-        "_score": 0.25811607,
+        "_id": "AWD-hQ_N2f6djIwk5oeX",
+        "_score": 0.6931472,
         "_source": {
-          "message": "Hey! Ho!"
+          "message": "Hello!"
         },
         "_meta": {
           "author": "-1",
-          "createdAt": 1481816934209,
+          "createdAt": 1516098621387,
           "updatedAt": null,
           "updater": null,
           "active": true,
@@ -346,62 +490,66 @@ Which gives, as a result, the following response:
       }
     ],
     "total": 1,
-    "max_score": 0.25811607
+    "max_score": 0.6931472
   }
 }
 ```
 
 ---
 
-## Document mapping
+## Mappings
 
-As previously said, Kuzzle relies on Elasticsearch to persist documents. Elasticsearch uses a mapping internally to match a document field to a field type. This mapping is attached to a `collection` (a `type` in Elasticsearch terminology).
-If no mapping is defined, Elasticsearch will infer it automatically from input documents.
+Kuzzle Backend uses Elasticsearch as a persistent document store, which uses mappings to assign a type to a document field. These mappings are attached to a `collection` (aka `type` in Elasticsearch terminology) and are automatically inferred from input documents if no mappings are preconfigured.
 
-ou may want to define mappings manually, especially to provide more details to Elasticsearch on how it should interpret the documents stored in your collections.
-To do so, Kuzzle expose a mapping creation API route.
-This is done by sending a `PUT` request to the API endpoint `http://localhost:7512/myindex/mycollection/_mapping` with the body set to your mapping:
+If you want to control how Kuzzle Backend interprets your documents, we recommend that you configure your own mappings using our mappings creation endpoint.
+
+Create a mapping by sending a `PUT` request to the `http://localhost:7512/<index name>/<collection name>/_mapping` and setting the mapping in the request body.
+
+Use [this](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html) syntax when definng a mapping. For example, if we want to create a mapping that will define a field `birthday` as a `date` type, we would send the following JSON in the body:
 
 ```json
 {
   "properties": {
-    "someField": {
+    "birthday": {
       "type": "date"
     }
   }
 }
 ```
 
-Which gives us the following response:
+Let's try it:
+
+```bash
+ curl -X PUT -H "Content-Type: application/json" -d '{"properties":{"birthday":{"type": "date"}}}' http://localhost:7512/myindex/mycollection/_mapping
+```
+
+You should receive the following response:
 
 ```json
 {
+  "requestId": "<random unique request id>",
+  "status": 200,
+  "error": null,
+  "controller": "collection",
   "action": "updateMapping",
   "collection": "mycollection",
-  "controller": "collection",
-  "error": null,
   "index": "myindex",
   "volatile": null,
-  "requestId": "<random unique request id>",
   "result": {
     "acknowledged": true
-  },
-  "status": 200
+  }
 }
 ```
 
-Here we defined a new field called `someField` of type `date` in our collection `mycollection`. This is especially useful when
-dealing with capabilities such as specific types (`date`, `geo_shape`, ...), full-text search and complex data structures (`nested`, ...) of Elasticsearch.
-As the mapping of the collection can not be changed once it is set (even if Elasticsearch did it automatically for you),
-you should almost always define mappings when creating collections, preferably before sending documents in them.
+Here we have now defined the type `date` for the field labeled `birthday` in our `mycollection` collection. Defining types in this way can be especially useful when dealing with specific types (`date`, `geo_shape`, etc.), full-text search, or complex data structures.
 
-The syntax to use is the one defined by [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
+Please note that the mappings of a collection cannot be updated once they are created, this is true whether you create the rules yourself using our API or whether Elasticsearch generates the rules automatically based on the input documents it processes. Because of this, you should almost always define mappings when you first create your collections and before creating any documents.
 
 ---
 
-## Where do we go from here?
+## What Now?
 
 
-* Refer to the [Elasticsearch cookbook]({{ site_base_path }}elasticsearch-cookbook) to get more details on how querying works in Kuzzle
-* Get history information, put a document in the trashcan and recover it, using [document metadata]({{ site_base_path }}guide/essentials/document-metadata)
-* Keep track of the changes on your documents via the [Real-time Notifications]({{ site_base_path }}guide/essentials/real-time)
+* Read our [Elasticsearch Cookbook]({{ site_base_path }}elasticsearch-cookbook) to learn more about how querying works in Kuzzle Backend
+* Use [document metadata]({{ site_base_path }}guide/essentials/document-metadata) to find or recover documents
+* Keep track of data changes using [Real-time Notifications]({{ site_base_path }}guide/essentials/real-time)

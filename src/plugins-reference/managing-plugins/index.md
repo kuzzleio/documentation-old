@@ -1,7 +1,7 @@
 ---
 layout: full.html
 algolia: true
-title: Managing Plugins
+title: Manage Plugins
 description: learn how to enable and configure plugins
 order: 300
 ---
@@ -10,25 +10,25 @@ order: 300
 
 ---
 
-## Installing, removing, enabling and disabling plugins
+## Installing, Removing, Enabling and Disabling Plugins
 
-When starting, Kuzzle looks for directories in the `plugins/enabled` directory.
+When Kuzzle Backend boots, it looks for plugins in the `plugins/enabled` directory.
 
-Valid Plugins directories either contain a well-formed NPM module (i.e. they have a `package.json` file in their root directory), or are a simple NodeJS requireables (i.e. they have a valid `index.js` file in their root directory).
+Valid Plugins either contain a properly formatted NPM module (i.e. they have a `package.json` file in their root directory), or are a simple Node.js requireable (i.e. they have a valid `index.js` file in their root directory).
 
-In either cases, a plugin must meet a certain number of [prerequisites]({{ site_base_path }}plugins-reference/plugins-creation-prerequisites) to allow Kuzzle to use it.
+In either case, a plugin must meet a the [prerequisites]({{ site_base_path }}plugins-reference/plugins-creation-prerequisites) to be compatible with Kuzzle Backend.
 
-To install a plugin, the recommended practice is to copy the directory containing it in the `plugins/available` folder and to create a symbolic link in the `plugins/enabled` one, pointing to it. This way, enabling and disabling a plugin is just a matter of creating or deleting a symbolic link.
+In order to install a plugin, the recommended practice is to copy the plugin to the `plugins/available` folder and to then to create a symbolic link to this folder from the `plugins/enabled`. This way, enabling and disabling a plugin is just a matter of creating or deleting the symbolic link.
 
-Each plugin is a separate and independant entity, and Kuzzle will try to load it as is. If it has dependencies, you must ensure these are installed. For instance, by running the command `npm install` from inside a plugin directory, if the plugin is a NPM module.
+Each plugin is considered to be a separate and independant entity from Kuzzle Backend. If the plugin itself has dependencies, you must ensure that these dependencies are installed. For instance, if the plugin is an NPM module, you would need to run the `npm install` from inside the plugin directory.
 
 ---
 
 ## Configuring Plugins
 
-When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context]({{ site_base_path }}plugins-reference/plugins-context) and the custom configuration.
+When initializing a Plugin, Kuzzle Backend calls the plugin's `init(customConfig, context)` method, passing it the [context]({{ site_base_path }}plugins-reference/plugins-context) and the custom configuration.
 
-Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration).
+Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle Backend configuration file]({{ site_base_path }}guide/essentials/configuration).
 
 ```json
 {
@@ -41,4 +41,4 @@ Custom configuration parameters are specified for each plugin in the `plugins` o
 }
 ```
 
-Each Plugin is responsible of handling its own custom configuration parameters and Kuzzle has no opinion on how to do it. Whether the custom configuration is merged with the defaults or not entirely depends on the implementation of the plugin's `init` function.
+Each Plugin is responsible of handling its own custom configuration parameters. Whether or not the custom configuration is merged with Kuzzle Backend's default parameters depends on how the plugin's `init` function is implemented.

@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered when a request is sent to the [`realtime` controller]({{ site_base_path }}api-documentation/controller-realtime).
+Events triggered when a request is sent to the [`realtime`]({{ site_base_path }}api-documentation/controller-realtime) controller.
 
 ---
 
@@ -22,7 +22,7 @@ Events triggered when a request is sent to the [`realtime` controller]({{ site_b
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `realtime` controller trigger this event after a successful execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `realtime` controller trigger this event after a successful execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a successful [subscribe]({{ site_base_path }}api-documentation/controller-realtime/subscribe/) request, a `realtime:afterSubscribe` event is triggered.
 
@@ -36,7 +36,7 @@ Example: after a successful [subscribe]({{ site_base_path }}api-documentation/co
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `realtime` controllers trigger this event before execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `realtime` controllers trigger this event before execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: before performing a [publish]({{ site_base_path }}api-documentation/controller-realtime/publish/) request, a `realtime:beforePublish` event is triggered.
 
@@ -50,7 +50,7 @@ Example: before performing a [publish]({{ site_base_path }}api-documentation/con
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `realtime` controllers trigger this event after a failed execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `realtime` controllers trigger this event after a failed execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a failed [join]({{ site_base_path }}api-documentation/controller-realtime/join/) request, a `realtime:errorJoin` event is triggered.
 

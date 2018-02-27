@@ -69,7 +69,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Replace an existing document and returns the updated version of it as a [Document]({{ site_base_path }}sdk-reference/document/) object.
+Replace an existing document and return the updated version as a [Document]({{ site_base_path }}sdk-reference/document/) object.
 
 ---
 
@@ -89,17 +89,17 @@ Replace an existing document and returns the updated version of it as a [Documen
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an updated [Document]({{ site_base_path }}sdk-reference/document/) object.
+Returns an updated [Document]({{ site_base_path }}sdk-reference/document/) object.

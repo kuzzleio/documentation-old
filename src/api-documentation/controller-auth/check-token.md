@@ -66,5 +66,5 @@ title: checkToken
 }
 ```
 
-Checks a JWT Token validity.
-This API route does not require to be logged in.
+Checks a JWT Token's validity.
+This API route does not require the caller to be logged in.

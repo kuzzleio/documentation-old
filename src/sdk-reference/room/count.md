@@ -48,7 +48,7 @@ room.count(new ResponseListener<Integer>() {
 1
 ```
 
-Return the number of subscribers on that room
+Returns the number of subscribers in the room.
 
 ---
 
@@ -60,6 +60,6 @@ Return the number of subscribers on that room
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `integer` containing the number of users subscribing to this room.
+Returns an `integer` containing the number of users subscribing to this room.

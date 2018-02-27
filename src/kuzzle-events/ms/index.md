@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered when a request is sent to the [`memoryStorage` controller]({{ site_base_path }}api-documentation/controller-memory-storage).
+Events triggered when a request is sent to the [`memoryStorage`]({{ site_base_path }}api-documentation/controller-memory-storage) controller.
 
 ---
 
@@ -22,7 +22,7 @@ Events triggered when a request is sent to the [`memoryStorage` controller]({{ s
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `ms` controller trigger this event after a successful execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `ms` controller trigger this event after a successful execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a successful [geoadd]({{ site_base_path }}api-documentation/controller-memory-storage/geoadd/) request, a `ms:afterGeoadd` event is triggered.
 
@@ -36,7 +36,7 @@ Example: after a successful [geoadd]({{ site_base_path }}api-documentation/contr
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `ms` controllers trigger this event before execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `ms` controllers trigger this event before execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: before performing a [sunion]({{ site_base_path }}api-documentation/controller-memory-storage/sunion/) request, a `ms:beforeSunion` event is triggered.
 
@@ -50,7 +50,7 @@ Example: before performing a [sunion]({{ site_base_path }}api-documentation/cont
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `ms` controllers trigger this event after a failed execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `ms` controllers trigger this event after a failed execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a failed [smove]({{ site_base_path }}api-documentation/controller-memory-storage/smove/) request, a `ms:errorSmove` event is triggered.
 

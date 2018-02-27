@@ -57,9 +57,8 @@ title: deleteRole
 Given a `role id`, deletes the corresponding role from the database.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the role's deletion indexation (indexed roles are available for `search`).
+with the value `wait_for` in order to wait for the role's deletion to be indexed (indexed roles are available for `search`).
 
 <aside class="notice">
-The role unique identifier. It's the same you set when you create a role.
-in its responses when you create a role.
+The `role id` is the same one you set when you create a role.
 </aside>
