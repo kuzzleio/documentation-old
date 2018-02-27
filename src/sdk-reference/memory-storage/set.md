@@ -76,18 +76,18 @@ Creates a key holding the provided value, or overwrites it if it already exists.
 | `ex` | int | Time to live of the key, in seconds | `0` |
 | `nx` | boolean | Set the key only if it does not already exist | `false` |
 | `px` | int | Time to live of the key, in milliseconds | `0` |
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 | `xx` | boolean | Set the key only if it already exists | `false` |
 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves if successful. No value is returned.
+Returns null if successful.

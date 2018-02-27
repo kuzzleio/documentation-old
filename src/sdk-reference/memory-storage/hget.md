@@ -79,10 +79,10 @@ Returns the field’s value of a hash.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
 Returns the requested field's value.

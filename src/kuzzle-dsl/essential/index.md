@@ -2,6 +2,6 @@
 layout: category-members.html
 algolia: true
 title: Essentials
-description: Kuzzle DSL basic concepts
+description: Kuzzle Koncorde
 order: 0
 ---

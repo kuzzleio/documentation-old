@@ -41,7 +41,7 @@ kuzzle.security.updateCredentials("local", "kuid", credentials, new ResponseList
 ```
 
 ```php
-<?php
+<?phpfound
 use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
@@ -58,7 +58,7 @@ $updatedCredentials = $kuzzle->security->updateCredentials('local', 'kuid', ['us
 }
 ```
 
-Update credentials of the specified <strategy> for the current user. The credentials to send depends entirely on the authentication plugin and strategy you want to update credentials for.
+Update the current user's credentials for the specified <strategy>. The credentials to send depend on the authentication plugin and the strategy.
 
 ---
 
@@ -78,10 +78,10 @@ Update credentials of the specified <strategy> for the current user. The credent
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an object reflecting the updated credentials.
+Returns an object with the updated credentials.

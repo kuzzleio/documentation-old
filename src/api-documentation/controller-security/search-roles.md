@@ -89,7 +89,7 @@ title: searchRoles
 }
 ```
 
-Retrieves all roles with rights defined for given `indexes`.
+Returns all roles linked to a given `indexes`.
 
 Attribute `indexes` in body is optional.
 
@@ -99,4 +99,4 @@ Available filters:
 
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``indexes`` | array | List of indexes id related to the searched role | ``undefined`` |
+| ``indexes`` | array | List of index ids related to the searched role | ``undefined`` |

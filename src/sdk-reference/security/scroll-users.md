@@ -71,10 +71,10 @@ Scrolls on stored users using the provided scroll ID.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves the list of retrieved users according to the scroll parameters (offset, limit etc.).
+Returns the list of fetched users according to the scroll parameters (offset, limit etc.).

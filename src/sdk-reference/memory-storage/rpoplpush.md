@@ -79,17 +79,17 @@ Removes the last element of the list at `source` and pushes it back at the start
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the value of the removed and pushed item.
+Returns the value of the removed and pushed item.

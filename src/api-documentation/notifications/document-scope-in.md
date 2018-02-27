@@ -1,11 +1,13 @@
 ---
 layout: full.html
 algolia: true
-title: An updated document entered your listening scope
-order: 300
+title: On Document Entering Subscription Scope
+order: 550
 ---
 
-# An updated document entered your listening scope
+# On Document Entering Subscription Scope
+
+Notification received when a document is updated and enters a subscription scope:
 
 ```javascript
 {

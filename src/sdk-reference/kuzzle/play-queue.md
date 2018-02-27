@@ -28,6 +28,6 @@ Replays the requests queued during offline mode. Works only if the SDK is not in
 
 ---
 
-## Return value
+## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.

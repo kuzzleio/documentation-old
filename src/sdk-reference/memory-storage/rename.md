@@ -74,7 +74,7 @@ Renames a key to `newkey`. If `newkey` already exists, it is overwritten.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
@@ -85,6 +85,6 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves if successful. No value is returned.
+Returns null if successful.

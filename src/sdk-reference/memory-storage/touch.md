@@ -80,7 +80,7 @@ Alters the last access time of one or multiple keys. A key is ignored if it does
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
@@ -91,6 +91,6 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of altered keys.
+Returns an integer containing the number of altered keys.

@@ -44,8 +44,8 @@ $memoryStorage = $kuzzle->memoryStorage();
 $memoryStorage = new MemoryStorage($kuzzle);
 ```
 
-Kuzzle's memory storage is a data store separated from the database layer.
-It is internally based on Redis, and most of its functions are exposed by Kuzzle.
+Kuzzle Backend's memory storage is a data store separate from the database layer.
+It uses Redis internally, and most of its underlying functions are exposed by Kuzzle Backend.
 
 ---
 
@@ -53,4 +53,4 @@ It is internally based on Redis, and most of its functions are exposed by Kuzzle
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| `Kuzzle` | object | An instantiated [Kuzzle]({{ site_base_path }}sdk-reference/kuzzle) object |
+| `Kuzzle` | object | An instantiated [Kuzzle]({{ site_base_path }}sdk-reference/kuzzle) SDK object |

@@ -105,12 +105,12 @@ title: searchProfiles
 }
 ```
 
-Retrieves profiles referring to a given set of roles in their policies.
+Returns profiles linked to a given set of roles.
 
 
 Optional arguments:
 
-* `body.roles` contains an array of role identifiers used to filters the search results
+* `body.roles` contains an array of role identifiers used to filter the search results
 * `size` controls the maximum number of documents returned in the response
 * `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
-* `scroll` allows to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scrollProfiles` API action]({{ site_base_path }}api-documentation/controller-security/scroll-profiles)
+* `scroll` is used to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of the results. This cursor can then be moved forward using the [`scrollProfiles` API action]({{ site_base_path }}api-documentation/controller-security/scroll-profiles)

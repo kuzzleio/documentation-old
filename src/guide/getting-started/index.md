@@ -1,158 +1,207 @@
 ---
 layout: full.html
 algolia: true
-title: Getting started
+title: Getting Started
 description: learn kuzzle in a few steps
 order: 0
 ---
 
-# Getting started
+# Getting Started
 
-In this tutorial you will learn in a few steps how to **launch** Kuzzle and how to interact with it by **persisting data** and **being notified** when data is updated.
+In this tutorial you will learn how to install, run and use **Kuzzle Backend** in just a few steps. We will walk you through creating an app that can **store** documents in the Kuzzle Backend and generate a **notification** for each new document.
 
-## Running Kuzzle automagically
+## Running Kuzzle Backend
 
-In this section, we'll learn how to launch Kuzzle the quick way, i.e. via the installation script.
+In this section we'll learn how to quickly get Kuzzle Backend up and running using our installation script.
 
-Grab a console and launch the following command
+Open a terminal and run the following command:
 
 ```bash
-#!/bin/bash
-
 sudo bash -c "$(curl http://get.kuzzle.io/)"
 ```
 
+This command downloads and executes the installation script using root privileges. The script checks the system for a set of prerequisites and installs any necessary tools, like Docker or Docker Compose. When the installation is complete it will automatically run Kuzzle Backend.
+
 <aside class="notice">
-Running a script with <code>sudo</code> is not the only way to install Kuzzle (but is indeed the easiest). To avoid using <code>sudo</code>, you may want to check the <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">alternative installation methods</a>.
+Running a script with root privileges is not the only way to install Kuzzle Backend (although it is the easiest way). To avoid using <code>sudo</code>, you may want to look at <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">these</a> alternative installation methods.
 </aside>
 
-This command downloads and executes the installation script with root privileges. The script checks the system for a set of pre-requisites. If necessary, it installs Docker and Docker-compose, then runs Kuzzle.
+<aside class="notice">
+You can also install Kuzzle Backend <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">manually</a>.
+</aside>
 
-Once the installation process is complete, the script will greet you with the following message
+Once the installation process is complete, you will see the following message:
 
 ```bash
 # [✔] Kuzzle is running!
 ```
 
-Your Kuzzle server is now ready to be used. To check it, you can hit the main HTTP API endpoint by browsing the page <a href="http://localhost:7512?pretty=true">http://localhost:7512?pretty=true</a> or via cURL on the command line:
+Your Kuzzle Backend is now running! To test it, you can explore the main HTTP API by clicking this <a href="http://localhost:7512?pretty=true">link</a> or by using cURL on the command line:
 
 ```bash
-#!/bin/bash
-
 curl "http://localhost:7512/?pretty=true"
 ```
 
-Kuzzle will respond you with a list of the existing routes.
+If everything is working you should see a JSON document that contains a list of API endpoints.
 
 <aside class="success">
-Kuzzle is up and running. It will accept requests at <code>localhost:7512</code>:
+Congratulations! You have completed the Kuzzle Backend installation, it will now accept requests on <code>localhost:7512</code>:
 <ul>
-  <li>via <strong>standard HTTP requests,</strong></li>
-  <li>via a <strong>Websocket</strong> client (like the <a href="https://github.com/kuzzleio/sdk-javascript">Javascript SDK</a>),</li>
-  <li>via <strong>Socket.IO</strong> (used as a fallback by the SDK on browsers that do not provide Websocket support).</li>
+  <li>via <strong>HTTP</strong></li>
+  <li>via <strong>Websocket</strong> clients (use our <a href="https://github.com/kuzzleio/sdk-javascript">Javascript SDK</a>)</li>
+  <li>via <strong>Socket.io</strong></li>
 </ul>
 </aside>
 
 <aside class="notice">
-Having trouble?
+Having trouble? 
 <ul>
-  <li><a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.</li>
-  <li>Check out the <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">alternative installation methods.</a></li>
+  <li>Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzzle">Gitter!</a> We're happy to help.</li>
+  <li>Try one of <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">these</a> alternative installation methods.</li>
 </ul>
 </aside>
 
-#### Where do we go from here?
+#### What now?
 
-Now that Kuzzle is running on your computer, you can dive into playing with it by:
+Now that Kuzzle Backend is up and running, you can start playing around with it:
 
-* <a href="{{ site_base_path }}guide/essentials/installing-backoffice">installing the Backoffice</a>, a handy way to manage data and security in Kuzzle;
-* installing one of the available <a href="{{ site_base_path }}sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
- * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_base_path }}guide/getting-started/#sdk-play-time">SDK play time</a> section below),
+* install <a href="{{ site_base_path }}guide/essentials/installing-backoffice">Kuzzle Console</a>, a handy way to manage data and security in your Kuzzle Backend installation
+* install a <a href="{{ site_base_path }}sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
+ * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_base_path }}guide/getting-started/#sdk-play-time">Fun with SDKs</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
  * <a href="https://github.com/kuzzleio/sdk-android">Android</a>;
-* exploring the <a href="{{ site_base_path }}api-documentation">Kuzzle API Documentation</a>;
-* <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">setting-up a Kuzzle Server without Docker</a>.
+* explore the <a href="{{ site_base_path }}api-documentation">Kuzzle API</a> documentation
+* install Kuzzle Backend <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">without Docker</a>
 
-<aside class="notice">
-You can also <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">install Kuzzle manually</a>.
-</aside>
+## Fun with SDKs
 
-## SDK play time
+It's time to play with the [Kuzzle SDK]({{ site_base_path }}sdk-reference). In this section, we will store a document and subscribe to notifications in the Kuzzle Backend using the Javascript SDK.
 
-It's time to play with the [Kuzzle SDK]({{ site_base_path }}sdk-reference). In this section, we will persist a document and subscribe to notifications in Kuzzle using the JS SDK.
+Before proceeding, please make sure your system has these programs installed:
 
-Before proceeding, ensure that your system matches the following requisites:
-
-* A fairly recent version of **NodeJS** (i.e. v6+) should be installed on your system (<a href="https://nodejs.org/en/download/">instructions here</a>),
-* A Kuzzle server up and running.
+* **Node.js** version 6 or higher (<a href="https://nodejs.org/en/download/">instructions here</a>)
+* Kuzzle Backend
 
 ### Prepare your environment
 
 Create your playground directory and install the [Javascript SDK]({{ site_base_path }}sdk-reference) from the command line using npm:
 
 ```bash
-#!/bin/bash
-
 mkdir "kuzzle-playground"
 cd "kuzzle-playground"
 npm install kuzzle-sdk
 ```
 
-Then, create a `init.js` file and start coding:
+<aside class="notice">
+If you are performing a clean install you might see some `UNMET PEER DEPENDENCY` warnings, these are safe to ignore as they refer to optional dependencies.
+</aside>
+
+Then, create an `init.js` file and start by adding the code below. This will load the Kuzzle Javascript SDK:
 
 ```javascript
 const Kuzzle = require('kuzzle-sdk')
+```
 
-// create a new kuzzle object
+Next we will instantiate a client that will automatically connect to the Kuzzle Backend via websockets. If your Kuzzle Backend is not running on localhost, replace it with the corresponding server name or ip address. Here we also specify 'playground' as the default index that the client will query:
+
+```javascript
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
+```
 
+Next we will add a listener to detect if there is a problem with our connection to the Kuzzle Backend:
+
+```javascript
+kuzzle.on("networkError",function(error){
+  console.error("Network Error:"+error);
+})
+```
+
+Finally, we will add the code that will access the Kuzzle Backend to create a new index 'playground' and a new collection 'mycollection' that we will use to store data later on.
+
+```javascript
 kuzzle
-  .connectPromise()
-  .then(() => kuzzle.createIndexPromise('playground'))
+  .createIndexPromise('playground')
   .then(() => kuzzle.collection('mycollection').createPromise())
   .then(() => {
     console.log('playground/mycollection ready')
-  })
+  })  
   .catch(err => {
     console.error(err.message)
-  })
+  })  
+  .finally(() => kuzzle.disconnect())
+```
+
+Your `init.js` file should now look like this:
+
+```javascript
+// load the Kuzzle SDK module
+const Kuzzle = require('kuzzle-sdk')
+
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
+const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
+
+// add a listener to detect any connection problems
+kuzzle.on("networkError",function(error){
+  console.error("Network Error:"+error);
+})
+
+// create a 'playground' index and then a collection named 'mycollection' that we can use to store data
+kuzzle
+  .createIndexPromise('playground')
+  .then(() => kuzzle.collection('mycollection').createPromise())
+  .then(() => {
+    console.log('playground/mycollection ready')
+  })  
+  .catch(err => {
+    console.error(err.message)
+  })  
   .finally(() => kuzzle.disconnect())
 ```
 
 This code does the following:
-* loads the `Kuzzle` SDK from its NPM package,
-* creates an instance of the SDK,
-* connects the SDK to a remote Kuzzle server running on `localhost` (and selects the `playground` as default index),
+* loads the `Kuzzle SDK` from its NPM package
+* creates an instance of the SDK and connects it to the Kuzzle Backend running on `localhost` (and selects the `playground` as default index),
 * creates the `playground` index,
 * creates the `mycollection` collection (within the `playground` index),
-* disconnect from Kuzzle to end the script.
+* disconnects from Kuzzle Backend after the collection is created or if an error occurs.
 
-Run your file in NodeJS
+Run your file in Node.js
 
 ```bash
-#!/bin/bash
-
 node init.js
 ```
 
-You're now ready to say Hello to the World!
+Your console should output the following message:
+
+```bash
+playground/mycollection ready
+```
+
+<aside class="success">
+Congratulations! You are now ready to say Hello to the World!
+</aside>
+
+<aside class="notice">
+Having trouble? Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzzle">Gitter!</a> We're happy to help.
+</aside>
 
 ### Create your first "Hello World" document
 
 Create a `create.js` file with following code:
 
 ```javascript
+// load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// create a new Kuzzle SDK object
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
-// get message from command line arguments
-const message = {message: process.argv[2]}
+// create an object that contains the message we want to store
+const message = {message: "Hello, World!"}
 
-kuzzle
-  .connectPromise()
-  .then(() => kuzzle.collection('mycollection').createDocumentPromise(message))
+// create a document in the 'mycollection' collection
+kuzzle.collection('mycollection')
+  .createDocumentPromise(message)
   .then(res => {
     console.log('the following document has been successfully created:\n', message)
   })
@@ -163,43 +212,42 @@ kuzzle
 ```
 
 This code does the following:
-* creates a new document containing a message saying "Hello, World" in `mycollection` within the `playground` index,
+* creates a new document containing the message "Hello, World" in `mycollection` within the `playground` index,
 * logs a success message to the console if everything went fine,
 * logs an error message if any of the previous actions failed,
-* disconnect from Kuzzle to end the script.
+* disconnects from Kuzzle Backend after the document is created or if an error occurs.
 
-Run your file in NodeJS
+Run your file in Node.js
 
 ```bash
-#!/bin/bash
-
-node create.js 'Hello, World'
+node create.js
 ```
 
 <aside class="success">
-You have persisted your first document in Kuzzle. If you are running the <a href="{{ site_base_path }}guide/essentials/installing-backoffice">Backoffice</a>, you can use it to check the existence of the newly created document.
+You have now successfully stored your first document into the Kuzzle Backend. Click <a href="{{ site_base_path }}guide/essentials/installing-backoffice">here</a> to see how you can use the 
+  <strong>Kuzzle Console</strong> to browse your collection and confirm that your document was saved.
 </aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.
+Having trouble? Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzzle">Gitter!</a> We're happy to help.
 </aside>
 
-_You can find more resources about Kuzzle SDK in the [SDK Documentation]({{ site_base_path }}sdk-reference)._
+_You can find more resources about Kuzzle SDK in the [SDK Reference]({{ site_base_path }}sdk-reference)._
 
 ### Subscribe to data changes (pub/sub)
 
-Kuzzle provides pub/sub features that allow you to be notified in real-time on the state of your data (check the <a href="{{ site_base_path }}sdk-reference/#room">Room Class Documentation</a> for a deep-dive on notifications).
+Kuzzle Backend provides pub/sub features that can be used to trigger real-time notifications based on the state of your data (for a deep-dive on notifications check out the **Room** class definition in the <a href="{{ site_base_path }}sdk-reference/room">SDK Reference</a>).
 
-Let's get started.
-Open a new termnial in the playground directory you created before and create the `subscribe.js` file containing the following code:
+Let's get started. Create a `subscribe.js` file with following code:
 
 ```javascript
+// load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// create a new kuzzle object
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
-// create a reference to the data collection
+// create a reference to the 'mycollection' collection
 const collection = kuzzle.collection('mycollection')
 
 // define a filter
@@ -210,43 +258,48 @@ const filter = {
 }
 
 // create a subscription on the collection matching given filters
-collection
-  .subscribe(filter, result => {
+collection.subscribe(filter, (error, result) => {
     // this function is called each time kuzzle notifies us with a document matching our filters
-    console.log('Message received from kuzzle:', result)
-  })
-  .onDone(() => console.log('Subscription active. Waiting for messages...'))
-
-// Connects the client to a remote Kuzzle server and plays the previously
-// configured subscriptions
-kuzzle.connect()
+    console.log('message received from kuzzle:', result)
+})
 ```
 
-Run your file in NodeJS
+Run your file in Node.js
 
 ```bash
-#!/bin/bash
-
 node subscribe.js
 ```
 
-And let it wait for documents entering the scope of the filter.
+Your `subscribe.js` app is now running and monitoring any documents that match the filter, specifically documents that have a `message` field.
 
-Now, get back to the previous terminal window and execute once more the `create.js` script. Take a look at the output of the `subscribe.js` script. You will see that, each time a document with a `message` field is persisted in Kuzzle, a [notification]({{ site_base_path }}guide/essentials/real-time) is shown as standard output.
+Now in another terminal, launch the `create.js` file that we created in the previous section.
+
+```bash
+node create.js
+```
+
+This will create a new document in the Kuzzle Backend which will trigger a [notification]({{ site_base_path }}guide/essentials/real-time) in the `subscribe.js` app. Check the `subscribe.js` terminal to make sure a new log appears every time a document is created using the `create.js` app:
+
+```bash
+message received from kuzzle: { status: 200,
+  requestId: '02042a18-927b-43a1-98e3-e1637e2a1447',
+  timestamp: 1515590928775,
+  ...}
+```
 
 <aside class="success">
-You just leveraged Kuzzle's pub/sub mechanism.
+Congratulations! You have just choreographed your first pub/sub pattern!
 </aside>
 
 <aside class="notice">
-Having trouble? <a href="https://gitter.im/kuzzleio/kuzzle">Get in touch with us on Gitter!</a> We'll be happy to help.
+Having trouble? Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzzle">Gitter!</a> We're happy to help.
 </aside>
 
 ## Where do we go from here?
 
-Now that you are started and operational with Kuzzle, you can fully leverage its power by:
+Now that you're more familiar with Kuzzle Backend, dive even deeper to learn how to leverage its full capabilities:
 
-* <a href="{{ site_base_path }}sdk-reference">taking a look at the SDK reference</a>;
-* <a href="{{ site_base_path }}kuzzle-dsl">mastering the Kuzzle DSL syntax</a> to create incredibly fine-grained and blazing-fast subscriptions;
-* <a href="{{ site_base_path }}guide/essentials/user-authentication/#perform-a-basic-login">learning how to perform a login</a>;
-* <a href="{{ site_base_path }}guide/essentials/security/">learning how to manage users and set-up fine-grained permission rights</a>.
+* take a look at the <a href="{{ site_base_path }}sdk-reference">SDK Reference</a>
+* learn how to use <a href="{{ site_base_path }}kuzzle-dsl">Kuzzle Koncorde</a> to create incredibly fine-grained and blazing-fast subscriptions
+* follow our guide to learn how to implement <a href="{{ site_base_path }}guide/essentials/user-authentication/#perform-a-basic-login">basic authentication</a>
+* follow our guide to learn how to implement <a href="{{ site_base_path }}guide/essentials/security/">manage users and setup fine-grained access control</a>

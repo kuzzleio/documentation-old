@@ -39,7 +39,7 @@ $kuzzle->addListener('queryError', function() {
 
 ```
 
-Adds a listener to an event. When an event is fired, listeners are called in the order of their insertion.
+Adds a listener to an event. When an event is fired, listeners are called in the order that they are added.
 
 ---
 
@@ -52,6 +52,6 @@ Adds a listener to an event. When an event is fired, listeners are called in the
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `KuzzleEventEmitter` object to allow chaining.

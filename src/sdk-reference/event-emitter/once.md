@@ -49,10 +49,10 @@ The next time the event is triggered, the listener is removed and then invoked.
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``event`` | string | One of the event described in the [Event Handling]({{ site_base_path }}sdk-reference/essentials/events/) section of this documentation |
-| ``listener`` | function | The function to call each time one of the registered event is fired |
+| ``listener`` | function | The function to call each time one of the registered events is fired |
 
 ---
 
-## Return value
+## Return vVlue
 
 Returns the `KuzzleEventEmitter` object to allow chaining.

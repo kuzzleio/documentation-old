@@ -51,4 +51,4 @@ title: getProfileMapping
 }
 ```
 
-Gets the mapping of the internal `profiles` collection.
+Gets the mapping of the internal security `profiles` collection.

@@ -149,7 +149,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Executes a search on users according to a filter
+Executes a search on users according to a filter.
 
 ---
 
@@ -157,7 +157,7 @@ Executes a search on users according to a filter
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | [Filters]({{ site_base_path }}kuzzle-dsl) |
+| ``filters`` | JSON Object | [Koncorde Filters]({{ site_base_path }}kuzzle-dsl) |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -168,7 +168,7 @@ Executes a search on users according to a filter
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``from`` | number | Starting offset | ``0`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``scroll`` | string | Start a scroll session, with a time to live equals to this parameter's value following the [Elastisearch time format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/common-options.html#time-units) | ``undefined`` |
 | ``size`` | number |  Number of hits to return | ``20`` |
 
@@ -178,6 +178,6 @@ Executes a search on users according to a filter
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON Object containing the total number of found users, and an array of [User]({{ site_base_path }}sdk-reference/user) objects.
+Return a JSON Object that contains the total number of users found, and an array of [User]({{ site_base_path }}sdk-reference/user) objects.

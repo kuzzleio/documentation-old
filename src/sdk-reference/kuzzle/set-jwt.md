@@ -54,9 +54,9 @@ $kuzzle->setJwt('some jwt token');
  $kuzzle->setJwt($authenticationResponse);
 ```
 
-Sets the internal JWT token which will be used to request kuzzle.
+Sets the internal JWT token which will be used when making requests to Kuzzle Backend.
 
-If the provided token is correct, a `loginAttempt` event is fired with the following object:  
+If the provided token is valid, a `loginAttempt` event is fired with the following object:  
 `{ success: true }`
 
 If not, the `loginAttempt` event is fired with the following response:  
@@ -80,6 +80,6 @@ If not, the `loginAttempt` event is fired with the following response:
 
 ---
 
-## Return value
+## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.

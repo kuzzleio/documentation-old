@@ -1,11 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: Subscribe to a room
+title: Subscribe to a Room
 order: 200
 ---
 
-# Subscribe to a room
+# Subscribing to a Room
 
 ## Given the following subscribe query
 

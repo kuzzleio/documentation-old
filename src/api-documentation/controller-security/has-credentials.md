@@ -49,4 +49,4 @@ title: hasCredentials
 }
 ```
 
-Check the existence of the specified `<strategy>`'s credentials for the user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).
+Check the existence of a user's (with [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid)) credentials for the specified `<strategy>`.

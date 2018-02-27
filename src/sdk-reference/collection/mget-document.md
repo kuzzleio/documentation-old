@@ -76,7 +76,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Get multiple [Documents]({{ site_base_path }}sdk-reference/document/) according to the provided document IDs.
+Get multiple [Documents]({{ site_base_path }}sdk-reference/document/) according to the input document IDs.
 
 ---
 
@@ -94,10 +94,10 @@ Get multiple [Documents]({{ site_base_path }}sdk-reference/document/) according 
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `JSON object` containing the raw Kuzzle response.
+Returns a `JSON object` containing the raw Kuzzle Backend response.

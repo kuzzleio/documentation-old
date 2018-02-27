@@ -85,10 +85,10 @@ Returns the values of the specified hash’s fields.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array containing the specified fields values.
+Returns an array containing the specified fields values.

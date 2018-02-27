@@ -7,41 +7,38 @@ order: 100
 
 # Authentication
 
-Kuzzle uses [PassportJS](http://PassportJS.org/) to enable authentication through a large amount of providers, for example:
+Kuzzle uses [Passport.js](http://Passportjs.org/) to support numerous authentication strategies, including:
 
-- local username/password authentication (enabled by default)
-- OAuth2 providers like GitHub or google (using [Oauth plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth))
-- SAML providers
+- OAuth2: for authentication using providers such as GitHub or Google (click [here](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth) for more details).
+- SAML: for authentication using providers such as OneLogin and for supporting single sign-on.
+- Local: for authentication using a user's username and password managed in your own domain.
 
-Remember the [Architecture overview]({{ site_base_path }}guide/kuzzle-depth) and focus on the components involved by reading actions:
-![read_scenario_http_overview]({{ site_base_path }}assets/images/request-scenarios/auth/overview.png)
+In the diagram below, we highlighted components of Kuzzle's server [architecture]({{ site_base_path }}guide/kuzzle-depth) that are used in the authentication process:
 
-Kuzzle uses the following internal components during the authentication process:
+![read_scenario_http_overview]({{ site_base_path }}assets/images/request-scenarios/auth/Authentication_Overview.png)
 
-* The Auth Controller.
-* The Passport Wrapper, which acts as an interface between Kuzzle controllers and the Passport library,
-* The User and Token [Repositories](https://github.com/kuzzleio/kuzzle/tree/master/lib/api/core/models/repositories), to retrieve users' data.
-* The Authentication strategy, implemented within a [dedicated plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy).
-
----
-
-## The Kuzzle User Identifier (kuid)
-
-The kuzzle user identifier is a string that identifies a kuzzle user uniquely. It is used internally to link the user stored in Kuzzle with its credentials within the different authentication strategies.
-
-When a user is created, this identifier can either be set by the request, or generated directly by Kuzzle.
-
-When an authentication strategy stores its credentials in its own storage (internal or external) with its own storage nomenclature they have to store a reference to this value. This way it can retrieve the Kuzzle user identifier when the user credentials are provided during a login request.
+* The Auth Controller: to manage the authentication process.
+* The Passport Wrapper: to interface between Kuzzle Backend and the Passport.js library.
+* The User and Token [Repositories](https://github.com/kuzzleio/kuzzle/tree/master/lib/api/core/models/repositories): to store user data.
+* The Auth Strategy: to identify and validate a user's credential using a [dedicated plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy).
 
 ---
 
-### Example - Local Strategy
+## The Kuzzle User Identifier
 
-The "Local" strategy (implemented by the [Passport Local Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local)) authenticates a user via a username/password pair (locally stored).
+The Kuzzle User Identifier (`kuid`) is a string that identifies a unique user. It is used internally to link the user to their credentials for each strategy they use to authenticate.
+
+The `kuid` is assigned when the user is first created and can be provided in the input data of the user _create_ method or otherwise generated automatically by Kuzzle.
+
+---
+
+### Local Authentication Strategy
+
+The Local Authentication Strategy, implemented in the [Passport Local Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local), authenticates a user by their username and password, which are stored in a local repository. The following diagram shows how the authentication request flows between the Client Application and Kuzzle's server components:
 
 ![auth_scenario_details_local]({{ site_base_path }}assets/images/request-scenarios/auth/details-local.png)
 
-* The user calls the `login` action of the Auth Controller:
+* The Client Application calls the `login` action of the *Auth Controller*:
 
 ```javascript
 {
@@ -55,15 +52,19 @@ The "Local" strategy (implemented by the [Passport Local Plugin](https://github.
 }
 ```
 
-* The Auth Controller calls the `authenticate()` method of the Passport Wrapper.
-* The Passport Wrapper calls the `verify()` callback method declared by the Local Authentication Plugin to check credentials [into its own storage]({{ site_base_path }}plugins-reference/plugins-context/constructors/#repository)
-* The plugin check the credentials in its own storage and returns the user's `kuid` if found.
-* The Passport Wrapper calls the User Repository to get the user corresponding to the given `kuid`.
-* The user object is resolved and sent back to the Auth Controller.
-* The Auth Controller calls the `generateToken()` method to get a [JWT Token](https://jwt.io/) corresponding to the user.
-* The JWT Token is sent back to the client, who will use it in next requests to be authenticated:
+* The *Auth Controller* calls the `authenticate()` method of the *Passport Wrapper*.
 
-Sample response:
+* The *Passport Wrapper* calls the `verify()` method in the *Local Authentication Plugin*.
+
+* The *Local Authentication Plugin* validates the credentials against the [local storage]({{ site_base_path }}plugins-reference/plugins-context/constructors/#repository) and returns the user's `kuid` if the credentials are valid.
+
+* The *Passport Wrapper* calls the *User Repository* to get the profile data for the user with the given `kuid`.
+
+* The user profile data is returned back to the *Auth Controller*.
+
+* The *Auth Controller* calls the `generateToken()` method to get a [JWT Token](https://jwt.io/) for the user.
+
+* The JWT Token is then sent back to the Client Application and should be used in subsequent requests to Kuzzle's API. Below is an example response after the authentication process is complete:
 
 ```javascript
 {
@@ -83,19 +84,21 @@ Sample response:
 
 ---
 
-### Example - OAuth2 Strategy
+### OAuth2 Authentication Strategy
 
-The "Oauth" strategy, implemented by the [Passport Oauth Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), authenticates a user  via Github, Google+, Facebook, Twitter, or any identity provider using OAUth2 protocol with "Authorization Code" grant type.
+The Oauth2 Authentication Strategy, implemented in the [Passport Oauth Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), authenticates a user via Github, Google+, Facebook, Twitter, or any other identity provider that uses the OAuth2 protocol with the "Authorization Code" grant type.
 
-For more details about OAuth2 protocol, see [here](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2#grant-type-authorization-code).
+For more details about OAuth2 protocol, click [here](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2#grant-type-authorization-code).
+
+The following diagram outlines how an Oauth2 authentication request flows between the Client Application, the Authentication Provider (in this case GitHub), and Kuzzle's server components:
 
 ![auth_scenario_details_oauth2]({{ site_base_path }}assets/images/request-scenarios/auth/details-oauth2.png)
 
-The authentication flow is a 2-step flow:
+The authentication flow has two steps: first we request the Authentication Provider's URL used to authenticate the user on the third-party platform, then we perform the authentication.
 
-#### 1st step: get the OAuth2 Provider's URL
+#### Step One: Request Authentication Provider URL
 
-* The user calls the `login` action of the Auth Controller:
+* The user calls the `login` action of the *Auth Controller*:
 
 ```javascript
 {
@@ -105,9 +108,11 @@ The authentication flow is a 2-step flow:
 }
 ```
 
-* The Auth Controller calls the `authenticate()` method of the Passport Wrapper which formats and sends the related request to the Passport OAuth2 strategy.
-* The strategy returns a HTTP redirect to the OAuth2 Provider.
-* The Passport Wrapper intercepts the HTTP redirect response and formats a Kuzzle Response for the client:
+* The *Auth Controller* calls the `authenticate()` method of the Passport Wrapper which formats and sends the request to the *Authentication Strategy* (in this case the Passport Oauth Plugin).
+
+* The *Passport Oauth Plugin* returns an HTTP redirect to the *OAuth2 Provider*.
+
+* The *Passport Wrapper* intercepts the HTTP redirect response and formats the response for the client:
 
 ```javascript
 {
@@ -120,7 +125,7 @@ The authentication flow is a 2-step flow:
 }
 ```
 
-* The Auth Controller sends the response to the client, with the redirection URL to the OAUth2 Provider:
+* The *Auth Controller* sends the response, which includes the Authentication Provider's URL, to the client:
 
 ```javascript
 {
@@ -141,20 +146,23 @@ The authentication flow is a 2-step flow:
 }
 ```
 
-#### 2nd step: authenticate the user with the OAuth2 code.
+#### Step Two: Authenticate the User
 
-* The Client sends an HTTP request to the OAuth2 Provider (this has to be implemented within the client's application code, with the help of [kuzzle-sdk-login-oauth-popup](https://github.com/kuzzleio/kuzzle-sdk-login-oauth-popup) SDK plugin for example).
-* The user authenticates to the OAuth2 Provider and allows Kuzzle Application to use his credentials (that is the standard OAuth2 flow, managed at the provider's side).
-* The OAuth2 Provider sends a HTTP redirect response to the client, containing the OAuth2 authorization code:
+* The Client Application sends an HTTP request to the *OAuth2 Provider* (use our [SDK](https://github.com/kuzzleio/kuzzle-sdk-login-oauth-popup) to add this functionality to your Client Application).
+
+* The user then authenticates with the *OAuth2 Provider* and gives Kuzzle permission to use their third-party credentials.
+
+* The *OAuth2 Provider* sends an HTTP redirect response to the Client Application which contains the OAuth2 Authorization Code:
 
 ```
 HTTP/1.1 302 Found
 Location: http://<kuzzle>/_login/github?code=OAUTH2_CODE
-```
+``` 
 
-* The client calls again the `login` action of the Auth Controller, now with the OAuth2 authorization code:
-  * either in HTTP, simply following the redirection `curl http://<kuzzle>/_login/github?code=OAUTH2_CODE`
-  * or, with another protocol (for example WebSocket), after having parsed the URL to get the authorization code:
+<br/>
+* The Client Application then calls the `login` action of the *Auth Controller* and includes the OAuth2 Authorization Code:
+  * If the request is made over HTTP the Authorization Code is sent as a query parameter in the request URL: `curl http://<kuzzle>/_login/github?code=OAUTH2_CODE`
+  * If the request is made over Websocket the Authorization Code is sent as a parameter in the body of the message:
 
 ```javascript
 {
@@ -167,19 +175,24 @@ Location: http://<kuzzle>/_login/github?code=OAUTH2_CODE
 }
 ```
 
-* The Auth Controller calls the `authenticate()` method of the Passport Wrapper which formats and sends the related request to the Passport OAuth2 strategy.
-* The Passport OAuth2 strategy forwards the OAuth2 authorization code to the OAuth2 Provider in order to retrieve the OAuth2 Token and the user's profile.
-* The plugin calls its own storage to check for an existing user with the given GitHub ID, and give its `kuid` to the Passport Wrapper _(Note: If no related user is found in Kuzzle, the plugin can either deny the authentication or create automatically the user, depending on the settings)._
-* The Passport Wrapper calls the User Repository to get the user corresponding to the given `kuid`.
-* The user object is resolved and sent back to the Auth Controller.
-* The Auth Controller calls the `generateToken()` method to get a [JWT Token](https://jwt.io/) corresponding to the user.
-* The JWT Token is sent back to the client, who will use it in next requests to be authenticated.
+* The *Auth Controller* then calls the `authenticate()` method of the *Passport Wrapper* which formats and sends the request to the *Authentication Strategy* (in this case the *Passport Oauth Plugin*).
 
+* The *Passport Oauth Plugin* forwards the *OAuth2 Authorization Code* to the *OAuth2 Provider* (GitHub) in order to retrieve the OAuth2 Token and the user's third-party profile data.
+
+* The *Passport Oauth Plugin* then checks internal storage to see if a user already exists with the given *OAuth2 Provider* ID (GitHub ID), and returns their `kuid` to the *Passport Wrapper* _(Note: If no user is found in Kuzzle Backend, the plugin can either deny the authentication request or create the user automatically depending on the settings)._
+
+* The *Passport Wrapper* calls the *User Repository* to get the profile data for the user with the given `kuid`.
+
+* The user profile data is returned back to the *Auth Controller*.
+
+* The *Auth Controller* calls the `generateToken()` method to get a [JWT Token](https://jwt.io/) for the user.
+
+* The JWT Token is then sent back to the Client Application and should be used in subsequent requests to Kuzzle's API. 
 
 ---
 
-## How to provide your own strategy
+## Additional Authentication Strategies
 
-Any strategy supported by PassportJS can be implemented in Kuzzle with a dedicated plugin. Please refer to the [Plugins Reference]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy)).
+Kuzzle can implement any strategy supported by Passport.js. For more information, please refer to the [Plugins Reference]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy).
 
 ---

@@ -80,14 +80,14 @@ Returns the current server time.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array containing the following two items, in this order:
+Returns an array containing the following two items, in this order:
 
 * a timestamp in [Epoch time](https://en.wikipedia.org/wiki/Unix_time)
 * the number of microseconds already elapsed in the current second

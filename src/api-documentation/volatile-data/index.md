@@ -1,19 +1,19 @@
 ---
 layout: full.html
 algolia: true
-title: Sending volatile data
+title: Sending Volatile Data
 description: broadcast extra volatile data to subscribers
 order: 400
 show-subheader: true
 subheader-title: Introduction
 ---
 
-# Sending volatile data
+# Sending Volatile Data
 
-In every request you send to Kuzzle, you can include a `volatile` object.
-This object content will be ignored by Kuzzle, but it will also be forwarded back in [responses]({{ site_base_path }}api-documentation/kuzzle-response/) and in [notifications]({{ site_base_path }}api-documentation/notifications/).
+In every request you send to Kuzzle Backend, you can include a `volatile` object.
+This content of this object will be ignored by Kuzzle Backend, and will be passed back in the [response]({{ site_base_path }}api-documentation/kuzzle-response/) or [notification]({{ site_base_path }}api-documentation/notifications/).
 
 You can also provide volatile information to a subscription request.
-These volatile information will be forwarded to other subscribers at the moment of the subscription,
+This volatile information will be forwarded to other subscribers when the subscription is created
 and when you leave the room. Please note that when leaving the room,
-the forwarded volatile data are those provided to the **subscription** request.
+the forwarded volatile data are provided to the **subscription** request.

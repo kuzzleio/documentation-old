@@ -27,6 +27,6 @@ Set the default data index. Has the same effect than the `defaultIndex` construc
 
 ---
 
-## Return value
+## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.

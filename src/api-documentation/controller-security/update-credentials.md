@@ -83,4 +83,4 @@ title: updateCredentials
 }
 ```
 
-Updates credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Updates credentials of user with [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) for the specified `<strategy>`. The credentials to send will depend on the authentication plugin and the authentication strategy.

@@ -88,16 +88,16 @@ Performs a partial update on the current user.
 
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not | ``true`` |
 
 ---
 
 ## Return value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the updated user plain object.
+Returns the updated user object.

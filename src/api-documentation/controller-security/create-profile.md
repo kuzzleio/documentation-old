@@ -108,9 +108,9 @@ title: createProfile
 }
 ```
 
-Creates a profile with a new list of roles.
+Creates a security profile with a new list of roles.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the profile indexation (indexed profiles are available for `search`).
+with the value `wait_for` in order to wait for the profile to be indexed (indexed profiles are available for `search`).
 
 **Note:** The `_id` parameter is mandatory.

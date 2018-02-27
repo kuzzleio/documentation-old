@@ -81,7 +81,7 @@ Appends the specified values at the end of a list. If the key does not exist, it
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
@@ -92,6 +92,6 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the updated number of items in the list.
+Returns an integer containing the updated number of items in the list.

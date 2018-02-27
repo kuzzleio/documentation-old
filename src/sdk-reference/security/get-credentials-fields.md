@@ -57,7 +57,7 @@ $fields = $kuzzle->security->getCredentialFields('local');
 ]
 ```
 
-Get credential information of the specified `strategy`.
+Get credential information for the specified `strategy`.
 
 ---
 
@@ -75,10 +75,10 @@ Get credential information of the specified `strategy`.
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an array reflecting the credential fields.
+The result is a an array of credential fields.

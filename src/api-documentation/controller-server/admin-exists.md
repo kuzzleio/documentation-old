@@ -49,4 +49,4 @@ title: adminExists
 }
 ```
 
-Checks if an administrator account has been created, and return a boolean as a result.
+Checks if an administrator account has been created, return `true` if it exists and `false` if it does not.

@@ -85,17 +85,17 @@ Returns all the elements in the sorted set at key with a score between `min` and
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of matching members.
+Returns an array of matching members.

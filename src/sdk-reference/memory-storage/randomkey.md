@@ -77,11 +77,11 @@ Returns a random key from the memory storage.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to one of the stored key name, at random.
+Returns one of the stored key names, at random.

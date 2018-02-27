@@ -60,7 +60,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates or replaces the role in Kuzzle's database layer.
+Creates or replaces the role in Kuzzle Backend's database layer.
 
 ---
 
@@ -77,16 +77,16 @@ Creates or replaces the role in Kuzzle's database layer.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Role` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `Role` object.
+Returns a `Role` object.

@@ -80,16 +80,16 @@ The `timestamp` parameter accepts an [Epoch time](https://en.wikipedia.org/wiki/
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean telling if the operation was successful
+Returns a boolean specifying if the operation was successful or not.

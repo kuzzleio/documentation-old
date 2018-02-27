@@ -1,34 +1,28 @@
 ---
 layout: full.html
 algolia: true
-title: Connecting to Kuzzle
-description: through HTTP, WebSocket or Protocol plugins
+title: Connecting to Kuzzle Backend
+description: Connecting to Kuzzle Backend using HTTP, WebSocket or Protocol plugins
 order: 100
 ---
 
 
-# Connecting to Kuzzle
+# Connecting to Kuzzle Backend
 
-The connection to Kuzzle depends on the protocol to be used.
-
-HTTP, WebSocket and SocketIO protocols are shipped in Kuzzle's core.
-Other protocols can be added with [Protocol Plugins]({{ site_base_path }}plugins-reference).
+A connection to Kuzzle Backend can be made using different protocols. Currently Kuzzle Backend ships with HTTP, WebSocket and Socket.io, but you can add other protocols using the [Protocol Plugins]({{ site_base_path }}plugins-reference).
 
 ---
 
 ## HTTP
 
-By default, Kuzzle exposes itself on the 7512 port. Assuming the Kuzzle server runs locally,
-it can be reached on `http://localhost:7512/`.
+By default, Kuzzle Backend can be reached via HTTP on port 7512. Thus, assuming the Kuzzle Backend is running locally,
+it can be reached at `http://localhost:7512/`.
 
-The default response is the [ServerInfo]({{ site_base_path }}api-documentation/controller-server/info) controller.
-With this you will get detailed information about available HTTP API routes.
+The default response for the root endpoint is the [ServerInfo]({{ site_base_path }}api-documentation/controller-server/info), which gives detailed information about the available HTTP API routes.
 
 ### Examples
 
 ```bash
-#!/bin/bash
-
 curl "http://localhost:7512/"
 ```
 
@@ -36,8 +30,7 @@ curl "http://localhost:7512/"
 
 ## WebSocket
 
-By default, Kuzzle enables the core websockets protocol,
-accepting websocket requests via the http server (on port 7512 by default).
+By default, Kuzzle Backend has websockets enabled, accepting requests via the http server on port 7512.
 
 ### Examples
 
@@ -49,10 +42,9 @@ accepting websocket requests via the http server (on port 7512 by default).
 
 ---
 
-## Socket.io (WebSocket-like)
+## Socket.io
 
-To ensure compatibility with older web browsers, our official docker images embeds the
-Kuzzle embeds a socketio protocol, accepting socket requests via the http server (on port 7512 by default).
+To ensure compatibility with older web browsers, our official Kuzzle Backend docker images embed the socketio protocol, accepting socket requests via the http server on port 7512.
 
 
 ### Examples
@@ -69,17 +61,14 @@ Kuzzle embeds a socketio protocol, accepting socket requests via the http server
 
 ## MQTT protocols
 
-Kuzzle provides a [plugin protocol](https://github.com/kuzzleio/kuzzle-plugin-mqtt) that supports the MQTT protocol.
-This plugin protocol is a 2-way means of communication between your application and Kuzzle, forwarding your queries
-forth to Kuzzle, and notifications/responses from Kuzzle back to your application.
+Kuzzle Backend provides a plugin that supports the [MQTT protocol](https://github.com/kuzzleio/kuzzle-plugin-mqtt).
+Using the plugin you can perform two-way communication between your application and the Kuzzle Backend.
 
 
 ### Examples
 
 
 ```bash
-#!/bin/bash
-
 # shell 1
 node_modules/.bin/mqtt subscribe -v -h rabbit -t Kuzzle
 
@@ -115,11 +104,11 @@ Kuzzle {
 }
 ```
 
-By default, the MQTT plugin protocol listens on the port 1883.
+By default, the MQTT plugin protocol listens on port 1883.
 
 <aside class="notice">
     The examples given in this documentation use the cli client from the mqtt node.js
-    library that is shipped within the Kuzzle Docker container.<br />
-    You can play them by entering the kuzzle container. Once your docker compose stack is running:<br />
+    library that is shipped in the Kuzzle Backend Docker image.<br />
+    To test them out yourself you will need to enter into the container shell once your docker compose stack is up and running:<br />
     <code>docker exec -ti kuzzle_kuzzle_1 bash</code>
 </aside>

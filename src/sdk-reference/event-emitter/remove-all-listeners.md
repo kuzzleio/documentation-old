@@ -51,6 +51,6 @@ Removes all listeners, either from a specific event or from all events
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `KuzzleEventEmitter` object to allow chaining.

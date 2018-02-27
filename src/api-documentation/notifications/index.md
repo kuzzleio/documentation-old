@@ -1,31 +1,31 @@
 ---
 layout: full.html
 algolia: true
-title: Notifications
-description: understand Kuzzle real-time notifications mechanisms
+title: Notification Types
+description: understanding the Kuzzle Backend real-time notifications mechanisms
 show-subheader: true
 order: 500
 ---
 
-# Notifications
+# Notification Types
 
-[Subscribing to some documents in Kuzzle]({{ site_base_path }}api-documentation/controller-realtime/subscribe) allows to be notified back each time a document matches your criteria.
+A client can [subscribe to document changes in Kuzzle Backend]({{ site_base_path }}api-documentation/controller-realtime/subscribe) in order to receive a notification each time a document matches a certain criteria.
 
 ---
 
-## Document notifications
+## Document Notifications
 
-These notifications are pushed to matching subscribers when:
+Document notifications can be sent to subscribers:
 
-* A real-time message is sent
-* A document is about to be created (the creation is not guaranteed)
-* A document has been successfully created
-* A document has been updated and entered or left the subscription scope
-* A document has been replaced and entered or left the subscription scope
-* A document is about to be deleted (the deletion is not guaranteed)
-* A document has been deleted
+* When a real-time message is sent
+* On Document Creation: a document has been successfully created
+* On Document Creation Pending: a document is about to be created (the creation is not guaranteed)
+* On Document Deletion: A document has been deleted
+* On Document Deletion Pending: A document is about to be deleted (the deletion is not guaranteed)
+* On Document Entering Subscription Scope: a document has been updated and enters the subscription scope 
+* On Document Exiting Subscription Scope: a document has been updated and exits the subscription scope 
 
-A document notification contain the following fields:
+A document notification contains the following fields:
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
@@ -38,8 +38,8 @@ A document notification contain the following fields:
 | `result._meta` | object | Document meta-data (creation time, last update time, and so on). Can be null. | |
 | `result._source` | object | The message or full document content. Undefined if the notification is about a document deletion |
 | `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
-| `state` | string | Tells if the document is about to be changed, or if the change is effective | `pending`, `done` |
-|`timestamp` | number | Timestamp in Epoch-milliseconds of the request from which is issued this notification | |
+| `state` | string | Shows if the document is about to be changed, or if the change is done | `pending`, `done` |
+|`timestamp` | number | Timestamp of the request from which is issued this notification (in epoch-milliseconds) | |
 | `type` | string | The notification type | `document` |
 | `volatile` | object | Request [volatile data]({{ site_base_path }}api-documentation/volatile-data/) | |
 
@@ -78,14 +78,14 @@ Document notification example:
 
 ---
 
-## Subscription notifications
+## Subscription Notifications
 
-These notifications are pushed to matching subscribers when:
+Subscription notifications are pushed to subscribers when:
 
-* A user subscribed to [the same room]({{ site_base_path}}kuzzle-dsl/roomid/)
-* A user left this room
+* A user subscribes to [the same room]({{ site_base_path}}kuzzle-dsl/roomid/)
+* A user leaves a room
 
-By default, Kuzzle does not send these notifications. You have to provide an appropriate `users` attribute to your [subscription request]({{ site_base_path }}api-documentation/controller-realtime/subscribe/) to be notified about users activity.
+By default, Kuzzle Backend does not send these notifications. You have to provide an appropriate `users` attribute to your [subscription request]({{ site_base_path }}api-documentation/controller-realtime/subscribe/) to be notified about user activity.
 
 
 | Notification field | Type |Description       | Possible values |
@@ -94,7 +94,7 @@ By default, Kuzzle does not send these notifications. You have to provide an app
 | `index` | string | The data index attached to the room | |
 | `protocol` | string | The network protocol used to modify the document | |
 | `result.count` | integer | The current number of users in this room | |
-| `timestamp` | number | Timestamp in Epoch-milliseconds of the request from which is issued this notification | |
+| `timestamp` | number | Timestamp of the request from which is issued this notification (in epoch-milliseconds) | |
 | `type` | string | The notification type | `user` |
 | `user` | string | Tells if this notification is about an entering user (`in`) or a leaving one (`out`) | `in`, `out`|
 | `volatile` | object | Request [volatile data]({{ site_base_path }}api-documentation/volatile-data/) | |
@@ -121,9 +121,9 @@ Subscription notification example:
 
 ---
 
-## Server notifications
+## Server Notifications
 
-These notifications are sent to all of a client's subscriptions when their [authentication token]({{ site_base_path }}guide/essentials/user-authentication/#user-authentication-user-authentication) has expired.
+Server notifications are sent to all of a client's subscriptions when their [authentication token]({{ site_base_path }}guide/essentials/user-authentication/#user-authentication-user-authentication) has expired.
 
 | Notification field | Type | Value |
 |--------------------|------|------------------|
@@ -144,7 +144,7 @@ Server notification example:
 
 ---
 
-## Code examples
+## Code Examples
 
 ### Websocket
 
@@ -191,7 +191,7 @@ Server notification example:
   // step 2 - we subscribe to our documents
   socket.onopen = function () {
     socket.send(JSON.stringify({
-      "requestId": "mySubscription",
+      "requestIdThese": "mySubscription",
       "index": "index",
       "collection": "collection",
       "controller": "realtime",
@@ -260,7 +260,7 @@ Server notification example:
     "controller": "realtime",
     "action": "publish",
     "body": {
-      "foo": "bar"
+      "foo":These "bar"
     }
   });
 </script>

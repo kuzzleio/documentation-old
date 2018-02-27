@@ -54,13 +54,12 @@ title: refresh
 }
 ```
 
-When writing or deleting documents in Kuzzle's database layer, the update needs to be indexed before being reflected
+When writing or deleting documents in Kuzzle Backend's database layer, the update needs to be indexed before being reflected
 in the search index.
 By default, this operation can take up to 1 second.
 
 Given an index, the `refresh` action forces a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api),
-on it, making the documents visible to search immediately.
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api), making the documents visible in a search immediately.
 
 <aside class="left warning">
   <p>
