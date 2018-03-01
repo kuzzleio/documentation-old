@@ -22,13 +22,13 @@ Events triggered to synchronize Kuzzle server nodes in a cluster.
 
 **Payload:** Object (see below)
 
-This event is triggered whenever a plugin registers an [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy) **dynamically** (see [PluginContext]({{ site_base_path }}plugins-reference/plugins-context/accessors/#add)).  
-This event is NOT triggered when plugins register authentication strategies by exposing [a strategies object]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies).
+This event is triggered whenever a plugin registers an [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategies) **dynamically** (see [PluginContext]({{ site_base_path }}plugins-reference/plugins-context/accessors/#add)).  
+This event is NOT triggered when plugins register authentication strategies by exposing [a strategies object]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#exposing-authentication-strategies).
 The payload is a plain JSON object with the following properties:
 
 * `pluginName`: the name of the plugin having registered a strategy
 * `name`: authentication strategy name
-* `strategy`: authentication strategy properties, identical to the content of the [strategies object]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies) for a given strategy
+* `strategy`: authentication strategy properties, identical to the content of the [strategies object]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#exposing-authentication-strategies) for a given strategy
 
 ---
 
@@ -40,7 +40,7 @@ The payload is a plain JSON object with the following properties:
 
 **Payload:** Object (see below)
 
-This event is triggered whenever a plugin removes an [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy) **dynamically** (see [PluginContext]({{ site_base_path }}plugins-reference/plugins-context/accessors/#remove)).  
+This event is triggered whenever a plugin removes an [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategies) **dynamically** (see [PluginContext]({{ site_base_path }}plugins-reference/plugins-context/accessors/#remove)).  
 
 The payload is a plain JSON object with the following properties:
 

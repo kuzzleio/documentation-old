@@ -96,4 +96,4 @@ with the value `wait_for` in order to wait for the role to be indexed (indexed r
 The body content needs to match Kuzzle's role definition.
 
 To get more detailed information about the expected role definition or Kuzzle's user management model,
-please refer to [Kuzzle's permissions documentation]({{ site_base_path }}guide/essentials/security/#permissions).
+please refer to [Kuzzle's permissions documentation]({{ site_base_path }}guide/essentials/security/#user-permissions).

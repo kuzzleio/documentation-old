@@ -85,7 +85,7 @@ You should receive the following response:
 }
 ```
 
-**Note:**  we have just created a new collection without specifying any mappings. As a result, the database layer will automatically create a mapping that assigns a best guess data type to any new field it detects in input documents. Since these mappings cannot be changed once they are created, we strongly recommend that you [**create your own mappings**]({{ site_base_path }}guide/essentials/persisted/#document-mapping) as soon as the collection has been created. For the purpose of this tutorial, we will continue without defining our own mappings.
+**Note:**  we have just created a new collection without specifying any mappings. As a result, the database layer will automatically create a mapping that assigns a best guess data type to any new field it detects in input documents. Since these mappings cannot be changed once they are created, we strongly recommend that you [**create your own mappings**]({{ site_base_path }}guide/essentials/persisted/#mappings) as soon as the collection has been created. For the purpose of this tutorial, we will continue without defining our own mappings.
 
 --- 
 

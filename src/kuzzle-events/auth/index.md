@@ -67,9 +67,9 @@ Example: after a failed [login]({{ site_base_path }}api-documentation/controller
 This event is triggered immediately after a successful user authentication, but before a token is generated (and before an `auth:afterLogin` event is triggered).
 
 This event's payload is a plain JSON object with the following properties:
-* `strategy`: the [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy) name 
+* `strategy`: the [authentication strategy]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategies) name 
 * `content`: an object with the following properties:
-  * `_id`: the user's [kuid]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid)
+  * `_id`: the user's [kuid]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid)
   * `profileIds`: an array of [Profile]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles) names
 
 ---

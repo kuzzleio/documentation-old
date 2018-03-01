@@ -55,7 +55,7 @@ $credentials = $kuzzle->getMyCredentials('local');
 }
 ```
 
-Get [credential information]({{ site_base_path }}guide/essentials/user-authentication/#credentials) for the current user.
+Get [credential information]({{ site_base_path }}guide/essentials/user-authentication/#user-credentials) for the current user.
 
 ---
 

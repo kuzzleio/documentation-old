@@ -13,11 +13,11 @@ Once we have created security [roles and profiles]({{ site_base_path }}guide/ess
 
 Users can be created by either using the [Kuzzle Admin Console]({{ site_base_path }}guide/essentials/installing-console), the [API]({{ site_base_path }}api-documentation/controller-security/create-user/), or the [SDK]({{ site_base_path }}sdk-reference/security/create-user/).
 
-When creating a user, you will need to assign them one or more [profiles]({{ site_base_path }}guide/essentials/security/#profile-definition).
+When creating a user, you will need to assign them one or more [profiles]({{ site_base_path }}guide/essentials/security/#defining-profiles).
 
 Additionally, you can set:
 
-* [User credentials]({{ site_base_path }}guide/essentials/user-authentication/#credentials): If no credentials are provided, then the user cannot [login]({{ site_base_path }}api-documentation/controller-auth/login/)
+* [User credentials]({{ site_base_path }}guide/essentials/user-authentication/#user-credentials): If no credentials are provided, then the user cannot [login]({{ site_base_path }}api-documentation/controller-auth/login/)
 * Any number of properties that you want to store in your user object, such as a lastname or a list of hobbies. These properties are stored at the user level and are not linked to any particular authentication strategy.
 
 Let's create a user with username `jondoe` and password `letmein` through the API:
@@ -63,7 +63,7 @@ When a user is created, Kuzzle will automatically generate a random unique ident
 
 This system allows a user to login to Kuzzle using different strategies and, potentially, different login identifiers, while still being considered as an unique entity by Kuzzle.
 
-If you're interested for a more in-depth explanation on how all of this work, then please check our [Kuzzle In-Depth Documentation]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
+If you're interested for a more in-depth explanation on how all of this work, then please check our [Kuzzle In-Depth Documentation]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).
 
 ---
 
