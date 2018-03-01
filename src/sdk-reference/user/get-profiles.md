@@ -60,7 +60,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Gets the security [Profile]({{ site_base_path }}sdk-reference/profile) instances linked to the user from the Kuzzle Backend API.
+Gets the security [Profile]({{ site_base_path }}sdk-reference/profile) instances linked to the user from Kuzzle's API.
 
 ---
 

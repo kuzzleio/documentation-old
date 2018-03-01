@@ -52,7 +52,7 @@ $indexes = $kuzzle->listIndexes();
 [ "index", "another index", "..."]
 ```
 
-Returns the list of indexes stored in Kuzzle Backend.
+Returns the list of indexes stored in Kuzzle.
 
 ---
 

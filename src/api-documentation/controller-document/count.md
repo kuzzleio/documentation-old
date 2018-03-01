@@ -71,10 +71,10 @@ title: count
 }
 ```
 
-Given some filters, gets the number of matching documents from Kuzzle Backend's data storage layer.
+Given some filters, gets the number of matching documents from Kuzzle.
 
-Kuzzle Backend uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
+Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.
 
 Optional arguments:
 
-- `includeTrash` makes Kuzzle Backend look for documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/)
+- `includeTrash` makes Kuzzle include documents from the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/)

@@ -130,7 +130,7 @@ $result = $kuzzle->getServerInfo();
 }
 ```
 
-Retrieves information about Kuzzle Backend plugins and active services.
+Retrieves information about Kuzzle plugins and active services.
 
 ---
 

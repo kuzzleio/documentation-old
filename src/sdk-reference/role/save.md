@@ -60,7 +60,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates or replaces the role in Kuzzle Backend's database layer.
+Creates or replaces the role in Kuzzle's database layer.
 
 ---
 

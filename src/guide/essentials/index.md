@@ -10,7 +10,7 @@ subheader-title: Introduction
 
 # Introduction
 
-Kuzzle Backend is a ready-to-use, **open-source**, **on-premises** suite that allows you to build modern web, mobile and IoT applications in no time. Thanks to its built-in features you can easily:
+Kuzzle is a ready-to-use, **open-source**, **on-premises** suite that allows you to build modern web, mobile and IoT applications in no time. Thanks to its built-in features you can easily:
 
 * **connect your apps** using our available SDKs and multiple protocols.
 * **manage your data** using the built-in storage engine.
@@ -20,21 +20,21 @@ Kuzzle Backend is a ready-to-use, **open-source**, **on-premises** suite that al
 
 ## Connect your apps
 
-Kuzzle Backend ships with a set of open-source [SDKs]({{ site_base_path }}sdk-reference) for a variety of programming languages:
+Kuzzle ships with a set of open-source [SDKs]({{ site_base_path }}sdk-reference) for a variety of programming languages:
 
 - [Javascript](https://github.com/kuzzleio/sdk-javascript) (Node.js & Browsers)
 - [Android](https://github.com/kuzzleio/sdk-android)
 - [PHP](https://github.com/kuzzleio/sdk-php)
 - C (coming soon)
 
-Additionally, Kuzzle Backend supports a variety of communication protocols:
+Additionally, Kuzzle supports a variety of communication protocols:
 
 - HTTP
 - Websocket
 - Socket.io
 - MQTT (via plugin)
 
-You can interact directly with Kuzzle Backend through its API, read the [Kuzzle API reference]({{ site_base_path }}api-documentation) for more information.
+You can interact directly with Kuzzle through its API, read the [Kuzzle API reference]({{ site_base_path }}api-documentation) for more information.
 
 ## Manage your data
 
@@ -55,7 +55,7 @@ Please click [here]({{ site_base_path }}guide/essentials/security) for more deta
 
 ## Customize your backend
 
-Kuzzle Backend can be tailored to your specific requirements thanks to the plugin engine, which lets you:
+Kuzzle can be tailored to your specific requirements thanks to the plugin engine, which lets you:
 
 * trigger actions on data-related events
 * intercept the data flow at any point of its lifecycle

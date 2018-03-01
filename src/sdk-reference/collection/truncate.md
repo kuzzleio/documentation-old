@@ -99,7 +99,7 @@ This method is a lot faster than removing all documents using multiple delete re
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
@@ -111,4 +111,4 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback Response
 
-Returns a `JSON object` containing the raw Kuzzle Backend response.
+Returns a `JSON object` containing the raw Kuzzle response.

@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: core
-description: list of events emitted to synchronize Kuzzle Backend instances in a cluster
+description: list of events emitted to synchronize Kuzzle server nodes in a cluster
 order: 200
 ---
 
@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered to synchronize Kuzzle Backend instances in a cluster.
+Events triggered to synchronize Kuzzle server nodes in a cluster.
 
 ---
 
@@ -55,7 +55,7 @@ The payload is a plain JSON object with the following properties:
 
 **Event type:** Hook
 
-Triggered when Kuzzle Backend has finished booting and is ready to process user requests.
+Triggered when Kuzzle has finished booting and is ready to process user requests.
 
 ---
 
@@ -67,11 +67,11 @@ Triggered when Kuzzle Backend has finished booting and is ready to process user 
 
 **Payload:** Request buffer fill percentage (number)
 
-Kuzzle Backend features an overload-protection system, configurable through the `limits` parameters in the `.kuzzlerc` file (see [Configuring Kuzzle Backend]({{ site_base_path }}guide/essentials/configuration/)).
+Kuzzle features an overload-protection system, configurable through the `limits` parameters in the `.kuzzlerc` file (see [Configuring Kuzzle]({{ site_base_path }}guide/essentials/configuration/)).
 
 This feature allows only a small number of requests to be processed simultaneously. If more requests are to be processed, then they are stored in a buffer until some of the running requests have completed.
 
-If requests are buffered more rapidly than they are processed, Kuzzle Backend enters `overload` mode and will trigger this event regularly to send updates about the state of the request buffer.
+If requests are buffered more rapidly than they are processed, Kuzzle enters `overload` mode and will trigger this event regularly to send updates about the state of the request buffer.
 
 Any request submitted while the request buffer is completely filled (i.e. the payload is equal to `100`) will be automatically rejected.
 

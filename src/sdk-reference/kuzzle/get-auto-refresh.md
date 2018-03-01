@@ -48,7 +48,7 @@ $result = $kuzzle->getAutoRefresh('myIndex');
 // $result = true | false
 ```
 
-The `autoRefresh` flag, when set to true, will make Kuzzle Backend perform a
+The `autoRefresh` flag, when set to true, will make Kuzzle perform a
 [`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api) request
 immediately after each write request, causing documents to be immediately visible in a search.
 

@@ -2,14 +2,14 @@
 layout: full.html
 algolia: true
 title: Notification Types
-description: understanding the Kuzzle Backend real-time notifications mechanisms
+description: understanding Kuzzle real-time notifications
 show-subheader: true
 order: 500
 ---
 
 # Notification Types
 
-A client can [subscribe to document changes in Kuzzle Backend]({{ site_base_path }}api-documentation/controller-realtime/subscribe) in order to receive a notification each time a document matches a certain criteria.
+A client can [subscribe to document changes in Kuzzle]({{ site_base_path }}api-documentation/controller-realtime/subscribe) in order to receive a notification each time a document matches a certain criteria.
 
 ---
 
@@ -85,7 +85,7 @@ Subscription notifications are pushed to subscribers when:
 * A user subscribes to [the same room]({{ site_base_path}}kuzzle-dsl/roomid/)
 * A user leaves a room
 
-By default, Kuzzle Backend does not send these notifications. You have to provide an appropriate `users` attribute to your [subscription request]({{ site_base_path }}api-documentation/controller-realtime/subscribe/) to be notified about user activity.
+By default, Kuzzle does not send these notifications. You have to provide an appropriate `users` attribute to your [subscription request]({{ site_base_path }}api-documentation/controller-realtime/subscribe/) to be notified about user activity.
 
 
 | Notification field | Type |Description       | Possible values |

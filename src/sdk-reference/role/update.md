@@ -89,7 +89,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Updates the role object in Kuzzle Backend's database layer.
+Updates the role object in Kuzzle.
 
 <aside class="warning">
   <p>
@@ -101,7 +101,7 @@ Updates the role object in Kuzzle Backend's database layer.
   </p>
 </aside>
 
-To get more information on Kuzzle Backend permissions, please refer to our [permissions guide]({{ site_base_path }}guide/essentials/security/#permissions).
+To get more information about Kuzzle permissions, please refer to our [permissions guide]({{ site_base_path }}guide/essentials/security/#permissions).
 
 ---
 

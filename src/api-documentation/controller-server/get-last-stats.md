@@ -63,7 +63,7 @@ title: getLastStats
 }
 ```
 
-Kuzzle Backend monitors its internal activities and makes regular snapshots.
+Kuzzle monitors its internal activities and makes regular snapshots.
 This method returns the last stored statistics frame.
 By default, snapshots are made every 10 seconds and they are stored for 1 hour.
 

@@ -113,4 +113,4 @@ A scroll session is always initiated by a `searchSpecification` action with the 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
-| ``scroll`` | string | Re-initializes the scroll session timeout to its value. If not defined, the scroll timeout is defaulted to a Kuzzle Backend configuration | ``undefined`` |
+| ``scroll`` | string | Re-initializes the scroll session timeout to its value. If not defined, the scroll timeout is defaulted to a Kuzzle configuration | ``undefined`` |

@@ -1,21 +1,21 @@
 ---
 layout: full.html
 algolia: true
-title: Install Kuzzle Backend
+title: Install Kuzzle
 order: 0
 ---
 
-# Installing Kuzzle Backend
+# Installing Kuzzle
 
-In this section we'll demonstrate two ways to install Kuzzle Backend: by using Docker and by installing it manually.
+In this section we'll demonstrate two ways to install Kuzzle: by using Docker and by installing it manually.
 
 <aside class="notice">
-The easiest way to install Kuzzle Backend is by using our <a href="{{ site_base_path }}guide/getting-started/#running-kuzzle-backend">installation script</a>.
+The easiest way to install Kuzzle is by using our <a href="{{ site_base_path }}guide/getting-started/#running-kuzzle-backend">installation script</a>.
 </aside>
 
 ## Docker Installation
 
-Before launching Kuzzle Backend in Docker, ensure that your system meets the following requirements:
+Before launching Kuzzle in Docker, ensure that your system meets the following requirements:
 
 - **64-bit environment**
 - **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
@@ -47,13 +47,13 @@ Now, from the `kuzzle-docker` folder where you saved the docker-compose.yml file
 docker-compose up
 ```
 
-If everything is working, your terminal should be logging startup messages from Kuzzle Backend's various components. After a few seconds, you should see the following message:
+If everything is working, your terminal should be logging startup messages from Kuzzle's various components. After a few seconds, you should see the following message:
 
 ```bash
 # kuzzle_1         | [✔] Kuzzle server ready
 ```
 
-Your Kuzzle Backend is now up and running. For a quick test, you can explore the main HTTP API endpoint by clicking this link <a href="http://localhost:7512">http://localhost:7512</a> or by using cURL on the command line:
+Your Kuzzle is now up and running. For a quick test, you can explore the main HTTP API endpoint by clicking this link <a href="http://localhost:7512">http://localhost:7512</a> or by using cURL on the command line:
 
 ```bash
 curl "http://localhost:7512/?pretty"
@@ -64,25 +64,25 @@ You should see a list of available API routes.
 
 ### Docker cheatsheet
 
-Below is a list of docker commands you can use to run and debug your Kuzzle Backend installation.
+Below is a list of docker commands you can use to run and debug your Kuzzle installation.
 
 ```bash
-# Update Kuzzle Backend docker images:  
+# Update Kuzzle docker images:  
 docker-compose -f "<docker-compose-file.yml>" pull
 
-# Display Kuzzle Backend logs:  
+# Display Kuzzle logs:  
 docker exec -ti "<container name>" pm2 logs
 
-# Restart Kuzzle Backend:
+# Restart Kuzzle:
 docker exec -ti "<container name>" pm2 restart all
 
-# Stop Kuzzle Backend:
+# Stop Kuzzle:
 docker exec -ti "<container name>" pm2 stop all
 
-# Start Kuzzle Backend:
+# Start Kuzzle:
 docker exec -ti "<container name>" pm2 start all
 
-# Access Kuzzle Backend CLI:
+# Access Kuzzle CLI:
 docker exec -ti "<container name>" bin/kuzzle -h
 ```
 
@@ -90,13 +90,13 @@ docker exec -ti "<container name>" bin/kuzzle -h
 
 ## Manual Installation
 
-In this section we will perform a manual installation of Kuzzle Backend on a Linux distribution. We choose Linux because all Kuzzle Backend components work natively on it.
+In this section we will perform a manual installation of Kuzzle on a Linux distribution. We choose Linux because all Kuzzle components work natively on it.
 
 <aside class="notice">
-  By default, Kuzzle Backend expects all the components to be running on localhost but you can <a href="{{ site_base_path }}guide/essentials/configuration">configure</a> it to change this behavior.
+  By default, Kuzzle expects all the components to be running on localhost but you can <a href="{{ site_base_path }}guide/essentials/configuration">configure</a> it to change this behavior.
 </aside>
 
-We will run the Kuzzle Backend using [pm2](http://pm2.keymetrics.io/), a process management tool used to monitor Node.js applications.
+We will run Kuzzle using [pm2](http://pm2.keymetrics.io/), a process management tool used to monitor Node.js applications.
 
 ### Supported operating systems
 
@@ -121,7 +121,7 @@ The following operating systems are actively supported (64-bit versions only):
 
 ---
 
-### Get Kuzzle Backend source code
+### Get Kuzzle source code
 
 Let's start by creating the `kuzzle` root folder:
 
@@ -130,13 +130,13 @@ mkdir -p ~/kuzzle
 cd ~/kuzzle
 ```
 
-Then clone the Kuzzle Backend repository:
+Then clone the Kuzzle repository:
 
 ```bash
 git clone https://github.com/kuzzleio/kuzzle.git
 ```
 
-Now install Kuzzle Backend packages using NPM. Make sure you have installed a `C++11 compatible compiler` or the packages will not build properly, causing problems during the installation process or when running.
+Now install Kuzzle packages using NPM. Make sure you have installed a `C++11 compatible compiler` or the packages will not build properly, causing problems during the installation process or when running.
 
 ```bash
 # open the cloned kuzzle repo folder
@@ -145,7 +145,7 @@ cd kuzzle
 npm install
 ```
 
-The package installation can take a few minutes. Once it completes, install Kuzzle Backend plugins by creating and running the following bash script:
+The package installation can take a few minutes. Once it completes, install Kuzzle plugins by creating and running the following bash script:
 
 ```bash
 #!/bin/bash
@@ -162,21 +162,21 @@ for PLUGIN in ./plugins/enabled/*; do
 done
 ```
 
-#### Configure Kuzzle Backend components
+#### Configure Kuzzle components
 
-Kuzzle Backend uses Elasticsearch and Redis as a persistent and key-value store, respectively. If you are running these components on the same machine as your Kuzzle Backend installation then no additional configuration is needed. If; however, you are running them on another host, you will need to create or update the `.kuzzlerc` file in your installation folder.
+Kuzzle uses Elasticsearch and Redis as a persistent and key-value store, respectively. If you are running these components on the same machine as your Kuzzle installation then no additional configuration is needed. If; however, you are running them on another host, you will need to create or update the `.kuzzlerc` file in your installation folder.
 
 Please refer to the [configuration section]({{ site_base_path }}guide/essentials/configuration) for more details.
 
 ### Setup PM2
 
-Now that you have installed Kuzzle Backend and loaded its plugins, lets install pm2. Run the following command to install pm2 using NPM as a global package so that it can be run from anywhere on your machine:
+Now that you have installed Kuzzle and loaded its plugins, lets install pm2. Run the following command to install pm2 using NPM as a global package so that it can be run from anywhere on your machine:
 
 ```bash
 sudo npm install -g pm2
 ```
 
-Now create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file) that sets the application and environment details. We will create the `KUZZLE_BACKEND_INSTALL_DIR` environment variable to store the location of our Kuzzle Backend installation:
+Now create a [pm2 configuration file](http://pm2.keymetrics.io/docs/usage/application-declaration/#process-file) that sets the application and environment details. We will create the `KUZZLE_BACKEND_INSTALL_DIR` environment variable to store the location of our Kuzzle installation:
 
 ```bash
 export KUZZLE_BACKEND_INSTALL_DIR="~/kuzzle/kuzzle"
@@ -194,7 +194,7 @@ echo "apps:
   " > ~/kuzzle/pm2.conf.yml
 ```
 
-Finally we are ready to run Kuzzle Backend. Run the following commands:
+Finally we are ready to run Kuzzle. Run the following commands:
 
 ```bash
 pm2 start ~/kuzzle/pm2.conf.yml
@@ -212,7 +212,7 @@ You should then see the following display on your terminal:
 └───────────────┴────┴──────┴───────┴────────┴─────────┴────────┴─────┴───────────┴──────┴──────────┘
 ```
 
-Check the logs to make sure Kuzzle Backend is running:
+Check the logs to make sure Kuzzle is running:
 
 ```bash
 pm2 logs
@@ -224,25 +224,25 @@ You should see the following message (it may take a few seconds):
 # kuzzle_1         | [✔] Kuzzle server ready
 ```
 
-Kuzzle Backend HTTP API can now be reached at http://localhost:7512/ and the socket.io and websocket channels can also be reached on port 7512 of localhost.
+Kuzzle's HTTP API can now be reached at http://localhost:7512/ and the socket.io and websocket channels can also be reached on port 7512 of localhost.
 
 #### PM2 cheatsheet
 
-Below are a list of useful commands to help you manage your Kuzzle Backend installation running with pm2:
+Below are a list of useful commands to help you manage your Kuzzle installation running with pm2:
 
 ```bash
 # Display Kuzzle logs:
 pm2 logs
 
-# Start, restart or stop Kuzzle Backend:
+# Start, restart or stop Kuzzle:
 pm2 "<start|stop|restart>" kuzzlebackend
 
-# Access the Kuzzle Backend CLI
+# Access the Kuzzle CLI
 ~/kuzzle/bin/kuzzle -h
 ```
 
 <aside class="success">
-Now that the Kuzzle Backend is up and running you can [install]({{ site_base_path }}guide/essentials/installing-console) the <strong>Kuzzle Admin Console</strong>.
+Now that Kuzzlee is up and running you can [install]({{ site_base_path }}guide/essentials/installing-console) the <strong>Kuzzle Admin Console</strong>.
 </aside>
 
 ### Troubleshooting

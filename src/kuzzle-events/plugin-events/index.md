@@ -10,7 +10,7 @@ order: 100
 
 {{{since "1.0.0"}}}
 
-Plugins can [add new controllers and actions]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) to Kuzzle Backend's API. These new controllers and actions behave exactly like native controllers and actions. Kuzzle Backend will automatically trigger events when requests are sent to these plugin controllers.
+Plugins can [add new controllers and actions]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) to Kuzzle's API. These new controllers and actions behave exactly like native controllers and actions. Kuzzle will automatically trigger events when requests are sent to these plugin controllers.
 
 ---
 

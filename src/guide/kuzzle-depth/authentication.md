@@ -18,7 +18,7 @@ In the diagram below, we highlighted components of Kuzzle's server [architecture
 ![read_scenario_http_overview]({{ site_base_path }}assets/images/request-scenarios/auth/Authentication_Overview.png)
 
 * The Auth Controller: to manage the authentication process.
-* The Passport Wrapper: to interface between Kuzzle Backend and the Passport.js library.
+* The Passport Wrapper: to interface between Kuzzle and the Passport.js library.
 * The User and Token [Repositories](https://github.com/kuzzleio/kuzzle/tree/master/lib/api/core/models/repositories): to store user data.
 * The Auth Strategy: to identify and validate a user's credential using a [dedicated plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy).
 
@@ -179,7 +179,7 @@ Location: http://<kuzzle>/_login/github?code=OAUTH2_CODE
 
 * The *Passport Oauth Plugin* forwards the *OAuth2 Authorization Code* to the *OAuth2 Provider* (GitHub) in order to retrieve the OAuth2 Token and the user's third-party profile data.
 
-* The *Passport Oauth Plugin* then checks internal storage to see if a user already exists with the given *OAuth2 Provider* ID (GitHub ID), and returns their `kuid` to the *Passport Wrapper* _(Note: If no user is found in Kuzzle Backend, the plugin can either deny the authentication request or create the user automatically depending on the settings)._
+* The *Passport Oauth Plugin* then checks internal storage to see if a user already exists with the given *OAuth2 Provider* ID (GitHub ID), and returns their `kuid` to the *Passport Wrapper* _(Note: If no user is found in Kuzzle, the plugin can either deny the authentication request or create the user automatically depending on the settings)._
 
 * The *Passport Wrapper* calls the *User Repository* to get the profile data for the user with the given `kuid`.
 

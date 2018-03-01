@@ -60,7 +60,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates or replaces this user in Kuzzle Backend's database layer.
+Creates or replaces this user in Kuzzle.
 
 ---
 

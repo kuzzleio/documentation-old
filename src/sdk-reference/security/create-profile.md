@@ -106,7 +106,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new profile in Kuzzle Backend.
+Create a new profile in Kuzzle.
 
 <aside class="notice">
 There is a small delay between profile creation and its availability in our search layer (usually a couple of seconds).
@@ -132,7 +132,7 @@ That means that a profile that was just created might not be returned by the <co
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``replaceIfExist`` | boolean | If the same profile already exists: throw an error if sets to false. Replace the existing profile otherwise | ``false`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 

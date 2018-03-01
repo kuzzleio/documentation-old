@@ -66,4 +66,4 @@ title: count
 
 Returns the number of users/applications that have subscribed to the same documents that you have.
 
-The expected parameter is the `roomId` returned by Kuzzle Backend during the subscription.
+The expected parameter is the `roomId` returned by Kuzzle during the subscription.

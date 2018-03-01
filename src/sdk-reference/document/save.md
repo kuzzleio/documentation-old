@@ -54,10 +54,10 @@ try {
 }
 ```
 
-Saves this document into Kuzzle Backend.
+Saves this document into Kuzzle.
 
-If this is a new document, this function will create it in Kuzzle Backend and the ``id`` property will be made available.  
-Otherwise, this method will replace the latest version of the document in Kuzzle Backend with the content of this current object.
+If this is a new document, this function will create it in Kuzzle and the ``id`` property will be made available.  
+Otherwise, this method will replace the latest version of the document in Kuzzle with the content of this current object.
 
 ---
 
@@ -76,7 +76,7 @@ Otherwise, this method will replace the latest version of the document in Kuzzle
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 

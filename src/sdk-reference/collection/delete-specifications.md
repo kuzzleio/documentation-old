@@ -87,7 +87,7 @@ Delete specifications linked to the collection object.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait for the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 

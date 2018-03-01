@@ -83,7 +83,7 @@ catch (ErrorException $e) {
 ]
 ```
 
-Given a Kuzzle Backend user id (`kuid`), retrieves the list of permissions granted to that user.
+Given a Kuzzle user id (`kuid`), retrieves the list of permissions granted to that user.
 
 ---
 

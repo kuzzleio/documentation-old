@@ -9,7 +9,7 @@ order: 100
 
 Plugins allow you to add asynchronous listener functions to a set of [events]({{ site_base_path }}kuzzle-events/). We call these asynchronous listener functions **hooks**.
 
-Kuzzle Backend will execute these hooks and then continue processing, not waiting for the hook to return a result. The hook will receive event data that can be used in the context of the hook but cannot be changed to affect the current Kuzzle Backend process.
+Kuzzle will execute these hooks and then continue processing, not waiting for the hook to return a result. The hook will receive event data that can be used in the context of the hook but cannot be changed to affect the current Kuzzle process.
 
 Hooks are declared in the `hooks` property of the Plugin class, which accepts an object who's keys are the name of the events to listen to and values are the names of the corresponding functions to execute.
 
@@ -17,9 +17,9 @@ Hooks are declared in the `hooks` property of the Plugin class, which accepts an
 
 ## Executing Hooks in Separate Thread
 
-Plugins that declare hooks can be executed in a separate thread from that of the Kuzzle Backend process. This is handy when you want to perform heavy computations that can have a negative impact on Kuzzle Backend's performance.
+Plugins that declare hooks can be executed in a separate thread from that of the Kuzzle process. This is handy when you want to perform heavy computations that can have a negative impact on Kuzzle's performance.
 
-To achieve this, Kuzzle Backend must specify a `threads` property in the [custom configuration]({{ site_base_path }}guide/essentials/configuration) of the Plugin.
+To achieve this, Kuzzle must specify a `threads` property in the [custom configuration]({{ site_base_path }}guide/essentials/configuration) of the Plugin.
 
 ```json
 {
@@ -34,8 +34,8 @@ To achieve this, Kuzzle Backend must specify a `threads` property in the [custom
 }
 ```
 
-If this number of threads is greater than 0, Kuzzle Backend will launch the plugin on up to that number of separate threads.  
-If there is more than one thread for a single plugin, Kuzzle Backend will use round-robin scheduling to select a thread each time an event is triggered.
+If this number of threads is greater than 0, Kuzzle will launch the plugin on up to that number of separate threads.  
+If there is more than one thread for a single plugin, Kuzzle will use round-robin scheduling to select a thread each time an event is triggered.
 
 <aside class="notice">
 Since the Plugin is isolated in separate processes, the <a href="{{ site_base_path }}plugins-reference/plugins-context">plugin context</a> provided to worker plugins does not contain <code>accessors</code>

@@ -11,7 +11,7 @@ order: 100
 
 {{{since "1.0.0"}}}
 
-Sends a request to [Kuzzle Backend API]({{ site_base_path }}api-documentation).
+Sends a request to Kuzzle's [API]({{ site_base_path }}api-documentation).
 
 
 #### With promises
@@ -62,9 +62,9 @@ context.accessors.execute(request, (error, request) => {
 ## `storage`
 
 This accessor allows plugins to manage their own private and secure permanent storage.  
-Data stored in this space cannot be accessed from Kuzzle Backend, or from the Kuzzle Backend API, or from another plugin.
+Data stored in this space cannot be accessed from Kuzzle, or from the API, or from another plugin.
 
-The only way a document stored in this space can be accessed outside the plugin is if that plugin extends Kuzzle Backend's API with a route exposing that data.
+The only way a document stored in this space can be accessed outside the plugin is if that plugin extends the API with a route exposing that data.
 
 This storage space is a whole [data index]({{ site_base_path }}guide/essentials/persisted/#working-with-persistent-data).  
 
@@ -147,10 +147,10 @@ context.accessors.storage.createCollection('someCollection', {
 
 This accessor can be used to dynamically add or remove [authentication strategies]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy)
 
-In a cluster context, Kuzzle Backend will add/remove strategies on all nodes.
+In a cluster context, Kuzzle will add/remove strategies on all server nodes.
 
 <aside class="warning">
-Plugins should also make sure that, when changing the list of available strategies dynamically, that list will remain the same after a Kuzzle Backend node restarts.
+Plugins should also make sure that, when changing the list of available strategies dynamically, that list will remain the same after a Kuzzle server node restarts.
 </aside>
 
 ### `add`
@@ -250,7 +250,7 @@ Triggers a custom event, listened to by [`hooks`]({{ site_base_path }}/plugins-r
 
 **Note** 
 
-The name of the resulting event being triggered will have the format `"plugin-" + pluginName + ":" + eventName` in order to avoid any conflicts with Kuzzle Backend native events.
+The name of the resulting event being triggered will have the format `"plugin-" + pluginName + ":" + eventName` in order to avoid any conflicts with Kuzzle native events.
 
 **Usage**
 

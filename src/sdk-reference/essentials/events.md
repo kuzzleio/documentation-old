@@ -7,7 +7,7 @@ order: 100
 
 # Events
 
-The [Kuzzle instance]({{ site_base_path }}sdk-reference/kuzzle/) periodically emits named events that provide useful updates about the state of the Kuzzle Backend client. To subscribe to these events, use the [addListener]({{ site_base_path }}sdk-reference/kuzzle/add-listener) function and specify the event name and the callback function that will be executed when the event is emitted. To unsubscribe to an event, use the [removeListener]({{ site_base_path }}sdk-reference/kuzzle/remove-listener) function, specifying the name of the event to remove.
+The [Kuzzle instance]({{ site_base_path }}sdk-reference/kuzzle/) periodically emits named events that provide useful updates about the state of the Kuzzle client. To subscribe to these events, use the [addListener]({{ site_base_path }}sdk-reference/kuzzle/add-listener) function and specify the event name and the callback function that will be executed when the event is emitted. To unsubscribe to an event, use the [removeListener]({{ site_base_path }}sdk-reference/kuzzle/remove-listener) function, specifying the name of the event to remove.
 
 ---
 
@@ -17,16 +17,16 @@ The [Kuzzle instance]({{ site_base_path }}sdk-reference/kuzzle/) periodically em
 
 | Event Name | Callback arguments | Description |
 |------------|-------------|-------------|
-| ``connected`` | _(none)_ | Triggered when the SDK has successfully connected to Kuzzle Backend |
-| ``discarded`` | `error` (object) | Triggered when Kuzzle Backend rejects a request (e.g. request can't be parsed, request too large, ...) |
+| ``connected`` | _(none)_ | Triggered when the SDK has successfully connected to Kuzzle |
+| ``discarded`` | `error` (object) | Triggered when Kuzzle rejects a request (e.g. request can't be parsed, request too large, ...) |
 | ``disconnected`` | _(none)_ |  Triggered when the current session has been unexpectedly disconnected |
 | ``loginAttempt`` | `{ "success": <boolean>, "error": "<error message>" }` |  Triggered when a login attempt completes, either with a success or a failure result |
-| ``networkError`` | `error` (object) | Triggered when the SDK has failed to connect to Kuzzle Backend. Does not trigger offline mode. |
+| ``networkError`` | `error` (object) | Triggered when the SDK has failed to connect to Kuzzle. Does not trigger offline mode. |
 | ``offlineQueuePop`` | `query` (object) | Triggered whenever a request is removed from the offline queue. |
 | ``offlineQueuePush`` | `{ "query": <object>, "cb": <function> }` | Triggered whenever a request is added to the offline queue |
-| ``queryError`` | `error` (object), `query` (object) | Triggered whenever Kuzzle Backend responds with an error |
-| ``reconnected`` | _(none)_ |  Triggered when the current session has reconnected to Kuzzle Backend after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
-| ``tokenExpired`` | _(none)_ |  Triggered when Kuzzle Backend rejected a request because the authentication token expired |
+| ``queryError`` | `error` (object), `query` (object) | Triggered whenever Kuzzle responds with an error |
+| ``reconnected`` | _(none)_ |  Triggered when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
+| ``tokenExpired`` | _(none)_ |  Triggered when Kuzzle rejected a request because the authentication token expired |
 
 ### Room
 

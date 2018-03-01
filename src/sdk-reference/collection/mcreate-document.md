@@ -123,5 +123,5 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback Response
 
-Returns a `JSON object` containing the raw Kuzzle Backend response.
+Returns a `JSON object` containing the raw Kuzzle response.
 Can return a 206 partial error in cases where some documents could not be created.

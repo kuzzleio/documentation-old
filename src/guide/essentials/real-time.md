@@ -7,13 +7,13 @@ order: 600
 
 # Real-time Notifications
 
-Kuzzle Backend features highly customizable notifications thanks to its **pub/sub engine** which lets you configure live subscriptions to any dataset. These live subscriptions are a great way to **track** changes in specific subsets of data.
+Kuzzle features highly customizable notifications thanks to its **real-time engine** which lets you configure live subscriptions to any dataset. These live subscriptions are a great way to **track** changes in specific subsets of data.
 
 ---
 
 ## Introduction
 
-Imagine you are developing a collaborative TO-DO application like [this](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) one. All the TO-DO items are persisted in Kuzzle Backend (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
+Imagine you are developing a collaborative TO-DO application like [this](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) one. All the TO-DO items are persisted in Kuzzle (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
 
 But imagine that one of the users (let's call her Ann), adds a new TO-DO item. In order for other users (let's call them Tom and Matt) to display these new item, they need to perform a new document search on the corresponding data collection. They will not see the new items until they refresh (or restart) their application.
 
@@ -124,7 +124,7 @@ This subscription is very handy and will notify Tom about the events 1, 2 and 3 
 
 ### Subscription with filters
 
-Kuzzle Backend ships with a powerful filtering tool named [Koncorde]({{ site_base_path }}kuzzle-dsl/). It enables you to perform fine-grained selections on the documents you want to subscribe to.
+Kuzzle ships with a powerful filtering tool named [Koncorde]({{ site_base_path }}kuzzle-dsl/). It enables you to perform fine-grained selections on the documents you want to subscribe to.
 
 In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp]({{ site_base_path }}kuzzle-dsl/#regexp) filter.
 
