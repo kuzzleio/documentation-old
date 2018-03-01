@@ -43,4 +43,4 @@ And:
 }
 ```
 
-For more information, please refer to the [Koncorde documentation](https://www.npmjs.com/package/koncorde#filter-unique-identifier)
+For more information, please refer to the [Koncorde](https://www.npmjs.com/package/koncorde#filter-unique-identifier) documentation.

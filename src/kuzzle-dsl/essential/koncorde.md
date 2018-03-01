@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Koncorde
-description: Real-time percolation engine
+description: part of the real-time engine
 order: 0
 ---
 

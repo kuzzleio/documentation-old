@@ -118,7 +118,7 @@ The Notification bears some useful information about what just happened:
 
 We won't analyze the other attributes for the moment. Take a look at the [Notifications section of the API Reference]({{ site_base_path }}api-documentation/notifications) for a comprehensive list of available notification properties.
 
-This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Kuzzle Koncorde Reference]({{ site_base_path }}kuzzle-dsl/).
+This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for [Koncorde]({{ site_base_path }}kuzzle-dsl/).
 
 ---
 

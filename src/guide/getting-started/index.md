@@ -300,6 +300,6 @@ Having trouble? Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzz
 Now that you're more familiar with Kuzzle, dive even deeper to learn how to leverage its full capabilities:
 
 * take a look at the <a href="{{ site_base_path }}sdk-reference">SDK Reference</a>
-* learn how to use <a href="{{ site_base_path }}kuzzle-dsl">Kuzzle Koncorde</a> to create incredibly fine-grained and blazing-fast subscriptions
+* learn how to use <a href="{{ site_base_path }}kuzzle-dsl">Koncorde</a> to create incredibly fine-grained and blazing-fast subscriptions
 * follow our guide to learn how to implement <a href="{{ site_base_path }}guide/essentials/user-authentication/#perform-a-basic-login">basic authentication</a>
 * follow our guide to learn how to implement <a href="{{ site_base_path }}guide/essentials/security/">manage users and setup fine-grained access control</a>
