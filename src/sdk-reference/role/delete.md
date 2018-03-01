@@ -55,7 +55,7 @@ catch(ErrorException $e) {
 }
 ```
 
-Deletes the role from Kuzzle Backend's database layer.
+Deletes the role from Kuzzle.
 
 ---
 

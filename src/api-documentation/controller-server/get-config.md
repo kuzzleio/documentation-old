@@ -140,8 +140,8 @@ title: getConfig
 }
 ```
 
-Returns the current Kuzzle Backend configuration.
+Returns the current Kuzzle configuration.
 
 <aside class="warning" style="float: none;clear: left;width: 46%;">
-This route should only be accessible to administrators, as it might return sensitive information about the Kuzzle Backend configuration.
+This route should only be accessible to administrators, as it might return sensitive information about the Kuzzle configuration.
 </aside>

@@ -52,7 +52,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Deletes all the keys of the database dedicated to client applications (the reserved space for Kuzzle Backend is unaffected).
+Deletes all the keys of the database dedicated to client applications (the reserved space for Kuzzle is unaffected).
 
 [[_Redis documentation_]](https://redis.io/commands/flushdb)
 

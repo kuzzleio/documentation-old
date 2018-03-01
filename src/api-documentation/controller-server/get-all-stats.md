@@ -69,7 +69,7 @@ title: getAllStats
 }
 ```
 
-Kuzzle Backend monitors its internal activities and makes regular snapshots. This command returns all the stored statistics.
+Kuzzle monitors its internal activities and makes regular snapshots. This command returns all the stored statistics.
 By default, snapshots are made every 10 seconds and they are stored for 1 hour.
 
 These statistics include:

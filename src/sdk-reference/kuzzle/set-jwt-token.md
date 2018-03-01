@@ -54,7 +54,7 @@ $kuzzle->setJwtToken('some jwt token');
  $kuzzle->setJwtToken($authenticationResponse);
 ```
 
-Sets the internal JWT token which will be used when making requests to Kuzzle Backend.
+Sets the internal JWT token which will be used when making requests to Kuzzle.
 
 If the provided token is valid, a `loginAttempt` event is fired with the following object:  
 `{ success: true }`

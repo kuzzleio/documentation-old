@@ -7,15 +7,15 @@ order: 700
 
 # Configuring Security
 
-Kuzzle Backend provides a full set of functionalities to configure fine-grained permissions to your data.
+Kuzzle provides a full set of functionalities to configure fine-grained permissions to your data.
 
 ---
 
 ## Initial Setup
 
-When Kuzzle Backend is first installed there is no administrator account and anonymous users (i.e. unauthenticated users) have administrative privileges.
+When Kuzzle is first installed there is no administrator account and anonymous users (i.e. unauthenticated users) have administrative privileges.
 
-To secure your Kuzzle Backend installation you will need to create an administrator account by either using the [Kuzzle Console]({{ site_base_path }}guide/essentials/running-console/#create-an-admin-account ) or using the [CLI]({{ site_base_path }}guide/essentials/cli/#createfirstadmin) tool.  
+To secure your Kuzzle installation you will need to create an administrator account by either using the [Kuzzle Console]({{ site_base_path }}guide/essentials/running-console/#create-an-admin-account ) or using the [CLI]({{ site_base_path }}guide/essentials/cli/#createfirstadmin) tool.  
 
 Once the administrator account is created, you can remove anonymous access rights and properly secure your installation. You can then use the Kuzzle Console or Kuzzle API to create new users and assign them permissions.
 
@@ -27,7 +27,7 @@ User-level permissions control what data a specific user or set of users has acc
 
 ### Users, Profiles and Roles
 
-Kuzzle Backend's security engine links `users` to one or more `profiles`.  
+Kuzzle's security layer links `users` to one or more `profiles`.  
 You can think of a `profile` as a group of users that share the same permissions.
 
 The `profiles` themselves are made up of different groups of permissions, these groups are called `roles`.
@@ -69,7 +69,7 @@ The `action permission` value can be set to either:
 - a boolean. If `true`, the `role` allows the given action.
 - an object describing a dynamic right definition. For more information check out the [advanced roles documentation]({{ site_base_path }}guide/kuzzle-depth/roles-definitions)).
 
-As an example, below is the `role` definition that Kuzzle Backend uses to request authorization from the anonymous user once the administrator account is created and anonymous access is blocked.
+As an example, below is the `role` definition that Kuzzle uses to request authorization from the anonymous user once the administrator account is created and anonymous access is blocked.
 
 ```js
 var anonymousRole = {
@@ -87,7 +87,7 @@ var anonymousRole = {
 
 In the above `role` definition, anonymous users can perform the `login`, `checkToken` and `getCurrentUser` actions of the `auth` controller.
 
-For a list of available controllers and actions from the Kuzzle Backend API by sending a `GET` request as follows:
+For a list of available controllers and actions from Kuzzle's API by sending a `GET` request as follows:
 
 ```bash
 curl -X GET http://localhost:7512/\?pretty\=true
@@ -178,7 +178,7 @@ These three profiles will provide the following restrictions:
 
 ## Composing Rules
 
-In Kuzzle Backend, permissions follow the [Whitelist](https://en.wikipedia.org/wiki/Whitelist) strategy, which means that **an action must be explicitly allowed** by at least one role of the user profile.
+In Kuzzle, permissions follow the [Whitelist](https://en.wikipedia.org/wiki/Whitelist) strategy, which means that **an action must be explicitly allowed** by at least one role of the user profile.
 
 This means that:
 
@@ -191,7 +191,7 @@ So far, we've seen how to set permissions based on the user profile. Now, let's 
 
 **This type of rules depends on the context and cannot be expressed as a simple boolean**.
 
-Kuzzle Backend lets you define these complex permissions using custom functions, which determine if a user has access to a particular resource depending on the context.
+Kuzzle lets you define these complex permissions using custom functions, which determine if a user has access to a particular resource depending on the context.
 
 In our chat example, a complex rule can be expressed as follows:
 

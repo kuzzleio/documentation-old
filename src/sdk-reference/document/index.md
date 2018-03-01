@@ -65,7 +65,7 @@ $document = $dataCollection->document($documentId, $documentContent);
 $document = new Document($dataCollection, $documentId, $documentContent);
 ```
 
-Kuzzle Backend handles two types of documents: realtime messages and stored documents. Document is the object representation of one of these document types.
+Kuzzle handles two types of documents: realtime messages and stored documents. Document is the object representation of one of these document types.
 
 ---
 
@@ -77,7 +77,7 @@ Kuzzle Backend handles two types of documents: realtime messages and stored docu
 | ``content`` | JSON Object | Initializes this document with the provided content |
 | ``documentId`` | string | ID of an existing document. |
 
-**Note:**  this constructor won't make any call to Kuzzle Backend. When providing only a document ID, the `refresh` method should be called to retrieve the corresponding document content.
+**Note:**  this constructor won't make any call to Kuzzle. When providing only a document ID, the `refresh` method should be called to retrieve the corresponding document content.
 
 ---
 

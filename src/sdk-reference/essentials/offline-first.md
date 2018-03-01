@@ -15,8 +15,8 @@ When using an unstable network connection, an application must maintain a normal
 
 There are two ways to handle a network disconnect:
 
-* Automatically reconnect to Kuzzle Backend when possible, and enter *offline mode* in the meantime. This is the default behavior.
-* Stop all further communication with Kuzzle Backend and invalidate the current instance and all its children. The application will have to manually reconnect once the network is available. To do so, simply set the ``autoReconnect`` option to ``false`` when creating the Kuzzle SDK instance.
+* Automatically reconnect to Kuzzle when possible, and enter *offline mode* in the meantime. This is the default behavior.
+* Stop all further communication with Kuzzle and invalidate the current instance and all its children. The application will have to manually reconnect once the network is available. To do so, simply set the ``autoReconnect`` option to ``false`` when creating the SDK instance.
 
 *Offline mode* refers to the time between a ``disconnected`` and a ``reconnected`` event (see [Events]({{ site_base_path }}sdk-reference/essentials/events)).
 
@@ -24,7 +24,7 @@ There are two ways to handle a network disconnect:
 
 ## Subscriptions
 
-A subscription opens a permanent pipe between the Kuzzle SDK client and the Kuzzle Backend. Whenever a real-time message or a modified document matches a subscription filter, a notification is sent by Kuzzle Backend to the Kuzzle SDK client (for instance, see the [Collection.subscribe]({{ site_base_path }}sdk-reference/collection/subscribe) method).
+A subscription opens a permanent pipe between the client and Kuzzle. Whenever a real-time message or a modified document matches a subscription filter, a notification is sent by Kuzzle to the client (for instance, see the [Collection.subscribe]({{ site_base_path }}sdk-reference/collection/subscribe) method).
 
 While in offline mode, the Kuzzle SDK client maintains all subscriptions configurations and, by default, when Kuzzle SDK client reconnects, all subscriptions are renewed. This behavior can be changed by setting the ``autoResubscribe`` to ``false``, in which case, each subscription will have to be renewed manually using the ``Room.renew`` method.
 
@@ -62,9 +62,9 @@ If <code>autoReplay</code> is set, then all pending requests will be automatical
 
 Once a ``reconnected`` event is fired, you may replay the content of the queue with the ``playQueue`` method. Or you can let the Kuzzle SDK replay it automatically upon reconnection by setting the ``autoReplay`` option to ``true``.  
 
-Requests are sent to Kuzzle Backend with a ``replayInterval`` delay between each call.
+Requests are sent to Kuzzle with a ``replayInterval`` delay between each call.
 
-Any request made while the Kuzzle SDK client is processing the queue will be delayed until the queue is empty. This ensures that all requests are played in the right order.
+Any request made while the client is processing the queue will be delayed until the queue is empty. This ensures that all requests are played in the right order.
 
 ---
 

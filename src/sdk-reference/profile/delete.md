@@ -58,7 +58,7 @@ catch(ErrorException $e) {
 }
 ```
 
-Deletes this security profile from Kuzzle Backend.
+Deletes this security profile from Kuzzle.
 
 ---
 

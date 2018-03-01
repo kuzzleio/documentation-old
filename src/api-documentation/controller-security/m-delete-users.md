@@ -64,7 +64,7 @@ title: mDeleteUsers
 }
 ```
 
-Deletes a list of `users` objects from Kuzzle Backend's database layer given a list of [`<kuids>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).
+Deletes a list of `users` objects from Kuzzle given a list of [`<kuids>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).
 
 The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the users' deletion to be indexed (indexed users are available for `search`).

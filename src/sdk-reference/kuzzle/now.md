@@ -76,4 +76,4 @@ Retrieves the current Kuzzle time.
 
 ## Callback Response
 
-Returns an `integer` containing the current Kuzzle Backend time, encoded as an UTC Epoch time in milliseconds.
+Returns an `integer` containing the current Kuzzle time, encoded as an UTC Epoch time in milliseconds.

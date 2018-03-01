@@ -57,7 +57,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Deletes the user in Kuzzle Backend.
+Deletes the user in Kuzzle.
 
 ---
 

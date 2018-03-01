@@ -49,4 +49,4 @@ title: exists
 }
 ```
 
-Checks if a collection exists in Kuzzle Backend's database storage layer.
+Checks if a collection exists in Kuzzle.

@@ -85,7 +85,7 @@ Instantiates a new `Role` object, which defines a set of right policies.
 | ``content`` | JSON Object | Role content |
 | ``meta`` | JSON Object | Role metadata |
 
-**Note:**  this constructor won't make any call to Kuzzle Backend.
+**Note:**  this constructor won't make any call to Kuzzle.
 
 ---
 

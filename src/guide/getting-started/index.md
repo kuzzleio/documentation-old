@@ -8,11 +8,11 @@ order: 0
 
 # Getting Started
 
-In this tutorial you will learn how to install, run and use **Kuzzle Backend** in just a few steps. We will walk you through creating an app that can **store** documents in the Kuzzle Backend and generate a **notification** for each new document.
+In this tutorial you will learn how to install, run and use **Kuzzle** in just a few steps. We will walk you through creating an app that can **store** documents in Kuzzle and generate a **notification** for each new document.
 
-## Running Kuzzle Backend
+## Running Kuzzle
 
-In this section we'll learn how to quickly get Kuzzle Backend up and running using our installation script.
+In this section we'll learn how to quickly get Kuzzle up and running using our installation script.
 
 Open a terminal and run the following command:
 
@@ -20,14 +20,14 @@ Open a terminal and run the following command:
 sudo bash -c "$(curl http://get.kuzzle.io/)"
 ```
 
-This command downloads and executes the installation script using root privileges. The script checks the system for a set of prerequisites and installs any necessary tools, like Docker or Docker Compose. When the installation is complete it will automatically run Kuzzle Backend.
+This command downloads and executes the installation script using root privileges. The script checks the system for a set of prerequisites and installs any necessary tools, like Docker or Docker Compose. When the installation is complete it will automatically run Kuzzle.
 
 <aside class="notice">
-Running a script with root privileges is not the only way to install Kuzzle Backend (although it is the easiest way). To avoid using <code>sudo</code>, you may want to look at <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">these</a> alternative installation methods.
+Running a script with root privileges is not the only way to install Kuzzle (although it is the easiest way). To avoid using <code>sudo</code>, you may want to look at <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">these</a> alternative installation methods.
 </aside>
 
 <aside class="notice">
-You can also install Kuzzle Backend <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">manually</a>.
+You can also install Kuzzle <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">manually</a>.
 </aside>
 
 Once the installation process is complete, you will see the following message:
@@ -36,7 +36,7 @@ Once the installation process is complete, you will see the following message:
 # [✔] Kuzzle is running!
 ```
 
-Your Kuzzle Backend is now running! To test it, you can explore the main HTTP API by clicking this <a href="http://localhost:7512?pretty=true">link</a> or by using cURL on the command line:
+Your Kuzzle is now running! To test it, you can explore the main HTTP API by clicking this <a href="http://localhost:7512?pretty=true">link</a> or by using cURL on the command line:
 
 ```bash
 curl "http://localhost:7512/?pretty=true"
@@ -45,7 +45,7 @@ curl "http://localhost:7512/?pretty=true"
 If everything is working you should see a JSON document that contains a list of API endpoints.
 
 <aside class="success">
-Congratulations! You have completed the Kuzzle Backend installation, it will now accept requests on <code>localhost:7512</code>:
+Congratulations! You have completed the Kuzzle installation, it will now accept requests on <code>localhost:7512</code>:
 <ul>
   <li>via <strong>HTTP</strong></li>
   <li>via <strong>Websocket</strong> clients (use our <a href="https://github.com/kuzzleio/sdk-javascript">Javascript SDK</a>)</li>
@@ -63,24 +63,24 @@ Having trouble?
 
 #### What now?
 
-Now that Kuzzle Backend is up and running, you can start playing around with it:
+Now that Kuzzle is up and running, you can start playing around with it:
 
-* install <a href="{{ site_base_path }}guide/essentials/installing-backoffice">Kuzzle Console</a>, a handy way to manage data and security in your Kuzzle Backend installation
+* install <a href="{{ site_base_path }}guide/essentials/installing-backoffice">Kuzzle Console</a>, a handy way to manage data and security in your Kuzzle installation
 * install a <a href="{{ site_base_path }}sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
  * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_base_path }}guide/getting-started/#sdk-play-time">Fun with SDKs</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
  * <a href="https://github.com/kuzzleio/sdk-android">Android</a>;
 * explore the <a href="{{ site_base_path }}api-documentation">Kuzzle API</a> documentation
-* install Kuzzle Backend <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">without Docker</a>
+* install Kuzzle <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">without Docker</a>
 
 ## Fun with SDKs
 
-It's time to play with the [Kuzzle SDK]({{ site_base_path }}sdk-reference). In this section, we will store a document and subscribe to notifications in the Kuzzle Backend using the Javascript SDK.
+It's time to play with the [Kuzzle SDK]({{ site_base_path }}sdk-reference). In this section, we will store a document and subscribe to notifications in Kuzzle using the Javascript SDK.
 
 Before proceeding, please make sure your system has these programs installed:
 
 * **Node.js** version 6 or higher (<a href="https://nodejs.org/en/download/">instructions here</a>)
-* Kuzzle Backend
+* Kuzzle
 
 ### Prepare your environment
 
@@ -102,13 +102,13 @@ Then, create an `init.js` file and start by adding the code below. This will loa
 const Kuzzle = require('kuzzle-sdk')
 ```
 
-Next we will instantiate a client that will automatically connect to the Kuzzle Backend via websockets. If your Kuzzle Backend is not running on localhost, replace it with the corresponding server name or ip address. Here we also specify 'playground' as the default index that the client will query:
+Next we will instantiate a client that will automatically connect to Kuzzle via websockets. If Kuzzle is not running on localhost, replace it with the corresponding server name or ip address. Here we also specify 'playground' as the default index that the client will query:
 
 ```javascript
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 ```
 
-Next we will add a listener to detect if there is a problem with our connection to the Kuzzle Backend:
+Next we will add a listener to detect if there is a problem with our connection to Kuzzle:
 
 ```javascript
 kuzzle.on("networkError",function(error){
@@ -116,7 +116,7 @@ kuzzle.on("networkError",function(error){
 })
 ```
 
-Finally, we will add the code that will access the Kuzzle Backend to create a new index 'playground' and a new collection 'mycollection' that we will use to store data later on.
+Finally, we will add the code that will access Kuzzle to create a new index 'playground' and a new collection 'mycollection' that we will use to store data later on.
 
 ```javascript
 kuzzle
@@ -137,7 +137,7 @@ Your `init.js` file should now look like this:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // add a listener to detect any connection problems
@@ -160,10 +160,10 @@ kuzzle
 
 This code does the following:
 * loads the `Kuzzle SDK` from its NPM package
-* creates an instance of the SDK and connects it to the Kuzzle Backend running on `localhost` (and selects the `playground` as default index),
+* creates an instance of the SDK and connects it to Kuzzle running on `localhost` (and selects the `playground` as default index),
 * creates the `playground` index,
 * creates the `mycollection` collection (within the `playground` index),
-* disconnects from Kuzzle Backend after the collection is created or if an error occurs.
+* disconnects from Kuzzle after the collection is created or if an error occurs.
 
 Run your file in Node.js
 
@@ -193,7 +193,7 @@ Create a `create.js` file with following code:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // create an object that contains the message we want to store
@@ -215,7 +215,7 @@ This code does the following:
 * creates a new document containing the message "Hello, World" in `mycollection` within the `playground` index,
 * logs a success message to the console if everything went fine,
 * logs an error message if any of the previous actions failed,
-* disconnects from Kuzzle Backend after the document is created or if an error occurs.
+* disconnects from Kuzzle after the document is created or if an error occurs.
 
 Run your file in Node.js
 
@@ -224,7 +224,7 @@ node create.js
 ```
 
 <aside class="success">
-You have now successfully stored your first document into the Kuzzle Backend. Click <a href="{{ site_base_path }}guide/essentials/installing-backoffice">here</a> to see how you can use the
+You have now successfully stored your first document into Kuzzle. Click <a href="{{ site_base_path }}guide/essentials/installing-backoffice">here</a> to see how you can use the 
   <strong>Kuzzle Console</strong> to browse your collection and confirm that your document was saved.
 </aside>
 
@@ -236,7 +236,7 @@ _You can find more resources about Kuzzle SDK in the [SDK Reference]({{ site_bas
 
 ### Subscribe to data changes (pub/sub)
 
-Kuzzle Backend provides pub/sub features that can be used to trigger real-time notifications based on the state of your data (for a deep-dive on notifications check out the **Room** class definition in the <a href="{{ site_base_path }}sdk-reference/room">SDK Reference</a>).
+Kuzzle provides pub/sub features that can be used to trigger real-time notifications based on the state of your data (for a deep-dive on notifications check out the **Room** class definition in the <a href="{{ site_base_path }}sdk-reference/room">SDK Reference</a>).
 
 Let's get started. Create a `subscribe.js` file with following code:
 
@@ -244,7 +244,7 @@ Let's get started. Create a `subscribe.js` file with following code:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // create a reference to the 'mycollection' collection
@@ -278,7 +278,7 @@ Now in another terminal, launch the `create.js` file that we created in the prev
 node create.js
 ```
 
-This will create a new document in the Kuzzle Backend which will trigger a [notification]({{ site_base_path }}guide/essentials/real-time) in the `subscribe.js` app. Check the `subscribe.js` terminal to make sure a new log appears every time a document is created using the `create.js` app:
+This will create a new document in Kuzzle which will trigger a [notification]({{ site_base_path }}guide/essentials/real-time) in the `subscribe.js` app. Check the `subscribe.js` terminal to make sure a new log appears every time a document is created using the `create.js` app:
 
 ```bash
 message received from kuzzle: { status: 200,
@@ -297,7 +297,7 @@ Having trouble? Get in touch with us on <a href="https://gitter.im/kuzzleio/kuzz
 
 ## Where do we go from here?
 
-Now that you're more familiar with Kuzzle Backend, dive even deeper to learn how to leverage its full capabilities:
+Now that you're more familiar with Kuzzle, dive even deeper to learn how to leverage its full capabilities:
 
 * take a look at the <a href="{{ site_base_path }}sdk-reference">SDK Reference</a>
 * learn how to use <a href="{{ site_base_path }}kuzzle-dsl">Kuzzle Koncorde</a> to create incredibly fine-grained and blazing-fast subscriptions
