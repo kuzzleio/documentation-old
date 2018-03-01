@@ -54,7 +54,7 @@ But, how does this work in Kuzzle? **How do we select the data that we want to s
 Let's dive into the implementation of the Collaborative TO-DO list application.
 
 <aside class="notice">
-All the following examples are written in Javascript, therefore using the Javascript Kuzzle SDK. If this is not your usual development language, take a look at the different flavors of the `subscribe` method in the <a href="{{ site_base_path }}sdk-reference/#subscribe">SDK Reference</a>).
+All the following examples are written in Javascript, therefore using the Javascript Kuzzle SDK. If this is not your usual development language, take a look at the different flavors of the `subscribe` method in the <a href="{{ site_base_path }}sdk-reference/collection/subscribe">SDK Reference</a>).
 </aside>
 
 ---
@@ -126,7 +126,7 @@ This subscription is very handy and will notify Tom about the events 1, 2 and 3 
 
 Kuzzle ships with a powerful filtering tool named [Koncorde]({{ site_base_path }}kuzzle-dsl/). It enables you to perform fine-grained selections on the documents you want to subscribe to.
 
-In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp]({{ site_base_path }}kuzzle-dsl/#regexp) filter.
+In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp]({{ site_base_path }}kuzzle-dsl/terms/regexp) filter.
 
 
 ```javascript

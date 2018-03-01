@@ -10,7 +10,7 @@ order: 0
 In this section we'll demonstrate two ways to install Kuzzle: by using Docker and by installing it manually.
 
 <aside class="notice">
-The easiest way to install Kuzzle is by using our <a href="{{ site_base_path }}guide/getting-started/#running-kuzzle-backend">installation script</a>.
+The easiest way to install Kuzzle is by using our <a href="{{ site_base_path }}guide/getting-started/#running-kuzzle">installation script</a>.
 </aside>
 
 ## Docker Installation

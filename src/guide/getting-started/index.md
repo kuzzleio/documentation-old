@@ -27,7 +27,7 @@ Running a script with root privileges is not the only way to install Kuzzle (alt
 </aside>
 
 <aside class="notice">
-You can also install Kuzzle <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">manually</a>.
+You can also install Kuzzle <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manual-installation">manually</a>.
 </aside>
 
 Once the installation process is complete, you will see the following message:
@@ -67,11 +67,11 @@ Now that Kuzzle is up and running, you can start playing around with it:
 
 * install <a href="{{ site_base_path }}guide/essentials/installing-console">Kuzzle Admin Console</a>, a handy way to manage data and security in your Kuzzle installation
 * install a <a href="{{ site_base_path }}sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
- * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_base_path }}guide/getting-started/#sdk-play-time">Fun with SDKs</a> section below),
+ * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_base_path }}guide/getting-started/#fun-with-sdks">Fun with SDKs</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
  * <a href="https://github.com/kuzzleio/sdk-android">Android</a>;
 * explore the <a href="{{ site_base_path }}api-documentation">Kuzzle API</a> documentation
-* install Kuzzle <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manually">without Docker</a>
+* install Kuzzle <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manual-installation">without Docker</a>
 
 ## Fun with SDKs
 
@@ -301,5 +301,5 @@ Now that you're more familiar with Kuzzle, dive even deeper to learn how to leve
 
 * take a look at the <a href="{{ site_base_path }}sdk-reference">SDK Reference</a>
 * learn how to use <a href="{{ site_base_path }}kuzzle-dsl">Koncorde</a> to create incredibly fine-grained and blazing-fast subscriptions
-* follow our guide to learn how to implement <a href="{{ site_base_path }}guide/essentials/user-authentication/#perform-a-basic-login">basic authentication</a>
+* follow our guide to learn how to implement <a href="{{ site_base_path }}guide/essentials/user-authentication/#local-strategy">basic authentication</a>
 * follow our guide to learn how to implement <a href="{{ site_base_path }}guide/essentials/security/">manage users and setup fine-grained access control</a>

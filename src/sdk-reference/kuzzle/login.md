@@ -80,7 +80,7 @@ If the login attempt fails, the `loginAttempt` event is fired with the following
 `{ success: false, error: 'error message' }`
 
 <aside class="notice">
-This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error. <a href="{{ site_base_path }}guide/essentials/user-authentication/#perform-a-basic-login">Learn more.</a>
+This method is non-queuable, meaning that during offline mode, it will be discarded and the callback will be called with an error. <a href="{{ site_base_path }}guide/essentials/user-authentication/#local-strategy">Learn more.</a>
 </aside>
 
 ---

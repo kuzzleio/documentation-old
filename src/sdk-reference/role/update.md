@@ -101,7 +101,7 @@ Updates the role object in Kuzzle.
   </p>
 </aside>
 
-To get more information about Kuzzle permissions, please refer to our [permissions guide]({{ site_base_path }}guide/essentials/security/#permissions).
+To get more information about Kuzzle permissions, please refer to our [permissions guide]({{ site_base_path }}guide/essentials/security/#user-permissions).
 
 ---
 

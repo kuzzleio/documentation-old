@@ -50,7 +50,7 @@ Let's take a look at what this validation schema does:
 * It ensures that `price` exists and is a `Number`.
 * It ensures that `productDescription` is a `String` and has a value when none is provided.
 
-For a complete list of validation patterns please refer to our [Validation Patterns Reference]({{ site_base_path }}validation-reference/fields/#fields).
+For a complete list of validation patterns please refer to our [Validation Patterns Reference]({{ site_base_path }}validation-reference/fields).
 
 ---
 

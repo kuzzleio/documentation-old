@@ -73,7 +73,7 @@ Authenticates a user.
 
 **Type:** string
 
-The name of the authentication [strategy]({{ site_base_path }}guide/essentials/security/#authentication) used to log the user in.
+The name of the authentication [strategy]({{ site_base_path }}guide/kuzzle-depth/authentication/#authentication) used to log the user in.
 
 #### `expiresIn` (optional)
 

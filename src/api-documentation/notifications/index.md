@@ -123,7 +123,7 @@ Subscription notification example:
 
 ## Server Notifications
 
-Server notifications are sent to all of a client's subscriptions when their [authentication token]({{ site_base_path }}guide/essentials/user-authentication/#user-authentication-user-authentication) has expired.
+Server notifications are sent to all of a client's subscriptions when their [authentication token]({{ site_base_path }}guide/essentials/user-authentication) has expired.
 
 | Notification field | Type | Value |
 |--------------------|------|------------------|
