@@ -2,6 +2,6 @@
 layout: category-members.html
 algolia: true
 title: Essentials
-description: Kuzzle Koncorde
+description: Koncorde
 order: 0
 ---
