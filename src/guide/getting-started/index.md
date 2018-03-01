@@ -65,7 +65,7 @@ Having trouble?
 
 Now that Kuzzle is up and running, you can start playing around with it:
 
-* install <a href="{{ site_base_path }}guide/essentials/installing-backoffice">Kuzzle Console</a>, a handy way to manage data and security in your Kuzzle installation
+* install <a href="{{ site_base_path }}guide/essentials/installing-console">Kuzzle Admin Console</a>, a handy way to manage data and security in your Kuzzle installation
 * install a <a href="{{ site_base_path }}sdk-reference/">Kuzzle SDK</a> to power-up one of your projects:
  * <a href="https://github.com/kuzzleio/sdk-javascript">Javascript</a> (check the <a href="{{ site_base_path }}guide/getting-started/#sdk-play-time">Fun with SDKs</a> section below),
  * <a href="https://github.com/kuzzleio/sdk-php">PHP</a>,
@@ -224,8 +224,8 @@ node create.js
 ```
 
 <aside class="success">
-You have now successfully stored your first document into Kuzzle. Click <a href="{{ site_base_path }}guide/essentials/installing-backoffice">here</a> to see how you can use the 
-  <strong>Kuzzle Console</strong> to browse your collection and confirm that your document was saved.
+You have now successfully stored your first document into Kuzzle. Click <a href="{{ site_base_path }}guide/essentials/installing-console">here</a> to see how you can use the 
+  <strong>Kuzzle Admin Console</strong> to browse your collection and confirm that your document was saved.
 </aside>
 
 <aside class="notice">

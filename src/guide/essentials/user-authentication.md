@@ -11,7 +11,7 @@ order: 750
 
 Once we have created security [roles and profiles]({{ site_base_path }}guide/essentials/security), we can go on to create the users that will access the Kuzzle.
 
-Users can be created by either using the [Kuzzle Admin Console]({{ site_base_path }}guide/essentials/running-console), the [API]({{ site_base_path }}api-documentation/controller-security/create-user/), or the [SDK]({{ site_base_path }}sdk-reference/security/create-user/).
+Users can be created by either using the [Kuzzle Admin Console]({{ site_base_path }}guide/essentials/installing-console), the [API]({{ site_base_path }}api-documentation/controller-security/create-user/), or the [SDK]({{ site_base_path }}sdk-reference/security/create-user/).
 
 When creating a user, you will need to assign them one or more [profiles]({{ site_base_path }}guide/essentials/security/#profile-definition).
 
