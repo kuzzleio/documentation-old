@@ -1,17 +1,17 @@
 ---
 layout: full.html
 algolia: true
-title: The Kuzzle Plugin Engine
+title: Kuzzle's Plugin Engine
 order: 1000
 ---
 
-# The Kuzzle Plugin Engine
+# Kuzzle's Plugin Engine
 
 Our prepackaged multi-feature backend solution will meet most project requirements, but in some cases you may want to **implement your own business logic**.
 
 For example, imagine you are developing a mobile application that accesses a **third-party payment platform**, such as Braintree, through this third-party's API. For **security** reasons, you will want to avoid accessing the third-party's API directly from the mobile device. Also, you will not want users to purchase more items than are currently in stock, so your backend will need to **monitor** what has been purchased. To achieve all this, you will want to develop a custom Plugin that lets Kuzzle communicate directly with the third-party payment platform.
 
-The **[Kuzzle Plugin Engine]({{ site_base_path }}plugins-reference)** is a powerful feature that ensures that Kuzzle meets any project requirement. With The Kuzzle Plugin Engine you can:
+Kuzzle's **[Plugin Engine]({{ site_base_path }}plugins-reference)** is a powerful feature that ensures that Kuzzle meets any project requirement:
 
 * select from a set of prebuilt plugins (such as the [OAuth2 Authentication Plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth) or the [MQTT Plugin](https://github.com/kuzzleio/kuzzle-plugin-mqtt)).
 * [create your own plugin]({{ site_base_path }}plugins-reference/plugins-features) to meet your specific requirements.
