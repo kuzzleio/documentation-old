@@ -11,7 +11,7 @@ subheader-title: Introduction
 
 # The Plugin Engine
 
-The plugin engine lets you extend Kuzzle's functionality by adding code modules that offer auxiliary features. These modules can:
+The Plugin Engine lets you extend Kuzzle's functionality by adding code modules that offer auxiliary features. These modules can:
 
 - Listen asynchronously to events (on the same thread as the Kuzzle process or on a separate one)
 - Listen synchronously to events (and intercept a request)

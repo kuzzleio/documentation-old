@@ -55,7 +55,7 @@ Please click [here]({{ site_base_path }}guide/essentials/security) for more deta
 
 ## Customize your backend
 
-Kuzzle can be tailored to your specific requirements thanks to the plugin engine, which lets you:
+Kuzzle can be tailored to your specific requirements thanks to the Plugin Engine, which lets you:
 
 * trigger actions on data-related events
 * intercept the data flow at any point of its lifecycle
