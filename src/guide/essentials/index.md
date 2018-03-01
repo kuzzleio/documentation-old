@@ -14,7 +14,7 @@ Kuzzle is a ready-to-use, **open-source**, **on-premises** suite that allows you
 
 * **connect your apps** using our available SDKs and multiple protocols.
 * **manage your data** using the built-in storage engine.
-* **trigger real-time notifications** using our pub/sub engine.
+* **trigger real-time notifications** using our real-time engine.
 * **manage authentication** using Oauth2 and many other authentication strategies.
 * **customize your backend** using the plugins engine and your own code.
 
