@@ -59,7 +59,7 @@ You should get the following response:
 
 ## Kuzzle User Identifier (kuid)
 
-When a user is created, Kuzzle will automatically generate a random unique identifier for that user. This id is referred to as a `kuid` and is used by the security engine to identify a unique user and link them to multiple external identifiers (email, phone number, etc.) for use with different authentication plugins.
+When a user is created, Kuzzle will automatically generate a random unique identifier for that user. This id is referred to as a `kuid` and is used by the security layer to identify a unique user and link them to multiple external identifiers (email, phone number, etc.) for use with different authentication plugins.
 
 This system allows a user to login to Kuzzle using different strategies and, potentially, different login identifiers, while still being considered as an unique entity by Kuzzle.
 
