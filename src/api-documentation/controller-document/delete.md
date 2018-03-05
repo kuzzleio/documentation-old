@@ -54,7 +54,7 @@ title: delete
 }
 ```
 
-Given a `documentId`, deletes the corresponding document from Kuzzle Backend's database.
+Given a `documentId`, deletes the corresponding document from Kuzzle.
 
 Only documents in the persistent data storage layer can be deleted.
 

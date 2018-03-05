@@ -2,7 +2,7 @@
 layout: category-childrens.html
 title: Elasticsearch
 order: 800
-description: Learn how to query persistent data in Kuzzle Backend
+description: Learn how to query persistent data in Kuzzle
 icon: fa-book
 ---
 

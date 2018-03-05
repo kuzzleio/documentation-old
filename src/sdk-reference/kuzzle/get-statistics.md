@@ -213,7 +213,7 @@ $statistics = $kuzzle->getStatistics($startTime, $stopTime);
 ]
 ```
 
-Kuzzle Backend monitors active connections, and ongoing/completed/failed requests.  
+Kuzzle monitors active connections, and ongoing/completed/failed requests.  
 This method returns either the last statistics frame, or a set of frames starting from a provided timestamp.
 
 ---

@@ -50,4 +50,4 @@ title: create
 }
 ```
 
-Creates a new [index]({{ site_base_path }}guide/essentials/persisted) in Kuzzle Backend's persistent storage layer.
+Creates a new [index]({{ site_base_path }}guide/essentials/persisted) in Kuzzle.

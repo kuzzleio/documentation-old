@@ -58,7 +58,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Saves this user as restricted in Kuzzle Backend's database layer.
+Saves this user as restricted in Kuzzle.
 
 
 ---

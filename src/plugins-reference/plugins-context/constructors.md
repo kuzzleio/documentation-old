@@ -14,9 +14,9 @@ order: 200
 {{{since "1.0.0"}}}
 
 The `BaseValidationType` constructor provides a base to create your own validation types.
-It provides a common structure for all validation types in Kuzzle Backend.
+It provides a common structure for all validation types in Kuzzle.
 
-You can find an example of a type creation in the Kuzzle Backend 
+You can find an example of a type creation in the Kuzzle 
 [source code](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template).
 
 ---
@@ -518,11 +518,11 @@ someCollectionRepository.update({
 
 {{{since "1.0.0"}}}
 
-This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standard Kuzzle Backend request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard Kuzzle Backend [response]({{ site_base_path }}api-documentation/kuzzle-response).
+This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standard Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard Kuzzle [response]({{ site_base_path }}api-documentation/kuzzle-response).
 
 Network protocol specific headers can be added to the response. If the protocol can handle them,
 these headers will be used to configure the response sent to the client.    
-As Kuzzle Backend supports the HTTP protocol natively, this object handles HTTP headers special cases.
+As Kuzzle supports the HTTP protocol natively, this object handles HTTP headers special cases.
 Other network protocols headers are stored in raw format, and protocol plugins need to handle
 their own specific headers manually.
 
@@ -631,7 +631,7 @@ Getters
 | `context` | `RequestContext` | [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) object | Request connection context |
 | `error` | `KuzzleError` | `null` | Request error, if any |
 | `input` | `RequestInput` | [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) object | Request's parameters |
-| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle Backend API response]({{ site_base_path }}api-documentation/kuzzle-response) |
+| `response` | `RequestResponse` | Response view of the request, standardized as the expected [Kuzzle API response]({{ site_base_path }}api-documentation/kuzzle-response) |
 | `result` | *(varies)* | `null` | Request result, if any |
 
 
@@ -669,7 +669,7 @@ Adds a header `name` with value `value` to the response headers.
 For standard headers, if `name` already exists, then the provided `value` will be concatenated
 to the existing value, separated by a comma.  
 
-As Kuzzle Backend implements HTTP natively, this behavior changes for some HTTP specific headers
+As Kuzzle implements HTTP natively, this behavior changes for some HTTP specific headers
 to comply with the norm. For instance, `set-cookie` values are amended in an array, and other headers like `user-agent` or `host` can store only 1 value.
 
 
@@ -720,4 +720,4 @@ The `options` argument may contain the following properties:
 |------|------|----------------------------------|---------|
 | `status` | `integer` | HTTP status code | `200` |
 | `headers` | `object` | Protocol specific headers | `null` |
-| `raw` | `boolean` | Asks Kuzzle Backend to send the provided result directly, instead of encapsulating it in a Kuzzle Backend JSON response | `false` |
+| `raw` | `boolean` | Asks Kuzzle to send the provided result directly, instead of encapsulating it in a Kuzzle JSON response | `false` |

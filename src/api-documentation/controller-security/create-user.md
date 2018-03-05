@@ -125,7 +125,7 @@ title: createUser
 }
 ```
 
-Creates a new `user` in Kuzzle Backend's database layer.
+Creates a new `user` in Kuzzle.
 
 If an `_id` is provided in the query and if a user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) already exists, an error is returned.
 If not provided, the `_id` will be generated automatically.
@@ -138,6 +138,6 @@ The body contains the user data and must have the following properties:
 * `content` (JSON object): user global properties
   * This object must contain a `profileIds` properties, an array of strings listing the security [profiles]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles) that will be attached to the new user 
   * Any other property will be copied as additional global user information
-* `credentials` (JSON object): a description of how the new user can authenticate themselves to Kuzzle Backend
-  * Any number of credentials can be added, each with a key named after the [authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies) used to validate the credentials
-  * If the credentials object is left empty, the described user will be created by Kuzzle Backend but they will not be able log in
+* `credentials` (JSON object): a description of how the new user can authenticate themselves to Kuzzle
+  * Any number of credentials can be added, each with a key named after the [authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#exposing-authentication-strategies) used to validate the credentials
+  * If the credentials object is left empty, the described user will be created by Kuzzle but they will not be able log in

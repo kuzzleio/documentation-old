@@ -48,4 +48,4 @@ title: getStrategies
 }
 ```
 
-Get all authentication strategies registered in Kuzzle Backend
+Get all authentication strategies registered in Kuzzle

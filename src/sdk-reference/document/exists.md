@@ -49,7 +49,7 @@ try {
 }
 ```
 
-Checks if the document exists in Kuzzle Backend.
+Checks if the document exists in Kuzzle.
 
 ---
 
@@ -72,4 +72,4 @@ Checks if the document exists in Kuzzle Backend.
 
 ## Callback Response
 
-Return a boolean indicating whether or not the document exists in Kuzzle Backend.
+Return a boolean indicating whether or not the document exists in Kuzzle.

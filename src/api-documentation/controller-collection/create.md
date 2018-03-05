@@ -51,6 +51,6 @@ title: create
 }
 ```
 
-Creates a new [collection]({{ site_base_path }}guide/essentials/persisted) in Kuzzle Backend's persistent storage layer, in the provided `index`.
+Creates a new [collection]({{ site_base_path }}guide/essentials/persisted) in Kuzzle via the persistence engine, in the provided `index`.
 
 This method does nothing if the collection already exists.

@@ -7,7 +7,7 @@ order: 800
 
 # Request and Response Format
 
-Any access to a Kuzzle Backend resource must be made through a [request](https://github.com/kuzzleio/kuzzle-common-objects#request). The `Request` object is [sealed](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/seal), which means you cannot add or delete fields once the object is initialized. The `Request` state evolves along with the [lifecycle of the transaction]({{ site_base_path }}guide/essentials/request-and-response-format/#life-cycle).
+Any access to a Kuzzle resource must be made through a [request](https://github.com/kuzzleio/kuzzle-common-objects#request). The `Request` object is [sealed](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/seal), which means you cannot add or delete fields once the object is initialized. The `Request` state evolves along with the [lifecycle of the transaction]({{ site_base_path }}guide/essentials/request-and-response-format/#request-life-cycle).
 
 Let's take a look at the structure of the `Request` object.
 
@@ -81,7 +81,7 @@ RequestContext {
 The `status` attribute is a numeric code similar to a [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
 It is used to inform the client about the resulting status of the request (i.e. if an error occurred or not).
 
-### List of Status Codes Supported by Kuzzle Backend
+### List of Status Codes Supported by Kuzzle
 
 #### 1xx Processing
 
@@ -101,7 +101,7 @@ It is used to inform the client about the resulting status of the request (i.e. 
 
 #### 5xx Server Error
 
-* ``500``: Kuzzle Backend encountered an unexpected error (standard code for internal error).
+* ``500``: Kuzzle encountered an unexpected error (standard code for internal error).
 * ``503``: An external service is unavailable.
 
 ---
@@ -121,9 +121,9 @@ Here is how the request life-cycle works:
   - The `context` field is initialized with the connection status and ID.
   - The `input` field is initialized with the request parameters specified in the options.
   - The fields `error`, `result` and `response` contain `null`.
-* Kuzzle Backend receives the response. The corresponding controller handles it according to the `input` field.
+* Kuzzle receives the response. The corresponding controller handles it according to the `input` field.
   - The raw response of the controller is set to the `result` field.
-  - If an error occurs, Kuzzle Backend updates the `error` field via the `setError` method.
+  - If an error occurs, Kuzzle updates the `error` field via the `setError` method.
   - The `status` field is then set with an HTTP-compliant numeric code.
-  - Kuzzle Backend sets the `response` as per the [Kuzzle Backend Response API Standard]({{ site_base_path }}api-documentation/kuzzle-response)
-* Kuzzle Backend sends the response back to the client.
+  - Kuzzle sets the `response` as per the [Kuzzle Response API Standard]({{ site_base_path }}api-documentation/kuzzle-response)
+* Kuzzle sends the response back to the client.

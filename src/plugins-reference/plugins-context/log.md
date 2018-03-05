@@ -9,8 +9,8 @@ order: 400
 
 {{{since "1.0.0"}}}
 
-These methods can be used to send messages to Kuzzle Backend's logging system.  
-Different log levels are supported, and lower priority levels can be ignored depending on how the Kuzzle Backend is configured.
+These methods can be used to send messages to Kuzzle's logging system.  
+Different log levels are supported, and lower priority levels can be ignored depending on how Kuzzle is configured.
 
 The lower the log level, the higher its priority.
 

@@ -89,10 +89,10 @@ catch (ErrorException $e) {
 }
 ```
 
-Creates or replaces the profile in Kuzzle Backend.
+Creates or replaces the profile in Kuzzle.
 
 <aside class="warning">
-Saving the object will return an error if the linked roles have not been previously created in Kuzzle Backend.
+Saving the object will return an error if the linked roles have not been previously created in Kuzzle.
 </aside>
 
 ---

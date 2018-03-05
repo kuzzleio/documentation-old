@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Query Syntax
-description: learn how to send raw queries to Kuzzle Backend
+description: learn how to send raw queries to Kuzzle
 show-subheader: true
 subheader-title: Introduction
 order: 200

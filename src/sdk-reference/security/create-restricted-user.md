@@ -102,7 +102,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new restricted user in Kuzzle Backend.  
+Create a new restricted user in Kuzzle.  
 This function allows anonymous users to create a "restricted" user with predefined rights.
 
 <aside class="notice">

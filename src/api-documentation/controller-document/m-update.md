@@ -130,5 +130,5 @@ Returns a partial error (with status 206) if one or more documents cannot be upd
 The optional parameter `refresh` can be used
 with the value `wait_for` in order to wait for the document to be indexed (indexed documents are available for `search`).
 
-Conflicts may occur if the same document gets updated multiple times within a short timespan in a database cluster. When this happens, Kuzzle Backend will return an error.  
-You can set the `retryOnConflict` optional argument (with a retry count), to tell Kuzzle Backend to retry the document update a specified amount of times before rejecting the request with an error.
+Conflicts may occur if the same document gets updated multiple times within a short timespan in a database cluster. When this happens, Kuzzle will return an error.  
+You can set the `retryOnConflict` optional argument (with a retry count), to tell Kuzzle to retry the document update a specified amount of times before rejecting the request with an error.

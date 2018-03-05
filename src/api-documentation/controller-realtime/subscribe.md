@@ -211,10 +211,10 @@ title: subscribe
 </script>
 ```
 
-Subscription works differently in Kuzzle Backend than it does with a regular publish/subscribe protocol.
-In Kuzzle Backend, you don't exactly subscribe to a room or to a topic but, instead, you subscribe to documents.
+Subscription works differently in Kuzzle than it does with a regular publish/subscribe protocol.
+In Kuzzle, you don't exactly subscribe to a room or to a topic but, instead, you subscribe to documents.
 
-What it means is that, when you make a subscription request, you can send Kuzzle Backend a set of document or message filters that define when a notification is triggered.
+What it means is that, when you make a subscription request, you can send Kuzzle a set of document or message filters that define when a notification is triggered.
 Of course, you can also subscribe to a ``data collection`` with no other matching criteria,
 and then you'll effectively be listening to a "topic".
 
@@ -229,21 +229,21 @@ Once you have subscribed to a room, depending on your filters, you may receive a
 * when a document is created, updated or deleted and matches a filter
 * when a user enters or exits a room
 
-The good news is that you can tell Kuzzle Backend to only send notifications that are relevant to your application
+The good news is that you can tell Kuzzle to only send notifications that are relevant to your application
 by configuring your subscription request (see below).
 You can also create multiple subscriptions to the same room, each with different configurations.
-Kuzzle Backend will provide you with a channel for each of these subscriptions,
+Kuzzle will provide you with a channel for each of these subscriptions,
 allowing your application to handle these processes separately.
 
-The criteria is defined in Kuzzle Backend using [Kuzzle Koncorde]({{ site_base_path }}kuzzle-dsl)
+The criteria is defined in Kuzzle using [Koncorde]({{ site_base_path }}kuzzle-dsl)
 
 How subscription works:
 
-* => You send a subscription request to Kuzzle Backend
-* <= Kuzzle Backend responds with a ``roomId`` and a `channel`
+* => You send a subscription request to Kuzzle
+* <= Kuzzle responds with a ``roomId`` and a `channel`
 
 When using `websocket` or `socket.io` protocol, the client will start receiving [notifications]({{ site_base_path }}api-documentation/notifications) right away.  
 When using other protocols, such as `MQTT`, the client may have to perform these two extra steps:
 
 * => First listen to the ``channel`` provided in the response
-* <= Kuzzle Backend forwards the corresponding [notifications]({{ site_base_path }}api-documentation/notifications/) on that channel
+* <= Kuzzle forwards the corresponding [notifications]({{ site_base_path }}api-documentation/notifications/) on that channel

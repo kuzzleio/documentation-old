@@ -93,11 +93,11 @@ catch (ErrorException $e) {
 }
 ```
 
-Base method used to send queries to Kuzzle Backend, following the [API Documentation]({{ site_base_path }}api-documentation).
+Base method used to send queries to Kuzzle, following the [API Documentation]({{ site_base_path }}api-documentation).
 
 <aside class="warning">
 This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.<br/>
-Refer to the Kuzzle Backend API Reference <a href="{{ site_base_path }}api-documentation">here</a>
+Refer to Kuzzle's API Reference <a href="{{ site_base_path }}api-documentation">here</a>
 </aside>
 
 ---
@@ -143,4 +143,4 @@ Returns the `Kuzzle` SDK object to allow chaining.
 
 ## Callback Response
 
-Returns a `JSON object` containing the raw Kuzzle Backend response.
+Returns a `JSON object` containing the raw Kuzzle response.
