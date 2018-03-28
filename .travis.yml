@@ -1,22 +1,38 @@
 sudo: false
 language: node_js
 node_js:
-  - "6"
-
+- '6'
+env:
+  global:
+  - secure: qREG2WSpabHFuvw0IdCNnIwnCRYe9URxIaTOgAw5a5yCItjikSpXYNp5AZAC8TwIA9xh1Xb59r2RU+MLBazo70K5BU8Sdc+k2R1dV9+QxPPuziC/sJch6tgmJl/6BhjnmMKqIsWEsGpXTe1I0/hk2Uu4/JqZlK0KYxrPxzcox90sEDP4lathYPOAXjc5TTELgAIeHxGziI47UPXPjogDRksIc0A9ZBuWb+Ajc470Qn4M9wtg7Tm2xB9H79mlSVzduF5TpPK3q395Krg4/h0gjYgbOk8Nekd9Lqrm0a9dUWC4LwSBUm07obxZr7HabGh7lVqcCsljqUSc+5lBuca+K2os6njvqFPnfyT8E/ZyZDVydT33+wDI0nU5+ZgskMt0NIvRwqWUy7Au96VVCaQa5jVPS14DOIF3vBbT5vnkw50iCeg7HmW/lowoqpJqKlVuJJGufKAIGvcJbeEms8PCxq9j2TjXikmid8fCuOipH9tIckjwS2XtfswPySIJoH1d9Sdtqbm/ABB9cH8No8xx0Gj6uUQKFkl0/7lcWx4vmBIW78GyYKrqVYhyd9W00QFLg9spzBmw3/REch6Kj45YzrAYd6+AQNfIQ/H30Vu43bpUdLnuqt3FVSq+LxyAcKK7R72qy5NgrUz/y0ALU1o+Kbe+WDaRiFGzAvOQBKlO/Gs=
+  - secure: bDH0GRG+D/3vjpgqtTeYjiH0avtSLgvtx9gIFyB9EIwpIjkmz7Bi1vWfzYM1kQmcL8Nd2SpXKPJjniV3/N22Wl6adHigF8v8IbaFwbzhb1pja/5iqqj3UHuYt8dfYWWJYPONzA1SRmn0lQ/mYT0xxtmeNygCP6l7vZ3WQ/Fc15hdGafKtFg9Cqdek27r8oMMgPUrplXEIOxFjm59BcxRR6SCq4Yk6Amdfkktr9wLeO4i5ghFcm/Wt5xlY73kpEiwelQNPaXERedz5x7kDq/sGU+UIKGbDXuSa8ujmzwiK/Igp5ZHT3E1SCExgaHnVMYJY2VMbgHqx79Mew/G8a/c+OnQ9A7AlWWhB9MA0/75qUMeiQENi5rqXU2n2AvB8uBNkQYmxISmUPTYYLGyHXLmWbstnd8KyAE62/hh7WxHMHGD4BNFmPs68QMoeAHwIOoyGX4TfAZvhPV3XjaHlX21pHqEP1PdrCORWXeDA/tFZnnKS8dE2iA6sR2wAY/5yA7nVLKChrvS6ZaOFrRIIyl3KldeJV+0YntK0HRI0da2lnrlv2rVE77ysZ+vf4fRTOfLpQ/ToUqz7HI5UZjKseVLdVjLDTApc2FZJ2443DryqDWD0aNSEgikKulVxc0lGQTxgAHTJ2kZHTzstfn5MnDx1bGMBtVVxykviZvbq8SNOe8=
+  - secure: Mce3HSenklbG1jCxZyuERn/tecMqxhAV42UlQ+6P4gqwxOEVyr4j89AeTrKBnu2Y4nBRd8VdM0y5Y1QH5iK8bZ+IPCWjvWzHz+t+QQ5q5saJfZvRVesgL/P04+CXiK6Z7dEnjmE8zohSGntAIqq02iwgX/DM+Bhk03PXDgoKwQkhOF3gB4BjXaL94shreg1uGNhYpuApZRxBfkZt+rzRdOiCAAlbhsHOxJcluZVAMNo3U9Y1Rbh8dhei8ENqsY+9R7bstRfpKbflMU0W/PxnRjeWWUL8MCTKx4wjoFXd16rsi75hIXe4j/8L0CLraOiGc8DxROK9C3XPFblKIiKaeBj19EhLLJZoTINxoyIYYlrHGdvrmZ8MDPJhUSUH6kid2PoHzod8/9ddM8fbn1xO8+NJ18gqnEZuPDHJa+6oR/y2fb01mZTWyVyc2giNpzCLgCcj1kCLTqXpoEVr6Eb7Bi6lLHUh5f7eeR0HwsCoBVTtyy2SOhgBR2hGuZMGnE18V6s58yDi65RENGr4/YI5D1sYMRRoQgvPv7XG005PyNZHoWsnRopoDSPDHF2bvYvgNrET2HfRihoLZxMmN3L0HNHrYlb4g+qMnwexz7r2uUwflDsV0851mg1BYwBSB6U6eamU28HDunDjvsphpfGtwZZY51E0KTCasBD0X3KkDbo=
+  - CLOUDFRONT_DISTRIBUTION_ID=E3D6RP0POLCJMM
+  - BUCKET_NAME=docs.kuzzle.io
 addons:
   apt:
     packages:
     - jq
-
+    - python
+    - python-pip
 install:
 - npm install
-
+- pip install awscli --upgrade --user
 script:
-- bash ./bin/travis-script.sh
-
-after_success:
-- bash ./bin/travis-after-success.sh
-
-branches:
-  only:
-  - master
+- node index.js --gzip --algolia-private-key $ALGOLIA_KEY
+deploy:
+  on:
+    branch: master
+  provider: s3
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  bucket: "$BUCKET_NAME"
+  skip_cleanup: true
+  local_dir: build
+  cache_control: max-age=21600
+  region: us-west-2
+after_deploy:
+- aws s3 cp build/index.html s3://$BUCKET_NAME/index.html --website-redirect /guide/getting-started/
+- aws configure set preview.cloudfront true
+- aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID
+  --paths "/*"
