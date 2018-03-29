@@ -16,41 +16,25 @@ Sends a request to [Kuzzle API]({{ site_base_path }}api-documentation).
 
 #### With promises
 
-**`execute(request, [overloadProtection])`**
+**`execute(request)`**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `request` | `Request` | A [`Request`]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) to execute  |
-| `overloadProtection` | `Boolean` | Optional. Default: `true`. See [Overload Protection]({{ site_base_path }}plugins-reference/plugins-context/accessors/#overload-protection) |
 
 Returns a Promise, either resolved with the source `Request` object with its response part filled (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)), or rejected with a [KuzzleError object]({{ site_base_path }}plugins-reference/plugins-context/errors/).
 
 
 #### With callbacks
 
-**`execute(request, [overloadProtection], callback)`**
+**`execute(request, callback)`**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
 | `request` | `Request` | A [`Request`]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) to execute  |
-| `overloadProtection` | `Boolean` | Optional. Default: `true`. See [Overload Protection]({{ site_base_path }}plugins-reference/plugins-context/accessors/#overload-protection) |
 | `callback(error, request)` | `Function` | Function executed with the request's result |
 
 Upon completion, the `request` argument provided to the callback function will be the source request with its response part filled (see [Request attributes]({{ site_base_path }}plugins-reference/plugins-context/constructors/#attributes)).
-
-#### Overload protection
-
-Kuzzle server nodes feature a configurable overload-protection mechanism. When asking Kuzzle to execute an API request, there are three possible outcomes:
-
-* Kuzzle has room for that request: it is executed immediately
-* A lot of other requests are already running: it is delayed until time can be allocated to it
-* Kuzzle is overloaded: requests are rejected until room can be found again in the requests buffer
-
-Most of the time, plugins should go through that system when submitting requests. But some rare use cases require that requests must be executed within a predictible and constant delay, making this system impractical.  
-For those cases, plugins can disable the overload protection mechanism for specific requests.
-
-Be warned though that it is advised to only disable this protection if necessary, and only for a small set of requests.  
-If plugins have to handle rejected requests because Kuzzle gets overloaded, then disabling this protection to prevent such errors will only hide the problem instead of solving it. Instead, administrators are encouraged to either adjust the size of the request buffer in [Kuzzle's configuration]({{ site_base_path }}guide/essentials/configuration/), or to add more Kuzzle nodes to their infrastructure.
 
 #### Example
 
