@@ -12,21 +12,21 @@ title: rename
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.rename('key', 'newId', function (err, status) {
+kuzzle.memoryStorage.rename('key', 'newId', function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.renamePromise('key', 'newId')
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
 
 ```java
-kuzzle.memoryStorage.rename("key", "newId", new ResponseListener<String>() {
+kuzzle.memoryStorage.rename("key", "newId", new ResponseListener<Void>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -45,18 +45,13 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->rename('key', 'newId');
+  $kuzzle->memoryStorage()->rename('key', 'newId');
 }
 catch (ErrorException $e) {
 
 }
 ```
 
-> Callback response:
-
-```json
-"OK"
-```
 
 Renames a key to `newkey`. If `newkey` already exists, it is overwritten.
 
@@ -92,4 +87,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.

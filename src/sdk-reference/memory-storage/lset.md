@@ -12,21 +12,21 @@ title: lset
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.lset('key', 2, 'bar', function (err, status) {
+kuzzle.memoryStorage.lset('key', 2, 'bar', function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.lsetPromise('key', 2, 'bar')
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
 
 ```java
-kuzzle.memoryStorage.lset("key", 2, "bar", new ResponseListener<String>() {
+kuzzle.memoryStorage.lset("key", 2, "bar", new ResponseListener<Void>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -45,17 +45,11 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->lset('key', 2, 'bar');
+  $kuzzle->memoryStorage()->lset('key', 2, 'bar');
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Sets the list element at `index` with the provided value.
@@ -93,4 +87,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.

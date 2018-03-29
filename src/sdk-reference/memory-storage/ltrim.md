@@ -12,21 +12,21 @@ title: ltrim
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.ltrim('key', 1, 2, function (err, status) {
+kuzzle.memoryStorage.ltrim('key', 1, 2, function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.ltrimPromise('key', 1, 2)
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
 
 ```java
-kuzzle.memoryStorage.ltrim("key", 1, 2, new ResponseListener<String>() {
+kuzzle.memoryStorage.ltrim("key", 1, 2, new ResponseListener<Void>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -45,17 +45,11 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->ltrim('key', 1, 2);
+  $kuzzle->memoryStorage()->ltrim('key', 1, 2);
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Trims an existing list so that it will contain only the specified range of elements specified.
@@ -93,4 +87,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.

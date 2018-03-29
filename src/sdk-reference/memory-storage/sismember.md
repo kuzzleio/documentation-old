@@ -12,21 +12,21 @@ title: sismember
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.sismember('key', 'member', function (err, status) {
+kuzzle.memoryStorage.sismember('key', 'member', function (err, isMember) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.sismemberPromise('key', 'member')
-  .then(status => {
+  .then(isMember => {
     // resolved once the action has completed
   });
 ```
 
 ```java
-kuzzle.memoryStorage.sismember("key", "member", new ResponseListener<Integer>() {
+kuzzle.memoryStorage.sismember("key", "member", new ResponseListener<Boolean>() {
   @Override
-  public void onSuccess(int status) {
+  public void onSuccess(Boolean isMember) {
     // callback called once the action has completed
   }
 
@@ -45,7 +45,7 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->sismember('key', 'member');
+  $isMember = $kuzzle->memoryStorage()->sismember('key', 'member');
 }
 catch (ErrorException $e) {
 
@@ -55,7 +55,7 @@ catch (ErrorException $e) {
 > Callback response:
 
 ```json
-1
+true
 ```
 
 Checks if `member` is a member of the set of unique values stored at `key`.
@@ -86,4 +86,5 @@ Checks if `member` is a member of the set of unique values stored at `key`.
 
 ## Callback response
 
-Resolves to an integer indicating if the provided value is a member of the set (`1`) or not (`0`).
+Resolves to a boolean telling if `member` is a member of the set.
+

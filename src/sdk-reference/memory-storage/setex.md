@@ -12,21 +12,21 @@ title: setex
 
 ```js
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.memoryStorage.setex('key', 'value', 42, function (err, status) {
+kuzzle.memoryStorage.setex('key', 'value', 42, function (err) {
   // callback called once the action has completed
 });
 
 // Using promises (NodeJS only)
 kuzzle.memoryStorage.setexPromise('key', 'value', 42)
-  .then(status => {
+  .then(() => {
     // resolved once the action has completed
   });
 ```
 
 ```java
-kuzzle.memoryStorage.setex("key", "value", 42, new ResponseListener<String>() {
+kuzzle.memoryStorage.setex("key", "value", 42, new ResponseListener<Void>() {
   @Override
-  public void onSuccess(String status) {
+  public void onSuccess(Void v) {
     // callback called once the action has completed
   }
 
@@ -45,17 +45,11 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 try {
-  $status = $kuzzle->memoryStorage()->setex('key', 'value', 42);
+  $kuzzle->memoryStorage()->setex('key', 'value', 42);
 }
 catch (ErrorException $e) {
 
 }
-```
-
-> Callback response:
-
-```json
-"OK"
 ```
 
 Sets a key with the provided value, and an expiration delay expressed in seconds. If the key does not exist, it is created beforehand.
@@ -93,4 +87,4 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ## Callback response
 
-Resolves to a simple "OK" string.
+Resolves if successful. No value is returned.
