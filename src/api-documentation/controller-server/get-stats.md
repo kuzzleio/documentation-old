@@ -15,7 +15,7 @@ title: getStats
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`  
-**Method:** `POST`
+**Method:** `GET`
 </p>
 </blockquote>
 
