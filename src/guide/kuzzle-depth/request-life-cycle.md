@@ -7,7 +7,7 @@ order: 0
 
 # Request Life-Cycle
 
-In this section we are going to focus on how requests are processed by Kuzzle Backend. We are going to analyze the life-cycle of a request in order to review Kuzzle Backend's internal architecture. 
+In this section we are going to focus on how requests are processed by Kuzzle Backend. We are going to analyze the life-cycle of a request in order to review Kuzzle Backend's internal architecture.
 
 Kuzzle Backend has two main modes of communication:
 
@@ -155,58 +155,10 @@ The following diagram shows how a request flows between the client application, 
 ---
 
 
-### Writing persistent data
-
-This subsection describes the process for writing **persistent** data using the "_create_" action (see the [API Documentation]({{ site_base_path }}api-documentation/controller-document/create)).
-
-![persistence_overview]({{ site_base_path }}assets/images/request-scenarios/persistence/overview.png)
-
-The following diagram shows how a request flows between the client application, the different Kuzzle Backend components, and the external services:
-
-![persistence_scenario_details]({{ site_base_path }}assets/images/request-scenarios/persistence/details.png)
-
-* A client sends new content to Kuzzle, either via an HTTP request, through a Websocket connection or using a custom plugin protocol.
-* The Proxy forwards the Request through the Proxy Entry Point to the Funnel.
-
-The formatted Request `input` looks like the following:
-
-* The Proxy forwards the request through the Proxy Entry Point to the Funnel. The formatted `input` request looks like this:
-```javascript
-{
-  "controller": "document",
-  "action": "create",
-  "resource": {
-    "index": "mainindex",
-    "collection": "users"
-  },
-  "body": {
-    "firstName": "Grace",
-    "lastName": "Hopper",
-    "age": 85,
-    "location": {
-      "lat": 32.692742,
-      "lon": -97.114127
-    },
-    "city": "NYC",
-    "hobby": "computer"
-  }
-}
-```
-
-* The Funnel forwards the request to the Document Controller.
-
-* The Document Controller sends the request to the Storage Engine, which sends the request to the Storage Service.
-
-* Once the Storage Engine gets the response back, it in turn sends a response to the Document Controller.
-
-* The Document Controller wraps the response and sends it back to the client.
-
-
-
 ## Asynchronous Communication
 
 In an asynchronous request, Kuzzle Backend will receive a request over one channel, process it, and trigger a response over another channel. In order to receive the response, the Client must subscribe to the trigger. Because two separate channels are used, the request and response do not need to be made by the same Client nor do they need to be made sequentially.
-
+, on all registered network protocols
 This form of communication is generally referred to as publish/subscribe, because on the one side a Client is **subscribing** to a channel and on the other side a Client is **publishing** to a channel.
 
 This subsection describes the life-cycle of real-time notifications which implement the [Publish/Subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) pattern.
