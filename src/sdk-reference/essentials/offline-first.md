@@ -2,6 +2,7 @@
 layout: full.html
 algolia: true
 title: Offline first
+order: 400
 ---
 
 # Offline first
