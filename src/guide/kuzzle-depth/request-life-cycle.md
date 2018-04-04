@@ -1,4 +1,4 @@
----
+y---
 layout: full.html
 algolia: true
 title: Request Life-Cycle
@@ -7,7 +7,7 @@ order: 0
 
 # Request Life-Cycle
 
-In this section we are going to focus on how requests are processed by Kuzzle. We are going to analyze the life-cycle of a request in order to review Kuzzle server's internal architecture. 
+In this section we are going to focus on how requests are processed by Kuzzle. We are going to analyze the life-cycle of a request in order to review Kuzzle server's internal architecture.
 
 Kuzzle has two main modes of communication:
 
@@ -49,7 +49,7 @@ The following diagram shows how a request flows between the client application, 
   "controller": "document",
   "action": "get",
   "resource": {
-    "index": "mainindex",
+    "index": "myindex",
     "collection": "users",
     "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
   }
@@ -64,7 +64,7 @@ The following diagram shows how a request flows between the client application, 
 
 ```javascript
 {
-  "_index": "mainindex",
+  "_index": "myindex",
   "_type": "users",
   "_id": "739c26bc-7a09-469a-803d-623c4045b0cb",
   "_version": 1,
@@ -126,7 +126,7 @@ The following diagram shows how a request flows between the client application, 
   "controller": "read",
   "action": "get",
   "resource": {
-    "index": "mainindex",
+    "index": "myindex",
     "collection": "users",
     "_id": "739c26bc-7a09-469a-803d-623c4045b0cb"
   }
@@ -141,7 +141,7 @@ The following diagram shows how a request flows between the client application, 
 
 ```javascript
 {
-  "_index": "mainindex",
+  "_index": "myindex",
   "_type": "users",
   "_id": "739c26bc-7a09-469a-803d-623c4045b0cb",
   "_version": 1,
@@ -188,7 +188,7 @@ The following diagram shows how a client can subscribe to a channel.
 {
   "controller": "realtime",
   "action": "subscribe",
-  "index": "mainindex",
+  "index": "myindex",
   "collection": "users",
   "body": {
     "equals": {
@@ -206,7 +206,7 @@ The following diagram shows how a client can subscribe to a channel.
   "controller": "realtime",
   "action": "subscribe",
   "resource": {
-    "index": "mainindex",
+    "index": "myindex",
     "collection": "users"
   },
   "body": {
@@ -235,7 +235,7 @@ The following diagram shows how a client can subscribe to a channel.
   "error": null,
   "controller": "realtime",
   "action": "subscribe",
-  "index": "mainindex",
+  "index": "myindex",
   "collection": "users",
   "result": {
     "roomId": "78c5b0ba-fead-4535-945c-8d64a7927459",
