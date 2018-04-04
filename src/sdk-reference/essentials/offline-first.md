@@ -15,8 +15,8 @@ When using an unstable network connection, an application must maintain a normal
 
 There are two ways to handle a network disconnect:
 
-* Automatically reconnect to Kuzzle when possible, and enter *offline mode* in the meantime. This is the default behavior.
 * Stop all further communication with Kuzzle and invalidate the current instance and all its children. The application will have to manually reconnect once the network is available. To do so, simply set the ``autoReconnect`` option to ``false`` when creating the SDK instance.
+* Reconnect automatically to Kuzzle when possible, and enter *offline mode* in the meantime. This is the default behavior.
 
 *Offline mode* refers to the time between a ``disconnected`` and a ``reconnected`` event (see [Events]({{ site_base_path }}sdk-reference/essentials/events)).
 
@@ -42,7 +42,7 @@ The queue itself can be configured using the ``queueTTL`` and ``queueMaxSize`` o
 
 ---
 
-## Filtering Requests to be Queued
+## Filter Requests to be Queued
 
 By default, when queuing is first activated, all requests are queued.
 

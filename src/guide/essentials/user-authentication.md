@@ -69,7 +69,7 @@ If you're interested for a more in-depth explanation on how all of this work, th
 
 ## Authentication Strategies
 
-Once a user has been created, they can access resources in Kuzzle as permitted by their security profile. However; in order to access these resources they will first need to identify & authenticate themselves using an authentication strategy. The authentication strategy defines what credentials are used and how Kuzzle should validate them. Kuzzle supports multiple authentication strategies, giving you more flexibility when building your security layer: use [Oauth](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), Kerberos, Salesforce, and many more. And, if none of these suit your needs, follow our [Plugin Documentation]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) to learn how to build a custom authentication strategy. 
+Once a user has been created, they can access resources in Kuzzle as permitted by their security profile. However; in order to access these resources they will first need to identify & authenticate themselves using an authentication strategy. The authentication strategy defines what credentials are used and how Kuzzle should validate them. Kuzzle supports multiple authentication strategies, giving you more flexibility when building your security layer: use [Oauth](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), Kerberos, Salesforce, and many more. And, if none of these suit your needs, follow our [Plugin Documentation]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) to learn how to build a custom authentication strategy.
 
 To request access to Kuzzle, a user must first send an [authentication request]({{ site_base_path }}api-documentation/controller-auth/login). Kuzzle will validate the credentials it receives in the request using the predefined authentication strategy and return a [JSON Web Token](https://tools.ietf.org/html/rfc7519) if the user credentials are valid.
 
@@ -94,26 +94,25 @@ Then, let's create a `login.js` file that contains the following code:
 ```javascript
 const Kuzzle = require('kuzzle-sdk')
 
-var kuzzle = new Kuzzle('localhost', () => {
-  kuzzle
-    .loginPromise('local', {
-      username: 'admin',
-      password: 'test'
-    })
-    .then(() => {
-    console.log('You are now logged in!')
-    })
-    .catch(err => {
-      console.error(err.message)
-    })
-})
+const kuzzle = new Kuzzle('localhost')
+
+kuzzle
+  .connectPromise()
+  .then(() => loginPromise('local', {username: '<username>', password: '<password>'})
+  .then(() => {
+    console.log('logged!')
+  })
+  .catch(err => {
+    console.error(err.message)
+  })
 ```
 
-This code will:
+The code above does the following:
 
-* load the Kuzzle Node.js SDK
-* connect to the Kuzzle
-* login using username `jondoe` and password `letmein`
+* loads the `Kuzzle` SDK from the NPM package,
+* instantiates a new SDK object
+* connects it to a remote Kuzzle server
+* performs a login with the provided username and password
 
 Let's try it out! Run the `index.js` using Node.js:
 
