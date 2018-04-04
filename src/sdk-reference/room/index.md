@@ -51,7 +51,7 @@ Room room = new Room(dataCollection, filters, options);
 ```
 
 The `Room` object is the result of a subscription request, allowing you to manipulate the subscription itself.
-A `Room` object is an [EventEmitter](https://nodejs.org/api/events.html) instance, so that we can listen to subription notifications like this:
+A `Room` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/event-emitter/) instance, so that we can listen to subription notifications.
 
 
 ---

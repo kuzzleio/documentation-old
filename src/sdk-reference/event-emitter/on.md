@@ -5,25 +5,28 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: addListener
+title: on (addListener)
 ---
 
-# addListener
+# on
+_alias: `addListener`_
 
 ```js
-  var callback = function () {
-    // Actions to perform when receiving a 'connected' global event
-  };
-  kuzzle.addListener('connected', callback);
+var callback = function () {
+  // Actions to perform when receiving a 'connected' global event
+};
+
+kuzzle.on('connected', callback);
 ```
 
 ```java
 EventListener eventListener = new EventListener() {
   @Override
   public void trigger(Object... args) {
-    // Actions to perform when receiving a 'subscribed' global event
+    // Actions to perform when receiving a 'connected' global event
   }
 };
+
 kuzzle.addListener(Event.connected, eventListener);
 ```
 
@@ -40,15 +43,15 @@ Adds a listener to an event. When an event is fired, listeners are called in the
 
 ---
 
-## addListener(event, listener)
+## on(event, listener)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``event`` | string | One of the event described in the ``Event Handling`` section of this documentation |
+| ``event`` | string | One of the event described in the [Event Handling]({{ site_base_path }}sdk-reference/essentials/events/) section of this documentation |
 | ``listener`` | function | The function to call each time one of the registered event is fired |
 
 ---
 
 ## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `KuzzleEventEmitter` object to allow chaining.
