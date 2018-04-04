@@ -13,10 +13,11 @@ title: room
 ```js
 let room = kuzzle
   .collection('collection', 'index')
-  .room()
-  .renew({in: {field: ['some', 'new', 'filter']}}, function (err, res) {
+  .room({in: {field: ['some', 'filter']}})
+  .on('document', functon (err, res) {
     // handle notifications
-  });
+  })
+  .subscribe();
 ```
 
 ```java
@@ -30,8 +31,8 @@ JSONObject filters = new JSONObject()
   );
 
 Room room = kuzzle.collection("collection", "index")
-  .room()
-  .renew(filters, new ResponseListener<NotificationResponse>() {
+  .room(filters)
+  .on(new ResponseListener<NotificationResponse>() {
     @Override
       public void onSuccess(NotificationResponse object) {
         // handle notifications
@@ -41,7 +42,8 @@ Room room = kuzzle.collection("collection", "index")
       public void onError(JSONObject error) {
         // Handle notifications error
       }
-  });
+  })
+  .subscribe();
 ```
 
 ```php
@@ -58,6 +60,7 @@ Creates a new [Room]({{ site_base_path }}sdk-reference/room/) object, using its 
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``filters`` | JSON Object | [Filters]({{ site_base_path }}kuzzle-dsl) |
 | ``options`` | object | Subscription configuration |
 
 ## Options
