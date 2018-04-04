@@ -2,15 +2,15 @@
 layout: full.html
 algolia: true
 title: Geopoints
-description: Geopoint formats description
+description: Geopoint description
 order: 40
 ---
 
 # Geopoints
 
-A geopoint is simply the coordinates, expressed using a latitude and a longitude, of a geographical point.
+A geopoint is simply the coordinates of a geographical point expressed using latitude and longitude.
 
-In Koncorde, geopoints can be defined in multiple ways. All of the following examples are equivalent, and point to the same coordinates of latitude `43.6021299` and longitude `3.8989713`:
+In Koncorde, geopoints can be defined in multiple ways. All of the following examples are equivalent, and point to the same coordinates with latitude `43.6021299` and longitude `3.8989713`:
 
 * `[ 43.6021299, 3.8989713 ]`
 * `"43.6021299, 3.8989713"`

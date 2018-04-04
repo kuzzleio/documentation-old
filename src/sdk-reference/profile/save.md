@@ -92,7 +92,7 @@ catch (ErrorException $e) {
 Creates or replaces the profile in Kuzzle.
 
 <aside class="warning">
-Saving the object will return an error if the bound roles have not been previously created in Kuzzle.
+Saving the object will return an error if the linked roles have not been previously created in Kuzzle.
 </aside>
 
 ---
@@ -110,16 +110,16 @@ Saving the object will return an error if the bound roles have not been previous
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Profile` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `Profile` object.
+Returns a `Profile` object.

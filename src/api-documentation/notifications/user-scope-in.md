@@ -1,11 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: A user subscribed to this room
+title: A User Subscribes to a Room
 order: 700
 ---
 
-# A user subscribed to this room
+# A User Subscribes to a Room
 
 ```javascript
 {

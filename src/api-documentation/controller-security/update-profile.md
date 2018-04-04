@@ -105,7 +105,7 @@ title: updateProfile
 }
 ```
 
-Given a `profileId`, updates the matching Profile object in Kuzzle's database layer.
+Given a `profileId`, updates the matching Profile object in Kuzzle.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the profile indexation (indexed profiles are available for `search`).
+with the value `wait_for` in order to wait for the profile to be indexed (indexed profiles are available for `search`).

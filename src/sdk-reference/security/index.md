@@ -44,13 +44,13 @@ $security = $kuzzle->security();
 $security = new Security($kuzzle);
 ```
 
-The Security component lets you handle users permissions in Kuzzle.
+The Security component lets you handle user permissions in Kuzzle.
 
-Please refer to our [Kuzzle permissions guide]({{ site_base_path }}guide/essentials/security/#permissions) for more information.
+Please refer to our [permissions guide]({{ site_base_path }}guide/essentials/security/#user-permissions) for more information.
 
 ---
 
-## Security(Kuzzle)
+## Security
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|

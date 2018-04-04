@@ -79,11 +79,11 @@ Returns the position of an element in a sorted set, with scores in descending or
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the member's position in the sorted set.
+Returns an integer containing the member's position in the sorted set.

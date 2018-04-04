@@ -79,10 +79,10 @@ Returns the bit value at `offset`, in the string value stored in a key.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the bit value at the provided offset.
+Returns the bit value at the provided offset.

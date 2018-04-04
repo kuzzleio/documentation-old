@@ -80,11 +80,11 @@ Returns the probabilistic cardinality of a [HyperLogLog](https://en.wikipedia.or
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the aggregated probabilistic cardinality of HyperLogLog structures.
+Returns an integer containing the aggregated probabilistic cardinality of HyperLogLog structures.

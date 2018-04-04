@@ -1,21 +1,21 @@
 ---
 layout: full.html
 algolia: true
-title: Basic queries
+title: Basic Queries
 description: learn how to search data with elasticsearch
 order: 400
 ---
 
-# Basic queries
+# Basic Queries
 
-We will present here the most common ways to use the different search queries,
-together with the options that modify their behaviour.
-For more details about these options you can find more informations in the
+Here we present the most common ways to perform search queries,
+including the options that modify their behavior.
+For more details about these options refer to the
 [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html).
 
 ---
 
-## The search endpoint (and the `match_all` query)
+## The Search Endpoint (and the `match_all` query)
 
 The search endpoint allows different query parameters to control the output of the search.
 By defaut, the search endpoint will return the **10** first results, sorted by score.
@@ -25,8 +25,6 @@ it can be useful with other queries in a `bool` query for instance.
 ### Without query parameters
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "match_all": {}
@@ -122,11 +120,9 @@ Returns all the documents in the blogpost collection (because we have less than 
 
 ### With `from` and `size` query parameters
 
-To change this behaviour, 2 query parameters are available : `from` and `size`:
+To change this behavior, 2 query parameters are available : `from` and `size`:
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty&from=3&size=2" -d '{
   "query": {
     "match_all": {}
@@ -194,11 +190,9 @@ for more details.
 
 ## The `ids` query
 
-Returns the documents with the matching `id`.
+Returns the documents with a matching `id`.
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "ids": {
@@ -257,12 +251,10 @@ Reply:
 
 ## The `query_string` query
 
-The `query_string` query is a way to "talk" directly to the core engine of Elasticsearch.
-If you are used to use Solr, it will look familiar.
+The `query_string` query is a way to communicate directly with the Elasticsearch core engine.
+If you are familiar with Solr, then you might recognize this.
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "query_string": {
@@ -328,11 +320,9 @@ As a result, the choice of the analyzer applied to a field is very important. To
 we recommend you to read the
 [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/analysis-analyzers.html).
 
-It results in a set of documents where a score is applied.
+It returns a set of documents that includes a score.
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "match": {
@@ -387,13 +377,11 @@ Reply:
 }
 ```
 
-You can see that the second document does not contain cake at all but is still matching.
-This is because, by default, the `match` query operator applies a `or` operand to the provided searched terms.
-To return documents matching all tokens, you have to use the `and` operator:
+You can see that the second document does not have a title that contains the text "cake" but it is still considered a match.
+This is because, by default, the `match` query operator applies an `or` operand to the provided search terms.
+In order to return documents matching all tokens, you have to use the `and` operator:
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "match": {
@@ -442,12 +430,10 @@ Reply:
 
 ## The `prefix` query
 
-The `prefix` query matches all the documents where the given field has a value that begins with the given string.
+The `prefix` query matches all documents where the specified field has a value that begins with the given string.
 In the following example, we want to match all the documents where the value of field status begins with `pub`:
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "prefix": {
@@ -506,12 +492,10 @@ Reply:
 
 ## The `range` query
 
-The `range` query matches all the documents where the value of the given field is included within the specified range.
-In the following example, we want to match all the document where `published_date` is included within the two specified dates:
+The `range` query matches all documents where the value of the specified field is included within the given range.
+In the following example, we want to match all the document where `published_date` is within the two specified dates:
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "range": {
@@ -590,11 +574,9 @@ Reply:
 
 The `term` query is used to find exact matches on the *indexed* value of a field.
 It should not be used on analyzed fields: the analyzed value that is indexed is a modified version of the input value.
-Analyzers are explain during the cookbook you can come back when it is clearer.
+
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "term": {
@@ -656,8 +638,6 @@ Reply:
 Behaves exactly like `term`, but with multiple possible exact matches.
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "terms": {
@@ -734,8 +714,6 @@ Reply:
 The `exists` query matches the documents where a given field is present:
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "exists": {
@@ -833,7 +811,7 @@ Reply:
 
 ## The `missing` query
 
-The `missing` query has been removed in Elasticsearch 5.x. Elasticsearch recommends to use the `exists` query in a `must_not`
+The `missing` query has been removed in Elasticsearch 5.x. and they recommend that the `exists` query be used with a `must_not`
 occurence of a `bool` compound query (and this will introduce you to the `bool` query :-) ).
 
 ```bash
@@ -873,14 +851,12 @@ Reply:
 
 ---
 
-## Sorting the result set
+## Sorting the Result
 
 If you want to sort your result set in a different order than the `_score` default sort
-or compound the `_score` sort with other fields, you can specify the sort order alongside to the query:
+or compound the `_score` sort with other fields, you can specify the sort order in the query:
 
 ```bash
-#!/bin/bash
-
 curl -g -X POST "http://localhost:9200/example/blogpost/_search?pretty" -d '{
   "query": {
     "match_all": {}

@@ -81,11 +81,11 @@ Returns the position of the first bit set to 1 or 0 in a string, or in a substri
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `end` | int | Ending offset | `-1` |
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 | `start` | int | Starting offset | `0` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the first position of the searched bit in the string value
+Returns an integer containing the first position of the searched bit in the string value.

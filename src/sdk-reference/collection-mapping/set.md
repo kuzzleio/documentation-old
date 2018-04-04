@@ -60,6 +60,6 @@ Changes made by this function won't be applied until you call the <code>apply</c
 
 ---
 
-## Return value
+## Return Value
 
 Returns this `CollectionMapping` object to allow chaining.

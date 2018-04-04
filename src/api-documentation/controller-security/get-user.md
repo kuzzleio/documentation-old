@@ -57,4 +57,4 @@ title: getUser
 ```
 
 
-Given a user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid), gets the matching user from Kuzzle's dabatase layer.
+Given a user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid), gets the matching user from Kuzzle.

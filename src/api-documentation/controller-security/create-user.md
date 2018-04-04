@@ -125,19 +125,19 @@ title: createUser
 }
 ```
 
-Creates a new `user` in Kuzzle's database layer.
+Creates a new `user` in Kuzzle.
 
 If an `_id` is provided in the query and if a user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) already exists, an error is returned.
-If not provided, the `_id` will be auto-generated.
+If not provided, the `_id` will be generated automatically.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the user indexation (indexed users are available for `search`).
+with the value `wait_for` in order to wait for the user to be indexed (indexed users are available for `search`).
 
-The body content describes the user to be created, and it must have the following properties:
+The body contains the user data and must have the following properties:
 
 * `content` (JSON object): user global properties
-  * This object must contain a `profileIds` properties, an array of strings listing the [profiles]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles) to be attached to the new user 
+  * This object must contain a `profileIds` properties, an array of strings listing the security [profiles]({{ site_base_path }}guide/essentials/security/#users-profiles-and-roles) that will be attached to the new user 
   * Any other property will be copied as additional global user information
-* `credentials` (JSON object): a description of how the new user can authentify himself to Kuzzle
-  * Any number of credentials can be added, each one being an object whose name is the one of the [authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#expose-authentication-strategies) that can be used for authentification, and its content the necessary login information for that user
-  * If that object is left empty, the described user will be created by Kuzzle but (s)he  won't be able to log in
+* `credentials` (JSON object): a description of how the new user can authenticate themselves to Kuzzle
+  * Any number of credentials can be added, each with a key named after the [authentication strategy]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy/#exposing-authentication-strategies) used to validate the credentials
+  * If the credentials object is left empty, the described user will be created by Kuzzle but they will not be able log in

@@ -14,10 +14,10 @@ order: 200
 {{{since "1.0.0"}}}
 
 The `BaseValidationType` constructor provides a base to create your own validation types.
-It provides a common structure for all validation types developped in Kuzzle.
+It provides a common structure for all validation types in Kuzzle.
 
-You can find an example of a type creation in the
-[Kuzzle source code](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template).
+You can find an example of a type creation in the Kuzzle 
+[source code](https://github.com/kuzzleio/kuzzle/blob/master/lib/api/core/validation/types/type.js.template).
 
 ---
 
@@ -25,10 +25,10 @@ You can find an example of a type creation in the
 
 {{{since "1.0.0"}}}
 
-The DSL constructor provided in the plugin context gives access to [Kuzzle DSL capabilities]({{ site_base_path }}kuzzle-dsl).  
-It allows managing filters, and testing data to get a list of matching filters.
+The DSL constructor provided in the plugin context can be used to access [Koncorde]({{ site_base_path }}kuzzle-dsl).  
+It can be used to manage filters and test data to get a list of matching filters.
 
-Each plugin can instantiate its own sandboxed DSL instance:
+Each plugin can instantiate its own DSL sandbox instance:
 
 ```js
 const dsl = new context.constructors.Dsl();
@@ -40,7 +40,7 @@ The DSL exposes the following methods:
 
 {{{since "1.0.0"}}}
 
-Returns a boolean indicating if filters exist for an index-collection pair
+Returns a boolean indicating if filters exist for an index-collection pair.
 
 **Arguments**
 
@@ -52,13 +52,13 @@ Returns a boolean indicating if filters exist for an index-collection pair
 
 **Returns**
 
-Returns `true` if at least one filter exists on the provided index-collection pair, returns `false` otherwise
+Returns `true` if at least one filter exists in the provided index-collection pair, returns `false` otherwise.
 
 #### `getFilterIds`
 
 {{{since "1.0.0"}}}
 
-Retrieves filter IDs registered on an index-collection pair
+Retrieves filter IDs registered on an index-collection pair.
 
 
 **Arguments**
@@ -76,8 +76,8 @@ An `array` of `filterId` corresponding to filters registered on an index-collect
 
 {{{since "1.1.0"}}}
 
-Returns a promise resolved if the provided filters are well-formed.  
-The resolved object is a normalized and optimized version of the supplied filters, along with its corresponding Room unique identifier.
+Returns a promise that resolves if the provided filters are properly formatted.  
+The resolved object is a normalized and optimized version of the supplied filters, along with the corresponding Room unique identifier.
 
 This method does not modify the DSL storage. To register the filters, the [store]({{ site_base_path }}plugins-reference/plugins-context/constructors/#store) method must be called afterwards.  
 If you do not need the Room unique identifier prior to store the DSL filters, then consider using [register]({{ site_base_path }}plugins-reference/plugins-context/constructors/#register) instead.
@@ -88,11 +88,11 @@ If you do not need the Room unique identifier prior to store the DSL filters, th
 |------|------|----------------------------------|
 |`index`|`string`| Data index name |
 |`collection`|`string`| Data collection name |
-|`filters`|`object`| Filters in [Kuzzle DSL]({{ site_base_path }}kuzzle-dsl) format |
+|`filters`|`object`| Filters in [Koncorde]({{ site_base_path }}kuzzle-dsl) format |
 
 **Returns**
 
-A `promise` resolving to an object containing the following attributes:
+A `promise` that resolves to an object containing the following attributes:
 
 * `index`: data index name
 * `collection`: data collection name
@@ -112,14 +112,14 @@ Registers a filter to the DSL. This method is equivalent to executing [normalize
 |------|------|----------------------------------|
 |`index`|`string`| Data index name |
 |`collection`|`string`| Data collection name |
-|`filters`|`object`| Filters in [Kuzzle DSL]({{ site_base_path }}kuzzle-dsl) format |
+|`filters`|`object`| Filters in [Koncorde]({{ site_base_path }}kuzzle-dsl) format |
 
 **Returns**
 
-A `promise` resolving to an object containing the following attributes:
+A `promise` that resolves to an object containing the following attributes:
 
 * `id`: the filter unique identifier
-* `diff`: `false` if the filter already existed in the engine. Otherwise, contains an object with the canonical version of the provided filters
+* `diff`: `false` if the filter already exists in the engine. Otherwise, contains an object with the canonical version of the provided filters
 
 #### `remove`
 
@@ -180,17 +180,17 @@ An array of `filterId` matching the provided data (and/or documentId, if any).
 
 {{{since "1.0.0"}}}
 
-Tests the provided filters without storing them in the system, to check whether they are well-formed or not.
+Tests the provided filters without storing them in the system, to check whether they are properly formatted or not.
 
 **Arguments**
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`filters`|`object`| Filters in [Kuzzle DSL]({{ site_base_path }}kuzzle-dsl) format |
+|`filters`|`object`| Filters in [Koncorde]({{ site_base_path }}kuzzle-dsl) format |
 
 **Returns**
 
-A resolved promise if the provided filters are valid, or a rejected one with the appropriate error object otherwise.
+A resolved promise if the provided filters are valid, or a rejected one with the appropriate error object.
 
 ---
 
@@ -201,9 +201,7 @@ A resolved promise if the provided filters are valid, or a rejected one with the
 The Repository constructor provided in the plugin context gives access to methods
 that allow the plugin to interact with its plugin storage. The plugin storage is a dedicated
 index in Elasticsearch where the plugin can [create collections]({{ site_base_path }}plugins-reference/plugins-context/accessors/#createcollection).
-To do so the plugin should first [bootstrap]({{ site_base_path }}plugins-reference/plugins-context/accessors/#bootstrap) the index.
-
-Once done, the plugin can instantiate repositories to interact with the different collections it created.
+To do so, the plugin should first [bootstrap]({{ site_base_path }}plugins-reference/plugins-context/accessors/#bootstrap) the index. Once done, the plugin can instantiate repositories to interact with the different collections it created.
 
 
 **Arguments**
@@ -216,7 +214,7 @@ Once done, the plugin can instantiate repositories to interact with the differen
 
 **Usage**
 
-Each plugin can instantiate its own repositories linked to its own sandboxed plugin storage:
+Each plugin can instantiate its own repositories linked to its own storage sandbox:
 
 ```js
 function ObjectConstructor() {
@@ -278,7 +276,7 @@ someCollectionRepository.create({
 ```
 
 <aside class="warning">
-  The document provided as argument should be a plain object representing the document you want to store.
+  The document provided as an argument should be a plain object representing the document you want to store.
 </aside>
 
 #### `createOrReplace`
@@ -316,7 +314,7 @@ someCollectionRepository.createOrReplace({
 ```
 
 <aside class="warning">
-  The document provided as argument should be a plain object representing the document you want to store.
+  The document provided as an argument should be a plain object representing the document you want to store.
 </aside>
 
 #### `delete`
@@ -441,7 +439,7 @@ someCollectionRepository.replace({
 ```
 
 <aside class="warning">
-  The document provided as argument should be a plain object representing the document you want to store.
+  The document provided as an argument should be a plain object representing the document you want to store.
 </aside>
 
 #### `search`
@@ -520,7 +518,7 @@ someCollectionRepository.update({
 
 {{{since "1.0.0"}}}
 
-This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standardized Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard [Kuzzle response]({{ site_base_path }}api-documentation/kuzzle-response).
+This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standard Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard Kuzzle [response]({{ site_base_path }}api-documentation/kuzzle-response).
 
 Network protocol specific headers can be added to the response. If the protocol can handle them,
 these headers will be used to configure the response sent to the client.    
@@ -528,7 +526,7 @@ As Kuzzle supports the HTTP protocol natively, this object handles HTTP headers 
 Other network protocols headers are stored in raw format, and protocol plugins need to handle
 their own specific headers manually.
 
-For more information about this object, please check [our detailed documentation](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#request).
+For more information about this object, please refer to [our detailed documentation](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#request).
 
 #### Constructors
 
@@ -538,17 +536,17 @@ For more information about this object, please check [our detailed documentation
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-|`request`|`Request`| `Request` object used to derive a new object instance |
+|`request`|`Request`| `Request` object used to derive a new request object instance |
 |`data`|`object`| JSON object following the same standard than for non-HTTP [API calls]({{ site_base_path }}api-documentation/query-syntax)<br>See the  [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) constructor for more information |
 | `options` | `object` | Optional initialization parameters |
 
 This constructor creates a new `Request` object from the provided one, and then adds the supplied data to complete the new object.  
 
-This constructor is particularly useful when a plugin needs to execute an API request derivated from a user request, as most of the relevant information will be carried over to the new object.
+This constructor is particularly useful when a plugin needs to execute an API request derived from a user request, as most of the relevant information will be copied over to the new object.
 
 Properties that are automatically copied to the new object:
 
-* All resources properties: `_id`, `collection`, `index`
+* All resource properties: `_id`, `collection`, `index`
 * Additional arguments: `request.input.args`
 * JSON Web Token, if any
 
@@ -573,9 +571,9 @@ const derivedRequest = new context.constructors.Request(request, {
 |`data`|`object`| JSON object following the same standard than for non-HTTP [API calls]({{ site_base_path }}api-documentation/query-syntax)<br>See the  [RequestInput](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestinput) constructor for more information |
 | `options` | `object` | Optional initialization parameters |
 
-This constructor allows for creating new `Request` objects without the need to provide a source.
+This constructor can be used to create a new `Request` object without the need to provide a source.
 
-The provided `data` object must contain a lot more information than what's needed by the constructor method described above, so if a `Request` object is available to your method, you should probably use it to instantiate one of those objects.
+The provided `data` object must contain a lot more information than what's needed by the constructor method described above, so if a `Request` object is available to your method, you should probably use it to instantiate one of these objects.
 
 Example:
 
@@ -624,7 +622,7 @@ Writable
 
 Any undefined attribute from the list above will be set to null.
 
-Please refer to our [API Documentation]({{ site_base_path }}api-documentation) for a complete list of controllers-actions and their purposes.
+Please refer to our [API Documentation]({{ site_base_path }}api-documentation) for a complete list of controller actions and their usage.
 
 Getters
 
@@ -671,8 +669,8 @@ Adds a header `name` with value `value` to the response headers.
 For standard headers, if `name` already exists, then the provided `value` will be concatenated
 to the existing value, separated by a comma.  
 
-As Kuzzle implements HTTP natively, this behavior changes for some HTTP specific headers,
-to comply with the norm. For instance `set-cookie` values are amended in an array, and other headers like `user-agent` or `host` can store only 1 value.
+As Kuzzle implements HTTP natively, this behavior changes for some HTTP specific headers
+to comply with the norm. For instance, `set-cookie` values are amended in an array, and other headers like `user-agent` or `host` can store only 1 value.
 
 
 #### `serialize`
@@ -701,13 +699,13 @@ Adds an error to the request, and sets the request's status to the error one.
 
 If a `KuzzleError` is provided, the request's status attribute is set to the error one.
 
-Otherwise, the provided error is encapsulated into a [InternalError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorsinternalerror) object, and the request's status is set to 500.
+Otherwise, the provided error is encapsulated into an [InternalError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorsinternalerror) object, and the request's status is set to 500.
 
 #### `setResult`
 
 {{{since "1.0.0"}}}
 
-Sets the request's result.
+Sets the request result.
 
 **Arguments**
 
@@ -722,4 +720,4 @@ The `options` argument may contain the following properties:
 |------|------|----------------------------------|---------|
 | `status` | `integer` | HTTP status code | `200` |
 | `headers` | `object` | Protocol specific headers | `null` |
-| `raw` | `boolean` | Asks Kuzzle to send the provided result directly,instead of encapsulating it in a Kuzzle JSON response | `false` |
+| `raw` | `boolean` | Asks Kuzzle to send the provided result directly, instead of encapsulating it in a Kuzzle JSON response | `false` |

@@ -1,24 +1,98 @@
 ---
 layout: full.html
 algolia: true
-title: User authentication
+title: Users & Authentication
 order: 750
 ---
 
-# User authentication
+# Users & Authentication
 
-Once [roles and profiles]({{ site_base_path }}guide/essentials/security) have been set, you can create users and allow them to authenticate themselves in different ways.
+## Creating Users
 
-## Perform a basic login
+Once we have created security [roles and profiles]({{ site_base_path }}guide/essentials/security), we can go on to create the users that will access the Kuzzle.
 
-The most simple way you can login to Kuzzle is via the `local` strategy, using the SDK. We'll use the NodeJS SDK here, but the process is similar for other languages.
+Users can be created by either using the [Kuzzle Admin Console]({{ site_base_path }}guide/essentials/installing-console), the [API]({{ site_base_path }}api-documentation/controller-security/create-user/), or the [SDK]({{ site_base_path }}sdk-reference/security/create-user/).
 
-If you have no users in your Kuzzle Backend yet, you can read the documentation on [how to configure it for security]({{ site_base_path }}guide/essentials/security), or [create your first administrator using the backoffice](http://kuzzle-backoffice.netlify.com) (you don't even have to install it, it's available online).
+When creating a user, you will need to assign them one or more [profiles]({{ site_base_path }}guide/essentials/security/#defining-profiles).
 
-Create a `login.js` file, NPM-install the Kuzzle SDK and start coding:
+Additionally, you can set:
+
+* [User credentials]({{ site_base_path }}guide/essentials/user-authentication/#user-credentials): If no credentials are provided, then the user cannot [login]({{ site_base_path }}api-documentation/controller-auth/login/)
+* Any number of properties that you want to store in your user object, such as a lastname or a list of hobbies. These properties are stored at the user level and are not linked to any particular authentication strategy.
+
+Let's create a user with username `jondoe` and password `letmein` through the API:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{ "content": { "profileIds": ["default"], "name": "John Doe" }, "credentials": { "local": { "username": "jondoe", "password": "letmein" } } }' http://localhost:7512/users/_create
+```
+
+You should get the following response:
+
+```json
+{
+  "requestId": "<random unique request id>",
+  "status": 200,
+  "error": null,
+  "controller": "security",
+  "action": "createUser",
+  "collection": null,
+  "index": null,
+  "volatile": null,
+  "result": {
+    "_id": "<kuid>",
+    "_source": {
+      "profileIds": [
+        "default"
+      ],
+      "name": "John Doe"
+    },
+    "_meta": {
+      "author": "-1",
+      "createdAt": 1516186256993,
+      "updatedAt": null,
+      "updater": null
+    }
+  }
+}
+
+```
+
+## Kuzzle User Identifier (kuid)
+
+When a user is created, Kuzzle will automatically generate a random unique identifier for that user. This id is referred to as a `kuid` and is used by the security layer to identify a unique user and link them to multiple external identifiers (email, phone number, etc.) for use with different authentication plugins.
+
+This system allows a user to login to Kuzzle using different strategies and, potentially, different login identifiers, while still being considered as an unique entity by Kuzzle.
+
+If you're interested for a more in-depth explanation on how all of this work, then please check our [Kuzzle In-Depth Documentation]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid).
+
+---
+
+## Authentication Strategies
+
+Once a user has been created, they can access resources in Kuzzle as permitted by their security profile. However; in order to access these resources they will first need to identify & authenticate themselves using an authentication strategy. The authentication strategy defines what credentials are used and how Kuzzle should validate them. Kuzzle supports multiple authentication strategies, giving you more flexibility when building your security layer: use [Oauth](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), Kerberos, Salesforce, and many more. And, if none of these suit your needs, follow our [Plugin Documentation]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) to learn how to build a custom authentication strategy. 
+
+To request access to Kuzzle, a user must first send an [authentication request]({{ site_base_path }}api-documentation/controller-auth/login). Kuzzle will validate the credentials it receives in the request using the predefined authentication strategy and return a [JSON Web Token](https://tools.ietf.org/html/rfc7519) if the user credentials are valid.
+
+The JSON Web Token must then be [appended to all subsequent requests]({{ site_base_path }}api-documentation/query-syntax/authorization-token/#authorization-token) to access Kuzzle resources.
+
+If no authentication strategy is configured, Kuzzle will default to the `local` strategy, outlined below.
+
+## Local Strategy
+
+The simplest way a user can login to Kuzzle is using the `local` strategy. This strategy requires that a user identify themselves using a unique username and a password.
+
+To demonstrate the `local` strategy let's use the Kuzzle Node.js SDK (the process is similar for our other SDKs).
+
+First let's install the Node.js SDK into our folder:
+
+```bash
+npm install kuzzle-sdk
+```
+
+Then, let's create a `login.js` file that contains the following code:
 
 ```javascript
-var Kuzzle = require('kuzzle-sdk')
+const Kuzzle = require('kuzzle-sdk')
 
 var kuzzle = new Kuzzle('localhost', () => {
   kuzzle
@@ -27,44 +101,39 @@ var kuzzle = new Kuzzle('localhost', () => {
       password: 'test'
     })
     .then(() => {
-      console.log('logged!')
+    console.log('You are now logged in!')
     })
     .catch(err => {
       console.error(err.message)
     })
 })
-
 ```
 
-Assuming that you have an `admin` user with `test` password in your Kuzzle Backoffice, the code above does the following:
-* loads the `Kuzzle` SDK from its NPM package,
-* instantiates the SDK by connecting it to the Kuzzle Backoffice running on `localhost`,
-* _after the SDK connected to Kuzzle Backend_, it performs a login for the `admin` user,
-* displays to console a success message or an error message whether the login has succeeded or failed.
+This code will:
 
-<aside class="notice">
-  It's very important that the `login` code executes after the SDK has successfully connected to the backend, since `login` is not a queuable method (queuable methods can be called before the SDK is connected to the backend and are automatically played once the connection is established). That's why we put all the `login` code in the constructor's callback.
-</aside>
+* load the Kuzzle Node.js SDK
+* connect to the Kuzzle
+* login using username `jondoe` and password `letmein`
 
----
+Let's try it out! Run the `index.js` using Node.js:
 
-## Authentication strategy
+```
+node index.js
+```
 
-An authentication strategy is a mean for users to authenticate themselves to Kuzzle. There are many ways to do it: OAuth (facebook, google, github, ...), kerberos, salesforce, and many, many others.  
-Kuzzle is able to support multiple authentication strategies, and users may have multiple ways to authenticate themselves.
+You should see the following output:
 
-By default, Kuzzle is shipped with the `local` strategy, which is a simple but secure login/password authentication strategy.
-
-If this strategy doesn't fit your needs, you can use the [Oauth authentication plugin](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth), or you can develop your own strategy (see [Plugin documentation]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy) for more details).
+```
+You are now logged in!
+```
 
 ---
 
-## Credentials
+## User Credentials
 
-A user's credentials are simply a list of allowed authentication strategies *for this user*, with this user's personal informations attached to each strategy.
+In Kuzzle, a user's credentials are composed of a list of authentication strategies and their respective profile data.
 
-For instance, consider a Kuzzle server having the following available strategies: local, facebook, azure, saml and twitter.
-If a user registered to this Kuzzle with, say, facebook and twitter, then their credentials may look like this:
+For instance, if a user registered on Kuzzle with both facebook and twitter authentication strategies, then their credentials would look like this:
 
 ```json
 {
@@ -81,38 +150,6 @@ If a user registered to this Kuzzle with, say, facebook and twitter, then their 
 }
 ```
 
-You may have noticed the presence of a `kuid` field in both credentials. More explanation about that field in the following chapters.
+Notice that the `kuid` is present in both the facebook property and the twitter property.
 
 ---
-
-## User creation
-
-Users can be created either using the [back-office]({{ site_base_path }}guide/essentials/running-backoffice), [Kuzzle API]({{ site_base_path }}api-documentation/controller-security/create-user/), or a [Kuzzle SDK]({{ site_base_path }}sdk-reference/security/create-user/).
-
-When creating a user, you have to assign one or more [profiles]({{ site_base_path }}guide/essentials/security/#profile-definition) to it, defining its permissions.
-
-You may also provide:
-
-* A list of [credentials]({{ site_base_path }}guide/essentials/user-authentication/#credentials). If no credentials are provided, then this user cannot [log in]({{ site_base_path }}api-documentation/controller-auth/login/)
-* Additional user global informations. Those can be anything, from a lastname to a list of hobbies. There is no limitation, and these informations are global to this user, meaning that these are not linked to a particular authentication strategy
-
----
-
-## Kuzzle User Identifier (kuid)
-
-When a user is created, Kuzzle assigns a random unique identifier to it, called the `kuid`.  
-This unique identifier is then provided to authentication plugins when new credentials are added to the user. It's the responsibility of authentication plugins to link their own user identifier (be it a login, email or whatever) to the corresponding `kuid`.
-
-This system allows a user to log in to Kuzzle using different strategies and, potentially, different login identifiers, while still being considered as an unique entity by Kuzzle.
-
-If you're interested for a more in-depth explanation on how all of this work, then please check our [Kuzzle In-Depth Documentation]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid).
-
----
-
-## User authentication
-
-Once a user has been created, and configured with a list of profiles and credentials, then they can send [an authentication request]({{ site_base_path }}api-documentation/controller-auth/login) in order to log in to Kuzzle, selecting one of their allowed authentication strategies.
-
-If the authentication plugin accepts the request, then Kuzzle creates a [JSON Web Token](https://tools.ietf.org/html/rfc7519) and send it back to the user.
-
-This token must then be [appended to all subsequent requests]({{ site_base_path }}api-documentation/query-syntax/authorization-token/#authorization-token). 

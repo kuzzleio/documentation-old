@@ -77,6 +77,6 @@ Updating a role content will have no impact until the <a href="{{ site_base_path
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Role` object.

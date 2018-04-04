@@ -69,6 +69,6 @@ title: deleteByQuery
 }
 ```
 
-Deletes all the documents matching the given filter or query from Kuzzle's database.
+Deletes all the documents from Kuzzle that match the given filter or query.
 
 Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/query-dsl.html) syntax.

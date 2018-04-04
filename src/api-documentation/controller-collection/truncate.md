@@ -51,5 +51,5 @@ title: truncate
 }
 ```
 
-Empties a collection from all its documents, while keeping any associated mapping.  
-It is also faster than deleting all documents from a collection using a query.
+Empties a collection by removing all its documents, while keeping any associated mapping.  
+It is faster than deleting all documents from a collection.

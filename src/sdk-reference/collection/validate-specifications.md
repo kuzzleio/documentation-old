@@ -94,7 +94,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Validate a specification, returning whether or not the provided specification as a valid format or not.
+Validate a specification.
 
 ---
 
@@ -112,10 +112,10 @@ Validate a specification, returning whether or not the provided specification as
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean indicating whether or not the provided specifications are valid or not.
+Returns a boolean indicating whether or not the input specifications is valid or not.

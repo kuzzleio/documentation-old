@@ -119,7 +119,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Executes a search on profiles according to a filter
+Executes a search on profiles according to a filter.
 
 ---
 
@@ -138,7 +138,7 @@ Executes a search on profiles according to a filter
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``from`` | number | Starting offset | ``0`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``scroll`` | string | Start a scroll session, with a time to live equals to this parameter's value following the [Elastisearch time format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/common-options.html#time-units) | ``undefined`` |
 | ``size`` | integer | Number of hits to return | ``20`` |
 
@@ -152,6 +152,6 @@ Executes a search on profiles according to a filter
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON Object containing the number of found profiles and an array of [Profile]({{ site_base_path }}sdk-reference/profile) objects.
+Returns a JSON Object containing the number of security profiles found and an array of security [Profile]({{ site_base_path }}sdk-reference/profile) objects.

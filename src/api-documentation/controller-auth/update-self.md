@@ -69,10 +69,10 @@ title: updateSelf
 }
 ```
 
-Updates the current User object in Kuzzle's database layer.
+Updates the current user object in Kuzzle.
 
 <aside class="notice">
-  User must be connected in order to perform this action.
-  The current user can not update its profile using this action.
-  <a href="{{ site_base_path }}api-documentation/controller-security/update-user">Security / updateUser</a> must be used instead.
+  The user must be logged in to perform this action.
+  The current user cannot update their security profile using this action. To change a user's security profile use 
+  <a href="{{ site_base_path }}api-documentation/controller-security/update-user">Security / updateUser</a> instead.
 </aside>

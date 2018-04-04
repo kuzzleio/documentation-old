@@ -77,10 +77,10 @@ Create a new empty data index, with no associated mapping.
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an object reflecting the index creation status.
+Returns an object with the index creation status.

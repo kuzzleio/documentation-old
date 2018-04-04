@@ -76,16 +76,16 @@ Publish a real-time message.
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | ``null`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Collection` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a raw Kuzzle response in JSON format.
+Returns a raw Kuzzle response in JSON format.

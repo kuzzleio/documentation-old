@@ -75,6 +75,6 @@ Creates a new [CollectionMapping]({{ site_base_path }}sdk-reference/collection-m
 
 ---
 
-## Return value
+## Return Value
 
 Returns the newly created [CollectionMapping]({{ site_base_path }}sdk-reference/collection-mapping/) object.

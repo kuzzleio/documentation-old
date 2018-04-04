@@ -78,10 +78,10 @@ Returns the value of a key, or null if the key doesn’t exist.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the key's value.
+Returns the key's value.

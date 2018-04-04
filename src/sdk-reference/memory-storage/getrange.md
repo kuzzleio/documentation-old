@@ -80,10 +80,10 @@ Returns a substring of a key's value (index starts at position `0`).
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a substring of the key's value.
+Returns a substring of the key's value.

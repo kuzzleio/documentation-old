@@ -84,11 +84,11 @@ If `count` is provided and is positive, the returned values are unique. If `coun
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | `count` | int | Number of members to return. If set with a positive value, the returned values are unique. If `count` is negative, a set member can be returned multiple times | `1` |
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of members of a set of unique values.
+Returns an array of members of a set of unique values.

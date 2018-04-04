@@ -1,17 +1,13 @@
 ---
 layout: full.html
 algolia: true
-title: Request and Response format
+title: Request and Response Format
 order: 800
 ---
 
-# Request and Response format
+# Request and Response Format
 
-All transactions in Kuzzle are represented by a [Request](https://github.com/kuzzleio/kuzzle-common-objects#request) object. The object is created by the client to send a request to Kuzzle and returned by Kuzzle containing the response.
-
-The state of this object evolves along with the [lifecycle of the transaction]({{ site_base_path }}guide/essentials/request-and-response-format/#life-cycle).
-
-The `Request` object is [sealed](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/seal), which means you cannot add or delete fields once the object is initialized.
+Any access to a Kuzzle resource must be made through a [request](https://github.com/kuzzleio/kuzzle-common-objects#request). The `Request` object is [sealed](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/seal), which means you cannot add or delete fields once the object is initialized. The `Request` state evolves along with the [lifecycle of the transaction]({{ site_base_path }}guide/essentials/request-and-response-format/#request-life-cycle).
 
 Let's take a look at the structure of the `Request` object.
 
@@ -80,12 +76,12 @@ RequestContext {
 
 ---
 
-## Status codes
+## Status Codes
 
-The `status` attribute is a numeric code similar to [HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
-It is used to inform the client about the real status of his request (if an error occurred or not).
+The `status` attribute is a numeric code similar to a [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+It is used to inform the client about the resulting status of the request (i.e. if an error occurred or not).
 
-### List of status codes supported by Kuzzle
+### List of Status Codes Supported by Kuzzle
 
 #### 1xx Processing
 
@@ -94,7 +90,7 @@ It is used to inform the client about the real status of his request (if an erro
 #### 2xx Success
 
 * ``200``: Standard status for a successful request.
-* ``206``: The request (typically a bulk import) is partially successful, but some actions encountered an error.
+* ``206``: The request (typically a bulk import) is partially successful: some actions encountered an error.
 (in this case, error details are returned within _error.errors_)
 
 #### 4xx Client Error
@@ -106,19 +102,19 @@ It is used to inform the client about the real status of his request (if an erro
 #### 5xx Server Error
 
 * ``500``: Kuzzle encountered an unexpected error (standard code for internal error).
-* ``503``: An external service is unavailable
+* ``503``: An external service is unavailable.
 
 ---
 
-## Error objects format
+## Error Object Format
 
-When an error occurred, the `error` attribute contains [KuzzleError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorskuzzleerror) object, which inherits from the primitive Javascript `Error` type.
+When an error occurs, the `error` attribute contains the [KuzzleError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#errorskuzzleerror) object, which inherits from the primitive Javascript `Error` type.
 
 ---
 
-## Life-cycle
+## Request Life-Cycle
 
-Here is how it works.
+Here is how the request life-cycle works:
 
 * The client initializes the object with the arguments passed to the [constructor](https://github.com/kuzzleio/kuzzle-common-objects#new-requestdata-options).
   - The `status` field is always initialized to 102 ("processing").
@@ -128,6 +124,6 @@ Here is how it works.
 * Kuzzle receives the response. The corresponding controller handles it according to the `input` field.
   - The raw response of the controller is set to the `result` field.
   - If an error occurs, Kuzzle updates the `error` field via the `setError` method.
-  - The `status` field is update consequently with a HTTP-compliant numeric code.
-  - Kuzzle fills the `response` field with an object compliant with the [Kuzzle Response API standard]({{ site_base_path }}api-documentation/kuzzle-response)
+  - The `status` field is then set with an HTTP-compliant numeric code.
+  - Kuzzle sets the `response` as per the [Kuzzle Response API Standard]({{ site_base_path }}api-documentation/kuzzle-response)
 * Kuzzle sends the response back to the client.

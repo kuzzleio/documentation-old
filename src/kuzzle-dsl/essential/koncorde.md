@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Koncorde
-description: Real-time percolation engine
+description: part of the real-time engine
 order: 0
 ---
 
@@ -16,5 +16,5 @@ A data percolation engine has the following properties:
 * whenever data is submitted to the engine, it returns the indexed filters matching it
 * data is never stored in the engine
 
-In other words, a percolation engine is the reverse of a search engine, where data is indexed and filters are used to retrieve data matching them.
+In other words, a percolation engine is the inverse of a search engine, where data is indexed and filters are used to retrieve data that matches them.
 

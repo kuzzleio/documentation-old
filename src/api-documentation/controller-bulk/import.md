@@ -102,10 +102,9 @@ title: import
 }
 ```
 
-You can use the `bulk import` to save a list of documents in one specific `collection` in a specified `index`.  
-In such case, the `collection` in which the documents need to be inserted needs to be specified in the query.
+You can use the `bulk import` to save a list of documents into a specific `collection` of a specified `index`. To do so, the `collection` needs to be specified in the request.
 
-In case a subset of the queries sent within the request fail, the client will receive a <a href="{{ site_base_path }}api-documentation/errors/#partialerror">PartialError</a> object.
+If a subset of the documents fail to save, the client will receive a <a href="{{ site_base_path }}api-documentation/errors/#partialerror">PartialError</a>.
 
 <div style="clear: both"></div>
 
@@ -201,6 +200,6 @@ In case a subset of the queries sent within the request fail, the client will re
 ```
 
 The `bulk import` can also be used in a more versatile (yet a little more verbose) way,
-to execute operations on a whole database, modifying multiple data collections in different indexes at once.  
-The `collections` to modify then need to be specified inside the query message,using the `_type`argument, as specified in the
+to execute operations on multiple data collections in different indexes in a single request.  
+To do so, the `collections` need to be specified inside the request message, using the `_type`argument, as specified in the
 [ElasticSearch Bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/docs-bulk.html).

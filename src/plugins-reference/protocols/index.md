@@ -8,23 +8,21 @@ order: 500
 
 # Protocols
 
-By default, Kuzzle supports HTTP, Websocket and Socket.io protocols.
-
-Kuzzle can be extended with custom protocols to support more type of entries.
+By default, Kuzzle supports HTTP, Websocket and Socket.io protocols. However, you can add more protocols and even create your own.
 
 --- 
 
-## Install 
+## Installing a Protocol
 
-Installing a protocol is very similar to [plugins]({{ site_base_path }}plugins-reference/managing-plugins/#installing-removing-enabling-and-disabling-plugins)
+Adding a new protocol is similar to adding a [plugin]({{ site_base_path }}plugins-reference/managing-plugins/#installing-removing-enabling-and-disabling-plugins)
 
 The only difference is that protocols need to be installed in `protocols/enabled` directory.
 
 --- 
 
-## Configure 
+## Configuring a Protocol
 
-Protocols are configured within [Kuzzle configuration]({{ site_base_path }}guide/essentials/configuration/), under the `server/protcols/<protocol name>` section.
+Protocols are configured in the [Kuzzle configuration]({{ site_base_path }}guide/essentials/configuration/), under the `server/protcols/<protocol name>` section.
 
 Example:  
 *.kuzzlerc*
@@ -41,15 +39,13 @@ Example:
 }
 ```
 
-The example above will be taken into account by [Kuzzle MQTT protocol](https://github.com/kuzzleio/protocol-mqtt);
+The example above will be set the configuration for the [MQTT protocol](https://github.com/kuzzleio/protocol-mqtt);
 
 ---
 
-## Build your own
+## Building a Protocol
 
-Protocols are constructors exposed in a nodejs module.
-
-Protocols must implement the following methods:
+Protocols are constructors exposed in a Node.js module that must implement the following methods:
 
 | Method | Arguments | Description                 |
 |------|----------------|-----------------------------|
@@ -64,11 +60,11 @@ Protocols must implement the following methods:
 
 `init ({EntryPoint} entryPoint, {Object} context)`
 
-return value: `void` or `Promise`. If the returned value is a promise, Kuzzle will wait till it is resolved to continue starting.
+return value: `void` or `Promise`. If the returned value is a promise, Kuzzle will wait until it is resolved to continue booting.
 
 --- 
 
-## Available objects reference
+## Object Reference
 
 ### ClientConnection
 
@@ -110,7 +106,7 @@ ex: `context.log.error(new context.errors.InternalError('something went bad'))`
 
 type: `pojo object`
 
-Contains Kuzzle configuration `server` subtree. The user configuration for the protocol can potentially be found under `entryPoint.config.protocols[protocolName]`.
+Contains Kuzzle's configuration `server` subtree. The user configuration for the protocol can potentially be found under `entryPoint.config.protocols[protocolName]`.
 
 #### execute method
 
@@ -153,7 +149,7 @@ return value: none
 
 ---
 
-## TL;DR custom protocol skeleton
+## Custom Protocol Sample
 
 ```javascript
 class MyProtocol {

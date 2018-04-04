@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered when a request is treated in the [`bulk` controller]({{ site_base_path }}api-documentation/controller-bulk)
+Events triggered when a request is treated in the [`bulk`]({{ site_base_path }}api-documentation/controller-bulk) controller.
 
 ---
 

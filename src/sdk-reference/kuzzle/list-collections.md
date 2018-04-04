@@ -65,7 +65,7 @@ $collections = $kuzzle->listCollections('index', [
 ]
 ```
 
-Retrieves the list of known data collections contained in a specified index.
+Returns the list of known data collections contained in a specified index.
 
 ---
 
@@ -83,7 +83,7 @@ Retrieves the list of known data collections contained in a specified index.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``from`` | integer | Determines the starting point of the pagination. By default, start at the beggining | ``0`` |
 | ``size`` | integer | Determines the size of the returned result set. By default, no limit is applied | ``undefined`` |
 | ``type`` | string | Get either ``stored`` collections or ``realtime`` ones. By default, list ``all`` collections | ``all`` |
@@ -93,6 +93,6 @@ If no `index` argument is provided, the `defaultIndex` property is used. If no d
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of JSON objects containing the list of stored and/or realtime collections on the provided index.
+Returns an array of JSON objects containing the list of stored and/or realtime collections on the provided index.

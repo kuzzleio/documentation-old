@@ -1,21 +1,21 @@
 ---
 layout: full.html
 algolia: true
-title: Common attributes
+title: Common Attributes
 order: 100
 ---
 
-# Common attributes
+# Common Attributes
 
 ## HTTP
 
 **URL:** `http://kuzzle:7512/<action route>[route options]`  
 **Method:** `get|post|put|delete`  
-**Body:** Can be empty (usually with get and delete methods) or a JSON object of the resource body (usually with post and put methods).
+**Body:** Can be empty for GET and DELETE methods or contains a JSON object for POST and PUT methods.
 
 ---
 
-## Other protocols
+## Other Protocols
 
 ### Websocket
 
@@ -55,7 +55,7 @@ The MQTT layer listens to a specific topic in order to forward your queries to t
 
 ---
 
-## Attributes reference
+## Attributes Reference
 
 ### `mandatory` controller
 
@@ -66,15 +66,15 @@ The current implementation of Kuzzle embeds nine controllers:
 
 ### `mandatory` action
 
-The action attribute indicates to Kuzzle which action to perform for the controller.
+The action attribute tells Kuzzle which action to perform for the controller.
 
-For instance, using the `document` controller, we can perform a `get` action or a `search`.
+For instance, using the `document` controller, we can perform a `get` action or a `search` action.
 
 
 ### `optional` index
 
-Kuzzle attaches its collections to a index.
-Any action impacting a document, a collection or an index itself will need this attribute fed.
+In Kuzzle, collections are linked to an index.
+Any action on a document, a collection or an index will require the index attribute.
 
 <aside class="notice">
   `mandatory` depending on the controller/action
@@ -83,8 +83,8 @@ Any action impacting a document, a collection or an index itself will need this 
 
 ### `optional` collection
 
-Kuzzle attaches its documents to a collection.
-Any action impacting a document or a collection itself will need this attribute fed.
+In Kuzzle, documents are linked to a collection.
+Any action on a document or a collection will require the collection attribute.
 
 <aside class="notice">
   `mandatory` depending on the controller/action
@@ -95,11 +95,10 @@ Any action impacting a document or a collection itself will need this attribute 
 
 The `body` field contains the body of the resource sent to Kuzzle.
 
-For instance, the `body` attribute will contain the filters on which to listen
-to during a real-time subscription or the content of the document to create/publish.
+For instance, the `body` attribute might contain the content of a document we want to create.
 
 
 ### `optional` requestId
 
-Kuzzle will create a unique ID if you don't provide one, but if you want to easily
-identify which query generated the response you got, the best way is to provide it yourself in the request.
+Kuzzle will create a unique request identifier if you don't provide one, but if you want to easily
+identify which query generated a specific response, the best way is to provide your own request identifier in the request.

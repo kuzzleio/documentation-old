@@ -54,4 +54,4 @@ title: getCredentials
 }
 ```
 
-Get credential information of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid). Provided information completely depend of the strategy. The result can be an empty object.
+Get credential information of user with [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) for the specified `<strategy>`. The returned `result` object will vary depending on the strategy and can be empty.

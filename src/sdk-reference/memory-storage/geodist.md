@@ -81,11 +81,11 @@ The returned distance is expressed in meters by default.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 | `unit` | string | Distance unit.<br/>Allowed values: `m`, `km`, `mi`, `ft` | `m` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the calculated distance between the two provided geospatial points
+Returns the calculated distance between the two provided geospatial points.

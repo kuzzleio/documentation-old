@@ -34,10 +34,10 @@ profile.addPolicy(policy);
 profile.addPolicy("some role id");
 ```
 
-Adds a role to the profile.
+Adds a role to the security profile.
 
 <aside class="note">
-Updating a profile will have no impact until the <a href="{{ site_base_path }}sdk-reference/profile/save">save</a> method is called
+Updating a security profile will have no impact until the <a href="{{ site_base_path }}sdk-reference/profile/save">save</a> method is called
 </aside>
 
 ---
@@ -58,6 +58,6 @@ Updating a profile will have no impact until the <a href="{{ site_base_path }}sd
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Profile` object to allow chaining calls.

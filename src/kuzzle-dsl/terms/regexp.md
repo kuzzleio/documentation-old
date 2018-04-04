@@ -8,8 +8,8 @@ title: regexp
 
 {{{since "1.0.0"}}}
 
-The `regexp` filter matches documents or messages attributes using perl-compatible regular expressions ([PCRE](https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions)).  
-You can test only 1 attribute per `regexp` filter.
+The `regexp` filter matches documents or messages using perl-compatible regular expressions ([PCRE](https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions)).  
+You can only test 1 attribute per `regexp` filter.
 
 A `regexp` filter has the following structure, splitting the usual `/pattern/flags` into two parts:
 
@@ -24,7 +24,7 @@ A `regexp` filter has the following structure, splitting the usual `/pattern/fla
 }
 ```
 
-Or, if you don't wish to add any modifier flags:
+Or, if you don't want to add any modifier flags:
 
 ```javascript
 {

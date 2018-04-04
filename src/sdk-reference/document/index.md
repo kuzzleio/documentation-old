@@ -65,7 +65,7 @@ $document = $dataCollection->document($documentId, $documentContent);
 $document = new Document($dataCollection, $documentId, $documentContent);
 ```
 
-Kuzzle handles documents, either as realtime messages or as stored documents. Document is the object representation of one of these documents.
+Kuzzle handles two types of documents: realtime messages and stored documents. Document is the object representation of one of these document types.
 
 ---
 

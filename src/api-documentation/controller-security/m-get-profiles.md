@@ -95,4 +95,4 @@ title: mGetProfiles
 }
 ```
 
-Retrieves a list of `profile` objects from Kuzzle's database layer given a list of profile ids.
+Retrieves a list of security `profile` objects from Kuzzle given a list of profile ids.

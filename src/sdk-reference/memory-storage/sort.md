@@ -66,7 +66,7 @@ Sorts and returns elements contained in a list, a set of unique values or a sort
 By default, sorting is numeric and elements are compared by their value interpreted as double precision floating point number.
 
 <aside class="left notice">
-While Kuzzle API supports the "store" option for this command, SDK methods do not, as it changes drastically the result format. To sort and store in the same process, use the <a href="{{ site_base_path }}sdk-reference/kuzzle/query">query method</a>
+While Kuzzle's API supports the "store" option for this command, Kuzzle SDK methods do not. To sort and store in the same process, use the <a href="{{ site_base_path }}sdk-reference/kuzzle/query">query method</a>
 </aside>
 
 [[_Redis documentation_]](https://redis.io/commands/sort)
@@ -90,8 +90,8 @@ While Kuzzle API supports the "store" option for this command, SDK methods do no
 | `direction` | string | Sort in ascendant (`ASC`) or descendant (`DESC`)  order | `ASC` |
 | `get` | array | Sort the values stored at `key` but, instead of returning these directly, return the values contained in external keys, using the provided array of patterns completed by the sorted values | `null` |
 | `limit` | array | Limit the result set to a range of matching elements (similar to _SELECT LIMIT offset, count_ in SQL).<br/>Format: `[<offset(int)>, <count(int)>]` | `null` |
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
-### Callback response
+### Callback Response
 
-Resolves to an array of sorted values.
+Returns an array of sorted values.

@@ -1,15 +1,16 @@
 ---
 layout: full.html
 algolia: true
-title: Fields specification
+title: Fields Specification
 ---
 
-# Fields specification
+# Fields Specification
+
 In this section, you'll learn how to create simple field validators.
 
 ## The `fields` property
 
-The property name defines the path of the field in the document. The root fields will use their name directly. Sub fields contained in objects will use their path with the pattern `objectField/<subField>[/ ...]`.
+The property name defines the path of the field in the document. For root fields, the path is simply the name of the field, while for subfields, the path with have the pattern `objectField/<subField>[/ ...]`.
 
 ---
 
@@ -67,7 +68,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Default**: empty (optional)
 
-**Purpose**: Allows the author of the validation specification to remember what is the field's purpose (can also contain keywords to search the field in a configuration file).
+**Purpose**: Allows the author of the validation specification to remember the field's purpose (can also contain keywords to search for the field in a configuration file).
 
 ---
 
@@ -79,7 +80,7 @@ The property name defines the path of the field in the document. The root fields
 
 **Default**: false
 
-**Purpose**: Specifies whether the field must contain an array of values or not. If true, fields[field].multivalued.minCount and fields[field].multivalued.maxCount can be used. **If true, a scalar can not be provided for the field**.
+**Purpose**: Specifies whether the field must contain an array of values or not. If true, fields[field].multivalued.minCount and fields[field].multivalued.maxCount can be used. **If true, a scalar cannot be provided for the field**.
 
 #### multivalued.minCount
 
@@ -133,7 +134,7 @@ This configuration is available depending on the types of the field.
 
 **Default Behavior**: no min and no max
 
-**Purpose**: Defines a minimum and/or a maximum (**inclusive**) values for the field.
+**Purpose**: Defines a minimum and/or a maximum (**inclusive**) value for the field.
 
 **Specific to dates**: Use a date with the format ISO_8601 as min and max value : "YYYY-MM-DDTHH:mm:ss.SSSZ". The special keyword "NOW" is also available and represents a current time in UTC format.
 
@@ -273,7 +274,7 @@ strict_year_month_day
 <aside class="warning">
 The format defined in the specification has to match the formats defined in the Elasticsearch mapping for the field.
 <br/>
-Non strict mode is slightly different from the one explained and implemented by Elasticsearch. Please refer to the documentation of the Moment.js (the date library we use) for further explanation : <a href="http://momentjs.com/guides/#/parsing/strict-mode/">Moment.js documentation</a>
+Non strict mode is slightly different from the one explained and implemented by Elasticsearch. Please refer to the <a href="http://momentjs.com/guides/#/parsing/strict-mode/">Moment.js documentation</a> for further details, this is the date library we use internally.
 <br/>
 Non strict mode has been implemented to fit Elasticsearch date formats but we recommend to use strict mode when possible.
 </aside>
@@ -294,13 +295,13 @@ Non strict mode has been implemented to fit Elasticsearch date formats but we re
 
 **Values**: an `array` of strings defining the valid values 
 
-**Purpose**:Defines all valid values for an enum field. All field values have to match one of the valid values for a multi-valued field.
+**Purpose**: Defines all valid values for an enum field. All field values have to match one of the valid values for a multi-valued field.
 
 #### typeOptions.shapeTypes
 
 **Associated type**: `geo_shape` (mandatory)
 
-**Possible value**: an `array` of shapes type within
+**Possible value**: an `array` of shape types within
 
 *   point
 *   linestring

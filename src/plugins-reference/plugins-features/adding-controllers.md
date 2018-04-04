@@ -1,21 +1,21 @@
 ---
 layout: full.html
 algolia: true
-title: Adding a controller route
+title: Add a Controller Route
 order: 300
 ---
 
-# Adding a controller route
+# Adding a Controller Route
 
-Kuzzle API is divided into "controllers", each one of them exposing "actions" to execute (see [API reference]({{ site_base_path }}api-documentation/query-syntax/common-attributes)).
+Kuzzle's API is divided into separate "controllers", each exposing executable "actions" (see [API reference]({{ site_base_path }}api-documentation/query-syntax/common-attributes)).
 
-Plugins enable to add a set of new controllers to the Kuzzle public API, each with their own list of available actions.
+Plugins allow you to install additional controllers that will be available through Kuzzle's API, each with their own list of available actions.
 
 ---
 
-## How is the API extended
+## Controller Route Path
 
-To avoid name conflicts, added controllers are prefixed with the plugin name.
+To avoid naming conflicts, the path to the controller added using a plugin will include the plugin name.
 
 ### HTTP
 
@@ -34,20 +34,20 @@ To avoid name conflicts, added controllers are prefixed with the plugin name.
 
 ---
 
-## Implementing a controller route
+## Creating a Controller Route
 
-To create a new controller, the Plugin must expose to Kuzzle the following objects:
+In order to create a new controller, the plugin must expose the following objects:
 
-- A `controllers` object, describing the new controller(s) to add. It will automatically be made available to any network protocol, except for HTTP
+- A `controllers` object, describing the new controller(s) to add. It will automatically be made available to any network protocol (except for HTTP)
 - A `routes` objects, describing how the new controller(s) should be exposed to the HTTP protocol. Only GET and POST verbs are accepted.
-- Controller's actions functions. These methods take a `Request` object as an argument, and must return a `Promise` resolving with the action's result, or rejecting with a KuzzleError object.
+- Controller's actions functions. These methods take a `Request` object as an argument, and must return a `Promise` that resolves with the action result or rejects with a KuzzleError object.
 
 
 ---
 
-## How Plugins receive action arguments
+## From Request to Action
 
-All action functions receive a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object as main argument. Kuzzle will fill it with arguments provided by clients invoking the added controller:
+All action functions receive a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object as a main argument. When Kuzzle receives a request, it will parse the data and create the Request object that it then passes to the action. The parsing works as follows:
 
 * HTTP:
   * dynamic arguments provided in the URL, headers and query string arguments are stored in `request.input.args`
@@ -61,15 +61,15 @@ All action functions receive a [Request]({{ site_base_path }}plugins-reference/p
 
 ---
 
-## Automatic events generation
+## Automatic Events Generation
 
-Kuzzle triggers events on all controller routes, and those added by plugins make no exception.  
-More on these automatic controller events [here]({{ site_base_path }}kuzzle-events/plugin-events/).
+Kuzzle can trigger events on all controller routes, and those added by plugins are no exception.  
+Read more about these automatic controller events [here]({{ site_base_path }}kuzzle-events/plugin-events/).
 
 
 ---
 
-## TL;DR plugin skeleton
+## Plugin Sample
 
 ```javascript
 class ControllerPlugin {

@@ -134,4 +134,4 @@ title: info
 }
 ```
 
-Retrieves information about Kuzzle, its plugins and active services.
+Returns information about Kuzzle plugins and active services.

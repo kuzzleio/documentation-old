@@ -64,6 +64,5 @@ Given a `role id`, retrieves the corresponding role from the database.
 
 
 <aside class="notice">
-The role unique identifier. It's the same you set when you create a role.
-in its responses when you create a role.
+The `role id` is the same one you set when you create a role.
 </aside>

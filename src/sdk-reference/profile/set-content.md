@@ -85,6 +85,6 @@ Updating a profile will have no impact until the <code>save</code> method is cal
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Profile` object.
