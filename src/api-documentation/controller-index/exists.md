@@ -47,4 +47,4 @@ title: exists
 }
 ```
 
-Checks if the given index exists in Kuzzle Backend storage layer.
+Checks if the given index exists in Kuzzle.

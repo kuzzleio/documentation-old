@@ -83,7 +83,7 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 | ``token``    | string   | The token to check |
 | ``callback`` | function | Callback handling the response |
 
-**Note:** this method sends an unauthenticated API call to Kuzzle Backend, meaning it ignores the JWT Token property, even if it has been set.
+**Note:** this method sends an unauthenticated API call to Kuzzle, meaning it ignores the JWT Token property, even if it has been set.
 
 ---
 

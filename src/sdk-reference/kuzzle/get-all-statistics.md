@@ -74,8 +74,8 @@ foreach($stats as $frame) {
     "timestamp": "1453110643308" }]
 ```
 
-Kuzzle Backend monitors active connections, and ongoing/completed/failed requests.  
-This method returns all available statistics from Kuzzle Backend.
+Kuzzle monitors active connections, and ongoing/completed/failed requests.  
+This method returns all available statistics from Kuzzle.
 
 ---
 

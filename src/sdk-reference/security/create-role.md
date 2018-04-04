@@ -100,7 +100,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new role in Kuzzle Backend.
+Create a new role in Kuzzle.
 
 <aside class="notice">
 There is a small delay between role creation and its availability in our search layer (usually a couple of seconds).

@@ -11,6 +11,13 @@ html, body {
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
+a.anchor {
+  display: block;
+  position: relative;
+  top: -126px;
+  visibility: hidden;
+}
+
 body {
   position: relative;
   height: 100%;

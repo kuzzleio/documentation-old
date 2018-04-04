@@ -78,7 +78,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Create a new document in Kuzzle Backend and instantiate a [Document]({{ site_base_path }}sdk-reference/document/) object.
+Create a new document in Kuzzle and instantiate a [Document]({{ site_base_path }}sdk-reference/document/) object.
 
 ---
 
@@ -109,7 +109,7 @@ Create a new document in Kuzzle Backend and instantiate a [Document]({{ site_bas
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait for the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 | ``ifExist`` | string | If the same document already exists: resolves to an ``error``. Replaces the existing document if set to ``replace`` | ``false`` |
 
 ---

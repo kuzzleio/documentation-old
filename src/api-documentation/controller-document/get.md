@@ -76,4 +76,4 @@ Only documents in the persistent data storage layer can be retrieved.
 
 Optional argument:
 
-* `includeTrash`: if set, Kuzzle Backend will also look for the document in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/). Otherwise, if the document exists but is inactive, a [NotFound]({{ site_base_path }}api-documentation/errors/#notfounderror) error is returned.
+* `includeTrash`: if set, Kuzzle will also include documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/). Otherwise, if the document exists but is inactive, a [NotFound]({{ site_base_path }}api-documentation/errors/#notfounderror) error is returned.

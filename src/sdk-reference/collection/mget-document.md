@@ -100,4 +100,4 @@ Get multiple [Documents]({{ site_base_path }}sdk-reference/document/) according 
 
 ## Callback Response
 
-Returns a `JSON object` containing the raw Kuzzle Backend response.
+Returns a `JSON object` containing the raw Kuzzle response.

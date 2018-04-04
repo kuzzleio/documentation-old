@@ -83,7 +83,7 @@ catch (ErrorException $e) {
 ]
 ```
 
-Given a Kuzzle Backend user id (`kuid`), retrieves the list of permissions granted to that user.
+Given a Kuzzle user id (`kuid`), retrieves the list of permissions granted to that user.
 
 ---
 
@@ -91,7 +91,7 @@ Given a Kuzzle Backend user id (`kuid`), retrieves the list of permissions grant
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``kuid`` | String | [Kuzzle User Unique Identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) |
+| ``kuid`` | String | [Kuzzle User Unique Identifier]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 

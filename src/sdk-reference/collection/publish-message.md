@@ -88,4 +88,4 @@ Returns the `Collection` object to allow chaining.
 
 ## Callback Response
 
-Returns a raw Kuzzle Backend response in JSON format.
+Returns a raw Kuzzle response in JSON format.

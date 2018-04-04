@@ -58,7 +58,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Replaces the user in Kuzzle Backend.
+Replaces the user in Kuzzle.
 
 ---
 

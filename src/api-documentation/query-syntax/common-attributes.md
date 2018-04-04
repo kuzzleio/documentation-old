@@ -19,14 +19,14 @@ order: 100
 
 ### Websocket
 
-The Websocket layer listens to a specific socket room in order to forward your queries to the right Kuzzle Backend controller.
+The Websocket layer listens to a specific socket room in order to forward your queries to the right Kuzzle controller.
 
 **Room name:** `kuzzle`  
 **Query body syntax:** `JSON object`
 
 ### MQTT
 
-The MQTT layer listens to a specific topic in order to forward your queries to the right Kuzzle Backend controller.  
+The MQTT layer listens to a specific topic in order to forward your queries to the right Kuzzle controller.  
 
 **Topic name:** `kuzzle`  
 **Query body syntax:** `JSON object`
@@ -60,20 +60,20 @@ The MQTT layer listens to a specific topic in order to forward your queries to t
 ### `mandatory` controller
 
 The controller attribute specifies the type of action to perform.
-The current implementation of Kuzzle Backend embeds nine controllers:
+The current implementation of Kuzzle embeds nine controllers:
 `auth`, `bulk`, `collection`, `document`, `index`, `memoryStorage`, `realtime`, `security` and `server`.
 
 
 ### `mandatory` action
 
-The action attribute tells Kuzzle Backend which action to perform for the controller.
+The action attribute tells Kuzzle which action to perform for the controller.
 
 For instance, using the `document` controller, we can perform a `get` action or a `search` action.
 
 
 ### `optional` index
 
-In Kuzzle Backend collections are linked to an index.
+In Kuzzle, collections are linked to an index.
 Any action on a document, a collection or an index will require the index attribute.
 
 <aside class="notice">
@@ -83,7 +83,7 @@ Any action on a document, a collection or an index will require the index attrib
 
 ### `optional` collection
 
-In Kuzzle Backend documents are linked to a collection.
+In Kuzzle, documents are linked to a collection.
 Any action on a document or a collection will require the collection attribute.
 
 <aside class="notice">
@@ -93,12 +93,12 @@ Any action on a document or a collection will require the collection attribute.
 
 ### `mandatory` body
 
-The `body` field contains the body of the resource sent to Kuzzle Backend.
+The `body` field contains the body of the resource sent to Kuzzle.
 
 For instance, the `body` attribute might contain the content of a document we want to create.
 
 
 ### `optional` requestId
 
-Kuzzle Backend will create a unique request identifier if you don't provide one, but if you want to easily
+Kuzzle will create a unique request identifier if you don't provide one, but if you want to easily
 identify which query generated a specific response, the best way is to provide your own request identifier in the request.

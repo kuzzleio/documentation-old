@@ -90,7 +90,7 @@ title: updateMapping
 }
 ```
 
-When creating a new data `collection` in the persistent data storage layer, Kuzzle Backend uses a default mapping.
+When creating a new data `collection` in the persistent data storage layer, Kuzzle uses a default mapping.
 
 It means that, by default, you won't be able to exploit the full capabilities of our
 persistent data storage layer (currently handled by [ElasticSearch](https://www.elastic.co/products/elasticsearch)),

@@ -69,7 +69,7 @@ title: updateSelf
 }
 ```
 
-Updates the current user object in Kuzzle Backend.
+Updates the current user object in Kuzzle.
 
 <aside class="notice">
   The user must be logged in to perform this action.

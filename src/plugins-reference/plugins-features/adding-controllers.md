@@ -7,9 +7,9 @@ order: 300
 
 # Adding a Controller Route
 
-The Kuzzle Backend API is divided into separate "controllers", each exposing executable "actions" (see [API reference]({{ site_base_path }}api-documentation/query-syntax/common-attributes)).
+Kuzzle's API is divided into separate "controllers", each exposing executable "actions" (see [API reference]({{ site_base_path }}api-documentation/query-syntax/common-attributes)).
 
-Plugins allow you to install additional controllers that will be available through the Kuzzle Backend API, each with their own list of available actions.
+Plugins allow you to install additional controllers that will be available through Kuzzle's API, each with their own list of available actions.
 
 ---
 
@@ -47,7 +47,7 @@ In order to create a new controller, the plugin must expose the following object
 
 ## From Request to Action
 
-All action functions receive a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object as a main argument. When Kuzzle Backend receives a request, it will parse the data and create the Request object that it then passes to the action. The parsing works as follows:
+All action functions receive a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object as a main argument. When Kuzzle receives a request, it will parse the data and create the Request object that it then passes to the action. The parsing works as follows:
 
 * HTTP:
   * dynamic arguments provided in the URL, headers and query string arguments are stored in `request.input.args`
@@ -63,7 +63,7 @@ All action functions receive a [Request]({{ site_base_path }}plugins-reference/p
 
 ## Automatic Events Generation
 
-Kuzzle Backend can trigger events on all controller routes, and those added by plugins are no exception.  
+Kuzzle can trigger events on all controller routes, and those added by plugins are no exception.  
 Read more about these automatic controller events [here]({{ site_base_path }}kuzzle-events/plugin-events/).
 
 

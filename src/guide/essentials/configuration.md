@@ -1,20 +1,20 @@
 ---
 layout: full.html
 algolia: true
-title: Configure Kuzzle Backend
+title: Configure Kuzzle
 order: 200
 ---
 
-# Configuring Kuzzle Backend
+# Configuring Kuzzle
 
-The Kuzzle Backend **configuration** is stored in a [kuzzlerc file](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample) found in the root folder of your Kuzzle Backend installation.
+The Kuzzle **configuration** is stored in a [kuzzlerc file](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample) found in the root folder of your Kuzzle installation.
 
-Kuzzle Backend uses [rc](https://github.com/dominictarr/rc) to **override** its default configuration by either:
+Kuzzle uses [rc](https://github.com/dominictarr/rc) to **override** its default configuration by either:
 
 - loading parameters from a `.kuzzlerc` file ([sample file](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample));
 - loading parameters from environment variables with a `kuzzle_` prefix.
 
-### Example 1: configuring Kuzzle Backend using a custom `.kuzzlerc` file
+### Example 1: configuring Kuzzle using a custom `.kuzzlerc` file
 
 You can write your custom config parameters in a `.kuzzlerc` and store it in `$HOME/.kuzzlerc` or [one of these locations](https://github.com/dominictarr/rc/blob/master/README.md#standards):
 
@@ -31,7 +31,7 @@ You can write your custom config parameters in a `.kuzzlerc` and store it in `$H
 }
 ```
 
-### Example 2: configuring Kuzzle Backend using Environment Variables
+### Example 2: configuring Kuzzle using Environment Variables
 
 The name of the environment variable must match the path of the configuration parameter in the `.kuzzlerc` file. To set the name of the environment variable:
 
@@ -44,7 +44,7 @@ For example, the `.kuzzlerc` parameter `services.db.host` in example 1, is repre
 export kuzzle_services__db__host="<DB_HOST>"
 ```
 
-Environment variables are particularly handy when running Kuzzle Backend in a **Docker** container. Using **Docker Compose**, they can easily be configured in the `environment` section of the `docker-compose.yml` file. For example, here's how we pass environment variables to Kuzzle Backend in our default docker-compose file:
+Environment variables are particularly handy when running Kuzzle in a **Docker** container. Using **Docker Compose**, they can easily be configured in the `environment` section of the `docker-compose.yml` file. For example, here's how we pass environment variables to Kuzzle in our default docker-compose file:
 
 ```yaml
 version: '2'

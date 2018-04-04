@@ -2,14 +2,14 @@
 layout: category-childrens.html
 title: Data Validation
 order: 400
-description: The reference for the data-validation engine in Kuzzle Backend.
+description: The reference for the data-validation engine in Kuzzle.
 icon: fa-check
 ---
 
 # Data Validation
 
-Kuzzle Backend natively provides a way to validate documents that you create, replace, update or publish.
-You can specify the validation specification in the Kuzzle Backend configuration file under `validation`.
+Kuzzle natively provides a way to validate documents that you create, replace, update or publish.
+You can specify the validation specification in the Kuzzle configuration file under `validation`.
 
 Validation specifications are always attached to the collection of an index.
 

@@ -32,7 +32,7 @@ catch (ErrorException $e) {
 }
 ```
 
-When writing or deleting documents in Kuzzle Backend's database layer, the update needs to be indexed before being reflected
+When writing or deleting documents in Kuzzle, the update needs to be indexed before being reflected
 in the search index.  
 By default, this operation can take up to 1 second.
 

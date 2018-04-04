@@ -60,4 +60,4 @@ title: getUserRights
 }
 ```
 
-Given a `user id`, gets the matching user's rights from Kuzzle Backend's database layer.
+Given a `user id`, gets the matching user's rights from Kuzzle.
