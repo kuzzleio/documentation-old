@@ -13,7 +13,7 @@ title: list
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/_list(/<all|stored|realtime>)[?from=0][&size=42]`  
+**URL:** `http://kuzzle:7512/<index>/_list[?type=<all|stored|realtime>][&from=0][&size=42]`  
 **Method:** `GET`
 </p>
 </blockquote>
@@ -30,8 +30,8 @@ title: list
   "index": "<index>",
   "controller": "collection",
   "action": "list",
-  "type": "<all|stored|realtime>",
 
+  "type": "<all|stored|realtime>",
   "from": 0,
   "size": 42
 }
