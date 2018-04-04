@@ -14,11 +14,11 @@ subheader-title: Constructor
 # Collection
 
 ```js
-let dataCollection = new Collection(kuzzle, "my-collection", "my-index")
+const dataCollection = new Collection(kuzzle, "my-collection", "my-index")
 ```
 
 ```java
-  Collection myCollection = new Collection(kuzzle, "my-collection", "my-index");
+Collection myCollection = new Collection(kuzzle, "my-collection", "my-index");
 ```
 
 ```php
@@ -55,7 +55,5 @@ A data collection is a set of data managed by Kuzzle. It acts like a data table 
 |--------------|--------|-----------------------------------|---------|
 | ``collection`` | string | The name of the data collection handled by this instance | get |
 | ``index`` | object | Name of the index containing the data collection | get |
-| ``headers`` | object | Headers for all sent documents. | get/set |
 | ``kuzzle`` | object | linked Kuzzle instance | get |
 
-**Note:** the ``headers`` property is inherited from the main ``Kuzzle`` object and can be overrided

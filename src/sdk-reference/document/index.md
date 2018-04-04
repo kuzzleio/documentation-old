@@ -87,13 +87,12 @@ Kuzzle handles two types of documents: realtime messages and stored documents. D
 |--------------|--------|-----------------------------------|---------|
 | ``collection`` | string | The data collection associated to this document | get |
 | ``content`` | JSON Object | The content of the document | get/set |
-| ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
 | ``id`` | string | Unique document identifier | get/set |
-| ``meta`` | JSON Object | Document metadata | get |
+| ``meta`` | JSON Object | Document [metadata]({{ site_base_path }}guide/essentials/document-metadata/) | get/set |
 | ``version`` | integer | Current document version | get |
 
 **Notes:**  
 
 * setting a new value to the ``content`` property is equivalent to calling ``setContent(data, false)``
-* setting a new value to the ``id`` property will force this value for this document
-* the ``headers`` property is inherited from the provided ``Collection`` object and can be overrided
+* setting a new value to the ``meta`` property is equivalent to calling ``setMeta(data, false)``
+* setting a new value to the ``id`` property will create a new document after `save` is called
