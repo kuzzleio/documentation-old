@@ -1,5 +1,7 @@
 ---
-layout: full.html
+layout: side-code.html
+language-tab:
+  js: Javascript
 algolia: true
 title: Notifications
 order: 300
@@ -26,7 +28,7 @@ You may subscribe multiple times to the same room, with identical or different s
 ---
 
 ```js
-var2
+var
   collection = kuzzle.collection('foo', 'bar'),
   filters = {equals: {foo: 'bar'}},
   room;
@@ -125,7 +127,8 @@ room.subscribe(function(err, res) {
 });
 ```
 
-## Document Notification
+## Document notification
+
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
@@ -136,6 +139,7 @@ room.subscribe(function(err, res) {
 
 #### Example
 
+<div class="noside">
 ```json
 {
   "status": 200,
@@ -156,6 +160,7 @@ room.subscribe(function(err, res) {
   }
 }
 ```
+</div>
 
 ---
 
@@ -170,6 +175,7 @@ room.subscribe(function(err, res) {
 
 #### Example
 
+<div class="noside">
 ```json
 {
   "status": 200,
@@ -188,3 +194,4 @@ room.subscribe(function(err, res) {
   }
 }
 ```
+</div>

@@ -21,18 +21,27 @@ subheader-title: Constructor
 
  You may also use the Collection.room() method:
  */
-var room = kuzzle.collection('collection', 'index').room();
+var room = kuzzle.collection('collection', 'index').room({in: {field: ['some', 'filter']}});
 
 room = kuzzle
   .collection('collection', 'index')
-  .room({subscribeToSelf: false});
+  .room({in: {field: ['some', 'filter']}}, {subscribeToSelf: false});
 ```
 
 ```java
-Room room = new Room(dataCollection);
+JSONObject filters = new JSONObject()
+  .put("in",
+    new JSONObject("field")
+      .put(new JSONArray()
+        .put("some")
+        .put("filter")
+      )
+  );
+
+Room room = new Room(dataCollection, filters);
 
 RoomOptions options = new RoomOptions().setSubscribeToSelf(false);
-Room room = new Room(dataCollection, options);
+Room room = new Room(dataCollection, filters, options);
 ```
 
 ```php
@@ -42,14 +51,17 @@ Room room = new Room(dataCollection, options);
 ```
 
 The `Room` object is the result of a subscription request, allowing you to manipulate the subscription itself.
+A `Room` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/event-emitter/) instance, so that we can listen to subription notifications.
+
 
 ---
 
-## Room(Collection, [options])
+## Room(Collection, filters, [options])
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
 | ``Collection`` | object | an instantiated Kuzzle Collection object |
+| ``filters`` | JSON Object | [Filters]({{ site_base_path }}kuzzle-dsl) |
 | ``options`` | object | Optional subscription configuration |
 
 ---
@@ -63,6 +75,7 @@ The `Room` object is the result of a subscription request, allowing you to manip
 | ``state`` | string | Filter [document notifications]({{ site_base_path }}sdk-reference/essentials/notifications/#document-notification) depending on the state of the modifying request. You may receive real-time notifications when a document is about to be changed (state: ``pending``), or be notified when the change has been fully written in the database (state: ``done``), or both (state: ``all``). This filter does not affect pub/sub messages or user events. | ``done`` |
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | ``true`` |
 | ``users`` | string | Filter [user notifications]({{ site_base_path }}sdk-reference/essentials/notifications/#user-notification) triggered upon a user entering the room (user: ``in``), leaving the room (user: ``out``), or both (user: ``all``). Setting this variable to ``none`` prevents receiving these notifications | ``none`` |
+| ``autoResubscribe`` | boolean | Automatically renew the room on a ``reconnected`` event | global ``autoResubscribe`` kuzzle option |
 
 ---
 
@@ -70,12 +83,13 @@ The `Room` object is the result of a subscription request, allowing you to manip
 
 | Property name | Type | Description | get/set |
 |--------------|--------|-----------------------------------|---------|
+| ``roomId`` | string | Unique room identifier | get |
 | ``collection`` | string | The subscribed data collection | get |
 | ``filters`` | JSON object | The current set of filters of this room | get/set |
 | ``headers`` | JSON Object | Common headers for all sent documents. | get/set |
 | ``volatile`` | JSON Object | Additional information passed to notifications to other users | get/set |
 | ``subscribeToSelf`` | boolean | (Don't) subscribe to notifications fired as a consequence of our own queries | get/set |
-| ``roomId`` | string | Unique room identifier | get |
+| ``autoResubscribe`` | boolean | Automatically renew the room on a ``reconnected`` event | get/set |
 
 **Notes:**
 
