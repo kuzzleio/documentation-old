@@ -62,4 +62,4 @@ title: getMapping
 }
 ```
 
-Gets the mapping of the given `collection`.
+Returns the mapping for the given `collection`.

@@ -36,9 +36,7 @@ $kuzzle->addListener('queryError', function() {
 
 ```
 
-Adds a listener to a Kuzzle global event. When an event is fired, listeners are called in the order of their insertion.
-
-See the [event handling]({{ site_base_path }}sdk-reference/essentials/events) section for a full events list.
+Adds a listener to an event. When an event is fired, listeners are called in the order that they are added.
 
 ---
 
@@ -51,6 +49,6 @@ See the [event handling]({{ site_base_path }}sdk-reference/essentials/events) se
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Kuzzle` object to allow chaining.

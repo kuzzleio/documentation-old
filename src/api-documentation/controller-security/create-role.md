@@ -88,13 +88,12 @@ title: createRole
 }
 ```
 
-Validates and stores a role in Kuzzle's persistent data storage.
-**Note:** The `_id` parameter is mandatory.
+Validates and stores a role in Kuzzle Backend's persistent data storage.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the role indexation (indexed roles are available for `search`).
+with the value `wait_for` in order to wait for the role to be indexed (indexed roles are available for `search`).
 
-The body content needs to match Kuzzle's role definition.
+The body content needs to match Kuzzle Backend's role definition.
 
-To get more detailed information about the expected role definition or Kuzzle's user management model,
+To get more detailed information about the expected role definition or Kuzzle Backend's user management model,
 please refer to [Kuzzle's permissions documentation]({{ site_base_path }}guide/essentials/security/#permissions).

@@ -90,11 +90,11 @@ title: scrollSpecifications
 }
 ```
 
-This method moves forward a result set cursor created by a [`searchSpecifications` query]({{ site_base_path }}api-documentation/controller-collection/search-specifications/) with the `scroll` argument provided.
+This method moves a result set cursor forward, created by the [`searchSpecifications` request]({{ site_base_path }}api-documentation/controller-collection/search-specifications/) when the `scroll` argument is provided.
 
-The response may contain a *different* cursor identifier, pointing to the next page of results.
+The response may contain a *different* cursor identifier, pointing to the next page of the results.
 
-The optional `scroll` argument allows to refresh the cursor duration, with a new [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/common-options.html#time-units) value.
+The optional `scroll` argument allows you to set the cursor duration by using the [time to live](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/common-options.html#time-units) value.
 
 <aside class="warning">
   The results that are returned from a `scrollSpecifications` request reflect the state of the index at the time

@@ -58,7 +58,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Replaces the user in kuzzle.
+Replaces the user in Kuzzle Backend.
 
 ---
 
@@ -75,16 +75,16 @@ Replaces the user in kuzzle.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `User` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `User` object.
+Returns a `User` object.

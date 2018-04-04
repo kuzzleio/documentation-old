@@ -75,7 +75,7 @@ title: update
 Only documents in the persistent data storage layer can be updated.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
+with the value `wait_for` in order to wait for the document to be indexed (indexed documents are available for `search`).
 
-Conflicts may occur if the same document gets updated multiple times within a short time on a database cluster. When this happens, Kuzzle answers with an error that clients have to handle.  
-You may set the `retryOnConflict` optional argument with a positive integer, asking Kuzzle to retry updating the document that number of times before rejecting the request with an error.
+Conflicts may occur if the same document gets updated multiple times within a short timespan in a database cluster. When this happens, Kuzzle Backend returns an error.  
+You can set the `retryOnConflict` optional argument (with a retry count), to tell Kuzzle Backend to retry the document update a specified amount of times before rejecting the request with an error.

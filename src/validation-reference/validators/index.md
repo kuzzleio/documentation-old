@@ -8,9 +8,9 @@ order: 200
 
 # The `validators` property
 
-The `validators` property is an array of [DSL filters]({{ site_base_path }}kuzzle-dsl). Each filters have to match in order for the document to be valid.
+The `validators` property is an array of [Koncorde filters]({{ site_base_path }}kuzzle-dsl). Each filter has to match in order for the document to be valid.
 
-<aside class="warning">You have to take care about the fields you allow to be empty or undefined.</aside>
+<aside class="warning">You have to be careful with fields that are empty or undefined.</aside>
 
 ## Structure
 
@@ -49,7 +49,7 @@ The `validators` property is an array of [DSL filters]({{ site_base_path }}kuzzl
 }
 ```
 
-Translates in the following DSL query:
+Translates to the following Koncorde query:
 
 ```json
 {

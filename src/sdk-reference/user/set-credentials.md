@@ -44,12 +44,13 @@ $user->setCredentials([
 ]);
 ```
 
+Sets the user's credentials.
+
 <aside class="note">
   Updating user credentials will have no impact until the <a href="{{ site_base_path }}sdk-reference/user/create"><code>create</code></a> method is called.<br />
-  The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+  The credentials to send depend on the authentication plugin and the strategy you want to create credentials for.
 </aside>
 
-Sets the credentials associated to a user
 
 ---
 
@@ -57,10 +58,10 @@ Sets the credentials associated to a user
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``credentials`` | object | An object containing an attribute for each strategy you want to create for the user. |
+| ``credentials`` | object | An object containing an attribute for each strategy you want to link the user to. |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `User` object.

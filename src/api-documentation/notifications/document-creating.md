@@ -1,11 +1,13 @@
 ---
 layout: full.html
 algolia: true
-title: A document is about to be created
-order: 100
+title: On Document Creation Pending 
+order: 200
 ---
 
-# A document is about to be created
+# On Document Creation Pending 
+
+Notification received when a document is about to be created:
 
 ```javascript
 {

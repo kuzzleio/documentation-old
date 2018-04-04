@@ -59,10 +59,10 @@ Room room = document.subscribe(new ResponseListener<NotificationResponse>() {
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Listens to changes occuring on this document.
-Throws an error if this document has not yet been created in Kuzzle.
+Listens to changes occuring in this document.
+Throws an error if this document has not yet been created in Kuzzle Backend.
 
-The provided callback will be called everytime a [notification]({{ site_base_path }}sdk-reference/essentials/notifications) is received from Kuzzle.
+The provided callback will be called everytime a [notification]({{ site_base_path }}sdk-reference/essentials/notifications) is received from Kuzzle Backend.
 
 ---
 
@@ -81,7 +81,7 @@ Options are directly passed to the [Room]({{ site_base_path }}sdk-reference/room
 
 ---
 
-## Return value
+## Return Value
 
 Returns an object exposing the following method:  
   `onDone(callback)`

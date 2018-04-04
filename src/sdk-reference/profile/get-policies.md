@@ -61,10 +61,10 @@ foreach($profile->getPolicies() as $policy) {
 ]
 ```
 
-Returns this profile associated role policies.
+Returns roles associated to this security policy.
 
 ---
 
-## Return value
+## Return Value
 
-An array of associated role policies
+Returns an array of roles linked to this security policy.

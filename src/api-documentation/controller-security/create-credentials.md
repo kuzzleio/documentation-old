@@ -84,4 +84,5 @@ title: createCredentials
 }
 ```
 
-Create credentials of the specified `<strategy>` for the user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid). The credentials to send depends entirely on the authentication plugin and strategy you want to create credentials for.
+Create credentials for user [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) with the specified `<strategy>`. 
+The credentials to send will depend on the authentication plugin and the authentication strategy.

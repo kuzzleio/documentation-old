@@ -1,21 +1,19 @@
 ---
 layout: full.html
 algolia: true
-title: Real-time notifications
+title: Real-time Notifications
 order: 600
 ---
 
-# Real-time notifications
+# Real-time Notifications
 
-Besides persisting data and retrieving it via advanced searches, Kuzzle features highly customizable push notifications, by enabling **live subscriptions** to any set of data.
-
-Live subscriptions are great to **keep track of the evolution** of a portion of your data you are interested in.
+Kuzzle Backend features highly customizable notifications thanks to its **pub/sub engine** which lets you configure live subscriptions to any dataset. These live subscriptions are a great way to **track** changes in specific subsets of data.
 
 ---
 
 ## Introduction
 
-Imagine you are developing [a collaborative TO-DO list](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) application. All the TO-DO items are persisted in Kuzzle (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
+Imagine you are developing a collaborative TO-DO application like [this](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) one. All the TO-DO items are persisted in Kuzzle Backend (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
 
 But imagine that one of the users (let's call her Ann), adds a new TO-DO item. In order for other users (let's call them Tom and Matt) to display these new item, they need to perform a new document search on the corresponding data collection. They will not see the new items until they refresh (or restart) their application.
 
@@ -24,9 +22,9 @@ This cannot be called a "modern" application: it rather looks like an old-school
 A more interesting user-experience would be that clients display the new TO-DO item _as soon as it is created_. How can we achieve that?
 
 * By implementing a long-polling mechanism in the clients. Every, say, one second, the clients perform a document search and update their list of TO-DO items. Doesn't look like a great idea (performances would be rather bad, for example)
-* By providing push notifications to subscribed clients, allowing them to receive these new items automatically, as soon as they are saved in the system
+* By providing notifications to subscribed clients, allowing them to receive these new items automatically, as soon as they are saved in the system
 
-The second solution is exactly what we are looking for and Kuzzle ships it natively. We can call it **pub/sub**, **push notifications** or **live subscriptions** and it is often used to solve use-cases like this one, where things need to be kept _in sync_ between clients and the back-end server.
+The second solution is exactly what we are looking for and Kuzzle ships it natively. We can call it **pub/sub**, **notifications** or **live subscriptions** and it is often used to solve use-cases like this one, where things need to be kept _in sync_ between clients and the back-end server.
 
 Getting back to our example, our collaborative TO-DO list clients only need to subscribe to the TO-DO data collection (right after the first document search), in order to be notified _in real-time_ about new TO-DO items. This way, once Ann creates her new item, Tom and Matt can see it immediately on their screen.
 
@@ -123,13 +121,13 @@ The Notification bears some useful information about what just happened:
 
 We won't analyze the other attributes for the moment. Take a look at the [Notifications section of the API Reference]({{ site_base_path }}api-documentation/notifications) for a comprehensive list of available notification properties.
 
-This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Kuzzle DSL Reference]({{ site_base_path }}kuzzle-dsl/).
+This subscription is very handy and will notify Tom about the events 1, 2 and 3 of the list above (the `controller`, `action` and `result` will vary depending on the case). But what about the event number 4? How does Tom subscribe to items that only contain the word `URGENT` in their `label` field? Looks like a job for the [Kuzzle Koncorde Reference]({{ site_base_path }}kuzzle-dsl/).
 
 ---
 
 ### Subscription with filters
 
-Kuzzle ships with a powerful [Filtering DSL for Live Subscriptions]({{ site_base_path }}kuzzle-dsl/). It enables you to perform fine-grained selections on the documents you want to subscribe to.
+Kuzzle Backend ships with a powerful filtering tool named [Koncorde]({{ site_base_path }}kuzzle-dsl/). It enables you to perform fine-grained selections on the documents you want to subscribe to.
 
 In our case, we want to select all the documents that contain the `URGENT` word in the `label` field. The best pick for this case is the [regexp]({{ site_base_path }}kuzzle-dsl/#regexp) filter.
 
@@ -149,7 +147,7 @@ kuzzle
   })
 ```
 
-This way, Tom will be notified about urgent TO-DO items. Take a look at the [Filtering DSL Reference]({{ site_base_path }}kuzzle-dsl/) for a comprehensive list of available filters.
+This way, Tom will be notified about urgent TO-DO items. Take a look at the [Koncorde Reference]({{ site_base_path }}kuzzle-dsl/) for a comprehensive list of available filters.
 
 There are a few things that deserve to be noticed here:
 

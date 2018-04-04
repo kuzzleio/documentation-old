@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered when a request is sent to the [`document` controller]({{ site_base_path }}api-documentation/controller-document).
+Events triggered when a request is sent to the [`document`]({{ site_base_path }}api-documentation/controller-document) controller.
 
 ---
 
@@ -22,7 +22,7 @@ Events triggered when a request is sent to the [`document` controller]({{ site_b
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `document` controller trigger this event after a successful execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `document` controller trigger this event after a successful execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a successful [create]({{ site_base_path }}api-documentation/controller-document/create/) request, a `document:afterCreate` event is triggered.
 
@@ -36,7 +36,7 @@ Example: after a successful [create]({{ site_base_path }}api-documentation/contr
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `document` controllers trigger this event before execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `document` controllers trigger this event before execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: before performing a [get]({{ site_base_path }}api-documentation/controller-document/get/) request, a `document:beforeGet` event is triggered.
 
@@ -50,7 +50,7 @@ Example: before performing a [get]({{ site_base_path }}api-documentation/control
 
 **Payload:** a [Request]({{ site_base_path }}plugins-reference/plugins-context/constructors/#request) object
 
-All actions in the `document` controllers trigger this event after a failed execution, with the `<Action>` part of the event name replaced with the name of the action, capitalized.
+All actions in the `document` controllers trigger this event after a failed execution. The `<Action>` part of the event name is replaced with the name of the action, where each word starts with a capital letter.
 
 Example: after a failed [delete]({{ site_base_path }}api-documentation/controller-document/delete/) request, a `document:errorDelete` event is triggered.
 

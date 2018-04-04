@@ -63,7 +63,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Retrieves a single stored user using its unique ID.
+Fetches a single stored user using its unique ID.
 
 ---
 
@@ -81,10 +81,10 @@ Retrieves a single stored user using its unique ID.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a [User]({{ site_base_path }}sdk-reference/user) object.
+Returns a [User]({{ site_base_path }}sdk-reference/user) object.

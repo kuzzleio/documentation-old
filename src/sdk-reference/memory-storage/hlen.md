@@ -78,10 +78,10 @@ Returns the number of fields contained in a hash.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of fields in the hash.
+Returns an integer containing the number of fields in the hash.

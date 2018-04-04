@@ -65,6 +65,6 @@ title: pfadd
 }
 ```
 
-Adds elements to an [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure.
+Adds elements to a [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) data structure.
 
 [[_Redis documentation_]](https://redis.io/commands/pfadd)

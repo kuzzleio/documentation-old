@@ -82,10 +82,10 @@ Returns all values contained in a hash.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array containing the values of a hash.
+Returns an array containing the values of a hash.

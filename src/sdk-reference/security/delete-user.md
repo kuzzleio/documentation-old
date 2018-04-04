@@ -69,8 +69,8 @@ catch (ErrorException $e) {
 Delete the provided user.
 
 <aside class="notice">
-There is a small delay between user deletion and their deletion in our search layer, usually a couple of seconds.
-That means that a user that has just been delete will be returned by <code>searchUsers</code> function
+There is a small delay between the time a user is deleted and it being reflected in the search layer (usually a couple of seconds).
+That means that a user that has just been deleted may still be returned by the <code>searchUsers</code> function at first.
 </aside>
 
 ---
@@ -89,17 +89,17 @@ That means that a user that has just been delete will be returned by <code>searc
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle Backend will wait the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Security` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves the user id which has been deleted.
+Return the id of the user that has been deleted.

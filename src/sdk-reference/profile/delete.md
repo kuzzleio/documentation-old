@@ -58,7 +58,7 @@ catch(ErrorException $e) {
 }
 ```
 
-Deletes this profile from Kuzzle.
+Deletes this security profile from Kuzzle Backend.
 
 ---
 
@@ -75,10 +75,10 @@ Deletes this profile from Kuzzle.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the id of the deleted profile.
+Returns the ID of the deleted profile.

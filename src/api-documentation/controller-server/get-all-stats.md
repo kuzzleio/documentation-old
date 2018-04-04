@@ -69,14 +69,14 @@ title: getAllStats
 }
 ```
 
-Kuzzle monitors its internal activities and make snapshots regularly. This command allows getting all the stored statistics.
-By default, snapshots are made every 10s, and these snapshots are stored for 1hr.
+Kuzzle Backend monitors its internal activities and makes regular snapshots. This command returns all the stored statistics.
+By default, snapshots are made every 10 seconds and they are stored for 1 hour.
 
 These statistics include:
 
-* the number of connected users per protocol for the ones which allow to get this information (websocket, udp, ...)
+* the number of connected users per protocol (not available for all protocols)
 * the number of ongoing requests
 * the number of completed requests since the last frame
 * the number of failed requests since the last frame
 
-Statistics are returned as a JSON-object with each key being the snapshot's timestamp (utc, in milliseconds).
+Statistics are returned as a JSON-object where each key is set to the snapshot's timestamp (utc, in milliseconds).

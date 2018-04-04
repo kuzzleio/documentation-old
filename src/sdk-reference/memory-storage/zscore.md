@@ -79,11 +79,11 @@ Returns the score of a member in a sorted set.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a floating point number containing the searched member's score.
+Returns a floating point number containing the searched member's score.

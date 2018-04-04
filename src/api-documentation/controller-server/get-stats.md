@@ -74,13 +74,13 @@ title: getStats
 }
 ```
 
-Allows to get statistics frames saved/stored after a provided timestamp (utc, in milliseconds).
+Returns statistics for snapshots made after a given timestamp (utc, in milliseconds).
 
 These statistics include:
 
-* the number of connected users per protocol for the ones which allow to get this information (websocket, udp, ...)
+* the number of connected users per protocol (not available for all protocols)
 * the number of ongoing requests
 * the number of completed requests since the last frame
 * the number of failed requests since the last frame
 
-Statistics are returned as a JSON-object with each key being the snapshot's timestamp (utc, in milliseconds).
+Statistics are returned as a JSON-object where each key is set to the snapshot's timestamp (utc, in milliseconds).

@@ -47,7 +47,7 @@ title: deleteSpecifications
 }
 ```
 
-Deletes the validation specification set for the <index>/<collection>.
-It responds 200 even there where no validation specification manually set before.
+Deletes the validation specification for the <index>/<collection>.
+It returns a `status` of 200 even if no validation specification exists.
 
-***Note:*** by default, an empty specification is implicitly applied to all collections. In a way, "no specification set" means "all documents are valid". This is why, using this route when no specifications have been set before, does not produce an error.
+***Note:***  by default, an empty specification is implicitly applied to all collections. In a way, "no specification set" means "all documents are valid". This is why there is no error when we make this request and no specifications exist.

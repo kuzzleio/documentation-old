@@ -46,4 +46,4 @@ title: credentialsExist
 }
 ```
 
-Check the existence of the specified `<strategy>`'s credentials for the current user.
+Check that the current user has credentials for the specified `<strategy>`.

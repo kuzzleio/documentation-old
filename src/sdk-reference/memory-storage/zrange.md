@@ -85,20 +85,20 @@ First position starts at `0`.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of objects, each containing the following properties:
+Returns an array of objects, each containing the following properties:
 
 * `member`: member value in the sorted set
 * `score`: member associated score

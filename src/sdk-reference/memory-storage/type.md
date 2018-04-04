@@ -78,11 +78,11 @@ Returns the type of the value held by a key.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to one of the following values: `hash`, `list`, `set`, `string`, `zset`
+Returns one of the following values: `hash`, `list`, `set`, `string`, `zset`.

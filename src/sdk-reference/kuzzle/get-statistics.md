@@ -52,12 +52,12 @@ $statistics = $kuzzle->getStatistics();
 
 ```json
 [
-  { 
+  {
     "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "mqtt": 37, "socketio": 17 },
     "failedRequests": { "socketio": 1 },
-    "timestamp": "1453110641308" 
+    "timestamp": "1453110641308"
   }
 ]
 ```
@@ -112,32 +112,32 @@ $statistics = $kuzzle->getStatistics($date);
 
 ```json
 [
-  { 
+  {
     "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "mqtt": 37, "socketio": 17 },
     "failedRequests": { "socketio": 1 },
-    "timestamp": "1453110641308" 
+    "timestamp": "1453110641308"
   },
-  { 
+  {
     "connections": { "socketio": 1 },
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "socketio": 34 },
     "failedRequests": { "socketio": 3 },
-    "timestamp": "1453110642308" 
+    "timestamp": "1453110642308"
   },
-  { 
+  {
     "connections": {},
     "ongoingRequests": { "rest": 0, "socketio": 0 },
     "completedRequests": { "socketio": 40 },
     "failedRequests": {},
-    "timestamp": "1453110643308" 
+    "timestamp": "1453110643308"
   }
 ]
 ```
 
-Kuzzle monitors active connections, and ongoing/completed/failed requests.  
-This method allows getting either the last statistics frame, or a set of frames starting from a provided timestamp.
+Kuzzle Backend monitors active connections, and ongoing/completed/failed requests.  
+This method returns either the last statistics frame, or a set of frames starting from a provided timestamp.
 
 ---
 
@@ -155,12 +155,12 @@ This method allows getting either the last statistics frame, or a set of frames 
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 **Note:** Kuzzle statistics are cleaned up regularly. If the timestamp is set too far in the past, then this method will return all available statistics.
 
 ---
 
-### Callback response
+### Callback Response
 
-Resolves to an `array` containing one or more statistics frame(s), as JSON objects.
+Returns an `array` containing one or more statistics frame (as JSON objects).

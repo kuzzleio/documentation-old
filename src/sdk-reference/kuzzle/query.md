@@ -93,11 +93,11 @@ catch (ErrorException $e) {
 }
 ```
 
-Base method used to send queries to Kuzzle, following the [API Documentation]({{ site_base_path }}api-documentation)
+Base method used to send queries to Kuzzle Backend, following the [API Documentation]({{ site_base_path }}api-documentation).
 
 <aside class="warning">
 This is a low-level method, exposed to allow advanced SDK users to bypass high-level methods.<br/>
-Check the Kuzzle API Reference available <a href="{{ site_base_path }}api-documentation">here</a>
+Refer to the Kuzzle Backend API Reference <a href="{{ site_base_path }}api-documentation">here</a>
 </aside>
 
 ---
@@ -131,16 +131,16 @@ Check the Kuzzle API Reference available <a href="{{ site_base_path }}api-docume
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
 | ``volatile`` | JSON object | Additional information passed to notifications to other users | ``null`` |
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a `JSON object` containing the raw Kuzzle response.
+Returns a `JSON object` containing the raw Kuzzle Backend response.

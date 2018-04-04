@@ -41,7 +41,7 @@ Room room = new Room(dataCollection, options);
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-The `Room` object is the result of a subscription request, allowing to manipulate the subscription itself.
+The `Room` object is the result of a subscription request, allowing you to manipulate the subscription itself.
 
 ---
 
@@ -80,5 +80,5 @@ The `Room` object is the result of a subscription request, allowing to manipulat
 **Notes:**
 
 * the ``headers`` property is inherited from the provided ``Collection`` object and can be overridden
-* updating the ``volatile`` property takes effect after ``renew`` is called
-* by default, the global Kuzzle ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``volatile`` for the subscription only. In case of conflicts, subscription ``metadata`` take priority over the global ``metadata``.
+* updating the ``volatile`` property takes effect only after the subscription is renewed
+* by default, the global ``volatile`` properties are sent along with the subscription request. If a ``volatile`` option is provided during subscription, it will be merged with the global ``volatile`` for the subscription only. In case of conflicts, subscription ``volatile`` data takes priority over the global ``volatile`` ones.

@@ -66,10 +66,10 @@ Instantiates a new CollectionMapping object with an up-to-date content.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to this updated `CollectionMapping` object.
+Returns the updated `CollectionMapping` object.

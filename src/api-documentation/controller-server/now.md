@@ -47,4 +47,4 @@ title: now
 }
 ```
 
-Returns the current Kuzzle UTC timestamp as Epoch time (number of `milliseconds` elapsed since `1 January 1970 00:00:00`).
+Returns the current Kuzzle Backend UTC timestamp as Epoch time (number of `milliseconds` elapsed since `1 January 1970 00:00:00`).
