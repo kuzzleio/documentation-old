@@ -137,26 +137,26 @@ Your `init.js` file should now look like this:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
+// instantiate a Kuzzle client
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
-kuzzle.once('connected', () => {
-  kuzzle
-    .createIndexPromise('playground')
-    .then(() => kuzzle.collection('mycollection').createPromise())
-    .then(() => {
-      console.log('playground/mycollection ready')
-    })
-    .catch(err => {
-      console.error(err.message)
-    })
-    .finally(() => kuzzle.disconnect())
-})
+kuzzle
+  .connectPromise()
+  .then(() => kuzzle.createIndexPromise('playground'))
+  .then(() => kuzzle.collection('mycollection').createPromise())
+  .then(() => {
+    console.log('playground/mycollection ready')
+  })
+  .catch(err => {
+    console.error(err.message)
+  })
+  .finally(() => kuzzle.disconnect())
 ```
 
 This code does the following:
-* loads the `Kuzzle SDK` from its NPM package
-* creates an instance of the SDK and connects it to Kuzzle running on `localhost` (and selects the `playground` as default index),
+* loads the `Kuzzle` SDK from its NPM package,
+* creates an instance of the SDK,
+* connects the SDK to a remote Kuzzle server running on `localhost` (and selects the `playground` as default index),
 * creates the `playground` index,
 * creates the `mycollection` collection (within the `playground` index),
 * disconnects from Kuzzle after the collection is created or if an error occurs.
@@ -189,23 +189,22 @@ Create a `create.js` file with following code:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
+// instantiate a Kuzzle client
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // create an object that contains the message we want to store
 const message = {message: "Hello, World!"}
 
-kuzzle.once('connected', () => {
-  kuzzle.collection('mycollection')
-    .createDocumentPromise(message)
-    .then(res => {
-      console.log('the following document has been successfully created:\n', message)
-    })
-    .catch(err => {
-      console.error(err.message)
-    })
-    .finally(() => kuzzle.disconnect())
-})
+kuzzle
+  .connectPromise()
+  .then(() => kuzzle.collection('mycollection').createDocumentPromise(message))
+  .then(res => {
+    console.log('the following document has been successfully created:\n', message)
+  })
+  .catch(err => {
+    console.error(err.message)
+  })
+  .finally(() => kuzzle.disconnect())
 ```
 
 This code does the following:
@@ -241,7 +240,7 @@ Let's get started. Create a `subscribe.js` file with following code:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
+// instantiate a Kuzzle client
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // create a reference to the 'mycollection' collection
@@ -255,10 +254,16 @@ const filter = {
 }
 
 // create a subscription on the collection matching given filters
-collection.subscribe(filter, result => {
+collection
+  .subscribe(filter, result => {
     // this function is called each time kuzzle notifies us with a document matching our filters
-    console.log('message received from kuzzle:', result)
-})
+    console.log('Message received from kuzzle:', result)
+  })
+  .onDone(() => console.log('Subscription active. Waiting for messages...'))
+
+// Connects the client to a remote Kuzzle server and plays the previously
+// configured subscriptions
+kuzzle.connect()
 ```
 
 Run your file in Node.js

@@ -11,11 +11,32 @@ title: connect
 # connect
 
 ```js
-kuzzle.connect();
+// Using callbacks (NodeJS or Web Browser)
+kuzzle.connect(function (err, kuzzle) {
+  if (err) {
+    console.log('Unable to connect: ', err.message);
+  } else {
+    console.log('Connected!');
+  }
+});
+
+// Using promises (NodeJS only)
+kuzzle.connectPromise()
+  .then(() => console.log('Connected!'));
 ```
 
 ```java
-kuzzle.connect();
+kuzzle.connect(new ResponseListener<Void>() {
+ @Override
+ public void onSuccess(Void object) {
+   // invoked once connected
+ }
+
+ @Override
+ public void onError(JSONObject error) {
+   // Handle connection error
+ }
+});
 ```
 
 ```php
@@ -24,17 +45,10 @@ kuzzle.connect();
 // not implemented (this SDK uses HTTP and is thus stateless)
 ```
 
-Connects to Kuzzle using the `host` parameter provided in the constructor.
-Has no effect if ``connect`` is set to ``auto``, unless ``disconnect`` has been called first.
-
----
-
-## Return value
-
-Returns the `Kuzzle` object to allow chaining.
+Connects to Kuzzle using the `host` and `port` parameters provided in the constructor.
 
 ---
 
 ## Callback Response
 
-If a callback has been provided to the `Kuzzle` constructor, it will be called with the `Kuzzle` instance once connected to Kuzzle
+Resolves with nothing once connected to a remote Kuzzle server.
