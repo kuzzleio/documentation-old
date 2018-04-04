@@ -1,5 +1,7 @@
 ---
-layout: full.html
+layout: side-code.html
+language-tab:
+  js: Javascript
 algolia: true
 title: Notifications
 order: 300
@@ -26,13 +28,13 @@ You may subscribe multiple times to the same room, with identical or different s
 ---
 
 ```js
-var2
+var
   collection = kuzzle.collection('foo', 'bar'),
   filters = {equals: {foo: 'bar'}},
   room;
 
 /*
-* Use case 1 : Simple subscription to document changes with default scope/state options
+* simple subscribe to document changes with default scope/state options
 */
 room = collection.subscribe(filters, function(data) {
   if (data.scope === 'in') {
@@ -47,16 +49,9 @@ room = collection.subscribe(filters, function(data) {
     console.log('Subscription ready');
   }
 });
-```
-
-```js
-var
-  collection = kuzzle.collection('foo', 'bar'),
-  filters = {equals: {foo: 'bar'}},
-  room;
 
 /*
-* Use case 2 : Subscribe only to documents leaving the scope
+* subscribe only to documents leaving the scope
 */
 room = collection.subscribe(filters, {scope: 'out'}, function(data) {
   console.log('Document moved from the scope: ', data.document);
@@ -67,23 +62,13 @@ room = collection.subscribe(filters, {scope: 'out'}, function(data) {
     console.log('Subscription ready');
   }
 });
-```
-
-```js
-var
-  collection = kuzzle.collection('foo', 'bar'),
-  filters = {equals: {foo: 'bar'}},
-  room;
 
 /*
-* Use case 3 : Create a Room with custom options and add some listeners to it
+* Create a Room with custom options and add some listeners to it
 */
 
 // create the room:
-room = collection.room(
-  filters,
-  {state: 'all', scope: 'in', users: 'all', subscribeToSelf: false}
-);
+room = collection.room(filters, {state: 'all', scope: 'in', users: 'all', subscribeToSelf: false});
 
 // listen to notifications about pending new documents:
 room.on('document', function(data) {
@@ -114,18 +99,10 @@ room.on('user', function(data) {
     console.log('Number of listening users: ', data.result.count);
   }
 });
-
-// subscribe to the room:
-room.subscribe(function(err, res) {
-  if (err) {
-    console.error('Error while subscribing to the room: ', err);
-  } else {
-    console.log('Subscription ready');
-  }
-});
 ```
 
-## Document Notification
+## Document notification
+
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
@@ -136,6 +113,7 @@ room.subscribe(function(err, res) {
 
 #### Example
 
+<div class="noside">
 ```json
 {
   "status": 200,
@@ -156,6 +134,7 @@ room.subscribe(function(err, res) {
   }
 }
 ```
+</div>
 
 ---
 
@@ -170,6 +149,7 @@ room.subscribe(function(err, res) {
 
 #### Example
 
+<div class="noside">
 ```json
 {
   "status": 200,
@@ -188,3 +168,4 @@ room.subscribe(function(err, res) {
   }
 }
 ```
+</div>
