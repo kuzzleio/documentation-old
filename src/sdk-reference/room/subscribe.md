@@ -5,13 +5,13 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: renew
+title: subscribe
 ---
 
 # renew
 
 ```js
-room.renew(function (err, res) {
+room.subscribe(function (err, res) {
   // handles the subscription result
 });
 ```
@@ -34,8 +34,17 @@ Unsubscribes first if this `Room` object was already listening to events.
 
 ---
 
-## renew(subscriptionCallback)
+## subscribe([options], subscriptionCallback)
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
+| ``options`` | JSON Object | Optional parameters |
 | ``subscriptionCallback`` | function | Function called with the subscription result |
+
+---
+
+## Options
+
+| Option | Type | Description | Default |
+|---------------|---------|----------------------------------------|---------|
+| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |

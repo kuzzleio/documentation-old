@@ -124,7 +124,4 @@ See the [Room object]({{ site_base_path }}sdk-reference/room/) documentation for
 
 ## Return Value
 
-Returns an object exposing the following method:  
-  `onDone(callback)`
-
-The `callback` argument is called when the subscription ends, either successfully or with an error.
+Returns the [Room object]({{ site_base_path }}sdk-reference/room/) associated to the subscription.

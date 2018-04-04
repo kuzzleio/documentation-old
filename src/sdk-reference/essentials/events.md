@@ -13,6 +13,8 @@ The [Kuzzle instance]({{ site_base_path }}sdk-reference/kuzzle/) periodically em
 
 ## Emitted Events
 
+### Kuzzle
+
 | Event Name | Callback arguments | Description |
 |------------|-------------|-------------|
 | ``connected`` | _(none)_ | Triggered when the SDK has successfully connected to Kuzzle |
@@ -25,5 +27,12 @@ The [Kuzzle instance]({{ site_base_path }}sdk-reference/kuzzle/) periodically em
 | ``queryError`` | `error` (object), `query` (object) | Triggered whenever Kuzzle responds with an error |
 | ``reconnected`` | _(none)_ |  Triggered when the current session has reconnected to Kuzzle after a disconnection, and only if ``autoReconnect`` is set to ``true`` |
 | ``tokenExpired`` | _(none)_ |  Triggered when Kuzzle rejected a request because the authentication token expired |
+
+### Room
+
+| Event Name | Callback arguments | Description |
+|------------|-------------|-------------|
+| ``document`` | `data` (object) | Triggered when the room receive a [Document Notification]({{ site_base_path }}api-documentation/notifications/#document-notifications)  |
+| ``user`` | `data` (object) | Triggered when the room receive a [User Notification]({{ site_base_path }}api-documentation/notifications/#subscription-notifications) |
 
 **Note:** listeners are called in the order of their insertion.

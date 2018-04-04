@@ -5,17 +5,17 @@ language-tab:
   java: Android
   php: PHP
 algolia: true
-title: getJwtToken
+title: getJwt
 ---
 
-# getJwtToken
+# getJwt
 
 ```js
-var jwtToken = kuzzle.getJwtToken();
+var jwt = kuzzle.getJwt();
 ```
 
 ```java
-String jwtToken = kuzzle.getJwtToken();
+String jwt = kuzzle.getJwt();
 ```
 
 ```php
@@ -24,10 +24,10 @@ use \Kuzzle\Kuzzle;
 
 $kuzzle = new Kuzzle('localhost');
 // ...
-$token = $kuzzle->getJwtToken();
+$token = $kuzzle->getJwt();
 ```
 
-Get internal jwtToken used to request kuzzle.
+Get internal Json Web Token used to request kuzzle.
 
 ---
 
