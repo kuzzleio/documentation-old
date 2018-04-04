@@ -22,8 +22,10 @@ You can write your custom config parameters in a `.kuzzlerc` and store it in `$H
 {
   "services": {
     "db": {
-      "host": "<ES_HOST>",
-      "port": "<ES_PORT>"
+      "client": {
+        "host": "http://localhost:9200",
+        "apiVersion": "5.4"
+      }
     }
   }
 }
