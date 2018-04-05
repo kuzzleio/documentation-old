@@ -14,6 +14,7 @@
 - [Configure versions](#configure-versions)
   - [Version configuration reference](#version-configuration-reference)
   - [Configure version auto-deployment](#configure-version-auto-deployment)
+- [Troubleshooting](#troubleshooting)
 - [See also](#see-also)
 
 # Usage
@@ -251,6 +252,13 @@ adding your branch configured in `version_gh_repo` to `.branches.only` entry in 
   }
 ]
 ```
+
+## Troubleshooting
+
+### Error: watch ... ENOSPC
+
+You have to increase the `max_user_watches` variable, run the following command :   
+`echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`
 
 ---
 
