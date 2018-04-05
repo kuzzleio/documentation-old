@@ -1,14 +1,14 @@
 ---
 layout: full.html
 algolia: true
-title: The PluginCcontext
+title: The Plugin Context
 description: plugin initialization context attribute reference
 order: 400
 show-subheader: true
 subheader-title: Introductions
 ---
 
-# The Plugin Pontext
+# The Plugin Context
 
 The plugin context is an object containing a set of constructors, accessors and configurations, allowing plugins to interact with Kuzzle.
 
