@@ -50,7 +50,7 @@ $result = $kuzzle->createMyCredentials('local', ['username' => 'foo']);
 // $result = [username => 'foo', kuid => '<kuid>']
 ```
 
-Create the current user's credentials for the specified <strategy>. The credentials required will depend on the authentication plugin and strategy.
+Create the current user's credentials for the specified strategy. The credentials required will depend on the authentication plugin and strategy.
 
 ---
 
