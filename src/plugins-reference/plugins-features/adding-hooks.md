@@ -17,6 +17,8 @@ Hooks are declared in the `hooks` property of the Plugin class, which accepts an
 
 ## Executing Hooks in Separate Threads
 
+{{{deprecated "1.0.0"}}}
+
 Plugins that declare hooks can be executed in a separate thread from that of the Kuzzle process. This is handy when you want to perform heavy computations that can have a negative impact on Kuzzle's performance.
 
 To achieve this, Kuzzle must specify a `threads` property in the [custom configuration]({{ site_base_path }}guide/essentials/configuration) of the Plugin.
