@@ -16,7 +16,7 @@ title: getUserRights
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_users/<kuid>/_rights`  
+**URL:** `http://kuzzle:7512/users/<kuid>/_rights`  
 **Method:** `GET`
 </p>
 </blockquote>
