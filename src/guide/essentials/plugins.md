@@ -2,7 +2,7 @@
 layout: full.html
 algolia: true
 title: Kuzzle's Plugin Engine
-order: 1000
+order: 1100
 ---
 
 # Kuzzle's Plugin Engine
@@ -174,7 +174,7 @@ To learn more about how to manage or configure plugins, please check our [Plugin
 To get more insight into how plugins work, please refer to the [Plugin Reference]({{ site_base_path }}plugins-reference).
 
 Here is a list of official plugins:
-- [**kuzzle-plugin-auth-passport-local**](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local): authentication Plugin shipped with Kuzzle 
+- [**kuzzle-plugin-auth-passport-local**](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local): authentication Plugin shipped with Kuzzle
 - [**kuzzle-plugin-logger**](https://github.com/kuzzleio/kuzzle-plugin-logger): worker Plugin shipped with Kuzzle
 - [**kuzzle-plugin-auth-passport-oauth**](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-oauth): authentication plugin
 - [**kuzzle-plugin-mqtt**](https://github.com/kuzzleio/kuzzle-plugin-mqtt): protocol plugin
