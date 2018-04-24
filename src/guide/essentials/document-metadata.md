@@ -51,7 +51,7 @@ Here is an example of a Kuzzle response, containing a document's `_id`, `_source
 Documents metadata are managed by Kuzzle and cannot be changed using the API.  
 They are stored in Elasticsearch directly inside the document, under the `_kuzzle_info` sub-object.
 
-Kuzzle is able to handle documents without metadata, either because they were inserted without using Kuzzle or before Kuzzle was used. In either cases, metadata will be automatically be added when these documents are updated.
+Kuzzle is able to handle documents without metadata, either because they were inserted without using Kuzzle or before Kuzzle was used. In either case, metadata will be automatically be added when these documents are updated.
 
 ---
 
