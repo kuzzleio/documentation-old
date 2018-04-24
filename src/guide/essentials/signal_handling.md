@@ -7,7 +7,7 @@ order: 1000
 
 # Signal Handling
 
-Kuzzle caught some Unix signals, they are distributed in 3 categories :
+Kuzzle handles certain Unix signals which fall into the following three categories:
 
  * Abnormal termination
  * Normal termination
@@ -17,26 +17,26 @@ The code related to signal handling can be seen here : [lib/api/kuzzle.js#L183](
 
 ## Abnormal termination
 
-Concerned signals :
+Unix signal names:
  * `SIGQUIT`
  * `SIGABRT`
  * `SIGPIPE`
 
-These signals represents a critical error and will force Kuzzle to quit.  
-When one of the signal above is caught, Kuzzle will first generate a [dump report]({{ site_base_path }}guide/essentials/cli#dump) and then quit directly.  
+ These signals are the result of a critical error and will force Kuzzle to shutdown.
+ When one of the aforementioned Unix signals is detected, Kuzzle will first generate a [dump report]({{ site_base_path }}guide/essentials/cli#dump) and then shutdown.
 
 ## Normal termination  
 
-Concerned signals :
+Unix signal names:
  * `SIGTERM`
  * `SIGINT`
 
-These signals represents a willingness to quit Kuzzle gracefully.  
-Once one of the signal above is caught, Kuzzle will refuse new requests, exit the cluster, finish the current request queue and then quit.  
+ These signals are the result of a request to terminate gracefully.
+ When one of the aforementioned Unix signals is detected, Kuzzle will refuse new requests, exit the cluster, finish the current request queue and then shutdown.
 
 ## Dump report
 
-Concerned signals :
+Unix signal names:
  * `SIGTRAP`
 
-These signals are used to generate a [dump report]({{ site_base_path }}guide/essentials/cli#dump). Once caught, Kuzzle will generate a dump report and continue to serve requests normally.
+When one of the aforementioned Unix signals is detected, Kuzzle will generate a dump report and continue to serve requests normally.
