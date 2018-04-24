@@ -22,7 +22,7 @@ Metadata can be viewed in the document's `_meta` field and contains the followin
 * `active`: The status of the document. `true` if the document is active and `false` if the document has been put in the trashcan.
 * `deletedAt`: Timestamp of document deletion in epoch-milliseconds format, or `null` if the document has not been deleted.
 
-Here is an example of a document and its `_meta` field:
+Here is an example of a Kuzzle response, containing a document's `_id`, `_source` and `_meta` fields:
 
 ```json
 {
@@ -46,15 +46,26 @@ Here is an example of a document and its `_meta` field:
 
 ---
 
+## How metadata are physically stored
+
+Documents metadata is managed by Kuzzle and cannot be changed using the API.  
+Metadata is stored in the _kuzzle_info field of each document in Elasticsearch.
+
+Elasticsearch might contain documents that don't have metadata. This can be the case for documents that were not inserted through Kuzzle. Such documents will automatically obtain metadata when they are updated through Kuzzle.
+
+---
+
 ## Querying Metadata
 
-Metadata can be queried like any other document property. For example, to query by a document's creation timestamp, we can use the following search filter:
+Kuzzle allows search requests to access metadata directly. This means that you'll have to search in the `_kuzzle_info` document property.
+
+For example, to query by a document's creation timestamp, we can use the following search filter:
 
 ```json
 {
   "query": {
       "range": {
-          "_meta.createdAt": {
+          "_kuzzle_info.createdAt": {
             "lte": 1481816930000
           }
       }
