@@ -51,13 +51,13 @@ Here is an example of a Kuzzle response, containing a document's `_id`, `_source
 Documents metadata are managed by Kuzzle and cannot be changed using the API.  
 They are stored in Elasticsearch directly inside the document, under the `_kuzzle_info` sub-object.
 
-Kuzzle is able to handle documents without metadata, because they were inserted without using Kuzzle, or before Kuzzle was used. In this case, metadata will be automatically be added when these documents are updated.
+Kuzzle is able to handle documents without metadata, either because they were inserted without using Kuzzle or before Kuzzle was used. In either cases, metadata will be automatically be added when these documents are updated.
 
 ---
 
 ## Querying Metadata
 
-Kuzzle allows search requests to access metadata directly. This means that you'll have to search in the `_kuzzle_info` document property directly.
+Kuzzle allows search requests to access metadata directly. This means that you'll have to search in the `_kuzzle_info` document property.
 
 For example, to query by a document's creation timestamp, we can use the following search filter:
 
