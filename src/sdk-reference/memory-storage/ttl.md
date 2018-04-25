@@ -78,11 +78,11 @@ Returns the remaining time to live of a key, in seconds, or a negative value if 
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the remaining time to live of the key, in seconds.
+Returns an integer containing the remaining time to live of the key, in seconds.

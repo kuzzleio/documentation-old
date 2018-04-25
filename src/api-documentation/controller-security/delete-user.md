@@ -54,7 +54,7 @@ title: deleteUser
 }
 ```
 
-Given a `user id`, deletes the corresponding [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) from Kuzzle's database layer.
+Given a `user id`, deletes the corresponding user from Kuzzle.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the user's deletion indexation (indexed users are available for `search`).
+with the value `wait_for` in order to wait for the user's deletion to be indexed (indexed users are available for `search`).

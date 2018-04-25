@@ -58,7 +58,7 @@ $strategies = $kuzzle->security->getAllCredentialFields();
 }
 ```
 
-Retrieve a list of accepted fields per authentication strategy.
+Fetches a list of accepted fields per authentication strategy.
 
 ---
 
@@ -75,10 +75,10 @@ Retrieve a list of accepted fields per authentication strategy.
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an object reflecting the credentials.
+Returns an object with the credential fields.

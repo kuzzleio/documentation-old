@@ -80,16 +80,16 @@ Increments the number stored in a hash field by the provided integer value.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to the new incremented value.
+Returns the newly incremented value.

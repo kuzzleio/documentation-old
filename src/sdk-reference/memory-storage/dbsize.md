@@ -77,10 +77,10 @@ Returns the number of keys in the application database.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of keys in the application database
+Returns an integer containing the number of keys in the application database.

@@ -10,9 +10,9 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-These events are triggered by Kuzzle's real-time engine, every time [a notification]({{ site_base_path }}api-documentation/notifications/) is about to be sent to subscribing clients.
+These events are triggered by Kuzzle's real-time engine, every time a [notification]({{ site_base_path }}api-documentation/notifications/) is about to be sent to subscribing clients.
 
-[Synchronously listening plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-pipes/) may block some (or all) notifications by rejecting the provided promise.
+A [Synchronous listener]({{ site_base_htpath }}plugins-reference/plugins-features/adding-pipes/) can block some (or all) notifications by rejecting the provided promise.
 
 ---
 
@@ -24,7 +24,7 @@ These events are triggered by Kuzzle's real-time engine, every time [a notificat
 
 **Payload:** a [Notification]({{ site_base_path }}api-documentation/notifications/) object
 
-Triggered whenever a notification is about to be sent. This notification can be about a document, a user or a server event.  
+Triggered whenever a notification is about to be sent. This notification can be about a document, a user, or a server event.  
 Use the `type` property to determine the notification type.
 
 ---

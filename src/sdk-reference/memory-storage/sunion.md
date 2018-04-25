@@ -84,11 +84,11 @@ Returns the union of the provided sets of unique values.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an array of the values in the computed union.
+Returns an array of values in the computed union.

@@ -1,16 +1,16 @@
 ---
 layout: full.html
 algolia: true
-title: [Plugin events]
+title: [Plugin Events]
 description: list of events emitted by plugins
 order: 100
 ---
 
-# Plugin events
+# Plugin Events
 
 {{{since "1.0.0"}}}
 
-Plugins may [add new controllers and actions]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) to Kuzzle's API. These new controllers and actions behave exactly like native controllers/actions, and Kuzzle automatically triggers events when requests are sent to these plugin controllers.
+Plugins can [add new controllers and actions]({{ site_base_path }}plugins-reference/plugins-features/adding-controllers) to Kuzzle's API. These new controllers and actions behave exactly like native controllers and actions. Kuzzle will automatically trigger events when requests are sent to these plugin controllers.
 
 ---
 

@@ -94,7 +94,7 @@ When creating a new data `collection` in the persistent data storage layer, Kuzz
 
 It means that, by default, you won't be able to exploit the full capabilities of our
 persistent data storage layer (currently handled by [ElasticSearch](https://www.elastic.co/products/elasticsearch)),
-and your searches may suffer from below-average performances, depending on the amount of data you
+and your searches may suffer from below-average performance, depending on the amount of data you
 stored in a collection and the complexity of your database.
 
 To solve this matter, Kuzzle's API offers a way to create data mapping and to expose the entire

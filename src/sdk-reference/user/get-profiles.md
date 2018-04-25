@@ -60,7 +60,7 @@ catch (ErrorException $e) {
 }
 ```
 
-Gets the associated [Profile]({{ site_base_path }}sdk-reference/profile) instances from the Kuzzle API, using the profile identifiers attached to this user (see [getProfileIds]({{ site_base_path }}sdk-reference/user/get-profileids))
+Gets the security [Profile]({{ site_base_path }}sdk-reference/profile) instances linked to the user from Kuzzle's API.
 
 ---
 
@@ -77,11 +77,11 @@ Gets the associated [Profile]({{ site_base_path }}sdk-reference/profile) instanc
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
 
-## Callback response
+## Callback Response
 
-Resolves to an array of [Profile]({{ site_base_path }}sdk-reference/profile) objects
+Returns an array of security [Profile]({{ site_base_path }}sdk-reference/profile) objects.

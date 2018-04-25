@@ -80,11 +80,11 @@ Counts elements in a sorted set where all members have equal score, using lexico
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of elements in the provided lexicographical value range.
+Returns an integer containing the number of elements in the provided lexicographical value range.

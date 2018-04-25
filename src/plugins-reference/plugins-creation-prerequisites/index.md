@@ -1,31 +1,31 @@
 ---
 layout: full.html
 algolia: true
-title: Plugins creation prerequisites
-description: requirements to develop your plugin
-order: 100
+title: Create a Plugin
+description: how to develop a custom plugin
+order: 200
 ---
 
-# Plugins creation prerequisites
+# Creating Plugins
 
 ---
 
-## Writing plugin code
+## Writing a Custom Plugin
 
-Plugins must be valid NodeJS require-able [modules](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html), usually shipped as a directory containing either:
+Plugins must be constructed as a Node.js [module](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html), containing either:
 
 * an `index.js` file in its root directory, exporting a valid Javascript class exposing an `init` method, or
-* a well-formed `package.json` file in its root directory, specifying the path of the main require-able in the `main` field.
+* a [`package.json`](https://docs.npmjs.com/files/package.json) file in its root directory, specifying the path of the entry point in the `main` field.
 
-To determine the Plugin name, Kuzzle looks for the `name` field in the `package.json` file falling back to the plugin directory name otherwise.
+To determine the Plugin name, Kuzzle looks for the `name` field in the `package.json` file and if it does not exist it will use the plugin directory name.
 
 ---
 
-## Custom Plugin configuration
+## Custom Plugin Configuration
 
-When initializing a Plugin, Kuzzle calls its `init(customConfig, context)` method, passing the [context]({{ site_base_path }}plugins-reference/plugins-context) and the plugin's custom configuration.
+When initializing a Plugin, Kuzzle calls the plugin `init(customConfig, context)` method, passing the plugin's custom configuration and the [context]({{ site_base_path }}plugins-reference/plugins-context) as inputs.
 
-Custom configuration parameters are specified for each plugin in the `plugins` object of the [Kuzzle configuration file]({{ site_base_path }}guide/essentials/configuration).
+Custom configuration parameters are specified for each plugin in the `plugins` object of the Kuzzle [configuration file]({{ site_base_path }}guide/essentials/configuration). For example:
 
 ```json
 {
@@ -38,9 +38,9 @@ Custom configuration parameters are specified for each plugin in the `plugins` o
 }
 ```
 
-Each Plugin is responsible of handling the custom configuration parameters and Kuzzle has no opinion on how to do it. Whether the custom configuration is merged with the defaults or not entirely depends on the implementation of the `init` function.
+Each Plugin is responsible for handling any custom configuration parameters. The plugin `init` function will determine if the custom configuration is merged with the Kuzzle defaults or not.
 
-Within a plugin's custom configuration, there are a few reserved words used by Kuzzle to configure how a plugin is loaded:
+Kuzzle has a set of predefined configuration parameters that are reserved and apply to the underlying Plugin Engine, these are:
 
 ```json
 {
@@ -63,20 +63,19 @@ Where:
 
 ---
 
-## Plugin init function
+## Plugin 'init' Function
 
-Plugins must expose a `init` function. If it's missing, Kuzzle will refuse to start.  
-This method is called by Kuzzle during startup, and should be used to initialize the plugin:
+All plugins must expose an `init` function. If it is missing, Kuzzle will fail to load the plugin and shutdown.
+The `init` method is called by Kuzzle when it is booting and is used to initialize a plugin:
 
 `init (config, context) { /* ... */ }`
-
 Where:
 
 * ``config`` (JSON Object): JSON object containing the custom plugin configuration
 * ``context`` (JSON Object): the [plugin context]({{ site_base_path }}plugins-reference/plugins-context)
 
 
-The `init` function may:
+The `init` function can:
 
-* throw an error: Kuzzle will properly shutdown if it does so
-* return a Promise, if async tasks need to be performed. If so, please note that if plugins does not resolve (or reject) the returned Promise within the configured `plugins.common.initTimeout` parameter (see [Configuring Kuzzle]({{ site_base_path }}guide/essentials/configuration/)), then Kuzzle will shut itself down with a timeout error
+* throw an error: Kuzzle will properly shutdown if it does
+* return a Promise, if async tasks need to be performed. If so, please note that if a plugin does not resolve (or reject) the returned Promise within the configured timeout (see `plugins.common.initTimeout` in [Configuring Kuzzle]({{ site_base_path }}guide/essentials/configuration/)), then Kuzzle will throw a timeout error and shutdown

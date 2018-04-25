@@ -62,7 +62,7 @@ $kuzzle = new Kuzzle('localhost', [
 ]);
 ```
 
-This is the main entry point to communicate with Kuzzle. Every other objects inherits properties from the `Kuzzle` object.
+This is the main entry point to communicate with Kuzzle. Every other object inherits properties from the `Kuzzle` object.
 
 ---
 
@@ -70,7 +70,7 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``host`` | string | The server name (or the IP address) of a Kuzzle instance |
+| ``host`` | string | The server name (or the IP address) of a Kuzzle Backend installation |
 | ``options`` | JSON object | Optional Kuzzle connection configuration |
 | ``callback`` | function | Optional callback |
 
@@ -104,35 +104,36 @@ This is the main entry point to communicate with Kuzzle. Every other objects inh
 
 ## Properties
 
-| Property name | Type | Description |
-|---------------|------|-------------|
-| ``autoQueue`` | boolean | Automatically queue all requests during offline mode |
-| ``autoReconnect`` | boolean | Automatically reconnect after a connection loss |
-| ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event |
-| ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event |
-| ``defaultIndex`` | string | Kuzzle's default index to use |
-| ``headers`` | JSON object | Common headers for all sent documents. |
-| ``host`` | string | Target Kuzzle host name/address |
-| ``jwtToken`` | string | Token used in requests for authentication. |
-| ``volatile`` | JSON object | Common volatile data, will be sent to all future requests |
-| ``offlineQueue`` | JSON object | Contains the queued requests during offline mode |
-| ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue |
-| ``port`` | integer | Kuzzle network port |
-| ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued |
-| ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode |
-| ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds |
-| ``replayInterval`` | integer | Delay between each replayed requests |
-| ``reconnectionDelay`` | integer | Number of milliseconds between reconnection attempts |
-| ``sslConnection`` | boolean | Connect to Kuzzle using SSL |
+| Property name | Type | Description | Writable? |
+|---------------|------|-------------|:---------:|
+| ``autoQueue`` | boolean | Automatically queue all requests during offline mode | Yes |
+| ``autoReconnect`` | boolean | Automatically reconnect after a connection loss | No |
+| ``autoReplay`` | boolean | Automatically replay queued requests on a ``reconnected`` event |  Yes |
+| ``autoResubscribe`` | boolean | Automatically renew all subscriptions on a ``reconnected`` event | No |
+| ``defaultIndex`` | string | Kuzzle's default index to use | Yes |
+| ``headers`` | JSON object | Common headers for all sent documents. | Yes |
+| ``host`` | string | Target Kuzzle host name/address | No |
+| ``jwtToken`` | string | Token used in requests for authentication. | Yes |
+| ``offlineQueue`` | JSON object | Contains the queued requests during offline mode | No |
+| ``offlineQueueLoader`` | function | Called before dequeuing requests after exiting offline mode, to add items at the beginning of the offline queue | Yes |
+| ``port`` | integer | Kuzzle network port | No |
+| ``queueFilter`` | function | Called during offline mode. Takes a request object as arguments and returns a boolean, indicating if a request can be queued | Yes |
+| ``queueMaxSize`` | integer | Number of maximum requests kept during offline mode | Yes |
+| ``queueTTL`` | integer | Time a queued request is kept during offline mode, in milliseconds | Yes |
+| ``replayInterval`` | integer | Delay between each replayed requests | Yes |
+| ``reconnectionDelay`` | integer | Number of milliseconds between reconnection attempts | No |
+| ``sslConnection`` | boolean | Connect to Kuzzle using SSL | No |
+| ``volatile`` | JSON object | Common volatile data, will be sent to all future requests | Yes |
+
 
 **Notes:**
 
 * if ``connect`` is set to ``manual``, the ``connect`` method will have to be called manually
 * the kuzzle instance will automatically queue all requests, and play them automatically once a first connection is established, regardless of the ``connect`` or offline mode option values.
-* multiple methods allow passing specific ``volatile`` data. These ``volatile`` data will be merged with the global Kuzzle object ``volatile`` when sending the request, with the request specific ``volatile`` taking priority over the global ones.
+* multiple methods allow passing specific ``volatile`` data. These ``volatile`` data will be merged with the global Kuzzle ``volatile`` object when sending the request, with the request specific ``volatile`` taking priority over the global ones.
 * the ``queueFilter`` property is a function taking a JSON object as an argument. This object is the request sent to Kuzzle, following the [Kuzzle API]({{ site_base_path }}api-documentation/query-syntax) format
 * if ``queueTTL`` is set to ``0``, requests are kept indefinitely
-* The offline buffer acts like a FIFO queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are discarded to make room for new requests
+* The offline buffer acts like a first-in first-out (FIFO) queue, meaning that if the ``queueMaxSize`` limit is reached, older requests are discarded to make room for new requests
 * if ``queueMaxSize`` is set to ``0``, an unlimited number of requests is kept until the buffer is flushed
 * the ``offlineQueueLoader`` must be set with a function, taking no argument, and returning an array of objects containing a `query` member with a Kuzzle query to be replayed, and an optional `cb` member with the corresponding callback to invoke with the query result
 * updates to ``host``, ``port``, ``autoReconnect``, ``reconnectionDelay`` and ``sslConnection`` properties will only take effect on next ``connect`` call

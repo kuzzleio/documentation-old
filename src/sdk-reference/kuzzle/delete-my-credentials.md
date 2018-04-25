@@ -48,7 +48,8 @@ $result = $kuzzle->deleteMyCredentials('local');
 // $result = [acknowledged => true]
 ```
 
-Delete credentials of the specified <strategy> for the current user. 
+Delete the current user's credentials for the specified `strategy`. 
+
 ---
 
 ## deleteMyCredentials(strategy, [options], [callback])
@@ -65,10 +66,10 @@ Delete credentials of the specified <strategy> for the current user.
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not) queuable | `true`
+| `queuable` | boolean | Make this request queuable or not  | `true`
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a an object reflecting the query status.
+Returns an object with the query status.

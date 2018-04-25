@@ -33,6 +33,7 @@ title: logout
   "jwt": "<json_web_token>"
 }
 ```
+
 >**Response**
 
 ```javascript
@@ -47,6 +48,6 @@ title: logout
 }
 ```
 
-Revokes the token validity & unsubscribe from registered rooms.
+Revokes the user's token & unsubscribe them from registered rooms.
 
-The **_logout** action doesn't take strategy.
+The **_logout** action doe not require that a strategy be specified.

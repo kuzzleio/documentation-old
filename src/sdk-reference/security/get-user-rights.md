@@ -16,7 +16,7 @@ kuzzle
   .security
   .getUserRights('kuid', function(error, rights) {
 
-  });
+  });reflecting
 
 // Using promises (NodeJS)
 kuzzle
@@ -83,7 +83,7 @@ catch (ErrorException $e) {
 ]
 ```
 
-Given a Kuzzle user id (`kuid`), retrieves the list of permissions granted to the matching user.
+Given a Kuzzle user id (`kuid`), retrieves the list of permissions granted to that user.
 
 ---
 
@@ -91,7 +91,7 @@ Given a Kuzzle user id (`kuid`), retrieves the list of permissions granted to th
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``kuid`` | String | [Kuzzle User Unique Identifier]({{ site_base_path }}guide/kuzzle-depth/authentication/#the-kuzzle-user-identifier-kuid) |
+| ``kuid`` | String | [Kuzzle User Unique Identifier]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -101,11 +101,11 @@ Given a Kuzzle user id (`kuid`), retrieves the list of permissions granted to th
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-### Callback response
+### Callback Response
 
-Resolves to an array of objects.
+Returns an array of objects.
 

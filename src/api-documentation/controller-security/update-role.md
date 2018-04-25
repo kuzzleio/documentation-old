@@ -78,17 +78,17 @@ title: updateRole
 }
 ```
 
-Given a `role id`, updates the matching Role object in Kuzzle's database layer.
+Given a `role id`, updates the matching Role object in Kuzzle.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the role indexation (indexed roles are available for `search`).
+with the value `wait_for` in order to wait for the role to be indexed (indexed roles are available for `search`).
 
 The body content needs to match Kuzzle's role definition.
 
 <aside class="warning">
-Unlike a regular document update, this method will replace the whole role definition by the body content.<br>
+Unlike a regular document update, this method will replace the whole role definition by the content sent in the request.<br>
 In other words, you always need to provide the complete role definition in the body.
 </aside>
 
 To get some more detailed information about Kuzzle's user management model,
-please refer to [Kuzzle's security documentation]({{ site_base_path }}guide/essentials/security/#permissions).
+please refer to the [security documentation]({{ site_base_path }}guide/essentials/security/#user-permissions).

@@ -93,8 +93,8 @@ catch (ErrorException $e) {
 }
 ```
 
-Returns a JSON object containing the next page of the scroll session, and the `scrollId` to be used by the next `scroll` action.  
-A scroll session is always initiated by a `searchSpecification` action by using the `scroll` argument.
+Returns a JSON object containing the next page of the scroll session, and the `scrollId` to be used in the next `scroll` action.  
+A scroll session is always initiated by a `searchSpecification` action with the `scroll` argument.
 
 ---
 
@@ -112,5 +112,5 @@ A scroll session is always initiated by a `searchSpecification` action by using 
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``scroll`` | string | Re-initializes the scroll session timeout to its value. If not defined, the scroll timeout is defaulted to a Kuzzle configuration | ``undefined`` |

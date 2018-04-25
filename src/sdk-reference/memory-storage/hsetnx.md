@@ -80,16 +80,16 @@ Sets a field and its value in a hash, only if the field does not already exist.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean telling if the operation was successful.
+Returns a boolean specifying if the operation was successful or not.

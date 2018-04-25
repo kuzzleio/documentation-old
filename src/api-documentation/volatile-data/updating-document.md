@@ -1,11 +1,11 @@
 ---
 layout: full.html
 algolia: true
-title: Updating a document
+title: Update a Document
 order: 100
 ---
 
-# Updating a document
+# Updating a Document
 
 ## Given the following update query
 

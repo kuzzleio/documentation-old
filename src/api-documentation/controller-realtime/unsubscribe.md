@@ -66,7 +66,7 @@ title: unsubscribe
 }
 ```
 
-Instructs Kuzzle to detach you from its subscribers for the given room.
-In practice, your subscription won't receive any new message on the room once this action is triggered.
+Instructs Kuzzle to remove a subscription from the specified room.
+Your subscription won't receive any new messages from the room once this action is triggered.
 
 The expected parameter is the `roomId` that Kuzzle returned during the subscription.

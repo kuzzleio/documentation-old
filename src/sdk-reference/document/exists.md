@@ -66,10 +66,10 @@ Checks if the document exists in Kuzzle.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queueable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a boolean indicating whether or not the document exists in Kuzzle
+Return a boolean indicating whether or not the document exists in Kuzzle.

@@ -69,8 +69,8 @@ catch (ErrorException $e) {
 Delete the provided profile.
 
 <aside class="notice">
-There is a small delay between profile deletion and their deletion in our search layer, usually a couple of seconds.
-That means that a profile that was just been delete will be returned by <code>searchProfiles</code> function
+There is a small delay between the time a profile is deleted and it being reflected in the search layer (usually a couple of seconds).
+That means that a profile that was just deleted may still be returned by the <code>searchProfiles</code> function at first.
 </aside>
 
 ---
@@ -89,18 +89,18 @@ That means that a profile that was just been delete will be returned by <code>se
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
-| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer indexation to return (available with Elasticsearch 5.x and above) | ``undefined`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
+| ``refresh`` | string | If set to ``wait_for``, Kuzzle will wait the persistence layer to finish indexing (available with Elasticsearch 5.x and above) | ``undefined`` |
 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Security` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves the profile id which has been deleted.
+Returns the ID of the security profile that has been deleted.

@@ -147,7 +147,7 @@ title: mCreate
 
 Creates new documents in the persistent data storage.
 
-Returns a [partial error]({{ site_base_path }}api-documentation/errors/#partialerror) (with status 206) if one or more documents creation fails.
+Returns a [partial error]({{ site_base_path }}api-documentation/errors/#partialerror) (with status 206) if one or more documents fail to create.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
+with the value `wait_for` in order to wait for the document to be indexed (indexed documents are available for `search`).

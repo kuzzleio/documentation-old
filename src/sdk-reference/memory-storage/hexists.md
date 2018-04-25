@@ -79,10 +79,10 @@ Checks if a field exists in a hash.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | `true` |
+| `queuable` | boolean | Make this request queuable or not  | `true` |
 
 ---
 
-## Callback response
+## Callback Response
 
-A boolean value telling if the field exists.
+A boolean value specifying if the field exists or not.

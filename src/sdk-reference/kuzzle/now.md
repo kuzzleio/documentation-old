@@ -70,10 +70,10 @@ Retrieves the current Kuzzle time.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
 Returns an `integer` containing the current Kuzzle time, encoded as an UTC Epoch time in milliseconds.

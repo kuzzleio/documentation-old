@@ -130,7 +130,7 @@ $result = $kuzzle->getServerInfo();
 }
 ```
 
-Retrieves information about Kuzzle, its plugins and active services.
+Retrieves information about Kuzzle plugins and active services.
 
 ---
 
@@ -147,10 +147,10 @@ Retrieves information about Kuzzle, its plugins and active services.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``queuable`` | boolean | Mark this request as (not) queuable | ``true`` |
+| ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a JSON object containing server information.
+Returns a JSON object containing server information.

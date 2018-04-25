@@ -8,7 +8,7 @@ icon: fa-code
 
 # API Documentation
 
-Welcome to the Kuzzle API Documentation!
+Welcome to Kuzzle's API Documentation!
 
 <aside class="notice">
 This documentation is exposing the low-level API to Kuzzle.  

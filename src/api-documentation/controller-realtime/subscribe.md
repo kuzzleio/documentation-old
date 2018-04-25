@@ -211,39 +211,39 @@ title: subscribe
 </script>
 ```
 
-Subscription works differently in Kuzzle than with a regular publish/subscribe protocol.
+Subscription works differently in Kuzzle than it does with a regular publish/subscribe protocol.
 In Kuzzle, you don't exactly subscribe to a room or to a topic but, instead, you subscribe to documents.
 
-What it means is that, along with your subscription query, you also give to Kuzzle a set of document or message filters.
-Of course, you may also subscribe to a ``data collection`` with no other matching criteria,
-and you'll effectively listen to a "topic".
+What it means is that, when you make a subscription request, you can send Kuzzle a set of document or message filters that define when a notification is triggered.
+Of course, you can also subscribe to a ``data collection`` with no other matching criteria,
+and then you'll effectively be listening to a "topic".
 
 <aside class="notice">
   If an empty body is provided, the subscription is performed on the whole collection.
 </aside>
 
-Once you have subscribed to a room, depending on your filters, you may receive the following notifications:
+Once you have subscribed to a room, depending on your filters, you may receive a notification:
 
-* whenever a pub/sub message is published matching your criteria (real-time)
-* whenever a matching document is about to be created or deleted (real-time)
-* whenever a matching stored document is created, updated or deleted (once the change is effective in the database)
-* whenever a user enters or leaves the room
+* when a pub/sub message is published matching your criteria (real-time)
+* when a matching document is about to be created or deleted (real-time)
+* when a document is created, updated or deleted and matches a filter
+* when a user enters or exits a room
 
-Good news is, you may ask Kuzzle to send only the notifications relevant to your application,
+The good news is that you can tell Kuzzle to only send notifications that are relevant to your application
 by configuring your subscription request (see below).
-You can also subscribe multiple times to the same room, with different configurations.
+You can also create multiple subscriptions to the same room, each with different configurations.
 Kuzzle will provide you with a channel for each of these subscriptions,
-allowing different part of your application to concentrate on what it needs to process.
+allowing your application to handle these processes separately.
 
-The matching criteria you pass on to Kuzzle are based upon [Kuzzle DSL]({{ site_base_path }}kuzzle-dsl)
+The criteria is defined in Kuzzle using [Koncorde]({{ site_base_path }}kuzzle-dsl)
 
 How subscription works:
 
-* => You send a subscription query to Kuzzle
-* <= Kuzzle responds to you with a ``roomId`` and a `channel`
+* => You send a subscription request to Kuzzle
+* <= Kuzzle responds with a ``roomId`` and a `channel`
 
 When using `websocket` or `socket.io` protocol, the client will start receiving [notifications]({{ site_base_path }}api-documentation/notifications) right away.  
 When using other protocols, such as `MQTT`, the client may have to perform these two extra steps:
 
-* => You listen to the ``channel`` provided in the response
+* => First listen to the ``channel`` provided in the response
 * <= Kuzzle forwards the corresponding [notifications]({{ site_base_path }}api-documentation/notifications/) on that channel

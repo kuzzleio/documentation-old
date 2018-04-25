@@ -72,7 +72,7 @@ $role = $security->role($roleId, $roleDefinition);
 $role = new Role($security, $roleId, $roleDefinition);
 ```
 
-Instantiates a new `Role` object, which is a representation of a set of right policies.
+Instantiates a new `Role` object, which defines a set of right policies.
 
 ---
 
@@ -99,6 +99,6 @@ Instantiates a new `Role` object, which is a representation of a set of right po
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `Role` object.

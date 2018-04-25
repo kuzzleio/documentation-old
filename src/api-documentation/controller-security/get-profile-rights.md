@@ -63,6 +63,5 @@ title: getProfileRights
 Given a `profile id`, retrieves the corresponding rights.
 
 <aside class="notice">
-The profile unique identifier. It's the same you set when you create a profile.
-in its responses when you create a profile.
+The security `profile id` is the same one you set when you create a security profile.
 </aside>

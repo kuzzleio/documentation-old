@@ -74,4 +74,4 @@ Replaces an existing document in the persistent data storage.
 Only documents in the persistent data storage layer can be replaced.
 
 The optional parameter `refresh` can be used
-with the value `wait_for` in order to wait for the document indexation (indexed documents are available for `search`).
+with the value `wait_for` in order to wait for the document to be indexed (indexed documents are available for `search`).

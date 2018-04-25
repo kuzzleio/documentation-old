@@ -80,17 +80,17 @@ Increments the score of a `member` in a sorted set by the provided `value`.
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to a double containing the updated member's score in the sorted set.
+Returns a double containing the updated member's score in the sorted set.

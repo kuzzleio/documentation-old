@@ -53,12 +53,12 @@ Instantiates a new [Collection]({{ site_base_path }}sdk-reference/collection) ob
 | ``collection`` | string | The name of the data collection you want to manipulate |
 | ``index`` | string | The name of the index containing the data collection |
 
-If no ``index`` is provided, the factory will take the default index set in the main Kuzzle instance. If no default index has been set, an error is thrown.
+If no ``index`` is provided, the factory will take the default index set in the main Kuzzle SDK instance. If no default index has been set, an error is thrown.
 
 The ``index`` argument takes precedence over the default index.
 
 ---
 
-## Return value
+## Return Value
 
 Returns a [Collection]({{ site_base_path }}sdk-reference/collection) object.

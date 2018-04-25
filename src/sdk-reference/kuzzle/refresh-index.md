@@ -32,7 +32,7 @@ catch (ErrorException $e) {
 }
 ```
 
-When writing or deleting documents in Kuzzle's database layer, the update needs to be indexed before being reflected
+When writing or deleting documents in Kuzzle, the update needs to be indexed before being reflected
 in the search index.  
 By default, this operation can take up to 1 second.
 
@@ -64,16 +64,16 @@ Given an index, the `refresh` action forces a [`refresh`](https://www.elastic.co
 
 | Option | Type | Description | Default
 |--------|------|-------------|---------
-| `queuable` | boolean | Mark this request as (not)queuable | `true`
+| `queuable` | boolean | Make this request queuable or not | `true`
 
 ---
 
-## Return value
+## Return Value
 
-Returns the `Kuzzle` object to allow chaining.
+Returns the `Kuzzle` SDK object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-The response is a JSON structure matching the response from Elasticsearch.
+Returns a JSON structure matching the response from Elasticsearch.

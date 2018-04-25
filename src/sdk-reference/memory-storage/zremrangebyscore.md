@@ -80,7 +80,7 @@ Removes members from a sorted set with a score between `min` and `max` (inclusiv
 
 | Option | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| `queuable` | boolean | Mark this request as (not) queuable | ``true`` |
+| `queuable` | boolean | Make this request queuable or not  | ``true`` |
 
 
 ---
@@ -91,6 +91,6 @@ Returns the `MemoryStorage` object to allow chaining.
 
 ---
 
-## Callback response
+## Callback Response
 
-Resolves to an integer containing the number of removed members from the sorted set.
+Returns an integer containing the number of removed members from the sorted set.

@@ -63,6 +63,6 @@ Creates a new [Document]({{ site_base_path }}sdk-reference/document/) object, us
 
 ---
 
-## Return value
+## Return Value
 
 Returns the newly created [Document]({{ site_base_path }}sdk-reference/document) object.

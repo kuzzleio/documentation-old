@@ -65,12 +65,12 @@ $user->setProfiles([$profile]);
 $user->setProfiles(['myProfile']);
 ```
 
+Replaces the security profiles linked to the user.
+
 <aside class="note">
-Updating an user will have no impact until the <code>create</code> or <code>replace</code> method is called
+Updating a user will have no impact until the <code>create</code> or <code>replace</code> method is called
 </aside>
 
-
-Replaces the profiles associated to the user
 
 ---
 
@@ -91,6 +91,6 @@ Replaces the profiles associated to the user
 
 ---
 
-## Return value
+## Return Value
 
 Returns the `User` object.

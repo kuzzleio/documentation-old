@@ -6,11 +6,11 @@ description: How filter identifiers are generated
 order: 10
 ---
 
-# Filter identifiers
+# Filter Identifiers
 
-Koncorde filter identifiers are calculated from the filters provided to the DSL, guaranteeing that differently written filters matching the same scope will get the same identifier.
+Koncorde filter identifiers are generated from the filters provided in the DSL, this guarantees that different filters that match the same scope will have the same identifier. 
 
-For instance, both these filters will get the same filter identifier:
+For example, both these filters will have the same filter identifier:
 
 ```json
 {
@@ -43,4 +43,4 @@ And:
 }
 ```
 
-For more information, please check [Koncorde documentation](https://www.npmjs.com/package/koncorde#filter-unique-identifier)
+For more information, please refer to the [Koncorde](https://www.npmjs.com/package/koncorde#filter-unique-identifier) documentation.

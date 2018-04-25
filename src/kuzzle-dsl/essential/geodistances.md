@@ -18,7 +18,7 @@ Accepted units:
 * `yd`, `yard`, `yards`
 * `mi`, `mile`, `miles`
 
-**Note:** if no unit is specified, then Koncorde considers the geodistance to be expressed in meters.
+**Note:** if no unit is specified, then Koncorde will express the geodistance in meters.
 
 Accepted unit modifiers: from `yocto-` (10e-21) to `yotta-` (10e24), and their corresponding short forms (e.g. `kilometers` or `km`)
 

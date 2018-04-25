@@ -1,24 +1,22 @@
 ---
 layout: full.html
 algolia: true
-title: Useful commands
+title: Useful Commands
 description: learn time-saving elasticsearch commands
 order: 300
 ---
 
-# Useful commands
+# Useful Commands
 
-First of all, let's take a look at some commands to explore your Elasticsearch instance.
+Let's take a look at some commands that we can use to explore the Elasticsearch instance.
 
 ---
 
-## List indices
+## List Indices
 
 List all available indices on your Elasticsearch instance:
 
 ```bash
-#!/bin/bash
-
 curl -g "http://localhost:9200/_cat/indices?pretty"
 ```
 
@@ -26,22 +24,18 @@ curl -g "http://localhost:9200/_cat/indices?pretty"
 Reply:
 
 ```bash
-#!/bin/bash
-
 # yellow open example 1 1 5 0 10.4kb 10.4kb
 ```
 
 ---
 
 
-## Get an index mapping
+## Get an Index Mapping
 
 The mapping of an index consists of the list of the mappings of all the collections contained in the given index.
-To retrieve an index mapping, you can use the following command:
+To retrieve an index mapping, use the following command:
 
 ```bash
-#!/bin/bash
-
 curl -g -X GET "http://localhost:9200/example/?pretty"
 ```
 
