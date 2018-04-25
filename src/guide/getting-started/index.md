@@ -27,9 +27,9 @@ You can take a look at <a href="{{ site_base_path }}guide/essentials/installing-
  to see alternative methods to install Kuzzle.
 </aside>
 
-This command downloads and executes the installation script. The script checks the system for a set of pre-requisites (curl or wget, docker and docker-compose) and then run Kuzzle.
+This command downloads, installs and runs Kuzzle.
 
-Alternatively you can run the script with the --no-run option to only install Kuzzle.
+Use the --no-run option to prevent the script from running Kuzzle.
 
 Once the installation process is complete, the script will greet you with the following message
 
@@ -66,10 +66,10 @@ Having trouble?
 
 #### Helper scripts for systemd
 
-If you want to run Kuzzle automatically at boot start there is a few scripts that help you do this with systemd.
+If you want to run Kuzzle automatically at boot start there are a few scripts that help you do this with systemd.
 
 You can find in `$PWD/kuzzle/script` the following script: `add-kuzzle-boot-systemd.sh`
-You will need to run it as root, it will add a service inside `/etc/systemd/system` and run kuzzle on boot time.
+You will need to run it as root, it will add a service inside `/etc/systemd/system` and run kuzzle on shutdown time.
 
 You will also find the `remove-kuzzle-boot-systemd.sh` script which you will also need to run as root and will stop running Kuzzle on boot time.
 
