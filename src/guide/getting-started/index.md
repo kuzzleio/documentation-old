@@ -23,8 +23,7 @@ bash -c "$(curl http://get.kuzzle.io/)"
 This command downloads and executes the installation script using root privileges. The script checks the system for a set of prerequisites and installs any necessary tools, like Docker or Docker Compose. When the installation is complete it will automatically run Kuzzle.
 
 <aside class="notice">
-You can take a look at <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">alternative installation methods</a>
- to see alternative methods to install Kuzzle.
+To view alternative ways to install Kuzzle <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">click here</a>
 </aside>
 
 This command downloads, installs and runs Kuzzle.
@@ -64,7 +63,7 @@ Having trouble?
 
 #### Helper scripts for systemd
 
-If you want to run Kuzzle automatically at boot start there are a few scripts that help you do this with systemd.
+If you want to run Kuzzle automatically at startup there are a few scripts that help you do this with systemd.
 
 You can find in `$PWD/kuzzle/script` the following script: `add-kuzzle-boot-systemd.sh`
 You will need to run it as root, it will add a service inside `/etc/systemd/system` and run kuzzle on shutdown time.
