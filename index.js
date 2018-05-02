@@ -310,7 +310,8 @@ metalsmith
     '/elasticsearch-cookbook/': '/elasticsearch-cookbook/installation/',
     '/kuzzle-dsl/': '/kuzzle-dsl/essential/koncorde/',
     '/validation-reference/': '/validation-reference/schema/',
-    '/kuzzle-events/': '/kuzzle-events/plugin-events/'
+    '/kuzzle-events/': '/kuzzle-events/plugin-events/',
+    '/guide/code-examples': '/guide/code-examples/dbsearch'
   }))
   .use(metatoc())
   .use(languageTab())
