@@ -20,7 +20,7 @@ document.addEventListener('turbolinks:load', function(event) {
   }
 });
 
-if (report404ga) {
+if (typeof report404ga !== 'undefined' && report404ga) {
   ga('send', 'event', {
     eventCategory: 'documentation-not-found',
     eventAction: document.location.href,
