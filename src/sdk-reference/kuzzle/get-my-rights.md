@@ -13,14 +13,12 @@ title: getMyRights
 ```js
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
-  .security
   .getMyRights(function(error, rights) {
     // result is an array of objects
   });
 
 // Using promises (NodeJS)
 kuzzle
-  .security
   .getMyRightsPromise()
   .then(rights => {
     // result is an array of objects
