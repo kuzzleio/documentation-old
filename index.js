@@ -1,50 +1,45 @@
-const Metalsmith  = require('metalsmith');
-const handlebars  = require('handlebars');
-const cheerio     = require('cheerio');
-const stripTags   = require('striptags');
-const wordCount   = require('wordcount');
+const Metalsmith = require('metalsmith');
+const handlebars = require('handlebars');
+const cheerio = require('cheerio');
+const stripTags = require('striptags');
+const wordCount = require('wordcount');
 
-const markdown    = require('metalsmith-markdown');
-const marked      = require('marked');
-const layouts     = require('metalsmith-layouts');
-const permalinks  = require('metalsmith-permalinks');
-const debug       = require('metalsmith-debug');
-const changed     = require('metalsmith-changed');
-const livereload  = require('metalsmith-livereload');
-const ancestry    = require('metalsmith-ancestry');
-const links       = require('metalsmith-relative-links');
-const hbtmd       = require('metalsmith-hbt-md');
-const sass        = require('metalsmith-sass');
-const autoprefix  = require('metalsmith-autoprefixer');
-const linkcheck   = require('metalsmith-linkcheck');
-const hljs        = require('metalsmith-metallic');
-const inlineSVG   = require('metalsmith-inline-svg');
-const compress    = require('metalsmith-gzip');
-const optipng     = require('metalsmith-optipng');
-const sitemap     = require('metalsmith-sitemap');
-const htmlMin     = require('metalsmith-html-minifier');
-const algolia     = require('metalsmith-algolia');
-const jsPacker    = require('metalsmith-js-packer');
-const cssPacker   = require('metalsmith-css-packer');
-const redirect    = require('metalsmith-redirect');
+const markdown = require('metalsmith-markdown');
+const marked = require('marked');
+const layouts = require('metalsmith-layouts');
+const permalinks = require('metalsmith-permalinks');
+const ancestry = require('metalsmith-ancestry');
+const links = require('metalsmith-relative-links');
+const hbtmd = require('metalsmith-hbt-md');
+const sass = require('metalsmith-sass');
+const autoprefix = require('metalsmith-autoprefixer');
+const linkcheck = require('metalsmith-linkcheck');
+const hljs = require('metalsmith-metallic');
+const inlineSVG = require('metalsmith-inline-svg');
+const compress = require('metalsmith-gzip');
+const optipng = require('metalsmith-optipng');
+const sitemap = require('metalsmith-sitemap');
+const htmlMin = require('metalsmith-html-minifier');
+const algolia = require('metalsmith-algolia');
+const jsPacker = require('metalsmith-js-packer');
+const cssPacker = require('metalsmith-css-packer');
+const redirect = require('metalsmith-redirect');
 
-const logger      = require('./metalsmith-plugins/logger');
-const metatoc     = require('./metalsmith-plugins/metatoc');
+const logger = require('./metalsmith-plugins/logger');
+const metatoc = require('./metalsmith-plugins/metatoc');
 const languageTab = require('./metalsmith-plugins/language-tab');
-const clickImage  = require('./metalsmith-plugins/clickable-images');
-const saveSrc     = require('./metalsmith-plugins/save-src');
+const clickImage = require('./metalsmith-plugins/clickable-images');
+const saveSrc = require('./metalsmith-plugins/save-src');
 
-const nodeStatic = require('node-static');
 const serve = require('metalsmith-serve');
 const watch = require('metalsmith-watch');
-const open = require('open');
-const fs = require('fs');
 const color = require('colors/safe');
 
 const versionsConfig = require('./versions.config.json');
 
-const ok = color.green("✔")
-const nok = color.red("✗")
+const 
+  ok = color.green('✔'),
+  nok = color.red('✗');
 
 function log (args) {
   console.log(color.magenta('[kuzzle-docs]'), args);
@@ -153,7 +148,7 @@ options.algolia.fnFileParser = (file, data) => {
   });
 
   return objects;
-}
+};
 
 /**
  * Usefull handlebars helpers
@@ -192,15 +187,14 @@ handlebars.registerHelper({
     }
     return str.startsWith(substr);
   },
-  mstartwith: function() {
-    var args = Array.prototype.slice.call(arguments);
-    var str = args.shift();
+  mstartwith: function(...args) {
+    const str = args.shift();
+ 
     if (!str) {
       return false;
     }
-    return args.reduce(function(found, currentStr) {
-      return found || str.startsWith(currentStr);
-    }, false);
+ 
+    return args.reduce((found, currentStr) => found || str.startsWith(currentStr), false);
   },
   endswith: function (str, substr) {
     return str.endsWith(substr);
@@ -220,14 +214,14 @@ handlebars.registerHelper({
   },
   wordsToTime: function(context) {
     // It seems that 75 words per minute is a fair value for technical material
-    return Math.ceil(wordCount(stripTags(context.data.root.contents)) / 75)
+    return Math.ceil(wordCount(stripTags(context.data.root.contents)) / 75);
   },
   since: version => `<p class="since">Since Kuzzle v${version}</p>`,
   deprecated: version => `<p class="deprecated">Deprecated since Kuzzle v${version}. This feature should not be used.</p>`
-})
+});
 
 // Build site with metalsmith.
-let metalsmith = Metalsmith(__dirname)
+let metalsmith = new Metalsmith(__dirname)
   .metadata({
     site_title: 'Kuzzle documentation',
     site_url: options.build.host,
@@ -244,14 +238,14 @@ let metalsmith = Metalsmith(__dirname)
   .destination('./build' + options.build.path) // does not work with 'dist' folder ...
   .clean(true)
   .use(saveSrc())
-  .use((files, metalsmith, done) => {
+  .use((files, m, done) => {
     setImmediate(done);
 
-    Object.keys(files).forEach(path => {
+    for (const path of Object.keys(files)) {
       if (path.endsWith('.md') && files[path].order === undefined) {
-        files[path].order = Number.MAX_SAFE_INTEGER
+        files[path].order = Number.MAX_SAFE_INTEGER;
       }
-    });
+    }
   });
 
 metalsmith
@@ -284,7 +278,7 @@ const tableRenderer = new marked.Renderer().table;
 
 newMDRenderer.table = function (header, body) {
   return `<div class='table-wrapper'>${tableRenderer(header, body)}</div>`;
-}
+};
 
 metalsmith
   .use(hljs())
@@ -317,15 +311,11 @@ metalsmith
   .use(languageTab())
   .use(layouts({
     directory: 'src/layouts',
-    engine: 'handlebars',
-    partials: 'src/partials',
-    exposeConsolidate (r) {
-      r.handlebars = handlebars
-    }
+    pattern: '**/*.html'
   }));
 
 if (!options.dev.enabled) {
-  log(`CSS and JS packers enabled`);
+  log('CSS and JS packers enabled');
   metalsmith
     .use(cssPacker({
       siteRootPath: options.build.path,
@@ -336,14 +326,14 @@ if (!options.dev.enabled) {
       siteRootPath: options.build.path,
       inline: false,
       exclude: ['partials/**/*', 'layouts/**/*']
-    }))
+    }));
 }
 metalsmith
-  .use(clickImage())
-  .use(logger());
+ .use(clickImage())
+ .use(logger());
 
 if (options.algolia.privateKey) {
-  log(`Algolia indexing enabled`);
+  log('Algolia indexing enabled');
 
   metalsmith
     .use(algolia({
@@ -356,7 +346,7 @@ if (options.algolia.privateKey) {
 }
 
 if (options.build.checkLinks) {
-  log(`Checking dead links enabled`);
+  log('Checking dead links enabled');
 
   metalsmith
     .use(linkcheck({
@@ -369,7 +359,7 @@ if (options.build.checkLinks) {
 }
 
 if (options.build.compress) {
-  log(`Compression enabled (build may take a while)`);
+  log('Compression enabled (build may take a while)');
 
   metalsmith
     .use(inlineSVG())
@@ -388,30 +378,30 @@ if (options.build.compress) {
 
 if (options.dev.enabled) {
   metalsmith
-    .use(serve({
-      port: 3000,
-      verbose: false,
-      host: 'localhost'
-    }))
-    .use(
-      watch({
-        paths: {
-          "src/assets/stylesheets/**/*": "assets/stylesheets/**/*",
-          "src/**/*.md": "**/*.md",
-          "src/partials/**/*": "**/*.md",
-          "src/layouts/**/*": "**/*.md",
-          "src/assets/**/*.js": true
-        },
-        livereload: true
-      })
-    )
+  .use(serve({
+    port: 3000,
+    verbose: false,
+    host: 'localhost'
+  }))
+  .use(
+    watch({
+      paths: {
+        'src/assets/stylesheets/**/*': 'assets/stylesheets/**/*',
+        'src/**/*.md': '**/*.md',
+        'src/partials/**/*': '**/*.md',
+        'src/layouts/**/*': '**/*.md',
+        'src/assets/**/*.js': true
+      },
+      livereload: true
+    })
+  );
 }
 
 log(`Building site in "${options.build.path}"`);
-metalsmith.build((error, files) => {
+metalsmith.build(error => {
   if (error) {
-    log(nok + color.yellow(' Ooops...'))
-    console.error(error)
+    log(nok + color.yellow(' Ooops...'));
+    console.error(error);
     return;
   }
   log(ok + ' Build finished');
