@@ -1,5 +1,5 @@
 ---
-layout: full.html.handlebars
+layout: full.html.hbs
 algolia: true
 title: Create a Plugin
 description: how to develop a custom plugin

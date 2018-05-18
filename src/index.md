@@ -1,5 +1,5 @@
 ---
-layout: block-childrens.html.handlebars
+layout: block-childrens.html.hbs
 ---
 
 ---

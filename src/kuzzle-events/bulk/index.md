@@ -1,5 +1,5 @@
 ---
-layout: full.html.handlebars
+layout: full.html.hbs
 algolia: true
 title: bulk
 description: list of events emitted by the bulk controller

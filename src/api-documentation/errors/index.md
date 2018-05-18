@@ -1,5 +1,5 @@
 ---
-layout: full.html.handlebars
+layout: full.html.hbs
 algolia: true
 title: Error Handling
 description: understanding the Kuzzle error handling mechanisms

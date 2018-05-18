@@ -1,5 +1,5 @@
 ---
-layout: full.html.handlebars
+layout: full.html.hbs
 algolia: true
 title: Specification Structure
 description: understanding the validation mechanisms

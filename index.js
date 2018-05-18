@@ -5,6 +5,7 @@ const
   stripTags = require('striptags'),
   wordCount = require('wordcount'),
 
+  layouts = require('metalsmith-layouts'),
   markdown = require('metalsmith-markdown'),
   marked = require('marked'),
   permalinks = require('metalsmith-permalinks'),
@@ -25,7 +26,6 @@ const
   cssPacker = require('metalsmith-css-packer'),
   redirect = require('metalsmith-redirect'),
   discoverPartials = require('metalsmith-discover-partials'),
-  jstransformer = require('metalsmith-jstransformer'),
 
   logger = require('./metalsmith-plugins/logger'),
   metatoc = require('./metalsmith-plugins/metatoc'),
@@ -315,10 +315,8 @@ metalsmith
     directory: 'src/partials',
     pattern: /\.html$/
   }))
-  .use(jstransformer({
-    layoutPattern: 'layouts/**',
-    defaultLayout: null
-
+  .use(layouts({
+    directory: 'src/layouts'
   }));
 
 if (!options.dev.enabled) {

@@ -1,5 +1,5 @@
 ---
-layout: full.html.handlebars
+layout: full.html.hbs
 algolia: true
 title: Request and Response Format
 order: 800

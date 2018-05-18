@@ -1,5 +1,5 @@
 ---
-layout: category-members.html.handlebars
+layout: category-members.html.hbs
 algolia: true
 title: Filter Operands
 description: Combine multiple terms to create complex filters

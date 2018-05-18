@@ -1,5 +1,5 @@
 ---
-layout: full.html.handlebars
+layout: full.html.hbs
 algolia: true
 title: Sending Volatile Data
 description: broadcast extra volatile data to subscribers

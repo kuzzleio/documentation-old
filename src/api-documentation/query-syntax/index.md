@@ -1,5 +1,5 @@
 ---
-layout: full.html.handlebars
+layout: full.html.hbs
 algolia: true
 title: Query Syntax
 description: learn how to send raw queries to Kuzzle

@@ -1,5 +1,5 @@
 ---
-layout: full.html.handlebars
+layout: full.html.hbs
 algolia: true
 title: The bool (Boolean) query
 description: learn how to combine filters with elasticsearch
