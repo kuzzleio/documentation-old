@@ -336,8 +336,8 @@ if (!options.dev.enabled) {
     }));
 }
 metalsmith
- .use(clickImage())
- .use(logger());
+  .use(clickImage())
+  .use(logger());
 
 if (options.algolia.privateKey) {
   log('Algolia indexing enabled');
@@ -385,23 +385,23 @@ if (options.build.compress) {
 
 if (options.dev.enabled) {
   metalsmith
-  .use(serve({
-    port: 3000,
-    verbose: false,
-    host: 'localhost'
-  }))
-  .use(
-    watch({
-      paths: {
-        'src/assets/stylesheets/**/*': 'assets/stylesheets/**/*',
-        'src/**/*.md': '**/*.md',
-        'src/partials/**/*': '**/*.md',
-        'src/layouts/**/*': '**/*.md',
-        'src/assets/**/*.js': true
-      },
-      livereload: true
-    })
-  );
+    .use(serve({
+      port: 3000,
+      verbose: false,
+      host: 'localhost'
+    }))
+    .use(
+      watch({
+        paths: {
+          'src/assets/stylesheets/**/*': 'assets/stylesheets/**/*',
+          'src/**/*.md': '**/*.md',
+          'src/partials/**/*': '**/*.md',
+          'src/layouts/**/*': '**/*.md',
+          'src/assets/**/*.js': true
+        },
+        livereload: true
+      })
+    );
 }
 
 log(`Building site in "${options.build.path}"`);
