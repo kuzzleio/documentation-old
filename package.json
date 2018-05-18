@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node index.js --gzip",
     "dev": "node index.js --dev --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --max-warnings=0 ./index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "colors": "^1.2.5",
     "handlebars": "^4.0.11",
     "jquery": "^3.3.1",
+    "jstransformer-handlebars": "^1.1.0",
     "marked": "^0.3.19",
     "metalsmith": "^2.3.0",
     "metalsmith-algolia": "^0.1.0",
@@ -35,7 +37,7 @@
     "metalsmith-html-minifier": "^3.0.0",
     "metalsmith-inline-svg": "^0.1.4",
     "metalsmith-js-packer": "xbill82/metalsmith-js-packer",
-    "metalsmith-layouts": "^2.1.0",
+    "metalsmith-jstransformer": "^0.13.2",
     "metalsmith-linkcheck": "^0.3.0",
     "metalsmith-livereload": "^0.1.0",
     "metalsmith-markdown": "^0.2.2",

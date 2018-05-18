@@ -1,41 +1,43 @@
-const Metalsmith = require('metalsmith');
-const handlebars = require('handlebars');
-const cheerio = require('cheerio');
-const stripTags = require('striptags');
-const wordCount = require('wordcount');
+const 
+  Metalsmith = require('metalsmith'),
+  handlebars = require('handlebars'),
+  cheerio = require('cheerio'),
+  stripTags = require('striptags'),
+  wordCount = require('wordcount'),
 
-const markdown = require('metalsmith-markdown');
-const marked = require('marked');
-const layouts = require('metalsmith-layouts');
-const permalinks = require('metalsmith-permalinks');
-const ancestry = require('metalsmith-ancestry');
-const links = require('metalsmith-relative-links');
-const hbtmd = require('metalsmith-hbt-md');
-const sass = require('metalsmith-sass');
-const autoprefix = require('metalsmith-autoprefixer');
-const linkcheck = require('metalsmith-linkcheck');
-const hljs = require('metalsmith-metallic');
-const inlineSVG = require('metalsmith-inline-svg');
-const compress = require('metalsmith-gzip');
-const optipng = require('metalsmith-optipng');
-const sitemap = require('metalsmith-sitemap');
-const htmlMin = require('metalsmith-html-minifier');
-const algolia = require('metalsmith-algolia');
-const jsPacker = require('metalsmith-js-packer');
-const cssPacker = require('metalsmith-css-packer');
-const redirect = require('metalsmith-redirect');
+  markdown = require('metalsmith-markdown'),
+  marked = require('marked'),
+  permalinks = require('metalsmith-permalinks'),
+  ancestry = require('metalsmith-ancestry'),
+  links = require('metalsmith-relative-links'),
+  hbtmd = require('metalsmith-hbt-md'),
+  sass = require('metalsmith-sass'),
+  autoprefix = require('metalsmith-autoprefixer'),
+  linkcheck = require('metalsmith-linkcheck'),
+  hljs = require('metalsmith-metallic'),
+  inlineSVG = require('metalsmith-inline-svg'),
+  compress = require('metalsmith-gzip'),
+  optipng = require('metalsmith-optipng'),
+  sitemap = require('metalsmith-sitemap'),
+  htmlMin = require('metalsmith-html-minifier'),
+  algolia = require('metalsmith-algolia'),
+  jsPacker = require('metalsmith-js-packer'),
+  cssPacker = require('metalsmith-css-packer'),
+  redirect = require('metalsmith-redirect'),
+  discoverPartials = require('metalsmith-discover-partials'),
+  jstransformer = require('metalsmith-jstransformer'),
 
-const logger = require('./metalsmith-plugins/logger');
-const metatoc = require('./metalsmith-plugins/metatoc');
-const languageTab = require('./metalsmith-plugins/language-tab');
-const clickImage = require('./metalsmith-plugins/clickable-images');
-const saveSrc = require('./metalsmith-plugins/save-src');
+  logger = require('./metalsmith-plugins/logger'),
+  metatoc = require('./metalsmith-plugins/metatoc'),
+  languageTab = require('./metalsmith-plugins/language-tab'),
+  clickImage = require('./metalsmith-plugins/clickable-images'),
+  saveSrc = require('./metalsmith-plugins/save-src'),
 
-const serve = require('metalsmith-serve');
-const watch = require('metalsmith-watch');
-const color = require('colors/safe');
+  serve = require('metalsmith-serve'),
+  watch = require('metalsmith-watch'),
+  color = require('colors/safe'),
 
-const versionsConfig = require('./versions.config.json');
+  versionsConfig = require('./versions.config.json');
 
 const 
   ok = color.green('✔'),
@@ -309,9 +311,14 @@ metalsmith
   }))
   .use(metatoc())
   .use(languageTab())
-  .use(layouts({
-    directory: 'src/layouts',
-    pattern: '**/*.html'
+  .use(discoverPartials({
+    directory: 'src/partials',
+    pattern: /\.html$/
+  }))
+  .use(jstransformer({
+    layoutPattern: 'layouts/**',
+    defaultLayout: null
+
   }));
 
 if (!options.dev.enabled) {
