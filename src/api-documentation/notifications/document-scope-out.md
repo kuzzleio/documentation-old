@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: On Document Exiting Subscription Scope
 order: 600

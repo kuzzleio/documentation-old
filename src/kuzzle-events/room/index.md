@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: room
 description: list of events emitted on subscription rooms activity

@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: Notification Types
 description: understanding Kuzzle real-time notifications

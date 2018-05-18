@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: Basic Queries
 description: learn how to search data with elasticsearch

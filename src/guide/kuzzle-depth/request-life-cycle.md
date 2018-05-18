@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: Request Life-Cycle
 order: 0

@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: Connecting to Kuzzle
 description: Connecting to Kuzzle using HTTP, WebSocket or Protocol plugins

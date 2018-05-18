@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 title: Geofencing
 order: 0
 description: Geofencing Code Examples

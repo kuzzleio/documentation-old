@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: Useful Commands
 description: learn time-saving elasticsearch commands

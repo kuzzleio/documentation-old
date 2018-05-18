@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: Manage Plugins
 description: learn how to enable and configure plugins

@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 algolia: true
 title: The Plugin Context
 description: plugin initialization context attribute reference

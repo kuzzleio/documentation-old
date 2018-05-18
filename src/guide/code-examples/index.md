@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html
+layout: category-childrens.html.handlebars
 title: Code Examples
 order: 500
 description: Kuzzle code examples

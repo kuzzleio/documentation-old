@@ -1,5 +1,5 @@
 ---
-layout: category-members.html
+layout: category-members.html.handlebars
 algolia: true
 title: document
 order: 900

@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html
+layout: category-childrens.html.handlebars
 title: Koncorde
 order: 300
 description: Koncorde Reference

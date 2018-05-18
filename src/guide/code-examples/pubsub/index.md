@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.handlebars
 title: Pub/Sub
 order: 0
 description: Pub/Sub Code Examples

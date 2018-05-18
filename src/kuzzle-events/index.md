@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html
+layout: category-childrens.html.handlebars
 title: Events
 order: 700
 description: Learn about Kuzzle Events

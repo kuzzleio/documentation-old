@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html
+layout: category-childrens.html.handlebars
 title: API
 order: 500
 description: Learn low-level Kuzzle API
