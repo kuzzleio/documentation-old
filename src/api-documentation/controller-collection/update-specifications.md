@@ -1,5 +1,5 @@
 ---
-layout: side-code.html
+layout: side-code.html.hbs
 algolia: true
 language-tab:
   js: HTTP

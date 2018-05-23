@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: Kuzzle's Plugin Engine
 order: 1100

@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 title: Cookbooks
 permalink: true
 path: cookbooks
