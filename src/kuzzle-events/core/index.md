@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: core
 description: list of events emitted to synchronize Kuzzle server nodes in a cluster

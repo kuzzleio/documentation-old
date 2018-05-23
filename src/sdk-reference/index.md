@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html
+layout: category-childrens.html.hbs
 title: SDK
 order: 0
 description: The multi-language reference for all published Kuzzle SDK

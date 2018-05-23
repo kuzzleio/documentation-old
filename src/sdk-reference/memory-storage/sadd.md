@@ -1,5 +1,5 @@
 ---
-layout: side-code.html
+layout: side-code.html.hbs
 language-tab:
   js: Javascript
   java: Android

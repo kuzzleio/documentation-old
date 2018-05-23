@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: Geodistances
 description: Geodistance formats description

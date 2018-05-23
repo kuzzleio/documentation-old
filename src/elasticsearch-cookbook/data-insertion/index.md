@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: Data Insertion
 description: learn how to index data with elasticsearch

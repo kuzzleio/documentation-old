@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html
+layout: category-childrens.html.hbs
 title: Elasticsearch
 order: 800
 description: Learn how to query persistent data in Kuzzle

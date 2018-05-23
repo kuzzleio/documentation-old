@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: Essentials
 description: learn mechanisms of kuzzle

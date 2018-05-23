@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: [Plugin Events]
 description: list of events emitted by plugins
