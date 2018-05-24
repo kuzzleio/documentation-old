@@ -19,9 +19,94 @@
 
 .container {
   .page-wrapper {
+    .content {
+      @media (min-width: $desktop-width) {
+        margin: 0 0 0 50px;
+        width: 65%;
+      }
+      @media (min-width: $large-desktop-width) {
+        margin: 0 0 0 100px;
+        width: 70%;
+      }
+    }
+
     .toc {
       opacity: 1;
       transition: opacity 2s;
+      position: fixed;
+      padding: 2px 4px 9px;
+      right: 0;
+      top: 166px;
+      overflow: auto;
+      border-left: solid 6px #dedede;
+      width: 230px;
+      transition: all 0.1s;
+
+      @media (max-width: $desktop-width) {
+        opacity: 0;
+      }
+      @media (min-width: $large-desktop-width) {
+        left: auto;
+        right: 0;
+      }
+
+      .toc-level-2 {
+        a {
+          &:before {
+            padding-left: 2px;
+            padding-right: 2px;
+            content: "›";
+          }
+        }
+      }
+      .toc-level-6,
+      .toc-level-5,
+      .toc-level-4,
+      .toc-level-3 {
+        a {
+          padding-left: 15px
+        }
+      }
+
+      ul {
+        margin: 0;
+        li {
+          padding: 3px 6px;
+          list-style: none;
+
+          // &.toc-level-1 {
+          //   font-size: 14px;
+          // }
+          // &.toc-level-2 {
+          //   font-size: 13px;
+          // }
+          // &.toc-level-3 {
+          //   font-size: 12px;
+          // }
+          // &.toc-level-4 {
+          //   font-size: 11px;
+          // }
+
+          a {
+            color: #333;
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.2s;
+
+            &:hover {
+              color: #002835;
+              text-decoration: underline;
+            }
+
+            &.active {
+              color: #3498e4;
+              &:before {
+                color: #3498e4;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

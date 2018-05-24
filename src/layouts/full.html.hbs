@@ -18,6 +18,18 @@
   {{/unless}}
 
   <div class="page-wrapper">
+    <div class="toc">
+      <ul data-turbolinks="false">
+        {{#each toc}}
+        <li class="toc-item toc-level-{{level}}">
+            <a href="#{{ id }}" title="{{ title }}">
+              {{ title }}
+            </a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
     <div class="content">
       <div class="main-content">
         <!-- <div class="reading-time"><p>Reading time: {{#wordsToTime}}{{/wordsToTime}} min</p></div> -->
