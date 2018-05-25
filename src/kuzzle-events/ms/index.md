@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: ms (memoryStorage)
 description: list of events emitted by the memoryStorage controller

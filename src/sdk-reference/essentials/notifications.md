@@ -1,7 +1,5 @@
 ---
-layout: side-code.html
-language-tab:
-  js: Javascript
+layout: full.html.hbs
 algolia: true
 title: Notifications
 order: 300

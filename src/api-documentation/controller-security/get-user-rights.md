@@ -1,5 +1,5 @@
 ---
-layout: side-code.html
+layout: side-code.html.hbs
 algolia: true
 language-tab:
   js: HTTP
@@ -16,7 +16,7 @@ title: getUserRights
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_users/<kuid>/_rights`  
+**URL:** `http://kuzzle:7512/users/<kuid>/_rights`  
 **Method:** `GET`
 </p>
 </blockquote>

@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: Create a Plugin
 description: how to develop a custom plugin
@@ -40,7 +40,10 @@ Custom configuration parameters are specified for each plugin in the `plugins` o
 
 Each Plugin is responsible for handling any custom configuration parameters. The plugin `init` function will determine if the custom configuration is merged with the Kuzzle defaults or not.
 
+
 Kuzzle has a set of predefined configuration parameters that are reserved and apply to the underlying Plugin Engine, these are:
+
+{{{deprecated "1.0.0"}}}
 
 ```json
 {

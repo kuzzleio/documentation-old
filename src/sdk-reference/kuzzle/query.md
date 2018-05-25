@@ -1,5 +1,5 @@
 ---
-layout: side-code.html
+layout: side-code.html.hbs
 language-tab:
   js: Javascript
   java: Android
@@ -11,14 +11,26 @@ title: query
 ## query
 
 ```js
+const 
+  args = {
+    controller: 'controller',
+    action: 'action'
+  },
+  query = {
+    body: {
+      foo: 'bar'
+    },
+    other: 'argument'
+  };
+
 // Using callbacks (NodeJS or Web Browser)
-kuzzle.query({controller: 'document', action: 'search'}, {match: { message: 'this is a test' }}, function (err, res) {
+kuzzle.query(args, query, function (err, res) {
   // ...
 });
 
 // Using promises (NodeJS only)
 kuzzle
-  .queryPromise({controller: 'document', action: 'search'}, {match: { message: 'this is a test' }})
+  .queryPromise(args, query)
   .then(result => {
 
   });
@@ -26,9 +38,16 @@ kuzzle
 
 ```java
 QueryArgs args = new QueryArgs();
-args.controller = "document";
-args.action = "search";
-kuzzle.query(args, new JSONObject(), new OnQueryDoneListener() {
+args.controller = "controller";
+args.action = "action";
+
+JSONObject query = new JSONObject()
+  .put("body", new JSONObject()
+    .put("foo", "bar")
+  )
+  .put("other", "argument");
+
+kuzzle.query(args, query, new OnQueryDoneListener() {
   @Override
   public void onSuccess(JSONObject object) {
 
@@ -48,19 +67,19 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 
 $queryArgs = [
-  'controller' => 'document',
-  'action' => 'search'
+  'controller' => 'controller',
+  'action' => 'action'
 ];
 
 $query = [
-  'filter' => [
-    'equals' => ['field' => 'value']
-  ]
+  'body' => [
+    'foo' => 'bar'
+  ],
+  'other' => 'argument'
 ];
 
 try {
   $response = $kuzzle->query($queryArgs, $query);
-  // var_dump($response['result']['hits']);
 }
 catch (ErrorException $e) {
 
@@ -72,23 +91,10 @@ catch (ErrorException $e) {
 ```json
 { "error": null,
   "result": {
-    "_shards": {
-      "failed": 0,
-      "successful": 5,
-      "total": 5
-    },
-    "_source": {},
-    "action": "search",
-    "collection": "foo",
-    "controller": "document",
-    "hits": {
-      "hits": [],
-      "max_score": 0,
-      "total": 0
-    },
+    "action": "action",
+    "controller": "controller",
     "requestId": "bf87b930-7c02-11e5-ab10-dfa9e9fd2e07",
-    "timed_out": false,
-    "took": 1
+    "other properties": "depends of the query made"
   }
 }
 ```
@@ -115,7 +121,7 @@ Refer to Kuzzle's API Reference <a href="{{ site_base_path }}api-documentation">
 
 ## queryArgs
 
-`queryArgs` is a JSON object with the following properties:
+`queryArgs` is a JSON object allowing Kuzzle to route your query to the right API method:
 
 | Option | Type | Description |  Required? |
 |---------------|---------|----------------------------------------|---------|
@@ -123,6 +129,13 @@ Refer to Kuzzle's API Reference <a href="{{ site_base_path }}api-documentation">
 | ``action`` | string | API Controller action | required |
 | ``index`` | string | Index concerned by the action | optional |
 | ``collection`` | string | Data collection concerned by the action | optional |
+
+---
+
+## query
+
+`query` is a JSON object containing arguments specific to the query, such as a `body` property, a JWT hash, a document `_id`, or generic query options (such as `from` or `size` for [search queries]({{ site_base_path }}api-documentation/controller-document/search/))
+
 
 ---
 

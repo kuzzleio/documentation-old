@@ -1,5 +1,5 @@
 ---
-layout: full.html
+layout: full.html.hbs
 algolia: true
 title: Listen Asynchronously
 order: 100
@@ -16,6 +16,8 @@ Hooks are declared in the `hooks` property of the Plugin class, which accepts an
 ---
 
 ## Executing Hooks in Separate Threads
+
+{{{deprecated "1.0.0"}}}
 
 Plugins that declare hooks can be executed in a separate thread from that of the Kuzzle process. This is handy when you want to perform heavy computations that can have a negative impact on Kuzzle's performance.
 

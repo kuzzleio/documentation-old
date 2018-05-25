@@ -12,9 +12,15 @@
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
 ga('create', 'UA-67035328-2', 'auto');
-ga('send', 'pageview');
 
-if (report404ga) {
+document.addEventListener('turbolinks:load', function(event) {
+  if (typeof ga === 'function') {
+    ga('set', 'location', event.data.url);
+    ga('send', 'pageview');
+  }
+});
+
+if (typeof report404ga !== 'undefined' && report404ga) {
   ga('send', 'event', {
     eventCategory: 'documentation-not-found',
     eventAction: document.location.href,

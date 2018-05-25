@@ -1,5 +1,5 @@
 ---
-layout: category-members.html
+layout: category-members.html.hbs
 algolia: true
 title: Filter terms
 description: Filtering terms rundown
