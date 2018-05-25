@@ -1,25 +1,5 @@
 (function tocUX() {
   var $toc = $('.toc');
-  var $content = $('.content');
-
-  //----------------------------
-  // fixes toc next to content
-  if ($toc.length > 0) {
-    var debounceComputeSize = false;
-    var computeSize = function() {
-      // 280 is the width of left nav / 15 is the margin with content
-      $toc.css('left', $content.get('0').offsetLeft + $content.get('0').offsetWidth + 280 + 15 +'px');
-      // 30 is the margin with bottom window
-      $toc.css('max-height', window.innerHeight - $toc.get('0').offsetTop - 30  + 'px');
-    }
-
-    $(window).on('resize', function() {
-      clearTimeout(debounceComputeSize);
-      debounceComputeSize = setTimeout(computeSize, 13);
-    })
-    computeSize();
-  }
-  //----------------------------
 
   //---------------------------------------------------------------------
   // toogle 'active' class on toc link when headings pass window offset
