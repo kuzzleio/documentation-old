@@ -27,7 +27,10 @@ Metadata can be viewed in the document's `_kuzzle_info` field and contains the f
 * `active`: The status of the document. `true` if the document is active and `false` if the document has been put in the trashcan.
 * `deletedAt`: Timestamp of document deletion in epoch-milliseconds format, or `null` if the document has not been deleted.
 
+
 Here is an example of a Kuzzle response, containing a document's `_id`, `_source` and `_meta` fields:
+
+{{{deprecated "1.3.0"}}}
 
 ```json
 {
@@ -49,9 +52,10 @@ Here is an example of a Kuzzle response, containing a document's `_id`, `_source
 }
 ```
 
-{{{since "1.3.0"}}}
 
 Here is an example of a Kuzzle response, containing a document's `_id` and `_source` fields:
+
+{{{since "1.3.0"}}}
 
 ```json
 {
