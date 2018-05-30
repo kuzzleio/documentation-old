@@ -52,10 +52,9 @@ Here is an example of a Kuzzle response, containing a document's `_id`, `_source
 }
 ```
 
+{{{since "1.3.0"}}}
 
 Here is an example of a Kuzzle response, containing a document's `_id` and `_source` fields:
-
-{{{since "1.3.0"}}}
 
 ```json
 {
