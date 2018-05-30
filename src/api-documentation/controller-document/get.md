@@ -60,11 +60,24 @@ title: get
         "last": "Wozniak"
       },
       "hobby": "Segway polo",
+      // Kuzzle metadata
+      "_kuzzle_info": {
+        "author": "Bob",
+        "createdAt": 1481816934209,
+        "updatedAt": null,
+        "updater": null,
+        "active": true,
+        "deletedAt": null
+      }
       ...
     },
     "_meta": {
       "author": "Bob",
-      ...
+      "createdAt": 1481816934209,
+      "updatedAt": null,
+      "updater": null,
+      "active": true,
+      "deletedAt": null
     }
   }
 }
