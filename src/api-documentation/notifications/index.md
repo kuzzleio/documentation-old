@@ -35,7 +35,7 @@ A document notification contains the following fields:
 | `index` | string | The modified data index | |
 | `protocol` | string | The network protocol used to modify the document | |
 | `result._id` | string | The document identifier. Can be null if the document doesn't exist yet, or if the notification is about a real-time message | |
-| `result._meta` | object | Document meta-data (creation time, last update time, and so on). Can be null. | |
+| `result._meta` | object | DEPRECATED in 1.3.0 - Document meta-data (creation time, last update time, and so on). Can be null. | |
 | `result._source` | object | The message or full document content. Undefined if the notification is about a document deletion |
 | `result._source._kuzzle_info` | object | Document meta-data (creation time, last update time, and so on). Can be null. |
 | `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
