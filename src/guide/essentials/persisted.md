@@ -27,7 +27,7 @@ Kuzzle automatically generates document ids and indexes them. The generated id i
 
 We will start off by [**creating a new index**]({{ site_base_path }}api-documentation/controller-index/create/) which we will use to store a collection.
 
-To create a new index, send a `POST` request to the following API endpoint and leave the request body empty:  `http://localhost:7512/<index name>/_create`. 
+To create a new index, send a `POST` request to the following API endpoint and leave the request body empty:  `http://localhost:7512/<index name>/_create`.
 
 
 Let's create an index named `myindex`:
@@ -87,7 +87,7 @@ You should receive the following response:
 
 **Note:**  we have just created a new collection without specifying any mappings. As a result, the database layer will automatically create a mapping that assigns a best guess data type to any new field it detects in input documents. Since these mappings cannot be changed once they are created, we strongly recommend that you [**create your own mappings**]({{ site_base_path }}guide/essentials/persisted/#mappings) as soon as the collection has been created. For the purpose of this tutorial, we will continue without defining our own mappings.
 
---- 
+---
 
 ## Browse Collections
 
@@ -137,7 +137,7 @@ Kuzzle ships with a full data [CRUD](https://en.wikipedia.org/wiki/Create,_read,
 
 We can [**create a new document**]({{ site_base_path }}api-documentation/controller-document/create) by sending a `POST` request to the following API endpoint and setting the document contents in the request body: `http://localhost:7512/<index name>/<collection name>/_create`.
 
-Let's create a new document in the `mycollection` collection of the `myindex` index: 
+Let's create a new document in the `mycollection` collection of the `myindex` index:
 
 ```bash
  curl -X POST -H "Content-Type: application/json" -d '{"message": "Hello World!"}' http://localhost:7512/myindex/mycollection/_create
@@ -169,7 +169,15 @@ You should receive the following response (with your own `_id` value):
     },
     "created": true,
     "_source": {
-      "message": "Hello World!"
+      "message": "Hello World!",
+      "_kuzzle_info": {
+        "author": "-1",
+        "createdAt": 1481814465050,
+        "updatedAt": null,
+        "updater": null,
+        "active": true,
+        "deletedAt": null
+      }
     },
     "_meta": {
       "author": "-1",
@@ -192,7 +200,7 @@ Note that the document contains the auto-generated id `AVkDBl3YsT6qHI7MxLz0`. Ta
 
 We can [**read a document**]({{ site_base_path }}api-documentation/controller-document/get)  by sending a `GET` request to `http://localhost:7512/<index name>/<collection name>/<document id>`.
 
-Let's read the document we just created in the `mycollection` collection of the `myindex` index: 
+Let's read the document we just created in the `mycollection` collection of the `myindex` index:
 
 ```bash
  curl http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0
@@ -217,15 +225,13 @@ You should receive the following response (with your own `_id` value):
     "_version": 1,
     "found": true,
     "_source": {
-      "message": "Hello World!"
+      "message": "Hello World!",
+      "_kuzzle_info": {
+        ...
+      }
     },
     "_meta": {
-      "author": "-1",
-      "createdAt": 1481814465050,
-      "updatedAt": null,
-      "updater": null,
-      "active": true,
-      "deletedAt": null
+      ...
     }
   }
 }
@@ -235,7 +241,7 @@ You should receive the following response (with your own `_id` value):
 
 We can [**update a document**]({{ site_base_path }}api-documentation/controller-document/update) by sending a `PUT` request to the following API endpoint and setting the document's updated contents in the request body: `http://localhost:7512/<index name>/<collection name>/<document id>/_update`.
 
-Let's update the document we just created, with id `AVkDBl3YsT6qHI7MxLz0`, in the `mycollection` collection of the `myindex` index: 
+Let's update the document we just created, with id `AVkDBl3YsT6qHI7MxLz0`, in the `mycollection` collection of the `myindex` index:
 
 
 ```bash
@@ -275,7 +281,7 @@ You should receive the following response (with your own `_id` value):
 
 We can [**delete a document**]({{ site_base_path }}api-documentation/controller-document/delete)  by sending a `DELETE` request to the following API endpoint with no request body: `http://localhost:7512/<index name>/<collection name>/<document id>`.
 
-Let's delete the document we just created in the `mycollection` collection of the `myindex` index: 
+Let's delete the document we just created in the `mycollection` collection of the `myindex` index:
 
 ```bash
  curl -X DELETE http://localhost:7512/myindex/mycollection/AVkDBl3YsT6qHI7MxLz0
@@ -317,7 +323,7 @@ One thing that Elasticsearch is _really_ good at doing is... Searching! Thanks t
 
 Say we want to [**find**]({{ site_base_path }}api-documentation/controller-document/search) all documents in the `mycollection` collection. Whe can do this by sending a `POST` request to `http://localhost:7512/<index name>/<collection name>/_search` and setting any search filters in the request body.
 
-As an example, let's create some documents in the `mycollection` collection of the `myindex` index and then search for them: 
+As an example, let's create some documents in the `mycollection` collection of the `myindex` index and then search for them:
 
 First, let's create a few documents, since at this point our collection is empty:
 
@@ -362,15 +368,13 @@ You should receive the following response (with your own `_id` values):
         "_id": "AWD-hP9Y2f6djIwk5oeW",
         "_score": 0,
         "_source": {
-          "message": "Bonjour!"
+          "message": "Bonjour!",
+          "_kuzzle_info": {
+            ...
+          }
         },
         "_meta": {
-          "author": "-1",
-          "createdAt": 1516098617157,
-          "updatedAt": null,
-          "updater": null,
-          "active": true,
-          "deletedAt": null
+          ...
         }
       },
       {
@@ -379,15 +383,13 @@ You should receive the following response (with your own `_id` values):
         "_id": "AWD-hQ_N2f6djIwk5oeX",
         "_score": 0,
         "_source": {
-          "message": "Hello!"
+          "message": "Hello!",
+          "_kuzzle_info": {
+            ...
+          }
         },
         "_meta": {
-          "author": "-1",
-          "createdAt": 1516098621387,
-          "updatedAt": null,
-          "updater": null,
-          "active": true,
-          "deletedAt": null
+          ...
         }
       },
       {
@@ -396,15 +398,13 @@ You should receive the following response (with your own `_id` values):
         "_id": "AWD-hSjM2f6djIwk5oeZ",
         "_score": 0,
         "_source": {
-          "message": "Goodbye!"
+          "message": "Goodbye!",
+          "_kuzzle_info": {
+            ...
+          }
         },
         "_meta": {
-          "author": "-1",
-          "createdAt": 1516098627787,
-          "updatedAt": null,
-          "updater": null,
-          "active": true,
-          "deletedAt": null
+          ...
         }
       },
       {
@@ -413,15 +413,13 @@ You should receive the following response (with your own `_id` values):
         "_id": "AWD-hR2H2f6djIwk5oeY",
         "_score": 0,
         "_source": {
-          "message": "Au revoir!"
+          "message": "Au revoir!",
+          "_kuzzle_info": {
+            ...
+          }
         },
         "_meta": {
-          "author": "-1",
-          "createdAt": 1516098624901,
-          "updatedAt": null,
-          "updater": null,
-          "active": true,
-          "deletedAt": null
+          ...
         }
       }
     ],
@@ -477,15 +475,13 @@ You should receive the following response (with your own `_id` values):
         "_id": "AWD-hQ_N2f6djIwk5oeX",
         "_score": 0.6931472,
         "_source": {
-          "message": "Hello!"
+          "message": "Hello!",
+          "_kuzzle_info": {
+            ...
+          }
         },
         "_meta": {
-          "author": "-1",
-          "createdAt": 1516098621387,
-          "updatedAt": null,
-          "updater": null,
-          "active": true,
-          "deletedAt": null
+          ...
         }
       }
     ],
