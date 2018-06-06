@@ -42,8 +42,7 @@ title: list
   "action": "list",
   "requestId": "<unique request identifier>",
   "result": {
-    "total": 13,
-    "hits": [
+    "indexes": [
       "index_1",
       "index_2",
       "index_...",
