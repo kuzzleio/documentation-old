@@ -11,38 +11,49 @@ Kuzzle ships with a [Command line interface](https://en.wikipedia.org/wiki/Comma
 
 * Start Kuzzle
 * Gracefully shutdown Kuzzle
-* Create a first Administrator
+* Create the first Administrator
 * Reset Kuzzle internal data _(use with caution!)_
+* Reset user created indexes _(use with caution!)_
+* Reset users, roles and profiles _(use with caution!)_
 * Clear Kuzzle cache
 * Diagnose the Kuzzle installation
 
 <aside class="warning">
 If you are running Kuzzle in a Docker container, you will have to execute these commands from within the <a href="https://docs.docker.com/engine/reference/commandline/exec/">running container</a>.
+<i>Example: docker-compose exec kuzzle ./bin/kuzzle start</i>
 </aside>
 
-The CLI is located in the `bin` folder of your Kuzzle installation. To get a list of commands and options run the CLI:
+The CLI is located in the `bin` folder of your Kuzzle installation.  
+If you have already created an admin, you will need to provide your login information to the CLI.  
+To get a list of commands and options run the CLI:
 
 ```bash
-./bin/kuzzle 
+./bin/kuzzle
 
 #   Usage: kuzzle [options] [command]
 #
 #
 #   Commands:
 #
-#     createFirstAdmin   create the first administrator user
-#     clearCache         clear internal caches in Redis
-#     reset [options]    delete Kuzzle configuration and users from database
-#     shutdown           gracefully exits after processing remaining requests
-#     start [options]    start a Kuzzle instance
-#     dump               create a dump of current state of kuzzle
+#     createFirstAdmin           create the first administrator user
+#     clearCache                 clear internal caches in Redis
+#     reset [options]            delete Kuzzle configuration and users from database
+#     resetSecurity              reset all users, profiles and roles
+#     resetDatabase              remove all data stored on Kuzzle
+#     shutdown                   gracefully exits after processing remaining requests
+#     start [options]            start a Kuzzle instance
+#     dump                       create a dump of current state of kuzzle
 #
 #   Options:
 #
-#     -h, --help      output usage information
-#     -V, --version   output the version number
-#     -d, --debug     make errors more verbose
-#     -C, --noColors  do not use ANSI coloring
+#     -h, --help                 output usage information
+#     -V, --version              output the version number
+#     -p, --port <port>          Kuzzle port number
+#     -h, --host <host>          Kuzzle host
+#     -U, --username <username>  Admin username
+#     -P, --password <password>  Admin password
+#     -d, --debug                make errors more verbose
+#     -C, --noColors             do not use ANSI coloring
 ```
 
 ---
@@ -114,7 +125,64 @@ The generated directory can be used to feed a crash report to the support team i
 
 The `reset` command deletes all current configurations and users from the database.
 
-Note: this command has no impact on any plugins stored data, or on any Kuzzle stored documents. 
+Note: this command has no impact on any plugins stored data, or on any Kuzzle stored documents.
+
+---
+
+## resetSecurity
+
+```bash
+./bin/kuzzle resetSecurity --help
+
+#    Usage: resetSecurity [options]
+#
+#    reset all users, profiles and roles
+#
+#    Options:
+#
+#      -h, --help             output usage information
+#      --noint                non interactive mode
+```
+
+The `resetSecurity` command deletes all created users, profiles and roles and reset the default roles and profiles : `anonymous`, `admin` and `default`.
+
+---
+
+## resetDatabase
+
+```bash
+./bin/kuzzle resetDatabase --help
+
+#    Usage: resetDatabase [options]
+#
+#    remove all data stored on Kuzzle
+#
+#    Options:
+#
+#      -h, --help             output usage information
+#      --noint                non interactive mode
+```
+
+The `resetDatabase` delete all indexes created with Kuzzle.
+
+---
+
+## resetDatabase
+
+```bash
+./bin/kuzzle resetDatabase --help
+
+#    Usage: resetDatabase [options]
+#
+#    remove all data stored on Kuzzle
+#
+#    Options:
+#
+#      -h, --help             output usage information
+#      --noint                non interactive mode
+```
+
+The `resetDatabase` delete all indexes created with Kuzzle.
 
 ---
 
@@ -143,7 +211,6 @@ The `shutdown` command lets you stop a Kuzzle instance after any remaining reque
 #    Options:
 #
 #      -h, --help                 output usage information
-#      -p, --port <port>          Kuzzle port number
 #          --fixtures <file>      import data from file
 #          --mappings <file>      apply mappings from file
 ```
@@ -154,9 +221,9 @@ Using this command you can also initialize the storage layer mappings, using the
 
 #### `--mappings`
 
-Loads mappings from a file and apply them to the storage layer. 
+Loads mappings from a file and apply them to the storage layer.
 
-The input file must be a JSON file with the following structure: 
+The input file must be a JSON file with the following structure:
 
 ```json
 {
