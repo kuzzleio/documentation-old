@@ -131,6 +131,8 @@ Note: this command has no impact on any plugins stored data, or on any Kuzzle st
 
 ## resetSecurity
 
+{{{since "1.4.0"}}}
+
 ```bash
 ./bin/kuzzle resetSecurity --help
 
@@ -150,31 +152,14 @@ The `resetSecurity` command deletes all created users, profiles and roles and re
 
 ## resetDatabase
 
-```bash
-./bin/kuzzle resetDatabase --help
-
-#    Usage: resetDatabase [options]
-#
-#    remove all data stored on Kuzzle
-#
-#    Options:
-#
-#      -h, --help             output usage information
-#      --noint                non interactive mode
-```
-
-The `resetDatabase` delete all indexes created with Kuzzle.
-
----
-
-## resetDatabase
+{{{since "1.4.0"}}}
 
 ```bash
 ./bin/kuzzle resetDatabase --help
 
 #    Usage: resetDatabase [options]
 #
-#    remove all data stored on Kuzzle
+#    delete all data stored on Kuzzle
 #
 #    Options:
 #
