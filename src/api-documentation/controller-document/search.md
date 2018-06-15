@@ -33,14 +33,14 @@ title: search
 ```
 
 
-<blockquote class="js">
+<blockquote class="json">
 <p>
 **Query:**
 </p>
 </blockquote>
 
 
-```js
+```json
 {
   "index": "<index>",
   "collection": "<collection>",
@@ -56,7 +56,6 @@ title: search
     }
   },
 
-  // Optional arguments
   "from": 0,
   "size": 42,
   "scroll": "1m",

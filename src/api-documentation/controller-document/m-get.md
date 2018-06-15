@@ -22,19 +22,19 @@ title: mGet
 
 ```js
 {
-  "ids": ["<documentId>", "<anotherDocumentId>", ...],
+  "ids": ["<documentId>", "<anotherDocumentId>", ...]
 }
 ```
 
 
-<blockquote class="js">
+<blockquote class="json">
 <p>
 **Query:**
 </p>
 </blockquote>
 
 
-```js
+```json
 {
   "index": "<index>",
   "collection": "<collection>",
@@ -42,9 +42,8 @@ title: mGet
   "action": "mGet",
   "body": {
     "ids": ["<documentId>", "<anotherDocumentId>"]
-  }
+  },
 
-  // Optional arguments
   "includeTrash": false
 }
 ```
@@ -97,7 +96,7 @@ title: mGet
         "_type": "<collection>",
         "_version": 4,
         "found": true
-      }
+      },
       {
    // Other documents
       }

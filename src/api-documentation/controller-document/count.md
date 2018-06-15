@@ -26,19 +26,19 @@ title: count
   // Use "query" instead of "filter" if you want to perform a query instead.
   "filter": {
     ...
-  },
+  }
 }
 ```
 
 
-<blockquote class="js">
+<blockquote class="json">
 <p>
 **Query:**
 </p>
 </blockquote>
 
 
-```js
+```json
 {
   "index": "<index>",
   "collection": "<collection>",
@@ -47,16 +47,15 @@ title: count
 
   "body": {
     "filter": {}
-  }
+  },
 
-  // Optional arguments
   "includeTrash": false
 }
 ```
 
 >**Response**
 
-```js
+```javascript
 {
   "status": 200,
   "error": null,
