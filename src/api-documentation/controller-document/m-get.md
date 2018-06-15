@@ -23,21 +23,18 @@ title: mGet
 ```js
 {
   "ids": ["<documentId>", "<anotherDocumentId>", ...],
-
-  // Optional arguments
-  "includeTrash": false
 }
 ```
 
 
-<blockquote class="json">
+<blockquote class="js">
 <p>
 **Query:**
 </p>
 </blockquote>
 
 
-```json
+```js
 {
   "index": "<index>",
   "collection": "<collection>",
@@ -46,6 +43,9 @@ title: mGet
   "body": {
     "ids": ["<documentId>", "<anotherDocumentId>"]
   }
+
+  // Optional arguments
+  "includeTrash": false
 }
 ```
 

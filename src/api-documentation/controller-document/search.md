@@ -28,25 +28,19 @@ title: search
   },
   "aggregations": {
     ...
-  },
-
-  // Optional arguments
-  "from": 0,
-  "size": 42,
-  "scroll": "1m",
-  "includeTrash": false
+  }
 }
 ```
 
 
-<blockquote class="json">
+<blockquote class="js">
 <p>
 **Query:**
 </p>
 </blockquote>
 
 
-```json
+```js
 {
   "index": "<index>",
   "collection": "<collection>",
@@ -62,9 +56,11 @@ title: search
     }
   },
 
+  // Optional arguments
   "from": 0,
   "size": 42,
-  "scroll": "<time to live>"
+  "scroll": "1m",
+  "includeTrash": false
 }
 ```
 

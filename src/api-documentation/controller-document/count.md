@@ -27,21 +27,18 @@ title: count
   "filter": {
     ...
   },
-
-  // Optional arguments
-  "includeTrash": false
 }
 ```
 
 
-<blockquote class="json">
+<blockquote class="js">
 <p>
 **Query:**
 </p>
 </blockquote>
 
 
-```json
+```js
 {
   "index": "<index>",
   "collection": "<collection>",
@@ -51,6 +48,9 @@ title: count
   "body": {
     "filter": {}
   }
+
+  // Optional arguments
+  "includeTrash": false
 }
 ```
 
