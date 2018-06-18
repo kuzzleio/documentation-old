@@ -60,7 +60,7 @@ Depending on the configuration of Kuzzle, it may include the following:
 * plugins configuration
 * usage statistics of the dumped instance
 
-(See [.kuzzlerc](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample#L542))
+(See [configuration]({{ site_base_path }}guide/essentials/configuration))
 
 The generated directory can be used to feed a complete report to the support team.  
 This report is the same as the one generated during a crash.  

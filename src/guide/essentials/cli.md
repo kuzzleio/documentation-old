@@ -37,7 +37,7 @@ To get a list of commands and options run the CLI:
 #
 #     createFirstAdmin           create the first administrator user
 #     clearCache                 clear internal caches in Redis
-#     reset [options]            delete Kuzzle configuration and users from database
+#     reset                      reset all users, profiles, roles and documents validation specifications
 #     resetSecurity              reset all users, profiles and roles
 #     resetDatabase              remove all data stored on Kuzzle
 #     shutdown                   gracefully exits after processing remaining requests
@@ -70,6 +70,7 @@ The `createFirstAdmin` command lets you create an administrator to manage securi
 
 <aside class="notice">NB: This command can only be run interactively</aside>
 
+(This call the action [security#createFirstAdmin]({{ site_base_path }}api-documentation/controller-security/create-first-admin))
 ---
 
 ## clearCache
@@ -80,6 +81,7 @@ The `createFirstAdmin` command lets you create an administrator to manage securi
 
 Kuzzle uses Redis to store frequently accessed internal data. Use this command if you need to clear this data (cache).
 
+(This call the action [admin#resetCache]({{ site_base_path }}api-documentation/controller-admin/reset-cache))
 ---
 
 ## dump
@@ -106,6 +108,7 @@ The `dump` command creates a snapshot of the state of Kuzzle, including:
 
 The generated directory can be used to feed a crash report to the support team.
 
+(This call the action [admin#dump]({{ site_base_path }}api-documentation/controller-admin/reset-security))
 ---
 
 ## reset
@@ -115,7 +118,7 @@ The generated directory can be used to feed a crash report to the support team.
 
 #    Usage: reset [options]
 #
-#    delete Kuzzle configuration and users from database
+#    reset all users, profiles, roles and documents validation specifications
 #
 #    Options:
 #
@@ -123,10 +126,9 @@ The generated directory can be used to feed a crash report to the support team.
 #      --noint                non interactive mode
 ```
 
-The `reset` command deletes all current configurations and users from the database.
+The `reset` command reset all users, profiles, roles and documents validation specifications.  
 
-Note: this command has no impact on any plugins stored data, or on any Kuzzle stored documents.
-
+(This call the action [admin#resetSecurity]({{ site_base_path }}api-documentation/controller-admin/reset-security) and [admin#resetKuzzleData]({{ site_base_path }}api-documentation/controller-admin/reset-kuzzle-data))
 ---
 
 ## resetSecurity
@@ -148,6 +150,7 @@ Note: this command has no impact on any plugins stored data, or on any Kuzzle st
 
 The `resetSecurity` command deletes all created users, profiles and roles and reset the default roles and profiles : `anonymous`, `admin` and `default`.
 
+(This call the action [admin#resetSecurity]({{ site_base_path }}api-documentation/controller-admin/reset-security))
 ---
 
 ## resetDatabase
@@ -169,6 +172,7 @@ The `resetSecurity` command deletes all created users, profiles and roles and re
 
 The `resetDatabase` delete all indexes created by users. This does not include Kuzzle's internal index.
 
+(This call the action [admin#resetDatabase]({{ site_base_path }}api-documentation/controller-admin/reset-database))
 ---
 
 ## shutdown
@@ -181,6 +185,8 @@ The `resetDatabase` delete all indexes created by users. This does not include K
 ```
 
 The `shutdown` command lets you stop a Kuzzle instance after any remaining requests are processed, ensuring that no unnecessary `Service Unavailable` errors are returned to connected clients.
+
+(This call the action [admin#shutdown]({{ site_base_path }}api-documentation/controller-admin/shutdown))
 
 ---
 

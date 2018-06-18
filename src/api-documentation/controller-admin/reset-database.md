@@ -50,3 +50,5 @@ title: resetDatabase
 ```
 
 Asynchronously delete indexes created by users. This does not include Kuzzle's internal index.
+
+This action has no impact on Kuzzle's internal index and Plugin indexes.

@@ -49,8 +49,4 @@ title: resetKuzzleData
 }
 ```
 
-Asynchronously execute the following actions on Kuzzle :
- - Reset all users, roles and profiles
- - Reset all validations
- - Reset plugins configuration
- - Reset Kuzzle configuration
+Asynchronously delete all document validation specifications
