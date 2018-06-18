@@ -45,11 +45,11 @@ title: dump
   "collection": null,
   "index": null,
   "volatile": null,
-  "result": { "path": "dump/20180618-095029" }
+  "result": { "acknowledge": true }
 }
 ```
 
-Create a snapshot of Kuzzle's state.  
+Asynchronously create a snapshot of Kuzzle's state.  
 Depending on the configuration of Kuzzle, it may include the following:
 
 * a coredump of Kuzzle
