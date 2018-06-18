@@ -49,4 +49,10 @@ title: resetKuzzleData
 }
 ```
 
-Asynchronously delete all document validation specifications
+Asynchronously start the following chain of actions on Kuzzle, in that order:
+* Invalidate and delete all users along with their credentials
+* Delete all user-defined roles and profiles
+* Reset the default roles and profiles to their default value
+* Delete all documentation validation specifications
+
+This action has no impact on Plugins and Documents storages.

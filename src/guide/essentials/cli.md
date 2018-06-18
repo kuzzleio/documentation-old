@@ -126,9 +126,15 @@ The generated directory can be used to feed a crash report to the support team.
 #      --noint                non interactive mode
 ```
 
-The `reset` command reset all users, profiles, roles and documents validation specifications.  
+Asynchronously start the following chain of actions on Kuzzle, in that order:
+* Invalidate and delete all users along with their credentials
+* Delete all user-defined roles and profiles
+* Reset the default roles and profiles to their default value
+* Delete all documentation validation specifications
 
-(This call the action [admin#resetSecurity]({{ site_base_path }}api-documentation/controller-admin/reset-security) and [admin#resetKuzzleData]({{ site_base_path }}api-documentation/controller-admin/reset-kuzzle-data))
+This action has no impact on Plugins and Documents storages.
+
+(This call the action [admin#resetKuzzleData]({{ site_base_path }}api-documentation/controller-admin/reset-kuzzle-data))
 ---
 
 ## resetSecurity
