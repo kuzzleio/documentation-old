@@ -14,8 +14,8 @@ title: resetKuzzleData
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/resetKuzzleData`  
-**Method:** `GET`
+**URL:** `http://kuzzle:7512/admin/_resetKuzzleData`  
+**Method:** `POST`
 </p>
 </blockquote>
 
@@ -44,8 +44,13 @@ title: resetKuzzleData
   "action": "resetKuzzleData",
   "collection": null,
   "index": null,
-  "volatile": null
+  "volatile": null,
+  "result": { "acknowledge": true }
 }
 ```
 
-Delete all current configurations and users from database.
+Asynchronously execute the following actions on Kuzzle :
+ - Reset all users, roles and profiles
+ - Reset all validations
+ - Reset plugins configuration
+ - Reset Kuzzle configuration

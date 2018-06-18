@@ -104,7 +104,7 @@ The `dump` command creates a snapshot of the state of Kuzzle, including:
 * plugins configuration
 * usage statistics of the dumped instance
 
-The generated directory can be used to feed a crash report to the support team if you own a Kuzzle License.
+The generated directory can be used to feed a crash report to the support team.
 
 ---
 
@@ -167,7 +167,7 @@ The `resetSecurity` command deletes all created users, profiles and roles and re
 #      --noint                non interactive mode
 ```
 
-The `resetDatabase` delete all indexes created with Kuzzle.
+The `resetDatabase` delete all indexes created by users. This does not include Kuzzle's internal index.
 
 ---
 

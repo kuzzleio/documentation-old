@@ -14,8 +14,8 @@ title: resetCache
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/resetCache/<database>`  
-**Method:** `GET`
+**URL:** `http://kuzzle:7512/admin/_resetCache`  
+**Method:** `POST`
 </p>
 </blockquote>
 
@@ -30,10 +30,7 @@ title: resetCache
 {
   "controller": "admin",
   "action": "resetCache",
-
-  "body": {
-    "database": "internalCache"
-  }
+  "database": "internalCache"
 }
 ```
 
@@ -48,12 +45,13 @@ title: resetCache
   "action": "resetCache",
   "collection": null,
   "index": null,
-  "volatile": null
+  "volatile": null,
+  "result": { "acknowledge": true }
 }
 ```
 
-Clear Redis database used by Kuzzle.  
+Asynchronously clear Redis database used by Kuzzle.  
 
-There is two Redis database that you can clear :
+There are two Redis databases that you can clear :
  - `internalCache` : Used by Kuzzle to store frequently accessed internal data
- - `memoryStorage` : Redis database usable through memoryStorage controller
+ - `memoryStorage` : Redis database usable through the [memoryStorage controller]({{ site_base_path }}api-documentation/controller-memory-storage/)

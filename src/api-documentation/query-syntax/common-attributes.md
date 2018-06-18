@@ -60,7 +60,7 @@ The MQTT layer listens to a specific topic in order to forward your queries to t
 ### `mandatory` controller
 
 The controller attribute specifies the type of action to perform.
-The current implementation of Kuzzle embeds ten controllers:
+The current implementation of Kuzzle embeds the following controllers:
 `admin`, `auth`, `bulk`, `collection`, `document`, `index`, `memoryStorage`, `realtime`, `security` and `server`.
 
 

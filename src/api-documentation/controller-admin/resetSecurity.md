@@ -14,8 +14,8 @@ title: resetSecurity
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/resetSecurity`  
-**Method:** `GET`
+**URL:** `http://kuzzle:7512/admin/_resetSecurity`  
+**Method:** `POST`
 </p>
 </blockquote>
 
@@ -44,8 +44,9 @@ title: resetSecurity
   "action": "resetSecurity",
   "collection": null,
   "index": null,
-  "volatile": null
+  "volatile": null,
+  "result": { "acknowledge": true }
 }
 ```
 
-Delete all users, profiles and roles and reset `anonymous`, `default` and `admin` profiles and roles to default.
+Asynchronously delete all users, profiles and roles and reset `anonymous`, `default` and `admin` profiles and roles to the default specified in Kuzzle's configuration files.

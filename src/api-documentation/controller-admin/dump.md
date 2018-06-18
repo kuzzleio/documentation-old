@@ -4,18 +4,18 @@ algolia: true
 language-tab:
   js: HTTP
   json: Other protocols
-title: generateDump
+title: dump
 ---
 
-# generateDump
+# dump
 
 {{{since "1.4.0"}}}
 
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/generateDump`  
-**Method:** `GET`
+**URL:** `http://kuzzle:7512/admin/_dump`  
+**Method:** `POST`
 </p>
 </blockquote>
 
@@ -29,7 +29,7 @@ title: generateDump
 ```json
 {
   "controller": "admin",
-  "action": "generateDump"
+  "action": "dump"
 }
 ```
 
@@ -41,14 +41,16 @@ title: generateDump
   "status": 200,
   "error": null,
   "controller": "admin",
-  "action": "generateDump",
+  "action": "dump",
   "collection": null,
   "index": null,
-  "volatile": null
+  "volatile": null,
+  "result": { "path": "dump/20180618-095029" }
 }
 ```
 
-Create a snapshot of the state of Kuzzle, including : 
+Create a snapshot of Kuzzle's state.  
+Depending on the configuration of Kuzzle, it may include the following:
 
 * a coredump of Kuzzle
 * the current Kuzzle configuration
@@ -58,4 +60,11 @@ Create a snapshot of the state of Kuzzle, including :
 * plugins configuration
 * usage statistics of the dumped instance
 
-The generated directory can be used to feed a crash report to the support team.
+(See [.kuzzlerc](https://github.com/kuzzleio/kuzzle/blob/master/.kuzzlerc.sample#L542))
+
+The generated directory can be used to feed a complete report to the support team.  
+This report is the same as the one generated during a crash.  
+
+#### Cluster Mode
+
+In a Cluster environment, the dump action will be propagated across all nodes.

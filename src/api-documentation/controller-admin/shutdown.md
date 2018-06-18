@@ -14,8 +14,8 @@ title: shutdown
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/shutdown`  
-**Method:** `GET`
+**URL:** `http://kuzzle:7512/admin/_shutdown`  
+**Method:** `POST`
 </p>
 </blockquote>
 
@@ -44,8 +44,13 @@ title: shutdown
   "action": "shutdown",
   "collection": null,
   "index": null,
-  "volatile": null
+  "volatile": null,
+  "result": { "acknowledge": true }
 }
 ```
 
-Let you stop a Kuzzle instance after any remaining requests are processed, ensuring that no unnecessary `Service Unavailable` errors are returned to connected clients.
+Let you stop a Kuzzle instance after any remaining requests are processed.
+
+#### Cluster Mode
+
+In a Cluster environment, the shutdown action will be propagated across all nodes.

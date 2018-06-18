@@ -14,8 +14,8 @@ title: resetDatabase
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/resetDatabase`  
-**Method:** `GET`
+**URL:** `http://kuzzle:7512/admin/_resetDatabase`  
+**Method:** `POST`
 </p>
 </blockquote>
 
@@ -44,8 +44,9 @@ title: resetDatabase
   "action": "resetDatabase",
   "collection": null,
   "index": null,
-  "volatile": null
+  "volatile": null,
+  "result": { "acknowledge": true }
 }
 ```
 
-Delete all Kuzzle indexes.
+Asynchronously delete indexes created by users. This does not include Kuzzle's internal index.
