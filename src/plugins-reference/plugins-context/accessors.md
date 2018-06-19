@@ -66,7 +66,7 @@ Data stored in this space cannot be accessed from Kuzzle, or from the API, or fr
 
 The only way a document stored in this space can be accessed outside the plugin is if that plugin extends the API with a route exposing that data.
 
-This storage space is a whole [data index]({{ site_base_path }}guide/essentials/persisted/#working-with-persistent-data).  
+This storage space is a whole [data index]({{ site_base_path }}guide/essentials/persisted/#working-with-persistent-data).
 
 Data stored in this space can be accessed through the [Repository constructor]({{ site_base_path }}plugins-reference/plugins-context/constructors/#repository).
 
@@ -147,17 +147,15 @@ context.accessors.storage.createCollection('someCollection', {
 
 This accessor can be used to dynamically add or remove [authentication strategies]({{ site_base_path }}guide/essentials/user-authentication/#authentication-strategy)
 
-In a cluster context, Kuzzle will add/remove strategies on all server nodes.
-
-<aside class="warning">
-Plugins should also make sure that, when changing the list of available strategies dynamically, that list will remain the same after a Kuzzle server node restarts.
-</aside>
-
 ### `add`
 
 {{{since "1.2.0"}}}
 
 Adds a new authentication strategy. Users can be authenticated using that new strategy as soon as this method resolves.
+
+If the strategy to be added already exists, the old one will be removed first, unless it has been registered by another plugin.
+
+In a cluster environment, the new strategy is automatically added to all server nodes.
 
 **Arguments**
 
@@ -173,14 +171,15 @@ This method returns a promise that resolves to nothing when the authentication s
 The promise will be rejected when:
 
 * the properties for that strategy are invalid or incomplete
-* a strategy of the same name already exists
+* a strategy of the same name has already been registered by another plugin
+* if the provided properties contain a `constructor` parameter instead of an `authenticator` one (see [Exposing Authenticators]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#exposing-authenticators))
 
 **Usage**
 
 ```js
 context.accessors.strategies.add('someStrategy', {
   config: {
-    constructor: StrategyConstructor,
+    authenticator: 'StrategyConstructorName',
     strategyOptions: {},
     authenticateOptions: {
       scope: []
@@ -205,7 +204,9 @@ context.accessors.strategies.add('someStrategy', {
 
 {{{since "1.2.0"}}}
 
-Dynamically removes a strategy, preventing new authentications from using it.  
+Dynamically removes a strategy, preventing new authentications from using it.
+
+In a cluster environment, the new strategy is automatically removed from all server nodes.
 
 <aside class="warning">
 Authentication tokens previously created using that strategy ARE NOT invalidated after using this method.
