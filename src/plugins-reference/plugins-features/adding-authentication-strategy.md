@@ -44,9 +44,6 @@ Whether strategies are added statically or dynamically, a `strategies` object mu
 * `config`: an object containing the strategy configuration
   * `constructor`: The constructor of the Passport.js strategy. This property is **deprecated** since Kuzzle v1.4.0, and using it with a [dynamic strategy registration]({{site_base_path}}plugins-reference/plugins-context/accessors/#strategies) will throw an error. Use `authenticator` instead.
   * `authenticator`: One of the exposed [authenticators]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#exposing-authenticators) name (this property cannot be set if a `constructor` value is provided)
-  * `strategyOptions`: The options provided to the Passport.js strategy
-  * `authenticateOptions`: The options provided to the Passport's [authenticate method](http://passportjs.org/docs/authenticate).
-  * `fields`: The list of fields that can be provided to the plugin.
 * `methods`: an object containing the list of exposed methods
   * `create`: The name of the exposed [`create` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-create-function) to use
   * `delete`: The name of the exposed [`delete` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-delete-function) to use
@@ -59,6 +56,16 @@ Whether strategies are added statically or dynamically, a `strategies` object mu
   * (optional) `getInfo`: The name of the exposed [`getInfo` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-getinfo-function) to use
 
 Even though each strategy must declare its own set of properties, the same strategy method can be used by multiple strategies.
+
+
+#### Additional strategy.config properties
+
+The `strategy.config` object may contain the following optional properties:
+
+  * `authenticateOptions`: The options provided to the Passport's [authenticate method](http://passportjs.org/docs/authenticate).
+  * `fields`: An array of field names accepted by the plugin to validate credentials. The list is informative only, meant to be used by the [getAllCredentialFields]({{site_base_path}}/api-documentation/controller-security/get-all-credential-fields/) and the [getCredentialFields]({{site_base_path}}/api-documentation/controller-security/get-credential-fields) API methods.
+  * `strategyOptions`: The options provided to the Passport.js strategy constructor
+
 
 ---
 
@@ -275,35 +282,18 @@ class AuthenticationPlugin {
           // The Passport authenticator name
           authenticator: 'StrategyConstructor',
 
-          // Options provided to the strategy constructor at instantiation
-          strategyOptions: {},
-
-          // Options provided to the authenticate function during the authentication process
-          authenticateOptions: {
-            scope: []
-          },
-
           // The list of fields that have to be provided in the credentials
           fields: ['login', 'password']
         },
         methods: {
-          // (optional) The name of the afterRegister function
           afterRegister: 'afterRegister',
-          // The name of the create function
           create: 'create',
-          // The name of the delete function
           delete: 'delete',
-          // The name of the exists function
           exists: 'exists',
-          // (optional) The name of the getById function
           getById: 'getById',
-          // (optional) The name of the getInfo function
           getInfo: 'getInfo',
-          // The name of the update function
           update: 'update',
-          // The name of the validate function
           validate: 'validate',
-          // The name of the verify function
           verify: 'verify'
         }
       }
@@ -319,7 +309,7 @@ class AuthenticationPlugin {
    */
   afterRegister (constructedStrategy) {
     // do some action
-    Promise.resolve(/* any value */);
+    return Promise.resolve(/* any value */);
   }
 
   /**
@@ -334,7 +324,7 @@ class AuthenticationPlugin {
    */
   create (request, credentials, kuid) {
     // persist credentials
-    Promise.resolve(/* non sensitive credentials info */);
+    return Promise.resolve(/* non sensitive credentials info */);
   }
 
   /**
@@ -347,7 +337,7 @@ class AuthenticationPlugin {
    */
   delete (request, kuid) {
     // remove credentials
-    Promise.resolve(/* any value */);
+    return Promise.resolve(/* any value */);
   }
 
   /**
@@ -359,7 +349,7 @@ class AuthenticationPlugin {
    */
   exists (request, kuid) {
     // check credentials existence
-    Promise.resolve(/* true|false */);
+    return Promise.resolve(/* true|false */);
   }
 
   /**
@@ -373,7 +363,7 @@ class AuthenticationPlugin {
    */
   getInfo (request, kuid) {
     // retrieve credentials
-    Promise.resolve(/* non sensitive credentials info */);
+    return Promise.resolve(/* non sensitive credentials info */);
   }
 
   /**
@@ -387,7 +377,7 @@ class AuthenticationPlugin {
    */
   getById (request, id) {
     // retrieve credentials
-    Promise.resolve(/* non sensitive credentials info */);
+    return Promise.resolve(/* non sensitive credentials info */);
   }
 
   /**
@@ -401,7 +391,7 @@ class AuthenticationPlugin {
    */
   update (request, credentials, kuid) {
     // update credentials
-    Promise.resolve(/* non sensitive credentials info */);
+    return Promise.resolve(/* non sensitive credentials info */);
   }
 
   /**
@@ -418,7 +408,7 @@ class AuthenticationPlugin {
    */
   validate (request, credentials, kuid, strategy, isUpdate) {
     // validate credentials
-    Promise.resolve(/* true|false */);
+    return Promise.resolve(/* true|false */);
   }
 
   /**
