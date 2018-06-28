@@ -1,6 +1,7 @@
 ---
 layout: category-members.html.hbs
 algolia: true
-title: memoryStorage
-order: 1200
+title: admin
+separator: API Reference
+order: 600
 ---
