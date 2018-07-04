@@ -53,7 +53,7 @@ in Kuzzle, the update needs to be indexed before being reflected in the search i
 By default, this operation can take up to 1 second.
 
 Given an index, the `refreshInternal` action forces a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api),
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html),
 on the internal index, making the documents available to search immediately.
 
 <aside class="left warning">
@@ -61,7 +61,7 @@ on the internal index, making the documents available to search immediately.
     A refresh operation comes with some performance costs.<br>
   </p>
   <p>
-    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api">
+    From <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html">
     Elasticsearch documentation</a>:
     <div class="quote">
       "While a refresh is much lighter than a commit, it still has a performance cost.
