@@ -29,7 +29,7 @@ $kuzzle->setAutoRefresh('myIndex', true);
 ```
 
 The `autoRefresh` flag, when set to true, will make Kuzzle perform a
-[`refresh`](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html) request
+[`refresh`](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-refresh.html) request
 immediately after each write request, causing documents to be immediately visible in a search.
 
 Given an index, the `setAutoRefresh` function updates its `autoRefresh` status.
