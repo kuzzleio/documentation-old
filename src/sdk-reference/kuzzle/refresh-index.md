@@ -36,13 +36,13 @@ When writing or deleting documents in Kuzzle, the update needs to be indexed bef
 in the search index.  
 By default, this operation can take up to 1 second.
 
-Given an index, the `refresh` action forces a [`refresh`](https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api),
+Given an index, the `refresh` action forces a [`refresh`](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-refresh.html),
  on it, making the documents visible to search immediately.
 
 <aside class="left warning">
     A refresh operation comes with some performance costs.<br>
     <br>
-    From <a href="https://www.elastic.co/guide/en/elasticsearch/guide/5.x/near-real-time.html#refresh-api">elasticsearch documentation</a>:
+    From <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.4/docs-refresh.html">elasticsearch documentation</a>:
     <div class="quote">
     "While a refresh is much lighter than a commit, it still has a performance cost. A manual refresh can be useful when writing tests, but don’t do a manual refresh every time you index a document in production; it will hurt your performance. Instead, your application needs to be aware of the near real-time nature of Elasticsearch and make allowances for it."
     </div>

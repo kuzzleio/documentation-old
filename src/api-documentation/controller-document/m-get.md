@@ -22,10 +22,7 @@ title: mGet
 
 ```js
 {
-  "ids": ["<documentId>", "<anotherDocumentId>", ...],
-
-  // Optional arguments
-  "includeTrash": false
+  "ids": ["<documentId>", "<anotherDocumentId>", ...]
 }
 ```
 
@@ -45,7 +42,9 @@ title: mGet
   "action": "mGet",
   "body": {
     "ids": ["<documentId>", "<anotherDocumentId>"]
-  }
+  },
+
+  "includeTrash": false
 }
 ```
 
@@ -97,7 +96,7 @@ title: mGet
         "_type": "<collection>",
         "_version": 4,
         "found": true
-      }
+      },
       {
    // Other documents
       }

@@ -17,23 +17,23 @@ In this section we'll learn how to quickly get Kuzzle up and running using our i
 Open a terminal and run the following command:
 
 ```bash
-sudo bash -c "$(curl http://get.kuzzle.io/)"
+bash -c "$(curl http://get.kuzzle.io/)"
 ```
 
 This command downloads and executes the installation script using root privileges. The script checks the system for a set of prerequisites and installs any necessary tools, like Docker or Docker Compose. When the installation is complete it will automatically run Kuzzle.
 
 <aside class="notice">
-Running a script with root privileges is not the only way to install Kuzzle (although it is the easiest way). To avoid using <code>sudo</code>, you may want to look at <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">these</a> alternative installation methods.
+There are also more [alternative ways](guide/essentials/installing-kuzzle/) to install Kuzzle.
 </aside>
 
-<aside class="notice">
-You can also install Kuzzle <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/#manual-installation">manually</a>.
-</aside>
+This command downloads, installs and runs Kuzzle.
+
+Use the --no-run option to prevent the script from running Kuzzle.
 
 Once the installation process is complete, you will see the following message:
 
 ```bash
-# [✔] Kuzzle is running!
+# Kuzzle is now running
 ```
 
 Your Kuzzle is now running! To test it, you can explore the main HTTP API by clicking this <a href="http://localhost:7512?pretty=true">link</a> or by using cURL on the command line:
@@ -60,6 +60,15 @@ Having trouble?
   <li>Try one of <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">these</a> alternative installation methods.</li>
 </ul>
 </aside>
+
+#### Helper scripts for systemd
+
+If you want to run Kuzzle automatically at startup there are a few scripts that help you do this with systemd.
+
+If you want to run Kuzzle automatically at startup there are a few scripts in `$PWD/kuzzle/script/` that help you do this with systemd:
+
+* Run the `add-kuzzle-boot-systemd.sh` as root to add a service inside /etc/systemd/system that will start Kuzzle on boot.
+* Run the `remove-kuzzle-boot-systemd.sh` as root to remove the service so that Kuzzle won't start on boot.
 
 #### What now?
 

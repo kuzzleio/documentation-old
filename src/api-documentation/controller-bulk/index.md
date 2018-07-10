@@ -4,7 +4,7 @@ algolia: true
 title: bulk
 show-subheader: true
 subheader-title: controller
-order: 700
+order: 800
 ---
 
 # bulk controller
