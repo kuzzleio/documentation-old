@@ -22,8 +22,8 @@ Document notifications can be sent to subscribers:
 * On Document Creation Pending: a document is about to be created (the creation is not guaranteed)
 * On Document Deletion: A document has been deleted
 * On Document Deletion Pending: A document is about to be deleted (the deletion is not guaranteed)
-* On Document Entering Subscription Scope: a document has been updated and enters the subscription scope 
-* On Document Exiting Subscription Scope: a document has been updated and exits the subscription scope 
+* On Document Entering Subscription Scope: a document has been updated and enters the subscription scope
+* On Document Exiting Subscription Scope: a document has been updated and exits the subscription scope
 
 A document notification contains the following fields:
 
@@ -35,8 +35,9 @@ A document notification contains the following fields:
 | `index` | string | The modified data index | |
 | `protocol` | string | The network protocol used to modify the document | |
 | `result._id` | string | The document identifier. Can be null if the document doesn't exist yet, or if the notification is about a real-time message | |
-| `result._meta` | object | Document meta-data (creation time, last update time, and so on). Can be null. | |
+| `result._meta` | object | DEPRECATED in 1.3.0 - Document meta-data (creation time, last update time, and so on). Can be null. | |
 | `result._source` | object | The message or full document content. Undefined if the notification is about a document deletion |
+| `result._source._kuzzle_info` | object | Document meta-data (creation time, last update time, and so on). Can be null. |
 | `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
 | `state` | string | Shows if the document is about to be changed, or if the change is done | `pending`, `done` |
 |`timestamp` | number | Timestamp of the request from which is issued this notification (in epoch-milliseconds) | |

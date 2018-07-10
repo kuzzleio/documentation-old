@@ -15,6 +15,11 @@ Whenever a document gets created, updated or deleted, Kuzzle will add or update 
 
 Metadata can be viewed in the document's `_meta` field and contains the following properties:
 
+{{{since "1.3.0"}}}
+
+Metadata can be viewed in the document's `_kuzzle_info` field and contains the following properties:  
+
+
 * `author`: The [unique identifier]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuidd) of the user who created the document.
 * `createdAt`: Timestamp of document creation (create or replace), in epoch-milliseconds format.
 * `updatedAt`: Timestamp of last document update in epoch-milliseconds format, or `null` if no update has been made.
@@ -22,7 +27,10 @@ Metadata can be viewed in the document's `_meta` field and contains the followin
 * `active`: The status of the document. `true` if the document is active and `false` if the document has been put in the trashcan.
 * `deletedAt`: Timestamp of document deletion in epoch-milliseconds format, or `null` if the document has not been deleted.
 
+
 Here is an example of a Kuzzle response, containing a document's `_id`, `_source` and `_meta` fields:
+
+{{{deprecated "1.3.0"}}}
 
 ```json
 {
@@ -44,12 +52,36 @@ Here is an example of a Kuzzle response, containing a document's `_id`, `_source
 }
 ```
 
+{{{since "1.3.0"}}}
+
+Here is an example of a Kuzzle response, containing a document's `_id` and `_source` fields:
+
+```json
+{
+  "_index": "myindex",
+  "_type": "mycollection",
+  "_id": "AVkDLAdCsT6qHI7MxLz4",
+  "_score": 0.25811607,
+  "_source": {
+    "message": "Hello World!",
+    "_kuzzle_info": {
+      "author": "<kuid>",
+      "createdAt": 1481816934209,
+      "updatedAt": null,
+      "updater": null,
+      "active": true,
+      "deletedAt": null
+    }
+  }
+}
+```
+
 ---
 
 ## How metadata are physically stored
 
-Documents metadata is managed by Kuzzle and cannot be changed using the API.  
-Metadata is stored in the _kuzzle_info field of each document in Elasticsearch.
+Documents metadata are managed by Kuzzle and cannot be changed using the API.  
+Metadata are stored in the `_kuzzle_info` field of each document in Elasticsearch.
 
 Elasticsearch might contain documents that don't have metadata. This can be the case for documents that were not inserted through Kuzzle. Such documents will automatically obtain metadata when they are updated through Kuzzle.
 
