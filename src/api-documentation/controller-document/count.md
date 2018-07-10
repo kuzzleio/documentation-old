@@ -26,10 +26,7 @@ title: count
   // Use "query" instead of "filter" if you want to perform a query instead.
   "filter": {
     ...
-  },
-
-  // Optional arguments
-  "includeTrash": false
+  }
 }
 ```
 
@@ -50,13 +47,15 @@ title: count
 
   "body": {
     "filter": {}
-  }
+  },
+
+  "includeTrash": false
 }
 ```
 
 >**Response**
 
-```js
+```javascript
 {
   "status": 200,
   "error": null,

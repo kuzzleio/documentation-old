@@ -25,7 +25,7 @@ title: get
 </blockquote>
 
 
-```js
+```json
 {
   "index": "<index>",
   "collection": "<collection>",
@@ -33,14 +33,13 @@ title: get
   "action": "get",
   "_id": "<documentId>",
 
-  // Optional arguments
   "includeTrash": false
 }
 ```
 
 >**Response**
 
-```js
+```javascript
 {
   "status": 200,
   "error": null,

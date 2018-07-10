@@ -28,13 +28,7 @@ title: search
   },
   "aggregations": {
     ...
-  },
-
-  // Optional arguments
-  "from": 0,
-  "size": 42,
-  "scroll": "1m",
-  "includeTrash": false
+  }
 }
 ```
 
@@ -64,7 +58,8 @@ title: search
 
   "from": 0,
   "size": 42,
-  "scroll": "<time to live>"
+  "scroll": "1m",
+  "includeTrash": false
 }
 ```
 
