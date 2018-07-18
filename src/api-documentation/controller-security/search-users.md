@@ -24,11 +24,11 @@ title: searchUsers
 
 ```js
 {
-  "filter": {
-    "and": [
+  "bool": {
+    "must": [
       {
         "in": {
-          "profileId": ["anonymous", "default"],
+          "profileIds": ["anonymous", "default"]
         }
       },
       {
@@ -56,14 +56,11 @@ title: searchUsers
   "controller": "security",
   "action": "searchUsers",
   "body": {
-    "filter": {
-      "and": [
+    "bool": {
+      "must": [
         {
           "in": {
-            "profileId": [
-              "anonymous",
-              "default"
-            ],
+            "profileIds": ["anonymous", "default"]
           }
         },
         {
@@ -78,7 +75,6 @@ title: searchUsers
       ]
     }
   },
-
   "from": 0,
   "size": 10,
   "scroll": "<time to live>"
@@ -91,13 +87,11 @@ title: searchUsers
 {
   "status": 200,                     
   "error": null,                     
-  "index": "%kuzzle",
-  "collection": "users",
-  "action": "search",
+  "action": "searchUsers",
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": {
-    "total": "<total number of users matching the filter>",
+    "total": <total number of users matching the filter>,
     // An array of user objects
     "hits": [
       {
