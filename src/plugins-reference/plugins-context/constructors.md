@@ -520,6 +520,8 @@ someCollectionRepository.update({
 
 This constructor is used to transform an [API call]({{ site_base_path }}api-documentation/query-syntax/common-attributes) into a standard Kuzzle request. This object is updated along the request process to reflect the current state of the request, and is ultimately used to serialize a standard Kuzzle [response]({{ site_base_path }}api-documentation/kuzzle-response).
 
+#### Protocol headers in a request response
+
 Network protocol specific headers can be added to the response. If the protocol can handle them,
 these headers will be used to configure the response sent to the client.    
 As Kuzzle supports the HTTP protocol natively, this object handles HTTP headers special cases.
@@ -596,9 +598,10 @@ If a raw `options` object is provided to one of the `Request` constructors (see 
 
 | Name | Type | Description                      |
 |------|------|----------------------------------|
-| `connectionId` | `string` | Passed to [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) constructor |
+| {{{since "1.4.1"}}} `connection` | `object` | Passed to [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) constructor |
+| {{{deprecated "1.4.1"}}} `connectionId` | `string` | Passed to [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) constructor |
 | `error` | `KuzzleError` or `Error` | Invokes [setError](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#seterrorerror) at initialization |
-| `protocol` | `string` | Passed to [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) constructor |
+| {{{deprecated "1.4.1"}}} `protocol` | `string` | Passed to [RequestContext](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#modelsrequestcontext) constructor |
 | `requestId` | `string` | Initializes the `id` property |
 | `result` | *(varies)* | Invokes [setResult](https://github.com/kuzzleio/kuzzle-common-objects/blob/master/README.md#setresultresult-options--null) at initialization |
 | `status` | `integer` | HTTP error code |
@@ -682,7 +685,7 @@ Serializes the `Request` object into a pair of POJOs that can be sent across the
 
 ```js
 let foo = request.serialize();
-let bar = new context.constructors.Request(request, foo.data, foo.options);
+let bar = new context.constructors.Request(foo.data, foo.options);
 ```
 
 #### `setError`
