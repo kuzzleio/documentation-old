@@ -12,8 +12,6 @@ title: validateCredentials
 
 {{{since "1.0.0"}}}
 
-
-
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_validate`  
@@ -58,7 +56,7 @@ title: validateCredentials
 {
   "controller": "security",
   "action": "validateCredentials",
-  "strategy": "<strategy>",
+  "strategy": "local",
   "_id": "<kuid>",
   "body": {
     "username": "MyUser",
@@ -78,12 +76,12 @@ title: validateCredentials
   "action": "validateCredentials",
   "controller": "security",
   "_id": "<kuid>",
-  "result": {
-    "username": "MyUser",
-    "kuid": "<kuid>"
-  }
+  "result": true
 }
 ```
 
-Validate credentials of the user with [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) for the specified `<strategy>`. The `result` is `true` if the provided credentials are valid, otherwise it returns an error. This route does not actually create or modify the user credentials. The credentials to send will depend on the authentication plugin and the authentication strategy used.
+Validate credentials of the user with [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) for the specified `<strategy>`.  
+This returns `true` if the provided credentials are valid, otherwise it returns an error. 
+
+This route does not actually create or modify the user credentials. The credentials to send will depend on the authentication plugin and the authentication strategy used.
 
