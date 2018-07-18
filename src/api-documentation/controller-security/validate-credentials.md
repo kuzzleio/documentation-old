@@ -56,7 +56,7 @@ title: validateCredentials
 {
   "controller": "security",
   "action": "validateCredentials",
-  "strategy": "local",
+  "strategy": "<strategy>",
   "_id": "<kuid>",
   "body": {
     "username": "MyUser",
