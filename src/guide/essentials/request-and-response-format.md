@@ -43,7 +43,7 @@ The `input` field contains all the parameters that express the request from the 
 ```javascript
 RequestInput {
     // members
-    args,           // {Object}     Parametric arguments. i.e. for REST, taken from the query string
+    args,           // {Object}     Parametric arguments (e.g. for REST, taken from the query string)
     volatile,       // {Object}
     body,           // {Object}     Content of the resource for REST like routes, main parameters for others
     controller,     // {string}
@@ -67,8 +67,12 @@ The `context` attribute contains information about the state of the connection a
 
 ```javascript
 RequestContext {
-    connectionId,   // {scalar}     Unique identifier of the user connection
-    protocol,       // {string}
+    connection {    // Network connection informations
+      id,           // {scalar}     Unique identifier of the user connection
+      protocol,     // {string}     Network protocol name
+      ips,          // {Array}      Chain of IP addresses, starting from the client
+      misc          // {Object}     Contains protocol specific information (e.g. HTTP queries URL or headers)
+    },
     token,          // {Token}      Auth token
     user            // {User}       Represents the current User associated to the transaction
 }
@@ -96,13 +100,17 @@ It is used to inform the client about the resulting status of the request (i.e. 
 #### 4xx Client Error
 
 * ``400``: The request is malformed (usually: an argument is missing).
+* ``401``: A login attempt failed.
 * ``403``: The client is not allowed to perform the requested action.
 * ``404``: The requested resource cannot be found.
+* ``412``: A pre-requisite is not satisfied (for instance, adding a non-existing Profile to a User)
+* ``413``: A query input or response exceeds a configured Kuzzle limit.
 
 #### 5xx Server Error
 
-* ``500``: Kuzzle encountered an unexpected error (standard code for internal error).
-* ``503``: An external service is unavailable.
+* ``500``: Kuzzle encountered an unexpected error.
+* ``503``: Kuzzle is temporarily unavailable.
+* ``504``: An external resource takes too long to respond.
 
 ---
 
