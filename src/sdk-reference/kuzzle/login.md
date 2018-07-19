@@ -94,7 +94,7 @@ This method is non-queuable, meaning that during offline mode, it will be discar
 | ``expiresIn`` | *varies* | Login expiration time |
 | ``callback`` | function | Optional callback handling the response |
 
-**Note:** If the ``expiresIn`` argument is not set, the default token expiration value will be taken from the Kuzzle server configuration.
+**Note:** If the ``expiresIn`` argument is not set, the default token expiration value will be taken from the Kuzzle Backend configuration.
 
 By default, Kuzzle comes with the [kuzzle-plugin-auth-passport-local](https://github.com/kuzzleio/kuzzle-plugin-auth-passport-local) plugin, which provides the `local` authentication strategy.
 This strategy requires a `username` and `password` as `credentials`

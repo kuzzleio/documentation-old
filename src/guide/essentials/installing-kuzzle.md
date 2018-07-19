@@ -50,10 +50,10 @@ docker-compose up
 If everything is working, your terminal should be logging startup messages from Kuzzle's various components. After a few seconds, you should see the following message:
 
 ```bash
-# kuzzle_1         | [✔] Kuzzle server ready
+# kuzzle_1         | [✔] Kuzzle Backend ready
 ```
 
-Your Kuzzle is now up and running. For a quick test, you can explore the main HTTP API endpoint by clicking this link <a href="http://localhost:7512">http://localhost:7512</a> or by using cURL on the command line:
+Your Kuzzle Backend is now up and running. For a quick test, you can explore the main HTTP API endpoint by clicking this link <a href="http://localhost:7512">http://localhost:7512</a> or by using cURL on the command line:
 
 ```bash
 curl "http://localhost:7512/?pretty"
@@ -221,7 +221,7 @@ pm2 logs
 You should see the following message (it may take a few seconds):
 
 ```bash
-# kuzzle_1         | [✔] Kuzzle server ready
+# kuzzle_1         | [✔] Kuzzle Backend ready
 ```
 
 Kuzzle's HTTP API can now be reached at http://localhost:7512/ and the socket.io and websocket channels can also be reached on port 7512 of localhost.
@@ -297,7 +297,7 @@ Elasticsearch WARNING: 2018-01-12T13:36:34Z
 If you see the following message and your Elasticsearch installation uses a security layer, configure the Elasticsearch client options in the `.kuzzlerc` file. For more information click <a href="{{ site_base_path }}guide/essentials/configuration">here</a>.
 
 ```
-[ℹ] Starting Kuzzle server
+[ℹ] Starting Kuzzle Backend
 [x] [ERROR] Error: [security_exception] missing authentication token for REST request [/], with { header={ WWW-Authenticate="Basic realm=\"security\" charset=\"UTF-8\"" } }
     at respond (/root/kuzzle/kuzzle/node_modules/elasticsearch/src/lib/transport.js:307:15)
     at checkRespForFailure (/root/kuzzle/kuzzle/node_modules/elasticsearch/src/lib/transport.js:266:7)
@@ -313,7 +313,7 @@ If you see the following message and your Elasticsearch installation uses a secu
 If you see the following message make sure that you have installed Redis and that it is accessible at 127.0.0.1:6379. If Redis is running on another server or port, configure `.kuzzlerc` accordingly:
 
 ```
-[ℹ] Starting Kuzzle server
+[ℹ] Starting Kuzzle Backend
 [x] [ERROR] Error: connect ECONNREFUSED 127.0.0.1:6379
     at Object.exports._errnoException (util.js:1020:11)
     at exports._exceptionWithHostPort (util.js:1043:20)

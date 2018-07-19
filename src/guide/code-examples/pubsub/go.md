@@ -74,7 +74,7 @@ func Publish() {
 }
 ```
 
-Here we assume you have installed Kuzzle on your localhost, if this is not the case replace the `localhost` with the ip or name of the Kuzzle server.
+Here we assume you have installed Kuzzle on localhost; if this is not the case replace the `localhost` with the ip or name of the Kuzzle Backend server.
 
 # Subscribe to Documents with Specific Criteria
 

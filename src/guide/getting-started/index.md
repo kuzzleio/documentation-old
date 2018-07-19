@@ -146,7 +146,7 @@ Your `init.js` file should now look like this:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // add a listener to detect any connection problems
@@ -202,7 +202,7 @@ Create a `create.js` file with following code:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // create an object that contains the message we want to store
@@ -253,7 +253,7 @@ Let's get started. Create a `subscribe.js` file with following code:
 // load the Kuzzle SDK module
 const Kuzzle = require('kuzzle-sdk')
 
-// instantiate a Kuzzle client, this will automatically connect to the Kuzzle server
+// instantiate a Kuzzle client, this will automatically connect to the Kuzzle Backend server
 const kuzzle = new Kuzzle('localhost', {defaultIndex: 'playground'})
 
 // create a reference to the 'mycollection' collection
