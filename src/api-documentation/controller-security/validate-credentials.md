@@ -83,5 +83,5 @@ title: validateCredentials
 Validate credentials of the user with [`<kuid>`]({{ site_base_path }}guide/essentials/user-authentication/#kuzzle-user-identifier-kuid) for the specified `<strategy>`.  
 This returns `true` if the provided credentials are valid, otherwise it returns an error. 
 
-This route does not actually create or modify the user credentials. The credentials to send will depend on the authentication plugin and the authentication strategy used.
+This route does not actually create or modify the user's credentials. The credentials to send will depend on the authentication plugin and the authentication strategy used.
 
