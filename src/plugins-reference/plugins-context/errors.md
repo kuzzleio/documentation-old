@@ -25,7 +25,7 @@ This class should only be used to create new Kuzzle error objects.
 
 **Status Code:** `400`
 
-Thrown when a request is malformatted.
+Thrown when a request is malformed.
 
 ```js
 const err = new context.errors.BadRequestError('error message');
@@ -105,11 +105,11 @@ const err = new context.errors.NotFoundError('error message');
 
 ## `ParseError`
 
-{{{since "1.0.0"}}}
+{{{since "1.0.0"}}} {{{deprecated "1.4.1"}}}
 
 **Status Code:** `400`
 
-Thrown when a provided resource cannot be interpreted.
+Use `BadRequestError` instead.
 
 ```js
 const err = new context.errors.ParseError('error message');
