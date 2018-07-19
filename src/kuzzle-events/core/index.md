@@ -2,7 +2,7 @@
 layout: full.html.hbs
 algolia: true
 title: core
-description: list of events emitted to synchronize Kuzzle server nodes in a cluster
+description: list of events emitted to synchronize Kuzzle Backend nodes in a cluster
 order: 200
 ---
 
@@ -10,7 +10,7 @@ order: 200
 
 {{{since "1.0.0"}}}
 
-Events triggered to synchronize Kuzzle server nodes in a cluster.
+Events triggered to synchronize Kuzzle Backend nodes in a cluster.
 
 ---
 

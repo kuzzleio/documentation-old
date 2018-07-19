@@ -106,13 +106,13 @@ class ControllerPlugin {
       Any parameter starting with a ':' in the URL will be made dynamic by Kuzzle.
 
       The first route exposes the following GET URL:
-        http://<kuzzle server>:<port>/_plugin/<plugin name>/foo/<dynamic value>
+        http://<kuzzle backend>:<port>/_plugin/<plugin name>/foo/<dynamic value>
 
       Kuzzle will call the function 'actionFunction' with a Request object,
       containing the "name" property: request.input.args.name = '<dynamic value>'
 
       The second route exposes the following POST URL:
-        http://<kuzzle server>:<port>/_plugin/<plugin name>/bar
+        http://<kuzzle backend>:<port>/_plugin/<plugin name>/bar
 
       Kuzzle will provide the content body of the request in the Request object
       passed to the function 'otherActionFunction', in the request.input.body
