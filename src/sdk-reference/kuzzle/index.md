@@ -47,7 +47,7 @@ $kuzzle = new Kuzzle('localhost', [
 
 This is the main entry point to communicate with Kuzzle. Every other object inherits properties from the `Kuzzle` object.
 
-`Kuzzle` object is a [KuzzleEventEmitter]({{ site_base_path }}sdk-reference/event-emitter/) instance, so that we can listen to global events.
+The `Kuzzle` class is an [event emitter]({{ site_base_path }}sdk-reference/event-emitter/).
 
 ---
 
