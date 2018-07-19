@@ -87,10 +87,6 @@ An `InternalError` is thrown if Kuzzle encountered a severe unknown error.
 
 A `NotFoundError` is thrown if the requested resource could not be found (e.g. a document is requested with a non-existing id).
 
-<!---
-ParseError: not documented @TODO: remove its current usage by BadRequestError
--->
-
 ---
 
 ## PartialError
@@ -105,14 +101,12 @@ A `PartialError` can be generated, for instance, if one or several queries insid
 
 The detail of each failure can be retrieved in the `errors` property of the error object.
 
----
-
 ### Additional Properties
 
 | property | type | description |
 | -------- | ---- | ----------- |
 | `count` | integer | The number of failures encountered |
-| `errors` |  array of `KuzzleError` objects | The detailed errors of the failed actions |
+| `errors` |  array of objects | The list of failed actions |
 
 ---
 
