@@ -26,11 +26,7 @@ title: searchRoles
 {
   // optional: retrieve only roles giving access to the
   // provided controller names
-  "controllers": ["document", "security"],
-
-  // optional: result pagination configuration
-  "from": 0,
-  "size": 42
+  "controllers": ["document", "security"]
 }
 ```
 
@@ -47,12 +43,11 @@ title: searchRoles
   "body": {
     // optional: search for roles allowing access to the provided
     // list of controllers
-    "controllers": ["document", "security"],
-
-    // optional: result pagination configuration
-    "from": 0,
-    "size": 42
-  }
+    "controllers": ["document", "security"]
+  },
+  // optional: result pagination configuration
+  "from": 0,
+  "size": 42
 }
 ```
 
