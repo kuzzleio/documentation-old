@@ -12,8 +12,6 @@ title: searchUsers
 
 {{{since "1.0.0"}}}
 
-
-
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42][&scroll=<time to live>]`  
@@ -27,7 +25,7 @@ title: searchUsers
   "bool": {
     "must": [
       {
-        "in": {
+        "terms": {
           "profileIds": ["anonymous", "default"]
         }
       },
@@ -35,8 +33,8 @@ title: searchUsers
         "geo_distance": {
           "distance": "10km",
           "pos": {
-            "lat": "48.8566140",
-            "lon": "2.352222"
+            "lat": 48.8566140,
+            "lon": 2.352222
           }
         }
       }
@@ -96,17 +94,23 @@ title: searchUsers
     "hits": [
       {
         "_id": "<kuid>",
-        "_source": { ... }             // The user object content
+        "_source": {
+          // User content
+        }
       },
       {
-        ...
+        "_id": "<another kuid>",
+        "_source" {
+          // Another user content
+        }
       }
     ]
   }
 }
 ```
 
-Return users matching the given filter.
+Return users matching the given filter.  
+The filter syntax follows [Elasticsearch's Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-filter-context.html)
 
 Optional arguments:
 

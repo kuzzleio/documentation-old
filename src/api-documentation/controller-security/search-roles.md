@@ -13,7 +13,6 @@ title: searchRoles
 {{{since "1.0.0"}}}
 
 
-
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/roles/_search[?from=0][&size=42]`  
@@ -25,8 +24,13 @@ title: searchRoles
 
 ```js
 {
-  // indexes must be an array of controllers
-  "controllers": ["aController", "anotherController"]
+  // optional: retrieve only roles giving access to the
+  // provided controller names
+  "controllers": ["document", "security"],
+
+  // optional: result pagination configuration
+  "from": 0,
+  "size": 42
 }
 ```
 
@@ -41,8 +45,11 @@ title: searchRoles
   "controller": "security",
   "action": "searchRoles",
   "body": {
-    "controllers": ["aController", "anotherController"],
+    // optional: search for roles allowing access to the provided
+    // list of controllers
+    "controllers": ["document", "security"],
 
+    // optional: result pagination configuration
     "from": 0,
     "size": 42
   }
@@ -54,49 +61,29 @@ title: searchRoles
 ```javascript
 {
   "action": "searchRoles",
-  "collection": "roles",
   "controller": "security",
   "error": null,
-  "index": "%kuzzle",
-  "volatile": {},
   "requestId": "<unique request identifier>",
-  "result":
+  "result": 
   {
-     "_shards": {
-       "failed": 0,
-       "successful": 5,
-       "total": 5
-     },
-     "hits": [
-       {
-         "_id": "<roleId>",
-         "_index": "%kuzzle",
-         "_score": 1,
-         "_source": {
-           "controllers": {
-             // Rights for each controllers and actions can be found here
-           }
-         },
-         "_type": "roles"
-       }
-     ],
-     "max_score": null,
-     "timed_out": false,
-     "took": 1,
-     "total": 1
-  },
+    "hits": [
+      {
+        "_id": "<roleId>",
+        "_source": {
+          "controllers": {
+            // Rights for each controllers and actions can be found here
+          }
+        }
+      }
+    ]
+  }
   "status": 200
 }
 ```
 
-Returns all roles linked to a given `indexes`.
+Search for security roles, optionally returning only those allowing access to the provided controller names.
 
-Attribute `indexes` in body is optional.
-
-The `from` and `size` arguments allow pagination.
-
-Available filters:
-
-| Filter | Type | Description | Default |
-|---------------|---------|----------------------------------------|---------|
-| ``indexes`` | array | List of index ids related to the searched role | ``undefined`` |
+Optional arguments:
+* `body.controllers`: an array of controller names. Used to retrieve only security roles giving access to those controllers
+* `from`: result starting offset (default: `0`)
+* `size`: number of roles per result page (default: `10`)
