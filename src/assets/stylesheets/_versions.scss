@@ -4,8 +4,9 @@
 }
 
 .deprecated {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #FFFFFF !important;
   background-color: #E94E77;
-  display: inline-block;
+  display: inline;
+  padding: 0.2em 0.2em 0.2em 0.2em !important;
 }
