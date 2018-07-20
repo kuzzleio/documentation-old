@@ -61,6 +61,7 @@ title: searchRoles
   "requestId": "<unique request identifier>",
   "result": 
   {
+    "total": 1,
     "hits": [
       {
         "_id": "<roleId>",
