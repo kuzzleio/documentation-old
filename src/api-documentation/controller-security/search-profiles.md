@@ -27,12 +27,7 @@ title: searchProfiles
   "roles": [
     "someRole",
     "admin"
-  ],
-
-  // optional: result pagination configuration
-  "from": 0,
-  "size": 42,
-  "scroll": "<ttl>"
+  ]
 }
 ```
 
