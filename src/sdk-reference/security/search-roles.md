@@ -17,14 +17,16 @@ const filters = {
   controllers:  ['document']
 };
 
-  // optional result pagination configuration
+// optional result pagination configuration
+const options = {
   from: 0,
   size: 10
+};
 
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .searchRoles(filters, function(error, result) {
+  .searchRoles(filters, options, function(error, result) {
     // result is a JSON Object with the following properties:
     // {
     //   total: <number of found roles>,
@@ -35,7 +37,7 @@ kuzzle
 // Using promises (NodeJS)
 kuzzle
   .security
-  .searchRolesPromise(filters)
+  .searchRolesPromise(filters, options)
   .then(result => {
     // result is a JSON Object with the following properties:
     // {
@@ -60,11 +62,9 @@ options.setFrom((long) 0);
 options.setSize((long) 42);
 options.setScroll("1m");
 
-
-
 kuzzle
   .security
-  .searchRoles(filter, new ResponseListener<SecurityDocumentList>() {
+  .searchRoles(filter, options, new ResponseListener<SecurityDocumentList>() {
     @Override
     public void onSuccess(SecurityDocumentList roles) {
       // roles.getDocuments() returns a roles list
