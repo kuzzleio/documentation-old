@@ -12,19 +12,19 @@ title: searchUsers
 
 ```js
 const filter = {
-  'bool': {
-    'must': [
+  bool: {
+    must: [
       {
-        'terms': {
-          'profileIds': ['anonymous', 'default']
+        terms: {
+          profileIds: ['anonymous', 'default']
         }
       },
       {
-        'geo_distance': {
-          'distance': '10km',
-          'pos': {
-            'lat': 48.8566140,
-            'lon': 2.352222
+        geo_distance: {
+          distance: '10km',
+          pos: {
+            lat: 48.8566140,
+            lon: 2.352222
           }
         }
       }
