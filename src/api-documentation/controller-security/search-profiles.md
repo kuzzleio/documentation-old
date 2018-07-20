@@ -27,7 +27,7 @@ title: searchProfiles
   "roles": [
     "someRole",
     "admin"
-  ]
+  ],
 
   // optional: result pagination configuration
   "from": 0,
