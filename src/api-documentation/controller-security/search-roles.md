@@ -68,6 +68,10 @@ title: searchRoles
         "_source": {
           "controllers": {
             // Rights for each controllers and actions can be found here
+            "*": {
+                "actions": {
+                    "*": true
+                }
           }
         }
       }
@@ -78,6 +82,8 @@ title: searchRoles
 ```
 
 Search for security roles, optionally returning only those allowing access to the provided controller names.
+
+Returned roles documents follow the format described in our [Kuzzle Security Guide](https://docs.kuzzle.io/guide/essentials/security/#defining-roles)
 
 Optional arguments:
 * `body.controllers`: an array of controller names. Used to retrieve only security roles giving access to those controllers
