@@ -130,7 +130,7 @@ room.subscribe(function(err, res) {
 
 | Notification field | Type |Description       | Possible values |
 |--------------------|------|------------------|-----------------|
-| `document` | [Document]({{ site_base_path}}sdk-reference/document/) | Content of the document or real-time message that generated the notification | |
+| `document` | [Document]({{ site_base_path }}sdk-reference/document/) | Content of the document or real-time message that generated the notification | |
 | `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
 | `state` | string | Shows if the document is about to be changed, or if the change is done | `pending`, `done` |
 | `type` | string | Notification type | `document` |

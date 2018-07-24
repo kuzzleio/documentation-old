@@ -42,18 +42,18 @@ There are two ways of registering authentication strategies:
 Whether strategies are added statically or dynamically, a `strategies` object must always be provided with the following structure:
 
 * `config`: an object containing the strategy configuration
-  * `constructor`: The constructor of the Passport.js strategy. This property is **deprecated** since Kuzzle v1.4.0, and using it with a [dynamic strategy registration]({{site_base_path}}plugins-reference/plugins-context/accessors/#strategies) will throw an error. Use `authenticator` instead.
-  * `authenticator`: One of the exposed [authenticators]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#exposing-authenticators) name (this property cannot be set if a `constructor` value is provided)
+  * `constructor`: The constructor of the Passport.js strategy. This property is **deprecated** since Kuzzle v1.4.0, and using it with a [dynamic strategy registration]({{ site_base_path }}plugins-reference/plugins-context/accessors/#strategies) will throw an error. Use `authenticator` instead.
+  * `authenticator`: One of the exposed [authenticators]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#exposing-authenticators) name (this property cannot be set if a `constructor` value is provided)
 * `methods`: an object containing the list of exposed methods
-  * `create`: The name of the exposed [`create` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-create-function) to use
-  * `delete`: The name of the exposed [`delete` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-delete-function) to use
-  * `exists`: The name of the exposed [`exists` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-exists-function) to use
-  * `update`: The name of the exposed [`update` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-update-function) to use
-  * `validate`: The name of the exposed [`validate` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-validate-function) to use
-  * `verify`: The name of the exposed [`verify` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-verify-function) to use
-  * (optional) `afterRegister`: The name of the exposed [`afterRegister` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-afterregister-function) to use
-  * (optional) `getById`: The name of the exposed [`getById` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-getbyid-function) to use
-  * (optional) `getInfo`: The name of the exposed [`getInfo` function]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#the-getinfo-function) to use
+  * `create`: The name of the exposed [`create` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-create-function) to use
+  * `delete`: The name of the exposed [`delete` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-delete-function) to use
+  * `exists`: The name of the exposed [`exists` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-exists-function) to use
+  * `update`: The name of the exposed [`update` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-update-function) to use
+  * `validate`: The name of the exposed [`validate` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-validate-function) to use
+  * `verify`: The name of the exposed [`verify` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-verify-function) to use
+  * (optional) `afterRegister`: The name of the exposed [`afterRegister` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-afterregister-function) to use
+  * (optional) `getById`: The name of the exposed [`getById` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-getbyid-function) to use
+  * (optional) `getInfo`: The name of the exposed [`getInfo` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-getinfo-function) to use
 
 Even though each strategy must declare its own set of properties, the same strategy method can be used by multiple strategies.
 
@@ -63,7 +63,7 @@ Even though each strategy must declare its own set of properties, the same strat
 The `strategy.config` object may contain the following optional properties:
 
   * `authenticateOptions`: The options provided to the Passport's [authenticate method](http://passportjs.org/docs/authenticate).
-  * `fields`: An array of field names accepted by the plugin to validate credentials. The list is informative only, meant to be used by the [getAllCredentialFields]({{site_base_path}}/api-documentation/controller-security/get-all-credential-fields/) and the [getCredentialFields]({{site_base_path}}/api-documentation/controller-security/get-credential-fields) API methods.
+  * `fields`: An array of field names accepted by the plugin to validate credentials. The list is informative only, meant to be used by the [getAllCredentialFields]({{ site_base_path }}api-documentation/controller-security/get-all-credential-fields/) and the [getCredentialFields]({{ site_base_path }}api-documentation/controller-security/get-credential-fields) API methods.
   * `strategyOptions`: The options provided to the Passport.js strategy constructor
 
 
