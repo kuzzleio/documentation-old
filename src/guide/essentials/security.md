@@ -21,6 +21,17 @@ Once the administrator account is created, you can remove anonymous access right
 
 ---
 
+## Whitelist strategy
+
+In Kuzzle, permissions follow the [Whitelist](https://en.wikipedia.org/wiki/Whitelist) strategy, which means that **an action must be explicitly allowed** by at least one role of the user profile.
+
+This means that:
+
+* If a role allows it, the action is authorized, *even if another role denies it*.
+* If no role explicitly allows it, the action is denied, even if no role explicitly denies it.
+
+---
+
 ## User Permissions
 
 User-level permissions control what data a specific user or set of users has access to, and what actions they can perform on that data.
@@ -90,7 +101,7 @@ In the above `role` definition, anonymous users can perform the `login`, `checkT
 For a list of available controllers and actions from Kuzzle's API by sending a `GET` request as follows:
 
 ```bash
-curl -X GET http://localhost:7512/\?pretty\=true
+curl -X GET 'http://localhost:7512/?pretty'
 ```
 
 ---
@@ -141,22 +152,24 @@ Then we can declare three different profiles using this same role, each with var
 
 ```js
 var profile1 = {
-  roles: [ {_id: 'publisherRole' } ]
+  policies: [
+    {roleId: 'publisherRole'}
+  ]
 };
 
 var profile2 = {
-  roles: [
+  policies: [
     {
-      _id: 'publisherRole',
+      roleId: 'publisherRole',
       restrictedTo: [{index: 'index1'}]
     }
   ]
 };
 
 var profile3 = {
-  roles: [
+  policies: [
     {
-      _id: 'publisherRole',
+      roleId: 'publisherRole',
       restrictedTo: [
         {index: 'index1', collections: ['foo', 'bar']},
         {index: 'index2'}
@@ -176,47 +189,15 @@ These three profiles will provide the following restrictions:
 
 ---
 
-## Composing Rules
+## Writing complex permission rules
 
-In Kuzzle, permissions follow the [Whitelist](https://en.wikipedia.org/wiki/Whitelist) strategy, which means that **an action must be explicitly allowed** by at least one role of the user profile.
+So far, we've seen how to set permissions to API routes, using user roles and profiles.
 
-This means that:
+But this is rarely enough to secure an application, as it's commonplace to reject queries or data depending of business rules.  
+For instance, suppose you have a chat application and you want the users to only be able to edit & delete their own messages: this type of rules cannot be expressed as a simple boolean.
 
-* If a role allows it, the action is authorized, *even if another role denies it*.
-* If no role explicitly allows it, the action is denied, even if no role explicitly denies it.
+There are multiple ways of adding a business logic layer on top of the standard Kuzzle security one:
 
-### Action Permissions
-
-So far, we've seen how to set permissions based on the user profile. Now, let's say we have a chat application and we want the users to only be able to edit & delete their own messages.
-
-**This type of rules depends on the context and cannot be expressed as a simple boolean**.
-
-Kuzzle lets you define these complex permissions using custom functions, which determine if a user has access to a particular resource depending on the context.
-
-In our chat example, a complex rule can be expressed as follows:
-
-```js
-var role = {
-  controllers: {
-    write: {
-      actions: {
-        create: true,
-        delete: {
-          args: {
-            document: {
-              index: "$request.input.resource.index",
-              collection: "$request.input.resource.collection",
-              action: {
-                get: "$currentId"
-              }
-            }
-          },
-          test: "return args.document.content.user.id === $currentUserId"
-        }
-      }
-    }
-  }
-};
-```
-
-For more details, please refer to the [Core Documentation]({{ site_base_path }}guide/kuzzle-depth/roles-definitions)
+* {{{deprecated "1.4.0"}}} Using [Permission Closures]({{ site_base_path }}guide/kuzzle-depth/roles-definitions), you can add functions directly into role definitions
+* If all you need is to make sure that submitted documents follow a strict set of formatting rules, you can add [document validators]({{ site_base_path }}validation-reference/schema/)
+* With a [Pipe Plugin]({{ site_base_path }}plugins-reference/plugins-features/adding-pipes), you can listen to one or multiple [API events]({{ site_base_path }}kuzzle-events/plugin-events/), and decide whether you accept a query or document according to your business rules

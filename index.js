@@ -1,4 +1,4 @@
-const 
+const
   Metalsmith = require('metalsmith'),
   handlebars = require('handlebars'),
   cheerio = require('cheerio'),
@@ -39,7 +39,7 @@ const
 
   versionsConfig = require('./versions.config.json');
 
-const 
+const
   ok = color.green('✔'),
   nok = color.red('✗');
 
@@ -191,11 +191,11 @@ handlebars.registerHelper({
   },
   mstartwith: function(...args) {
     const str = args.shift();
- 
+
     if (!str) {
       return false;
     }
- 
+
     return args.reduce((found, currentStr) => found || str.startsWith(currentStr), false);
   },
   endswith: function (str, substr) {
@@ -218,8 +218,8 @@ handlebars.registerHelper({
     // It seems that 75 words per minute is a fair value for technical material
     return Math.ceil(wordCount(stripTags(context.data.root.contents)) / 75);
   },
-  since: version => `<p class="since">Since Kuzzle v${version}</p>`,
-  deprecated: version => `<p class="deprecated">Deprecated since Kuzzle v${version}. This feature should not be used.</p>`
+  since: version => `<p class="since">Since Kuzzle ${version}</p>`,
+  deprecated: version => `<p class="deprecated">Deprecated since Kuzzle ${version}</p>`
 });
 
 // Build site with metalsmith.
