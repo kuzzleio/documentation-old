@@ -83,7 +83,7 @@ Document notification example:
 
 Subscription notifications are pushed to subscribers when:
 
-* A user subscribes to [the same room]({{ site_base_path}}kuzzle-dsl/roomid/)
+* A user subscribes to [the same room]({{ site_base_path }}kuzzle-dsl/roomid/)
 * A user leaves a room
 
 By default, Kuzzle does not send these notifications. You have to provide an appropriate `users` attribute to your [subscription request]({{ site_base_path }}api-documentation/controller-realtime/subscribe/) to be notified about user activity.
