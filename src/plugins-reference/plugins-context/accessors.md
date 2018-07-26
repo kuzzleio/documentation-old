@@ -48,7 +48,7 @@ let
     _id: 'documentID'
   });
 
-context.accessors.execute(request, (error, request) => {
+context.accessors.execute(derivedRequest, (error, request) => {
   /*
    Kuzzle's response can be obtained with request.response
 

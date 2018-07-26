@@ -12,8 +12,6 @@ title: searchUsers
 
 {{{since "1.0.0"}}}
 
-
-
 <blockquote class="js">
 <p>
 **URL:** `http://kuzzle:7512/users/_search[?from=0][&size=42][&scroll=<time to live>]`  
@@ -24,19 +22,19 @@ title: searchUsers
 
 ```js
 {
-  "filter": {
-    "and": [
+  "bool": {
+    "must": [
       {
-        "in": {
-          "profileId": ["anonymous", "default"],
+        "terms": {
+          "profileIds": ["anonymous", "default"]
         }
       },
       {
         "geo_distance": {
           "distance": "10km",
           "pos": {
-            "lat": "48.8566140",
-            "lon": "2.352222"
+            "lat": 48.8566140,
+            "lon": 2.352222
           }
         }
       }
@@ -56,14 +54,11 @@ title: searchUsers
   "controller": "security",
   "action": "searchUsers",
   "body": {
-    "filter": {
-      "and": [
+    "bool": {
+      "must": [
         {
           "in": {
-            "profileId": [
-              "anonymous",
-              "default"
-            ],
+            "profileIds": ["anonymous", "default"]
           }
         },
         {
@@ -78,7 +73,6 @@ title: searchUsers
       ]
     }
   },
-
   "from": 0,
   "size": 10,
   "scroll": "<time to live>"
@@ -91,28 +85,32 @@ title: searchUsers
 {
   "status": 200,                     
   "error": null,                     
-  "index": "%kuzzle",
-  "collection": "users",
-  "action": "search",
+  "action": "searchUsers",
   "controller": "security",
   "requestId": "<unique request identifier>",
   "result": {
-    "total": "<total number of users matching the filter>",
+    "total": <total number of users matching the filter>,
     // An array of user objects
     "hits": [
       {
         "_id": "<kuid>",
-        "_source": { ... }             // The user object content
+        "_source": {
+          // User content
+        }
       },
       {
-        ...
+        "_id": "<another kuid>",
+        "_source" {
+          // Another user content
+        }
       }
     ]
   }
 }
 ```
 
-Return users matching the given filter.
+Return users matching the given filter.  
+The filter syntax follows [Elasticsearch's Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/query-filter-context.html)
 
 Optional arguments:
 

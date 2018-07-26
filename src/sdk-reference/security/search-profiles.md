@@ -11,49 +11,59 @@ title: searchProfiles
 # searchProfiles
 
 ```js
-var filters = {
-   // filter can contains an array `roles` with a list of role identifiers
-  roles:  ['myrole', 'admin'],
-  // filter can handle pagination with properties `from` and `size`
+// optional: search only for profiles referring the listed roles
+const filters = {
+  roles:  ['myrole', 'admin']
+};
+
+// optional: result pagination configuration
+const options = {
   from: 0,
-  size: 10
+  size: 10,
+  scroll: '1m'
 };
 
 // Using callbacks (NodeJS or Web Browser)
 kuzzle
   .security
-  .searchProfiles(filters, function(error, result) {
+  .searchProfiles(filters, options, function (error, result) {
     // result is a JSON Object with the following properties:
     // {
     //   total: <number of found profiles>,
-    //   documents: [<Profile object>, <Profile object>, ...]
+    //   profiles: [<Profile object>, <Profile object>, ...],
+    //   scrollId: "<only if a 'scroll' parameter has been passed in the options>"
     // }
   });
 
 // Using promises (NodeJS)
 kuzzle
   .security
-  .searchProfilesPromise(filters)
+  .searchProfilesPromise(filters, options)
   .then(result => {
     // result is a JSON Object with the following properties:
     // {
     //   total: <number of found profiles>,
-    //   documents: [<Profile object>, <Profile object>, ...]
+    //   profiles: [<Profile object>, <Profile object>, ...],
+    //   scrollId: "<only if a 'scroll' parameter has been passed in the options>"
     // }
   });
 ```
 
 ```java
+// optional: search only for profiles referring the listed roles
 JSONObject filters = new JSONObject()
-  // filter can contains a "roles" array with a list of role IDs
-  .put("roles", new JSONArray().put("myrole", "admin"))
-  // search results can be paginated
-  .put("from", 0)
-  .put("size", 10);
+  .put("roles", new JSONArray().put("myrole").put("admin"));
+
+// optional: result pagination configuration
+Options options = new Options();
+options.setFrom((long) 0);
+options.setSize((long) 42);
+options.setScroll("1m");
+
 
 kuzzle
   .security
-  .searchProfiles(filters, new ResponseListener<SecurityDocumentList>() {
+  .searchProfiles(filters, options, new ResponseListener<SecurityDocumentList>() {
     @Override
     public void onSuccess(SecurityDocumentList profiles) {
       // Contains a profiles list
@@ -61,8 +71,11 @@ kuzzle
 
       }
 
-      // And the total number of profiles, regardless of pagination
-      profiles.getTotal();
+      // Total number of profiles, regardless of pagination
+      long total = profiles.getTotal();
+
+      // Available only if a "scroll" option has been provided
+      String scrollId = profiles.getScroll()
     }
 
     @Override
@@ -80,6 +93,7 @@ use \Kuzzle\Kuzzle;
 use \Kuzzle\Security\Profile;
 use \Kuzzle\Util\ProfilesSearchResult;
 
+// optional: search only for profiles referring the listed roles
 $filters = [
   'roles' => [
       'admin',
@@ -87,9 +101,11 @@ $filters = [
   ]
 ];
 
+// optional: result pagination configuration
 $options = [
   'from' => 0,
-  'size' => 1
+  'size' => 1,
+  'scroll' => '1m'
 ];
 
 $kuzzle = new Kuzzle('localhost');
@@ -113,13 +129,15 @@ catch (ErrorException $e) {
 ```json
 {
   "total": 124,
-  "documents": [
+  "profiles": [
     // array of Profile objects
-  ]
+  ],
+  // only if a scroll parameter has been provided
+  "scrollId": "<scroll identifier>"
 }
 ```
 
-Executes a search on profiles according to a filter.
+Search for security profiles, optionally returning only those linked to the provided list of security roles.
 
 ---
 
@@ -127,7 +145,7 @@ Executes a search on profiles according to a filter.
 
 | Arguments | Type | Description |
 |---------------|---------|----------------------------------------|
-| ``filters`` | JSON Object | List of filters to retrieves roles |
+| ``filters`` | JSON Object | Search query |
 | ``options`` | JSON Object | Optional parameters |
 | ``callback`` | function | Callback handling the response |
 
@@ -140,7 +158,7 @@ Executes a search on profiles according to a filter.
 | ``from`` | number | Starting offset | ``0`` |
 | ``queuable`` | boolean | Make this request queuable or not  | ``true`` |
 | ``scroll`` | string | Start a scroll session, with a time to live equals to this parameter's value following the [Elastisearch time format](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/common-options.html#time-units) | ``undefined`` |
-| ``size`` | integer | Number of hits to return | ``20`` |
+| ``size`` | integer | Number of hits to return per page | ``10`` |
 
 ---
 
@@ -148,10 +166,10 @@ Executes a search on profiles according to a filter.
 
 | Filter | Type | Description | Default |
 |---------------|---------|----------------------------------------|---------|
-| ``roles`` | array | Contains an array `roles` with a list of role id | ``undefined`` |
+| ``roles`` | array | Contains an array `roles` with a list of role id | ``[]`` |
 
 ---
 
 ## Callback Response
 
-Returns a JSON Object containing the number of security profiles found and an array of security [Profile]({{ site_base_path }}sdk-reference/profile) objects.
+Returns a JSON Object 
