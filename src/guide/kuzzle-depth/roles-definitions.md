@@ -9,11 +9,13 @@ order: 200
 
 In the [Getting Started Guide]({{ site_base_path }}guide/essentials/security/#user-permissions), we discussed how to assign basic permissions to users through roles and profiles. We are now going to look at more complex and dynamic permissions.
 
-Kuzzle's permissions mechanism uses boolean expressions to determine if a user can perform a specific action. So far we have shown how to limit acces by hard-coding a boolean value inside the permissions configuration; however, in some cases, you will want to perform a more complex evaluation. For example, in a collaborative TO-DO application, a user should not be allowed to update another user's list. We can address this by using **Permission Closures**.
+Kuzzle's permissions mechanism uses boolean expressions to determine if a user can perform a specific action. So far we have shown how to limit access by hard-coding a boolean value inside the permissions configuration; however, in some cases, you will want to perform a more complex evaluation. For example, in a collaborative TO-DO application, a user should not be allowed to update another user's list. We can address this by using either a [**Pipe Plugin**]({{ site_base_path }}plugins-reference/plugins-features/adding-pipes) or **Permission Closures**.
 
 ---
 
 ## Permission Closures
+
+{{{deprecated "1.4.0"}}}
 
 With Permission Closures, instead of hard-coding the permission boolean value, we assign a function (or closure) that evaluates to a boolean value and determines whether or not an action is permitted.
 
@@ -71,7 +73,6 @@ function ($request, $currentUserId, args) {
 ```
 
 ### Permission Function Predefined Variables
-
 
 There are a set of predefined variables which are automatically accessible in a Permission Function, these are:
 

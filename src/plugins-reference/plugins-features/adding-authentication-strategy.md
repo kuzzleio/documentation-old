@@ -42,8 +42,8 @@ There are two ways of registering authentication strategies:
 Whether strategies are added statically or dynamically, a `strategies` object must always be provided with the following structure:
 
 * `config`: an object containing the strategy configuration
-  * `constructor`: The constructor of the Passport.js strategy. This property is **deprecated** since Kuzzle v1.4.0, and using it with a [dynamic strategy registration]({{ site_base_path }}plugins-reference/plugins-context/accessors/#strategies) will throw an error. Use `authenticator` instead.
-  * `authenticator`: One of the exposed [authenticators]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#exposing-authenticators) name (this property cannot be set if a `constructor` value is provided)
+  * `constructor`: {{{deprecated "1.4.0"}}} The constructor of the Passport.js strategy. Using this property with a [dynamic strategy registration]({{site_base_path}}plugins-reference/plugins-context/accessors/#strategies) will throw an error, use `authenticator` instead.
+  * `authenticator`: One of the exposed [authenticators]({{site_base_path}}/plugins-reference/plugins-features/adding-authentication-strategy#exposing-authenticators) name (this property cannot be set if a `constructor` value is provided)
 * `methods`: an object containing the list of exposed methods
   * `create`: The name of the exposed [`create` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-create-function) to use
   * `delete`: The name of the exposed [`delete` function]({{ site_base_path }}plugins-reference/plugins-features/adding-authentication-strategy#the-delete-function) to use

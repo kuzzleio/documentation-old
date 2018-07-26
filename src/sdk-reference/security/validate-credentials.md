@@ -20,7 +20,7 @@ kuzzle.security.validateCredentials('local', 'kuid', {'username': 'foo'}, functi
 kuzzle
   .security
   .validateCredentialsPromise('local', 'kuid', {'username': 'foo'})
-  .then(result => {
+  .then(() => {
 
   });
 ```
@@ -55,7 +55,7 @@ $result = $kuzzle->security->validateCredentials('local', 'kuid', ['username' =>
 true
 ```
 
-Validate credentials of user with `kuid` for the specified `strategy`.
+Validate credentials of user with `kuid` for the specified `strategy`. Resolves to an error if the credentials are invalid.
 
 ---
 
@@ -81,4 +81,4 @@ Validate credentials of user with `kuid` for the specified `strategy`.
 
 ## Callback Response
 
-Returns a boolean value.
+Returns a boolean value if the credentials are valid, otherwise returns an error.
