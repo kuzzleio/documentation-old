@@ -1,6 +1,6 @@
 {
   "name": "kuzzleio-documentation",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Kuzzle Documentation",
   "main": "index.js",
   "scripts": {
@@ -17,13 +17,13 @@
   "license": "Apache-2.0",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "cheerio": "^0.22.0",
-    "colors": "^1.2.5",
-    "eslint": "^4.19.1",
+    "cheerio": "^1.0.0-rc.2",
+    "colors": "^1.3.1",
+    "eslint": "^5.2.0",
     "handlebars": "^4.0.11",
     "jquery": "^3.3.1",
     "jstransformer-handlebars": "^1.1.0",
-    "marked": "^0.3.19",
+    "marked": "^0.4.0",
     "metalsmith": "^2.3.0",
     "metalsmith-algolia": "^0.1.0",
     "metalsmith-ancestry": "^1.4.0",
@@ -52,7 +52,7 @@
     "metalsmith-sitemap": "^1.2.0",
     "metalsmith-watch": "^1.0.3",
     "striptags": "^3.1.1",
-    "uglify-js": "^3.3.25",
+    "uglify-js": "^3.4.5",
     "wordcount": "^1.1.1"
   }
 }
