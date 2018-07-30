@@ -18,11 +18,6 @@ Kuzzle ships with a [Command line interface](https://en.wikipedia.org/wiki/Comma
 * Clear Kuzzle cache
 * Diagnose the Kuzzle installation
 
-<aside class="warning">
-If you are running Kuzzle in a Docker container, you will have to execute these commands from within the <a href="https://docs.docker.com/engine/reference/commandline/exec/">running container</a>.
-<i>Example: docker-compose exec kuzzle ./bin/kuzzle start</i>
-</aside>
-
 The CLI is located in the `bin` folder of your Kuzzle installation.  
 If you have already created an admin, you will need to provide your login information to the CLI.  
 To get a list of commands and options run the CLI:
@@ -71,6 +66,7 @@ The `createFirstAdmin` command lets you create an administrator to manage securi
 <aside class="notice">NB: This command can only be run interactively</aside>
 
 This call the action [security#createFirstAdmin]({{ site_base_path }}api-documentation/controller-security/create-first-admin)
+
 ---
 
 ## clearCache
@@ -82,6 +78,7 @@ This call the action [security#createFirstAdmin]({{ site_base_path }}api-documen
 Kuzzle uses Redis to store frequently accessed internal data. Use this command if you need to clear this data (cache).
 
 This call the action [admin#resetCache]({{ site_base_path }}api-documentation/controller-admin/reset-cache)
+
 ---
 
 ## dump
@@ -109,6 +106,7 @@ The `dump` command creates a snapshot of the state of Kuzzle, including:
 The generated directory can be used to feed a crash report to the support team.
 
 This call the action [admin#dump]({{ site_base_path }}api-documentation/controller-admin/reset-security)
+
 ---
 
 ## reset
@@ -135,6 +133,7 @@ Asynchronously start the following sequence in Kuzzle, in this order:
 This action has no impact on Plugin and Document storage.
 
 This call the action [admin#resetKuzzleData]({{ site_base_path }}api-documentation/controller-admin/reset-kuzzle-data)
+
 ---
 
 ## resetSecurity
@@ -157,6 +156,7 @@ This call the action [admin#resetKuzzleData]({{ site_base_path }}api-documentati
 The `resetSecurity` command deletes all created users, profiles and roles and reset the default roles and profiles : `anonymous`, `admin` and `default`.
 
 This call the action [admin#resetSecurity]({{ site_base_path }}api-documentation/controller-admin/reset-security)
+
 ---
 
 ## resetDatabase
@@ -179,6 +179,7 @@ This call the action [admin#resetSecurity]({{ site_base_path }}api-documentation
 The `resetDatabase` delete all indexes created by users. This does not include Kuzzle's internal index.
 
 This call the action [admin#resetDatabase]({{ site_base_path }}api-documentation/controller-admin/reset-database)
+
 ---
 
 ## shutdown
