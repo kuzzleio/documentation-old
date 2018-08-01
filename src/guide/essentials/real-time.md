@@ -13,7 +13,7 @@ Kuzzle features highly customizable notifications thanks to its **real-time engi
 
 ## Introduction
 
-Imagine you are developing a collaborative TO-DO application like [this](http://kuzzle.io/demos-tutorials/real-time-collaborative-todo-list/) one. All the TO-DO items are persisted in Kuzzle (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
+Imagine you are developing a collaborative TO-DO application like [this](https://github.com/kuzzleio/demo/tree/master/todolist) one. All the TO-DO items are persisted in Kuzzle (in a collection called `todos`) so, once clients start, they fetch every available TO-DO items via a simple document search.
 
 But imagine that one of the users (let's call her Ann), adds a new TO-DO item. In order for other users (let's call them Tom and Matt) to display these new item, they need to perform a new document search on the corresponding data collection. They will not see the new items until they refresh (or restart) their application.
 
