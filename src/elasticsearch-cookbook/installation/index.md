@@ -27,24 +27,22 @@ To launch Elasticsearch, run these commands:
 
 ```bash
 sudo sysctl -w vm.max_map_count=262144
-docker run -p 9200:9200 elasticsearch:5.0
+docker run -p 9200:9200 elasticsearch:5.4.1
 ```
-
-
-If you get this message in Elasticsearch logs on docker image boot:
-```bash
-ERROR: bootstrap checks failed max file descriptors [16384] for elasticsearch process is too low, increase to at least [65536]
-```
-Try to launch the container with those arguments:
-```bash
-docker run -p 9200:9200 --ulimit nofile=65536:65536 elasticsearch:5.0
-```
-
 
 This will run Elasticsearch in the terminal. To stop it, you can simply exit the terminal or press Ctrl-C.
 
 The Elasticsearch instance will be accessible on port 9200 of the localhost.
 If you installed Elasticsearch using another method, adapt the examples provided in this cookbook to your installation configuration.
+
+If you get the following message in Elasticsearch logs during the docker image boot sequence:
+```bash
+ERROR: bootstrap checks failed max file descriptors [16384] for elasticsearch process is too low, increase to at least [65536]
+```
+Try to launch the container with these arguments:
+```bash
+docker run -p 9200:9200 --ulimit nofile=65536:65536 elasticsearch:5.4.1
+```
 
 ---
 
