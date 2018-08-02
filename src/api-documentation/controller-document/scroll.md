@@ -46,20 +46,27 @@ title: scroll
   "result": {
     // scroll requests may return a new scroll identifier
     // only the most recent scrollId should be used
+    "scrollId": "<new scroll id>",
+
+    // @deprecated - the "_scroll_id" value is identical to the
+    // "scrollId" one. This property is kept only for backward 
+    // compatibility with older versions of Kuzzle
     "_scroll_id": "<new scroll id>",
 
     // An array of objects containing your retrieved documents
     "hits": [
       {
-        "_id": "documentId",
-        "_score": "<document score>"
-        "_source": { .. }    // The actual document
+        "_id": "<document unique identifier>",
+        "_score": 0,          // Document search relevance score
+        "_source": { .. }     // Document content
       },
       {
-   // Another document... and so on
+        // Another document... and so on
       }
     ],
-    "total": "<number of found documents>"
+    // Total number of found documents (not the number of 
+    // returned documents in this single response page)
+    "total": 42
   }
 }
 ```
