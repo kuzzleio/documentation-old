@@ -59,7 +59,9 @@ title: login
   "volatile": {},
   "result": {
     "_id": "<kuid>", // The kuzzle user identifier
-    "jwt": "<JWT encrypted token>"
+    "jwt": "<JWT encrypted token>",
+    "expiresAt": 1321085955000,
+    "ttl": 360000
   }
 }
 ```
@@ -94,4 +96,8 @@ Check the appropriate [authentication plugin]({{ site_base_path }}plugins-refere
 
 ## Result
 
-The **_login** action returns an encrypted JSON Web Token, that must then be sent in the [requests headers]({{ site_base_path }}api-documentation/query-syntax/authorization-token/).
+The **_login** action returns the following:
+* `_id`: user's [kuid]({{ site_base_path }}guide/kuzzle-depth/authentication#the-kuzzle-user-identifier) 
+* `jwt`: encrypted JSON Web Token, that must then be sent in the [requests headers]({{ site_base_path }}api-documentation/query-syntax/authorization-token/)
+* `expiresAt`: token expiration date, in Epoch-millis (UTC)
+* `ttl`: token time to live, in milliseconds
