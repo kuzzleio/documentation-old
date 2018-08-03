@@ -53,7 +53,10 @@ title: search
     },
     "aggregations": {
 
-    }
+    },
+    "sort": [
+
+    ]
   },
 
   "from": 0,
@@ -110,21 +113,20 @@ title: search
 
 Search documents in the persistent data storage layer.
 
-Kuzzle uses the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/query-dsl.html) syntax.
+Kuzzle supports the entire [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/query-dsl.html) syntax, including [aggregations](//www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations.html), [sorted results](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-sort.html) or [search_after](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-search-after.html).
 
 An empty body matches all documents in the collection.
 
 Optional arguments:
 
-* `aggregations` details how to aggregate the search results. See the [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations.html) for more details
-* `size` controls the maximum number of documents returned in the response
-* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
-* `scroll` is used to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scroll` API action]({{ site_base_path }}api-documentation/controller-document/scroll)
 * `includeTrash` is used to include documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/)
+* `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
+* `size` controls the maximum number of documents returned in the response
+* `scroll` is used to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scroll` API action]({{ site_base_path }}api-documentation/controller-document/scroll)
 
-<aside class="warning">
+é<aside class="warning">
   <p>
-  There is a limit to how many documents can be returned with a single search query. That limit is currently set at 10000 documents.
+  There is a limit to how many documents can be returned with a single search query. That limit is by default set at 10000 documents, and you can't get over it even with `from`/`size` options.
 
-  To handle larger result sets, you can either use the `from` and `size` parameters, or the `scroll` one (see above).
+  To handle larger result sets, you can either use the `scroll` option (see above) or, if you sort your search results, you can use Elasticsearch's [search_after command](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-search-after.html)
 </aside>
