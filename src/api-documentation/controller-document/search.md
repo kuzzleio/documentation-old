@@ -124,7 +124,7 @@ Optional arguments:
 * `size` controls the maximum number of documents returned in the response
 * `scroll` is used to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scroll` API action]({{ site_base_path }}api-documentation/controller-document/scroll)
 
-é<aside class="warning">
+<aside class="warning">
   <p>
   There is a limit to how many documents can be returned with a single search query. That limit is by default set at 10000 documents, and you can't get over it even with `from`/`size` options.
 
