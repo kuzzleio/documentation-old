@@ -51,3 +51,7 @@ title: create
 ```
 
 Creates a new [index]({{ site_base_path }}guide/essentials/persisted) in Kuzzle.
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)

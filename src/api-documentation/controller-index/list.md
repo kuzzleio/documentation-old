@@ -53,3 +53,7 @@ title: list
 ```
 
 Returns the complete list of data indexes.
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)

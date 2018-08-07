@@ -22,7 +22,11 @@ Clients can detect the error type based on the `status` and process the error ac
 
 ---
 
-## BadRequestError
+## Common errors
+
+These errors can occur with every Kuzzle request.  
+
+### BadRequestError
 
 {{{since "1.0.0"}}}
 
@@ -34,7 +38,7 @@ A `BadRequestError` can occur if a mandatory parameter is missing or if its type
 
 ---
 
-## ExternalServiceError
+### ExternalServiceError
 
 {{{since "1.0.0"}}}
 
@@ -44,7 +48,7 @@ An `ExternalServiceError` is thrown if Kuzzle was unable to process the action d
 
 ---
 
-## ForbiddenError
+### ForbiddenError
 
 {{{since "1.0.0"}}}
 
@@ -54,7 +58,7 @@ A `ForbiddenError` is thrown if the current authenticated user is not authorized
 
 ---
 
-## GatewayTimeoutError
+### GatewayTimeoutError
 
 {{{since "1.0.0"}}}
 
@@ -69,7 +73,7 @@ The Client Application will have to determine if the process was completed.
 
 ---
 
-## InternalError
+### InternalError
 
 {{{since "1.0.0"}}}
 
@@ -79,7 +83,32 @@ An `InternalError` is thrown if Kuzzle encountered a severe unknown error.
 
 ---
 
-## NotFoundError
+### PluginImplementationError
+
+{{{since "1.0.0"}}}
+
+**status**: 500
+
+A `PluginImplementationError` is thrown if Kuzzle encountered a severe unknown error issued by a [plugin]({{ site_base_path }}plugins-reference).
+
+---
+
+### ServiceUnavailableError
+
+{{{since "1.0.0"}}}
+
+**status**: 503
+
+A `ServiceUnavailableError` can be sent by Kuzzle if no instance is found to process the request.
+
+---
+
+## Specific errors
+
+These errors are specific to controller methods.  
+Check controller documentation.
+
+### NotFoundError
 
 {{{since "1.0.0"}}}
 
@@ -93,7 +122,7 @@ ParseError: not documented @TODO: remove its current usage by BadRequestError
 
 ---
 
-## PartialError
+### PartialError
 
 {{{since "1.0.0"}}}
 
@@ -116,17 +145,7 @@ The detail of each failure can be retrieved in the `errors` property of the erro
 
 ---
 
-## PluginImplementationError
-
-{{{since "1.0.0"}}}
-
-**status**: 500
-
-A `PluginImplementationError` is thrown if Kuzzle encountered a severe unknown error issued by a [plugin]({{ site_base_path }}plugins-reference).
-
----
-
-## PreconditionError
+### PreconditionError
 
 {{{since "1.0.0"}}}
 
@@ -138,17 +157,7 @@ This error can be generated when trying to create a document on a non-existing c
 
 ---
 
-## ServiceUnavailableError
-
-{{{since "1.0.0"}}}
-
-**status**: 503
-
-A `ServiceUnavailableError` can be sent by Kuzzle if no instance is found to process the request.
-
----
-
-## SizeLimitError
+### SizeLimitError
 
 {{{since "1.0.0"}}}
 
@@ -158,7 +167,7 @@ A `SizeLimitError` is thrown by Kuzzle if the request size exceeds the limits de
 
 ---
 
-## UnauthorizedError
+### UnauthorizedError
 
 {{{since "1.0.0"}}}
 

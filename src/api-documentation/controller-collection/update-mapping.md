@@ -99,3 +99,8 @@ stored in a collection and the complexity of your database.
 
 To solve this matter, Kuzzle's API offers a way to create data mapping and to expose the entire
 [mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html).
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

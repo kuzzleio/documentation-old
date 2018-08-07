@@ -50,3 +50,8 @@ title: delete
 ```
 
 Deletes an entire `index` from Kuzzle.
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

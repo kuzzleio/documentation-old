@@ -95,3 +95,8 @@ You can also provide an optional body with a data mapping that allow you to expl
 persistent data storage layer, [ElasticSearch](https://www.elastic.co/products/elasticsearch) (check here the [mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html)).  
 
 This method will only update the mapping if the collection already exists.
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [PreconditionError]({{ site_base_path }}api-documentation/errors/#preconditionerror)

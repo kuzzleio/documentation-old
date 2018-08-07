@@ -62,3 +62,8 @@ The `getAutoRefresh` actions returns the current `autoRefresh` status for the gi
     using it in production or at least carefully monitor its implications before using it.
   </p>
 </aside>
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

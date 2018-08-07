@@ -76,3 +76,8 @@ Given an index, the `refresh` action forces a
     </div>
   </p>
 </aside>
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

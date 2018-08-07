@@ -48,3 +48,7 @@ title: exists
 ```
 
 Checks if the given index exists in Kuzzle.
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)

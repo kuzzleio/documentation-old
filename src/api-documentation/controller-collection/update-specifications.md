@@ -111,3 +111,8 @@ Whenever a document is stored or updated, or a message is published, Kuzzle appl
 The updateSpecifications method allows you to create or update the validation specifications for one or more index/collection pairs.
 
 When the validation specification is not formatted correctly, a detailed error message is returned to help you to debug.
+
+### Possible errors
+
+- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)
