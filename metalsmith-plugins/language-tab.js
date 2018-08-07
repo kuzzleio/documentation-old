@@ -1,118 +1,112 @@
-const cheerio = require('cheerio')
+const cheerio = require('cheerio');
+
 const defaultLanguages = {
   js: 'Javascript',
   java: 'Android',
   php: 'PHP'
-}
+};
+
 /**
  *
  */
-module.exports = function languageTab(options) {
-  let selector = '.hljs'
-  let languagesHeaders = defaultLanguages
-  let whitelist = Object.keys(languagesHeaders)
+module.exports = () => {
+  return (files, metalsmith, done) => {
+    setImmediate(done);
 
-  return function (files, metalsmith, done) {
-    setImmediate(done)
-
-    for (let file in files) {
-      let data = files[file]
-      let languages = []
-      let languageSelector
-      let firstLanguage
-
-      // load contents with cheerio to parse html nodes
-      let $ = cheerio.load(data.contents.toString())
-
-      if (!file.endsWith('.html')) {
-        continue
+    for (const file in files) {
+      if (!files.hasOwnProperty(file) || !file.endsWith('.html')) {
+        continue;
       }
+
+      const data = files[file];
 
       if (!data['language-tab']) {
-        continue
+        continue;
       }
+
+      let languagesHeaders;
 
       if (typeof data['language-tab'] === 'object') {
-        languagesHeaders = data['language-tab']
+        languagesHeaders = data['language-tab'];
       }
       else {
-        languagesHeaders = defaultLanguages
+        languagesHeaders = defaultLanguages;
       }
 
-      whitelist = Object.keys(languagesHeaders)
+      const whitelist = Object.keys(languagesHeaders);
 
-      selector = ''
-      for (let key in whitelist) {
+      let selector = '';
+
+      for (const key of whitelist) {
         if (key > 0) {
-          selector += ', '
+          selector += ', ';
         }
-        selector += '.' + whitelist[key]
+        selector += '.' + whitelist[key];
       }
 
+      const $ = cheerio.load(data.contents.toString());
 
       // identify languages tabs
-      $(selector).each((index, element) => {
-        let classes = $(element).attr('class').split(' ');
-        let parent = $(element).parent()
-        let languageClass = '';
+      let firstLanguage = null;
 
-        for (let cssClass of classes) {
+      $(selector).each((index, element) => {
+        let languageClass;
+
+        for (const cssClass of $(element).attr('class').split(' ')) {
           if (whitelist.indexOf(cssClass) > -1) {
-            languageClass = cssClass
+            languageClass = cssClass;
 
             if (!firstLanguage) {
-              firstLanguage = languageClass
+              firstLanguage = languageClass;
             }
-            break
+
+            break;
           }
         }
 
-        if ($(element).is('code')) {
-          parent.addClass('language-tab')
-          parent.attr('data-language', languageClass)
-        }
-        else {
-          $(element).addClass('language-tab')
-          $(element).attr('data-language', languageClass)
-        }
-      })
+        const e = $(element).is('code') ? $(element).parent() : $(element);
 
-      let isFirst = false
+        e.addClass('language-tab');
+        e.attr('data-language', languageClass);
+      });
+
+      let isFirst = false;
       $('[data-language=' + firstLanguage + '], hr').each((index, element) => {
         if ($(element).is('hr')) {
-          isFirst = false
-          return
+          isFirst = false;
+          return;
         }
+
         if (!isFirst) {
-          isFirst = true
-          $(element).addClass('language-first-tab')
+          isFirst = true;
+          $(element).addClass('language-first-tab');
         }
-        $(element).addClass('language-tab-active')
-      })
+        $(element).addClass('language-tab-active');
+      });
 
-      languageSelector = $('<div>')
-      languageSelector.addClass('language-tab-selector')
+      const languageSelector = $('<div>');
+      languageSelector.addClass('language-tab-selector');
 
-      for (let i in whitelist) {
-        if (i == 0) { // activate first tab
-          languageSelector.append(`<a href="#" class="language-tab-active" data-language-name="${whitelist[i]}">${languagesHeaders[whitelist[i]]}</a>`)
-        }
-        else {
-          languageSelector.append(`<a href="#" data-language-name="${whitelist[i]}">${languagesHeaders[whitelist[i]]}</a>`)
+      for (const i in whitelist) {
+        if (whitelist.hasOwnProperty(i)) {
+          const wval = whitelist[i];
+          if (i === 0) { // activate first tab
+            languageSelector.append(`<a href="#" class="language-tab-active" data-language-name="${wval}">${languagesHeaders[wval]}</a>`);
+          }
+          else {
+            languageSelector.append(`<a href="#" data-language-name="${wval}">${languagesHeaders[wval]}</a>`);
+          }
         }
       }
 
       // insert language selector
       $('.language-first-tab').each((index, element) => {
-        let el = languageSelector.clone()
-
-        $(element).before(el)
-      })
+        $(element).before(languageSelector.clone());
+      });
 
 
-      data.contents = new Buffer($.html())
-      files[file] = data
-
+      data.contents = Buffer.from($.html());
+      files[file] = data;
     }
-  }
-}
+  };
+};
