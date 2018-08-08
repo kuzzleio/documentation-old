@@ -98,5 +98,5 @@ This method will only update the mapping if the collection already exists.
 
 ### Possible errors
 
-- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
 - [PreconditionError]({{ site_base_path }}api-documentation/errors/#preconditionerror)

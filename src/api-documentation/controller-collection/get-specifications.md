@@ -85,5 +85,5 @@ Returns the validation specifications associated to the given index and collecti
 
 ### Possible errors
 
-- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
 - [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

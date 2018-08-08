@@ -66,5 +66,5 @@ Returns the mapping for the given `collection`.
 
 ### Possible errors
 
-- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
 - [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

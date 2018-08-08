@@ -85,5 +85,5 @@ The `from` and `size` arguments allow pagination. They are returned in the respo
 
 ### Possible errors
 
-- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
 - [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

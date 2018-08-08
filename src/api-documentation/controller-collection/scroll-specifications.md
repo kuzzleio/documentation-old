@@ -104,5 +104,5 @@ The optional `scroll` argument allows you to set the cursor duration by using th
 
 ### Possible errors
 
-- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
 - [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

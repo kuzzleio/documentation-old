@@ -24,7 +24,7 @@ Clients can detect the error type based on the `status` and process the error ac
 
 ## Common errors
 
-These errors can occur with every Kuzzle request.  
+All Kuzzle requests can return one of the following errors:
 
 ### BadRequestError
 
@@ -105,8 +105,8 @@ A `ServiceUnavailableError` can be sent by Kuzzle if no instance is found to pro
 
 ## Specific errors
 
-These errors are specific to controller methods.  
-Check controller documentation.
+These errors are specific to controller actions.  
+Check controllers documentation.
 
 ### NotFoundError
 

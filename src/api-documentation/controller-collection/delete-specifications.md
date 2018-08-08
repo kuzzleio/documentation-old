@@ -54,4 +54,4 @@ It returns a `status` of 200 even if no validation specification exists.
 
 ### Possible errors
 
-- one of the [common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
