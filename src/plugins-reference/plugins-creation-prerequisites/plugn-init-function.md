@@ -1,7 +1,7 @@
 ---
 layout: full.html.hbs
 algolia: true
-title: Custom Plugin Configuration
+title: Plugin 'init' Function
 order: 3
 ---
 

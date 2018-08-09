@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html.hbs
+layout: category-children.html.hbs
 title: Guide
 order: 0
 description: Learn how to use Kuzzle
