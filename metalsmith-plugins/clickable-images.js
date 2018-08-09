@@ -1,28 +1,29 @@
-const Bluebird  = require('bluebird')
-const cheerio = require('cheerio')
+const
+  Bluebird = require('bluebird'),
+  cheerio = require('cheerio');
 
-module.exports = options => {
+module.exports = () => {
   return (files, metalsmith, done) => {
-    let promises = []
+    const promises = [];
 
-    for (let file in files) {
-      if (!file.endsWith('.html')) {
-        continue
+    for (const file in files) {
+      if (!files.hasOwnProperty(file) || !file.endsWith('.html')) {
+        continue;
       }
 
-      promises.push(new Bluebird((resolve, reject) => {
-        let $ = cheerio.load(files[file].contents.toString())
-        let images = $('.content img:not([link-exclude])').each((index, image) => {
-          let src = $(image).attr('src')
-          $(image).wrap(`<a class="image" href="${src}"></a>`)
-        })
+      promises.push(new Bluebird(resolve => {
+        const $ = cheerio.load(files[file].contents.toString());
+        $('.content img:not([link-exclude])').each((index, image) => {
+          const src = $(image).attr('src');
+          $(image).wrap(`<a class="image" href="${src}"></a>`);
+        });
 
-        files[file].contents = new Buffer($.html())
+        files[file].contents = Buffer.from($.html());
 
-        resolve()
-      }))
+        resolve();
+      }));
     }
 
-    Bluebird.all(promises).then(() => done())
-  }
-}
+    Bluebird.all(promises).then(() => done());
+  };
+};

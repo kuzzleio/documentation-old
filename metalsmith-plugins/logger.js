@@ -1,26 +1,9 @@
 //Register a new Metalsmith custom plugin
-module.exports = options => {
+module.exports = () => {
   // Initialize options
 
   // Return a function that will be executed on files
   return (files, metalsmith, done) => {
-    setImmediate(done)
-    // console.log("==============================", options)
-    // for (let file in files) {
-    //   console.log(files[file].stat, files[file].stats.mtime)
-    //   process.exit(1)
-    // }
-
-    // const paths = Object.keys(files)
-    //
-    // // act on "files", update metadata  / contents ...
-    // for (let path of paths) {
-    //   if (path.endsWith('.md')) {
-    //     console.log("==============================")
-    //     console.log(path)
-    //     console.log(Object.keys(files[path]))
-    //     console.log(Object.keys(files[path].ancestry))
-    //   }
-    // }
-  }
-}
+    setImmediate(done);
+  };
+};
