@@ -12,7 +12,6 @@ const defaultLanguages = {
 module.exports = () => {
   return (files, metalsmith, done) => {
     setImmediate(done);
-
     for (const file in files) {
       if (!files.hasOwnProperty(file) || !file.endsWith('.html')) {
         continue;
@@ -28,8 +27,7 @@ module.exports = () => {
 
       if (typeof data['language-tab'] === 'object') {
         languagesHeaders = data['language-tab'];
-      }
-      else {
+      } else {
         languagesHeaders = defaultLanguages;
       }
 
@@ -37,7 +35,7 @@ module.exports = () => {
 
       let selector = '';
 
-      for (const key of whitelist) {
+      for (let key = 0; key < whitelist.length; key++) {
         if (key > 0) {
           selector += ', ';
         }
@@ -81,21 +79,20 @@ module.exports = () => {
           isFirst = true;
           $(element).addClass('language-first-tab');
         }
+
         $(element).addClass('language-tab-active');
       });
 
       const languageSelector = $('<div>');
       languageSelector.addClass('language-tab-selector');
 
-      for (const i in whitelist) {
-        if (whitelist.hasOwnProperty(i)) {
-          const wval = whitelist[i];
-          if (i === 0) { // activate first tab
-            languageSelector.append(`<a href="#" class="language-tab-active" data-language-name="${wval}">${languagesHeaders[wval]}</a>`);
-          }
-          else {
-            languageSelector.append(`<a href="#" data-language-name="${wval}">${languagesHeaders[wval]}</a>`);
-          }
+      for (let i = 0; i < whitelist.length; i++) {
+        const wval = whitelist[i];
+
+        if (i === 0) { // activate first tab
+          languageSelector.append(`<a href="#" class="language-tab-active" data-language-name="${wval}">${languagesHeaders[wval]}</a>`);
+        } else {
+          languageSelector.append(`<a href="#" data-language-name="${wval}">${languagesHeaders[wval]}</a>`);
         }
       }
 
