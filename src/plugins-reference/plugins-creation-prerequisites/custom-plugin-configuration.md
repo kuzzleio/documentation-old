@@ -2,7 +2,7 @@
 layout: full.html.hbs
 algolia: true
 title: Custom Plugin Configuration
-order: 2
+order: 3
 ---
 
 ## Custom Plugin Configuration
@@ -14,7 +14,7 @@ Custom configuration parameters are specified for each plugin in the `plugins` o
 ```json
 {
   "plugins": {
-    "kuzzle-plugin-foobar": {
+    "foobar-plugin": {
       "option_1": "option_value",
       "option_2": "option_value"
     }
@@ -22,28 +22,6 @@ Custom configuration parameters are specified for each plugin in the `plugins` o
 }
 ```
 
-Each Plugin is responsible for handling any custom configuration parameters. The plugin `init` function will determine if the custom configuration is merged with the Kuzzle defaults or not.
+This customization is especially useful if you need to ship your plugin with a standard configuration, while allowing your plugin's clients to configure it to meet their need.
 
-
-Kuzzle has a set of predefined configuration parameters that are reserved and apply to the underlying Plugin Engine, these are:
-
-{{{deprecated "1.0.0"}}}
-
-```json
-{
-  "plugins": {
-    "kuzzle-plugin-foobar": {
-      "killTimeout": 6000,
-      "maxMemoryRestart": "200M",
-      "threads": 0
-    }
-  }
-}
-```
-
-Where:
-
-| Keyword | Type | Default Value |Description                  |
-|---------|------|---------------|-----------------------------|
-| `killTimeout` | `unsigned integer` | `6000 ` | (if `threads` > 0) Time (in milliseconds) to wait for a plugin to shut down before killing it |
-| `maxMemoryRestart` | `string` | `1G` | (if `threads` > 0) Maximum memory usage of a worker plugin. If exceeded, the plugin is restarted. <br>Examples: `10K` (10KB), `200M` (200MB), `3G` (3GB)|
+The plugin `init` function receives only the custom configuration (if any) as its first argument, and each Plugin is responsible for handling default configuration parameters if no customization occured.
