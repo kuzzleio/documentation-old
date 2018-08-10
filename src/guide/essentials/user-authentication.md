@@ -101,7 +101,7 @@ var kuzzle = new Kuzzle('localhost', () => {
       password: 'test'
     })
     .then(() => {
-    console.log('You are now logged in!')
+      console.log('You are now logged in!')
     })
     .catch(err => {
       console.error(err.message)
