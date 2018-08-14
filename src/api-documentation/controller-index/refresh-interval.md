@@ -71,3 +71,7 @@ on the internal index, making the documents available to search immediately.
     </div>
   </p>
 </aside>
+
+### Possible errors
+
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)

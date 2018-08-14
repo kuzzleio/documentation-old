@@ -82,3 +82,8 @@ title: getSpecifications
 ```
 
 Returns the validation specifications associated to the given index and collection.
+
+### Possible errors
+
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

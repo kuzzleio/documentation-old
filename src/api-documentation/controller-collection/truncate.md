@@ -53,3 +53,8 @@ title: truncate
 
 Empties a collection by removing all its documents, while keeping any associated mapping.  
 It is faster than deleting all documents from a collection.
+
+### Possible errors
+
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)
