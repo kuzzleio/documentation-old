@@ -43,8 +43,8 @@ title: validateSpecifications
 
 ```json
 {
-  "controller": "admin",
-  "action": "updateSpecifications",
+  "controller": "collection",
+  "action": "validateSpecifications",
 
   "body": {
     "myindex": {
@@ -66,8 +66,8 @@ title: validateSpecifications
   "error": null,
   "index": "<index>",
   "collection": "<collection>",
-  "action": "updateMapping",
-  "controller": "admin",
+  "action": "validateSpecifications",
+  "controller": "collection",
   "state": "done",
   "requestId": "<unique request identifier>",
   "result": {
