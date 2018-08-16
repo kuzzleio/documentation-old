@@ -323,7 +323,7 @@ Read roles, profiles and users from a file and loads them into the storage layer
 
 The file must be a JSON file with the following structure:
 
-```js
+```json
 {
   "roles": {
     "role-id": {
