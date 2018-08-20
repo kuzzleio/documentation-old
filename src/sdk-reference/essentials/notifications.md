@@ -17,7 +17,7 @@ To subscribe, you must provide a callback that will be called each time a new no
 Once you have subscribed, depending on the subscription configuration you provided, you may receive a notification when:
 
 * a pub/sub message matches your criteria (real-time)
-* a matching document is about to be created or deleted in real-time (deactivated by default)
+* a matching document is about to be created or deleted in real-time (deactivated by default) {{{deprecated "1.5.0"}}}
 * a matching document is created, updated or deleted (once the change is effective in the database)
 * a user enters or leaves the room (deactivated by default)
 
@@ -85,13 +85,6 @@ room = collection.room(
   {state: 'all', scope: 'in', users: 'all', subscribeToSelf: false}
 );
 
-// listen to notifications about pending new documents:
-room.on('document', function(data) {
-  if (data.state === 'pending') {
-    console.log('A new document is about to enter the scope: ', data.document);
-  }
-});
-
 // listen to notifications about new documents:
 room.on('document', function(data) {
   if (data.state === 'done') {
@@ -131,7 +124,7 @@ room.subscribe(function(err, res) {
 |--------------------|------|------------------|-----------------|
 | `document` | [Document]({{ site_base_path }}sdk-reference/document/) | Content of the document or real-time message that generated the notification | |
 | `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
-| `state` | string | Shows if the document is about to be changed, or if the change is done | `pending`, `done` |
+| `state` | string | {{{deprecated "1.5.0"}}} Shows if the document is about to be changed, or if the change is done | `pending`, `done` |
 | `type` | string | Notification type | `document` |
 
 #### Example

@@ -1,11 +1,13 @@
 ---
 layout: full.html.hbs
 algolia: true
-title: On Document Creation Pending 
+title: On Document Creation Pending
 order: 200
 ---
 
-# On Document Creation Pending 
+# On Document Creation Pending
+
+{{{deprecated "1.5.0"}}}
 
 Notification received when a document is about to be created:
 
