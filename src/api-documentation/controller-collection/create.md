@@ -92,6 +92,11 @@ title: create
 
 Creates a new [collection]({{ site_base_path }}guide/essentials/persisted) in Kuzzle via the persistence engine, in the provided `index`.  
 You can also provide an optional body with a data mapping that allow you to exploit the full capabilities of our
-persistent data storage layer, [ElasticSearch](https://www.elastic.co/products/elasticsearch) (check here the [mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.x/mapping.html)).  
+persistent data storage layer, [ElasticSearch](https://www.elastic.co/products/elasticsearch) (check here the [mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/mapping.html)).  
 
 This method will only update the mapping if the collection already exists.
+
+### Possible errors
+
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [PreconditionError]({{ site_base_path }}api-documentation/errors/#preconditionerror)

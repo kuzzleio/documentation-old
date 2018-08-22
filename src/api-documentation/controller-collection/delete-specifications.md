@@ -51,3 +51,7 @@ Deletes the validation specification for the <index>/<collection>.
 It returns a `status` of 200 even if no validation specification exists.
 
 ***Note:***  by default, an empty specification is implicitly applied to all collections. In a way, "no specification set" means "all documents are valid". This is why there is no error when we make this request and no specifications exist.
+
+### Possible errors
+
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)

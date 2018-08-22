@@ -77,3 +77,7 @@ but current user is only allowed to delete "index1" and "index2", only both of t
 and "index3" is kept in the persistent storage layer.
 
 The response contains the list of indexes that were actually deleted.
+
+### Possible errors
+
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)

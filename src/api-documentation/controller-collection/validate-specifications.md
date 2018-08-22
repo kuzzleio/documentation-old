@@ -86,3 +86,7 @@ Whenever a document is stored or updated, or a message is published, Kuzzle appl
 The validateSpecifications method checks if a validation specification is well formatted. It does not store nor modify the existing specification.
 
 When the validation specification is not formatted correctly, a detailed error message is returned to help you to debug.
+
+### Possible errors
+
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)

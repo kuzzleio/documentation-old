@@ -19,7 +19,7 @@ install:
 - npm install
 - pip install awscli --upgrade --user
 script:
-- npm run lint && node index.js --gzip --algolia-private-key $ALGOLIA_KEY
+- npm test && node index.js --gzip --algolia-private-key $ALGOLIA_KEY
 deploy:
   on:
     branch: master

@@ -23,7 +23,7 @@
     "no-labels": 2,
     "no-lone-blocks": 2,
     "no-lonely-if": 1,
-    "no-loop-func": 2,
+    "no-loop-func": 0,
     "no-multi-spaces": 1,
     "no-multiple-empty-lines": 1,
     "no-native-reassign": 2,
