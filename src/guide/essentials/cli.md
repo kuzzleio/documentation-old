@@ -155,7 +155,6 @@ This call the action [admin#resetKuzzleData]({{ site_base_path }}api-documentati
 
 The `resetSecurity` command deletes all created users, profiles and roles and reset the default roles and profiles : `anonymous`, `admin` and `default`.
 
-<<<<<<< HEAD
 This call the action [admin#resetSecurity]({{ site_base_path }}api-documentation/controller-admin/reset-security)
 
 ---
@@ -179,10 +178,9 @@ This call the action [admin#resetSecurity]({{ site_base_path }}api-documentation
 
 The `resetDatabase` delete all indexes created by users. This does not include Kuzzle's internal index.
 
-This call the action [admin#resetDatabase]({{ site_base_path }}api-documentation/controller-admin/reset-database)
-=======
+This call the action [admin#resetDatabase]({{ site_base_path }}api-documentation/controller-admin/reset-database)  
+
 Note: this command has no impact on any plugins stored data, or on any Kuzzle stored documents.
->>>>>>> 3022977... Add explanation about --fixtures for CLI start
 
 ---
 
