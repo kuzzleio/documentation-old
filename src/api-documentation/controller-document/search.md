@@ -24,11 +24,14 @@ title: search
 {
   // A set of filters or queries matching documents you are looking for.
   "query": {
-    ...
+    // ...
   },
   "aggregations": {
-    ...
-  }
+    // ...
+  },
+  "sort": [
+    // ...
+  ]
 }
 ```
 
@@ -49,13 +52,13 @@ title: search
 
   "body": {
     "query": {
-
+      // ...
     },
     "aggregations": {
-
+      // ...
     },
     "sort": [
-
+      // ...
     ]
   },
 
@@ -113,20 +116,27 @@ title: search
 
 Search documents in the persistent data storage layer.
 
-Kuzzle supports the entire [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/query-dsl.html) syntax, including [aggregations](//www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations.html), [sorted results](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-sort.html) or [search_after](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-search-after.html).
+# body properties
 
-An empty body matches all documents in the collection.
+All of the following body properties are optional. An empty body matches all documents in the queried collection.
 
-Optional arguments:
+* `query`: the search query itself, using the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/query-dsl.html) syntax.
+* `aggregations`: control if and how the search result should be [aggregated](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations.html)
+* `sort`: provide a list of fields to use to sort results, in order of importance (see [how to sort results](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-sort.html))
+
+# Optional arguments
+
+Alongside the body, additional optional arguments can be provided:
 
 * `includeTrash` is used to include documents in the [trashcan]({{ site_base_path }}guide/essentials/document-metadata/)
 * `from` is usually used with the `size` argument, and defines the offset from the first result you want to fetch
 * `size` controls the maximum number of documents returned in the response
 * `scroll` is used to fetch large result sets, and it must be set with a [time duration](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/common-options.html#time-units). If set, a forward-only cursor will be created (and automatically destroyed at the end of the set duration), and its identifier will be returned in the `scrollId` property, along with the first page of results. This cursor can then be moved forward using the [`scroll` API action]({{ site_base_path }}api-documentation/controller-document/scroll)
 
-<aside class="warning">
-  <p>
-  There is a limit to how many documents can be returned with a single search query. That limit is by default set at 10000 documents, and you can't get over it even with `from`/`size` options.
+# Retrieving large result sets
 
-  To handle larger result sets, you can either use the `scroll` option (see above) or, if you sort your search results, you can use Elasticsearch's [search_after command](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-search-after.html)
-</aside>
+There is a limit to how many documents can be returned with a single search query. 
+
+That limit is by default set at 10000 documents, and you can't get over it even with the `from` and `size` options.
+
+To handle larger result sets, you have to either use the [`scroll` option]({{ site_base_path }}api-documentation/controller-document/search) or the Elasticsearch's [search_after command](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-search-after.html) (only available if the results are sorted).
