@@ -121,8 +121,8 @@ Search documents in the persistent data storage layer.
 All of the following body properties are optional. An empty body matches all documents in the queried collection.
 
 * `query`: the search query itself, using the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/query-dsl.html) syntax.
-* `aggregations`: control if and how the search result should be [aggregated](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations.html)
-* `sort`: provide a list of fields to use to sort results, in order of importance (see [how to sort results](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-sort.html))
+* `aggregations`: control how the search result should be [aggregated](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations.html)
+* `sort`: contains a list of fields, used to [sort search results](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-sort.html), in order of importance
 
 # Optional arguments
 
