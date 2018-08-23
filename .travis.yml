@@ -20,6 +20,8 @@ install:
 - pip install awscli --upgrade --user
 script:
 - npm test
+before_deploy:
+- node index.js --algolia-private-key $ALGOLIA_KEY
 deploy:
   on:
     branch: master
@@ -32,7 +34,6 @@ deploy:
   cache_control: max-age=21600
   region: us-west-2
 after_deploy:
-- node index.js --algolia-private-key $ALGOLIA_KEY
 - aws s3 cp build/index.html s3://$BUCKET_NAME/index.html --website-redirect /guide/getting-started/
 - aws configure set preview.cloudfront true
 - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID
