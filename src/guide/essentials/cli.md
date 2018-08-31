@@ -178,7 +178,9 @@ This call the action [admin#resetSecurity]({{ site_base_path }}api-documentation
 
 The `resetDatabase` delete all indexes created by users. This does not include Kuzzle's internal index.
 
-This call the action [admin#resetDatabase]({{ site_base_path }}api-documentation/controller-admin/reset-database)
+This call the action [admin#resetDatabase]({{ site_base_path }}api-documentation/controller-admin/reset-database)  
+
+Note: this command has no impact on any plugins stored data, or on any Kuzzle stored documents.
 
 ---
 
@@ -211,6 +213,8 @@ This call the action [admin#shutdown]({{ site_base_path }}api-documentation/cont
 #      -h, --help                 output usage information
 #          --fixtures <file>      import data from file
 #          --mappings <file>      apply mappings from file
+#          --securities <file>    import roles, profiles and users from file
+
 ```
 
 The `start` command starts a Kuzzle instance.
@@ -267,7 +271,7 @@ The input file must be a JSON file with the following structure:
 }
 ```
 
-### `--fixtures`
+#### `--fixtures`
 
 Reads documents from a file and loads them into the storage layer.
 
@@ -308,5 +312,107 @@ The file must be a JSON file with the following structure:
       {"bar": "baz", "qux": ["q", "u", "x"]}
     ]
   }
+}
+```
+
+#### `--securities`
+
+Read roles, profiles and users from a file and loads them into the storage layer.
+
+The file must be a JSON file with the following structure:
+
+```json
+{
+  "roles": {
+    "role-id": {
+      /* role definition */
+    }
+  },
+  "profiles": {
+    "profile-id": {
+      /* profile definition */
+    }
+  },
+  "users": {
+    "user-id": {
+      /* user definition */
+    }
+  }
+}
+```
+
+The roles, profiles and users definition follow the same structure as in the body parameter of the API:
+ - [createRole](https://docs.kuzzle.io/api-documentation/controller-security/create-role)
+ - [createProfile](https://docs.kuzzle.io/api-documentation/controller-security/create-profile)
+ - [createUser](https://docs.kuzzle.io/api-documentation/controller-security/create-user)
+
+**Notes:**
+
+* The file can contain any number of roles, profiles and users.
+* If a role, profile or user already exists, it will be replaced.
+* Fixtures are loaded sequentially, first the roles, then the profiles and finally the users. If a failure occurs, Kuzzle immediately interrupts the sequence.
+
+**Example:**
+
+```json
+{
+	"roles": {
+		"role-id-1": {
+			"controllers": {
+				"*": {
+					"actions": {
+						"*": true
+					}
+				}
+			},
+			"role-id-2": {
+				"controllers": {
+					"*": {
+						"actions": {
+							"*": true
+						}
+					}
+				}
+			}
+		},
+		"profiles": {
+			"profile-id-1": {
+				"policies": [{
+					"roleId": "role-id-1",
+					"restrictedTo": []
+				}]
+			},
+			"profile-id-2": {
+				"policies": [{
+					"roleId": "role-id-2",
+					"restrictedTo": []
+				}]
+			}
+		},
+		"users": {
+			"user-id-1": {
+				"content": {
+					"profileIds": ["profile-id-1"]
+				},
+				"credentials": {
+					"local": {
+						"username": "nina",
+						"password": "thug"
+					}
+				}
+			},
+			"user-id-2": {
+				"content": {
+					"profileIds": ["profile-id-2"]
+				},
+				"credentials": {
+					"local": {
+						"username": "alyx",
+						"password": "vance"
+					}
+				}
+			}
+		}
+	}
 }
 ```
