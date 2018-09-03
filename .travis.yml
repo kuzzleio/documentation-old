@@ -18,8 +18,10 @@ addons:
 install:
 - npm install
 - pip install awscli --upgrade --user
+- wget https://github.com/alexandrebouthinon/vfinder/releases/download/v1.1.2/vfinder
 script:
 - npm test && node index.js --gzip --algolia-private-key $ALGOLIA_KEY
+- chmod +x vfinder && ./vfinder -d build -x .vfinder_exceptions
 deploy:
   on:
     branch: master
