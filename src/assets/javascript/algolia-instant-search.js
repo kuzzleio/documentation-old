@@ -144,7 +144,7 @@
       var d = document
 
       s = d.createElement('script');
-      s.src = site_base_path + Base64.decode('YXNzZXRzL2phdmFzY3JpcHQvbGliL2pxdWVyeS5zb21ldGhpbmcuanM=');
+      s.src = site_base_path + Base64.decode('YXNzZXRzL2xpYnMvanF1ZXJ5LnNvbWV0aGluZy5qcw==');
       s.async = 'async';
       (d.head || d.body).appendChild(s);
 
