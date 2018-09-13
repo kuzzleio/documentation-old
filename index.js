@@ -5,7 +5,7 @@ const
   stripTags = require('striptags'),
   wordCount = require('wordcount'),
   
-  uglify = require("metalsmith-uglify"),
+  uglify = require('metalsmith-uglify'),
   layouts = require('metalsmith-layouts'),
   markdown = require('metalsmith-markdown'),
   marked = require('marked'),
