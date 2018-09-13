@@ -1,11 +1,13 @@
 ---
 layout: full.html.hbs
 algolia: true
-title: On Document Deletion Pending 
+title: On Document Deletion Pending
 order: 400
 ---
 
-# On Document Deletion Pending 
+# On Document Deletion Pending
+
+{{{deprecated "1.5.0"}}}
 
 Notification received when a document is about to be deleted:
 

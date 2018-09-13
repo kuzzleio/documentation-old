@@ -1,84 +1,36 @@
 ---
 layout: full.html.hbs
 algolia: true
-title: Create a Plugin
-description: how to develop a custom plugin
+title: Creating a Plugin
+description: how to create a custom plugin
 order: 200
+show-subheader: true
+subheader-title: Requirements
 ---
 
-# Creating Plugins
-
----
-
-## Writing a Custom Plugin
-
-Plugins must be constructed as a Node.js [module](https://nodejs.org/dist/latest-v6.x/docs/api/modules.html), containing either:
-
-* an `index.js` file in its root directory, exporting a valid Javascript class exposing an `init` method, or
-* a [`package.json`](https://docs.npmjs.com/files/package.json) file in its root directory, specifying the path of the entry point in the `main` field.
-
-To determine the Plugin name, Kuzzle looks for the `name` field in the `package.json` file and if it does not exist it will use the plugin directory name.
-
----
-
-## Custom Plugin Configuration
-
-When initializing a Plugin, Kuzzle calls the plugin `init(customConfig, context)` method, passing the plugin's custom configuration and the [context]({{ site_base_path }}plugins-reference/plugins-context) as inputs.
-
-Custom configuration parameters are specified for each plugin in the `plugins` object of the Kuzzle [configuration file]({{ site_base_path }}guide/essentials/configuration). For example:
-
-```json
-{
-  "plugins": {
-    "kuzzle-plugin-foobar": {
-      "option_1": "option_value",
-      "option_2": "option_value"
-    }
-  }
-}
-```
-
-Each Plugin is responsible for handling any custom configuration parameters. The plugin `init` function will determine if the custom configuration is merged with the Kuzzle defaults or not.
+## Requirements
 
 
-Kuzzle has a set of predefined configuration parameters that are reserved and apply to the underlying Plugin Engine, these are:
+#### Plugins must be Node.js modules
 
-{{{deprecated "1.0.0"}}}
+Kuzzle loads plugins as [Node.js requirable modules](https://nodejs.org/dist/latest-v8.x/docs/api/modules.html).
 
-```json
-{
-  "plugins": {
-    "kuzzle-plugin-foobar": {
-      "killTimeout": 6000,
-      "maxMemoryRestart": "200M",
-      "threads": 0
-    }
-  }
-}
-```
+This means that a plugin directory must contain either:
 
-Where:
+* an `index.js` file 
 
-| Keyword | Type | Default Value |Description                  |
-|---------|------|---------------|-----------------------------|
-| `killTimeout` | `unsigned integer` | `6000 ` | (if `threads` > 0) Time (in milliseconds) to wait for a plugin to shut down before killing it |
-| `maxMemoryRestart` | `string` | `1G` | (if `threads` > 0) Maximum memory usage of a worker plugin. If exceeded, the plugin is restarted. <br>Examples: `10K` (10KB), `200M` (200MB), `3G` (3GB)|
+and/or:
 
----
-
-## Plugin 'init' Function
-
-All plugins must expose an `init` function. If it is missing, Kuzzle will fail to load the plugin and shutdown.
-The `init` method is called by Kuzzle when it is booting and is used to initialize a plugin:
-
-`init (config, context) { /* ... */ }`
-Where:
-
-* ``config`` (JSON Object): JSON object containing the custom plugin configuration
-* ``context`` (JSON Object): the [plugin context]({{ site_base_path }}plugins-reference/plugins-context)
+* a valid [`package.json`](https://docs.npmjs.com/files/package.json) file. If the plugin's entrypoint is not the `index.js` file in the plugin's root directory, then the ["main" property](https://docs.npmjs.com/files/package.json#main) must be filled
 
 
-The `init` function can:
+#### Plugins must expose a manifest.json file
 
-* throw an error: Kuzzle will properly shutdown if it does
-* return a Promise, if async tasks need to be performed. If so, please note that if a plugin does not resolve (or reject) the returned Promise within the configured timeout (see `plugins.common.initTimeout` in [Configuring Kuzzle]({{ site_base_path }}guide/essentials/configuration/)), then Kuzzle will throw a timeout error and shutdown
+Kuzzle needs a few informations to make your plugin work properly. These informations must be provided in a `manifest.json` file, in the plugin directory.
+
+The following properties can be defined in this `manifest.json` file:
+
+* `name` (**required**): Plugin unique identifier. Names can only contain lowercase letters, numbers, hyphens and underscores. 
+* `kuzzleVersion`: a non-empty string describing a [semver range](https://www.npmjs.com/package/semver#ranges), limiting the range of Kuzzle versions supported by this Plugin. If not set, a warning is displayed on the console, and Kuzzle assumes that the Plugin is only compatible with Kuzzle v1.x
+
+{{{deprecated "1.5.0"}}} Kuzzle still allows plugins to be loaded without a `manifest.json` file, for backward compatibility reasons, falling back to [the `package.json` file](https://docs.npmjs.com/files/package.json#name) to retrieve a plugin's name. This will change in next major releases of Kuzzle.

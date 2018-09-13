@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html.hbs
+layout: category-children.html.hbs
 title: Data Validation
 order: 400
 description: The reference for the data-validation engine in Kuzzle.

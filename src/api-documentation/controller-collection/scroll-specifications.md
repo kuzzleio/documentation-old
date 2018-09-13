@@ -101,3 +101,8 @@ The optional `scroll` argument allows you to set the cursor duration by using th
   that the initial search request was made, like a snapshot in time. Subsequent changes
   to documents (index, update or delete) will only affect later search requests.
 </aside>
+
+### Possible errors
+
+- [Common errors]({{ site_base_path }}api-documentation/errors/#common-errors)
+- [NotFoundError]({{ site_base_path }}api-documentation/errors/#notfounderror)

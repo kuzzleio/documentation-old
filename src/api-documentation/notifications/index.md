@@ -19,9 +19,9 @@ Document notifications can be sent to subscribers:
 
 * When a real-time message is sent
 * On Document Creation: a document has been successfully created
-* On Document Creation Pending: a document is about to be created (the creation is not guaranteed)
+* On Document Creation Pending: a document is about to be created (the creation is not guaranteed) {{{deprecated "1.5.0"}}}
 * On Document Deletion: A document has been deleted
-* On Document Deletion Pending: A document is about to be deleted (the deletion is not guaranteed)
+* On Document Deletion Pending: A document is about to be deleted (the deletion is not guaranteed) {{{deprecated "1.5.0"}}}
 * On Document Entering Subscription Scope: a document has been updated and enters the subscription scope
 * On Document Exiting Subscription Scope: a document has been updated and exits the subscription scope
 
@@ -39,7 +39,7 @@ A document notification contains the following fields:
 | `result._source` | object | The message or full document content. Undefined if the notification is about a document deletion |
 | `result._source._kuzzle_info` | object | Document meta-data (creation time, last update time, and so on). Can be null. |
 | `scope` | string | Indicates if the document enters or exits the subscription scope | `in`, `out` |
-| `state` | string | Shows if the document is about to be changed, or if the change is done | `pending`, `done` |
+| `state` | string | {{{deprecated "1.5.0"}}} Shows if the document is about to be changed, or if the change is done | `pending`, `done` |
 |`timestamp` | number | Timestamp of the request from which is issued this notification (in epoch-milliseconds) | |
 | `type` | string | The notification type | `document` |
 | `volatile` | object | Request [volatile data]({{ site_base_path }}api-documentation/volatile-data/) | |

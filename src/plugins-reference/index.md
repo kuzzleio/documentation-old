@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html.hbs
+layout: category-children.html.hbs
 title: Plugins
 order: 600
 description: Learn how to enhance Kuzzle

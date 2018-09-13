@@ -1,5 +1,5 @@
 ---
-layout: category-childrens.html.hbs
+layout: category-children.html.hbs
 title: Koncorde
 order: 300
 description: Koncorde Reference
