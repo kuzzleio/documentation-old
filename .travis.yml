@@ -22,7 +22,7 @@ install:
 - docker pull alexandrebouthinon/vfinder
 script:
 - npm test
-- docker run --rm -it -v "$(pwd)":/mnt alexandrebouthinon/vfinder vfinder -d /mnt/build -x /mnt/.vfinder/exceptions -export /mnt/data.json
+- if [[ -z $TRAVIS_PULL_REQUEST ]]; then docker run --rm -it -v "$(pwd)":/mnt alexandrebouthinon/vfinder vfinder -d /mnt/build -x /mnt/.vfinder/exceptions -export /mnt/data.json; fi
 - if [[ -z $TRAVIS_PULL_REQUEST ]]; then docker run --rm -it -v "$(pwd)":/mnt alexandrebouthinon/kuttlefish kuttlefish -template /mnt/.vfinder/template.md -data /mnt/data.json -repo documentation -owner kuzzleio -token $GITHUB_TOK -id $TRAVIS_PULL_REQUEST; fi;
 before_deploy:
 - node index.js --algolia-private-key $ALGOLIA_KEY
