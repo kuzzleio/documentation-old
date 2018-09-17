@@ -14,7 +14,7 @@ title: resetKuzzleData
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/_resetKuzzleData`  
+**URL:** `http://kuzzle:7512/admin/_resetKuzzleData[?refresh=wait_for]`  
 **Method:** `POST`
 </p>
 </blockquote>
@@ -29,7 +29,8 @@ title: resetKuzzleData
 ```json
 {
   "controller": "admin",
-  "action": "resetKuzzleData"
+  "action": "resetKuzzleData",
+  "refresh": "wait_for"
 }
 ```
 
@@ -56,3 +57,7 @@ Asynchronously start the following sequence in Kuzzle, in this order:
 * Delete all document validation specifications
 
 This action has no impact on Plugin and Document storage.
+
+The following calls will be ignored before the end of the execution of the first call.  
+
+The optional parameter `refresh` can be used with the value `wait_for` in order to wait for the sequence to be executed.

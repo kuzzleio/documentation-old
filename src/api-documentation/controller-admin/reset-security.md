@@ -14,7 +14,7 @@ title: resetSecurity
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/_resetSecurity`  
+**URL:** `http://kuzzle:7512/admin/_resetSecurity[?refresh=wait_for]`  
 **Method:** `POST`
 </p>
 </blockquote>
@@ -29,7 +29,8 @@ title: resetSecurity
 ```json
 {
   "controller": "admin",
-  "action": "resetSecurity"
+  "action": "resetSecurity",
+  "refresh": "wait_for"
 }
 ```
 
@@ -50,3 +51,7 @@ title: resetSecurity
 ```
 
 Asynchronously delete all users, profiles and roles and reset `anonymous`, `default` and `admin` profiles and roles to the default specified in Kuzzle's configuration files.
+
+The following calls will be ignored before the end of the execution of the first call.  
+
+The optional parameter `refresh` can be used with the value `wait_for` in order to wait for all users, profiles and roles to be reseted.

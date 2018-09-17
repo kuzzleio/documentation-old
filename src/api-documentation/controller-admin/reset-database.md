@@ -14,7 +14,7 @@ title: resetDatabase
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/_resetDatabase`  
+**URL:** `http://kuzzle:7512/admin/_resetDatabase[?refresh=wait_for]`  
 **Method:** `POST`
 </p>
 </blockquote>
@@ -29,7 +29,8 @@ title: resetDatabase
 ```json
 {
   "controller": "admin",
-  "action": "resetDatabase"
+  "action": "resetDatabase",
+  "refresh": "wait_for"
 }
 ```
 
@@ -52,3 +53,7 @@ title: resetDatabase
 Asynchronously delete indexes created by users. This does not include Kuzzle's internal index.
 
 This action has no impact on Kuzzle's internal index and Plugin indexes.
+
+The following calls will be ignored before the end of the execution of the first call.  
+
+The optional parameter `refresh` can be used with the value `wait_for` in order to wait for all the indexes to be removed.

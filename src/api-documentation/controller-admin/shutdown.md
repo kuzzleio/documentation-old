@@ -51,6 +51,8 @@ title: shutdown
 
 Let you stop a Kuzzle instance after any remaining requests are processed.
 
+The following calls will be ignored before the end of the execution of the first call.  
+
 #### Cluster Mode
 
 In a Cluster environment, the shutdown action will be propagated across all nodes.
