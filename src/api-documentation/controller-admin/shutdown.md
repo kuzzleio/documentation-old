@@ -51,7 +51,7 @@ title: shutdown
 
 Let you stop a Kuzzle instance after any remaining requests are processed.
 
-The following calls will be ignored before the end of the execution of the first call.  
+Subsequent calls made while a shutdown is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  
 
 #### Cluster Mode
 

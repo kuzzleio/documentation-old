@@ -58,6 +58,6 @@ Asynchronously start the following sequence in Kuzzle, in this order:
 
 This action has no impact on Plugin and Document storage.
 
-The following calls will be ignored before the end of the execution of the first call.  
+Subsequent calls made while a reset is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  
 
 The optional parameter `refresh` can be used with the value `wait_for` in order to wait for the sequence to be executed.

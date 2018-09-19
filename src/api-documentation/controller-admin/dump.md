@@ -66,7 +66,7 @@ Depending on the configuration of Kuzzle, it may include the following:
 The generated directory can be used to feed a complete report to the support team.  
 This report is the same as the one generated during a crash.  
 
-The following calls will be ignored before the end of the execution of the first call.  
+Subsequent calls made while a dump is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  
 
 The optional parameter `refresh` can be used with the value `wait_for` in order to wait for the dump report to be generated.
 

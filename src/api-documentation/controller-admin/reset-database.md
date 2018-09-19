@@ -54,6 +54,6 @@ Asynchronously delete indexes created by users. This does not include Kuzzle's i
 
 This action has no impact on Kuzzle's internal index and Plugin indexes.
 
-The following calls will be ignored before the end of the execution of the first call.  
+Subsequent calls made while a reset is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  
 
 The optional parameter `refresh` can be used with the value `wait_for` in order to wait for all the indexes to be removed.
