@@ -11,7 +11,7 @@ title: create
 # create
 
 ```js
-// Optional: a mapping can be provided and will be 
+// Optional: a mapping can be provided and will be
 // applied when the collection is created
 const mapping = {
   properties: {
@@ -49,7 +49,7 @@ kuzzle
 ```
 
 ```java
-// Optional: a mapping can be provided and will be 
+// Optional: a mapping can be provided and will be
 // applied when the collection is created
 JSONObject mapping = new JSONObject()
   .put("properties", new JSONObject()
@@ -84,7 +84,7 @@ use \Kuzzle\Kuzzle;
 $kuzzle = new Kuzzle('localhost');
 $dataCollection = $kuzzle->collection('collection', 'index');
 
-// Optional: a mapping can be provided and will be 
+// Optional: a mapping can be provided and will be
 // applied when the collection is created
 $mapping = [
   'properties' => [
@@ -124,6 +124,9 @@ catch (ErrorException $e) {
 ```
 
 Creates a new [collection]({{ site_base_path }}guide/essentials/persisted) in Kuzzle via the persistence engine, in the provided `index`.  
+
+{{{since "1.3.0"}}}
+
 You can also provide an optional data mapping that allow you to exploit the full capabilities of our
 persistent data storage layer, [ElasticSearch](https://www.elastic.co/products/elasticsearch) (check here the [mapping capabilities of ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/5.4/mapping.html)).  
 
