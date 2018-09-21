@@ -19,9 +19,19 @@ A bounding box is a 2D box that can be defined using either of the following for
 
 The bounding box description must be stored in an attribute, named after the geographical point to be tested in future documents.
 
-## Format examples
+## Syntax
 
-All of the following filter examples test for a geographical point named `point`, whose coordinates should be in a bounding box with the following properties:
+```
+geoBoundingBox: { 
+  <geopoint field name>: {
+    <bounding box description>
+  } 
+}
+```
+
+## Bounding box description
+
+All of the following syntaxes below are accepted, and they describe the same bounding box, with the following properties:
 
 * top-left corner of latitude `43.5810609` and longitude `3.8433703`
 * bottom-right corner of latitude `43.6331979` and longitude `3.9282093`

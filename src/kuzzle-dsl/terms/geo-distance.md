@@ -17,6 +17,16 @@ A `geoDistance` filter contains the following properties:
 * a [geopoint]({{ site_base_path }}kuzzle-dsl/essential/geopoints/) defining the point of origin. This geopoint attribute must be named after the geographical point to test in future documents
 * a `distance` parameter in [geodistance format]({{ site_base_path }}kuzzle-dsl/essential/geodistances/)
 
+## Syntax
+
+```
+geoDistance: {
+  <geopoint field name>: {
+    <geopoint description>
+  },
+  distance: <geodistance>
+}
+```
 
 ## Example
 
