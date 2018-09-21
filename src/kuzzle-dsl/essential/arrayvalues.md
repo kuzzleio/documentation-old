@@ -10,7 +10,7 @@ order: 25
 
 A few keywords, like [exists]({{ site_base_path }}kuzzle-dsl/terms/exists) or [missing]({{ site_base_path }}kuzzle-dsl/terms/missing), allow searching for array values.
 
-These values can be accessed with the following syntax: `arrayName['value']`  
+These values can be accessed with the following syntax: `<array path>[<value>]`  
 Only one array value per `exists`/`missing` keyword can be searched in this manner.
 
 Array values must be scalars: strings, numbers, booleans or the `null` value.
