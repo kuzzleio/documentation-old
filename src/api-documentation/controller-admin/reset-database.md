@@ -14,7 +14,7 @@ title: resetDatabase
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/_resetDatabase[?refresh=wait_for]`  
+**URL:** `http://kuzzle:7512/admin/_resetDatabase`  
 **Method:** `POST`
 </p>
 </blockquote>
@@ -29,8 +29,7 @@ title: resetDatabase
 ```json
 {
   "controller": "admin",
-  "action": "resetDatabase",
-  "refresh": "wait_for"
+  "action": "resetDatabase"
 }
 ```
 
@@ -55,5 +54,3 @@ Asynchronously delete indexes created by users. This does not include Kuzzle's i
 This action has no impact on Kuzzle's internal index and Plugin indexes.
 
 Subsequent calls made while a reset is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  
-
-The optional parameter `refresh` can be used with the value `wait_for` in order to wait for all the indexes to be removed.

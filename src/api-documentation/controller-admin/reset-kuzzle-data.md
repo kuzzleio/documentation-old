@@ -14,7 +14,7 @@ title: resetKuzzleData
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/_resetKuzzleData[?refresh=wait_for]`  
+**URL:** `http://kuzzle:7512/admin/_resetKuzzleData`  
 **Method:** `POST`
 </p>
 </blockquote>
@@ -29,8 +29,7 @@ title: resetKuzzleData
 ```json
 {
   "controller": "admin",
-  "action": "resetKuzzleData",
-  "refresh": "wait_for"
+  "action": "resetKuzzleData"
 }
 ```
 
@@ -59,5 +58,3 @@ Asynchronously start the following sequence in Kuzzle, in this order:
 This action has no impact on Plugin and Document storage.
 
 Subsequent calls made while a reset is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  
-
-The optional parameter `refresh` can be used with the value `wait_for` in order to wait for the sequence to be executed.
