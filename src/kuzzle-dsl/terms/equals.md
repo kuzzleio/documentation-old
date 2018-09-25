@@ -8,7 +8,16 @@ title: equals
 
 {{{since "1.0.0"}}}
 
-The `equals` filter matches documents or messages attributes using string equality.
+Matches attributes using strict equality.  
+The tested attribute must be a scalar (number, string or boolean), and of the same type than the provided filter value.
+
+## Syntax
+
+```
+equals: {
+  <field name>: <value>
+}
+```
 
 ## Example
 

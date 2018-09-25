@@ -7,31 +7,27 @@ title: regexp
 # regexp
 
 {{{since "1.0.0"}}}
+The `regexp` filter matches attributes using [PCREs](https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions).
 
-The `regexp` filter matches documents or messages using perl-compatible regular expressions ([PCRE](https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions)).  
-You can only test 1 attribute per `regexp` filter.
+## Syntax
 
 A `regexp` filter has the following structure, splitting the usual `/pattern/flags` into two parts:
 
 ```javascript
-{
-  regexp: {
-    attributeToTest: {
-      value: 'search pattern',
-      flags: 'modifier flags'
-    }
+regexp: {
+  <field name>: {
+    value: '<search pattern>',
+    flags: '<modifier flags>'
   }
 }
 ```
 
-Or, if you don't want to add any modifier flags:
+If you don't need any modifier flag, then you may also use the following simplified form:
 
 ```javascript
-{
   regexp: {
-    attributeToTest: 'search pattern'
+    <field name>: '<search pattern>'
   }
-}
 ```
 
 ## Example

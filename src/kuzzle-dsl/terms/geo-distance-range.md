@@ -18,6 +18,18 @@ A `geoDistanceRange` filter contains the following properties:
 * a `from` attribute, describing the minimum distance from the center point, using a [geodistance format]({{ site_base_path }}kuzzle-dsl/essential/geodistances/)
 * a `to` attribute, describing the maximum distance from the center point, using a [geodistance format]({{ site_base_path }}kuzzle-dsl/essential/geodistances/)
 
+## Syntax
+
+```
+geoDistanceRange: {
+  <geopoint field name>: {
+    <geopoint description>
+  },
+  from: <geodistance>,
+  to: <geodistance>
+}
+```
+
 ## Example
 
 Given the following documents:

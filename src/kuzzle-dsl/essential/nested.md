@@ -12,7 +12,7 @@ Examples described in this documentation show how to test for fields at the root
 
 To do that, instead of giving the name of the property to test, its path must be supplied as follows: `path.to.property`
 
-**Example:**
+# Example
 
 Given the following document:
 
