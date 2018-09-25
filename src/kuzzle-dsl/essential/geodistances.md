@@ -24,7 +24,7 @@ Accepted unit modifiers: from `yocto-` (10e-21) to `yotta-` (10e24), and their c
 
 Accepted formats: `<int (spaces accepted)>[.|,]<decimals><spaces><unit>`.  
 
-**Example**
+# Example
 
 The following distances are all equivalent and valid input parameters:
 
