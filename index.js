@@ -4,7 +4,8 @@ const
   cheerio = require('cheerio'),
   stripTags = require('striptags'),
   wordCount = require('wordcount'),
-
+  
+  uglify = require('metalsmith-uglify'),
   layouts = require('metalsmith-layouts'),
   markdown = require('metalsmith-markdown'),
   marked = require('marked'),
@@ -22,8 +23,6 @@ const
   sitemap = require('metalsmith-sitemap'),
   htmlMin = require('metalsmith-html-minifier'),
   algolia = require('metalsmith-algolia'),
-  jsPacker = require('metalsmith-js-packer'),
-  cssPacker = require('metalsmith-css-packer'),
   redirect = require('metalsmith-redirect'),
   discoverPartials = require('metalsmith-discover-partials'),
 
@@ -309,6 +308,13 @@ metalsmith
     '/kuzzle-events/': '/kuzzle-events/plugin-events/',
     '/guide/code-examples': '/guide/code-examples/dbsearch'
   }))
+  .use(uglify({
+    concat: {
+      file: 'bundle.min.js',
+      root: 'assets/javascript'
+    },
+    removeOriginal: true
+  }))
   .use(metatoc())
   .use(languageTab())
   .use(discoverPartials({
@@ -319,20 +325,7 @@ metalsmith
     directory: 'src/layouts'
   }));
 
-if (!options.dev.enabled) {
-  log('CSS and JS packers enabled');
-  metalsmith
-    .use(cssPacker({
-      siteRootPath: options.build.path,
-      inline: true,
-      exclude: ['partials/**/*', 'layouts/**/*']
-    }))
-    .use(jsPacker({
-      siteRootPath: options.build.path,
-      inline: false,
-      exclude: ['partials/**/*', 'layouts/**/*']
-    }));
-}
+
 metalsmith
   .use(clickImage())
   .use(logger());

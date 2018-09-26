@@ -8,7 +8,11 @@ title: in
 
 {{{since "1.0.0"}}}
 
-This filter can be used to match a field to one of many values.
+Like [equals]({{ site_base_path }}kuzzle-dsl/terms/equals), but accepts an array of possible scalar values to be tested.
+
+## Syntax
+
+`in: { <field name>: <array of values> }`
 
 ## Example
 
