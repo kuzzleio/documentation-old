@@ -39,8 +39,8 @@ Given the following document:
 
 Here is a filter, testing whether the value `compiler` is listed in the array `hobbies`:
 
-```json
+```javascript
 {
-    "exists": "name.hobbies[\"compiler\"]"
+    "exists": 'name.hobbies["compiler"]'
 }
 ```
