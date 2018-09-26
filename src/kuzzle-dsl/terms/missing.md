@@ -23,7 +23,7 @@ Since Koncorde 1.2, the `missing` syntax is as follows:
 (see [nested field syntax]({{ site_base_path }}kuzzle-dsl/essential/nested))
 
 `missing: 'nested.array[value]'`
-(see [array value syntax])({{ site_base_path }}kuzzle-dsl/essential/arrayvalues)
+(see [array value syntax]({{ site_base_path }}kuzzle-dsl/essential/arrayvalues)
 
 The following syntax is deprecated since Koncorde 1.2, and supported for backward compatibility only:
 
