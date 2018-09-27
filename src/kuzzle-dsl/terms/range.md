@@ -8,17 +8,29 @@ title: range
 
 {{{since "1.0.0"}}}
 
-Filters documents with fields having number attributes within a certain range.
+Filters documents with number attributes within a provided interval.
 
-The range filter accepts the following parameters:
+A range can be defined with at least one of the following arguments:
 
-`gte` Greater-than or equal to
+* `gte`: Greater-than or equal to `<number>`
+* `gt`: Greater-than `<number>`
+* `lte`: Less-than or equal to
+* `lt`: Less-than
 
-`gt` Greater-than
+Ranges can be either bounded or half-bounded.
 
-`lte` Less-than or equal to
+## Syntax 
 
-`lt` Less-than
+```
+range: {
+  <field to be tested>: {
+    [gte]: <number>,
+    [gt]: <number>,
+    [lte]: <number>,
+    [lt]: <number>
+  }
+}
+```
 
 ## Example
 
@@ -54,7 +66,6 @@ The following filter validates the last two documents:
 {
   range: {
     age: {
-      gte: 36,
       lt: 85
     }
   }

@@ -8,7 +8,11 @@ title: ids
 
 {{{since "1.0.0"}}}
 
-This filter returns documents that have an ID that matches the input list.
+This filter returns only documents having their unique document ID listed in the provided list.
+
+## Syntax
+
+`ids: <array of strings>`
 
 ## Example
 
