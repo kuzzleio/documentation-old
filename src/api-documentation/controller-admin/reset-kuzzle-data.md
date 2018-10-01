@@ -56,3 +56,5 @@ Asynchronously start the following sequence in Kuzzle, in this order:
 * Delete all document validation specifications
 
 This action has no impact on Plugin and Document storage.
+
+Subsequent calls made while a reset is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  

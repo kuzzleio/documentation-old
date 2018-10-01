@@ -14,7 +14,7 @@ title: dump
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/_dump`  
+**URL:** `http://kuzzle:7512/admin/_dump[?refresh=wait_for]`  
 **Method:** `POST`
 </p>
 </blockquote>
@@ -29,7 +29,8 @@ title: dump
 ```json
 {
   "controller": "admin",
-  "action": "dump"
+  "action": "dump",
+  "refresh": "wait_for"
 }
 ```
 
@@ -64,6 +65,10 @@ Depending on the configuration of Kuzzle, it may include the following:
 
 The generated directory can be used to feed a complete report to the support team.  
 This report is the same as the one generated during a crash.  
+
+Subsequent calls made while a dump is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  
+
+The optional parameter `refresh` can be used with the value `wait_for` in order to wait for the dump report to be generated.
 
 #### Cluster Mode
 
