@@ -14,7 +14,7 @@ title: resetCache
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/_resetCache`  
+**URL:** `http://kuzzle:7512/admin/_resetCache?database=[internalCache|memoryStorage]`  
 **Method:** `POST`
 </p>
 </blockquote>
