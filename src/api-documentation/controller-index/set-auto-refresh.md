@@ -20,7 +20,7 @@ title: setAutoRefresh
 
 ```js
 {
-  "autoRefresh": "<true|false>"
+  "autoRefresh": <boolean>
 }
 ```
 
@@ -31,13 +31,13 @@ title: setAutoRefresh
 </blockquote>
 
 
-```json
+```jso
 {
   "index": "<index>",
   "controller": "index",
   "action": "setAutoRefresh",
   "body": {
-    "autoRefresh": "<true|false>"
+    "autoRefresh": <boolean>
   }
 }
 ```
@@ -52,7 +52,7 @@ title: setAutoRefresh
   "controller": "index",
   "action": "setAutoRefresh",
   "requestId": "<unique request identifier>",
-  "result": "<true|false>" // The autoRefresh status set for the index
+  "result": <boolean> // new autoRefresh status 
 }
 ```
 
