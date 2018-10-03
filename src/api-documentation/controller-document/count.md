@@ -65,7 +65,8 @@ title: count
   "action": "count",
   "requestId": "<unique request identifier>",
   "result": {
-    "count": "<number of found documents>"
+    // number of found documents
+    "count": 42
   }
 }
 ```
