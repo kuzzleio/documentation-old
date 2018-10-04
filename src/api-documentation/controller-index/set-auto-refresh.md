@@ -31,7 +31,7 @@ title: setAutoRefresh
 </blockquote>
 
 
-```jso
+```json
 {
   "index": "<index>",
   "controller": "index",
