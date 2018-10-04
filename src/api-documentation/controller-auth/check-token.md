@@ -52,7 +52,7 @@ title: checkToken
   "action": "checkToken",
   "requestId": "<unique request identifier>",
   "result": {
-    "valid": "<boolean>",
+    "valid": <boolean>,
 
     // if "valid" is false, contains the reason why the provided token is
     // invalid.
@@ -61,7 +61,7 @@ title: checkToken
 
     // if "valid" is true, contains the expiration timestamp.
     // This field is not present if "valid" is false.
-    "expiresAt": "<timestamp>"
+    "expiresAt": <timestamp>
   }
 }
 ```
