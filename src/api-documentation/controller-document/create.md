@@ -13,16 +13,16 @@ title: create
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]` or `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`  
+**URL:** `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]`  
+**Alternative URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`  
 **Method:** `POST`  
 **Body:**
 </p>
 </blockquote>
 
-
 ```js
 {
-  // The message to send
+  // Document content
 }
 ```
 

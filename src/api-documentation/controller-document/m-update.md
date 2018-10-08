@@ -115,7 +115,7 @@ title: mUpdate
         "result": "updated"
       },
       {
-   // Other updated documents
+        // Other updated documents
       }
     ],
     "total": "<number of updated documents>"
