@@ -22,7 +22,7 @@ title: createOrReplace
 
 ```js
 {
-  // The document to update
+  // Document content
 }
 ```
 
@@ -63,8 +63,8 @@ title: createOrReplace
     "_source": { // The created document
       ...
     },
-    "_version": "<number>",// The new version number of this document
-    "created": "<boolean>" // true: a new document has been created, false: the document has been updated
+    "_version": <number>, // The new version number of this document
+    "created": <boolean>  // If false, a previously existing document has been replaced
   }
 }
 ```

@@ -22,7 +22,7 @@ title: validate
 
 ```js
 {
-    // The message to send
+  // Document content to check
 }
 ```
 
