@@ -59,9 +59,9 @@ To ensure compatibility with older web browsers, our official Kuzzle docker imag
 
 ---
 
-## MQTT protocols
+## MQTT protocol
 
-Kuzzle provides a plugin that supports the [MQTT protocol](https://github.com/kuzzleio/kuzzle-plugin-mqtt).
+Kuzzle provides a plugin that supports the [MQTT protocol](https://github.com/kuzzleio/protocol-mqtt).
 Using the plugin you can perform two-way communication between your application and Kuzzle.
 
 
