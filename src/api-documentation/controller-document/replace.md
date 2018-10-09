@@ -22,7 +22,7 @@ title: replace
 
 ```js
 {
-  // The document to update
+  // New document content
 }
 ```
 
