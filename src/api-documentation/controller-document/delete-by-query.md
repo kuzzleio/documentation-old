@@ -64,7 +64,7 @@ title: deleteByQuery
   "requestId": "<unique request identifier>",
   "result": {
     // Array of strings listing the IDs of removed documents
-    "hits": ["id1", "id2", ..., "idn"]
+    "ids": ["id1", "id2", ..., "idn"]
   }
 }
 ```
