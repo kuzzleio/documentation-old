@@ -45,16 +45,12 @@ title: getCurrentUser
   "result": {
     "_id": "<kuid>",// The kuzzle user identifier
     "_source": {
+      // associated profiles
+      "profileIds": ["default", "customProfile1", "customProfile2"],
+      // optional: additional user information
       "name": {
         "first": "Steve",
         "last": "Wozniak"
-      },
-      ...   // The profile object content
-      "profile": {
-        "_id":"<profileId>",
-        "roles": [
-          ...  // Users roles definitions
-        ]
       }
     },
     "strategies": ["available", "strategies"]
@@ -62,4 +58,4 @@ title: getCurrentUser
 }
 ```
 
-Returns the profile object for the user linked to the `JSON Web Token`, provided in the query or the `Authorization` header.
+Returns information about the currently logged in user.
