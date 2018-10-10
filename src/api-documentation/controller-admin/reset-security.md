@@ -50,3 +50,5 @@ title: resetSecurity
 ```
 
 Asynchronously delete all users, profiles and roles and reset `anonymous`, `default` and `admin` profiles and roles to the default specified in Kuzzle's configuration files.
+
+Subsequent calls made while a reset is underway will result in a [PreconditionError]({{ site_base_path }}api-documentation/errors#preconditionerror).  
