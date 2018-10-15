@@ -22,7 +22,7 @@ title: join
 
 <blockquote class="js">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

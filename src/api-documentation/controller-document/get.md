@@ -13,8 +13,8 @@ title: get
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?includeTrash=<boolean>]`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/<documentId>[?includeTrash=<boolean>]`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 

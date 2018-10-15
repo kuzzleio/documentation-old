@@ -15,8 +15,8 @@ title: hmset
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_hmset/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_hmset/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -36,7 +36,7 @@ title: hmset
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

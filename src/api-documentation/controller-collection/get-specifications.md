@@ -13,14 +13,14 @@ title: getSpecifications
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_specifications`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_specifications`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

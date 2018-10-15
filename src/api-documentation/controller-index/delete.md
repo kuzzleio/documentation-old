@@ -13,14 +13,14 @@ title: delete
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>`  
-**Method:** `DELETE`
+<b>URL:</b> `http://kuzzle:7512/<index>`  
+</br><b>Method:</b> `DELETE`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

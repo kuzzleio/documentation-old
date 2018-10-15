@@ -9,8 +9,8 @@ order: 100
 
 ## HTTP
 
-**URL:** `http://kuzzle:7512/<action route>[route options]`  
-**Method:** `get|post|put|delete`  
+<b>URL:</b> `http://kuzzle:7512/<action route>[route options]`  
+</br><b>Method:</b> `get|post|put|delete`  
 **Body:** Can be empty for GET and DELETE methods or contains a JSON object for POST and PUT methods.
 
 ---

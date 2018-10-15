@@ -23,12 +23,12 @@ bash -c "$(curl http://get.kuzzle.io/)"
 This command downloads and executes the installation script using root privileges. The script checks the system for a set of prerequisites and installs any necessary tools, like Docker or Docker Compose. When the installation is complete it will automatically run Kuzzle.
 
 <aside class="notice">
-There are also more [alternative ways](guide/essentials/installing-kuzzle/) to install Kuzzle.
+There are also more <a href="{{ site_base_path }}guide/essentials/installing-kuzzle/">alternative ways</a> to install Kuzzle.
 </aside>
 
 This command downloads, installs and runs Kuzzle.
 
-Use the --no-run option to prevent the script from running Kuzzle.
+Use the `--no-run` option to prevent the script from running Kuzzle.
 
 Once the installation process is complete, you will see the following message:
 

@@ -15,8 +15,8 @@ title: incrbyfloat
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_incrbyfloat/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_incrbyfloat/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -32,7 +32,7 @@ title: incrbyfloat
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

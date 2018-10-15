@@ -16,8 +16,8 @@ title: createProfile
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/profiles/<profileId>/_create[?refresh=wait_for]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/profiles/<profileId>/_create[?refresh=wait_for]`  
+</br><b>Method:</b> `POST`  
 **Body**
 </p>
 </blockquote>
@@ -51,7 +51,7 @@ title: createProfile
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

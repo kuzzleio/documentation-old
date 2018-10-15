@@ -14,14 +14,14 @@ title: getStats
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/_getStats[?startTime=123456789][&stopTime=234567890]`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

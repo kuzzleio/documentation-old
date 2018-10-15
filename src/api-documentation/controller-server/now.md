@@ -14,8 +14,8 @@ title: now
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_now`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/_now`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 

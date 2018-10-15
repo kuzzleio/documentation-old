@@ -13,8 +13,8 @@ title: mReplace
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_mReplace[?refresh=wait_for]`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_mReplace[?refresh=wait_for]`  
+</br><b>Method:</b> `PUT`  
 **Body:**
 </p>
 </blockquote>

@@ -17,8 +17,8 @@ title: import
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_bulk`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_bulk`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -40,7 +40,7 @@ title: import
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 
@@ -116,8 +116,8 @@ If a subset of the documents fail to save, the client will receive a <a href="{{
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_bulk`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/_bulk`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -141,7 +141,7 @@ If a subset of the documents fail to save, the client will receive a <a href="{{
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

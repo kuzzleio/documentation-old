@@ -16,14 +16,14 @@ title: getRoleMapping
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/roles/_mapping`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/roles/_mapping`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

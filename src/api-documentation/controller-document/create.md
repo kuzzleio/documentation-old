@@ -13,9 +13,9 @@ title: create
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]`  
 **Alternative URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`  
-**Method:** `POST`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>

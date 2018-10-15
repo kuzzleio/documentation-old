@@ -16,14 +16,14 @@ title: getAllCredentialFields
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/credentials/_fields`  
-**Method:** `GET`  
+<b>URL:</b> `http://kuzzle:7512/credentials/_fields`  
+</br><b>Method:</b> `GET`  
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

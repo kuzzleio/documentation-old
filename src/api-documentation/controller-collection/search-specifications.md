@@ -13,8 +13,8 @@ title: searchSpecifications
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/validations/_search[?from=0][&size=10][&scroll=<time to live>]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/validations/_search[?from=0][&size=10][&scroll=<time to live>]`  
+</br><b>Method:</b> `POST`  
 **Body**
 </p>
 </blockquote>
@@ -32,7 +32,7 @@ title: searchSpecifications
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

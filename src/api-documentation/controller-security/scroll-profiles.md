@@ -16,14 +16,14 @@ title: scrollProfiles
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/profiles/_scroll/<scrollId>[?scroll=<time to live>]`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/profiles/_scroll/<scrollId>[?scroll=<time to live>]`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

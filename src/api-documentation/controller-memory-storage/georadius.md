@@ -15,15 +15,15 @@ title: georadius
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_georadius/<key>?lon=<longitude>&lat=<latitude>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/ms/_georadius/<key>?lon=<longitude>&lat=<latitude>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

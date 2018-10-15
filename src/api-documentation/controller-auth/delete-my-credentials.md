@@ -13,8 +13,8 @@ title: deleteMyCredentials
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/credentials/<strategy>/_me`  
-**Method:** `DELETE`  
+<b>URL:</b> `http://kuzzle:7512/credentials/<strategy>/_me`  
+</br><b>Method:</b> `DELETE`  
 **Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 </p>
 </blockquote>
@@ -22,7 +22,7 @@ title: deleteMyCredentials
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

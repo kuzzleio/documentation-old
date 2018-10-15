@@ -16,8 +16,8 @@ title: touch
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_touch`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_touch`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -33,7 +33,7 @@ title: touch
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

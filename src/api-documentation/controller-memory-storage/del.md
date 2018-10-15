@@ -10,9 +10,9 @@ title: del
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms`  
-**Method:** `DELETE`  
-**Method:**  
+<b>URL:</b> `http://kuzzle:7512/ms`  
+</br><b>Method:</b> `DELETE`  
+</br><b>Method:</b>  
 </p>
 </blockquote>
 
@@ -26,7 +26,7 @@ title: del
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

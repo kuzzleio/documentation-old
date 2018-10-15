@@ -15,8 +15,8 @@ title: searchProfiles
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/profiles/_search[?from=0][&size=42][&scroll=<time to live>]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/profiles/_search[?from=0][&size=42][&scroll=<time to live>]`  
+</br><b>Method:</b> `POST`  
 **Body**
 </p>
 </blockquote>
@@ -33,7 +33,7 @@ title: searchProfiles
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 
