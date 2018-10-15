@@ -15,14 +15,14 @@ title: hmget
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_hmget/<key>?fields=field1,field2,...`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/ms/_hmget/<key>?fields=field1,field2,...`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

@@ -13,8 +13,8 @@ title: updateMapping
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_mapping`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_mapping`  
+</br><b>Method:</b> `PUT`  
 **Body:**
 </p>
 </blockquote>
@@ -44,7 +44,7 @@ title: updateMapping
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

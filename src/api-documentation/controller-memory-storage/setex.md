@@ -16,8 +16,8 @@ title: setex
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_setex/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_setex/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -34,7 +34,7 @@ title: setex
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

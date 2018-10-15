@@ -16,8 +16,8 @@ title: updateCredentials
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>/_update`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/credentials/<strategy>/<kuid>/_update`  
+</br><b>Method:</b> `PUT`  
 **Body**
 </p>
 </blockquote>
@@ -37,7 +37,7 @@ title: updateCredentials
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

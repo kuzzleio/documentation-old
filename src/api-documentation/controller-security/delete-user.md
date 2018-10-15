@@ -16,14 +16,14 @@ title: deleteUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>[?refresh=wait_for]`  
-**Method:** `DELETE`
+<b>URL:</b> `http://kuzzle:7512/users/<kuid>[?refresh=wait_for]`  
+</br><b>Method:</b> `DELETE`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

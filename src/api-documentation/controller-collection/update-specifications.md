@@ -11,8 +11,8 @@ title: updateSpecifications
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_specifications`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/_specifications`  
+</br><b>Method:</b> `PUT`  
 **Body:**
 </p>
 </blockquote>
@@ -33,7 +33,7 @@ title: updateSpecifications
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

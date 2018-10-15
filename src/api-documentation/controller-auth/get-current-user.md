@@ -13,15 +13,15 @@ title: getCurrentUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/_me`  
-**Method:** `GET`  
+<b>URL:</b> `http://kuzzle:7512/users/_me`  
+</br><b>Method:</b> `GET`  
 **Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

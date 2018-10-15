@@ -15,8 +15,8 @@ title: lset
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_lset/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_lset/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -33,7 +33,7 @@ title: lset
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

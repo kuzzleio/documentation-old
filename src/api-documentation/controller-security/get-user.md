@@ -16,14 +16,14 @@ title: getUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/users/<kuid>`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

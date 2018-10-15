@@ -13,8 +13,8 @@ title: login
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_login/<strategy>[?expiresIn=<expiresIn>]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/_login/<strategy>[?expiresIn=<expiresIn>]`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -29,7 +29,7 @@ title: login
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

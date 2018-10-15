@@ -16,8 +16,8 @@ title: psetex
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_psetex/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_psetex/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -34,7 +34,7 @@ title: psetex
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

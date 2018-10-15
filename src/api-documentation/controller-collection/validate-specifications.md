@@ -13,8 +13,8 @@ title: validateSpecifications
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_validateSpecifications`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/_validateSpecifications`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -36,7 +36,7 @@ title: validateSpecifications
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

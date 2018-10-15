@@ -16,8 +16,8 @@ title: sdiffstore
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_sdiffstore/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_sdiffstore/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -34,7 +34,7 @@ title: sdiffstore
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

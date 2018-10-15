@@ -16,8 +16,8 @@ title: expire
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_expire/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_expire/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -35,7 +35,7 @@ title: expire
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

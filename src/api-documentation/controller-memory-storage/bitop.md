@@ -13,9 +13,9 @@ title: bitop
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512//ms/_bitop/<destination key>`  
-**Method:** `POST`  
-**Method:**  
+<b>URL:</b> `http://kuzzle:7512//ms/_bitop/<destination key>`  
+</br><b>Method:</b> `POST`  
+</br><b>Method:</b>  
 </p>
 </blockquote>
 
@@ -30,7 +30,7 @@ title: bitop
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

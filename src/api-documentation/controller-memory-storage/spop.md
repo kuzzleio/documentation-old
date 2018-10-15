@@ -16,8 +16,8 @@ title: spop
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_spop/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_spop/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -34,7 +34,7 @@ title: spop
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

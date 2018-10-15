@@ -13,8 +13,8 @@ title: checkToken
 
 <blockquote class="js">
 <p>
-  **URL:** `http://kuzzle:7512/_checkToken`  
-  **Method:** `POST`  
+  <b>URL:</b> `http://kuzzle:7512/_checkToken`  
+  </br><b>Method:</b> `POST`  
   **Body:**  
 </p>
 </blockquote>
@@ -28,7 +28,7 @@ title: checkToken
 
 <blockquote class="json">
 <p>
-  **Query**
+  <b>Query</b>
 </p>
 </blockquote>
 

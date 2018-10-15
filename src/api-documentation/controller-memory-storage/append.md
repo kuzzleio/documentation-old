@@ -13,8 +13,8 @@ title: append
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_append/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_append/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -30,7 +30,7 @@ title: append
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

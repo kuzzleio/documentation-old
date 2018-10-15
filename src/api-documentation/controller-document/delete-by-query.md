@@ -13,8 +13,8 @@ title: deleteByQuery
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_query`  
-**Method:** `DELETE`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_query`  
+</br><b>Method:</b> `DELETE`  
 **Body:**
 </p>
 </blockquote>

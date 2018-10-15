@@ -16,14 +16,14 @@ title: deleteCredentials
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/credentials/<strategy>/<kuid>`  
-**Method:** `DELETE`  
+<b>URL:</b> `http://kuzzle:7512/credentials/<strategy>/<kuid>`  
+</br><b>Method:</b> `DELETE`  
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

@@ -13,15 +13,15 @@ title: refresh
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/_refresh`  
-**Method:** `POST`
+<b>URL:</b> `http://kuzzle:7512/<index>/_refresh`  
+</br><b>Method:</b> `POST`
 </p>
 </blockquote>
 
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

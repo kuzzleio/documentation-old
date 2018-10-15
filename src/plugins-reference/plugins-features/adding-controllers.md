@@ -19,8 +19,8 @@ To avoid naming conflicts, the path to the controller added using a plugin will 
 
 ### HTTP
 
-**URL:** `http://<server>:<port>/_plugin/<plugin name>/<url defined by the plugin>/<resources>`  
-**Method:** `<verb defined by the plugin>`
+<b>URL:</b> `http://<server>:<port>/_plugin/<plugin name>/<url defined by the plugin>/<resources>`  
+</br><b>Method:</b> `<verb defined by the plugin>`
 
 ### Others protocols
 

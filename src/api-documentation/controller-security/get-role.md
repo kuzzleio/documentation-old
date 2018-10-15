@@ -16,14 +16,14 @@ title: getRole
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/roles/<role id>`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/roles/<role id>`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

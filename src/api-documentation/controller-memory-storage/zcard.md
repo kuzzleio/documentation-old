@@ -16,15 +16,15 @@ title: zcard
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_zcard/<key>`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/ms/_zcard/<key>`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

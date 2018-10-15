@@ -13,8 +13,8 @@ title: mCreate
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_mCreate[?refresh=wait_for]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_mCreate[?refresh=wait_for]`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>

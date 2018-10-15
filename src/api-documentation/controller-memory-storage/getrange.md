@@ -14,14 +14,14 @@ title: getrange
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_getrange/<key>?start=<start>&end=<end>`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/ms/_getrange/<key>?start=<start>&end=<end>`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

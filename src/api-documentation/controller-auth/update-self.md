@@ -13,8 +13,8 @@ title: updateSelf
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_updateSelf`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/_updateSelf`  
+</br><b>Method:</b> `PUT`  
 **Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
 **Body**
 </p>
@@ -32,7 +32,7 @@ title: updateSelf
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 
