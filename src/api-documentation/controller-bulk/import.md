@@ -78,7 +78,7 @@ title: import
   "requestId": "<unique request identifier>",
   "result": {
     // The list of executed queries, with their status
-    "hits": [
+    "items": [
       {
         "create": {
           "_id": "<documentId>",
@@ -175,7 +175,7 @@ If a subset of the documents fail to save, the client will receive a <a href="{{
   "requestId": "<unique request identifier>",
   "result": {
     // The list of executed queries, with their status
-    "hits": [
+    "items": [
       {
         "create": {
           "_id": "<documentId>",
