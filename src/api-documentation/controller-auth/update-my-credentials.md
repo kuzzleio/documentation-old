@@ -13,8 +13,8 @@ title: updateMyCredentials
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/credentials/<strategy>/_me/_update`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/credentials/<strategy>/_me/_update`  
+</br><b>Method:</b> `PUT`  
 **Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
 **Body**
 </p>
@@ -36,7 +36,7 @@ title: updateMyCredentials
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

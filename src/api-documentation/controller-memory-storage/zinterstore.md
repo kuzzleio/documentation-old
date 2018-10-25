@@ -16,8 +16,8 @@ title: zinterstore
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_zinterstore/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_zinterstore/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -37,7 +37,7 @@ title: zinterstore
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

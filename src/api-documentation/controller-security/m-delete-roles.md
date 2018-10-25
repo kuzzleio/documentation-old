@@ -16,8 +16,8 @@ title: mDeleteRoles
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/roles/_mDelete[?refresh=wait_for]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/roles/_mDelete[?refresh=wait_for]`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -32,7 +32,7 @@ title: mDeleteRoles
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

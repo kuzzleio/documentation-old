@@ -16,14 +16,14 @@ title: zrange
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_zrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/ms/_zrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

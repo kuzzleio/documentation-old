@@ -16,8 +16,8 @@ title: sadd
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_sadd/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_sadd/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -33,7 +33,7 @@ title: sadd
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

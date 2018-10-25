@@ -16,8 +16,8 @@ title: zremrangebyscore
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_zremrangebyscore/<key>`  
-**Method:** `DELETE`  
+<b>URL:</b> `http://kuzzle:7512/ms/_zremrangebyscore/<key>`  
+</br><b>Method:</b> `DELETE`  
 **Body:**
 </p>
 </blockquote>
@@ -34,7 +34,7 @@ title: zremrangebyscore
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

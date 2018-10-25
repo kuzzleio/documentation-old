@@ -16,8 +16,8 @@ title: hdel
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_hdel/<key>`  
-**Method:** `DELETE`  
+<b>URL:</b> `http://kuzzle:7512/ms/_hdel/<key>`  
+</br><b>Method:</b> `DELETE`  
 **Body:**
 </p>
 </blockquote>
@@ -33,7 +33,7 @@ title: hdel
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

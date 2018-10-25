@@ -13,8 +13,8 @@ title: create
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>`  
+</br><b>Method:</b> `PUT`  
 **Body:**  
 </p>
 </blockquote>
@@ -42,7 +42,7 @@ title: create
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

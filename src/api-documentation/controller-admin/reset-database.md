@@ -14,14 +14,14 @@ title: resetDatabase
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/admin/_resetDatabase`  
-**Method:** `POST`
+<b>URL:</b> `http://kuzzle:7512/admin/_resetDatabase`  
+</br><b>Method:</b> `POST`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

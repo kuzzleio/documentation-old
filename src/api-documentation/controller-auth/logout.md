@@ -13,15 +13,15 @@ title: logout
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/_logout`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/_logout`  
+</br><b>Method:</b> `POST`  
 **Headers:** `Authorization: "Bearer <json_web_token>"`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

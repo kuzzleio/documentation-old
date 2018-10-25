@@ -16,14 +16,14 @@ title: zrangebylex
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_zrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/ms/_zrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

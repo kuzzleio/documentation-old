@@ -13,15 +13,15 @@ title: credentialsExist
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/credentials/<strategy>/_me/_exists`  
-**Method:** `GET`  
+<b>URL:</b> `http://kuzzle:7512/credentials/<strategy>/_me/_exists`  
+</br><b>Method:</b> `GET`  
 **Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

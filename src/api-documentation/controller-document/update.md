@@ -13,8 +13,8 @@ title: update
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for][&retryOnConflict=<retries>]`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for][&retryOnConflict=<retries>]`  
+</br><b>Method:</b> `PUT`  
 **Body:**
 </p>
 </blockquote>

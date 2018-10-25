@@ -16,8 +16,8 @@ title: rename
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_rename/<key>`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/ms/_rename/<key>`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>
@@ -33,7 +33,7 @@ title: rename
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

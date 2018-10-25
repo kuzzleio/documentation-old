@@ -16,8 +16,8 @@ title: randomkey
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_randomkey`  
-**Method:** `GET`  
+<b>URL:</b> `http://kuzzle:7512/ms/_randomkey`  
+</br><b>Method:</b> `GET`  
 **Body:**
 </p>
 </blockquote>
@@ -26,7 +26,7 @@ title: randomkey
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

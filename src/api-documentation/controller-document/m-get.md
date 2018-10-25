@@ -13,8 +13,8 @@ title: mGet
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_mGet[?includeTrash=<boolean>]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_mGet[?includeTrash=<boolean>]`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>

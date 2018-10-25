@@ -16,8 +16,8 @@ title: updateUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>/_update[?refresh=wait_for]`  
-**Method:** `PUT`  
+<b>URL:</b> `http://kuzzle:7512/users/<kuid>/_update[?refresh=wait_for]`  
+</br><b>Method:</b> `PUT`  
 **Body**
 </p>
 </blockquote>
@@ -32,7 +32,7 @@ title: updateUser
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

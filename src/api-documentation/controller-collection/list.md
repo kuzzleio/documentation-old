@@ -13,14 +13,14 @@ title: list
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/_list[?type=<all|stored|realtime>][&from=0][&size=42]`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/<index>/_list[?type=<all|stored|realtime>][&from=0][&size=42]`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

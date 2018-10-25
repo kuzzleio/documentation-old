@@ -13,8 +13,8 @@ title: createMyCredentials
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/credentials/<strategy>/_me/_create`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/credentials/<strategy>/_me/_create`  
+</br><b>Method:</b> `POST`  
 **Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
 **Body**
 </p>
@@ -36,7 +36,7 @@ title: createMyCredentials
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

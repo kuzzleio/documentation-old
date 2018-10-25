@@ -13,8 +13,8 @@ title: search
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>][&includeTrash=<boolean>]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>][&includeTrash=<boolean>]`  
+</br><b>Method:</b> `POST`  
 **Body:**
 </p>
 </blockquote>

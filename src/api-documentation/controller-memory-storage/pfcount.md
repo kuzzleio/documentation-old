@@ -16,14 +16,14 @@ title: pfcount
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/ms/_pfcount?keys=key1,key2,...`  
-**Method:** `GET`
+<b>URL:</b> `http://kuzzle:7512/ms/_pfcount?keys=key1,key2,...`  
+</br><b>Method:</b> `GET`
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

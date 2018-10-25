@@ -15,8 +15,8 @@ title: createUser
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/users/<kuid>/_create[?refresh=wait_for]` or `http://kuzzle:7512/users/_create[?refresh=wait_for]`  
-**Method:** `POST`  
+<b>URL:</b> `http://kuzzle:7512/users/<kuid>/_create[?refresh=wait_for]` or `http://kuzzle:7512/users/_create[?refresh=wait_for]`  
+</br><b>Method:</b> `POST`  
 **Body**
 </p>
 </blockquote>
@@ -54,7 +54,7 @@ title: createUser
 
 <blockquote class="json">
 <p>
-**Query**
+<b>Query</b>
 </p>
 </blockquote>
 

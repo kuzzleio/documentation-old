@@ -13,8 +13,8 @@ title: delete
 
 <blockquote class="js">
 <p>
-**URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`  
-**Method:** `DELETE`
+<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/<documentId>[?refresh=wait_for]`  
+</br><b>Method:</b> `DELETE`
 </p>
 </blockquote>
 
