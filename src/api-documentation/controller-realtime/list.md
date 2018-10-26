@@ -12,6 +12,7 @@ title: list
 
 {{{since "1.0.0"}}}
 
+{{{deprecated "1.5.0"}}}
 
 <blockquote class="js">
 <p>
