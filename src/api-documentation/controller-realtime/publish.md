@@ -63,11 +63,7 @@ title: publish
   "volatile": {},
   "requestId": "<unique request identifier>",
   "result": {
-    "hello": "world",
-    "_kuzzle_info": {
-      "createdAt": 1534775616139
-      "author": "-1"
-    }
+    "published": true
   }
 }
 ```
