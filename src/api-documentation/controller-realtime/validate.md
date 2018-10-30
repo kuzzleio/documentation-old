@@ -11,6 +11,8 @@ title: validate
 
 {{{since "1.0.0"}}}
 
+{{{deprecated "1.5.0"}}}
+
 
 <blockquote class="js">
 <p>
@@ -63,7 +65,7 @@ title: validate
 }
 ```
 
-Validates data against existing validation rules. 
+Validates data against existing validation rules.
 
 If the document is valid, the `result.valid` value is `true`, if not, it is `false`.
 If the document is not valid, the `result.errorMessages` will contain detailed hints on what is wrong with the document.
