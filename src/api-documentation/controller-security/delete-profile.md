@@ -16,8 +16,8 @@ title: deleteProfile
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_profiles/<profileId>[?refresh=wait_for]`  
-</br><b>Method:</b> `DELETE`
+<b>URL:</b> <code>http://kuzzle:7512/_profiles/&lt;profileId&gt;[?refresh=wait_for]</code>  
+<br><b>Method:</b> <code>DELETE</code>
 </p>
 </blockquote>
 

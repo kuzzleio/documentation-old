@@ -16,9 +16,9 @@ title: randomkey
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_randomkey`  
-</br><b>Method:</b> `GET`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/ms/_randomkey</code>  
+<br><b>Method:</b> <code>GET</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 

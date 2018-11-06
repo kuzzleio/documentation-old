@@ -15,9 +15,9 @@ title: searchRoles
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/roles/_search[?from=0][&size=42]`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/roles/_search[?from=0][&size=42]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 

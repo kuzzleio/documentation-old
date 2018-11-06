@@ -16,8 +16,8 @@ title: zcount
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_zcount/<key>?min=<min score>&max=<max score>`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_zcount/&lt;key&gt;?min=&lt;min score&gt;&max=&lt;max score&gt;</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

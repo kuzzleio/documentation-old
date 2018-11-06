@@ -13,9 +13,9 @@ title: logout
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_logout`  
-</br><b>Method:</b> `POST`  
-**Headers:** `Authorization: "Bearer <json_web_token>"`
+<b>URL:</b> <code>http://kuzzle:7512/_logout</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Headers:</b> <code>Authorization: "Bearer &lt;json_web_token&gt;"</code>
 </p>
 </blockquote>
 

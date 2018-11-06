@@ -14,8 +14,8 @@ title: getAllStats
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_getAllStats`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/_getAllStats</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

@@ -16,7 +16,7 @@ title: join
 
 <blockquote class="json">
 <p>
-**Due to the synchronous nature of the HTTP protocol, real-time messaging is not supported.**
+<b>Due to the synchronous nature of the HTTP protocol, real-time messaging is not supported.</b>
 </p>
 </blockquote>
 
@@ -47,7 +47,7 @@ title: join
 
 <blockquote class="js">
 <p>
-**Response**
+<b>Response</b>
 </p>
 </blockquote>
 

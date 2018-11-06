@@ -15,8 +15,8 @@ title: hscan
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_hscan/<key>?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_hscan/&lt;key&gt;?cursor=&lt;cursor&gt;[&match=&lt;pattern&gt;][&count=&lt;count&gt;]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

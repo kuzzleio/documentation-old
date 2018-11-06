@@ -16,9 +16,9 @@ title: updateProfile
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/profiles/<profileId>/_update[?refresh=wait_for]`  
-</br><b>Method:</b> `PUT`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/profiles/&lt;profileId&gt;/_update[?refresh=wait_for]</code>  
+<br><b>Method:</b> <code>PUT</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

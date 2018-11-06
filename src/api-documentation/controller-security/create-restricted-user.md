@@ -15,9 +15,9 @@ title: createRestrictedUser
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/users/<kuid>/_createRestricted[?refresh=wait_for]` or `http://kuzzle:7512/users/_createRestricted[?refresh=wait_for]`  
-</br><b>Method:</b> `POST`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/users/&lt;kuid&gt;/_createRestricted[?refresh=wait_for]</code> or <code>http://kuzzle:7512/users/_createRestricted[?refresh=wait_for]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

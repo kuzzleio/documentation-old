@@ -14,8 +14,8 @@ title: getrange
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_getrange/<key>?start=<start>&end=<end>`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_getrange/&lt;key&gt;?start=&lt;start&gt;&end=&lt;end&gt;</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

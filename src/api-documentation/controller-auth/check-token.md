@@ -13,9 +13,9 @@ title: checkToken
 
 <blockquote class="js">
 <p>
-  <b>URL:</b> `http://kuzzle:7512/_checkToken`  
-  </br><b>Method:</b> `POST`  
-  **Body:**  
+  <b>URL:</b> <code>http://kuzzle:7512/_checkToken</code>  
+<br>  <b>Method:</b> <code>POST</code>  
+<br>  <b>Body:</b>  
 </p>
 </blockquote>
 

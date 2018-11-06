@@ -13,9 +13,9 @@ title: mDelete
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_mDelete[?refresh=wait_for]`  
-</br><b>Method:</b> `DELETE`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_mDelete[?refresh=wait_for]</code>  
+<br><b>Method:</b> <code>DELETE</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 
@@ -29,7 +29,7 @@ title: mDelete
 
 <blockquote class="json">
 <p>
-**Query:**
+<b>Query:</b>
 </p>
 </blockquote>
 

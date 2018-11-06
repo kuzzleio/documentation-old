@@ -15,8 +15,8 @@ title: lindex
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_lindex/<key>/<index>`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_lindex/&lt;key&gt;/&lt;index&gt;</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

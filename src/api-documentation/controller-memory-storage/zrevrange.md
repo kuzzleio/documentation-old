@@ -16,8 +16,8 @@ title: zrevrange
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_zrevrange/<key>?start=<index start>&stop=<index stop>[&options=withscores]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_zrevrange/&lt;key&gt;?start=&lt;index start&gt;&stop=&lt;index stop&gt;[&options=withscores]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

@@ -13,9 +13,9 @@ title: deleteByQuery
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_query`  
-</br><b>Method:</b> `DELETE`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_query</code>  
+<br><b>Method:</b> <code>DELETE</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 
@@ -33,7 +33,7 @@ title: deleteByQuery
 
 <blockquote class="json">
 <p>
-**Query:**
+<b>Query:</b>
 </p>
 </blockquote>
 

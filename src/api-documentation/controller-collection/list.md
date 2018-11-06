@@ -13,8 +13,8 @@ title: list
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/_list[?type=<all|stored|realtime>][&from=0][&size=42]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/_list[?type=&lt;all|stored|realtime&gt;][&from=0][&size=42]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

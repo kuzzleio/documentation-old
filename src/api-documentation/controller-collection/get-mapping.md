@@ -13,8 +13,8 @@ title: getMapping
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_mapping`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_mapping</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

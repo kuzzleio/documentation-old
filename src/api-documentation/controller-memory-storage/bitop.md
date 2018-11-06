@@ -13,9 +13,9 @@ title: bitop
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512//ms/_bitop/<destination key>`  
-</br><b>Method:</b> `POST`  
-</br><b>Method:</b>  
+<b>URL:</b> <code>http://kuzzle:7512//ms/_bitop/&lt;destination key&gt;</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Method:</b>  
 </p>
 </blockquote>
 
