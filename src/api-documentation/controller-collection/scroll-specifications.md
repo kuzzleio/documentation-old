@@ -13,8 +13,8 @@ title: scrollSpecifications
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/validations/_scroll/<scrollId>[?scroll=<time to live>]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/validations/_scroll/&lt;scrollId&gt;[?scroll=&lt;time to live&gt;]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

@@ -16,8 +16,8 @@ title: scan
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_scan?cursor=<cursor>[&match=<pattern>][&count=<count>]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_scan?cursor=&lt;cursor&gt;[&match=&lt;pattern&gt;][&count=&lt;count&gt;]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

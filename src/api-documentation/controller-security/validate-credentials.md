@@ -14,9 +14,9 @@ title: validateCredentials
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/credentials/<strategy>/<kuid>/_validate`  
-</br><b>Method:</b> `POST`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/credentials/&lt;strategy&gt;/&lt;kuid&gt;/_validate</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

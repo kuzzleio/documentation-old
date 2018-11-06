@@ -13,10 +13,10 @@ title: validateMyCredentials
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/credentials/<strategy>/_me/_validate`  
-</br><b>Method:</b> `POST`  
-**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/credentials/&lt;strategy&gt;/_me/_validate</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Headers:</b> <code>Authorization: "Bearer &lt;encrypted_jwt_token&gt;"</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

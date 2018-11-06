@@ -13,8 +13,8 @@ title: bitcount
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_bitcount/<key>[?start=<integer>&end=<integer>]`  
-</br><b>Method:</b> `GET`  
+<b>URL:</b> <code>http://kuzzle:7512/ms/_bitcount/&lt;key&gt;[?start=&lt;integer&gt;&end=&lt;integer&gt;]</code>  
+<br><b>Method:</b> <code>GET</code>  
 </p>
 </blockquote>
 

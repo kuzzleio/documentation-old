@@ -14,8 +14,8 @@ title: georadiusbymember
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_georadiusbymember/<key>?member=<member>&distance=<distance>&unit=[m|km|mi|ft][&options=option1,option2,...]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_georadiusbymember/&lt;key&gt;?member=&lt;member&gt;&distance=&lt;distance&gt;&unit=[m|km|mi|ft][&options=option1,option2,...]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

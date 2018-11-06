@@ -16,9 +16,9 @@ title: createOrReplaceRole
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/roles/<roleId>[?refresh=wait_for]`  
-</br><b>Method:</b> `PUT`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/roles/&lt;roleId&gt;[?refresh=wait_for]</code>  
+<br><b>Method:</b> <code>PUT</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

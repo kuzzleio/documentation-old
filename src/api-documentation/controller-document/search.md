@@ -13,9 +13,9 @@ title: search
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_search[?from=0][&size=42][&scroll=<time to live>][&includeTrash=<boolean>]`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_search[?from=0][&size=42][&scroll=&lt;time to live&gt;][&includeTrash=&lt;boolean&gt;]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 
@@ -38,7 +38,7 @@ title: search
 
 <blockquote class="json">
 <p>
-**Query:**
+<b>Query:</b>
 </p>
 </blockquote>
 

@@ -16,9 +16,9 @@ title: zrem
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_zrem/<key>`  
-</br><b>Method:</b> `DELETE`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/ms/_zrem/&lt;key&gt;</code>  
+<br><b>Method:</b> <code>DELETE</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 

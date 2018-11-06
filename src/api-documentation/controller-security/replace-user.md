@@ -13,9 +13,9 @@ title: replaceUser
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/users/<kuid>/_replace[?refresh=wait_for]`  
-</br><b>Method:</b> `PUT`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/users/&lt;kuid&gt;/_replace[?refresh=wait_for]</code>  
+<br><b>Method:</b> <code>PUT</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

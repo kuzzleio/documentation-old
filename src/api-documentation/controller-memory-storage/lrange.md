@@ -15,8 +15,8 @@ title: lrange
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_lrange/<key>?start=<start>&stop=<stop>`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_lrange/&lt;key&gt;?start=&lt;start&gt;&stop=&lt;stop&gt;</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

@@ -13,8 +13,8 @@ title: deleteSpecifications
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_specifications`  
-</br><b>Method:</b> `DELETE`
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_specifications</code>  
+<br><b>Method:</b> <code>DELETE</code>
 </p>
 </blockquote>
 

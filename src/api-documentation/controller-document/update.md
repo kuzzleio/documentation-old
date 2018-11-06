@@ -13,9 +13,9 @@ title: update
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/<documentId>/_update[?refresh=wait_for][&retryOnConflict=<retries>]`  
-</br><b>Method:</b> `PUT`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/&lt;documentId&gt;/_update[?refresh=wait_for][&retryOnConflict=&lt;retries&gt;]</code>  
+<br><b>Method:</b> <code>PUT</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 
@@ -31,7 +31,7 @@ title: update
 
 <blockquote class="json">
 <p>
-**Query:**
+<b>Query:</b>
 </p>
 </blockquote>
 

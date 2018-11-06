@@ -14,8 +14,8 @@ title: resetKuzzleData
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/admin/_resetKuzzleData`  
-</br><b>Method:</b> `POST`
+<b>URL:</b> <code>http://kuzzle:7512/admin/_resetKuzzleData</code>  
+<br><b>Method:</b> <code>POST</code>
 </p>
 </blockquote>
 

@@ -13,8 +13,8 @@ title: create
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/_create`  
-</br><b>Method:</b> `POST`
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/_create</code>  
+<br><b>Method:</b> <code>POST</code>
 </p>
 </blockquote>
 

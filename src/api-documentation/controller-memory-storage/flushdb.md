@@ -15,8 +15,8 @@ title: flushdb
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_flushdb`  
-</br><b>Method:</b> `POST`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_flushdb</code>  
+<br><b>Method:</b> <code>POST</code>
 </p>
 </blockquote>
 

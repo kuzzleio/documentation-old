@@ -16,8 +16,8 @@ title: getRole
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/roles/<role id>`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/roles/&lt;role id&gt;</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

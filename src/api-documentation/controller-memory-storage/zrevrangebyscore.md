@@ -16,8 +16,8 @@ title: zrevrangebyscore
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_zrevrangebyscore/<key>?min=<min interval>&max=<max interval>[&limit=offset,count][&options=withscores]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_zrevrangebyscore/&lt;key&gt;?min=&lt;min interval&gt;&max=&lt;max interval&gt;[&limit=offset,count][&options=withscores]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

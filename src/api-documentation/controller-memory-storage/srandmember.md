@@ -16,8 +16,8 @@ title: srandmember
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_srandmember/<key>[?count=<count>]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_srandmember/&lt;key&gt;[?count=&lt;count&gt;]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

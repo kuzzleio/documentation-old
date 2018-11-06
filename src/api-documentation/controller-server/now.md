@@ -14,14 +14,14 @@ title: now
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_now`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/_now</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query:**
+<b>Query:</b>
 </p>
 </blockquote>
 

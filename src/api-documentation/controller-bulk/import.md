@@ -17,9 +17,9 @@ title: import
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_bulk`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_bulk</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 
@@ -116,9 +116,9 @@ If a subset of the documents fail to save, the client will receive a <a href="{{
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_bulk`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/_bulk</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 

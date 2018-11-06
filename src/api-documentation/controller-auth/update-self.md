@@ -13,10 +13,10 @@ title: updateSelf
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_updateSelf`  
-</br><b>Method:</b> `PUT`  
-**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/_updateSelf</code>  
+<br><b>Method:</b> <code>PUT</code>  
+<br><b>Headers:</b> <code>Authorization: "Bearer &lt;encrypted_jwt_token&gt;"</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

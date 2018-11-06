@@ -13,9 +13,9 @@ title: validate
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_validate`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_validate</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 
@@ -29,7 +29,7 @@ title: validate
 
 <blockquote class="json">
 <p>
-**Query:**
+<b>Query:</b>
 </p>
 </blockquote>
 

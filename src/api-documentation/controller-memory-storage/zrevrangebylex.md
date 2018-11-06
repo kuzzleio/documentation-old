@@ -16,8 +16,8 @@ title: zrevrangebylex
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_zrevrangebylex/<key>?min=<min interval>&max=<max interval>[&limit=offset,count]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_zrevrangebylex/&lt;key&gt;?min=&lt;min interval&gt;&max=&lt;max interval&gt;[&limit=offset,count]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

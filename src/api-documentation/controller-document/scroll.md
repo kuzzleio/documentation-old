@@ -13,14 +13,14 @@ title: scroll
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_scroll/<scrollId>[?scroll=<time to live>]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/_scroll/&lt;scrollId&gt;[?scroll=&lt;time to live&gt;]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 
 <blockquote class="json">
 <p>
-**Query:**
+<b>Query:</b>
 </p>
 </blockquote>
 

@@ -13,10 +13,10 @@ title: create
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_create[?refresh=wait_for]`  
-**Alternative URL:** `http://kuzzle:7512/<index>/<collection>/<documentId>/_create[?refresh=wait_for]`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_create[?refresh=wait_for]</code>  
+<br><b>Alternative URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/&lt;documentId&gt;/_create[?refresh=wait_for]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 
@@ -29,7 +29,7 @@ title: create
 
 <blockquote class="json">
 <p>
-**Query:**
+<b>Query:</b>
 </p>
 </blockquote>
 
