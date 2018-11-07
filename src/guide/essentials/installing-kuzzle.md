@@ -18,6 +18,7 @@ The easiest way to install Kuzzle is by using our <a href="{{ site_base_path }}g
 Before launching Kuzzle in Docker, ensure that your system meets the following requirements:
 
 - **64-bit environment**
+- **At least 1.4GB of memory**
 - **Docker v1.10+**, see [instructions here](https://docs.docker.com/engine/installation/)
 - **Docker Compose v1.8+**, see [instructions here](https://docs.docker.com/compose/install/)
 
@@ -320,7 +321,10 @@ If you see the following message make sure that you have installed Redis and tha
     at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1090:14)
 ```
 
-If you see the following message when your run `pm2 logs` then make sure your `pm2.conf.yml` file was created correctly. If you need to make to the file, delete the current version from pm2 first `pm2 delete kuzzlebackend` and then follow the instructions above to recreate it.
+If you see the following message when running `pm2 logs`, then make sure that your `pm2.conf.yml` file was created correctly.  
+To recreate that file:
+* delete the current version from pm2: `pm2 delete kuzzlebackend`
+* follow the instructions above to recreate it
 
 ```
 PM2        |     at onErrorNT (internal/child_process.js:376:16)
