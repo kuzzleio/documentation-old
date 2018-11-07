@@ -16,8 +16,8 @@ title: zlexcount
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_zlexcount/<key>?min=<min value>&max=<max value>`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_zlexcount/&lt;key&gt;?min=&lt;min value&gt;&max=&lt;max value&gt;</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

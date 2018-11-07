@@ -16,9 +16,9 @@ title: updateRoleMapping
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/roles/_mapping`  
-</br><b>Method:</b> `PUT`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/roles/_mapping</code>  
+<br><b>Method:</b> <code>PUT</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 

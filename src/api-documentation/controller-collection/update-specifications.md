@@ -11,9 +11,9 @@ title: updateSpecifications
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_specifications`  
-</br><b>Method:</b> `PUT`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/_specifications</code>  
+<br><b>Method:</b> <code>PUT</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 

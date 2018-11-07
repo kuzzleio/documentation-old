@@ -14,9 +14,9 @@ title: searchUsers
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/users/_search[?from=0][&size=42][&scroll=<time to live>]`  
-</br><b>Method:</b> `POST`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/users/_search[?from=0][&size=42][&scroll=&lt;time to live&gt;]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

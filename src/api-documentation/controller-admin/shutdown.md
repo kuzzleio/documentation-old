@@ -14,8 +14,8 @@ title: shutdown
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/admin/_shutdown`  
-</br><b>Method:</b> `POST`
+<b>URL:</b> <code>http://kuzzle:7512/admin/_shutdown</code>  
+<br><b>Method:</b> <code>POST</code>
 </p>
 </blockquote>
 

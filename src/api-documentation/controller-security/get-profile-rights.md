@@ -16,8 +16,8 @@ title: getProfileRights
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_profiles/<profileId>/_rights`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/_profiles/&lt;profileId&gt;/_rights</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

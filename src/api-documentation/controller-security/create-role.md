@@ -16,9 +16,9 @@ title: createRole
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/roles/<roleId>/_create[?refresh=wait_for]`  
-</br><b>Method:</b> `POST`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/roles/&lt;roleId&gt;/_create[?refresh=wait_for]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

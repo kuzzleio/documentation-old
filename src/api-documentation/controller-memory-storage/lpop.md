@@ -15,8 +15,8 @@ title: lpop
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_lpop/<key>`  
-</br><b>Method:</b> `POST`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_lpop/&lt;key&gt;</code>  
+<br><b>Method:</b> <code>POST</code>
 </p>
 </blockquote>
 

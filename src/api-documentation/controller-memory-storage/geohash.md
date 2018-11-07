@@ -14,8 +14,8 @@ title: geohash
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_geohash/<key>?members=member1,member2,...`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_geohash/&lt;key&gt;?members=member1,member2,...</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

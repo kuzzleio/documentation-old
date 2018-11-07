@@ -13,8 +13,8 @@ title: getAutoRefresh
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/_autoRefresh`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/_autoRefresh</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

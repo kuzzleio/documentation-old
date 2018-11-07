@@ -14,8 +14,8 @@ title: geodist
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_geodist/<key>/<member1>/<member2>[?unit=[m|km|mi|ft]]`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_geodist/&lt;key&gt;/&lt;member1&gt;/&lt;member2&gt;[?unit=[m|km|mi|ft]]</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

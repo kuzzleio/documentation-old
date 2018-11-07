@@ -13,9 +13,9 @@ title: login
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/_login/<strategy>[?expiresIn=<expiresIn>]`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/_login/&lt;strategy&gt;[?expiresIn=&lt;expiresIn&gt;]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 

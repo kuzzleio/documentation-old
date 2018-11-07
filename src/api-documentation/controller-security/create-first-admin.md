@@ -16,9 +16,9 @@ title: createFirstAdmin
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<kuid>/_createFirstAdmin[?reset=1]` or `http://kuzzle:7512/_createFirstAdmin[?reset=1]`  
-</br><b>Method:</b> `POST`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;kuid&gt;/_createFirstAdmin[?reset=1]</code> or <code>http://kuzzle:7512/_createFirstAdmin[?reset=1]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

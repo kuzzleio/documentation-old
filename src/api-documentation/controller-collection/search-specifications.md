@@ -13,9 +13,9 @@ title: searchSpecifications
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/validations/_search[?from=0][&size=10][&scroll=<time to live>]`  
-</br><b>Method:</b> `POST`  
-**Body**
+<b>URL:</b> <code>http://kuzzle:7512/validations/_search[?from=0][&size=10][&scroll=&lt;time to live&gt;]</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body</b>
 </p>
 </blockquote>
 

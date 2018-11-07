@@ -11,12 +11,14 @@ title: validate
 
 {{{since "1.0.0"}}}
 
+{{{deprecated "1.5.0"}}}
+
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/<index>/<collection>/_validate`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/&lt;index&gt;/&lt;collection&gt;/_validate</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 
@@ -63,7 +65,7 @@ title: validate
 }
 ```
 
-Validates data against existing validation rules. 
+Validates data against existing validation rules.
 
 If the document is valid, the `result.valid` value is `true`, if not, it is `false`.
 If the document is not valid, the `result.errorMessages` will contain detailed hints on what is wrong with the document.

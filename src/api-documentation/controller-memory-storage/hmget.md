@@ -15,8 +15,8 @@ title: hmget
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/_hmget/<key>?fields=field1,field2,...`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/_hmget/&lt;key&gt;?fields=field1,field2,...</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

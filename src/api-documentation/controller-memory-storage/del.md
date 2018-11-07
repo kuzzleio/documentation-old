@@ -10,9 +10,9 @@ title: del
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms`  
-</br><b>Method:</b> `DELETE`  
-</br><b>Method:</b>  
+<b>URL:</b> <code>http://kuzzle:7512/ms</code>  
+<br><b>Method:</b> <code>DELETE</code>  
+<br><b>Method:</b>  
 </p>
 </blockquote>
 

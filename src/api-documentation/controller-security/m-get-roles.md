@@ -16,9 +16,9 @@ title: mGetRoles
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/roles/_mGet`  
-</br><b>Method:</b> `POST`  
-**Body:**
+<b>URL:</b> <code>http://kuzzle:7512/roles/_mGet</code>  
+<br><b>Method:</b> <code>POST</code>  
+<br><b>Body:</b>
 </p>
 </blockquote>
 

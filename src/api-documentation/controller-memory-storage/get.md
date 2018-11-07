@@ -15,8 +15,8 @@ title: get
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/ms/<key>`  
-</br><b>Method:</b> `GET`
+<b>URL:</b> <code>http://kuzzle:7512/ms/&lt;key&gt;</code>  
+<br><b>Method:</b> <code>GET</code>
 </p>
 </blockquote>
 

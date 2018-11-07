@@ -13,9 +13,9 @@ title: getMyRights
 
 <blockquote class="js">
 <p>
-<b>URL:</b> `http://kuzzle:7512/users/_me/_rights`  
-</br><b>Method:</b> `GET`  
-**Headers:** `Authorization: "Bearer <encrypted_jwt_token>"`
+<b>URL:</b> <code>http://kuzzle:7512/users/_me/_rights</code>  
+<br><b>Method:</b> <code>GET</code>  
+<br><b>Headers:</b> <code>Authorization: "Bearer &lt;encrypted_jwt_token&gt;"</code>
 </p>
 </blockquote>
 
