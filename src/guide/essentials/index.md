@@ -13,7 +13,7 @@ subheader-title: Introduction
 Kuzzle is a ready-to-use, **open-source**, **on-premises** suite that allows you to build modern web, mobile and IoT applications in no time. Thanks to its built-in features you can easily:
 
 * **connect your apps** using our available SDKs and multiple protocols.
-* **manage your data** using the built-in pesistence engine.
+* **manage your data** using the built-in persistence engine.
 * **trigger real-time notifications** using our real-time engine.
 * **manage authentication** using Oauth2 and many other authentication strategies.
 * **customize your backend** using the plugins engine and your own code.
@@ -38,7 +38,7 @@ You can interact directly with Kuzzle through its API, read the [Kuzzle API refe
 
 ## Manage your data
 
-Kuzzle relies on [Elasticsearch](https://www.elastic.co/) to store, fetch and peform a variety of CRUD and fine-grained search operations on persistent data. Please refer to our [working with persistent data]({{ site_base_path }}guide/essentials/persisted) section for more details.
+Kuzzle relies on [Elasticsearch](https://www.elastic.co/) to store, fetch and perform a variety of CRUD and fine-grained search operations on persistent data. Please refer to our [working with persistent data]({{ site_base_path }}guide/essentials/persisted) section for more details.
 
 ## Trigger real-time notifications
 
