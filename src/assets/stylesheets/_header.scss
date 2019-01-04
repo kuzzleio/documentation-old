@@ -450,6 +450,11 @@ body:not(.touchevents) {
         width: 100%;
       }
     }
+    
+    .nav-link {
+      color: $color-pinkpanther;
+      font-weight: bold;
+    }
   }
 }
 
